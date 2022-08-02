@@ -1,0 +1,579 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{66C17F63-5F8A-4C76-9804-856EBD67CD87}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PrintableTomKitten</RootNamespace>
+    <AssemblyName>PrintableTomKitten</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>PrintableTomKitten_TemporaryKey.pfx</PackageCertificateKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomPageRange.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TomKitten03.xaml.cs">
+      <DependentUpon>TomKitten03.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten04.xaml.cs">
+      <DependentUpon>TomKitten04.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten05.xaml.cs">
+      <DependentUpon>TomKitten05.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten06.xaml.cs">
+      <DependentUpon>TomKitten06.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten07.xaml.cs">
+      <DependentUpon>TomKitten07.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten08.xaml.cs">
+      <DependentUpon>TomKitten08.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten09.xaml.cs">
+      <DependentUpon>TomKitten09.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten10.xaml.cs">
+      <DependentUpon>TomKitten10.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten11.xaml.cs">
+      <DependentUpon>TomKitten11.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten12.xaml.cs">
+      <DependentUpon>TomKitten12.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten13.xaml.cs">
+      <DependentUpon>TomKitten13.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten14.xaml.cs">
+      <DependentUpon>TomKitten14.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten15.xaml.cs">
+      <DependentUpon>TomKitten15.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten16.xaml.cs">
+      <DependentUpon>TomKitten16.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten17.xaml.cs">
+      <DependentUpon>TomKitten17.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten18.xaml.cs">
+      <DependentUpon>TomKitten18.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten19.xaml.cs">
+      <DependentUpon>TomKitten19.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten20.xaml.cs">
+      <DependentUpon>TomKitten20.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten21.xaml.cs">
+      <DependentUpon>TomKitten21.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten22.xaml.cs">
+      <DependentUpon>TomKitten22.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten23.xaml.cs">
+      <DependentUpon>TomKitten23.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten24.xaml.cs">
+      <DependentUpon>TomKitten24.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten25.xaml.cs">
+      <DependentUpon>TomKitten25.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten26.xaml.cs">
+      <DependentUpon>TomKitten26.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten27.xaml.cs">
+      <DependentUpon>TomKitten27.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten28.xaml.cs">
+      <DependentUpon>TomKitten28.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten29.xaml.cs">
+      <DependentUpon>TomKitten29.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten30.xaml.cs">
+      <DependentUpon>TomKitten30.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten31.xaml.cs">
+      <DependentUpon>TomKitten31.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten32.xaml.cs">
+      <DependentUpon>TomKitten32.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten33.xaml.cs">
+      <DependentUpon>TomKitten33.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten34.xaml.cs">
+      <DependentUpon>TomKitten34.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten35.xaml.cs">
+      <DependentUpon>TomKitten35.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten36.xaml.cs">
+      <DependentUpon>TomKitten36.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten37.xaml.cs">
+      <DependentUpon>TomKitten37.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten38.xaml.cs">
+      <DependentUpon>TomKitten38.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten39.xaml.cs">
+      <DependentUpon>TomKitten39.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten40.xaml.cs">
+      <DependentUpon>TomKitten40.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten41.xaml.cs">
+      <DependentUpon>TomKitten41.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten42.xaml.cs">
+      <DependentUpon>TomKitten42.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten43.xaml.cs">
+      <DependentUpon>TomKitten43.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten44.xaml.cs">
+      <DependentUpon>TomKitten44.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten45.xaml.cs">
+      <DependentUpon>TomKitten45.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten46.xaml.cs">
+      <DependentUpon>TomKitten46.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten47.xaml.cs">
+      <DependentUpon>TomKitten47.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten48.xaml.cs">
+      <DependentUpon>TomKitten48.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten49.xaml.cs">
+      <DependentUpon>TomKitten49.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten50.xaml.cs">
+      <DependentUpon>TomKitten50.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten51.xaml.cs">
+      <DependentUpon>TomKitten51.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten52.xaml.cs">
+      <DependentUpon>TomKitten52.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten53.xaml.cs">
+      <DependentUpon>TomKitten53.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten54.xaml.cs">
+      <DependentUpon>TomKitten54.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten55.xaml.cs">
+      <DependentUpon>TomKitten55.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten56.xaml.cs">
+      <DependentUpon>TomKitten56.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten57.xaml.cs">
+      <DependentUpon>TomKitten57.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten58.xaml.cs">
+      <DependentUpon>TomKitten58.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TomKitten59.xaml.cs">
+      <DependentUpon>TomKitten59.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="PrintableTomKitten_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\SmallLogo.png" />
+    <Content Include="Assets\SplashScreen.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Images\tom04.jpg" />
+    <Content Include="Images\tom05.jpg" />
+    <Content Include="Images\tom08.jpg" />
+    <Content Include="Images\tom11.jpg" />
+    <Content Include="Images\tom12.jpg" />
+    <Content Include="Images\tom15.jpg" />
+    <Content Include="Images\tom16.jpg" />
+    <Content Include="Images\tom19.jpg" />
+    <Content Include="Images\tom20.jpg" />
+    <Content Include="Images\tom23.jpg" />
+    <Content Include="Images\tom24.jpg" />
+    <Content Include="Images\tom27.jpg" />
+    <Content Include="Images\tom28.jpg" />
+    <Content Include="Images\tom31.jpg" />
+    <Content Include="Images\tom32.jpg" />
+    <Content Include="Images\tom35.jpg" />
+    <Content Include="Images\tom36.jpg" />
+    <Content Include="Images\tom39.jpg" />
+    <Content Include="Images\tom40.jpg" />
+    <Content Include="Images\tom43.jpg" />
+    <Content Include="Images\tom44.jpg" />
+    <Content Include="Images\tom47.jpg" />
+    <Content Include="Images\tom48.jpg" />
+    <Content Include="Images\tom51.jpg" />
+    <Content Include="Images\tom52.jpg" />
+    <Content Include="Images\tom55.jpg" />
+    <Content Include="Images\tom57.jpg" />
+    <Content Include="Images\tom58.jpg" />
+    <Page Include="TomKitten36.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten55.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten54.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten53.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten56.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten57.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten58.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten59.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten52.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten51.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten50.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten49.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten48.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten47.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten46.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten45.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten44.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten43.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten42.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten41.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten40.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten39.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten38.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten37.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten35.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten34.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten33.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten32.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten31.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten30.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten29.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten28.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten27.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten26.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten25.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten24.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten23.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten22.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten21.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten20.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten19.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten18.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten17.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten08.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten07.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten06.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten03.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten16.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten15.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten14.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten13.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten12.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten09.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten11.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten10.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten05.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TomKitten04.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Common\StandardStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
+    <VisualStudioVersion>11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

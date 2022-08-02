@@ -1,0 +1,240 @@
+﻿<Page
+    x:Class="PrivateFonts.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PrivateFonts"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontSize="36">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <TextBlock Text="Kootenay"
+                       FontFamily="ms-appx:///Fonts/Kooten.ttf#Kootenay" />
+
+            <TextBlock Text="Lindsey"
+                       FontFamily="ms-appx:///Fonts/Linds.ttf#Lindsey" />
+
+            <TextBlock Text="Miramonte"
+                       FontFamily="ms-appx:///Fonts/Miramo.ttf#Miramonte" />
+
+            <TextBlock Text="Miramonte Bold"
+                       FontFamily="ms-appx:///Fonts/Miramob.ttf#Miramonte" />
+
+            <TextBlock Text="Pericles"
+                       FontFamily="ms-appx:///Fonts/Peric.ttf#Pericles" />
+
+            <TextBlock Text="Pericles Light"
+                       FontFamily="ms-appx:///Fonts/Pericl.ttf#Pericles" />
+
+            <TextBlock Text="Pescadero"
+                       FontFamily="ms-appx:///Fonts/Pesca.ttf#Pescadero" />
+
+            <TextBlock Text="Pescadero Bold"
+                       FontFamily="ms-appx:///Fonts/Pescab.ttf#Pescadero" />
+
+            <TextBlock Text="Pescadero Bold*"
+                       FontFamily="ms-appx:///Fonts/Pesca.ttf#Pescadero"
+                       FontWeight="Bold" />
+
+            <TextBlock Text="Pescadero Italic*"
+                       FontFamily="ms-appx:///Fonts/Pesca.ttf#Pescadero"
+                       FontStyle="Italic" />
+        </StackPanel>
+
+        <Grid Grid.Column="1">
+            <Glyphs UnicodeString="Kootenay"
+                    FontUri="ms-appx:///Fonts/Kooten.ttf"
+                    FontRenderingEmSize="36"
+                    Fill="Black"
+                    OriginX="0"
+                    OriginY="45" />
+
+            <Glyphs UnicodeString="Lindsey"
+                    FontUri="ms-appx:///Fonts/Linds.ttf"
+                    FontRenderingEmSize="36"
+                    Fill="Black"
+                    OriginX="0"
+                    OriginY="90" />
+
+            <Glyphs UnicodeString="Miramonte"
+                    FontUri="ms-appx:///Fonts/Miramo.ttf"
+                    FontRenderingEmSize="36"
+                    Fill="Black"
+                    OriginX="0"
+                    OriginY="135" />
+
+            <Glyphs UnicodeString="Miramonte Bold"
+                    FontUri="ms-appx:///Fonts/Miramob.ttf"
+                    FontRenderingEmSize="36"
+                    Fill="Black"
+                    OriginX="0"
+                    OriginY="180" />
+
+            <Glyphs UnicodeString="Pericles"
+                    FontUri="ms-appx:///Fonts/Peric.ttf"
+                    FontRenderingEmSize="36"
+                    Fill="Black"
+                    OriginX="0"
+                    OriginY="225" />
+
+            <Glyphs UnicodeString="Pericles Light"
+                    FontUri="ms-appx:///Fonts/Pericl.ttf"
+                    FontRenderingEmSize="36"
+                    Fill="Black"
+                    OriginX="0"
+                    OriginY="270" />
+
+            <Glyphs UnicodeString="Pescadero"
+                    FontUri="ms-appx:///Fonts/Pesca.ttf"
+                    FontRenderingEmSize="36"
+                    Fill="Black"
+                    OriginX="0"
+                    OriginY="315" />
+
+            <Glyphs UnicodeString="Pescadero Bold"
+                    FontUri="ms-appx:///Fonts/Pescab.ttf"
+                    FontRenderingEmSize="36"
+                    Fill="Black"
+                    OriginX="0"
+                    OriginY="360" />
+
+            <Glyphs UnicodeString="Pescadero Bold*"
+                    FontUri="ms-appx:///Fonts/Pesca.ttf"
+                    StyleSimulations="BoldSimulation"
+                    FontRenderingEmSize="36"
+                    Fill="Black"
+                    OriginX="0"
+                    OriginY="405" />
+
+            <Glyphs UnicodeString="Pescadero Italic*"
+                    FontUri="ms-appx:///Fonts/Pesca.ttf"
+                    StyleSimulations="ItalicSimulation"
+                    FontRenderingEmSize="36"
+                    Fill="Black"
+                    OriginX="0"
+                    OriginY="450" />
+        </Grid>
+
+        <StackPanel Grid.Column="2">
+            <TextBlock Text="Kootenay"
+                       FontFamily="ms-appdata:///local/Fonts/Kooten.ttf#Kootenay" />
+
+            <TextBlock Text="Lindsey"
+                       FontFamily="ms-appdata:///local/Fonts/Linds.ttf#Lindsey" />
+
+            <TextBlock Text="Miramonte"
+                       FontFamily="ms-appdata:///local/Fonts/Miramo.ttf#Miramonte" />
+
+            <TextBlock Text="Miramonte Bold"
+                       FontFamily="ms-appdata:///local/Fonts/Miramob.ttf#Miramonte" />
+
+            <TextBlock Text="Pericles"
+                       FontFamily="ms-appdata:///local/Fonts/Peric.ttf#Pericles" />
+
+            <TextBlock Text="Pericles Light"
+                       FontFamily="ms-appdata:///local/Fonts/Pericl.ttf#Pericles" />
+
+            <TextBlock Text="Pescadero"
+                       FontFamily="ms-appdata:///local/Fonts/Pesca.ttf#Pescadero" />
+
+            <TextBlock Text="Pescadero Bold"
+                       FontFamily="ms-appdata:///local/Fonts/Pescab.ttf#Pescadero" />
+
+            <TextBlock Text="Pescadero Bold*"
+                       FontFamily="ms-appdata:///local/Fonts/Pesca.ttf#Pescadero"
+                       FontWeight="Bold" />
+
+            <TextBlock Text="Pescadero Italic*"
+                       FontFamily="ms-appdata:///local/Fonts/Pesca.ttf#Pescadero"
+                       FontStyle="Italic" />
+        </StackPanel>
+
+        <Grid Grid.Column="3">
+            <Glyphs UnicodeString="Kootenay"
+                    FontUri="ms-appdata:///local/Fonts/Kooten.ttf"
+                    FontRenderingEmSize="36"
+                    Fill="Black"
+                    OriginX="0"
+                    OriginY="45" />
+
+            <Glyphs UnicodeString="Lindsey"
+                    FontUri="ms-appdata:///local/Fonts/Linds.ttf"
+                    FontRenderingEmSize="36"
+                    Fill="Black"
+                    OriginX="0"
+                    OriginY="90" />
+
+            <Glyphs UnicodeString="Miramonte"
+                    FontUri="ms-appdata:///local/Fonts/Miramo.ttf"
+                    FontRenderingEmSize="36"
+                    Fill="Black"
+                    OriginX="0"
+                    OriginY="135" />
+
+            <Glyphs UnicodeString="Miramonte Bold"
+                    FontUri="ms-appdata:///local/Fonts/Miramob.ttf"
+                    FontRenderingEmSize="36"
+                    Fill="Black"
+                    OriginX="0"
+                    OriginY="180" />
+
+            <Glyphs UnicodeString="Pericles"
+                    FontUri="ms-appdata:///local/Fonts/Peric.ttf"
+                    FontRenderingEmSize="36"
+                    Fill="Black"
+                    OriginX="0"
+                    OriginY="225" />
+
+            <Glyphs UnicodeString="Pericles Light"
+                    FontUri="ms-appdata:///local/Fonts/Pericl.ttf"
+                    FontRenderingEmSize="36"
+                    Fill="Black"
+                    OriginX="0"
+                    OriginY="270" />
+
+            <Glyphs UnicodeString="Pescadero"
+                    FontUri="ms-appdata:///local/Fonts/Pesca.ttf"
+                    FontRenderingEmSize="36"
+                    Fill="Black"
+                    OriginX="0"
+                    OriginY="315" />
+
+            <Glyphs UnicodeString="Pescadero Bold"
+                    FontUri="ms-appdata:///local/Fonts/Pescab.ttf"
+                    FontRenderingEmSize="36"
+                    Fill="Black"
+                    OriginX="0"
+                    OriginY="360" />
+
+            <Glyphs UnicodeString="Pescadero Bold*"
+                    FontUri="ms-appdata:///local/Fonts/Pesca.ttf"
+                    StyleSimulations="BoldSimulation"
+                    FontRenderingEmSize="36"
+                    Fill="Black"
+                    OriginX="0"
+                    OriginY="405" />
+
+            <Glyphs UnicodeString="Pescadero Italic*"
+                    FontUri="ms-appdata:///local/Fonts/Pesca.ttf"
+                    StyleSimulations="ItalicSimulation"
+                    FontRenderingEmSize="36"
+                    Fill="Black"
+                    OriginX="0"
+                    OriginY="450" />
+        </Grid>
+        
+        <TextBlock Text="*simulated"
+                   Grid.ColumnSpan="4"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Center" />
+    </Grid>
+</Page>

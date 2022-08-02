@@ -1,0 +1,180 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>Learning Rendering: Study 2</title>
+</head>
+<body>
+<a href="../STUDY1/STUDY1.HTM">&lt;&lt;</a><a href="../STUDY3/STUDY3.HTM">>></a><a href="../TOC.HTM">Contents</a><a href="../INDEX.HTM" TARGET="_top">Top</a>
+<hr>
+<h1>
+STUDY 2</h1>
+
+<h2>
+BASIC RENDERING OPTIONS FOR POLYGON MESH OBJECTS</h2>
+
+<table BORDER=0 CELLSPACING=10 WIDTH="100%" >
+<tr>
+<td WIDTH="100"><a href="AMBPNG.TIF"><img SRC="AMBPNG.GIF" ALT="ambpng.gif" height=75 width=100></a></td>
+
+<td>Phong shaded scene - ambient term only. In any Phong shaded scene the
+ambient lighting intensity, which compensates for the lack of any global
+illumination calculations, is set to a fairly low level. It has to illuminate
+areas of the scene that cannot 'see' a light source and at the same time
+not dominate the shaded parts of the scene.</td>
+</tr>
+
+<tr>
+<td><a href="ADPNG.TIF"><img SRC="ADPNG.GIF" ALT="adpng.gif" height=75 width=100></a></td>
+
+<td>Phong shaded - ambient and diffuse terms.
+<br>The illumination of wall from wall lights appears to be in the wrong
+place. This is due to the screen space interpolation which operates with
+equal distances (pixels) and ignores the fact that a perspective transformation
+has taken place mapping equal distances along the wall into varying distances.
+This is one of the classic problems with Phong shading.&nbsp;
+<p>Another problem, often ignored, is what to do with visible light sources.
+Treating them as a shaded object doesn't quite work. In this case the point
+light source is inside the surrounding sphere and cannot by definition
+illuminate it. We can only get illumination from the wall light and turn
+up the ambient component for the light object The wall light are spotlights
+with the cone angle coinciding with the geometry of the light source.</td>
+</tr>
+
+<tr>
+<td><a href="ADSPNG.tif"><img SRC="ADSPNG.GIF" ALT="adspng.gif" height=75 width=100></a></td>
+
+<td>Phong shaded - ambient + diffuse + specular.</td>
+</tr>
+
+<tr>
+<td><a href="KDKSXX.HTM"><img SRC="KDKSFL.GIF" ALT="kdks00.gif" height=75 width=100></a></td>
+
+<td>Phong shaded - <a href="KDKSXX.HTM">array of images</a> showing a Phong
+shaded teapot with different Ks and Kd ranging from 0.0 to 1.0 in 0.2 steps
+(6x6=36 images). The 'traditional' way of illustrating the shading equation
+parameters. (Ka=0.7, exponent = 10.0 in all images)</td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=10 WIDTH="100%" >
+<caption>.</caption>
+
+<tr>
+<td WIDTH="100"><a href="KSXPXX.HTM"><img SRC="KSXPFL.GIF" height=75 width=100></a></td>
+
+<td>Phong shaded - <a href="KSXPXX.HTM">5x5 array of images</a> showing
+different Ks and exponent values (with Ka=0.7, Kd=1.0). Ks is increasing
+across and exponent is increasing down. Values used are Ks: 0.0, 0.25,
+0.5, 0.75, 1.0. exponent: 10.0, 30.0, 90.0, 270.0, 810.0
+<br>Note Phong illumination model attempts to model increasing "shininess"
+by simply making size of specular highlight smaller.&nbsp;</td>
+</tr>
+
+<tr>
+<td><a href="CMPFLT.TIF"><img SRC="CMPFLT.GIF" ALT="cmpflt.gif" height=75 width=100></a></td>
+
+<td>Full scene flat shaded. flat shading shows the polygonal nature of
+the surfaces due to discontinuities in intensity. Shading changes across
+large polygons do not appear (e.g. illumination of the wall lights on the
+wall).</td>
+</tr>
+
+<tr>
+<td><a href="CMPGR.TIF"><img SRC="CMPGR.GIF" ALT="cmpgr.gif" height=75 width=100></a></td>
+
+<td><a NAME="cmpgr"></a>cmpgr - Full scene Gouraud shaded. The illumination
+on the walls due to the spot lights does not appear. Note artefact on back
+wall (see image cpgrs and cpgrsw below). The polygon edges are still slightly
+visible due to discontinuities in intensity gradient - the characteristic
+Mach banding effect. This effect persists in radiosity imagery where a
+form of Gouraud interpolation is used to interpolate a constant radiosity
+(per patch) solution. There is a parallel between the flat/Gouraud image
+and basic radiosity solution/final solution (see later images).</td>
+</tr>
+
+<tr>
+<td><a href="ADSPNG.tif"><img SRC="ADSPNG.GIF" ALT="adspng.gif" height=75 width=100></a></td>
+
+<td>adspng - equivalent Phong shaded image</td>
+</tr>
+
+<tr>
+<td><a href="CMPFTZ.TIF"><img SRC="CMPFTZ.GIF" ALT="cmpftz.gif" height=75 width=100></a></td>
+
+<td>Flat shaded - zoom in on one of the wall lights.</td>
+</tr>
+
+<tr>
+<td><a href="CMPGRZ.TIF"><img SRC="CMPGRZ.GIF" ALT="cmpgrz.gif" height=75 width=100></a></td>
+
+<td>ditto -Gouraud shaded&nbsp;</td>
+</tr>
+
+<tr>
+<td><a href="CMPPGZ.TIF"><img SRC="CMPPGZ.GIF" ALT="cmppgz.gif" height=75 width=100></a></td>
+
+<td>ditto -Phong shaded Note that if polygon mesh resolution of objects
+is fairly high then the difference between Gouraud and Phong can be fairly
+subtle - as the size of the polygons approaches single pixels in screen
+space then the shading will approach Phong shading.</td>
+</tr>
+
+<tr>
+<td><a href="CMPFLZ.TIF"><img SRC="CMPFLZ.GIF" ALT="cmpflz.gif" height=75 width=100></a></td>
+
+<td>Flat shaded - resolution of the light body has now been reduced.&nbsp;</td>
+</tr>
+
+<tr>
+<td><a href="CMPGLZ.TIF"><img SRC="CMPGLZ.GIF" ALT="cmpglz.gif" height=75 width=100></a></td>
+
+<td><a NAME="cmpglz"></a>cmpglz - Gouraud shaded
+<br>Phong highlight is lost since none of the mesh vertices are close to
+it.</td>
+</tr>
+
+<tr>
+<td><a href="CMPPLZ.TIF"><img SRC="CMPPLZ.GIF" ALT="cmpplz.gif" height=75 width=100></a></td>
+
+<td><a NAME="cmpplz"></a>cmpplz - Phong shaded.
+<br>Phong highlight reappears.</td>
+</tr>
+
+<tr>
+<td><a href="CMPDF1.TIF"><img SRC="CMPDF1.GIF" ALT="cmpdf1.gif" height=75 width=100></a></td>
+
+<td>difference image between cmpgr (Gouraud scene) and adspng (Phong scene).
+Note that most differences appear on the large walls. There is little difference
+around the Phong highlights since mesh resolutions are high. (Both images
+were converted to grey scale, then the difference image was generated and
+histogram stretched.</td>
+</tr>
+
+<tr>
+<td><a href="CMPDF2.TIF"><img SRC="CMPDF2.GIF" height=75 width=100></a></td>
+
+<td>difference between cmpglz and cmpplz - big difference due to low resolution
+mesh.</td>
+</tr>
+
+<tr>
+<td><a href="CPGRSW.TIF"><img SRC="CPGRSW.GIF" ALT="cpgrsw.gif" height=75 width=100></a></td>
+
+<td>When Gouraud shading large polygons, artefacts can appear see back
+wall in cmpgr. This is due to the scan line conversion algorithm switching
+between different edges as it scans down the polygon. Here we remove this
+by splitting the polygon into triangles.</td>
+</tr>
+
+<tr>
+<td><a href="CPGRS.TIF"><img SRC="CPGRS.GIF" ALT="cpgrs.gif" height=75 width=100></a></td>
+
+<td>Gouraud shaded scene with triangulated polygon.</td>
+</tr>
+</table>
+
+<hr><a href="../STUDY1/STUDY1.HTM">&lt;&lt;</a><a href="../STUDY3/STUDY3.HTM">>></a><a href="../TOC.HTM">Contents</a><a href="../INDEX.HTM" TARGET="_top">Top</a>
+</body>
+</html>

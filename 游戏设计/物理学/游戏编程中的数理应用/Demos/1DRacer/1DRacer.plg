@@ -1,0 +1,47 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: 1DRacer - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPC.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Debug/1DRacer.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\Test Code\1DRacer\BMP_Mngr.cpp"
+"C:\Test Code\1DRacer\D_Draw.cpp"
+"C:\Test Code\1DRacer\ddutil.cpp"
+"C:\Test Code\1DRacer\dxutil.cpp"
+"C:\Test Code\1DRacer\Game.cpp"
+"C:\Test Code\1DRacer\WinMain.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPC.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPD.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/1DRacer.pdb" /debug /machine:I386 /out:"Debug/1DRacer.exe" /pdbtype:sept 
+".\Debug\BMP_Mngr.obj"
+".\Debug\D_Draw.obj"
+".\Debug\ddutil.obj"
+".\Debug\dxutil.obj"
+".\Debug\Game.obj"
+".\Debug\WinMain.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPD.tmp"
+<h3>Output Window</h3>
+Compiling...
+BMP_Mngr.cpp
+D_Draw.cpp
+ddutil.cpp
+dxutil.cpp
+Game.cpp
+WinMain.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+1DRacer.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

@@ -1,0 +1,133 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PANEL DIALOG DISCARDABLE  0, 0, 108, 185
+STYLE WS_CHILD | WS_VISIBLE
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Size:",IDC_STATIC,6,10,16,8
+    CONTROL         "",IDC_SIZE0,"CustEdit",WS_TABSTOP,56,10,35,10
+    CONTROL         "",IDC_SIZE0SPIN,"SpinnerControl",0x0,92,10,7,10
+    LTEXT           "Segments X:",IDC_STATIC,6,25,41,8
+    CONTROL         "",IDC_SEGX,"CustEdit",WS_TABSTOP,56,25,35,10
+    CONTROL         "",IDC_SEGXSPIN,"SpinnerControl",0x0,92,25,7,10
+    LTEXT           "Segments Y:",IDC_STATIC,6,38,41,8
+    CONTROL         "",IDC_SEGY,"CustEdit",WS_TABSTOP,56,38,35,10
+    CONTROL         "",IDC_SEGYSPIN,"SpinnerControl",0x0,92,38,7,10
+    LTEXT           "Displace value:",IDC_STATIC,6,55,50,8
+    CONTROL         "",IDC_DISPLACEVALUE,"CustEdit",WS_TABSTOP,56,55,35,10
+    CONTROL         "",IDC_DISPLACEVALUESPIN,"SpinnerControl",0x0,92,55,7,10
+    LTEXT           "Displace Image:",IDC_STATIC,5,75,52,8
+    PUSHBUTTON      "None",IDC_DISPLACEIMAGEBUT,6,85,95,14
+    LTEXT           "Color Image:",IDC_STATIC,5,105,40,8
+    PUSHBUTTON      "None",IDC_TEXTUREIMAGEBUT,6,115,95,14
+    CONTROL         "Color Image as Z gradient",IDC_COLORZGRAD,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | BS_LEFT | WS_TABSTOP,6,
+                    136,95,10
+    CONTROL         "Generate Mapping Coord.",IDC_MAPCOORD,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | BS_LEFT | WS_TABSTOP,6,
+                    153,95,10
+    LTEXT           "Mapping Tile:",IDC_STATIC,8,169,44,8
+    CONTROL         "",IDC_MAPPINGTILE,"CustEdit",WS_TABSTOP,58,169,35,10
+    CONTROL         "",IDC_MAPPINGTILESPIN,"SpinnerControl",0x0,94,169,7,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_PANEL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 101
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 178
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LIBDESCRIPTION      "Landscape Builder"
+    IDS_CATEGORY            "Paralelo"
+    IDS_CLASS_NAME          "Landscape"
+    IDS_PARAMS              "Parameters"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,16 @@
+
+
+
+//don't need to put anything in a certain order,
+//the parser ignores whitespace after the = sign,
+//all lines begin with a token and end in a semicolon,
+//and tokens are case insensitive
+//all values in the script Override the default values
+//that are set up in the Init() functions.
+
+PowerupScanDist= 0.0;
+SeekPowerups= false;
+MaxSpeed= 120.0;
+ApproachDist= 120.0;
+AttackDist= 200.0;
+SafeRadius= 10.0;

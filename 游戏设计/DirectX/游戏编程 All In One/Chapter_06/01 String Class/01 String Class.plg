@@ -1,0 +1,336 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: 01 String Class - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1753.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/01 String Class.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\Game Programming All in One\Source\Chapter_06\01 String Class\01 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1753.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1754.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/01 String Class.pdb" /machine:I386 /out:"Release/01 String Class.exe" 
+".\Release\01 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1754.tmp"
+<h3>Output Window</h3>
+Compiling...
+01 Main.cpp
+Spawn Time 0:01.5
+Linking...
+Spawn Time 0:00.3
+
+
+
+<h3>Results</h3>
+01 String Class.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 01 String Class - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1756.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/01 String Class.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\Game Programming All in One\Source\Chapter_06\01 String Class\01 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1756.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1757.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/01 String Class.pdb" /debug /machine:I386 /out:"Debug/01 String Class.exe" /pdbtype:sept 
+".\Debug\01 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1757.tmp"
+<h3>Output Window</h3>
+Compiling...
+01 Main.cpp
+Spawn Time 0:00.9
+Linking...
+Spawn Time 0:00.3
+
+
+
+<h3>Results</h3>
+01 String Class.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 02 Animal Farm - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1759.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/02 Animal Farm.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\Game Programming All in One\Source\Chapter_06\02 Animal Farm\02 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1759.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP175A.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/02 Animal Farm.pdb" /machine:I386 /out:"Release/02 Animal Farm.exe" 
+".\Release\02 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP175A.tmp"
+<h3>Output Window</h3>
+Compiling...
+02 Main.cpp
+Spawn Time 0:00.7
+Linking...
+Spawn Time 0:00.0
+
+
+
+<h3>Results</h3>
+02 Animal Farm.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 02 Animal Farm - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP175C.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/02 Animal Farm.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\Game Programming All in One\Source\Chapter_06\02 Animal Farm\02 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP175C.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP175D.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/02 Animal Farm.pdb" /debug /machine:I386 /out:"Debug/02 Animal Farm.exe" /pdbtype:sept 
+".\Debug\02 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP175D.tmp"
+<h3>Output Window</h3>
+Compiling...
+02 Main.cpp
+Spawn Time 0:00.7
+Linking...
+Spawn Time 0:00.2
+
+
+
+<h3>Results</h3>
+02 Animal Farm.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 03 Singleton - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP175F.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/03 Singleton.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\Game Programming All in One\Source\Chapter_06\03 Singleton\03 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP175F.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1760.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/03 Singleton.pdb" /machine:I386 /out:"Release/03 Singleton.exe" 
+".\Release\03 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1760.tmp"
+<h3>Output Window</h3>
+Compiling...
+03 Main.cpp
+Spawn Time 0:00.5
+Linking...
+LIBC.lib(crt0.obj) : error LNK2001: unresolved external symbol _main
+Release/03 Singleton.exe : fatal error LNK1120: 1 unresolved externals
+Error executing link.exe.
+
+
+
+<h3>Results</h3>
+03 Singleton.exe - 2 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 03 Singleton - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1762.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/03 Singleton.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\Game Programming All in One\Source\Chapter_06\03 Singleton\03 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1762.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1763.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/03 Singleton.pdb" /debug /machine:I386 /out:"Debug/03 Singleton.exe" /pdbtype:sept 
+".\Debug\03 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1763.tmp"
+<h3>Output Window</h3>
+Compiling...
+03 Main.cpp
+Spawn Time 0:00.5
+Linking...
+LIBCD.lib(crt0.obj) : error LNK2001: unresolved external symbol _main
+Debug/03 Singleton.exe : fatal error LNK1120: 1 unresolved externals
+Error executing link.exe.
+
+
+
+<h3>Results</h3>
+03 Singleton.exe - 2 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 04 Bad Singleton - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1765.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/04 Bad Singleton.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\Game Programming All in One\Source\Chapter_06\04 Bad Singleton\04 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1765.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1766.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/04 Bad Singleton.pdb" /machine:I386 /out:"Release/04 Bad Singleton.exe" 
+".\Release\04 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1766.tmp"
+<h3>Output Window</h3>
+Compiling...
+04 Main.cpp
+Spawn Time 0:00.3
+Linking...
+Spawn Time 0:00.0
+
+
+
+<h3>Results</h3>
+04 Bad Singleton.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 04 Bad Singleton - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1768.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/04 Bad Singleton.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\Game Programming All in One\Source\Chapter_06\04 Bad Singleton\04 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1768.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1769.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/04 Bad Singleton.pdb" /debug /machine:I386 /out:"Debug/04 Bad Singleton.exe" /pdbtype:sept 
+".\Debug\04 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1769.tmp"
+<h3>Output Window</h3>
+Compiling...
+04 Main.cpp
+Spawn Time 0:00.4
+Linking...
+Spawn Time 0:00.1
+
+
+
+<h3>Results</h3>
+04 Bad Singleton.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 05 Good Singleton - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP176B.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/05 Good Singleton.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\Game Programming All in One\Source\Chapter_06\05 Good Singleton\05 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP176B.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP176C.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/05 Good Singleton.pdb" /machine:I386 /out:"Release/05 Good Singleton.exe" 
+".\Release\05 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP176C.tmp"
+<h3>Output Window</h3>
+Compiling...
+05 Main.cpp
+Spawn Time 0:00.4
+Linking...
+Spawn Time 0:00.0
+
+
+
+<h3>Results</h3>
+05 Good Singleton.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 05 Good Singleton - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP176E.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/05 Good Singleton.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\Game Programming All in One\Source\Chapter_06\05 Good Singleton\05 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP176E.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP176F.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/05 Good Singleton.pdb" /debug /machine:I386 /out:"Debug/05 Good Singleton.exe" /pdbtype:sept 
+".\Debug\05 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP176F.tmp"
+<h3>Output Window</h3>
+Compiling...
+05 Main.cpp
+Spawn Time 0:00.4
+Linking...
+Spawn Time 0:00.2
+
+
+
+<h3>Results</h3>
+05 Good Singleton.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 06 Object Factory - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1771.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/06 Object Factory.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\Game Programming All in One\Source\Chapter_06\06 Object Factory\06 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1771.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1772.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/06 Object Factory.pdb" /machine:I386 /out:"Release/06 Object Factory.exe" 
+".\Release\06 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1772.tmp"
+<h3>Output Window</h3>
+Compiling...
+06 Main.cpp
+Spawn Time 0:00.6
+Linking...
+Spawn Time 0:00.1
+
+
+
+<h3>Results</h3>
+06 Object Factory.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 06 Object Factory - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1774.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/06 Object Factory.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\Game Programming All in One\Source\Chapter_06\06 Object Factory\06 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1774.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1775.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/06 Object Factory.pdb" /debug /machine:I386 /out:"Debug/06 Object Factory.exe" /pdbtype:sept 
+".\Debug\06 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1775.tmp"
+<h3>Output Window</h3>
+Compiling...
+06 Main.cpp
+Spawn Time 0:00.6
+Linking...
+Spawn Time 0:00.1
+
+
+
+<h3>Results</h3>
+06 Object Factory.exe - 0 error(s), 0 warning(s)
+Build Time 0:11.1
+</pre>
+</body>
+</html>

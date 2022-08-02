@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>mesh::illum_faces</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2>m<a href="mesh.htm">esh</a>::illum_faces</h2>
+<h3>Prototype</h3>
+<p class="code">void illum_faces(vector& p,float d_max,vector& c,int shadows)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>p</td>
+	 <td><a href="vector.htm">vector</a>&amp;</td>
+	 <td>light point</td>
+  </tr>
+  <tr>
+	 <td>d_max</td>
+	 <td>float</td>
+	 <td>light radius</td>
+  </tr>
+  <tr>
+	 <td>c</td>
+	 <td><a href="vector.htm">vector</a>&amp;</td>
+	 <td>light color</td>
+  </tr>
+  <tr>
+	 <td>shadows</td>
+	 <td>int</td>
+	 <td>shadow flags:<br>
+      0 - no shadows<br>
+      1 - shadow from specific object (flyengine::shadow_obj)<br>
+      2 - gloabl shadows&nbsp;</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This function illuminates the mesh faces light maps. It is used only on meshes 
+  with light maps like the static bsp leaf mesh.</p>
+</body>
+</html>

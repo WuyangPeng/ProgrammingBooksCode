@@ -1,0 +1,60 @@
+// Example 7-12 Skeleton program using the producer-consumer model
+
+/...
+
+// initial thread
+{
+    pthread_create(&(Thread[1]...producer...);   
+    pthread_create(&(Thread[2]...consumer...);   
+    //...
+  }
+
+
+void *producer(void *X) 
+{
+   loop 
+      perform work
+        lock mutex
+         enqueue data 
+        unlock mutex
+         signal consumer 
+      //...
+   until done
+}
+
+void *consumer(void *X)
+{
+   loop 
+      suspend until signaled
+      loop while(Data Queue not empty)
+          lock mutex
+           dequeue data 
+          unlock mutex
+           perform work
+          lock mutex
+          enqueue results
+          unlock mutex 
+      end loop
+   until done
+}
+
+
+void *taskZ(void *X)
+{
+   loop
+       waiting for signal
+       when signaled
+       loop while ZQueue is not empty
+          lock mutex
+          dequeue request
+   release mutex
+          process request
+          set mutex
+          enqueue results
+          release queue
+       end loop
+   until done
+}
+
+//... 
+

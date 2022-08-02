@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>face::ray_intersect</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="face.htm">face</a>::ray_intersect</h2>
+<h3>Prototype</h3>
+<p class="code">int ray_intersect(vector&amp; ro,vector&amp; rd,vector&amp; ip,float&amp; dist,float rad=0.0f)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>ro</td>
+	 <td><a href="vector.htm">vector</a>&amp;</td>
+	 <td>ray origin</td>
+  </tr>
+  <tr>
+	 <td>rd</td>
+	 <td><a href="vector.htm">vector</a>&amp;</td>
+	 <td>ray direction</td>
+  </tr>
+  <tr>
+	 <td>ip</td>
+	 <td><a href="vector.htm">vector</a>&amp;</td>
+	 <td>intersection point</td>
+  </tr>
+  <tr>
+	 <td>dist</td>
+	 <td>float&amp;</td>
+	 <td>intersection distance</td>
+  </tr>
+  <tr>
+	 <td>rad</td>
+	 <td>float</td>
+	 <td>intersection radius</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>Returns TRUE if an intersection is found, FALSE if no intersection is found.</p>
+<h3>Remarks</h3>
+<p>This function computes the intersection with the face.&nbsp;<br>
+  If an intersection is found, <i>ip</i> will be set to the intersection point, 
+  <i>dist</i> will be set to the distance from the ray origin (<i>ro</i>) to the 
+  indersection point (<i>ip</i>).&nbsp;<br>
+  If <i>rd</i> is normalized, the <i>dist</i> value will be in scene units, if 
+  not, if will be the distance divided by the ray direction (<i>rd</i>) length.<br>
+  The <i>rad</i> parameter sets the collision radius. If &gt;0, the collision 
+  will be tested for a sphere with radius <i>rad</i>.</p>
+</body>
+</html>

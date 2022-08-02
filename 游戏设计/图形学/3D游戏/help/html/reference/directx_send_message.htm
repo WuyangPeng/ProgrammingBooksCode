@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>directX::send_message</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="directx.htm">directX</a>::send_message</h2>
+<h3>Prototype</h3>
+<p class="code">void send_message(mp_msg *msg,int len,DWORD dpid=0)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>msg</td>
+	 <td><a href="mp_msg.htm">mp_msg</a> *</td>
+	 <td>message to send</td>
+  </tr>
+  <tr>
+	 <td>len</td>
+	 <td>int</td>
+	 <td>length in bytes of message</td>
+  </tr>
+  <tr>
+	 <td>dpid</td>
+	 <td>DWORD</td>
+	 <td>player to send message to:<br>
+      0 - all players<br>
+      &lt;&gt;0 -&nbsp; player id of destination player</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This function sends a multiplayer message. The message can have any size, but 
+  you must keep it as small as possible for a better performance. The message 
+  header must be as a <i>mp_msg</i> struct.</p>
+</body>
+</html>

@@ -1,0 +1,16 @@
+OpenGL 超级宝典 （OpenGL SuperBible）
+
+官方网站：
+http://www.opengl.org/superbible、 
+http://www.starstonesoftware.com/OpenGL （已失效）
+
+第4版
+★★
+作者：Richard S.Wright.Jr、Benjamin Lipchak、Nicholas Haemel
+    
+
+第5版
+★★★
+作者： Richard S.Wright.Jr、Benjamin Lipchak、Nicholas Haemel、Graham Sellers
+
+ 

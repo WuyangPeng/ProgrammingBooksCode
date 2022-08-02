@@ -1,0 +1,41 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: SimpleShapeManipulation - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1F0.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Release/SimpleShapeManipulation.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\CODE\BOOK CHAPTERS\GAIWNNAGA06 - lunar lander code\Shape Manipulation\CGun.cpp"
+"C:\CODE\BOOK CHAPTERS\GAIWNNAGA06 - lunar lander code\Shape Manipulation\CTimer.cpp"
+"C:\CODE\BOOK CHAPTERS\GAIWNNAGA06 - lunar lander code\Shape Manipulation\main.cpp"
+"C:\CODE\BOOK CHAPTERS\GAIWNNAGA06 - lunar lander code\Shape Manipulation\utils.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1F0.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1F1.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:no /pdb:"Release/SimpleShapeManipulation.pdb" /machine:I386 /out:"Release/SimpleShapeManipulation.exe" 
+".\Release\CGun.obj"
+".\Release\CTimer.obj"
+".\Release\main.obj"
+".\Release\utils.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1F1.tmp"
+<h3>Output Window</h3>
+Compiling...
+CGun.cpp
+CTimer.cpp
+main.cpp
+utils.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+SimpleShapeManipulation.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

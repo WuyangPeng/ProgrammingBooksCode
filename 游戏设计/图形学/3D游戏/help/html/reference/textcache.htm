@@ -1,0 +1,89 @@
+<html>
+
+<head>
+<title>class textcache</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class textcache</h2>
+
+<h3>Definition</h3>
+
+<p class="code">class textcache<br>
+  {<br>
+  &nbsp;&nbsp;public:<br>
+  &nbsp;&nbsp;int curpic[MAX_TEXTURE_UNITS];<br>
+  &nbsp;&nbsp;int npic,curtextunit;<br>
+  <br>
+  &nbsp;&nbsp;virtual void use(int pic=-1,int textunit=0)=0;<br>
+  &nbsp;&nbsp;virtual void use_triangles(int pic=-1,int textunit=0)=0;<br>
+  &nbsp;&nbsp;virtual void init(int np,picture **pic)=0;<br>
+  <br>
+  &nbsp;&nbsp;virtual int add_picture(int sx,int sy,int bytespixel,unsigned char 
+  *lm)=0;<br>
+  &nbsp;&nbsp;virtual void update_picture(int picnum,int sx,int sy,int bytespixel,unsigned 
+  char *buf)=0;<br>
+  &nbsp;&nbsp;virtual void update_sub_picture(int picnum,int x,int y,int sx,int 
+  sy,int bytespixel,unsigned char *buf)=0;<br>
+  <br>
+  &nbsp;&nbsp;textcache() <br>
+  &nbsp;&nbsp;{ <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;memset(curpic,-1,sizeof(int)*MAX_TEXTURE_UNITS);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;npic=0; <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;curtextunit=0;<br>
+  &nbsp;&nbsp;};<br>
+  <br>
+  &nbsp;&nbsp;virtual ~textcache() { };<br>
+  };</p>
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr> 
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr> 
+    <td>curpic</td>
+    <td>int []</td>
+    <td>the current selected texture in each texture unit&nbsp;</td>
+  </tr>
+  <tr> 
+    <td>npic</td>
+    <td>int</td>
+    <td>the total number of textures</td>
+  </tr>
+  <tr> 
+    <td>curtextunit</td>
+    <td>int</td>
+    <td>the current selected texture unit</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p><a href="textcache_use.htm">use</a>, <a href="textcache_use_triangles.htm">use_triangles</a>, 
+  <a href="textcache_init.htm">init</a>, <a href="textcache_add_picture.htm">add_picture</a>, 
+  <a href="textcache_update_picture.htm">update_picture</a>, <a href="textcache_update_sub_picture.htm">update_sub_picture</a> 
+</p>
+
+<h3>Remarks</h3>
+
+<p>This class in the base class for the texture cache (texture manager). Sub-classes 
+  from this class should implement their functionality by implementing the virtual 
+  functions using the the selected graphics API.&nbsp;<br>
+Use the flyEngine <i>init_texture_cache</i> and <i>free_texture_cache</i> to
+initialize and free the global variable <i>tc</i> that is the main interface to
+this class.&nbsp;</p>
+
+<h3>See Also</h3>
+
+<p><a href="variables.htm">Global Variables</a>, <a href="textcachegl.htm">textcacheGL</a>,
+<a href="flyengine.htm">flyEngine</a></p>
+
+</body>
+</html>

@@ -1,0 +1,795 @@
+<html>
+
+<head>
+<title>class flyEngine</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class flyEngine</h2>
+
+<h3>Definition</h3>
+
+<p class="code">class flyEngine<br>
+  {<br>
+  &nbsp; public:<br>
+  <br>
+  &nbsp; int cur_step,cur_step_base;<br>
+  &nbsp; int cur_frame,cur_frame_base;<br>
+  &nbsp; int cur_time,cur_dt;<br>
+  <br>
+  &nbsp; flydllgroup dll;<br>
+  &nbsp; console con;<br>
+  <br>
+  &nbsp; bsp_object *player;<br>
+  &nbsp; bsp_object *cam;<br>
+  &nbsp; vector frustum[5];<br>
+  <br>
+  &nbsp; bsp_object *excludecollision,*stepobj;<br>
+  &nbsp; bsp_object *elemdraw[MAX_ELEMDRAW];<br>
+  &nbsp; bsp_object *elemlatedraw[MAX_ELEMDRAW];<br>
+  <br>
+&nbsp;&nbsp;int nelemdraw;<br>
+&nbsp;&nbsp;bsp_object *elemdraw[MAX_ELEMDRAW];<br>
+&nbsp;&nbsp;int nelemlatedraw[MAX_LATEDRAW_LAYERS];<br>
+&nbsp;&nbsp;bsp_object *elemlatedraw[MAX_LATEDRAW_LAYERS][MAX_ELEMDRAW];<br>
+&nbsp;&nbsp;int *facedraw;<br>
+&nbsp;&nbsp;int nfacedraw;<br>
+&nbsp;&nbsp;int *facedrawtransp;<br>
+&nbsp;&nbsp;int nfacedrawtransp;<br>
+<br>
+  &nbsp; char flysdkpath[256];<br>
+  &nbsp; char flyfile[256];<br>
+  &nbsp; char flydatapath[256];<br>
+  &nbsp; char flyfilename[256];<br>
+  &nbsp; char bspfile[256];<br>
+  &nbsp; char status_msg[256];<br>
+  &nbsp; char console_command[256];<br>
+  &nbsp; unsigned status_msg_time;<br>
+  <br>
+  &nbsp; float bboxdiag,viewmaxdist,viewmindist,camangle,<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aspect,geomdetail,curveerr,lmpxsize,detailtile,<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cartoonwidth,shadowdepth;<br>
+  <br>
+  &nbsp; vector bbox1,bbox2,bboxC,filter,background,<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cartooncolor,shadowcolor;<br>
+  <br>
+  &nbsp; int nodedrawcount,nodeonly,pvsoff,fog,mpdelay,<br>
+  &nbsp;&nbsp;&nbsp; antialias,amblight,mapmode,multitexture,shadows,<br>
+  &nbsp;&nbsp;&nbsp; noinput,wireframe,mute,clearbk,moving,appid,mouse,<br>
+  &nbsp;&nbsp;&nbsp; crosshairpic,crosshairsize,intropic,introtime, <br>
+  &nbsp;&nbsp;&nbsp; detailpic,hwlights,stencil,cartoonpic,cartoonpicbsp;<br>
+  <br>
+  &nbsp; bsp_object *active_obj0,*last_active_obj;<br>
+  &nbsp; bsp_object *stock_obj0;<br>
+  &nbsp; mesh *model_obj0;<br>
+  &nbsp; sound *sound_obj0;<br>
+  &nbsp; bezier_curve *bezier_curve0;<br>
+  &nbsp; bezier_patch *bezier_patch0;<br>
+  &nbsp; bsp_object *shadow_obj;<br>
+  &nbsp; bsp_object *hitobj;<br>
+  &nbsp; mesh *hitmesh;<br>
+  &nbsp; int hitface;<br>
+  &nbsp; vector hitip;<br>
+  &nbsp; int status,fontspic,fonts_width[64],consolepic;<br>
+  &nbsp; vector *vert,*vertcolor,*vertnormal;<br>
+  &nbsp; face *faces;<br>
+  &nbsp; int nvert,nfaces;<br>
+  &nbsp;&nbsp;int *edges,nedges,*faceedges;<br>
+  &nbsp; bsp_node *bsp;<br>
+  <br>
+  &nbsp; light_map *lm[MAX_LIGHTMAP];<br>
+  &nbsp; light_map_pic *lmpic[MAX_LIGHTMAP];<br>
+  &nbsp; int nlm,lmbase,nlmpic;<br>
+  <br>
+  &nbsp; light_map *fm[MAX_LIGHTMAP];<br>
+  &nbsp; light_map_pic *fmpic[MAX_LIGHTMAP];<br>
+  &nbsp; int fmbase;<br>
+  <br>
+  &nbsp; picture *piclib[MAX_PICTURES];<br>
+  &nbsp; int npiclib;<br>
+  <br>
+  &nbsp; char *pvs;<br>
+  &nbsp; bsp_node *leaf[MAX_LEAF];<br>
+  &nbsp; int nleaf,pvssize,pvsrowsize;<br>
+  <br>
+  &nbsp; flyEngine();<br>
+  <br>
+  &nbsp; void draw_bsp(int mode=0);<br>
+&nbsp;&nbsp;void draw_bsp_edges();<br>
+  &nbsp; int collision_bsp(bsp_node *n,vector&amp; p1,vector&amp; p2,int elemtype=0,float 
+  rad=0.0f);<br>
+  &nbsp; int collision_test(bsp_node *n,vector&amp; p1,vector&amp; p2,int elemtype=0,float 
+  rad=0.0f);<br>
+  &nbsp; void step(int dt);<br>
+&nbsp;&nbsp;int step();<br>
+  &nbsp; void apply_bsp(bsp_node *n,vector&amp; p,float rad,void *data,void (*func)(void 
+  *data,bsp_object *e));<br>
+&nbsp;&nbsp;void apply_bsp(bsp_node *n,vector *p,int np,void *data,void (*func)(void *data,bsp_object *e));<br>
+  &nbsp; void send_bsp_message(bsp_node *n,vector&amp; p,float rad,int msg,int 
+  param,void *data);<br>
+  &nbsp; int open_fly_file(char *file);<br>
+  &nbsp; void close_fly_file();<br>
+  &nbsp; int save_fly_file(char *file);<br>
+  &nbsp; int add_lightmap(int sx,int sy);<br>
+  &nbsp; void init_texture_cache();<br>
+  &nbsp; void close_texture_cache();<br>
+  &nbsp; void start_text_mode();<br>
+  &nbsp; void end_text_mode();<br>
+  &nbsp; void draw_text(int x,int y,char *text);<br>
+  &nbsp; void draw_text_center(int x,int y,char *text);<br>
+  &nbsp; virtual void set_status_msg(char *fmt, ...);<br>
+  &nbsp; int get_picture(char *file);<br>
+  &nbsp; bsp_object *get_stock_object(char *name);<br>
+  &nbsp; bsp_object *get_active_object(char *name);<br>
+  &nbsp; mesh *get_model_object(char *name);<br>
+  &nbsp; sound *get_sound_object(char *name);<br>
+  &nbsp; bezier_curve *get_bezier_curve(char *name);<br>
+  &nbsp; bezier_patch *get_bezier_patch(char *name);<br>
+  &nbsp; bsp_object *get_next_stock_object(bsp_object *o,int type=0);<br>
+  &nbsp; bsp_object *get_next_active_object(bsp_object *o,int type=0);<br>
+  &nbsp; int set_obj_param(char *objname,char *param,char *value);<br>
+  &nbsp; int get_obj_param(char *objname,char *param,char *value);<br>
+  &nbsp; int set_global_param(char *name, char *value);<br>
+  &nbsp; int get_global_param_desc(int i,param_desc *pd);<br>
+  &nbsp; void activate(bsp_object *d,int flag=1);<br>
+  &nbsp; void set_camera(bsp_object *d);<br>
+  &nbsp; bsp_node *get_random_point(vector&amp; v,float mindist);<br>
+  &nbsp; bsp_node *find_node(bsp_node *n,vector&amp; v,float mindist);<br>
+  &nbsp; int join_multiplayer(HWND hWnd,HINSTANCE hInst);<br>
+  &nbsp; void close_multiplayer();<br>
+  &nbsp; void check_multiplayer();<br>
+  <br>
+  &nbsp; virtual ~flyEngine()<br>
+  &nbsp; { close_fly_file(); };<br>
+  };</p>
+
+<h3>Data Members</h3>
+
+<table border="1" width="803" cellspacing="0" cellpadding="3">
+  <tr> 
+    <th width="121">Member</th>
+    <th width="128">Type</th>
+    <th width="528">Description</th>
+  </tr>
+  <tr> 
+    <td width="121">cur_step</td>
+    <td width="128">int</td>
+    <td width="528">current step (each call to each object step function from each frame has 
+      an unique id)</td>
+  </tr>
+  <tr> 
+    <td width="121">cur_step_base</td>
+    <td width="128">int</td>
+    <td width="528">current step base (first step id for current frame)&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="121">cur_frame</td>
+    <td width="128">int</td>
+    <td width="528">current frame</td>
+  </tr>
+  <tr> 
+    <td width="121">cur_frame_base</td>
+    <td width="128">int</td>
+    <td width="528">current frame base (multiple renders are possible in different
+      viewports)</td>
+  </tr>
+  <tr> 
+    <td width="121">cur_time</td>
+    <td width="128">int</td>
+    <td width="528">current time in ms</td>
+  </tr>
+  <tr> 
+    <td width="121">cur_dt</td>
+    <td width="128">int</td>
+    <td width="528">current elapsed time from last frame in ms</td>
+  </tr>
+  <tr> 
+    <td width="121">dll</td>
+    <td width="128"><a href="flydllgroup.htm">flydllgroup</a></td>
+    <td width="528">all Fly3D plug-in dlls in current scene</td>
+  </tr>
+  <tr> 
+    <td width="121">con</td>
+    <td width="128"><a href="console.htm">console</a></td>
+    <td width="528">console interface</td>
+  </tr>
+  <tr> 
+    <td width="121">player</td>
+    <td width="128"><a href="bsp_object.htm">bsp_object</a> *</td>
+    <td width="528">current player bsp_object pointer</td>
+  </tr>
+  <tr> 
+    <td width="121">cam</td>
+    <td width="128"><a href="bsp_object.htm">bsp_object</a> *</td>
+    <td width="528">current camera bsp_object pointer</td>
+  </tr>
+  <tr> 
+    <td width="121">frustum</td>
+    <td width="128"><a href="vector.htm">vector</a>[]</td>
+    <td width="528">the view frustum (an array of 5 3D points)</td>
+  </tr>
+  <tr> 
+    <td width="121">excludecollision</td>
+    <td width="128"><a href="bsp_object.htm">bsp_object</a> *</td>
+    <td width="528">object pointer to be excluded from collision</td>
+  </tr>
+  <tr> 
+    <td width="121">stepobj</td>
+    <td width="128"><a href="bsp_object.htm">bsp_object</a> *</td>
+    <td width="528">pointer to object if inside some object step function</td>
+  </tr>
+  <tr> 
+    <td width="121">elemdraw</td>
+    <td width="128"><a href="bsp_object.htm">bsp_object</a> *[]</td>
+    <td width="528">array of elements to draw on current render</td>
+  </tr>
+  <tr> 
+    <td width="121">elemlatedraw</td>
+    <td width="128"><a href="bsp_object.htm">bsp_object</a> *[][]</td>
+    <td width="528">array of elements to draw later on current render</td>
+  </tr>
+  <tr> 
+    <td width="121">nelemdraw</td>
+    <td width="128">int</td>
+    <td width="528">number of elements in <i>elemdraw</i> array</td>
+  </tr>
+  <tr> 
+    <td width="121">nelemlatedraw</td>
+    <td width="128">int[]</td>
+    <td width="528">number of elements in each <i>elemlatedraw</i> array</td>
+  </tr>
+  <tr> 
+    <td width="121">facedraw</td>
+    <td width="128">int *&nbsp;</td>
+    <td width="528">array of bsp faces to draw on current render</td>
+  </tr>
+  <tr> 
+    <td width="121">nfacedraw</td>
+    <td width="128">int&nbsp;</td>
+    <td width="528">number of faces in <i>facedraw</i> array</td>
+  </tr>
+  <tr> 
+    <td width="121">facedrawtransp</td>
+    <td width="128">int *</td>
+    <td width="528">array of transparent bsp faces to draw on current render</td>
+  </tr>
+  <tr> 
+    <td width="121">nfacedrawtransp</td>
+    <td width="128">int</td>
+    <td width="528">number of faces in <i>facedrawtransp</i> array</td>
+  </tr>
+  <tr> 
+    <td width="121">flysdkpath</td>
+    <td width="128">char []</td>
+    <td width="528">path for the flysdk dir</td>
+  </tr>
+  <tr> 
+    <td width="121">flyfile</td>
+    <td width="128">char []</td>
+    <td width="528">path for the current .fly file</td>
+  </tr>
+  <tr> 
+    <td width="121">flydatapath</td>
+    <td width="128">char []</td>
+    <td width="528">path for current .fly file data dir</td>
+  </tr>
+  <tr> 
+    <td width="121">flyfilename</td>
+    <td width="128">char []</td>
+    <td width="528">filename for the current .fly file</td>
+  </tr>
+  <tr> 
+    <td width="121">bspfile</td>
+    <td width="128">char []</td>
+    <td width="528">bsp filename fro the current .fly file</td>
+  </tr>
+  <tr> 
+    <td width="121">status_msg</td>
+    <td width="128">char []</td>
+    <td width="528">the current status string</td>
+  </tr>
+  <tr> 
+    <td width="121">status_msg_time</td>
+    <td width="128">unsigned</td>
+    <td width="528">the time of the status string message</td>
+  </tr>
+  <tr> 
+    <td width="121">console_command</td>
+    <td width="128">char []</td>
+    <td width="528">console command string, if &lt;&gt;&quot;&quot; command will be executed 
+      on next frame&nbsp;</td>
+  </tr>
+  <tr> 
+    <td width="121">viewmaxdist</td>
+    <td width="128">float</td>
+    <td width="528">near plane distance</td>
+  </tr>
+  <tr> 
+    <td width="121">viewmindist</td>
+    <td width="128">float</td>
+    <td width="528">far plane distance</td>
+  </tr>
+  <tr> 
+    <td width="121">camangle</td>
+    <td width="128">float</td>
+    <td width="528">camera angle in degrees</td>
+  </tr>
+  <tr> 
+    <td width="121">aspect</td>
+    <td width="128">float</td>
+    <td width="528">render view aspect ratio</td>
+  </tr>
+  <tr> 
+    <td width="121">geomdetail</td>
+    <td width="128">float</td>
+    <td width="528">geometry detail (objects subdivide maintaining a vertex distance &lt; 
+      geomdetail)</td>
+  </tr>
+  <tr> 
+    <td width="121">curveerr</td>
+    <td width="128">float</td>
+    <td width="528">curve subdivision maximum error (curves subdivide maintaining this maximum 
+      error)</td>
+  </tr>
+  <tr> 
+    <td width="121">lmpxsize</td>
+    <td width="128">float</td>
+    <td width="528">desired size in scene units for the light map pixels (for the flyLight 
+      precomputation)</td>
+  </tr>
+  <tr> 
+    <td width="121">bboxdiag</td>
+    <td width="128">float</td>
+    <td width="528">scene bounding box diagonal</td>
+  </tr>
+  <tr> 
+    <td width="121">bbox1</td>
+    <td width="128"><a href="vector.htm">vector</a></td>
+    <td width="528">scene bounding box minimum point</td>
+  </tr>
+  <tr> 
+    <td width="121">bbox2</td>
+    <td width="128"><a href="vector.htm">vector</a></td>
+    <td width="528">scene bounding box maximum point</td>
+  </tr>
+  <tr> 
+    <td width="121">bboxC</td>
+    <td width="128"><a href="vector.htm">vector</a></td>
+    <td width="528">scene bounding box center</td>
+  </tr>
+  <tr> 
+    <td width="121">filter</td>
+    <td width="128"><a href="vector.htm">vector</a></td>
+    <td width="528">current screen filter color (draw over the hole screen)</td>
+  </tr>
+  <tr> 
+    <td width="121">background</td>
+    <td width="128"><a href="vector.htm">vector</a></td>
+    <td width="528">background clear color</td>
+  </tr>
+  <tr> 
+    <td width="121">nodedrawcount </td>
+    <td width="128">int</td>
+    <td width="528">number of nodes drawn in last frame</td>
+  </tr>
+  <tr> 
+    <td width="121">status</td>
+    <td width="128">int</td>
+    <td width="528">if TRUE, status is draw</td>
+  </tr>
+  <tr> 
+    <td width="121">nodeonly</td>
+    <td width="128">int</td>
+    <td width="528">if TRUE, only the node containing the camera will be drawn</td>
+  </tr>
+  <tr> 
+    <td width="121">pvsoff</td>
+    <td width="128">int</td>
+    <td width="528">if TRUE, disables pvs culling</td>
+  </tr>
+  <tr> 
+    <td width="121">fog</td>
+    <td width="128">int</td>
+    <td width="528">if TRUE, enables distance vertex fog</td>
+  </tr>
+  <tr> 
+    <td width="121">mpdelay</td>
+    <td width="128">int</td>
+    <td width="528">delay between multiplayer positional updates in ms (50 for 20 updates/sec)</td>
+  </tr>
+  <tr> 
+    <td width="121">antialias</td>
+    <td width="128">int</td>
+    <td width="528">if TRUE enables hardware antialias</td>
+  </tr>
+  <tr> 
+    <td width="121">amblight</td>
+    <td width="128">int</td>
+    <td width="528">ambient light (0-255) for the flyLight precomputation</td>
+  </tr>
+  <tr> 
+    <td width="121">mapmode</td>
+    <td width="128">int</td>
+    <td width="528">map mode as bit array of 4 bits (0-15):<br>
+      bit 1 - texture map<br>
+      bit 2 - detail map<br>
+      bit 3 - light map<br>
+      bit 4 - fog map<br>
+      ex.&nbsp;<br>
+      mapmode=1 means only texture map<br>
+      mapmode=5 means texture map and light map<br>
+      mapmode=15 means all maps</td>
+  </tr>
+  <tr> 
+    <td width="121">multitexture</td>
+    <td width="128">int</td>
+    <td width="528">if TRUE, enables multitexture support (up to 4 units)</td>
+  </tr>
+  <tr> 
+    <td width="121">shadows</td>
+    <td width="128">int</td>
+    <td width="528">if TRUE, enables dynamic shadows</td>
+  </tr>
+  <tr> 
+    <td width="121">shadowdepth</td>
+    <td width="128">float</td>
+    <td width="528">max distance for shadow</td>
+  </tr>
+  <tr> 
+    <td width="121">shadowcolor</td>
+    <td width="128"><a href="vector.htm">vector</a></td>
+    <td width="528">color for shadow polyons</td>
+  </tr>
+  <tr> 
+    <td width="121">noinput</td>
+    <td width="128">int</td>
+    <td width="528">if TRUE, all input is disabled (keyboard and mouse)</td>
+  </tr>
+  <tr> 
+    <td width="121">wireframe</td>
+    <td width="128">int</td>
+    <td width="528">if TRUE, renders to wireframe</td>
+  </tr>
+  <tr> 
+    <td width="121">mute</td>
+    <td width="128">int</td>
+    <td width="528">if TRUE, no sound is played</td>
+  </tr>
+  <tr> 
+    <td width="121">clearbk</td>
+    <td width="128">int</td>
+    <td width="528">if TRUE, clears the screen background prior to render</td>
+  </tr>
+  <tr> 
+    <td width="121">moving</td>
+    <td width="128">int</td>
+    <td width="528">if TRUE, some object is moving</td>
+  </tr>
+  <tr> 
+    <td width="121">cartoonpicbsp</td>
+    <td width="128">int</td>
+    <td width="528">1D picture for bsp cartoon texture</td>
+  </tr>
+  <tr> 
+    <td width="121">cartoonpic</td>
+    <td width="128">int</td>
+    <td width="528">1D picture for cartoon texture</td>
+  </tr>
+  <tr> 
+    <td width="121">cartooncolor</td>
+    <td width="128"><a href="vector.htm">vector</a></td>
+    <td width="528">color for cartoon edges</td>
+  </tr>
+  <tr> 
+    <td width="121">cartoonwidth</td>
+    <td width="128">float</td>
+    <td width="528">cartoon edges width</td>
+  </tr>
+  <tr> 
+    <td width="121">crosshairpic</td>
+    <td width="128">int</td>
+    <td width="528">picture for the cross-hair</td>
+  </tr>
+  <tr> 
+    <td width="121">crosshairsize</td>
+    <td width="128">int</td>
+    <td width="528">size for the cross-hair in pixels</td>
+  </tr>
+  <tr> 
+    <td width="121">appid</td>
+    <td width="128">int</td>
+    <td width="528">frontend application id</td>
+  </tr>
+  <tr> 
+    <td width="121">mouse</td>
+    <td width="128">int</td>
+    <td width="528">if TRUE, shows mouse cursor</td>
+  </tr>
+  <tr> 
+    <td width="121">hwlights</td>
+    <td width="128">int</td>
+    <td width="528">if TRUE, enable dynamic hardware lights for the dynamic objects</td>
+  </tr>
+  <tr> 
+    <td width="121">stencil</td>
+    <td width="128">int</td>
+    <td width="528">if TRUE, enables stencil buffer</td>
+  </tr>
+  <tr> 
+    <td width="121">datailpic</td>
+    <td width="128">int</td>
+    <td width="528">picture used for detail texture</td>
+  </tr>
+  <tr> 
+    <td width="121">detailtile</td>
+    <td width="128">float</td>
+    <td width="528">tile to multiply texture co-ordinates for the detail textures</td>
+  </tr>
+  <tr> 
+    <td width="121">active_obj0</td>
+    <td width="128"><a href="bsp_object.htm">bsp_object</a> *</td>
+    <td width="528">active objects linked list</td>
+  </tr>
+  <tr> 
+    <td width="121">last_active_obj</td>
+    <td width="128"><a href="bsp_object.htm">bsp_object</a> *</td>
+    <td width="528">last object in active object linked list</td>
+  </tr>
+  <tr> 
+    <td width="121">stock_obj0</td>
+    <td width="128"><a href="bsp_object.htm">bsp_object</a> *</td>
+    <td width="528">stock objects linked list</td>
+  </tr>
+  <tr> 
+    <td width="121">model_obj0</td>
+    <td width="128"><a href="mesh.htm">mesh</a> *</td>
+    <td width="528">linked list of models</td>
+  </tr>
+  <tr> 
+    <td width="121">sound_obj0</td>
+    <td width="128"><a href="sound.htm">sound</a> *</td>
+    <td width="528">linked list of sounds</td>
+  </tr>
+  <tr> 
+    <td width="121">bezier_curve0</td>
+    <td width="128"><a href="bezier_curve.htm">bezier_curve</a> *</td>
+    <td width="528">linked list of Bezier curves</td>
+  </tr>
+  <tr> 
+    <td width="121">bezier_patch0</td>
+    <td width="128"><a href="bezier_patch.htm">bezier_patch</a> *</td>
+    <td width="528">linked list of Bezier paches</td>
+  </tr>
+  <tr> 
+    <td width="121">shadow_obj </td>
+    <td width="128"><a href="bsp_object.htm">bsp_object</a> *</td>
+    <td width="528">current object to cast shadows</td>
+  </tr>
+  <tr> 
+    <td width="121">hitobj</td>
+    <td width="128"><a href="bsp_object.htm">bsp_object</a> *</td>
+    <td width="528">current ray intersected object</td>
+  </tr>
+  <tr> 
+    <td width="121">hitmesh</td>
+    <td width="128"><a href="mesh.htm">mesh</a> *</td>
+    <td width="528">current ray intersected mesh</td>
+  </tr>
+  <tr> 
+    <td width="121">hitface</td>
+    <td width="128">int</td>
+    <td width="528">current ray intersected face</td>
+  </tr>
+  <tr> 
+    <td width="121">hitip</td>
+    <td width="128"><a href="vector.htm">vector</a></td>
+    <td width="528">current ray intersected point</td>
+  </tr>
+  <tr> 
+    <td width="121">fontspic</td>
+    <td width="128">int</td>
+    <td width="528">picture with the character fonts</td>
+  </tr>
+  <tr> 
+    <td width="121">fonts_width</td>
+    <td width="128">int []</td>
+    <td width="528">array with each font character width (for fonts not fixed size)</td>
+  </tr>
+  <tr> 
+    <td width="121">consolepic</td>
+    <td width="128">int</td>
+    <td width="528">picture used on the console background</td>
+  </tr>
+  <tr> 
+    <td width="121">intropic</td>
+    <td width="128">int</td>
+    <td width="528">picture used for opening level introduction</td>
+  </tr>
+  <tr> 
+    <td width="121">introtime</td>
+    <td width="128">int</td>
+    <td width="528">time in ms for the introduction animation</td>
+  </tr>
+  <tr> 
+    <td width="121">nvert</td>
+    <td width="128">int</td>
+    <td width="528">number of vertices in bsp tree <i>vert</i> array</td>
+  </tr>
+  <tr> 
+    <td width="121">vert</td>
+    <td width="128"><a href="vector.htm">vector</a> *</td>
+    <td width="528">array of vertices for the bsp tree faces</td>
+  </tr>
+  <tr> 
+    <td width="121">vertcolor</td>
+    <td width="128"><a href="vector.htm">vector</a> *</td>
+    <td width="528">array of vertex colors for the bsp tree vertices</td>
+  </tr>
+  <tr> 
+    <td width="121">vertnormal</td>
+    <td width="128"><a href="vector.htm">vector</a> *</td>
+    <td width="528">array of vertex normals</td>
+  </tr>
+  <tr> 
+    <td width="121">nfaces</td>
+    <td width="128">int</td>
+    <td width="528">number of faces in bsp tree</td>
+  </tr>
+  <tr> 
+    <td width="121">faces</td>
+    <td width="128"><a href="face.htm">face</a> *</td>
+    <td width="528">array of bsp tree faces</td>
+  </tr>
+  <tr> 
+    <td width="121">edges</td>
+    <td width="128">int *</td>
+    <td width="528">array of bsp face edges (4*nedges*sizeof(int))</td>
+  </tr>
+  <tr> 
+    <td width="121">nedges</td>
+    <td width="128">int</td>
+    <td width="528">number of edges in bsp edges array</td>
+  </tr>
+  <tr> 
+    <td width="121">faceedges</td>
+    <td width="128">int *</td>
+    <td width="528">array of edges for each bsp face (3*nfaces*sizeof(int))</td>
+  </tr>
+  <tr> 
+    <td width="121">bsp</td>
+    <td width="128"><a href="bsp_node.htm">bsp_node</a> *</td>
+    <td width="528">the bsp tree root node</td>
+  </tr>
+  <tr> 
+    <td width="121">lm</td>
+    <td width="128"><a href="light_map.htm">light_map</a> *</td>
+    <td width="528">individual light maps (each light mapped face points to one of these)</td>
+  </tr>
+  <tr> 
+    <td width="121">lmpic</td>
+    <td width="128"><a href="light_map_pic.htm">light_map_pic</a> *</td>
+    <td width="528">light map picture groups array (each light map points to one of these)</td>
+  </tr>
+  <tr> 
+    <td width="121">nlm</td>
+    <td width="128">int</td>
+    <td width="528">number of light_map classes in <i>lm</i> array</td>
+  </tr>
+  <tr> 
+    <td width="121">lmbase</td>
+    <td width="128">int</td>
+    <td width="528">offset into texture array for the light map pictures</td>
+  </tr>
+  <tr> 
+    <td width="121">nlmpic</td>
+    <td width="128">int</td>
+    <td width="528">number of light_map_pic classes in <i>lmpic</i> array</td>
+  </tr>
+  <tr> 
+    <td width="121">fm</td>
+    <td width="128"><a href="light_map.htm">light_map</a> *</td>
+    <td width="528">individual fog maps</td>
+  </tr>
+  <tr> 
+    <td width="121">fmpic</td>
+    <td width="128"><a href="light_map_pic.htm">light_map_pic</a> *</td>
+    <td width="528">fog map picture groups array (each fog_map points to one of these)</td>
+  </tr>
+  <tr> 
+    <td width="121">fmbase</td>
+    <td width="128">int</td>
+    <td width="528">offset into texture array for the fog maps</td>
+  </tr>
+  <tr> 
+    <td width="121">piclib</td>
+    <td width="128"><a href="picture.htm">picture</a> *</td>
+    <td width="528">array of pictures used as texture maps</td>
+  </tr>
+  <tr> 
+    <td width="121">npiclib</td>
+    <td width="128">int</td>
+    <td width="528">number of pictures in piclib array</td>
+  </tr>
+  <tr> 
+    <td width="121">leaf</td>
+    <td width="128"><a href="bsp_node.htm">bsp_node</a> *</td>
+    <td width="528">bsp tree leaf array</td>
+  </tr>
+  <tr> 
+    <td width="121">nleaf</td>
+    <td width="128">int</td>
+    <td width="528">number of leaves in bsp tree</td>
+  </tr>
+  <tr> 
+    <td width="121">pvssize</td>
+    <td width="128">int</td>
+    <td width="528">size of the pvs array in bytes</td>
+  </tr>
+  <tr> 
+    <td width="121">pvsrowsize</td>
+    <td width="128">int</td>
+    <td width="528">size of each pvs row in bytes</td>
+  </tr>
+  <tr> 
+    <td width="121">pvs</td>
+    <td width="128">char *</td>
+    <td width="528">pvs bit array</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p> <a
+href="flyengine_collision_bsp.htm">collision_bsp</a>, <a
+href="flyengine_collision_test.htm">collision_test</a>, <a href="flyengine_step.htm">step</a>, 
+  <a href="flyengine_apply_bsp.htm">apply_bsp</a>, <a href="flyengine_send_bsp_message.htm">send_bsp_message</a>, 
+  <a href="flyengine_open_fly_file.htm">open_fly_file</a>, <a
+href="flyengine_close_fly_file.htm">close_fly_file</a>, <a
+href="flyengine_save_fly_file.htm">save_fly_file</a>, <a href="flyengine_add_light_map.htm">add_light_map</a>, 
+  <a
+href="flyengine_init_texture_cache.htm">init_texture_cache</a>, <a
+href="flyengine_close_texture_cache.htm">close_texture_cache</a>, <a
+href="flyengine_start_text_mode.htm">start_text_mode</a>, <a
+href="flyengine_end_text_mode.htm">end_text_mode</a>, <a href="flyengine_draw_bsp.htm">draw_bsp</a>,
+<a href="flyengine_draw_bsp_edges.htm">draw_bsp_edges</a>, 
+  <a href="flyengine_draw_text.htm">draw_text</a>, <a href="flyengine_draw_text_center.htm">draw_text_center</a>, 
+  <a
+href="flyengine_set_status_msg.htm">set_status_msg</a>, <a
+href="flyengine_get_picture.htm">get_picture</a>, <a href="flyengine_get_stock_object.htm">get_stock_object</a>, 
+  <a href="flyengine_get_active_object.htm">get_active_object</a>, <a
+href="flyengine_get_model_object.htm">get_model_object</a>, <a
+href="flyengine_get_sound_object.htm">get_sound_object</a>, <a
+href="flyengine_get_bezier_curve.htm">get_bezier_curve</a>, <a
+href="flyengine_get_bezier_patch.htm">get_bezier_patch</a>, <a
+href="flyengine_get_next_stock_object.htm">get_next_stock_object</a>, <a
+href="flyengine_get_next_active_object.htm">get_next_active_object</a>, <a
+href="flyengine_set_obj_param.htm">set_obj_param</a>, <a
+href="flyengine_get_obj_param.htm">get_obj_param</a>, <a
+href="flyengine_set_global_param.htm">set_global_param</a>, <a
+href="flyengine_get_global_param_desc.htm">get_global_param_desc</a>, <a
+href="flyengine_activate.htm">activate</a>, <a href="flyengine_set_camera.htm">set_camera</a>, 
+  <a href="flyengine_get_random_point.htm">get_random_point</a>, <a
+href="flyengine_find_node.htm">find_node</a>, <a href="flyengine_join_multiplayer.htm">join_multiplayer</a>, 
+  <a href="flyengine_close_multiplayer.htm">close_multiplayer</a>, <a
+href="flyengine_check_multiplayer.htm">check_multiplayer</a></p>
+
+<h3>Remarks</h3>
+
+<p>This is the main interface with the engine. The global varible flyengine is
+initialized by the frontend and is from where all calls to the engine must be
+directed.&nbsp;</p>
+
+<h3>See Also</h3>
+
+<p><a href="vector.htm">vector</a>, <a href="console.htm">console</a>, <a href="face.htm">face</a>,
+<a href="base_object.htm">base_object</a>, <a href="mesh.htm">mesh</a>,&nbsp; <a href="bezier_curve.htm">bezier_curve</a>,
+<a href="bezier_patch.htm">bezier_patch</a>, <a href="sound.htm">sound</a>, <a href="bsp_node.htm">bsp_node</a>,
+<a href="bsp_object.htm">bsp_object</a>, <a href="light_map.htm">light_map</a>, <a href="light_map_pic.htm">light_map_pic</a>,
+<a href="flydllgroup.htm">flydllgroup</a>, <a href="picture.htm">picture</a></p>
+
+</body>
+</html>

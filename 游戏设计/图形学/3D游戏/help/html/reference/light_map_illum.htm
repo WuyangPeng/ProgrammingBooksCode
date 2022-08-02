@@ -1,0 +1,61 @@
+<html>
+
+<head>
+<title>light_map::illum</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2><a href="light_map.htm">light_map</a>::illum</h2>
+
+<h3>Prototype</h3>
+
+<p class="code">void illum(vector&amp; pos,vector&amp; color,float rad,int shadows)</p>
+
+<h3>Parameters</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>pos</td>
+    <td><a href="vector.htm">vector</a>&amp;</td>
+    <td>light position</td>
+  </tr>
+  <tr>
+    <td>color</td>
+    <td><a href="vector.htm">vector</a>&amp;</td>
+    <td>light color</td>
+  </tr>
+  <tr>
+    <td>rad</td>
+    <td>float</td>
+    <td>light radius</td>
+  </tr>
+  <tr>
+    <td>shadows</td>
+    <td>int</td>
+    <td>shadows flag:<br>
+      0 - no shadows<br>
+      1 - single object shadows<br>
+      2 - global shadows</td>
+  </tr>
+</table>
+
+<h3>Return Value</h3>
+
+<p>None</p>
+
+<h3>Remarks</h3>
+
+<p>This function dynamicaly illuminates the light_map pixels based on the above 
+  parameters.</p>
+
+</body>
+</html>

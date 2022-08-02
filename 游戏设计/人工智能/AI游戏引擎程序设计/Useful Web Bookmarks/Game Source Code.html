@@ -1,0 +1,305 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./Game%20Source%20Code_files/filelist.xml">
+<title>Game Source Code</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Brian Schwab</o:Author>
+  <o:LastAuthor>Brian Schwab</o:LastAuthor>
+  <o:Revision>5</o:Revision>
+  <o:TotalTime>28</o:TotalTime>
+  <o:Created>2004-06-23T23:36:00Z</o:Created>
+  <o:LastSaved>2004-06-24T01:06:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>99</o:Words>
+  <o:Characters>569</o:Characters>
+  <o:Company>SCEA</o:Company>
+  <o:Lines>4</o:Lines>
+  <o:Paragraphs>1</o:Paragraphs>
+  <o:CharactersWithSpaces>698</o:CharactersWithSpaces>
+  <o:Version>9.4402</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:"Arial Unicode MS";
+	panose-1:2 11 6 4 2 2 2 2 2 4;
+	mso-font-charset:128;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-1 -369098753 63 0 4129023 0;}
+@font-face
+	{font-family:"\@Arial Unicode MS";
+	panose-1:2 11 6 4 2 2 2 2 2 4;
+	mso-font-charset:128;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-1 -369098753 63 0 4129023 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Arial Unicode MS";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:red;
+	text-decoration:underline;
+	text-underline:single;}
+p.fsx01, li.fsx01, div.fsx01
+	{mso-style-name:fsx01;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:8.5pt;
+	font-family:"Arial Unicode MS";}
+p.fsx02, li.fsx02, div.fsx02
+	{mso-style-name:fsx02;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:9.0pt;
+	font-family:"Arial Unicode MS";}
+p.fsx03, li.fsx03, div.fsx03
+	{mso-style-name:fsx03;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Arial Unicode MS";}
+p.fsx04, li.fsx04, div.fsx04
+	{mso-style-name:fsx04;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:11.5pt;
+	font-family:"Arial Unicode MS";}
+p.fsx05, li.fsx05, div.fsx05
+	{mso-style-name:fsx05;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Arial Unicode MS";}
+p.fsx06, li.fsx06, div.fsx06
+	{mso-style-name:fsx06;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:14.5pt;
+	font-family:"Arial Unicode MS";}
+p.fsx07, li.fsx07, div.fsx07
+	{mso-style-name:fsx07;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:16.0pt;
+	font-family:"Arial Unicode MS";}
+p.fsx08, li.fsx08, div.fsx08
+	{mso-style-name:fsx08;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:18.0pt;
+	font-family:"Arial Unicode MS";}
+p.fsx09, li.fsx09, div.fsx09
+	{mso-style-name:fsx09;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:20.5pt;
+	font-family:"Arial Unicode MS";}
+p.fsx10, li.fsx10, div.fsx10
+	{mso-style-name:fsx10;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:22.0pt;
+	font-family:"Arial Unicode MS";}
+p.fsx11, li.fsx11, div.fsx11
+	{mso-style-name:fsx11;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:24.0pt;
+	font-family:"Arial Unicode MS";}
+p.fsx12, li.fsx12, div.fsx12
+	{mso-style-name:fsx12;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:26.5pt;
+	font-family:"Arial Unicode MS";}
+p.fsx13, li.fsx13, div.fsx13
+	{mso-style-name:fsx13;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:28.0pt;
+	font-family:"Arial Unicode MS";}
+p.fsx14, li.fsx14, div.fsx14
+	{mso-style-name:fsx14;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:36.0pt;
+	font-family:"Arial Unicode MS";}
+p.fsx15, li.fsx15, div.fsx15
+	{mso-style-name:fsx15;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:48.0pt;
+	font-family:"Arial Unicode MS";}
+p.fsx16, li.fsx16, div.fsx16
+	{mso-style-name:fsx16;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:72.0pt;
+	font-family:"Arial Unicode MS";}
+p.txdec, li.txdec, div.txdec
+	{mso-style-name:txdec;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Arial Unicode MS";}
+p.dfltt, li.dfltt, div.dfltt
+	{mso-style-name:dfltt;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Arial Unicode MS";}
+span.dfltt1
+	{mso-style-name:dfltt1;
+	mso-ansi-font-size:10.5pt;
+	mso-bidi-font-size:10.5pt;
+	mso-ascii-font-family:"Times New Roman";
+	mso-hansi-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-text-animation:none;
+	font-weight:normal;
+	text-decoration:none;
+	text-underline:none;
+	text-decoration:none;
+	text-line-through:none;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1027"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body bgcolor=white lang=EN-US link=blue vlink=red style='tab-interval:.5in'
+alink="#ff00ff">
+
+<div style='left:186px;position:absolute;top:190px;visibility:visible;
+z-index:1' id=Oobj1><span id=Grtf1>
+
+<div class=Section1>
+
+<p class=MsoNormal align=center style='margin-bottom:12.0pt;text-align:center'><b><u><span
+style='font-family:Arial'>Game Source Code<br style='mso-special-character:
+line-break'>
+<![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+<![endif]><o:p></o:p></span></u></b></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://www.toadstool.net/games/adventure/source.htm">http://www.toadstool.net/games/adventure/source.htm</a><br>
+The entire source to the classic game Adventure in assembly.<br>
+<br>
+
+<a href="http://www.devbuilder.org/article/103">http://www.devbuilder.org/article/103</a><br>
+A Java version of the game Dungeon Master released with source.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://www.gamespp.com/cgi-bin/index.cgi?sourcecode">http://www.gamespp.com/cgi-bin/index.cgi?sourcecode</a><br>
+A general game programming site with some source code to several games.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://www.ifarchive.org/indexes/if-archiveXgamesXsource.html">http://www.ifarchive.org/indexes/if-archiveXgamesXsource.html</a><br>
+A very large all text archive site, with many game sources (for many different languages and machines).<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://www.icarusindie.com/programming/sourcecode.php">http://www.icarusindie.com/programming/sourcecode.php</a><br>
+A nice site with many older commercial games that have released their sources.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+</div>
+
+</div>
+
+</span></div>
+
+</body>
+
+</html>

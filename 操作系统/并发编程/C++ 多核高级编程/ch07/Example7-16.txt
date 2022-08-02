@@ -1,0 +1,18 @@
+//Example 7-16 The methods defined in the base class assertion
+
+ 1  bool assertion::operator()(void)
+ 2  { 
+ 3     pthread_create(&Tid,NULL,some_assertion,this); 
+ 4     return(Sound);
+ 5  }
+ 6
+ 7  void assertion::wait(void)
+ 8  {
+ 9     pthread_join(Tid,NULL);
+10  }   
+11
+12
+13  bool assertion::sound(void)
+14  {
+15     return(Sound);
+16  } 

@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>textcacheGL::init</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="textcachegl.htm">textcacheGL</a>::init</h2>
+<h3>Prototype</h3>
+<p class="code">void init(int np,picture **pic,void *data)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 
+    <td>np</td>
+	 
+    <td>int</td>
+	 
+    <td>number of pictures in pic array</td>
+  </tr>
+  <tr>
+	 
+    <td>pic</td>
+	 
+    <td><a href="picture.htm">picture</a> **</td>
+    <td>picture array</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This is the OpenGL implementation for the <i>textcache</i> base class
+virtual function.</p>
+<p>This function initializes the texture manager with a picture array. All pictures 
+  in the array will be loaded into the 3D hardware. For adding new pictures, use 
+  the <i>add_picture</i> function, for updating any picture pixels, use the <i>update_picture</i> 
+  and <i>update_sub_picture</i> member functions.</p>
+</body>
+</html>

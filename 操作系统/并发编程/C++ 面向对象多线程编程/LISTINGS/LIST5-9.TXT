@@ -1,0 +1,57 @@
+// Listing 5-9
+// This program demonstrates the use of
+// parameter passing during the process
+// of thread creation
+
+#include <iostream.h>
+#include <pthread.h>
+#include <rational.h>
+
+rational M(1,2); 
+
+void *threadA(void *X)
+{
+    rational *Q;
+    Q = (rational *) X;
+    rational Z(3,4);
+    M = *Q + Z;   
+    cout << "thread A"  << endl;
+    cout << *Q << " + " << Z <<  " = " << M << endl << endl;
+}
+
+void *threadB(void *X)
+{
+   rational *N;
+   rational Q(1,1);
+   N = (rational *) X;
+   Q = M + *N;
+   cout << "thread B" << endl;
+   cout << M << " + " << *N << " = " << Q << endl << endl;   
+}
+
+
+
+void main(void)
+{
+    pthread_t ThreadA;
+    pthread_t ThreadB;
+    rational *N;
+    N = new rational(5,3);    
+    pthread_create(&ThreadA,NULL,threadA,N);
+    pthread_create(&ThreadB,NULL,threadB,N);
+    pthread_join(ThreadA,NULL);
+    pthread_join(ThreadB,NULL);
+    delete N;
+}    
+    
+
+
+
+
+
+
+
+
+
+
+

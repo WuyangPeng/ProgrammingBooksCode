@@ -1,0 +1,7 @@
+bool	 
+SolidCylinder::hit(const Ray& ray, double& tmin, ShadeRec& sr) const {	
+	if (bbox.hit(ray))
+		return (Compound::hit(ray, tmin, sr));
+	else
+		return (false);
+}

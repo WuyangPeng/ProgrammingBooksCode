@@ -1,0 +1,55 @@
+<html>
+
+<head>
+<title>face::forward_map</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2><a href="face.htm">face</a>::forward_map</h2>
+
+<h3>Prototype</h3>
+
+<p class="code">void forward_map(float&amp; u,float&amp; v,vector&amp; p)</p>
+
+<h3>Parameters</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>u</td>
+    <td>float&amp;</td>
+    <td>point co-ordinate in u axis</td>
+  </tr>
+  <tr>
+    <td>v</td>
+    <td>float&amp;</td>
+    <td>point co-ordinate in v axis</td>
+  </tr>
+  <tr>
+    <td>p</td>
+    <td><a href="vector.htm">vector</a>&amp;</td>
+    <td>point in object space</td>
+  </tr>
+</table>
+
+<h3>Return Value</h3>
+
+<p>None</p>
+
+<h3>Remarks</h3>
+
+<p>This function maps a point from light map texture space into object space.&nbsp;<br>
+  The (u,v) pair define a point in the object's light map texture space that can 
+  be mapped into an object space 3D point.&nbsp;<br>
+  This is used to find where a light map pixel is in scene co-ordinates.</p>
+
+</body>
+</html>

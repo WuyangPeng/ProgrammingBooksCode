@@ -1,0 +1,165 @@
+<html>
+
+<head>
+<title>class mesh</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class mesh :<a href="base_object.htm"> public base_object</a></h2>
+
+<h3>Definition</h3>
+
+<p class="code">class mesh : public base_object<br>
+  {<br>
+  &nbsp; public:<br>
+  &nbsp;&nbsp; int nv, nf;<br>
+  &nbsp;&nbsp; vector *vert;<br>
+  &nbsp;&nbsp; vector *vertnorm;<br>
+  &nbsp;&nbsp; face **faces;<br>
+  &nbsp;&nbsp; face *localfaces;<br>
+  &nbsp;&nbsp;&nbsp;int *edges,nedges;<br>
+  &nbsp;&nbsp; vector pivotpos;<br>
+  &nbsp;&nbsp; boundbox bbox;<br>
+  &nbsp;&nbsp; vector color;<br>
+  &nbsp;&nbsp; float scrollu,scrollv;<br>
+  &nbsp;&nbsp; int lastdraw;<br>
+  <br>
+  &nbsp;&nbsp; mesh() <br>
+  &nbsp;&nbsp; { <br>
+  &nbsp;&nbsp;&nbsp;&nbsp; vert=0; vertnorm=0; faces=0; nv=0; nf=0; localfaces=0; 
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp; color.vec(1.0f,1.0f,1.0f,1.0f); <br>
+  &nbsp;&nbsp;&nbsp;&nbsp; scrollu=scrollv=0.0f;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; lastdraw=0; <br>
+  &nbsp;&nbsp; };<br>
+  &nbsp;&nbsp; virtual ~mesh()<br>
+  &nbsp;&nbsp; { reset(); };<br>
+  <br>
+  &nbsp;&nbsp; void reset();<br>
+  &nbsp;&nbsp; virtual void draw();<br>
+  &nbsp;&nbsp;&nbsp;virtual void draw_cartoon(vector&amp; campos,vector&amp; light,light_vertex&amp; 
+  lights,float edgewidth); <br>
+  &nbsp;&nbsp;&nbsp;virtual void draw_shadow_volume(vector&amp; lightdir);<br>
+  &nbsp;&nbsp;&nbsp;int get_edge(int v1,int v2); <br>
+  &nbsp;&nbsp; int load_3ds(char *name);<br>
+  &nbsp;&nbsp; void compute_normals(int flag=15);<br>
+  &nbsp;&nbsp; int ray_intersect(vector&amp; ro,vector&amp; rd,vector&amp; ip,float&amp; 
+  dist,float rad=0.0f);<br>
+  &nbsp;&nbsp; int ray_intersect_test(vector&amp; ro,vector&amp; rd,float rad=0.0f);<br>
+  &nbsp;&nbsp; void illum_faces(vector&amp; ip,float d_max,vector&amp; c,int shadows);<br>
+  &nbsp;&nbsp; void implode(float mindist=0.1f);<br>
+  &nbsp;&nbsp;&nbsp;void set_numverts(int nverts,int keep=0);<br>
+  &nbsp;&nbsp; void set_numfaces(int nfaces,int local=0,int keep=0); <br>
+  &nbsp;&nbsp; mesh *clone();<br>
+  };</p>
+
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>nv</td>
+    <td>int</td>
+    <td>number of vertices in the mesh</td>
+  </tr>
+  <tr>
+    <td>nf</td>
+    <td>int</td>
+    <td>number of faces in the mesh</td>
+  </tr>
+  <tr>
+    <td>vert</td>
+    <td><a href="vector.htm">vector</a> *</td>
+    <td>the vertices array</td>
+  </tr>
+  <tr>
+    <td>vertnorm</td>
+    <td><a href="vector.htm">vector</a> *</td>
+    <td>the vertex normals array</td>
+  </tr>
+  <tr>
+    <td>faces</td>
+    <td><a href="face.htm">face</a> **</td>
+    <td>the faces pointers array</td>
+  </tr>
+  <tr>
+    <td>localfaces</td>
+    <td><a href="face.htm">face</a> *</td>
+    <td>the faces array</td>
+  </tr>
+  <tr>
+    <td height="39">edges</td>
+    <td height="39">int *</td>
+    <td height="39">the edges array (4*sizeof(int)*nedges)<br>
+    each entry 4 integers: two vertices, two faces</td>
+  </tr>
+  <tr>
+    <td>nedges</td>
+    <td>int</td>
+    <td>the number of entries in edges list</td>
+  </tr>
+  <tr>
+    <td>pivotpos</td>
+    <td><a href="vector.htm">vector</a></td>
+    <td>the mesh pivot position</td>
+  </tr>
+  <tr>
+    <td>bbox</td>
+    <td><a href="boundbox.htm">boundbox</a></td>
+    <td>the mesh bounding box (aabb)</td>
+  </tr>
+  <tr>
+    <td>color</td>
+    <td><a href="vector.htm">vector</a></td>
+    <td>the mesh color multiplier</td>
+  </tr>
+  <tr>
+    <td>scrollu</td>
+    <td>float</td>
+    <td>texture co-ordinates scroll factor in u direction</td>
+  </tr>
+  <tr>
+    <td>scrollv</td>
+    <td>float</td>
+    <td>texture co-ordinates scroll factor in v direction</td>
+  </tr>
+  <tr>
+    <td>lastdraw</td>
+    <td>int</td>
+    <td>last frame the mesh was draw</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p><a href="mesh_reset.htm">reset</a>, <a href="mesh_draw.htm">draw</a>, <a
+href="mesh_draw_cartoon.htm">draw_cartoon</a>, <a href="mesh_draw_shadow_volume.htm">draw_shadow_volume</a>, 
+  <a href="mesh_get_edge.htm">get_edge</a>, <a href="mesh_load_3ds.htm">load_3ds</a>, 
+  <a
+href="mesh_compute_normals.htm">compute_normals</a>, <a href="mesh_ray_intersect.htm">ray_intersect</a>, 
+  <a href="mesh_ray_intersect_test.htm">ray_intersect_test</a>, <a
+href="mesh_illum_faces.htm">illum_faces</a>, <a href="mesh_implode.htm">implode</a>, 
+  <a href="mesh_set_numverts.htm">set_numverts</a>, <a href="mesh_set_numfaces.htm">set_numfaces</a>, 
+  <a
+href="mesh_clone.htm">clone</a></p>
+
+<h3>Remarks</h3>
+
+<p>This class implements a 3D mesh object. The mesh can have the faces defined in it (<i>localfaces</i>)
+or it can point to faces outside the mesh (from the bsp) by having the localfaces pointer
+set to NULL.&nbsp;</p>
+
+<h3>See Also</h3>
+
+<p><a href="vector.htm">vector</a>, <a href="plane.htm">plane</a>, <a href="face.htm">face</a>,
+<a href="base_object.htm">base_object</a></p>
+</body>
+</html>

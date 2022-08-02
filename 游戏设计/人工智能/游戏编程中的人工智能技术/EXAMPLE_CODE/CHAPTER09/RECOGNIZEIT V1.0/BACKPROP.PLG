@@ -1,0 +1,50 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: backprop - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x809 /fo"Release/Script1.res" /d "NDEBUG" "C:\CODE\BOOK CHAPTERS\GAIWNNAGA09 - backprop code\RecognizeIt v1.0\Script1.rc"" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPDE.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /I "C:\Program Files\Microsoft Speech SDK 5.1\Include" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /FR"Release/" /Fp"Release/backprop.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\CODE\BOOK CHAPTERS\GAIWNNAGA09 - backprop code\RecognizeIt v1.0\CController.cpp"
+"C:\CODE\BOOK CHAPTERS\GAIWNNAGA09 - backprop code\RecognizeIt v1.0\CData.cpp"
+"C:\CODE\BOOK CHAPTERS\GAIWNNAGA09 - backprop code\RecognizeIt v1.0\CNeuralNet.cpp"
+"C:\CODE\BOOK CHAPTERS\GAIWNNAGA09 - backprop code\RecognizeIt v1.0\CTimer.cpp"
+"C:\CODE\BOOK CHAPTERS\GAIWNNAGA09 - backprop code\RecognizeIt v1.0\main.cpp"
+"C:\CODE\BOOK CHAPTERS\GAIWNNAGA09 - backprop code\RecognizeIt v1.0\utils.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPDE.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPDF.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:no /pdb:"Release/Recognize_it.pdb" /machine:I386 /out:"Release/Recognize_it.exe" 
+".\Release\CController.obj"
+".\Release\CData.obj"
+".\Release\CNeuralNet.obj"
+".\Release\CTimer.obj"
+".\Release\main.obj"
+".\Release\utils.obj"
+".\Release\Script1.res"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPDF.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+CController.cpp
+CData.cpp
+CNeuralNet.cpp
+CTimer.cpp
+main.cpp
+utils.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+Recognize_it.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

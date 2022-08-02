@@ -1,0 +1,13 @@
+[OPTIONS]
+TITLE=FLYPLUGIN AppWizard Help
+COMPRESS=true
+WARNING=2
+HLP=flyplugin.HLP
+ERRORLOG=flyplugin.LOG
+
+[FILES]
+flyplugin.rtf
+
+[MAP]
+#include <C:\Arquivos de programas\Microsoft Visual Studio\VC98\MFC\include\afxhelp.hm>
+#include <flyplugin.hm>

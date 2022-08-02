@@ -1,0 +1,53 @@
+﻿<Page
+    x:Class="EarthlyDelights.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:EarthlyDelights"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <!-- Two items displayed only during downloading -->        
+        <ProgressBar Name="progressBar"
+                     VerticalAlignment="Center"
+                     Margin="96 0" />
+
+        <TextBlock Name="statusText"
+                   Text="downloading image..."
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
+        <Canvas>
+            <Grid>
+                <Image Stretch="None">
+                    <Image.Source>
+                        <BitmapImage x:Name="bitmapImage"
+                                     DownloadProgress="OnBitmapImageDownloadProgress"
+                                     ImageFailed="OnBitmapImageFailed"
+                                     ImageOpened="OnBitmapImageOpened" />
+                    </Image.Source>
+                </Image>
+
+                <Border Name="outlineBorder"
+                        BorderBrush="White"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top">
+
+                    <Rectangle Name="outlineRectangle"
+                               Stroke="Black" />
+
+                    <Border.RenderTransform>
+                        <CompositeTransform x:Name="borderTransform" />
+                    </Border.RenderTransform>
+                </Border>
+
+                <Grid.RenderTransform>
+                    <CompositeTransform x:Name="imageTransform" />
+                </Grid.RenderTransform>
+            </Grid>
+        </Canvas>
+
+        <TextBlock Name="titleText"
+                   Margin="2 "/>
+    </Grid>
+</Page>

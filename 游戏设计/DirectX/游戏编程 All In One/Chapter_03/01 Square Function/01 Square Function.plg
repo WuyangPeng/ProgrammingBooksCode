@@ -1,0 +1,757 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: 01 Square Function - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15C2.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/01 Square Function.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\Game Programming All in One\Source\Chapter_03\01 Square Function\01 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15C2.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15C3.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/01 Square Function.pdb" /machine:I386 /out:"Release/01 Square Function.exe" 
+".\Release\01 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15C3.tmp"
+<h3>Output Window</h3>
+Compiling...
+01 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+01 Square Function.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 01 Square Function - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15C5.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/01 Square Function.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\Game Programming All in One\Source\Chapter_03\01 Square Function\01 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15C5.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15C6.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/01 Square Function.pdb" /debug /machine:I386 /out:"Debug/01 Square Function.exe" /pdbtype:sept 
+".\Debug\01 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15C6.tmp"
+<h3>Output Window</h3>
+Compiling...
+01 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+01 Square Function.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 02 Cube Function - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15C8.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/02 Cube Function.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\Game Programming All in One\Source\Chapter_03\02 Cube Function\02 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15C8.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15C9.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/02 Cube Function.pdb" /machine:I386 /out:"Release/02 Cube Function.exe" 
+".\Release\02 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15C9.tmp"
+<h3>Output Window</h3>
+Compiling...
+02 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+02 Cube Function.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 02 Cube Function - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15CB.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/02 Cube Function.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\Game Programming All in One\Source\Chapter_03\02 Cube Function\02 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15CB.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15CC.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/02 Cube Function.pdb" /debug /machine:I386 /out:"Debug/02 Cube Function.exe" /pdbtype:sept 
+".\Debug\02 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15CC.tmp"
+<h3>Output Window</h3>
+Compiling...
+02 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+02 Cube Function.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 03 IVA Calculator - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15CE.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/03 IVA Calculator.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\Game Programming All in One\Source\Chapter_03\03 IVA Calculator\03 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15CE.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15CF.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/03 IVA Calculator.pdb" /machine:I386 /out:"Release/03 IVA Calculator.exe" 
+".\Release\03 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15CF.tmp"
+<h3>Output Window</h3>
+Compiling...
+03 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+03 IVA Calculator.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 03 IVA Calculator - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15D1.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/03 IVA Calculator.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\Game Programming All in One\Source\Chapter_03\03 IVA Calculator\03 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15D1.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15D2.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/03 IVA Calculator.pdb" /debug /machine:I386 /out:"Debug/03 IVA Calculator.exe" /pdbtype:sept 
+".\Debug\03 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15D2.tmp"
+<h3>Output Window</h3>
+Compiling...
+03 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+03 IVA Calculator.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 04 Global Variables - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15D4.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/04 Global Variables.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\Game Programming All in One\Source\Chapter_03\04 Global Variables\04 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15D4.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15D5.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/04 Global Variables.pdb" /machine:I386 /out:"Release/04 Global Variables.exe" 
+".\Release\04 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15D5.tmp"
+<h3>Output Window</h3>
+Compiling...
+04 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+04 Global Variables.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 04 Global Variables - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15D7.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/04 Global Variables.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\Game Programming All in One\Source\Chapter_03\04 Global Variables\04 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15D7.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15D8.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/04 Global Variables.pdb" /debug /machine:I386 /out:"Debug/04 Global Variables.exe" /pdbtype:sept 
+".\Debug\04 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15D8.tmp"
+<h3>Output Window</h3>
+Compiling...
+04 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+04 Global Variables.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 05 Static Variables - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15DA.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/05 Static Variables.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\Game Programming All in One\Source\Chapter_03\05 Static Variables\05 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15DA.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15DB.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/05 Static Variables.pdb" /machine:I386 /out:"Release/05 Static Variables.exe" 
+".\Release\05 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15DB.tmp"
+<h3>Output Window</h3>
+Compiling...
+05 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+05 Static Variables.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 05 Static Variables - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15DD.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/05 Static Variables.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\Game Programming All in One\Source\Chapter_03\05 Static Variables\05 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15DD.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15DE.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/05 Static Variables.pdb" /debug /machine:I386 /out:"Debug/05 Static Variables.exe" /pdbtype:sept 
+".\Debug\05 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15DE.tmp"
+<h3>Output Window</h3>
+Compiling...
+05 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+05 Static Variables.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 06 Exponential Function - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15E0.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/06 Exponential Function.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\Game Programming All in One\Source\Chapter_03\06 Exponential Function\06 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15E0.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15E1.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/06 Exponential Function.pdb" /machine:I386 /out:"Release/06 Exponential Function.exe" 
+".\Release\06 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15E1.tmp"
+<h3>Output Window</h3>
+Compiling...
+06 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+06 Exponential Function.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 06 Exponential Function - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15E3.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/06 Exponential Function.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\Game Programming All in One\Source\Chapter_03\06 Exponential Function\06 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15E3.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15E4.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/06 Exponential Function.pdb" /debug /machine:I386 /out:"Debug/06 Exponential Function.exe" /pdbtype:sept 
+".\Debug\06 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15E4.tmp"
+<h3>Output Window</h3>
+Compiling...
+06 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+06 Exponential Function.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 07 if Statement - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15E6.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/07 if Statement.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\Game Programming All in One\Source\Chapter_03\07 if Statement\07 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15E6.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15E7.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/07 if Statement.pdb" /machine:I386 /out:"Release/07 if Statement.exe" 
+".\Release\07 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15E7.tmp"
+<h3>Output Window</h3>
+Compiling...
+07 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+07 if Statement.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 07 if Statement - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15E9.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/07 if Statement.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\Game Programming All in One\Source\Chapter_03\07 if Statement\07 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15E9.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15EA.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/07 if Statement.pdb" /debug /machine:I386 /out:"Debug/07 if Statement.exe" /pdbtype:sept 
+".\Debug\07 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15EA.tmp"
+<h3>Output Window</h3>
+Compiling...
+07 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+07 if Statement.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 08 While Loop - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15EC.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/08 While Loop.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\Game Programming All in One\Source\Chapter_03\08 While Loop\08 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15EC.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15ED.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/08 While Loop.pdb" /machine:I386 /out:"Release/08 While Loop.exe" 
+".\Release\08 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15ED.tmp"
+<h3>Output Window</h3>
+Compiling...
+08 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+08 While Loop.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 08 While Loop - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15EF.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/08 While Loop.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\Game Programming All in One\Source\Chapter_03\08 While Loop\08 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15EF.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15F0.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/08 While Loop.pdb" /debug /machine:I386 /out:"Debug/08 While Loop.exe" /pdbtype:sept 
+".\Debug\08 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15F0.tmp"
+<h3>Output Window</h3>
+Compiling...
+08 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+08 While Loop.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 09 do while Loop - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15F2.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/09 do while Loop.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\Game Programming All in One\Source\Chapter_03\09 do while Loop\09 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15F2.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15F3.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/09 do while Loop.pdb" /machine:I386 /out:"Release/09 do while Loop.exe" 
+".\Release\09 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15F3.tmp"
+<h3>Output Window</h3>
+Compiling...
+09 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+09 do while Loop.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 09 do while Loop - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15F5.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/09 do while Loop.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\Game Programming All in One\Source\Chapter_03\09 do while Loop\09 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15F5.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15F6.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/09 do while Loop.pdb" /debug /machine:I386 /out:"Debug/09 do while Loop.exe" /pdbtype:sept 
+".\Debug\09 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15F6.tmp"
+<h3>Output Window</h3>
+Compiling...
+09 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+09 do while Loop.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 10 for Loop - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15F8.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/10 for Loop.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\Game Programming All in One\Source\Chapter_03\10 for Loop\10 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15F8.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15F9.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/10 for Loop.pdb" /machine:I386 /out:"Release/10 for Loop.exe" 
+".\Release\10 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15F9.tmp"
+<h3>Output Window</h3>
+Compiling...
+10 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+10 for Loop.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 10 for Loop - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15FB.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/10 for Loop.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\Game Programming All in One\Source\Chapter_03\10 for Loop\10 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15FB.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15FC.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/10 for Loop.pdb" /debug /machine:I386 /out:"Debug/10 for Loop.exe" /pdbtype:sept 
+".\Debug\10 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15FC.tmp"
+<h3>Output Window</h3>
+Compiling...
+10 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+10 for Loop.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 11 continure Statement - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15FE.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/11 continure Statement.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\Game Programming All in One\Source\Chapter_03\11 continure Statement\11 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15FE.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15FF.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/11 continure Statement.pdb" /machine:I386 /out:"Release/11 continure Statement.exe" 
+".\Release\11 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15FF.tmp"
+<h3>Output Window</h3>
+Compiling...
+11 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+11 continure Statement.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 11 continure Statement - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1601.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/11 continure Statement.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\Game Programming All in One\Source\Chapter_03\11 continure Statement\11 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1601.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1602.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/11 continure Statement.pdb" /debug /machine:I386 /out:"Debug/11 continure Statement.exe" /pdbtype:sept 
+".\Debug\11 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1602.tmp"
+<h3>Output Window</h3>
+Compiling...
+11 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+11 continure Statement.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 12 Switch statement - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1604.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/12 Switch statement.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\Game Programming All in One\Source\Chapter_03\12 Switch statement\12 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1604.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1605.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/12 Switch statement.pdb" /machine:I386 /out:"Release/12 Switch statement.exe" 
+".\Release\12 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1605.tmp"
+<h3>Output Window</h3>
+Compiling...
+12 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+12 Switch statement.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 12 Switch statement - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1607.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/12 Switch statement.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\Game Programming All in One\Source\Chapter_03\12 Switch statement\12 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1607.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1608.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/12 Switch statement.pdb" /debug /machine:I386 /out:"Debug/12 Switch statement.exe" /pdbtype:sept 
+".\Debug\12 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1608.tmp"
+<h3>Output Window</h3>
+Compiling...
+12 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+12 Switch statement.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 13 Randomizing - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP160A.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/13 Randomizing.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\Game Programming All in One\Source\Chapter_03\13 Randomizing\13 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP160A.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP160B.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/13 Randomizing.pdb" /machine:I386 /out:"Release/13 Randomizing.exe" 
+".\Release\13 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP160B.tmp"
+<h3>Output Window</h3>
+Compiling...
+13 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+13 Randomizing.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 13 Randomizing - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP160D.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/13 Randomizing.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\Game Programming All in One\Source\Chapter_03\13 Randomizing\13 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP160D.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP160E.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/13 Randomizing.pdb" /debug /machine:I386 /out:"Debug/13 Randomizing.exe" /pdbtype:sept 
+".\Debug\13 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP160E.tmp"
+<h3>Output Window</h3>
+Compiling...
+13 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+13 Randomizing.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 14 Guess the number - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1610.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/14 Guess the number.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\Game Programming All in One\Source\Chapter_03\14 Guess the number\14 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1610.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1611.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/14 Guess the number.pdb" /machine:I386 /out:"Release/14 Guess the number.exe" 
+".\Release\14 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1611.tmp"
+<h3>Output Window</h3>
+Compiling...
+14 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+14 Guess the number.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 14 Guess the number - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1613.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/14 Guess the number.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\Game Programming All in One\Source\Chapter_03\14 Guess the number\14 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1613.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1614.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/14 Guess the number.pdb" /debug /machine:I386 /out:"Debug/14 Guess the number.exe" /pdbtype:sept 
+".\Debug\14 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1614.tmp"
+<h3>Output Window</h3>
+Compiling...
+14 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+14 Guess the number.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 15 Craps - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1616.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/15 Craps.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\Game Programming All in One\Source\Chapter_03\15 Craps\15 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1616.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1617.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/15 Craps.pdb" /machine:I386 /out:"Release/15 Craps.exe" 
+".\Release\15 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1617.tmp"
+<h3>Output Window</h3>
+Compiling...
+15 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+15 Craps.exe - 0 error(s), 0 warning(s)
+<h3>
+--------------------Configuration: 15 Craps - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1619.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Debug/15 Craps.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"F:\Game Programming All in One\Source\Chapter_03\15 Craps\15 Main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP1619.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP161A.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/15 Craps.pdb" /debug /machine:I386 /out:"Debug/15 Craps.exe" /pdbtype:sept 
+".\Debug\15 Main.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP161A.tmp"
+<h3>Output Window</h3>
+Compiling...
+15 Main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+15 Craps.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

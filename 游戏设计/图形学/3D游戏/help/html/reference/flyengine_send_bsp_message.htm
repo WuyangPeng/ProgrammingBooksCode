@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>flyEngine::send_bsp_message</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="flyengine.htm">flyEngine</a>::send_bsp_message</h2>
+<h3>Prototype</h3>
+<p class="code">void send_bsp_message(bsp_node *n,vector& p,float rad,int msg,int param,void 
+  *data)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>n</td>
+	 <td><a href="bsp_node.htm">bsp_node</a> *</td>
+	 <td>root bsp node</td>
+  </tr>
+  <tr>
+	 <td>p</td>
+	 <td><a href="vector.htm">vector</a>&amp;</td>
+	 <td>point</td>
+  </tr>
+  <tr>
+	 <td>rad</td>
+	 <td>float</td>
+	 <td>radius</td>
+  </tr>
+  <tr>
+	 <td>msg</td>
+	 <td>int</td>
+	 <td>message type</td>
+  </tr>
+  <tr>
+	 <td>param</td>
+	 <td>int</td>
+	 <td>parameterr</td>
+  </tr>
+  <tr>
+	 <td>data</td>
+	 <td>void *</td>
+	 <td>general pointer parameter</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This function send a message to all active plug-in objects inside the sphere 
+  of influence defined by the <i>p</i> and <i>rad</i> parameters. All plug-in 
+  objects (derived from bsp_object) receive the message through their <i>message</i> 
+  virtual function.</p>
+</body>
+</html>

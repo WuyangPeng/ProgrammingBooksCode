@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>fly_pak::get_profile_string</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="fly_pak.htm">fly_pak</a>::get_profile_string</h2>
+<h3>Prototype</h3>
+<p class="code">void get_profile_string(char *section, char *key, char *dest)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 
+    <td>section</td>
+	 
+    <td>char *</td>
+	 
+    <td>section name</td>
+  </tr>
+  <tr>
+	 
+    <td>key</td>
+	 
+    <td>char *</td>
+	 
+    <td>key name</td>
+  </tr>
+  <tr>
+	 
+    <td>dest</td>
+	 
+    <td>char *</td>
+	 
+    <td>destination string</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This function works just like the GetPrivateProfileString Windows API
+function. It is used to manage .ini type of files and as .fly files are just
+text .ini files, it is used to load the .fly files.</p>
+</body>
+</html>

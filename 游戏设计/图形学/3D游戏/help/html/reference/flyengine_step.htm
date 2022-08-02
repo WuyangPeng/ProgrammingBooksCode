@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>flyEngine::step</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="flyengine.htm">flyEngine</a>::step</h2>
+<h3>Prototype</h3>
+<p class="code">void step(int dt)<br>
+int step()</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>dt</td>
+	 <td>int</td>
+	 
+    <td>elapsed time in ms</td>
+  </tr>
+  
+  
+</table>
+<h3>Return Value</h3>
+<p>Return the number of ms elapsed from last frame.</p>
+<h3>Remarks</h3>
+<p>This function is used to update the game after an elapsed time. The main loop 
+  from the frontend must call this function every frame.&nbsp;</p>
+<p>If called without the elapsed time, the elapsed time from last frame is
+computed, the scene is updated for the computed time interval and this interval
+is returned.</p>
+<p> The following order of operations is performed inside this function:</p>
+<p>1) Get current state for mouse and keyboard<br>
+  2) For all light maps changed in the last frame, restore them to the original 
+  values.<br>
+  3) For all fog maps changed in the last frame, clear them.<br>
+  4) For each active object in the active objects linked list:<br>
+&nbsp;&nbsp;&nbsp; if object <i>life</i>&lt;0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delete the object<br>
+&nbsp;&nbsp;&nbsp; else&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; increment <i>cur_step</i> varaible<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; call object step function<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if object step function returns true
+(moved), reposition it in the bsp<br>
+5) Increment <i>cur_frame</i> variable<br>
+6) For all light maps changed in this frame, update them to the texture manager<br>
+7) For all fog maps changed in this frame, update them to the texture manager<br>
+8) Send the FLYM_UPDATESCENE to all loaded plug-ins (some plug-ins will draw the
+scene here)<br>
+9) If multiplayer is on, call <i>check_multiplayer</i> for processing
+multiplayer messages.<br>
+  10) If multiplayer is on and running on a client, check last player update message 
+  time and send a FLYM_MPUPDATE message to the plug-ins if the time from the last 
+  update is greater than the <i>mpdelay</i> variable<br>
+11) Calls the console step function<br>
+</p>
+</body>
+</html>

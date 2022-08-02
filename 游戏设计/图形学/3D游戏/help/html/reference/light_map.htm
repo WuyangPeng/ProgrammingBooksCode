@@ -1,0 +1,162 @@
+<html>
+
+<head>
+<title>class light_map</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class light_map</h2>
+
+<h3>Definition</h3>
+
+<p class="code">class light_map<br>
+{<br>
+public:<br>
+&nbsp;&nbsp;&nbsp; vector v0, v1, v2;<br>
+&nbsp;&nbsp;&nbsp; vector d0, d1, d2, normal;<br>
+&nbsp;&nbsp;&nbsp; float det;<br>
+&nbsp;&nbsp;&nbsp; float uv[3][2];<br>
+&nbsp;&nbsp;&nbsp; int lastupdate;<br>
+&nbsp;&nbsp;&nbsp; int pic;<br>
+&nbsp;&nbsp;&nbsp; int offsetx,offsety;<br>
+&nbsp;&nbsp;&nbsp; int sizex,sizey;<br>
+&nbsp;&nbsp;&nbsp; int facenum;<br>
+&nbsp;&nbsp;&nbsp; unsigned char *bmp;<br>
+&nbsp;&nbsp;&nbsp; int bytespixel,bytesx,bytesxy;<br>
+<br>
+&nbsp;&nbsp;&nbsp; light_map(int f,int p,int x,int y,int sx,int sy,int bp=3)<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; facenum=f;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pic=p;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; offsetx=x;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; offsety=y;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sizex=sx;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sizey=sy;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bytespixel=bp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lastupdate=0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bytesx=sx*bp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (bytesx&amp;3) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bytesx+=4-(bytesx&amp;3);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bytesxy=bytesx*sy;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bmp=new unsigned char[bytesxy];<br>
+&nbsp;&nbsp;&nbsp; };<br>
+&nbsp;&nbsp;&nbsp; void map_point(float u, float v, vector &amp;point);<br>
+&nbsp;&nbsp;&nbsp; void set_base(face *f,light_map_pic *lmp,vector&amp;
+pos=vector(0,0,0));<br>
+&nbsp;&nbsp;&nbsp; void illum(vector&amp; pos,vector&amp; color,float rad,int shadows);<br>
+&nbsp;&nbsp;&nbsp; void load(light_map_pic *lmp);<br>
+&nbsp;&nbsp;&nbsp; void save(light_map_pic *lmp);<br>
+<br>
+&nbsp;&nbsp;&nbsp; virtual ~light_map() <br>
+&nbsp;&nbsp;&nbsp; { <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (bmp) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delete bmp; <br>
+&nbsp;&nbsp;&nbsp; };<br>
+};</p>
+
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>d0</td>
+    <td><a href="vector.htm">vector</a></td>
+    <td>light_map origin (0,0) in world space</td>
+  </tr>
+  <tr>
+    <td>d1</td>
+    <td><a href="vector.htm">vector</a></td>
+    <td>light_map u vector (1,0) in world space</td>
+  </tr>
+  <tr>
+    <td>d2</td>
+    <td><a href="vector.htm">vector</a></td>
+    <td>light_map v vector (0,1) in world space</td>
+  </tr>
+  <tr>
+    <td>lastupdate</td>
+    <td>int</td>
+    <td>last frame this light_map has changed</td>
+  </tr>
+  <tr>
+    <td>pic</td>
+    <td>int</td>
+    <td>light_map_pic index</td>
+  </tr>
+  <tr>
+    <td>offsetx</td>
+    <td>int</td>
+    <td>x offset into light_map_pic</td>
+  </tr>
+  <tr>
+    <td>offsety</td>
+    <td>int</td>
+    <td>y offset into light_map_pic</td>
+  </tr>
+  <tr>
+    <td>sizex</td>
+    <td>int</td>
+    <td>x size of light_map (power of 2 or not)</td>
+  </tr>
+  <tr>
+    <td>sizey</td>
+    <td>int</td>
+    <td>y size of light_map (power of 2 or not)</td>
+  </tr>
+  <tr>
+    <td>facenum</td>
+    <td>int</td>
+    <td>face index for one face using this light_map</td>
+  </tr>
+  <tr>
+    <td>bmp</td>
+    <td>unsigned char *</td>
+    <td> light_map bitmap</td>
+  </tr>
+  <tr>
+    <td>bytespixel</td>
+    <td>int</td>
+    <td>the light map bytes per pixel:<br>
+      3 - RGB<br>
+      4 - RGBA</td>
+  </tr>
+  <tr>
+    <td>bytesx</td>
+    <td>int</td>
+    <td> number of bytes per line (sizex*bytespixel aligned to 4 bytes)</td>
+  </tr>
+  <tr>
+    <td>bytesxy</td>
+    <td>int</td>
+    <td> total bytes of the light_map bmp (bytesx*sizey)</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p><a href="light_map_constructor.htm">constructor</a>, <a href="light_map_map_point.htm">map_point</a>, 
+  <a href="light_map_set_base.htm">set_base</a>, <a href="light_map_illum.htm">illum</a>, 
+  <a
+href="light_map_load.htm">load</a>, <a href="light_map_save.htm">save</a></p>
+
+<h3>Remarks</h3>
+
+<p>This class implements a light map. Several faces (co-planar) can share the
+same light_map and many light_maps can share the same light_map_pic. Each
+light_map has an offset and size inside its light_map_pic.</p>
+
+<h3>See Also</h3>
+
+<p><a href="light_map_pic.htm">light_map_pic</a>, <a href="vector.htm">vector</a>,
+<a href="face.htm">face</a>, <a href="flyengine.htm">flyEngine</a></p>
+
+</body>
+</html>

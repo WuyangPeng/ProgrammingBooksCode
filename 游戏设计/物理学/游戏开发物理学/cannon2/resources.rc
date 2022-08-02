@@ -1,0 +1,133 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DEMODIALOG DIALOG DISCARDABLE  0, 0, 504, 282
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Cannon Example"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Close",ID_CLOSE,447,261,50,14
+    EDITTEXT        IDC_VM,53,17,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ALPHA,53,34,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_GAMMA,53,51,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_L,53,68,40,14,ES_AUTOHSCROLL
+    LTEXT           "Vm",IDC_STATIC,39,20,11,8
+    LTEXT           "Alpha",IDC_STATIC,31,37,19,8
+    LTEXT           "Gamma",IDC_STATIC,25,54,25,8
+    LTEXT           "L",IDC_STATIC,42,71,8,8
+    EDITTEXT        IDC_YB,53,85,40,14,ES_AUTOHSCROLL
+    LTEXT           "Yb",IDC_STATIC,40,88,10,8
+    EDITTEXT        IDC_X,53,124,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Y,53,142,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Z,53,160,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_LENGTH,53,178,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_WIDTH,53,196,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_HEIGHT,53,214,40,14,ES_AUTOHSCROLL
+    LTEXT           "Target Properties:",IDC_STATIC,7,115,57,8
+    LTEXT           "X",IDC_STATIC,43,127,8,8
+    LTEXT           "Y",IDC_STATIC,43,145,8,8
+    LTEXT           "Z",IDC_STATIC,43,163,8,8
+    LTEXT           "Length",IDC_STATIC,28,181,23,8
+    LTEXT           "Width",IDC_STATIC,31,199,20,8
+    LTEXT           "Height",IDC_STATIC,29,217,22,8
+    LTEXT           "Cannon Properties:",IDC_STATIC,7,7,61,8
+    PUSHBUTTON      "Fire!",IDC_FIRE,31,239,50,14
+    PUSHBUTTON      "Refresh",IDC_REFRESH,31,261,50,14
+    EDITTEXT        IDC_M,465,15,32,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_CD,466,31,31,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_VW,466,54,31,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_GAMMAW,466,71,31,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_CW,465,88,32,14,ES_AUTOHSCROLL
+    LTEXT           "m",IDC_STATIC,456,17,8,8
+    LTEXT           "Cd",IDC_STATIC,454,33,10,8
+    LTEXT           "Vw",IDC_STATIC,452,57,11,8
+    LTEXT           "GammaW",IDC_STATIC,433,74,32,8
+    LTEXT           "Cw",IDC_STATIC,453,92,11,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DEMODIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 497
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 275
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

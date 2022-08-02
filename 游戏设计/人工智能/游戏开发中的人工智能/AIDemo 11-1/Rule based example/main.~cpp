@@ -1,0 +1,264 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "main.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm1 *Form1;
+//---------------------------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+        : TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+
+void TForm1::Initialize(void)
+{
+        Rules[0].SetRule(Punch, Punch, Punch);
+        Rules[1].SetRule(Punch, Punch, LowKick);
+        Rules[2].SetRule(Punch, Punch, HighKick);
+        Rules[3].SetRule(Punch, LowKick, Punch);
+        Rules[4].SetRule(Punch, LowKick, LowKick);
+        Rules[5].SetRule(Punch, LowKick, HighKick);
+        Rules[6].SetRule(Punch, HighKick, Punch);
+        Rules[7].SetRule(Punch, HighKick, LowKick);
+        Rules[8].SetRule(Punch, HighKick, HighKick);
+        Rules[9].SetRule(LowKick, Punch, Punch);
+        Rules[10].SetRule(LowKick, Punch, LowKick);
+        Rules[11].SetRule(LowKick, Punch, HighKick);
+        Rules[12].SetRule(LowKick, LowKick, Punch);
+        Rules[13].SetRule(LowKick, LowKick, LowKick);
+        Rules[14].SetRule(LowKick, LowKick, HighKick);
+        Rules[15].SetRule(LowKick, HighKick, Punch);
+        Rules[16].SetRule(LowKick, HighKick, LowKick);
+        Rules[17].SetRule(LowKick, HighKick, HighKick);
+        Rules[18].SetRule(HighKick, Punch, Punch);
+        Rules[19].SetRule(HighKick, Punch, LowKick);
+        Rules[20].SetRule(HighKick, Punch, HighKick);
+        Rules[21].SetRule(HighKick, LowKick, Punch);
+        Rules[22].SetRule(HighKick, LowKick, LowKick);
+        Rules[23].SetRule(HighKick, LowKick, HighKick);
+        Rules[24].SetRule(HighKick, HighKick, Punch);
+        Rules[25].SetRule(HighKick, HighKick, LowKick);
+        Rules[26].SetRule(HighKick, HighKick, HighKick);
+
+        WorkingMemory.strikeA = sUnknown;
+        WorkingMemory.strikeB = sUnknown;
+        WorkingMemory.strikeC = sUnknown;
+        PreviousRuleFired = -1;
+
+        N = 0;
+        NSuccess = 0;
+        NRandomSuccess = 0;
+        UpdateForm();
+}
+
+TStrikes TForm1::ProcessMove(TStrikes move)
+{
+        int     i;
+        int     RuleToFire = -1;
+
+        if(WorkingMemory.strikeA == sUnknown)
+        {
+                WorkingMemory.strikeA = move;
+                return sUnknown;
+        }
+
+        if(WorkingMemory.strikeB == sUnknown)
+        {
+                WorkingMemory.strikeB = move;
+                return sUnknown;
+        }
+
+        // tally and adjust weights...
+        N++;
+        if(move == Prediction)
+        {
+                NSuccess++;
+                if(PreviousRuleFired != -1)
+                        Rules[PreviousRuleFired].weight++;
+        } else {
+                if(PreviousRuleFired != -1)
+                        Rules[PreviousRuleFired].weight--;
+
+                // backward chain to increment the rule that should have been fired
+                for(i=0; i<NUM_RULES; i++)
+                {
+                        if(Rules[i].matched && (Rules[i].consequentC == move))
+                        {
+                                Rules[i].weight++;
+                                break;
+                        }
+                }
+                
+        }
+
+        if(move == RandomPrediction)
+                NRandomSuccess++;
+
+        // roll back...
+        WorkingMemory.strikeA = WorkingMemory.strikeB;
+        WorkingMemory.strikeB = move;
+
+        // make prediction...
+        for(i=0; i<NUM_RULES; i++)
+        {
+                if(Rules[i].antecedentA == WorkingMemory.strikeA &&
+                   Rules[i].antecedentB == WorkingMemory.strikeB)
+                        Rules[i].matched = true;
+                else
+                        Rules[i].matched = false;
+        }
+
+        // pick the matched rule with the highest weight...
+        RuleToFire = -1;
+        for(i=0; i<NUM_RULES; i++)
+        {
+                if(Rules[i].matched)
+                {
+                        if(RuleToFire == -1)
+                                RuleToFire = i;
+                        else if(Rules[i].weight > Rules[RuleToFire].weight)
+                                RuleToFire = i;
+                }
+        }
+
+        // fire the rule
+        if(RuleToFire != -1) {
+                WorkingMemory.strikeC = Rules[RuleToFire].consequentC;
+                PreviousRuleFired = RuleToFire;
+        } else {
+                WorkingMemory.strikeC = sUnknown;
+                PreviousRuleFired = -1;
+        }
+
+        return WorkingMemory.strikeC;
+
+}
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+
+
+        Prediction = ProcessMove(Punch);
+        RandomPrediction =  (TStrikes) rand() % 3;
+        UpdateForm();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button2Click(TObject *Sender)
+{
+        
+
+        Prediction = ProcessMove(LowKick);
+        RandomPrediction =  (TStrikes) rand() % 3;
+        UpdateForm();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button3Click(TObject *Sender)
+{
+        Prediction = ProcessMove(HighKick);
+        RandomPrediction =  (TStrikes) rand() % 3;
+        UpdateForm();
+}
+//---------------------------------------------------------------------------
+void    TForm1::UpdateForm(void)
+{
+        String        tmp;
+
+        StringGrid1->Cells[0][0] = "Rule #";
+        StringGrid1->Cells[1][0] = "ant. A";
+        StringGrid1->Cells[2][0] = "ant. B";
+        StringGrid1->Cells[3][0] = "con. C";
+        StringGrid1->Cells[4][0] = "weight";
+
+        for(int i=0; i<NUM_RULES; i++)
+        {
+                StringGrid1->Cells[0][i+1] = IntToStr(i);
+                switch(Rules[i].antecedentA)
+                {
+                        case Punch: tmp = "Punch"; break;
+                        case LowKick: tmp = "Low Kick"; break;
+                        case HighKick: tmp = "High Kick"; break;
+                }
+                StringGrid1->Cells[1][i+1] = tmp;
+
+                switch(Rules[i].antecedentB)
+                {
+                        case Punch: tmp = "Punch"; break;
+                        case LowKick: tmp = "Low Kick"; break;
+                        case HighKick: tmp = "High Kick"; break;
+                }
+                StringGrid1->Cells[2][i+1] = tmp;
+
+                switch(Rules[i].consequentC)
+                {
+                        case Punch: tmp = "Punch"; break;
+                        case LowKick: tmp = "Low Kick"; break;
+                        case HighKick: tmp = "High Kick"; break;
+                }
+                StringGrid1->Cells[3][i+1] = tmp;
+
+                StringGrid1->Cells[4][i+1] = IntToStr(Rules[i].weight);
+        }
+
+        switch(WorkingMemory.strikeA)
+        {
+                case Punch: Label6->Caption = "Punch"; break;
+                case LowKick: Label6->Caption = "LowKick"; break;
+                case HighKick: Label6->Caption = "HighKick"; break;
+        }
+        switch(WorkingMemory.strikeB)
+        {
+                case Punch: Label5->Caption = "Punch"; break;
+                case LowKick: Label5->Caption = "LowKick"; break;
+                case HighKick: Label5->Caption = "HighKick"; break;
+        }
+
+        switch(Prediction)
+        {
+                case Punch: Label8->Caption = "Punch"; break;
+                case LowKick: Label8->Caption = "LowKick"; break;
+                case HighKick: Label8->Caption = "HighKick"; break;
+        }
+
+        switch(RandomPrediction)
+        {
+                case Punch: Label7->Caption = "Punch"; break;
+                case LowKick: Label7->Caption = "LowKick"; break;
+                case HighKick: Label7->Caption = "HighKick"; break;
+        }
+
+        if(N>0)
+        {
+                Label9->Caption = FloatToStrF((double) NSuccess / (double) N, ffFixed, 15, 3);
+                Label10->Caption = FloatToStrF((double) NRandomSuccess / (double) N, ffFixed, 15, 3);
+        } else {
+                Label9->Caption = "na";
+                Label10->Caption = "na";
+        }
+}
+void __fastcall TForm1::FormActivate(TObject *Sender)
+{
+        Initialize();        
+}
+//---------------------------------------------------------------------------
+//---------------------------------------------------------------------------
+
+TRule::TRule()
+{
+        matched = true;
+        weight = 0;
+}
+
+void TRule::SetRule(TStrikes A, TStrikes B, TStrikes C)
+{
+        antecedentA = A;
+        antecedentB = B;
+        consequentC = C;
+}
+
+

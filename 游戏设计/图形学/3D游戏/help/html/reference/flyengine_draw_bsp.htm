@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>flyEngine::draw_bsp</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="flyengine.htm">flyEngine</a>::draw_bsp</h2>
+<h3>Prototype</h3>
+<p class="code">void draw_bsp(int mode)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr> 
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr> 
+    <td>mode</td>
+    <td>int</td>
+    <td>drawing mode:<br>
+      0 - standard<br>
+      1 - cartoon</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This function recureses the bsp tree and select all bsp faces and dynamic object 
+  that are inside the current view frustum. Then, all faces from the bsp are drawn 
+  followed by all dynamic objects. Transparent faces and draw after the nontransparent 
+  ones and dynamic objects set to latedraw will be the last ones to render. </p>
+<p>If cartoon mode is set, the bsp faces are drawn with the current cartoonpicbsp 
+  and then all edges from the bsp faces selected for drawing will be tested for 
+  outline by the current camera. If edge is found to be at a backface/frontface 
+  pair, the edge is draw as a black line.</p>
+<p>&nbsp;</p>
+</body>
+</html>

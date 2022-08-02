@@ -1,0 +1,115 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Portuguese (Brazil) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTB)
+#ifdef _WIN32
+LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_FLYPVS DIALOG DISCARDABLE  0, 0, 192, 121
+STYLE DS_MODALFRAME | DS_CENTER | WS_CAPTION | WS_SYSMENU
+CAPTION "flyPVS"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "&File:",IDC_STATIC,5,5,14,8
+    EDITTEXT        IDC_BSPFILE,5,15,165,14,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_TABSTOP
+    PUSHBUTTON      "...",IDC_BROWSE,170,15,14,14
+    GROUPBOX        "&Size",IDC_STATIC,5,35,65,60,WS_GROUP
+    CONTROL         "64x64",IDC_SIZE64,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,15,48,35,10
+    CONTROL         "128x128",IDC_SIZE128,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,15,63,43,10
+    CONTROL         "256x256",IDC_SIZE256,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,15,78,43,10
+    GROUPBOX        "",IDC_STATIC,80,35,105,60,WS_GROUP
+    LTEXT           "1 visibility &sample per:",IDC_STATIC,90,45,68,8
+    EDITTEXT        IDC_SAMPLESVOLUME,90,57,40,14,ES_AUTOHSCROLL
+    LTEXT           "m",IDC_STATIC,135,59,8,8
+    LTEXT           "3",IDC_STATIC,143,57,8,8
+    CONTROL         "&Save pvs log",IDC_SAVETXT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,6,104,57,10
+    DEFPUSHBUTTON   "Start",IDOK,135,102,50,14
+    PUSHBUTTON      "",IDCANCEL,124,108,7,6,NOT WS_VISIBLE | NOT WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_FLYPVS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 185
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 114
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Portuguese (Brazil) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

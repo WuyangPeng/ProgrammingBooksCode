@@ -1,0 +1,8 @@
+分布式系统：概念与设计（Distributed Systems）
+（第5版）
+
+官方网站：    
+https://www.cdk5.net
+
+★★
+作者：George Coulouris、Jean Dollimore、Tim Kindberg、Gordon Blair 

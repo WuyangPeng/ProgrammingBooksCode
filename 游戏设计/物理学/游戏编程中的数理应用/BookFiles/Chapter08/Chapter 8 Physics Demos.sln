@@ -1,0 +1,39 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Position with Constant Velocity", "Position with Constant Velocity\Position with Constant Velocity.vcproj", "{D2F0D427-173B-4FC3-A774-1E159A943B6F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Displacement", "Displacement\Displacement.vcproj", "{30EF520F-48CB-42F1-8192-0535745F3511}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Average Velocity", "Average Velocity\Average Velocity.vcproj", "{8F21C298-1108-4C76-81C4-9DB743324CF6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Acceleration", "Acceleration\Acceleration.vcproj", "{028BD106-2C19-4866-B928-0FCCD863FC4A}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{D2F0D427-173B-4FC3-A774-1E159A943B6F}.Debug.ActiveCfg = Debug|Win32
+		{D2F0D427-173B-4FC3-A774-1E159A943B6F}.Debug.Build.0 = Debug|Win32
+		{D2F0D427-173B-4FC3-A774-1E159A943B6F}.Release.ActiveCfg = Release|Win32
+		{D2F0D427-173B-4FC3-A774-1E159A943B6F}.Release.Build.0 = Release|Win32
+		{30EF520F-48CB-42F1-8192-0535745F3511}.Debug.ActiveCfg = Debug|Win32
+		{30EF520F-48CB-42F1-8192-0535745F3511}.Debug.Build.0 = Debug|Win32
+		{30EF520F-48CB-42F1-8192-0535745F3511}.Release.ActiveCfg = Release|Win32
+		{30EF520F-48CB-42F1-8192-0535745F3511}.Release.Build.0 = Release|Win32
+		{8F21C298-1108-4C76-81C4-9DB743324CF6}.Debug.ActiveCfg = Debug|Win32
+		{8F21C298-1108-4C76-81C4-9DB743324CF6}.Debug.Build.0 = Debug|Win32
+		{8F21C298-1108-4C76-81C4-9DB743324CF6}.Release.ActiveCfg = Release|Win32
+		{8F21C298-1108-4C76-81C4-9DB743324CF6}.Release.Build.0 = Release|Win32
+		{028BD106-2C19-4866-B928-0FCCD863FC4A}.Debug.ActiveCfg = Debug|Win32
+		{028BD106-2C19-4866-B928-0FCCD863FC4A}.Debug.Build.0 = Debug|Win32
+		{028BD106-2C19-4866-B928-0FCCD863FC4A}.Release.ActiveCfg = Release|Win32
+		{028BD106-2C19-4866-B928-0FCCD863FC4A}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

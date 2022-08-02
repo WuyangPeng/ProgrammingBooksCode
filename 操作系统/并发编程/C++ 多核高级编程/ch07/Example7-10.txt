@@ -1,0 +1,89 @@
+// Example 7-10 Skeleton program for delegation model where boss creates a 
+// pool of threads.
+
+pthread_t Thread[N]
+
+// boss thread
+{
+   
+    pthread_create(&(Thread[1]...taskX...);   
+    pthread_create(&(Thread[2]...taskY...);   
+    pthread_create(&(Thread[3]...taskZ...);   
+    //...
+    pthread_create(&(Thread[N]...?...);  
+
+    loop while(Request Queue is not empty  
+       get request      
+       classify request
+       switch(request type)
+       {
+           case X :
+                    enqueue request to XQueue 
+                    broadcast to thread XQueue request available 
+
+           case Y :
+                    enqueue request to YQueue 
+                    broadcast to thread YQueue request available 
+
+           case Z :
+                    enqueue request to ZQueue 
+                    broadcast to thread ZQueue request available 
+            //...
+        }
+      
+    end loop
+}
+
+void *taskX(void *X)
+{
+   loop
+       waiting for signal
+       when signaled
+       loop while XQueue is not empty
+          lock mutex
+          dequeue request
+    release mutex
+          process request
+          set mutex
+          enqueue results
+          release queue
+       end loop
+   until done
+}
+
+void *taskY(void *X)
+{
+   loop
+       waiting for signal
+       when signaled
+       loop while YQueue is not empty
+          lock mutex
+          dequeue request
+    release mutex
+          process request
+          set mutex
+          enqueue results
+          release queue
+       end loop
+   until done
+}
+
+void *taskZ(void *X)
+{
+   loop
+       waiting for signal
+       when signaled
+       loop while ZQueue is not empty
+          lock mutex
+          dequeue request
+   release mutex
+          process request
+          set mutex
+          enqueue results
+          release queue
+       end loop
+   until done
+}
+
+//... 
+

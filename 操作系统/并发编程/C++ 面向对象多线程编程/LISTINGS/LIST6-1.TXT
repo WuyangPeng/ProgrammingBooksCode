@@ -1,0 +1,57 @@
+//Listing 6-1 demonstrates the creation
+// of two threads
+
+
+#include <iostream.h>
+#include <pthread.h>
+#include <stdlib.h>
+
+pthread_mutex_t MyLock;
+
+void *testThread(void *X)
+{
+   int N;
+   for(N = 0;N < 10;N++){
+      pthread_mutex_lock(&MyLock);
+      cout << pthread_self() << " I'm Alive thread 1" << endl;
+      pthread_mutex_unlock(&MyLock);
+      pthread_yield();
+   }
+}
+void *testThread2(void *X)
+{
+   int N;
+   for(N = 0;N < 10;N++){
+       pthread_mutex_lock(&MyLock);
+       cout << pthread_self() << " I'm Alive thread 2 " << endl;
+       pthread_mutex_unlock(&MyLock);
+       pthread_yield();
+   }
+}
+  
+
+void main(void)
+{
+    pthread_init();
+    pthread_t ThreadId;
+    pthread_t ThreadId2;
+    if(pthread_mutex_init(&MyLock,NULL)){
+      cerr << "could not initialize mutex " << endl;
+      exit(1);
+    }
+    pthread_create(&ThreadId,NULL,testThread,NULL);
+    pthread_create(&ThreadId2,NULL,testThread2,NULL);
+    pthread_join(ThreadId,NULL);
+    pthread_join(ThreadId2,NULL);
+}    
+    
+
+
+
+
+
+
+
+
+
+

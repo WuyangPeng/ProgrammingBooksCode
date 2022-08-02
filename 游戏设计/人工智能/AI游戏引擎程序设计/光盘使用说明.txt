@@ -1,0 +1,6 @@
+                                      
+                 光盘使用说明
+
+
+    本光盘是《AI游戏引擎程序设计》一书的配书盘(英文原盘)，内容包括书中所有在Microsoft Visual C++6.0下编译通过的源代码、编译得到的二进制文件、封装OpenGL库的GLUT、Lua语言库、有用的书签和书中出现的所有图片。系统需求：Pentium 3.1GHz以及以上、GeoForce Go 3及其以上图形卡、Windows（Me，2000或者XP）。
+    若您在使用过程中需要帮助，请直接与汤姆森学习出版集团联系，读者服务网站为http://www.charlesriver.com。

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8A302577-5145-4D53-B89A-427C6EAF6BC6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CPOW_DotNet</RootNamespace>
+    <AssemblyName>CPOW_DotNet</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Chap02\p57_CriticalRegionCAS.cs" />
+    <Compile Include="Chap02\p55_CriticalRegionLamportBakery.cs" />
+    <Compile Include="Chap02\p36_ImmutablePair.cs" />
+    <Compile Include="Chap02\p48_CriticalRegionBroken.cs" />
+    <Compile Include="Chap02\p49_CriticalRegionStrictAlternation.cs" />
+    <Compile Include="Chap02\p51_CriticalRegionDekker2.cs" />
+    <Compile Include="Chap02\p52_CriticalRegionDekkerN.cs" />
+    <Compile Include="Chap02\p54_CriticalRegionPeterson2.cs" />
+    <Compile Include="Chap02\p58_AtomicIncrement.cs" />
+    <Compile Include="Chap03\p100_CreatingAThread.cs" />
+    <Compile Include="Chap04\p144_StackProbes.cs" />
+    <Compile Include="Chap05\p225_BlockingBoundedQueue.cs" />
+    <Compile Include="Chap05\p233_PriorityBoost.cs" />
+    <Compile Include="Chap05\p244_BlockingQueueWithAutoResetEvents.cs" />
+    <Compile Include="Chap05\p248_BlockingQueueWithManualResetEvents.cs" />
+    <Compile Include="Chap08\p417_SimpleAsyncOperation.cs" />
+    <Compile Include="Chap08\p414_SimpleAsyncResult.cs" />
+    <Compile Include="Chap10\p497_CmpxchgSpinLock.cs" />
+    <Compile Include="Chap10\p503_BtsSpinLock.cs" />
+    <Compile Include="Chap10\p498_InterlockedHelpers.cs" />
+    <Compile Include="Chap10\p525_LazyInitOnlyOnce.cs" />
+    <Compile Include="Chap10\p523_LazyInitOnlyOnceRef.cs" />
+    <Compile Include="Chap10\p522_LazyInitPoor.cs" />
+    <Compile Include="Chap10\p526_LazyInitRelaxedRef.cs" />
+    <Compile Include="Chap10\p527_LazyInitRelaxedVal.cs" />
+    <Compile Include="Chap10\p534_LockFreeStack.cs" />
+    <Compile Include="Chap10\p494_XchgSpinLock.cs" />
+    <Compile Include="Chap12\p628_FineGrainedHashtable.cs" />
+    <Compile Include="Chap12\p622_FineGrainedLinkedList.cs" />
+    <Compile Include="Chap12\p617_FineGrainedLinkedQueue.cs" />
+    <Compile Include="Chap12\p619_FineGrainedQueue.cs" />
+    <Compile Include="Chap12\p632_LockFreeQueue.cs" />
+    <Compile Include="Chap12\p637_WorkStealingQueue.cs" />
+    <Compile Include="Chap12\p643_BlockingQueue.cs" />
+    <Compile Include="Chap12\p647_BlockingBoundedQueue.cs" />
+    <Compile Include="Chap12\p650_Barrier.cs" />
+    <Compile Include="Chap16\p851_BlockingNotifySyncCtx.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Chap01_NoCode\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

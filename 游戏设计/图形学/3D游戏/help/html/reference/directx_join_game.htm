@@ -1,0 +1,56 @@
+<HTML>
+<HEAD>
+  <META NAME="GENERATOR" CONTENT="Adobe PageMill 3.0 Win">
+  <TITLE>directX::join_game</TITLE>
+  
+<LINK REL="stylesheet" HREF="../paralelo.css">
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+
+<H1><A HREF="index.htm">Objects Reference</A></H1>
+
+<H2><A HREF="directx.htm">directX</A>::join_game</H2>
+
+<H3>Prototype</H3>
+
+<P class="code">int join_game(LPGUID game_guid,char *player_name)</P>
+
+<H3>Parameters</H3>
+
+<P><TABLE BORDER="1" WIDTH="90%" CELLSPACING="0" CELLPADDING="3">
+  <TR>
+    <TH>
+    Parameter</TH> 
+    <TH>
+    Type</TH> 
+    <TH>
+    Description</TH> 
+  </TR>
+  <TR>
+    <TD>
+    game_guid</TD> 
+    <TD>
+    LPGUID</TD> 
+    <TD>
+    game GUID to join</TD> 
+  </TR>
+  <TR>
+    <TD>
+    player_name</TD> 
+    <TD>
+    char *</TD> 
+    <TD>
+    player name</TD> 
+  </TR>
+</TABLE><p></P>
+
+<H3>Return Value</H3>
+
+<P>Returns the DirectPlay player id if game join is OK, 0 if unable to join.&nbsp;</P>
+
+<H3>Remarks</H3>
+
+<P>This function joins a multiplayer game. It must be called with one of the games 
+  enumerated by the <I>enum_games</I> function.&nbsp; 
+</BODY>
+</HTML>

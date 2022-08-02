@@ -1,0 +1,90 @@
+﻿<Page
+    x:Class="GroupBySex.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:GroupBySex"
+    xmlns:elpaso="using:ElPasoHighSchool"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <Page.Resources>
+        <elpaso:StudentBodyPresenter x:Key="presenter" />
+        
+        <local:StudentGroups x:Key="studentGroups"
+                             Source="{StaticResource presenter}" />
+        
+        <CollectionViewSource x:Key="collectionView"
+                              Source="{Binding Source={StaticResource studentGroups},
+                                               Path=Groups}"
+                              IsSourceGrouped="True"
+                              ItemsPath="Students" />
+
+        <DataTemplate x:Key="studentTemplate">
+            <Border Height="120"
+                    Width="280">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+                           Source="{Binding PhotoFilename}"
+                           Height="120"
+                           Margin="5" />
+
+                    <TextBlock Text="{Binding FullName}"
+                               Grid.Row="0" Grid.Column="1"
+                               VerticalAlignment="Center"
+                               Margin="5 0" />
+
+                    <StackPanel Grid.Row="1" Grid.Column="1"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                Margin="5 0">
+                        <TextBlock Text="GPA =&#x00A0;" />
+                        <TextBlock Text="{Binding GradePointAverage}" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <GridView ItemsSource="{Binding Source={StaticResource collectionView}}"
+                  ItemTemplate="{StaticResource studentTemplate}">
+
+            <!-- The Panel for the groups themselves -->
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapGrid />
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+
+            <GridView.GroupStyle>
+                <GroupStyle>
+                    <!-- The content of the header -->
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Title}" 
+                                       Style="{StaticResource GroupHeaderTextStyle}" />
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+
+                    <!-- The panel for the items within each group -->
+                    <GroupStyle.Panel>
+                        <ItemsPanelTemplate>
+                            <VariableSizedWrapGrid Orientation="Vertical" />
+                        </ItemsPanelTemplate>
+                    </GroupStyle.Panel>
+                </GroupStyle>
+            </GridView.GroupStyle>
+        </GridView>
+    </Grid>
+</Page>

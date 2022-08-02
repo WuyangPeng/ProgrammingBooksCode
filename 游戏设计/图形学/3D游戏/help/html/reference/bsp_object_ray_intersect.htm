@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>bsp_object::ray_intersect</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="bsp_object.htm">bsp_object</a>::ray_intersect</h2>
+<h3>Prototype</h3>
+<p class="code">virtual mesh *ray_intersect(vector& ro,vector& rd,vector& ip,float& dist,int&amp;
+facenum,float rad=0.0f)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>ro</td>
+	 <td><a href="vector.htm">vector</a>&amp;</td>
+	 <td>ray origin</td>
+  </tr>
+  <tr>
+	 <td>rd</td>
+	 <td><a href="vector.htm">vector</a>&amp;</td>
+	 <td>ray direction</td>
+  </tr>
+  <tr>
+	 <td>ip</td>
+	 <td><a href="vector.htm">vector</a>&amp;</td>
+	 <td>intersection point</td>
+  </tr>
+  <tr>
+	 <td>dist</td>
+	 <td>float&amp;</td>
+	 <td>intersection distance</td>
+  </tr>
+  <tr>
+	 <td>facenum</td>
+	 <td>int&amp;</td>
+	 <td>intersected face index</td>
+  </tr>
+  <tr>
+	 <td>rad</td>
+	 <td>float</td>
+	 <td>collision radius</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>Returns the intersected mesh or NULL for no intersection.</p>
+<h3>Remarks</h3>
+
+<p>This virtual function implements a ray intersection with the object. It should 
+  return the closest collision.</p>
+
+<p>Its default behavior is to call <i>get_mesh</i> and if it returns a mesh,
+call the mesh <u><i>ray_intersect</i></u>.</p>
+
+<p>&nbsp;</p>
+</body>
+</html>

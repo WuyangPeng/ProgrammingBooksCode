@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>bsp_object::message</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="bsp_object.htm">bsp_object</a>::message</h2>
+<h3>Prototype</h3>
+<p class="code">virtual int message(vector& p,float rad,int msg,int param,void *data)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>p</td>
+	 <td><a href="vector.htm">vector</a>&amp;</td>
+	 <td>position</td>
+  </tr>
+  <tr>
+	 <td>rad</td>
+	 <td>float</td>
+	 <td>radius</td>
+  </tr>
+  <tr>
+	 <td>msg</td>
+	 <td>int</td>
+	 <td>type</td>
+  </tr>
+  <tr>
+	 <td>param</td>
+	 <td>int</td>
+	 <td>parameter</td>
+  </tr>
+  <tr>
+	 <td>data</td>
+	 <td>void *</td>
+	 <td>general pointer parameter</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>Returns 0 for passing the message on, &lt;&gt;0 for stopping message.</p>
+<h3>Remarks</h3>
+<p>This virtual function processes messages for the object. It must be implemented 
+  if the object needs to receive any messages. Returning 0 will let the message 
+  pass on to next object that is in its radius, returning &lt;&gt;0 will stop 
+  the message and return the value to the caller immediately.</p>
+</body>
+</html>

@@ -1,0 +1,197 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Portuguese (Brazil) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTB)
+#ifdef _WIN32
+LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "#include ""afxres.rc""  // Standard components\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CUSTOM1 DIALOG DISCARDABLE  0, 0, 303, 197
+STYLE DS_CONTROL | WS_CHILD | WS_TABSTOP
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Fly3D plugin Wizard",IDC_STATIC,135,10,64,8
+    LTEXT           "What classes do you want your plugin to enumerate ?",
+                    IDC_STATIC,135,35,162,20
+    EDITTEXT        IDC_CLASSNAME,135,60,105,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Add",IDC_ADD,250,60,45,14
+    LISTBOX         IDC_CLASSES,135,80,105,95,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Remove",IDC_REMOVE,250,81,45,14
+    PUSHBUTTON      "&Up",IDC_UP,250,115,45,14
+    PUSHBUTTON      "&Down",IDC_DOWN,250,134,45,14
+END
+
+IDD_CUSTOM2 DIALOG DISCARDABLE  0, 0, 303, 197
+STYLE DS_CONTROL | WS_CHILD | WS_TABSTOP
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "What parameters do you want your class(es) to export ?",
+                    IDC_STATIC,140,10,155,20
+    LTEXT           "&Class name:",IDC_STATIC,140,38,39,8
+    COMBOBOX        IDC_CLASSES,190,36,105,53,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "&Parameters:",IDC_STATIC,140,54,38,8
+    LISTBOX         IDC_PARAMETERS,140,64,115,65,LBS_USETABSTOPS | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Ne&w",IDC_PARAM_NEW,260,64,35,12
+    PUSHBUTTON      "&Delete",IDC_PARAM_DELETE,260,79,35,12
+    PUSHBUTTON      "&Up",IDC_PARAM_UP,260,101,35,12
+    PUSHBUTTON      "D&own",IDC_PARAM_DOWN,260,116,35,12
+    GROUPBOX        "Parameter Properties",IDC_STATIC,140,137,155,53
+    LTEXT           "&Name:",IDC_STATIC_NAME,150,151,22,8,WS_DISABLED
+    EDITTEXT        IDC_PARAM_NAME,180,150,105,14,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    LTEXT           "&Type",IDC_STATIC_TYPE,150,171,17,8,WS_DISABLED
+    COMBOBOX        IDC_PARAM_TYPE,180,169,105,60,CBS_DROPDOWNLIST | 
+                    WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_CUSTOM3 DIALOG DISCARDABLE  0, 0, 303, 197
+STYLE DS_CONTROL | WS_CHILD | WS_TABSTOP
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "What is the Fly3D SDK path:",IDC_STATIC,135,25,92,8
+    EDITTEXT        IDC_FLYSDKPATH,135,36,155,14,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_TABSTOP
+    PUSHBUTTON      "Browse...",IDC_BROWSEFLY,135,55,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEMPLATE
+//
+
+NEWPROJ.INF             TEMPLATE DISCARDABLE    "template\\newproj.inf"
+CONFIRM.INF             TEMPLATE DISCARDABLE    "template\\confirm.inf"
+GAME.CPP                TEMPLATE DISCARDABLE    "template\\game.cpp"
+GAME.DEF                TEMPLATE DISCARDABLE    "template\\game.def"
+GAME.H                  TEMPLATE DISCARDABLE    "template\\game.h"
+IMG1                    TEMPLATE DISCARDABLE    "template\\img1.tga"
+IMG2                    TEMPLATE DISCARDABLE    "template\\img2.tga"
+IMG3                    TEMPLATE DISCARDABLE    "template\\img3.tga"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_FLYPLUGIN           ICON    DISCARDABLE     "template\\flyplugin.ico"
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "Paralelo Computação Ltda.\0"
+            VALUE "FileDescription", "FLYPLUGIN AppWizard\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "flyplugin\0"
+            VALUE "LegalCopyright", "Copyright © 1999\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "flyplugin.dll\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "Fly3D Plugin Wizard\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+#endif    // Portuguese (Brazil) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+#include "afxres.rc"  // Standard components
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

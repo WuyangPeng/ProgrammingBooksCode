@@ -1,0 +1,122 @@
+<html>
+
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>class console</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class console</h2>
+
+<h3>Definition</h3>
+
+<p class="code">class console<br>
+{<br>
+public:<br>
+<br>
+&nbsp;&nbsp;&nbsp; int mode,time,nlines,linecount,winlines;<br>
+&nbsp;&nbsp;&nbsp; char *buf[CONSOLE_MAX_LINES];<br>
+<br>
+&nbsp;&nbsp;&nbsp; char cmd_line[256];<br>
+&nbsp;&nbsp;&nbsp; int cmd_pos;<br>
+<br>
+&nbsp;&nbsp;&nbsp; float dx,dy;<br>
+<br>
+&nbsp;&nbsp;&nbsp; console();<br>
+&nbsp;&nbsp;&nbsp; ~console();<br>
+<br>
+&nbsp;&nbsp;&nbsp; void show();<br>
+&nbsp;&nbsp;&nbsp; void hide();<br>
+&nbsp;&nbsp;&nbsp; void draw();<br>
+&nbsp;&nbsp;&nbsp; void step(int dt);<br>
+&nbsp;&nbsp;&nbsp; float draw_text(float x,float y,char *text);<br>
+<br>
+&nbsp;&nbsp;&nbsp; void key_press(int key);<br>
+&nbsp;&nbsp;&nbsp; void add_string(char *fmt, ...);<br>
+&nbsp;&nbsp;&nbsp; int command_tokens(char *str,char **token);<br>
+&nbsp;&nbsp;&nbsp; void command_exec(char *str);<br>
+};</p>
+
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>mode</td>
+    <td>int</td>
+    <td>console flags: (1 closing, 0 closed, 1 opening)</td>
+  </tr>
+  <tr>
+    <td>time</td>
+    <td>int</td>
+    <td>current animation time</td>
+  </tr>
+  <tr>
+    <td>nlines</td>
+    <td>int</td>
+    <td>number of lines in <i>buf</i></td>
+  </tr>
+  <tr>
+    <td>linecount</td>
+    <td>int</td>
+    <td>current line number</td>
+  </tr>
+  <tr>
+    <td>winlines</td>
+    <td>int</td>
+    <td>number of lines currently visible</td>
+  </tr>
+  <tr>
+    <td>buf</td>
+    <td>char []</td>
+    <td>the console string history</td>
+  </tr>
+  <tr>
+    <td>cmdline</td>
+    <td>char []</td>
+    <td>the current command line</td>
+  </tr>
+  <tr>
+    <td>cmd_pos</td>
+    <td>int</td>
+    <td>the current command line cursor position</td>
+  </tr>
+  <tr>
+    <td>dx</td>
+    <td>float</td>
+    <td>cursor size in x&nbsp;&nbsp;</td>
+  </tr>
+  <tr>
+    <td>dy</td>
+    <td>float</td>
+    <td>cursor size in y</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p><a href="console_show.htm">show</a>, <a href="console_hide.htm">hide</a>, <a
+href="console_draw.htm">draw</a>, <a href="console_step.htm">step</a>, <a
+href="console_draw_text.htm">draw_text</a>, <a href="console_key_press.htm">key_press</a>,
+<a href="console_add_string.htm">add_string</a>, <a href="console_command_tokens.htm">command_tokens</a>,
+<a href="console_command_exec.htm">command_exec</a></p>
+
+<h3>Remarks</h3>
+
+<p>This class implements the graphical game console. It enables you to type commands 
+  and execute them. Commands can create and delete game objects, change game object 
+  parameters, change current map and even save the current level state.</p>
+
+<h3>See Also</h3>
+
+<p><a href="flyengine.htm">flyEngine</a></p>
+
+</body>
+</html>

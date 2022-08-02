@@ -1,0 +1,69 @@
+<Page
+    x:Class="XYSliderDemo.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:XYSliderDemo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <Page.Resources>
+        <ControlTemplate x:Key="xySliderTemplate" TargetType="local:XYSlider">
+            <Border BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    Background="{TemplateBinding Background}">
+                
+                <Grid Margin="{TemplateBinding Padding}"
+                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                    
+                    <ContentPresenter Name="ContentPresenterPart"
+                                      Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}" />
+                    <Canvas>
+                        <Path Name="CrossHairPart"
+                              Stroke="{TemplateBinding Foreground}"
+                              StrokeThickness="3"
+                              Fill="Transparent">
+                            <Path.Data>
+                                <GeometryGroup FillRule="Nonzero">
+                                    <EllipseGeometry RadiusX="48" RadiusY="48" />
+                                    <EllipseGeometry RadiusX="6" RadiusY="6" />
+                                    <LineGeometry StartPoint="-48 0" EndPoint="-6 0" />
+                                    <LineGeometry StartPoint="48 0" EndPoint="6 0" />
+                                    <LineGeometry StartPoint="0 -48" EndPoint="0 -6" />
+                                    <LineGeometry StartPoint="0 48" EndPoint="0 6" />
+                                </GeometryGroup>
+                            </Path.Data>
+                        </Path>
+                    </Canvas>
+                </Grid>
+            </Border>
+        </ControlTemplate>
+
+        <Style TargetType="local:XYSlider">
+            <Setter Property="Template" Value="{StaticResource xySliderTemplate}" />
+        </Style>
+    </Page.Resources>
+    
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <local:XYSlider x:Name="xySlider"
+                        Grid.Row="0"
+                        Margin="48"
+                        ValueChanged="OnXYSliderValueChanged">
+            <!-- Image courtesy of NASN/JPL-Caltech (http://maps.jpl.nasa.gov) -->
+            <Image Source="Images/ear0xuu2.jpg" />
+        </local:XYSlider>
+        
+        <TextBlock Name="label"
+                   Grid.Row="1"
+                   Style="{StaticResource SubheaderTextStyle}"
+                   RenderTransform="1 0 0 1 0 0"
+                   HorizontalAlignment="Center" />
+    </Grid>
+</Page>

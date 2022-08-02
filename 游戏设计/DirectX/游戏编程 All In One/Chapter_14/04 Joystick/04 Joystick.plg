@@ -1,0 +1,76 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: 04 Joystick - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "D:\DOCUME~1\Akura\LOCALS~1\Temp\RSP11.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Debug/04 Joystick.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\Source\Chapter_14\04 Joystick\04 Main.cpp"
+"C:\Source\Chapter_14\04 Joystick\mrABO.cpp"
+"C:\Source\Chapter_14\04 Joystick\mrAnimation.cpp"
+"C:\Source\Chapter_14\04 Joystick\mrInputManager.cpp"
+"C:\Source\Chapter_14\04 Joystick\mrJoystick.cpp"
+"C:\Source\Chapter_14\04 Joystick\mrKeyboard.cpp"
+"C:\Source\Chapter_14\04 Joystick\mrMouse.cpp"
+"C:\Source\Chapter_14\04 Joystick\mrRGBAImage.cpp"
+"C:\Source\Chapter_14\04 Joystick\mrScreen.cpp"
+"C:\Source\Chapter_14\04 Joystick\mrSurface.cpp"
+"C:\Source\Chapter_14\04 Joystick\mrTemplateSet.cpp"
+"C:\Source\Chapter_14\04 Joystick\mrTexture.cpp"
+"C:\Source\Chapter_14\04 Joystick\mrTimer.cpp"
+"C:\Source\Chapter_14\04 Joystick\mrWindow.cpp"
+]
+Creating command line "cl.exe @D:\DOCUME~1\Akura\LOCALS~1\Temp\RSP11.tmp" 
+Creating temporary file "D:\DOCUME~1\Akura\LOCALS~1\Temp\RSP12.tmp" with contents
+[
+d3d8.lib dxguid.lib dinput8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/04 Joystick.pdb" /debug /machine:I386 /out:"Debug/04 Joystick.exe" /pdbtype:sept 
+".\Debug\04 Main.obj"
+".\Debug\mrABO.obj"
+".\Debug\mrAnimation.obj"
+".\Debug\mrInputManager.obj"
+".\Debug\mrJoystick.obj"
+".\Debug\mrKeyboard.obj"
+".\Debug\mrMouse.obj"
+".\Debug\mrRGBAImage.obj"
+".\Debug\mrScreen.obj"
+".\Debug\mrSurface.obj"
+".\Debug\mrTemplateSet.obj"
+".\Debug\mrTexture.obj"
+".\Debug\mrTimer.obj"
+".\Debug\mrWindow.obj"
+]
+Creating command line "link.exe @D:\DOCUME~1\Akura\LOCALS~1\Temp\RSP12.tmp"
+<h3>Output Window</h3>
+Compiling...
+04 Main.cpp
+d:\program files\microsoft directx sdk 8.1\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+mrABO.cpp
+mrAnimation.cpp
+mrInputManager.cpp
+d:\program files\microsoft directx sdk 8.1\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+mrJoystick.cpp
+d:\program files\microsoft directx sdk 8.1\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+mrKeyboard.cpp
+d:\program files\microsoft directx sdk 8.1\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+mrMouse.cpp
+d:\program files\microsoft directx sdk 8.1\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+mrRGBAImage.cpp
+mrScreen.cpp
+mrSurface.cpp
+mrTemplateSet.cpp
+mrTexture.cpp
+mrTimer.cpp
+mrWindow.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+04 Joystick.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

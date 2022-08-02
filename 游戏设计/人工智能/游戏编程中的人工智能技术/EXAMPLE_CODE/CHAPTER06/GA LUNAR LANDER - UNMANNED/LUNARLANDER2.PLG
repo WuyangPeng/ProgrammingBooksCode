@@ -1,0 +1,53 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: lunarlander2 - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x809 /fo"Release/Script1.res" /d "NDEBUG" "C:\CODE\BOOK CHAPTERS\REVIEW\AI06\source\GA Lunar Lander - Unmanned\Script1.rc"" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP237.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Release/lunarlander2.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\CODE\BOOK CHAPTERS\REVIEW\AI06\source\GA Lunar Lander - Unmanned\C2DMatrix.cpp"
+"C:\CODE\BOOK CHAPTERS\REVIEW\AI06\source\GA Lunar Lander - Unmanned\CController.cpp"
+"C:\CODE\BOOK CHAPTERS\REVIEW\AI06\source\GA Lunar Lander - Unmanned\CgaLander.cpp"
+"C:\CODE\BOOK CHAPTERS\REVIEW\AI06\source\GA Lunar Lander - Unmanned\CLander.cpp"
+"C:\CODE\BOOK CHAPTERS\REVIEW\AI06\source\GA Lunar Lander - Unmanned\CTimer.cpp"
+"C:\CODE\BOOK CHAPTERS\REVIEW\AI06\source\GA Lunar Lander - Unmanned\main.cpp"
+"C:\CODE\BOOK CHAPTERS\REVIEW\AI06\source\GA Lunar Lander - Unmanned\utils.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP237.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP238.tmp" with contents
+[
+winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:no /pdb:"Release/GA-Lander.pdb" /machine:I386 /out:"Release/GA-Lander.exe" 
+".\Release\C2DMatrix.obj"
+".\Release\CController.obj"
+".\Release\CgaLander.obj"
+".\Release\CLander.obj"
+".\Release\CTimer.obj"
+".\Release\main.obj"
+".\Release\utils.obj"
+".\Release\Script1.res"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP238.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+C2DMatrix.cpp
+CController.cpp
+CgaLander.cpp
+CLander.cpp
+CTimer.cpp
+main.cpp
+utils.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+GA-Lander.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

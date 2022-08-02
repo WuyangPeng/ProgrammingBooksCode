@@ -1,0 +1,14 @@
+Beginning Game Programming, Third Edition
+Jonathan Harbour
+
+
+Dear Reader,
+
+If you have any problems compiling the source code from this book, it's almost always a simple matter of configuring Visual C++ or DirectX, rather than legitimate bugs in the code or errors in the book (although these do happen from time to time). If any errors are found, fixes will be available online.
+
+I encourage you to visit the forum at www.jharbour.com/forum for help if you run into any problems. A quick search through the forum will likely provide an answer to any question or technical difficulty. Visual C++ is an extremely complicated software product, as is the DirectX SDK--combined, they are even more difficult to figure out. But there are answers if you run into problems. 
+
+I look forward to hearing from you.
+
+
+

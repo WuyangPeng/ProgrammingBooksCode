@@ -1,0 +1,9 @@
+OpenGL ES 3.0编程指南（OpenGL ES 3.0 Programming Guide）
+（第2版）
+
+官方网站：
+http://www.khronos.org/registry/gles、 
+http://opengles-book.com
+
+★
+作者： Dan Ginsburg、Budirijanto Purnomo 

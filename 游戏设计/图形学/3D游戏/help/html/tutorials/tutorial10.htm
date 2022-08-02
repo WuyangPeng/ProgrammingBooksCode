@@ -1,0 +1,128 @@
+<html>
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>Fly3D Tutorial 10 - Adding a new object to a Fly3D plug-in</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<h1>Fly3D SDK</h1>
+<h2><a href="tutorials.htm">Tutorials</a></h2>
+<h3 align="right"><a href="../fly3d.htm">Home</a></h3>
+<h3>Tutorial 10</h3>
+<p>Adding a new object to a Fly3D plug-in</p>
+<p>&middot; Introduction</p>
+<p>After finishing this tutorial you will have added a new object to an existing 
+  Fly3D plug-in. The object we will add is a simple object that has a mesh representation 
+  and moves around bouncing on walls as a sphere. </p>
+<p>&middot; Visual C++ operations</p>
+<p>1) Open the plug-in project created in last tutorial.</p>
+<p>2) Add a new type to the enumeration on the beginning of tutorial.h:</p>
+<p class="code">enum<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp;TYPE_BLINK_LIGHT=100000,<br>
+  &nbsp;&nbsp;&nbsp;TYPE_BOUNCE_MESH,<br>
+  } </p>
+<p> 3) Add the following lines to the end of the tutorial.h file:</p>
+<p class="code">class bounce_mesh : public bsp_object<br>
+  {<br>
+  public:<br>
+  &nbsp;&nbsp;bounce_mesh() { type=TYPE_BOUNCE_MESH; };<br>
+  <br>
+  &nbsp;&nbsp;// the obejct's mesh<br>
+  &nbsp;&nbsp;mesh *objmesh;<br>
+  <br>
+  &nbsp;&nbsp;// no step() is defined, using the particle base class step()<br>
+  <br>
+  &nbsp;&nbsp;// this will handle drawing and collision with the object<br>
+  &nbsp;&nbsp;mesh *get_mesh() { return objmesh; };<br>
+  <br>
+  &nbsp;&nbsp;int get_custom_param_desc(int i,param_desc *pd);<br>
+  &nbsp;&nbsp;bsp_object *clone();<br>
+  };<br>
+  <br>
+  class bounce_mesh_desc : public class_desc<br>
+  {<br>
+  public:<br>
+  &nbsp;&nbsp;void *create() { return new bounce_mesh; };<br>
+  &nbsp;&nbsp;char *get_name() { return &quot;bounce_mesh&quot;; };<br>
+  &nbsp;&nbsp;int get_type() { return TYPE_BOUNCE_MESH; };<br>
+  };</p>
+<p></p>
+<p>4) Add the following global variable to the beginning of the tutorial.cpp file:</p>
+<p class="code">bounce_mesh_desc cd_bounce_mesh; </p>
+<p>5) The exported num_classes() function in the tutorial.cpp file should look 
+  like this as we now have two classes:</p>
+<p class="code">__declspec( dllexport )<br>
+  int num_classes()<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp;return 2;<br>
+  }</p>
+<p>6) The exported get_class_desc() function in the tutorial.cpp file should look 
+  like this as we now have two classes:</p>
+<p class="code"></p>
+<p class="code">__declspec( dllexport )<br>
+  class_desc *get_class_desc(int i)<br>
+  {<br>
+  &nbsp;&nbsp;switch(i)<br>
+  &nbsp;&nbsp;{<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;case 0:<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return &amp;cd_blink_light;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;case 1:<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return &amp;cd_bounce_mesh;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;default: return 0;<br>
+  &nbsp;&nbsp;}<br>
+  }</p>
+<p>7) Add the following lines to the end of the tutorial.cpp file:</p>
+<p class="code">bsp_object *bounce_mesh::clone()<br>
+  {<br>
+  &nbsp;&nbsp;bounce_mesh *tmp=new bounce_mesh;<br>
+  &nbsp;&nbsp;*tmp=*this;<br>
+  &nbsp;&nbsp;tmp-&gt;source=this;<br>
+  &nbsp;&nbsp;return tmp;<br>
+  }<br>
+  <br>
+  int bounce_mesh::get_custom_param_desc(int i,param_desc *pd)<br>
+  {<br>
+  &nbsp;&nbsp;if (pd!=0)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;switch(i)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;{<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case 0:<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pd-&gt;type='3';<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pd-&gt;data=&amp;objmesh;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;strcpy(pd-&gt;name,&quot;objmesh&quot;);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+  &nbsp;&nbsp;return 1;<br>
+  }</p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p>&middot; flyEditor operations</p>
+<p>1) Open the level .fly file cretated in previous tutorials in flyEditor.</p>
+<p>2) Add a new bounce_mesh object and set its parameters as follows:</p>
+<p class="code"> vel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 0.1 0.1 0.1 (diagonal 
+  velocity)<br>
+  mass &nbsp;&nbsp;&nbsp;&nbsp;= 1.0 (object mass)<br>
+  bump &nbsp;&nbsp;&nbsp;&nbsp;= 1.0 (bumping factor)<br>
+  friction&nbsp;= 1.0 (friction factor)<br>
+  radius &nbsp;&nbsp;= 10 (the object collision radius)<br>
+  colflag &nbsp;= 1 (turns collision detection on)<br>
+  active &nbsp;&nbsp;= 1 (activate on startup)<br>
+  life &nbsp;&nbsp;&nbsp;&nbsp;= 30000 (bounce for 30 seconds and die)<br>
+  objmesh &nbsp;= select any 3ds file to be used as the object's mesh</p>
+<p>3) Run the level (setting the render and starting simmulation). <br>
+  <br>
+  4) With the bouce_mesh object selected, click the activate button on the toolbar 
+  to add a new instance of the object to the simmulation. You should see the bounce_mesh 
+  moving and colliding with the level walls.</p>
+<p>&nbsp;</p>
+</body>
+</html>

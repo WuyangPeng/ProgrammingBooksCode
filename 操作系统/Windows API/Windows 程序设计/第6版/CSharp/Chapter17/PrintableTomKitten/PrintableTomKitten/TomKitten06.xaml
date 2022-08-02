@@ -1,0 +1,23 @@
+﻿<UserControl
+    x:Class="PrintableTomKitten.TomKitten06"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Grid VerticalAlignment="Center"
+          MaxWidth="640">
+        <StackPanel>
+            <TextBlock Style="{StaticResource frontMatterTextStyle}"
+                       FontStyle="Italic"
+                       FontSize="24">
+                1907 by Frederick Warne &amp; Co.
+            </TextBlock>
+
+            <TextBlock Style="{StaticResource frontMatterTextStyle}"
+                       FontStyle="Italic"
+                       FontSize="24">
+                Printed and bound in Great Britain by<LineBreak />
+                William Clowes Limited, Beccles and London
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,45 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: WinUberClient - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP187.tmp" with contents
+[
+/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Release/WinUberClient.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"G:\Source\Book\Chapter7\WinUberClient\WinUberClient.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP187.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP188.tmp" with contents
+[
+winmm.lib ws2_32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:no /pdb:"Release/WinUberClient.pdb" /machine:I386 /out:"Release/WinUberClient.exe" 
+.\Release\SocketObject.obj
+.\Release\WinUberClient.obj
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP188.tmp"
+<h3>Output Window</h3>
+Compiling...
+WinUberClient.cpp
+G:\Source\Book\Chapter7\WinUberClient\packets.h(11) : error C2146: syntax error : missing ';' before identifier 'stHeader'
+G:\Source\Book\Chapter7\WinUberClient\packets.h(11) : error C2501: 'stPacketHeader' : missing storage-class or type specifiers
+G:\Source\Book\Chapter7\WinUberClient\packets.h(11) : error C2501: 'stHeader' : missing storage-class or type specifiers
+G:\Source\Book\Chapter7\WinUberClient\packets.h(19) : error C2146: syntax error : missing ';' before identifier 'stHeader'
+G:\Source\Book\Chapter7\WinUberClient\packets.h(19) : error C2501: 'stPacketHeader' : missing storage-class or type specifiers
+G:\Source\Book\Chapter7\WinUberClient\packets.h(19) : error C2501: 'stHeader' : missing storage-class or type specifiers
+G:\Source\Book\Chapter7\WinUberClient\packets.h(25) : error C2146: syntax error : missing ';' before identifier 'stHeader'
+G:\Source\Book\Chapter7\WinUberClient\packets.h(25) : error C2501: 'stPacketHeader' : missing storage-class or type specifiers
+G:\Source\Book\Chapter7\WinUberClient\packets.h(25) : error C2501: 'stHeader' : missing storage-class or type specifiers
+G:\Source\Book\Chapter7\WinUberClient\WinUberClient.cpp(42) : error C2146: syntax error : missing ';' before identifier 'stHeaderPacket'
+G:\Source\Book\Chapter7\WinUberClient\WinUberClient.cpp(42) : error C2501: 'stPacketHeader' : missing storage-class or type specifiers
+G:\Source\Book\Chapter7\WinUberClient\WinUberClient.cpp(42) : fatal error C1004: unexpected end of file found
+Error executing cl.exe.
+
+
+
+<h3>Results</h3>
+WinUberClient.exe - 12 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<HTML>
+<HEAD>
+  <META NAME="GENERATOR" CONTENT="Adobe PageMill 3.0 Win">
+  <TITLE>flydllgroup::move_dll</TITLE>
+  
+<LINK REL="stylesheet" HREF="../paralelo.css">
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+
+<H1><A HREF="index.htm">Objects Reference</A></H1>
+
+<H2><A HREF="flydllgroup.htm">flydllgroup</A>::move_dll</H2>
+
+<H3>Prototype</H3>
+
+<P class="code">void move_dll(char *filename,int newrelpos)</P>
+
+<H3>Parameters</H3>
+
+<P><TABLE BORDER="1" WIDTH="90%" CELLSPACING="0" CELLPADDING="3">
+  <TR>
+    <TH>
+    Parameter</TH> 
+    <TH>
+    Type</TH> 
+    <TH>
+    Description</TH> 
+  </TR>
+  <TR>
+    <TD>
+    filename</TD> 
+    <TD>
+    char *</TD> 
+    <TD>
+    filename for the Fly3D plug-in dll</TD> 
+  </TR>
+  <TR>
+    <TD>
+    newrelpos</TD> 
+    <TD>
+    int</TD> 
+    <TD>
+    relative move</TD> 
+  </TR>
+</TABLE><p></P>
+
+<H3>Return Value</H3>
+
+<P>Returns TRUE if the dll was moved OK, FALSE if not found or
+other error.&nbsp;</P>
+
+<H3>Remarks</H3>
+
+<P>This function changes a Fly3D plug-in dll position (order) in the plug-in list. 
+  The order of plug-ins is important as the first ones will render first. The 
+  panorama.dll plug-in is usually the first (because it draws the background). 
+</BODY>
+</HTML>

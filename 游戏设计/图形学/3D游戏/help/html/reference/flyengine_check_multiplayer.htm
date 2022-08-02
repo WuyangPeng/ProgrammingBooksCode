@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>flyEngine::check_multiplayer</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="flyengine.htm">flyEngine</a>::check_multiplayer</h2>
+<h3>Prototype</h3>
+<p class="code">void check_multiplayer()</p>
+<h3>Parameters</h3>
+<p>None</p>
+	
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This function is used to process multiplayer messages. When connected to a 
+  multiplayer game, the function should be called every frame. It will get all 
+  the messages in the message queue and process them. System messages are processed 
+  and game messages are passed on to the plug-ins. This function is already called 
+  by the flyEngine <i>step</i> function if the multiplayer mode is on.</p>
+</body>
+</html>

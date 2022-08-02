@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>render::CreateView</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="render.htm">render</a>::CreateView</h2>
+<h3>Prototype</h3>
+<p class="code">virtual int CreateView(HWND wnd)=0</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr> 
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr> 
+    <td>wnd</td>
+    <td>HWND</td>
+    <td>view window handle</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>Returns TRUE is view is created, FALSE for any error.</p>
+<h3>Remarks</h3>
+<p>This virtual function should create the render view and attach it to the
+supplied window.</p>
+</body>
+</html>

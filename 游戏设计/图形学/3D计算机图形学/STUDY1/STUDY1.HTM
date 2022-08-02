@@ -1,0 +1,74 @@
+<!doctype html public "-//IETF//DTD.HTM//EN">
+<HTML><HEAD>
+<TITLE>Learning Rendering: Study1</TITLE>
+</HEAD>
+<BODY>
+<A HREF="../INTRO.HTM">&lt;&lt;</A>
+<A HREF="../STUDY2/STUDY2.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>
+<HR>
+<H1>STUDY 1	</H1>
+
+<H2>BENCHMARK SCENE WIREFRAME AND 'VIRTUAL' CAMERA PARAMETERS</H2>
+<table border=0 width="100%">
+<tr><td width=100><A HREF="WRFRM.TIF"><IMG SRC="WRFRM.GIF" width=100 height=75 ALT="wrfrm.gif"></A>
+</td>
+<TD>  wireframe of the main scene used throughout this set. Note the polygonal modelling resolution. Objects with large planar surfaces are not subdivided. This causes problems in many rendering methods.</td></tr>
+<TR><TD><A HREF="HDLINE.TIF"><IMG SRC="HDLINE.GIF" WIDTH=100 HEIGHT=75 ALT="hdline.gif"></A>
+</td>
+<TD>hidden line removal.</td></tr>
+<TR><TD><A HREF="HDLABV.TIF"><IMG SRC="HDLABV.GIF" WIDTH=100 HEIGHT=75 ALT="hdlabv.gif"></A>
+</td>
+<TD>hidden line from above (parallel projection)</td></tr>
+</table>
+
+<H2>CLIP PLANES</H2>
+<table border=0 width="100%">
+<TR><TD width=100><A HREF="CLPLN1.TIF"><IMG SRC="CLPLN1.GIF" WIDTH=100 HEIGHT=75 ALT="clpln1.gif"></A>
+</td>
+<td>front and back clip planes</td></tr>
+<TD><A HREF="CLPLN2.TIF"><IMG SRC="CLPLN2.GIF" WIDTH=100 HEIGHT=75 ALT="clpln2.gif"></A>
+</td>
+<td>using front clip plane to see inside geometry</td></tr>
+</table>
+
+Manipulating the position of <B>clip planes</B> in a viewing frustum is of limited practical utility, but demonstrates one of the main ways in which a computer graphics 'camera' differs from a real camera. Clip plane manipulation has applications in interactive examination of data sets in volume rendering. 
+
+<H2>EXTERNAL CAMERA PARAMETERS</H2>
+
+The next series of images shows the variation of <B>external camera parameters</B>. A usefully compact specification for perspective projection is field of view (fov). For a particular field of view, the distance of the image plane from the centre of projection is adjusted so that the projection onto the image plane is always the same size
+
+<table border=0>
+<TR><TD width=100>
+<A HREF="FOV1.TIF"><IMG SRC="FOV1.GIF" WIDTH=100 HEIGHT=75 ALT="fov1.gif"></A><BR>fov1</td>
+<TD width=100>
+<A HREF="FOV2.TIF"><IMG SRC="FOV2.GIF" WIDTH=100 HEIGHT=75 ALT="fov2.gif"></A><BR>fov2</td>
+<TD width=100>
+<A HREF="FOV3.TIF"><IMG SRC="FOV3.GIF" WIDTH=100 HEIGHT=75 ALT="fov3.gif"></A><BR>fov3</td>
+<TD width=100>
+<A HREF="FOV4.TIF"><IMG SRC="FOV4.GIF" WIDTH=100 HEIGHT=75 ALT="fov4.gif"></A><BR>fov4</td></tr>
+<TR><TD width=100>
+<A HREF="FOV5.TIF"><IMG SRC="FOV5.GIF" WIDTH=100 HEIGHT=75 ALT="fov5.gif"></A><BR>fov5</td>
+<TD width=100>
+<A HREF="FOV6.TIF"><IMG SRC="FOV6.GIF" WIDTH=100 HEIGHT=75 ALT="fov6.gif"></A><BR>fov6</td>
+<TD width=100>
+<A HREF="FOV7.TIF"><IMG SRC="FOV7.GIF" WIDTH=100 HEIGHT=75 ALT="fov7.gif"></A><BR>fov7</td>
+<TD width=100>
+<A HREF="FOV8.TIF"><IMG SRC="FOV8.GIF" WIDTH=100 HEIGHT=75 ALT="fov8.gif"></A><BR>fov8
+</td></tr>
+<tr><td colspan=4>fov varying from 20 to 160 degrees.</td></tr>
+</table>
+<table border=0 width="100%">
+<tr>
+<td><A HREF="ORTH.TIF"><IMG SRC="ORTH.GIF" WIDTH=100 HEIGHT=75 ALT="orth.gif"></A>
+</td>
+<td>An orthographic projection is specified by a viewplane windows with respect to world distances. The difference between an orthographic and perspective projection is best seen by comparing this image with the nearest perspective view  (fov4).
+</td></tr>
+</table>
+
+<HR>
+<A HREF="../INTRO.HTM">&lt;&lt;</A>
+<A HREF="../STUDY2/STUDY2.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>

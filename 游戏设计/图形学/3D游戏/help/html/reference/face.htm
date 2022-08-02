@@ -1,0 +1,121 @@
+<html>
+
+<head>
+<title>class face</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class face : public <a href="plane.htm">plane</a></h2>
+
+<h3>Definition</h3>
+
+<p class="code">class face : public plane<br>
+{<br>
+&nbsp;&nbsp;public:<br>
+&nbsp; vector *vert[3];<br>
+&nbsp; vector edgenormal[3];<br>
+&nbsp; vector vertnormal[3];<br>
+&nbsp; vector color;<br>
+&nbsp; int texpic;<br>
+&nbsp; int lm;<br>
+&nbsp; float uv[3][2];<br>
+&nbsp; float lmuv[3][2];<br>
+&nbsp; float emmradius;<br>
+&nbsp; int lastdraw;<br>
+&nbsp; int indx;<br>
+<br>
+&nbsp; int ray_intersect(vector&amp; ro,vector&amp; rd,vector&amp; ip,float&amp;
+dist,float rad=0.0f);
+<br>
+&nbsp;&nbsp;void inverse_map(vector&amp; p,float&amp; u,float&amp; v);<br>
+&nbsp;&nbsp;void forward_map(float&amp; u,float&amp; v,vector&amp; p);<br>
+};</p>
+
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>vert</td>
+    <td><a href="vector.htm">vector</a>*[3]</td>
+    <td>pointer to the three face vertices</td>
+  </tr>
+  <tr>
+    <td>edgenormal</td>
+    <td><a href="vector.htm">vector</a>[3]</td>
+    <td>the three edge normals</td>
+  </tr>
+  <tr>
+    <td>vertnormal</td>
+    <td><a href="vector.htm">vector</a>[3]</td>
+    <td>the three vertex normals</td>
+  </tr>
+  <tr>
+    <td>color</td>
+    <td><a href="vector.htm">vector</a></td>
+    <td>the face color (r,g,b,a)</td>
+  </tr>
+  <tr>
+    <td>texpic</td>
+    <td>int</td>
+    <td>the face texture picture</td>
+  </tr>
+  <tr>
+    <td>lm</td>
+    <td>int</td>
+    <td>the face light map</td>
+  </tr>
+  <tr>
+    <td>uv</td>
+    <td>float[3][2]</td>
+    <td>the three vertex texture co-ordinates</td>
+  </tr>
+  <tr>
+    <td>lmuv</td>
+    <td>float[3][2]</td>
+    <td>the three vertex light map texture co-ordinates</td>
+  </tr>
+  <tr>
+    <td>emmradius</td>
+    <td>float</td>
+    <td>the face emmisive radius (if self illuminated)</td>
+  </tr>
+  <tr>
+    <td>lastdraw</td>
+    <td>int</td>
+    <td>the last frame in which the face was drawn</td>
+  </tr>
+  <tr>
+    <td>indx</td>
+    <td>int</td>
+    <td>the face index into the faces array</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p> <a href="face_ray_intersect.htm">ray_intersect</a>,
+<a href="face_inverse_map.htm">inverse_map</a>, <a href="face_forward_map.htm">forward_map</a></p>
+
+<h3>Remarks</h3>
+
+<p>This class implements a 3D face with three vertices. Texture and light map 
+  can be applied to the face and functions for collision detection are also implemented.</p>
+
+<p>If <i>emmradius</i> is &gt;0, the face will cast light when static level light 
+  computation is calculated.&nbsp;</p>
+
+<h3>See Also</h3>
+
+<p><a href="vector.htm">vector</a>, <a href="plane.htm">plane</a>, <a href="mesh.htm">mesh</a></p>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<Page
+    x:Class="AnimationEaseGrapher.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AnimationEaseGrapher"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <Page.Resources>
+        <Storyboard x:Key="storyboard"
+                    FillBehavior="Stop">
+            <DoubleAnimation Storyboard.TargetName="redBall"
+                             Storyboard.TargetProperty="(Canvas.Left)"
+                             From="-6" To="994" Duration="0:0:3" />
+            
+            <DoubleAnimation x:Name="anima2"
+                             Storyboard.TargetName="redBall"
+                             Storyboard.TargetProperty="(Canvas.Top)"
+                             From="-6" To="494" Duration="0:0:3" />
+        </Storyboard>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <!-- Control panel -->
+        <Grid Grid.Column="0"
+              VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            
+            <!-- Easing function (populated by code) -->
+            <StackPanel Name="easingFunctionStackPanel"
+                        Grid.Row="0"
+                        Grid.RowSpan="3"
+                        Grid.Column="0"
+                        VerticalAlignment="Center">
+                <RadioButton Content="None"
+                             Margin="6"
+                             Checked="OnEasingFunctionRadioButtonChecked" />
+            </StackPanel>
+
+            <!-- Easing mode -->
+            <StackPanel Name="easingModeStackPanel"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <RadioButton Content="Ease In"
+                             Margin="6"
+                             Checked="OnEasingModeRadioButtonChecked">
+                    <RadioButton.Tag>
+                        <EasingMode>EaseIn</EasingMode>
+                    </RadioButton.Tag>
+                </RadioButton>
+
+                <RadioButton Content="Ease Out"
+                            Margin="6"
+                            Checked="OnEasingModeRadioButtonChecked">
+                    <RadioButton.Tag>
+                        <EasingMode>EaseOut</EasingMode>
+                    </RadioButton.Tag>
+                </RadioButton>
+
+                <RadioButton Content="Ease In/Out"
+                             Margin="6"
+                             Checked="OnEasingModeRadioButtonChecked">
+                    <RadioButton.Tag>
+                        <EasingMode>EaseInOut</EasingMode>
+                    </RadioButton.Tag>
+                </RadioButton>
+            </StackPanel>
+
+            <!-- Easing properties (populated by code) -->
+            <StackPanel Name="propertiesStackPanel"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center" />
+            
+            <!-- Demo button -->
+            <Button Grid.Row="2"
+                    Grid.Column="1"
+                    Content="Demo!"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Click="OnDemoButtonClick" />
+        </Grid>
+        
+        <!-- Graph using arbitrary coordinates and scaled to window -->
+        <Viewbox Grid.Column="1">
+            <Grid Width="1000"
+                  Height="500"
+                  Margin="0 250 0 250">
+            
+                <!-- Rectangle outline -->
+                <Polygon Points="0 0, 1000 0, 1000 500, 0 500"
+                         Stroke="{StaticResource ApplicationForegroundThemeBrush}"
+                         StrokeThickness="3" />
+                
+                <Canvas>
+                    <!-- Linear transfer -->
+                    <Polyline Points="0 0, 1000 500"
+                              Stroke="{StaticResource ApplicationForegroundThemeBrush}"
+                              StrokeThickness="1"
+                              StrokeDashArray="3 3" />
+
+                    <!-- Points set by code based on easing function -->
+                    <Polyline Name="polyline"
+                              Stroke="Blue"
+                              StrokeThickness="3" />
+                    
+                    <!-- Animated ball -->
+                    <Ellipse Name="redBall"
+                             Width="12"
+                             Height="12"
+                             Fill="Red" />
+                </Canvas>  
+            </Grid>
+        </Viewbox>
+    </Grid>
+</Page>

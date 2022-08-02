@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>textcacheGL::add_picture</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="textcachegl.htm">textcacheGL</a>::add_picture</h2>
+<h3>Prototype</h3>
+<p class="code">int add_picture(int sx,int sy,int bytespixel,unsigned char *buf)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr> 
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr> 
+    <td>sx</td>
+    <td>int</td>
+    <td>size in x (power of 2)</td>
+  </tr>
+  <tr> 
+    <td>sy</td>
+    <td>int</td>
+    <td>size in y (power of 2)</td>
+  </tr>
+  <tr> 
+    <td>bytespixel</td>
+    <td>int</td>
+    <td>bytes per pixel (3 or 4)</td>
+  </tr>
+  <tr>
+    <td>buf</td>
+    <td>unsigned char *</td>
+    <td>picture pixels (sx*sy*bytespixel)
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>Returns the newly created picture index.</p>
+<h3>Remarks</h3>
+<p>This is the OpenGL implementation for the <i>textcache </i>base class virtual
+function.</p>
+<p>This function is used to add a new picture to the texture manager.</p>
+</body>
+</html>

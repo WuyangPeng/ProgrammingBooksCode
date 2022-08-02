@@ -1,0 +1,58 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: 01 BreakThrough - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "D:\DOCUME~1\Akura\LOCALS~1\Temp\RSP163.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Debug/01 BreakThrough.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\Documents and Settings\Akura\Desktop\Game Programming All in One\Source\Chapter_21\01 BreakThrough\btGame.cpp"
+]
+Creating command line "cl.exe @D:\DOCUME~1\Akura\LOCALS~1\Temp\RSP163.tmp" 
+Creating temporary file "D:\DOCUME~1\Akura\LOCALS~1\Temp\RSP164.tmp" with contents
+[
+winmm.lib d3d8.lib dxguid.lib dsound.lib dinput8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/01 BreakThrough.pdb" /debug /machine:I386 /out:"Debug/01 BreakThrough.exe" /pdbtype:sept 
+".\Debug\BreakThrough.obj"
+".\Debug\btBall.obj"
+".\Debug\btBlock.obj"
+".\Debug\btGame.obj"
+".\Debug\btPaddle.obj"
+".\Debug\mrABO.obj"
+".\Debug\mrAnimation.obj"
+".\Debug\mrCDPlayer.obj"
+".\Debug\mrEntity.obj"
+".\Debug\mrInputManager.obj"
+".\Debug\mrJoystick.obj"
+".\Debug\mrKeyboard.obj"
+".\Debug\mrMatrix22.obj"
+".\Debug\mrMouse.obj"
+".\Debug\mrParticle.obj"
+".\Debug\mrParticleSystem.obj"
+".\Debug\mrRGBAImage.obj"
+".\Debug\mrScreen.obj"
+".\Debug\mrSound.obj"
+".\Debug\mrSoundPlayer.obj"
+".\Debug\mrSurface.obj"
+".\Debug\mrTemplateSet.obj"
+".\Debug\mrTexture.obj"
+".\Debug\mrTimer.obj"
+".\Debug\mrVector2D.obj"
+".\Debug\mrWindow.obj"
+]
+Creating command line "link.exe @D:\DOCUME~1\Akura\LOCALS~1\Temp\RSP164.tmp"
+<h3>Output Window</h3>
+Compiling...
+btGame.cpp
+d:\program files\microsoft directx sdk 8.1\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+Linking...
+
+
+
+<h3>Results</h3>
+01 BreakThrough.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

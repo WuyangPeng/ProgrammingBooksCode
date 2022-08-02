@@ -1,0 +1,49 @@
+<html>
+
+<head>
+<title>mesh::compute_normals</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2><a href="mesh.htm">mesh</a>::compute_normals</h2>
+
+<h3>Prototype</h3>
+
+<p class="code">void compute_normals(int flag=31)</p>
+
+<h3>Parameters</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>flag</td>
+    <td>int</td>
+    <td>bit flag defining what should be computed:<br>
+      bit 1: implode vertices (weld)<br>
+      bit 2: face and edge normals<br>
+      bit 3: vert normals<br>
+      bit 4: bounding box&nbsp;<br>
+      bit 5: edges array</td>
+  </tr>
+</table>
+
+<h3>Return Value</h3>
+
+<p>None</p>
+
+<h3>Remarks</h3>
+
+<p>This function computes several mesh variables, for example, face normals, vertex 
+  normals, edge normals, face connectivity and bounding box.<br>
+  Use the <i>flag</i> parameter to do a partial and faster computation.</p>
+
+</body>
+</html>

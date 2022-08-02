@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>directX::set_listener</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="directx.htm">directX</a>::set_listener</h2>
+<h3>Prototype</h3>
+<p class="code">void set_listener(float *pos,float *vel,float *Y,float *Z)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>pos</td>
+	 <td>float *</td>
+	 <td>the listener position (pointer to 3 floats)</td>
+  </tr>
+  <tr>
+	 <td>vel</td>
+	 <td>float *</td>
+	 <td>the listener velocity (pointer to 3 floats)</td>
+  </tr>
+  <tr>
+	 <td>Y</td>
+	 <td>float *</td>
+	 <td>the listener up vector (pointer to 3 floats)</td>
+  </tr>
+  <tr>
+	 <td>Z</td>
+	 <td>float *</td>
+	 <td>the listener front vector (pointer to 3 floats)</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>Sets current sound listener attributes. All playing sounds will be relative 
+  to the listener position, velocity and rotation. If vel is (0,0,0), no Doppler 
+  effect is used.</p>
+</body>
+</html>

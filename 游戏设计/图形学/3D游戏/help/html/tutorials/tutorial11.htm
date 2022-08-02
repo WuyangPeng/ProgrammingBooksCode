@@ -1,0 +1,275 @@
+<html>
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>Fly3D Tutorial 11 - Creating a player object (observer)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<h1>Fly3D SDK</h1>
+<h2><a href="tutorials.htm">Tutorials</a></h2>
+<h3 align="right"><a href="../fly3d.htm">Home</a></h3>
+<h3>Tutorial 11</h3>
+<p>Creating a player object (observer)</p>
+<p>&middot; Introduction</p>
+<p>After finishing this tutorial you will have created a new game object that 
+  can be used as a player. The object will move around the level aquiring keys 
+  and mouse to guide its movement.</p>
+<p>&middot; Visual C++ operations</p>
+<p>1) Open the Visual C++ Fly3D Plug-ins Workspace</p>
+<p>2) Select the menu option File/New to create a new project</p>
+<p>3) Select the projects tab and the Fly3D Plug-in Wizard</p>
+<p>4) Set the project location to the flysdk\plugin path and name the project 
+  'observer'. Make sure to select 'add to curent workspace' to keep all Fly3D 
+  plug-in projects in a single workspace.</p>
+<p>5) On the first wizard step, add a single class named 'observer'</p>
+<p>6) On the second wizard step, add three parameters:</p>
+<p class="code"> name: 'rotvel'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type: float<br>
+  name: 'mousevel'&nbsp;&nbsp;&nbsp;type: float <br>
+  name: 'moveforce'&nbsp; type: float<br>
+  name: 'maxvel'&nbsp;&nbsp;&nbsp; &nbsp;type: float<br>
+  name: 'veldamp'&nbsp;&nbsp; &nbsp;type: float </p>
+<p>7) On the third wizard step, select the Fly3D SDK path and click Finish.</p>
+<p>8) You should now be able to compile the plug-in with no errors</p>
+<p>9) Open the observer.cpp file and put the following code over fly_message case 
+  FLYM_DRAWSCENE:</p>
+<p class="code"> case FLYM_DRAWSCENE:<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// draws scene viewed from camera<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; flyengine->set_camera(flyengine->cam);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; flyengine->draw_bsp();<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; break; </p>
+<p>10) Make the observer::init() fuction as follows:</p>
+<p class="code">void observer::init() <br>
+  { <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// initialize observer at random position in level<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;if (flyengine->get_random_point(pos,10)==0)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pos.null(); <br>
+  } </p>
+<p>11) Replace the observer step function with the following code:</p>
+<p class="code">int observer::step(int dt)<br>
+  {<br>
+  &nbsp;&nbsp;if (node==0)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// if not in bsp (outside 
+  level on last frame)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_to_bsp();&nbsp;// add it to the bsp as it 
+  might be inside now<br>
+  <br>
+  &nbsp;&nbsp;check_keys(dt); // process keys<br>
+  <br>
+  &nbsp;&nbsp;// damp velocity<br>
+  &nbsp;&nbsp;float len=vel.length(); <br>
+  &nbsp;&nbsp;if (len&lt;0.1f)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; vel.null(); <br>
+  &nbsp;&nbsp;else <br>
+  &nbsp;&nbsp;{<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; vel/=len; <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;len-=dt*veldamp; <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (len>maxvel) <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; len=maxvel;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (len&lt;0.0f)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; len=0.0f; <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; vel*=len; <br>
+  &nbsp;&nbsp;}<br>
+  <br>
+  &nbsp;&nbsp;life=dt; // keep alive<br>
+  &nbsp;&nbsp;return particle::step(dt); // moves as particle <br>
+  } </p>
+<p>12) add the check_keys function as follows (also add its prototype to the observer.h 
+  file):</p>
+<p class="code">void observer::check_keys(int dt)<br>
+  { <br>
+  &nbsp;&nbsp;// direct input keys<br>
+  &nbsp;&nbsp;unsigned char *diks=directx-&gt;diks;<br>
+  <br>
+  &nbsp;&nbsp;//&nbsp;&nbsp;mouse smooth<br>
+  &nbsp;&nbsp;static int lastmouse[2][2]={ { 0,0 },{ 0,0 } },lm=0;<br>
+  &nbsp;&nbsp;float mousedx=(directx-&gt;dims.lX+lastmouse[0][0]+lastmouse[1][0])/3.0f;<br>
+  &nbsp;&nbsp;float mousedy=(directx-&gt;dims.lY+lastmouse[0][1]+lastmouse[1][1])/3.0f;<br>
+  &nbsp;&nbsp;lastmouse[lm][0]=directx-&gt;dims.lX;<br>
+  &nbsp;&nbsp;lastmouse[lm][1]=directx-&gt;dims.lY;<br>
+  &nbsp;&nbsp;lm=!lm;<br>
+  <br>
+  &nbsp;&nbsp;// process keys<br>
+  &nbsp;&nbsp;if (diks[0x38]) // ALT key<br>
+  &nbsp;&nbsp;{<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;if (diks[0xcb]) // left arrow<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vel-=X*(moveforce*dt);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;if (diks[0xcd]) // right arrow<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vel+=X*(moveforce*dt);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;if (diks[0xc8]) // up arrow<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vel+=Y*(moveforce*dt);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;if (diks[0xd0]) // down arrow<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vel-=Y*(moveforce*dt);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;if (diks[0x1f]) // S key<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vel-=Z*(moveforce*dt);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;if (diks[0x2d]) // X key<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vel+=Z*(moveforce*dt);<br>
+  &nbsp;&nbsp;}<br>
+  &nbsp;&nbsp;else<br>
+  &nbsp;&nbsp;{<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;if (diks[0xc8]) // up arrow<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rotate(-dt*rotvel,X);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;if (diks[0xd0]) // down arrow<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rotate(dt*rotvel,X);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;if (diks[0xcb]) // left arrow<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rotate(dt*rotvel,Y);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;if (diks[0xcd]) // right arrow<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rotate(-dt*rotvel,Y);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;if (diks[0x10]) // Q key<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vel-=X*(moveforce*dt);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;if (diks[0x12]) // E key<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vel+=X*(moveforce*dt);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;if (diks[0x1f]) // S key<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vel-=Z*(moveforce*dt);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;if (diks[0x2d]) // X key<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vel+=Z*(moveforce*dt);<br>
+  &nbsp;&nbsp;}<br>
+  <br>
+  &nbsp;&nbsp;if (diks[0x1e]) // A key<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rotate(dt*rotvel,Z);<br>
+  &nbsp;&nbsp;if (diks[0x20]) // D key<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rotate(-dt*rotvel,Z);<br>
+  <br>
+  &nbsp;&nbsp;if (mousedx) // mouse X<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rotate(-mousedx*mousevel,Y);<br>
+  &nbsp;&nbsp;if (mousedy) // mouse Y<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rotate(mousedy*mousevel,X);<br>
+  } </p>
+<p> </p>
+<p></p>
+<p>12) Use the ALT-F7 key to edit the project settings. On the link tab, change 
+  the output file name to '../observer.dll'. This will save the compiled dll to 
+  the flysdk\plugin directory with all other Fly3D plug-ins (make sure to change 
+  this option for the release and debug versions).</p>
+<p>13) Compile the tutorial (flysdk\plugin\observer.dll should be built).</p>
+<p>14) You can now add this plugin to a level and set the global engine parameter 
+  camera and player to point to a active instance of the observer class. It will 
+  allow you to fly around the level with ease.</p>
+<p>&middot; flyEditor operations</p>
+<p>1) Open the flyEditor.exe and click the new button</p>
+<p>2) Save the new file (objesrver.fly) to the same directory as the file from 
+  the previous tutorials (flysdk\data\turorial).</p>
+<p>3) Specify the BSP file to be used in the level selecting the global tree item 
+  and double clicking on the bspfile list view item. This will show an open file 
+  dialogue and you must select the BSP from turorials 1 or 2.</p>
+<p> 4) Now we need to create a new observer object from the observer.dll. This 
+  will be the player. <br>
+  Insert the observer.dll to the level by right clicking the tree item Plugins 
+  and selecting insert.<br>
+  Right click the new observer tree item and select insert from the popup menu.<br>
+  A new observer object will be created and you can set its name to a chosen name 
+  like 'myplayer'.</p>
+<p> 5) Fill in the following observer object properties for your new player:</p>
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr> 
+    <th>Parameter</th>
+    <th>Value</th>
+    <th>Description</th>
+  </tr>
+  <tr> 
+    <td>colflag</td>
+    <td>1</td>
+    <td>sets collision on/off</td>
+  </tr>
+  <tr> 
+    <td>mass</td>
+    <td>1</td>
+    <td>sets player mass (in this case &gt;0)</td>
+  </tr>
+  <tr> 
+    <td>radius</td>
+    <td>20</td>
+    <td>sets player collision radius to 2m (player collides as a sphere)</td>
+  </tr>
+  <tr> 
+    <td>bump</td>
+    <td>1</td>
+    <td>bouncing factor (0.0 to 1.0)</td>
+  </tr>
+  <tr> 
+    <td>friction</td>
+    <td>1</td>
+    <td>sliding factor (0.0 to 1.0)</td>
+  </tr>
+  <tr> 
+    <td>active</td>
+    <td>1</td>
+    <td>activate on startup</td>
+  </tr>
+  <tr> 
+    <td>rotvel</td>
+    <td>.1</td>
+    <td>velocity for keybord rotation (arrows keys)</td>
+  </tr>
+  <tr> 
+    <td>mosevel</td>
+    <td>.1</td>
+    <td>velocity for mouse rotation</td>
+  </tr>
+  <tr> 
+    <td>moveforce</td>
+    <td>.01</td>
+    <td>force applyed for movement (S,X and slide keys)</td>
+  </tr>
+  <tr> 
+    <td>maxvel</td>
+    <td>.5</td>
+    <td>maximum velocity for the observer</td>
+  </tr>
+  <tr> 
+    <td>veldump</td>
+    <td>.001</td>
+    <td>damping factor for observer velocity</td>
+  </tr>
+</table>
+<p>6) Activate an instance of the player by selectig the player and clinking the 
+  activate button on the tool bar (this must be done or you will not be able to 
+  set the camera and player global parameters to point to the observer as they 
+  can only point to active instances of objects).</p>
+<p>7) Set the following global parameters by selecting the Glabal tree view item:</p>
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr> 
+    <th>Parameter</th>
+    <th>Value</th>
+    <th>Description</th>
+  </tr>
+  <tr> 
+    <td>viewmindist</td>
+    <td>10</td>
+    <td>sets near plane distance</td>
+  </tr>
+  <tr> 
+    <td>viewmaxdist</td>
+    <td>1500</td>
+    <td>sets far plane distance</td>
+  </tr>
+  <tr> 
+    <td>camangle</td>
+    <td>60</td>
+    <td>set camera view angle</td>
+  </tr>
+  <tr> 
+    <td>camera</td>
+    <td>myplayer</td>
+    <td>set camera object</td>
+  </tr>
+  <tr> 
+    <td>player</td>
+    <td>myplayer</td>
+    <td>set player object</td>
+  </tr>
+  <tr> 
+    <td>mapmode</td>
+    <td>15</td>
+    <td>view all mapping layers</td>
+  </tr>
+</table>
+<p></p>
+<p>8) Now you are ready to fly around. Turn the render on by selecting OpenGL 
+  on the tool bar. Start simmulatig clicking the Simmulate tool bar button or 
+  using the F4 key. You should see the level from the observers point of view 
+  in the render window.</p>
+<p>9) Select the render window by clicking on it (or use the TAB key) and you 
+  should be able to move around using the S,X,ARROW keys</p>
+<p>&nbsp;</p>
+</body>
+</html>

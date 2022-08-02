@@ -1,0 +1,47 @@
+﻿<Page
+    x:Class="BaselineTiltedShadow.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BaselineTiltedShadow"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ListBox Name="lstbox"
+                 Grid.Column="0"
+                 Width="300"
+                 SelectionChanged="OnListBoxSelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}"
+                               FontFamily="{Binding}"
+                               FontSize="24" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Grid Grid.Column="1"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center">
+            
+            <TextBlock Name="shadowTextBlock"
+                       Text="shadow"
+                       FontSize="192"
+                       Foreground="Gray">
+                <TextBlock.RenderTransform>
+                    <CompositeTransform ScaleY="1.5" SkewX="-60" />
+                </TextBlock.RenderTransform>
+            </TextBlock>
+
+            <TextBlock Name="foregroundTextBlock"
+                       Text="shadow"
+                       FontSize="192" />
+        </Grid>
+    </Grid>
+</Page>

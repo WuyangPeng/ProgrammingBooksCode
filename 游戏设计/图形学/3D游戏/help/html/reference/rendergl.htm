@@ -1,0 +1,80 @@
+<html>
+
+<head>
+<title>class class_name</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class renderGL :<a href="render.htm"> public render</a></h2>
+
+<h3>Definition</h3>
+
+<p class="code">class renderGL : public render<br>
+  {<br>
+  &nbsp;&nbsp;public:<br>
+  &nbsp;&nbsp;HGLRC m_hRC;<br>
+  &nbsp;&nbsp;HDC hdc;<br>
+  &nbsp;&nbsp;HWND hWnd;<br>
+  <br>
+  &nbsp;&nbsp;renderGL() <br>
+  &nbsp;&nbsp;{ type=FLY_RENDER_OPENGL; hdc=0; hWnd=0; m_hRC=0; active=1; };<br>
+  &nbsp;&nbsp;virtual ~renderGL() <br>
+  &nbsp;&nbsp;{ DeleteView(); };<br>
+  <br>
+  &nbsp;&nbsp;int CreateView(HWND wnd);<br>
+  &nbsp;&nbsp;void DeleteView();<br>
+  &nbsp;&nbsp;void ResizeView(int sx,int sy);<br>
+  &nbsp;&nbsp;void InitView();<br>
+  &nbsp;&nbsp;void DrawView();<br>
+  &nbsp;&nbsp;void SetFullScreen();<br>
+  };</p>
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>m_hRC</td>
+    <td>HGLRC</td>
+    <td>OpenGL handle</td>
+  </tr>
+  <tr>
+    <td>hdc</td>
+    <td>HDC</td>
+    <td>device context handle</td>
+  </tr>
+  <tr>
+    <td>hWnd</td>
+    <td>HWND</td>
+    <td>window handle</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p><a href="rendergl_createview.htm">CreateView</a>, <a href="rendergl_deleteview.htm">DeleteView</a>, 
+  <a href="rendergl_resizeview.htm">ResizeView</a>, <a href="rendergl_initview.htm">InitView</a>, 
+  <a href="rendergl_drawview.htm">DrawView</a>, <a href="rendergl_setfullscreen.htm">SetFullScreen</a></p>
+
+<h3>Remarks</h3>
+
+<p>This is the OpenGL implementation of the base render class. All OpenGL initializing 
+  and render view changes are implemented in its virtual functions.&nbsp;<br>
+ A global variable named <i>render</i> is the main interface with
+this class and must be initialized/freed with the <i>init_render</i> and <i>close_render</i>
+global functions.</p>
+
+<h3>See Also</h3>
+
+<p><a href="variables.htm">Global Variables</a>, <a href="functions.htm">Global Functions</a>,
+<a href="render.htm">render</a></p>
+
+</body>
+</html>

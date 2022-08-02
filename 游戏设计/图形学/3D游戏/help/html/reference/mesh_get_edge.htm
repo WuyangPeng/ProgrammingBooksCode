@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>mesh::get_edge</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="mesh.htm">mesh</a>::get_edge</h2>
+<h3>Prototype</h3>
+<p class="code">int get_edge(int v1,int v2)</p>
+<h3>Parameters</h3>
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr> 
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>v1</td>
+    <td>int</td>
+    <td>first vertex defining the edge</td>
+  </tr>
+  <tr> 
+    <td>v2</td>
+    <td>int</td>
+    <td>second vertex defining the edge</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>Retuns the index into the edges array for the specified edge (v1,v2) or -1 
+  if edge is not in edges list.</p>
+<h3>Remarks</h3>
+<p>This function is used for finding the index into the edges array for a specified 
+  edge difined by a pair of vertices (v1,v2). The order of the pair is not inportant 
+  as edge (v1,v2) is the same as edge (v2,v1).</p>
+</body>
+</html>

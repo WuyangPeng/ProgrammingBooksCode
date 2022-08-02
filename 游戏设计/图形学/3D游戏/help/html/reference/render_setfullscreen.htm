@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>render::SetFullScreen</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="render.htm">render</a>::SetFullScreen</h2>
+<h3>Prototype</h3>
+<p class="code">virtual void SetFullScreen()=0</p>
+<h3>Parameters</h3>
+<p>None</p>
+	
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This virtual function handles window/fullscreen changes. When called it must
+check the global variable fullscreen and:<br>
+If it is 0, switch to window mode<br>
+If it is 1, switch to fullscreen mode using the selected video mode defined in
+the <i>selvideomode</i> global variable</p>
+</body>
+</html>

@@ -1,0 +1,310 @@
+// Game.h: interface for the Game class.
+
+#ifndef _GAME_H_
+#define _GAME_H_
+
+#include <windows.h>
+#include <cmath>
+//#include <afxwin.h>
+
+#include "D_Draw.h"
+#include "BMP_Mngr.h"
+
+// Some new VK_CODES which are not defined by visual studio
+#define VK_PERIOD 190
+#define VK_DASH 189
+
+
+class Game  
+{
+	public:
+		// Const array indices for the possible variable uses
+		enum { ACCEL = 0, INIT_VEL, FINAL_VEL, DIST, TIME, NUM_VAR};
+		// Our various game states 
+		enum { CHOOSE_FORMULA = 0, FORMULA_CHOOSING, FORMULA_CHOSEN, FORMULA_UNCHOOSING, VAR_CHOSEN,
+				VAR_CHOOSING, VAR_UNCHOOSING, SOLVE, SOLVED, LE_FIN};
+
+	private:
+		// handle to our window, set once in the Init function.
+		HWND hWnd;
+
+		// Our Bitmap manager
+		BMP_Mngr loader;
+		// Our draw device.
+		D_Draw drawer;
+
+		// The current state of the game
+		int state;
+		// The array index of the current formula being solved for
+		int current_formula;
+		// The array index of the current variable being solved for and the next one (0-5)
+		int current_var;
+		int new_curr_var;
+		
+		// Which of the 5 variables is not being used in the current formula?
+		int var_to_ignore;
+		// Holds the index of the variable being changed (0-4)
+		int var_being_changed;
+
+		// Is the game paused?
+		bool paused;
+		// Are there decimal values in the numbers being entered?
+		bool decimal[4];
+		// Are there negative values in the numbers being entered?
+		int negative[4];
+		// Where should the number go if a decimal value is entered?
+		float decimal_place[4];
+		// Prevents the entering of numbers high enough for floating point error
+		bool get_real;
+
+		// Various locations for the bitmaps to be drawn.
+		POINT form_start_loc[4];
+		POINT form_curr_loc[4];
+		POINT var_start_loc[4];
+		POINT var_curr_loc[4];
+		POINT var_end_loc[4];
+
+		// Our Bitmap handles
+		int form[4];
+		int un_form[4];
+		int variable[NUM_VAR];
+		int curr_variable[NUM_VAR];
+		int road;
+		int car[2];
+
+		// These hold our values for various GUI necessities
+		int valid_var[4];
+		int un_valid_var[4];
+
+		// The actual values that are entered and/or solved for
+		float var_values[4];
+		// Holds the alternate answer, if there is one, else it holds -100000, our error code
+		float alt_answer;
+
+		// A 2D array of function pointers, which do all of our calculations for us
+		float (*pf_form[4][4]) (float, float, float, float &);
+
+		// After all the values are soled for, they are copied in here for simplicity's sake
+		float race_values[NUM_VAR];
+
+		// Current vlues for our race car
+		float curr_vel, time_elapsed, disp;
+		// Mile marker info
+		int screen_disp;
+		// The beginning of our timer
+		DWORD start;
+
+		// String for printing out the race car's current values
+		char print[3][50];
+
+	public:
+
+		Game() { }
+		virtual ~Game() { }
+
+		//	GameInit : Initializes the Window and Game Components.
+		void GameInit(HWND hwnd, int window_width, int window_height, bool fullscreen);
+
+		//	GameMain : Does all Main Game Processing.
+		bool GameMain(void);
+
+		//	GameShutdown : Shutdown all Game Components.
+		void GameShutdown(void);
+
+		///////////////////////////////////////////////////////////////////////////////////////////
+		// The following functions are the "meat and potatoes" of this program.
+		// There are 4 formulas and 4 variations of each.  Each variation solves for a different
+		// variable.  The naming convention is the formula number, followed by the variable that
+		// is being solved for.  The first 3 floats being passed in are the required information
+		// to do the solving.  The 4th variable is a float reference to hold the alterante answer,
+		// if there is one; this possibilty only exists in the incarnation of formula 3 which solves
+		// for time, due to the parabolic nature of the answer and the duality of the quadratic
+		// formula.
+		///////////////////////////////////////////////////////////////////////////////////////////
+		static float form1_vf(float a, float vi, float t, float &b)
+		{
+			// Can't have negative time
+			if(t < 0)
+				return -100000;
+			return vi + a * t; 
+		}
+		static float form1_vi(float a, float vf, float t, float &b)
+		{
+			// Can't have negative time
+			if(t < 0)
+				return -100000;
+			return vf - a * t; 
+		}
+		static float form1_a(float vi, float vf, float t, float &b)
+		{
+			// Can't have negative time, can't divide by zero
+			if(t <= 0)
+				return -100000;
+			return (vf - vi) / t; 
+		}
+		static float form1_t(float a, float vi, float vf, float &b)
+		{
+			// Can't divide by zero
+			if(a == 0)
+				return -100000;
+			float temp = (vf - vi) / a;
+			
+			return (temp >= 0 ? temp : -100000);
+		}
+		static float form2_x(float vi, float vf, float t, float &b)
+		{
+			// Can't have negative time
+			if(t < 0)
+				return -100000;
+			return .5f * (vf + vi) * t; 
+		}
+		static float form2_t(float vi, float vf, float x, float &b)
+		{
+			// Can't divide by zero
+			if(vf + vi == 0)
+				return -100000;
+			float temp = x / (.5f * (vf + vi));
+			
+			return (temp >= 0 ? temp : -100000); 
+		}
+		static float form2_vf(float vi, float x, float t, float &b)
+		{
+			// Can't have negative time, can't divide by zero
+			if(t <= 0)
+				return -100000;
+			return (2 * x / t) - vi; 
+		}
+		static float form2_vi(float vf, float x, float t, float &b)
+		{
+			// Can't have negative time, can't divide by zero
+			if(t <= 0)
+				return -100000;
+			return (2 * x / t) - vf; 
+		}
+		static float form3_x(float a, float vi, float t, float &b)
+		{
+			// Can't have negative time
+			if(t < 0)
+				return -100000;
+			return vi * t + (.5f * a * (float)pow(t, 2)); 
+		}
+		static float form3_vi(float a, float x, float t, float &b)
+		{
+			// Can't have negative time, can't divide by zero
+			if(t <= 0)
+				return -100000;
+			return (x - (.5f * a * (float)pow(t, 2))) / t;
+		}
+		static float form3_a(float vi, float x, float t, float &b)
+		{
+			// Can't have negative time, can't divide by zero
+			if(t <= 0)
+				return -100000;
+			return 2 * (x - vi * t) / (float)pow(t, 2); 
+		}
+		static float form3_t(float a, float vi, float x, float &b)
+		{
+			// Handles divide by zero issues, and the possibility of an imaginary number
+			if((a == 0 && vi == 0 && x != 0) || pow(vi, 2) < (2 * a * (-x)))
+				return -100000;
+			// Handles a valid equation with an acceleration of zero
+			else if(a == 0 && vi != 0)
+				return x / vi;
+			// Nothing is happening
+			else if(a== 0 && vi == 0 && x == 0)
+				return 0;
+
+			// sqrt(b^2 - 4ac)
+			float temp = (float)sqrt(pow(vi, 2) - (2 * a * (-x)));
+
+			// Our 2 possible answers
+			float answer1 = (-vi + temp) / a;
+			float answer2 = (-vi - temp) / a;
+
+			// An optimization in the case of negative answer(s). No need to check the validity
+			// of the other answer(s)
+			if(answer1 < 0 && answer2 < 0)
+			{
+				return -100000;
+			}
+			if(answer1 < 0)
+			{
+				return answer2;
+			}
+			if(answer2 < 0)
+			{
+				return answer1;
+			}
+
+			// What if they're both valid?
+			if(answer1 > 0 && answer2 > 0)
+			{
+				// Return the lower answer, place the higher answer as the alternate
+				if(answer1 < answer2)
+				{
+					b = answer2;
+					return answer1;
+				}
+				else
+				{
+					b = answer1;
+					return answer2;
+				}
+			}
+			// Stop the friggin compiler warning already, what a pain
+			return 0;	
+		}
+		static float form4_x(float a, float vi, float vf, float &b)
+		{
+			// Can't divide by zero
+			if(a == 0)
+				return -100000;
+
+			return .5f * ((float)pow(vf, 2) - (float)pow(vi, 2)) / a;
+		}
+		static float form4_a(float vi, float vf, float x, float &b)
+		{
+			// Can't divide by zero
+			if(x == 0)
+				return -100000;
+
+			return .5f * ((float)pow(vf, 2) - (float)pow(vi, 2)) / x;
+		}
+
+		static float form4_vf(float a, float vi, float x, float &b)
+		{
+			// The positive version of the answer.
+			float answer = (float)sqrt(pow(vi, 2) + (2 * a * x));
+			float temp = 0.0f;
+
+			// Let's check it to see if it's right
+			float t = form2_t(vi, answer, x, temp);
+
+			float temp2 = form3_x(a, vi, t, temp);
+
+			// It's right
+			if(x <= temp2 + .1f && x >= temp2 - .1f)
+				return answer;
+			// It's wrong
+			else
+				return answer * -1.0f;
+		}
+		static float form4_vi(float a, float vf, float x, float &b)
+		{
+			// The positive version of the answer.
+			float answer = (float)sqrt(pow(vf, 2) - (2 * a * x));
+			float temp = 0.0f;
+			// Let's check it to see if it's right
+			float t = form2_t(answer, vf, x, temp);
+			float temp2 = form3_x(a, answer, t, temp);
+
+			// It's right
+			if(x <= temp2 + .1f && x >= temp2 - .1f)
+				return answer;
+			// It's wrong
+			else
+				return answer * -1.0f;
+		}
+};
+
+#endif

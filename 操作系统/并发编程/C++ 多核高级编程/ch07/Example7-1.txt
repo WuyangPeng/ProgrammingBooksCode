@@ -1,0 +1,17 @@
+// Example 7-1 Declaration of fifo class.
+
+ class fifo{ 
+    mutex Mutex;
+    //...
+ protected:
+    string  Name;
+ public:
+    fifo &operator<<(fifo &In, int X);
+    fifo &operator<<(fifo &In, char X);
+    fifo &operator>>(fifo &Out, float X);
+    //...
+};
+
+
+}
+

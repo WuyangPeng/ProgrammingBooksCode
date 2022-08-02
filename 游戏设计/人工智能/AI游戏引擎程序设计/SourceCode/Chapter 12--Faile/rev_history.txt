@@ -1,0 +1,275 @@
+Revision History for Faile 1.x
+--------------------------------------------------
+
+1.0.0:
+- pseudo legal move generation with gen(), make(), and unmake()
+- tree() and perft() were created for use in debugging and verification of
+  legal move generation
+
+1.0.1:
+- corrected the move generation bug of the program not putting back captured
+  pieces
+
+1.0.2:
+- first implementation of check_legal() is used in tree() and perft()
+- from start postion, the correct number of moves is generated up to ply
+  4, at ply 5, I had 5072247 nodes instead of 5072212 nodes.
+- main() re-arranged to allow for choosing whether to use tree() output, as
+  well as diagrams
+
+1.0.3:
+- bug fixed in is_attacked() which incorrectly searched for pawn checks, which
+  wouldn't catch something such as: 1. e4 d5 2. Ke2 d4 3. Ke3, which is
+  not legal
+- from the start position, Faile is now generating the correct number of nodes
+  up to ply 6, which is as far as I have for the correct values.
+
+1.0.4:
+- implemented my own input function - usefull to know exactly how your input
+  function works, exactly
+- implemented comp_to_coord()
+- revamped print_move, making it more elegant using comp_to_coord()
+- implemented verify_coord() to verify user move legality
+- implemented a new function tree_debug(), which is essentially 1.0.3
+- created a main program which will allow testing of legal move generation
+  by repeatedly asking for a depth of perft to use, and then accepting and
+  playing a move, then repeating the process, performing a perft to the
+  specified depth each time
+- did some extensive testing of the move gen, via running test games through
+  both Crafty and Faile, and comparing the output.  Faile made no errors on
+  its perft's
+
+1.0.5:
+- revamp of main - it is now in the format it will be in for it's release
+  version, with a basic command set for now
+- moved the previous main() of 1.0.4 into a new function perft_debug()
+- created a few small utility functions - is_move(), and toggle_bool()
+- cleaned up a few functions which could modify ep_square so that they will
+  restore it
+
+----------
+
+1.1.0
+- implemented search_root(), search(), and a basic eval()
+- created an in_check() function
+- fine tuned the interface a bit
+- fixed some things for xboard support
+- Faile 1.x plays its first games
+
+1.1.1
+- implemented quiescense search
+
+1.1.2
+- implemented a new eval, which uses the number of pieces on the board to
+  determine whether to use opening/middlegame/endgame evaluation.  The new
+  eval has a lot of positional bonuses, especially for king safety as well
+  as pawn structure
+
+1.1.3
+- minor modifications to eval
+- implemented recording of the pv during search, and printing out pv output
+- implemented move ordering, as well as a remove_one system of choosing the
+  right move, without sorting the whole move array to maybe get a cutoff
+  before going through the whole array
+- implemented iterative deepening for the search
+
+1.1.4
+- history heuristic added
+- killer move heuristic added (3 killers used)
+
+1.1.5
+- pieces[] and squares[] arrays implemented to speed up the big for loops in
+  gen() as well as the 3 eval() functions (massive speed improvement during
+  search!)
+- move generation still passes tests
+
+----------
+
+1.2.0
+- implemented timing functions rtime() and rdifftime() which return their
+  results in centi-seconds.  If ANSI is not defined, Faile uses ftime() as
+  its timing function, which provides millisecond accuracy and will compile
+  under almost any UNIX, and works fine with MSVC and most windows compilers.
+  If ANSI is defined, Faile will use time() which only provides whole second
+  accuracy.
+- implemented failes time allocation function - allocate_time(), which takes
+  all sorts of factors into account - increment, being behind on time,
+  needing time in the opening, having < 60 seconds left and having to move
+  real fast, conventional time controls, etc...
+- completed a base of xboard commands
+- implemented function ics_game_end(), which will be called when a "result" is
+  given to Faile by winboard/xboard, so any commands placed in the file
+  gameend.txt will be outputted to the ICS.
+- wrote a function post_thinking() to output thinking information
+
+1.2.1
+- implemented checking the elapsed time during search, to allow use with
+  specified time controls.
+- fixed up a bug in node/qnode count,thus causing NPS and nodes output info
+  to be wrong
+- changed the NPS function to use clock() for more accuracy on actual program
+  speed
+- corrected a typo in eval which was causing Faile to always check for pawn
+  storms which was creating some rather bizarre moves
+
+1.2.2
+- fixed a major logic error in move gen when only generating capture moves
+  which would cause the program to stop generating moves for a "sliding"
+  piece after it hit one empty square while sliding
+- trimmed the history heuristic so that its values wouldn't get too large
+  at high depth search and potentially getting move orderings above the pv,
+  which could be disastrous
+
+1.2.3
+- added the null move heuristic.  Resulted in a noticeable performance
+  increase during search.  Null move done with R = 2 by default, but can be
+  changed via the null_red #define in faile.h, a value of 0 will turn it off.
+
+1.2.4
+- some changes to piece values in eval.c, as well as some fixes to major
+  logic errors concerning some places where pawn rank was important.
+
+----------
+
+1.3.0
+- a random number facility was made in rand.c.  The main feature is the
+  rand_32 () function, which will generate 32 bit numbers, even on a UNIX
+  system.  The rand.c package doesn't use any of the built in random number
+  generation factility, so it will generate the same results on any machine.
+- the hashing functions were started.  A d_long structure is used to hold a
+  64 bit number for the hash code.  Hash codes include a random number for
+  each piece on the board by position, the ep_square, castling rights, and
+  side to move.  The init_hash_values () function was made, as well as a
+  compute_hash () function to recompute the whole hash code from scratch.
+- modifications were made to make () to update the hash on each move, as well
+  as some modifications within the search - the ep_square has to remain
+  consistant at each node for every move, otherwise the hash will be messed
+  up.
+- an assertion was used to verify the correctness of the updating of the hash.
+  This was done by doing a compute_hash () after every make (), and verifying
+  that the value of the hash modified within make () was the same as what we
+  got from compute_hash ().  The hash key is restored after unmake () via
+  a temporary copy of the original hash, rather than doing a lot of work
+  within unmake.
+
+1.3.1
+- function init_hash_tables () was made to allocate space for our hash
+  tables, as well as giving the needed hash_mask
+- functions chk_hash () and store_hash () were made for retrieval and storage
+  of hash values
+- hashing is integrated into the search.  The contribution from this can
+  be as good as giving us a return value from a position, telling us that a
+  null move is a bad idea, or even just giving us a decent move to look at
+  first for better move ordering.
+- hash_to_pv () is made to extract the pv from the hash tables, if we got our
+  root move on an early iterative depth straight from the hash tables
+- slight revisions to timing code
+
+1.3.2
+- hopefully fixed the illegal hash move bug .. the problem was in using make/
+  check_legal/unmake to test for legality - what if the move isn't even
+  plausible on the board, nevermind illegal?  Used the comp_to_coord and then
+  verify_coord functions to make sure the move is indeed legal and plausible
+  on the board.  Another possible problem was not restoring the ep_square
+  off the root when using a hash_move, but that problem doesn't exist now
+- played several test games myself, and over 10 automated games with Faile 0.6
+  and no illegal moves arose, so it seems to be fixed
+- fixed comman line parsing so that it handles unrecognized command line
+  parameters
+- some modificatiosn to timing code
+
+1.3.3
+- found that old never-play-the-mate bug now that Faile is using hashing, this
+  should be fixed now
+- found the same problem with PV extraction from hash as I did with the making
+  of illegal moves -> changed method of determining legal hash moves for this
+  as well
+- did some debugging of the timing code - found I wasn't converting inc to
+  1/100s of a second .. thus the added increment was practically useless,
+  Faile now uses its time better in increment games
+
+1.3.4
+- some minor changes to stop gcc from complaining at compile time when I had
+  -Wall on, mostly a result of using the -O2 flag and uninitialized variables
+- fixed a retarded error in eval where initialization code was accidentally
+  put at the top of a switch statement, thus never getting executed
+- some hash fixes .. found I still have some major problems with hashing..
+- fixed the .gcc makefile to include the -lm for the math library
+
+1.3.5
+- more hash fixes: I had been storing "score" instead of "alpha" for upper
+  and exact hash stores, and also mistakenly storing mate scores as exact.
+- some minor tweaks to eval () including adding code so it will favour
+  exchanges in the middlegame and endgame when up material; tweaking some
+  king safety values to discourage Faile from doing things like playing g4
+  and then immediately castling kingside; fixed a logic error on the king
+  pawn cover code.
+- corrected the no moves situation in qsearch to correctly return "standpat"
+  rather than "alpha"
+- traced the problem of -INF and +INF scores to eval ().  It would turn out
+  that the problem wasn't in my code at all - and after some trial and error,
+  I found that the problem was in the /Oy optimization flag that is included
+  when you use /O2, so I added /Oy- to my makefile, and the problem was fixed.
+- after putting this version on FICS for a few test games, it played a number
+  of decent blitz games, plus one great standard game.
+
+1.3.6
+- implemented the 50 move rule
+- implemented three fold repetition
+- added checking for input during the search
+- some minor changes to accomodate claiming draws by 50 move rule and 3 rep
+
+----------
+
+1.4.0
+- added the source file book.c for use in SAN input, PGN file input, book
+  creation, EPD input, etc
+- added the function pgn_to_comp () and supporting functions, which is used to
+  translate SAN/PGN input into Faile's internal move format, if possible
+- added use of pgn_to_comp () to move input for Faile
+
+1.4.1
+- fixed some bugs with 3 repetition checking as well as the 50 move rule
+- added storing of the hash info at root so that PV extraction from root
+  wasn't messed up in cases where the PV changes from what that node's best
+  move was found to be on an earlier search
+- finished functions for reading in a complete PGN file
+- modified said functions to store the opening info in a book hash table, which
+  is only temporary storage (don't want to just dump a 32 MB book!)
+- added a function to write the opening book information to the binary file
+  faile.obk
+- added a function to find a book move for Faile, which emphasises the moves
+  which occur most often from the book, but has a certain ammount of randomness
+  to it
+
+1.4.2
+- fixed a bug in book creation where the .x1 and .x2 portions of the hash
+  weren't being properly compared
+- modified the book creation to handle collisions via linear probing (not
+  completely pure linear probing - it will look for an empty slot, but it will
+  stop if it reaches a filled cell which doesn't have the same key in the
+  opening book hash table, this was done simply because the binary search
+  algorithm used in book searching requires the book to be in order, and using
+  a sorting algorithm on the book could be disastrously slow)
+- modified the book searching to handle the linear probing that is now done.
+  The book searching now looks to find the proper starting place, then if
+  that isn't a complete match, looks on either side of that entry.
+
+1.4.3
+- fixed some bugs in SAN parsing, which include not interpreting non-castling
+  king moves, and not properly checking for legality, which led to some
+  problems on moves where for example Ne2 is not ambiguous if the N on c3 is
+  pinned
+- added a function to refresh the hash tables after ever game, essentially it
+  just sets the depth on all entries to 0, so we can benefit from move ordering
+  if it applies, and not suffer from new positions not being able to be stored
+  since the depth is too high on the old position
+
+1.4.4
+- modified time allocation so that Faile will move slower when ahead on time
+  (No use losing the game with gobs of extra time on your clock!)
+- added code so that Faile will try to look for a better move if the PV's score
+  suddenly drops (this alleviates the problem of 3-rep disasters where Faile
+  won't recognize that the opponent can achieve a draw by 3-rep on the next
+  move due to hash tables, then running out of time before finding a new
+  move, and many, many other problems!)

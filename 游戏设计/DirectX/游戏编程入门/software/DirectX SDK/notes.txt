@@ -1,0 +1,8 @@
+Beginning Game Programming, Third Edition
+Jonathan Harbour
+
+
+The current DirectX SDK at the time of this writing is March 2009, and the downloaded zip file is over 500MB, which is too large to include with the book. Please visit the provided URL to download the latest version of DirectX.
+
+http://msdn.microsoft.com/directx/
+

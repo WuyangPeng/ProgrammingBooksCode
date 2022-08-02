@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>textcache::update_sub_picture</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="textcache.htm">textcache</a>::update_sub_picture</h2>
+<h3>Prototype</h3>
+<p class="code">virtual void update_sub_picture(int picnum,int x,int y,int sx,int 
+  sy,int bytespixel,unsigned char *buf)=0</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr> 
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr> 
+    <td>picnum</td>
+    <td>int</td>
+    <td>picture index</td>
+  </tr>
+  <tr> 
+    <td>x</td>
+    <td>int</td>
+    <td>x offset</td>
+  </tr>
+  <tr> 
+    <td>y</td>
+    <td>int</td>
+    <td>y offset</td>
+  </tr>
+  <tr>
+    <td>sx</td>
+    <td>int</td>
+    <td>size in x (no need to be power of 2)</td>
+  </tr>
+  <tr>
+    <td>sy</td>
+    <td>int</td>
+    <td>size in y (no need to be power of 2)</td>
+  </tr>
+  <tr>
+    <td>bytespixel</td>
+    <td>int</td>
+    <td>bytes per pixel (3 or 4)</td>
+  </tr>
+  <tr>
+    <td>buf</td>
+    <td>unsigned char *</td>
+    <td>picture pixels ((sx*bytespixel aligned to 4 bytes)*sy)</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This virtual function is used to update just a part of a picture in the texture 
+  manager. Only the sub-picture pixels are passed. If <i>x</i> and <i>y</i> are 
+  0 and <i>sx</i> and <i>sy</i> the size of the image, it will work just like 
+  the <i>update_picture</i> function.</p>
+</body>
+</html>

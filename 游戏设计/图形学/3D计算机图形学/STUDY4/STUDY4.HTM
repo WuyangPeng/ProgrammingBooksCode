@@ -1,0 +1,120 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>Learning Rendering: Study 4</title>
+</head>
+<body>
+<a href="file:///F|/learning/STUDY3/STUDY3.HTM">&lt;&lt;</a><a href="file:///F|/learning/STUDY4/STUDY4A.HTM">>></a><a href="file:///F|/learning/TOC.HTM">Contents</a><a href="file:///F|/learning/INDEX.HTM" TARGET="_top">Top</a>
+<hr>
+<h1>
+STUDY 4 TEXTURE MAPPING</h1>
+
+<h2>
+2D AND 3D TEXTURE MAPPING</h2>
+
+<table WIDTH="100%" boder="0" >
+<tr>
+<td><a href="file:///F|/learning/STUDY4/TXTM.tif"><img SRC="TXTM.gif" ALT="txtm.gif" height=75 width=100></a></td>
+
+<td>Scene with texture maps on floor, doors and desk.&nbsp;</td>
+</tr>
+
+<tr>
+<td><a href="file:///F|/learning/STUDY4/TXSLD1.TIF"><img SRC="TXSLD1.GIF" ALT="txsld1.gif" height=75 width=100></a></td>
+
+<td>Solid wood texture map</td>
+</tr>
+
+<tr>
+<td><a href="file:///F|/learning/STUDY4/TXSLD2.TIF"><img SRC="TXSLD2.GIF" ALT="txsld2.gif" height=75 width=100></a></td>
+
+<td>Solid marble texture map. These are examples of three-dimensional texture
+fields that are procedurally defined. The problems of 2D to 3D mapping
+is completely avoided with this technique where the mapping is one to one.
+Note that texture in rendering usually means, as it does here, modulating
+the diffuse and ambient coefficients in the shading equation.</td>
+</tr>
+
+<tr>
+<td><a href="file:///F|/learning/STUDY4/TXIAXX.HTM"><img SRC="TXIA11.GIF" ALT="txiaXX" height=75 width=100></a></td>
+
+<td>Array of solid marble textures with different parameters 5x5 array
+= 25 images. Across is increasing "grain scale" determines size of grain
+crystals. Down is increasing "detail" - this increases the complexity of
+the pattern.</td>
+</tr>
+
+<tr>
+<td><a href="file:///F|/learning/STUDY4/TXIA_M.TIF"><img SRC="TXIA_M.GIF" ALT="txia_m.gif" height=75 width=100></a></td>
+
+<td>montage of above image array.</td>
+</tr>
+
+<tr>
+<td><a href="file:///F|/learning/STUDY4/TXIM1.TIF"><img SRC="TXIM1.GIF" ALT="txim1.gif" height=75 width=100></a></td>
+
+<td>planar texture map of image</td>
+</tr>
+
+<tr>
+<td><a href="file:///F|/learning/STUDY4/TXIM2.TIF"><img SRC="TXIM2.GIF" ALT="txim2.gif" height=75 width=100></a></td>
+
+<td>cylindrical map&nbsp;</td>
+</tr>
+
+<tr>
+<td><a href="file:///F|/learning/STUDY4/TXIM3.TIF"><img SRC="TXIM3.GIF" ALT="txim3.gif" height=75 width=100></a></td>
+
+<td>spherical map</td>
+</tr>
+</table>
+These are examples of 'two-part' texture mapping. The difficulties of mapping
+a two-dimensional image onto an arbitrarily shaped three-dimensional surface
+are overcome by using an intermediate surface. Effectively the texture
+map is 'pasted' onto the (easy) intermediate surface, and then mapped from
+this surface onto the object. The intermediate surfaces are a plane, a
+cylinder and a sphere.
+<h2>
+BUMP MAPPING</h2>
+
+<table WIDTH="100%" boder="0" >
+<tr>
+<td><a href="file:///F|/learning/STUDY4/BMPRC.TIF"><img SRC="BMPRC.GIF" ALT="bmpprc.gif" height=75 width=100></a></td>
+
+<td>Procedurally bump mapped object.</td>
+</tr>
+
+<tr>
+<td><a href="file:///F|/learning/STUDY4/BMPIM1.TIF"><img SRC="BMPIM1.GIF" ALT="bmpim1.gif" height=75 width=100></a></td>
+
+<td>bump mapped based on a simple image (<a href="file:///F|/learning/DATA/BMI1.TIF">bpim1</a>)
+cylindrical texture space used</td>
+</tr>
+
+<tr>
+<td><a href="file:///F|/learning/STUDY4/BMPIM2.TIF"><img SRC="BMPIM2.GIF" ALT="bmpim2.gif" height=75 width=100></a></td>
+
+<td>Bump mapping is often combined with texture mapping. Here a bump map
+has been used to (apparently) perturb the surface and a coincident texture
+map to colour the 'bump objects'. (maps are <a href="file:///F|/learning/DATA/BMI2.TIF">bmi2</a>
+and <a href="file:///F|/learning/DATA/TMI2.TIF">txim2</a>)</td>
+</tr>
+
+<tr>
+<td><a href="file:///F|/learning/STUDY4/BMPIM3.TIF"><img SRC="BMPIM3.GIF" ALT="bmpim3.gif" height=75 width=100></a></td>
+
+<td>bump mapping and texture mapping used on text (maps are <a href="file:///F|/learning/DATA/BMI3.TIF">bmi3
+</a>and
+<a href="file:///F|/learning/DATA/TMI3.TIF">tmi3</a>).</td>
+</tr>
+</table>
+The classic texture mapping technique of bump mapping appears to modulate
+the surface geometry. Bump maps, which are just height fields, can be created
+procedurally or interactively - just like a normal 2D texture map. Examination
+of any image will confirm the main disadvantage of this technique - the
+geometry is not perturbed and thus the silhouette edge remains smooth.&nbsp;
+<hr><a href="file:///F|/learning/STUDY3/STUDY3.HTM">&lt;&lt;</a><a href="file:///F|/learning/STUDY4/STUDY4A.HTM">>></a><a href="file:///F|/learning/TOC.HTM">Contents</a><a href="file:///F|/learning/INDEX.HTM" TARGET="_top">Top</a>
+</body>
+</html>

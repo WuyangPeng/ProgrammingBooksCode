@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>flyEngine::collision_bsp</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="flyengine.htm">flyEngine</a>::collision_bsp</h2>
+<h3>Prototype</h3>
+<p class="code">int collision_bsp(bsp_node *n,vector& p1,vector& p2,int elemtype=0,float 
+  rad=0.0f)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>n</td>
+	 <td><a href="bsp_node.htm">bsp_node</a> *</td>
+	 <td>bsp root node</td>
+  </tr>
+  <tr>
+	 <td>p1</td>
+	 <td><a href="vector.htm">vector</a>&amp;</td>
+	 <td>first point</td>
+  </tr>
+  <tr>
+	 <td>p2</td>
+	 <td><a href="vector.htm">vector</a>&amp;</td>
+	 <td>secont point</td>
+  </tr>
+  <tr>
+	 <td>elemtype</td>
+	 <td>int</td>
+	 <td>object type modifier</td>
+  </tr>
+  <tr>
+	 <td>rad</td>
+	 <td>float</td>
+	 <td>collision radius</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>Returns TRUE if a collision is found, FALSE if no collision is found.</p>
+<h3>Remarks</h3>
+<p>This function is used for collision detection between <i>p1</i> and <i>p2</i>.
+It finds the closest collision from <i>p1</i> to <i>p2</i> and return the
+collision information in the following flyEngine members:</p>
+<p class="code">		bsp_object *hitobj;&nbsp;&nbsp; // object pointer<br>
+		mesh *hitmesh;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // mesh pointer<br>
+		int hitface;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+face index into mesh<br>
+		vector hitip;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //
+intersected point in face </p>
+<p>A faster version of this function is the <i>collision_test</i> function that 
+  returns the first collision from <i>p1</i> to <i>p2</i>.</p>
+</body>
+</html>

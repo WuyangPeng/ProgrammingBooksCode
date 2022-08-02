@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>render::DrawView</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="render.htm">render</a>::DrawView</h2>
+<h3>Prototype</h3>
+<p class="code">virtual void DrawView()=0</p>
+<h3>Parameters</h3>
+<p>None</p>
+	
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This virtual function is called to render the scene. Sub-classes should does 
+  the following order of operations:<br>
+1) Computes the elapsed time from last frame.<br>
+2) Call <i>InitView</i> to initialize global render setting for the frame<br>
+  3) Clear the Z-buffer, color buffer is <i>flyengine-&gt;</i><i>clearbk</i> is 
+  TRUE and stencil buffer if <i>flyengine-&gt;stencil</i> is TRUE<br>
+4) Call flyengine-&gt;step passing elapsed time (update all scene and plug-in
+objects)<br>
+5) Swap buffers to display rendered image</p>
+</body>
+</html>

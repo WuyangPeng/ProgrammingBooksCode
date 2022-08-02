@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>class player_data</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2>class player_data</h2>
+<h3>Definition</h3>
+<p class="code">class player_data<br>
+  {<br>
+  &nbsp;
+  public:<br>
+  &nbsp;
+  DWORD type,dpid;<br>
+  &nbsp;
+  char name[32];<br>
+  &nbsp;
+  void *data;<br>
+  <br>
+  &nbsp;
+  player_data()<br>
+  &nbsp;
+  { memset(this,0,sizeof(player_data));};<br>
+  };</p>
+<h3>Data Members</h3>
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr> 
+    <th>Member</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr> 
+    <td> type</td>
+	 <td>DWORD</td>
+	 <td>player type (client or server)</td>
+  </tr>
+  <tr> 
+    <td>dpid</td>
+	 <td>DWORD</td>
+	 <td>direct play player id</td>
+  </tr>
+  <tr> 
+    <td> name</td>
+	 <td>char[]</td>
+	 <td>player name</td>
+  </tr>
+  <tr>
+	 <td>data</td>
+	 <td>void *</td>
+	 <td>player generic data</td>
+  </tr>
+</table>
+<h3>Methods</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This class hold information on players in a multiplayer game. Usualy the <i>data</i>
+part of the class points to the player <i>bsp_object</i>.</p>
+<h3>See Also</h3>
+<p><a href="directx.htm">directX</a></p>
+</body>
+</html>

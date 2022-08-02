@@ -1,0 +1,46 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: AISteroids - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\bschwab\LOCALS~1\Temp\RSP6B5.tmp" with contents
+[
+/nologo /subsystem:console /incremental:yes /pdb:"Debug/AISteroids.pdb" /debug /machine:I386 /out:"Debug/AISteroids.exe" /pdbtype:sept 
+".\Debug\AIControl.obj"
+".\Debug\utility.obj"
+".\Debug\Ast.obj"
+".\Debug\Bullet.obj"
+".\Debug\Exp.obj"
+".\Debug\GameObj.obj"
+".\Debug\Powerup.obj"
+".\Debug\Ship.obj"
+".\Debug\Target.obj"
+".\Debug\asteroids.obj"
+".\Debug\GameSession.obj"
+".\Debug\HumanControl.obj"
+".\Debug\NNAIControl.obj"
+".\Debug\FSMAIControl.obj"
+".\Debug\NNetwork.obj"
+".\Debug\FSMMachine.obj"
+".\Debug\StateApproach.obj"
+".\Debug\StateAttack.obj"
+".\Debug\StateEvade.obj"
+".\Debug\StateGetPowerup.obj"
+".\Debug\StateIdle.obj"
+".\Debug\StateNNEvade.obj"
+]
+Creating command line "snLink.exe @C:\DOCUME~1\bschwab\LOCALS~1\Temp\RSP6B5.tmp"
+<h3>Output Window</h3>
+Linking...
+snCL -- Detected win32 build...passing to link.exe
+
+
+
+<h3>Results</h3>
+AISteroids.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

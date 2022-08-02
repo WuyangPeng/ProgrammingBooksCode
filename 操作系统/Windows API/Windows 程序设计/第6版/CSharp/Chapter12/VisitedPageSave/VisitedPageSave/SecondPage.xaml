@@ -1,0 +1,40 @@
+﻿<local:SaveStatePage
+    x:Class="VisitedPageSave.SecondPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VisitedPageSave"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel>
+            <TextBlock Text="Second Page"
+                       FontSize="48"
+                       HorizontalAlignment="Center"
+                       Margin="48" />
+
+            <TextBox Name="txtbox"
+                     Width="320"
+                     HorizontalAlignment="Center"
+                     Margin="48" />
+
+            <Button Content="Go to Main Page"
+                    HorizontalAlignment="Center"
+                    Margin="48"
+                    Click="OnGotoButtonClick" />
+
+            <Button Name="forwardButton" 
+                    Content="Go Forward"
+                    HorizontalAlignment="Center"
+                    Margin="48"
+                    Click="OnForwardButtonClick" />
+
+            <Button Name="backButton" 
+                    Content="Go Back"
+                    HorizontalAlignment="Center"
+                    Margin="48"
+                    Click="OnBackButtonClick" />
+        </StackPanel>
+    </Grid>
+</local:SaveStatePage>

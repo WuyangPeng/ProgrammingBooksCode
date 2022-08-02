@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>flydllgroup::send_message</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="flydllgroup.htm">flydllgroup</a>::send_message</h2>
+<h3>Prototype</h3>
+<p class="code">int send_message(int msg,int param,void *data)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 
+    
+    
+    <td>msg</td>
+	 
+    <td>int</td>
+	 
+    <td>message id</td>
+  </tr>
+  <tr>
+	 
+    
+    
+    
+    
+    <td>param</td>
+	 
+    <td>int</td>
+	 
+    <td>general parameter</td>
+  </tr>
+  <tr>
+	 
+    
+    
+    
+    <td>data</td>
+	 
+    <td>void *</td>
+	 
+    <td>general data pointer</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>Returns a value from the plug-in dlls (0 if passed on all plug-in dlls, &lt;&gt;0 
+  if some plug-in stoped message by returning &lt;&gt;0)</p>
+<h3>Remarks</h3>
+<p>This function is used to send messages to the plug-in dlls. It will send the 
+  message to all plug-in dlls included in flydllgroup class. The data pointer can 
+  be used to send pointers to any type/size of data as all messages are local.<br>
+  The send_message function will loop throught all plug-in dlls loaded, and for 
+  each one, if the plug-in dll returns 0, message passes to the next plug-in dll 
+  in the list, if it return &lt;&gt;0, the send_message function stops and returns 
+  the value. So if return value is zero, it passed on all plug-in dlls.</p>
+</body>
+</html>

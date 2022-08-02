@@ -1,0 +1,21 @@
+#pragma once
+
+//MessageFSM state types
+enum
+{
+	MFSM_STATE_NONE,
+	MFSM_STATE_APPROACH,
+	MFSM_STATE_ATTACK,
+	MFSM_STATE_EVADE,
+	MFSM_STATE_GETPOWERUP,
+	MFSM_STATE_IDLE,
+    MFSM_STATE_COUNT
+};
+
+//MessageFSM machine types
+enum
+{
+	MFSM_MACH_NONE,
+	MFSM_MACH_MAINSHIP,
+    MFSM_MACH_COUNT
+};

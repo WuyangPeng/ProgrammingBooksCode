@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>textcache::use_triangles</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="textcache.htm">textcache</a>::use_triangles</h2>
+<h3>Prototype</h3>
+<p class="code">virtual void use_triangles(int pic=-1,int textunit=0)=0</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr> 
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr> 
+    <td>pic</td>
+    <td>int</td>
+    <td>picture index to selected</td>
+  </tr>
+  <tr> 
+    <td>textunit</td>
+    <td>int</td>
+    <td>texture unit to select</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This virtual function selects a picture to be used in the specified texture 
+  unit. The texture unit remains selected and active after the call. Calling this 
+  function with <i>pic</i>=-1 will disable texturing in the specified texture 
+  unit. The number of texture units available is in the <i>ntextureunits</i> global 
+  variable. This is a variation of the <i>use</i> function that can be called 
+  between glBegin/glEnd pairs. </p>
+</body>
+</html>

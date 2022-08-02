@@ -1,0 +1,402 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./General%20Game%20AI_files/filelist.xml">
+<title>Various AI issues</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Brian Schwab</o:Author>
+  <o:LastAuthor>Brian Schwab</o:LastAuthor>
+  <o:Revision>6</o:Revision>
+  <o:TotalTime>45</o:TotalTime>
+  <o:Created>2004-06-23T23:36:00Z</o:Created>
+  <o:LastSaved>2004-06-24T01:05:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>517</o:Words>
+  <o:Characters>2952</o:Characters>
+  <o:Company>SCEA</o:Company>
+  <o:Lines>24</o:Lines>
+  <o:Paragraphs>5</o:Paragraphs>
+  <o:CharactersWithSpaces>3625</o:CharactersWithSpaces>
+  <o:Version>9.4402</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:"Arial Unicode MS";
+	panose-1:2 11 6 4 2 2 2 2 2 4;
+	mso-font-charset:128;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-1 -369098753 63 0 4129023 0;}
+@font-face
+	{font-family:"\@Arial Unicode MS";
+	panose-1:2 11 6 4 2 2 2 2 2 4;
+	mso-font-charset:128;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-1 -369098753 63 0 4129023 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Arial Unicode MS";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:red;
+	text-decoration:underline;
+	text-underline:single;}
+p.fsx01, li.fsx01, div.fsx01
+	{mso-style-name:fsx01;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:8.5pt;
+	font-family:"Arial Unicode MS";}
+p.fsx02, li.fsx02, div.fsx02
+	{mso-style-name:fsx02;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:9.0pt;
+	font-family:"Arial Unicode MS";}
+p.fsx03, li.fsx03, div.fsx03
+	{mso-style-name:fsx03;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Arial Unicode MS";}
+p.fsx04, li.fsx04, div.fsx04
+	{mso-style-name:fsx04;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:11.5pt;
+	font-family:"Arial Unicode MS";}
+p.fsx05, li.fsx05, div.fsx05
+	{mso-style-name:fsx05;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Arial Unicode MS";}
+p.fsx06, li.fsx06, div.fsx06
+	{mso-style-name:fsx06;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:14.5pt;
+	font-family:"Arial Unicode MS";}
+p.fsx07, li.fsx07, div.fsx07
+	{mso-style-name:fsx07;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:16.0pt;
+	font-family:"Arial Unicode MS";}
+p.fsx08, li.fsx08, div.fsx08
+	{mso-style-name:fsx08;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:18.0pt;
+	font-family:"Arial Unicode MS";}
+p.fsx09, li.fsx09, div.fsx09
+	{mso-style-name:fsx09;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:20.5pt;
+	font-family:"Arial Unicode MS";}
+p.fsx10, li.fsx10, div.fsx10
+	{mso-style-name:fsx10;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:22.0pt;
+	font-family:"Arial Unicode MS";}
+p.fsx11, li.fsx11, div.fsx11
+	{mso-style-name:fsx11;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:24.0pt;
+	font-family:"Arial Unicode MS";}
+p.fsx12, li.fsx12, div.fsx12
+	{mso-style-name:fsx12;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:26.5pt;
+	font-family:"Arial Unicode MS";}
+p.fsx13, li.fsx13, div.fsx13
+	{mso-style-name:fsx13;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:28.0pt;
+	font-family:"Arial Unicode MS";}
+p.fsx14, li.fsx14, div.fsx14
+	{mso-style-name:fsx14;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:36.0pt;
+	font-family:"Arial Unicode MS";}
+p.fsx15, li.fsx15, div.fsx15
+	{mso-style-name:fsx15;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:48.0pt;
+	font-family:"Arial Unicode MS";}
+p.fsx16, li.fsx16, div.fsx16
+	{mso-style-name:fsx16;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:72.0pt;
+	font-family:"Arial Unicode MS";}
+p.txdec, li.txdec, div.txdec
+	{mso-style-name:txdec;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Arial Unicode MS";}
+p.dfltt, li.dfltt, div.dfltt
+	{mso-style-name:dfltt;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Arial Unicode MS";}
+span.dfltt1
+	{mso-style-name:dfltt1;
+	mso-ansi-font-size:10.5pt;
+	mso-bidi-font-size:10.5pt;
+	mso-ascii-font-family:"Times New Roman";
+	mso-hansi-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-text-animation:none;
+	font-weight:normal;
+	text-decoration:none;
+	text-underline:none;
+	text-decoration:none;
+	text-line-through:none;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1027"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body bgcolor=white lang=EN-US link=blue vlink=red style='tab-interval:.5in'
+alink="#ff00ff">
+
+<div style='left:186px;position:absolute;top:190px;visibility:visible;
+z-index:1' id=Oobj1><span id=Grtf1>
+
+<div class=Section1>
+
+<p class=MsoNormal align=center style='margin-bottom:12.0pt;text-align:center'><b><u><span
+style='font-family:Arial'>Various Game AI issues<br style='mso-special-character:
+line-break'>
+<![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+<![endif]><o:p></o:p></span></u></b></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://ai.fri.uni-lj.si/%7Ealeks/FT/">http://ai.fri.uni-lj.si/%7Ealeks/FT/</a><br>
+Notes on using AI techniques within computer games. Quite a few topics, but
+fairly short info on each.<br>
+<br>
+<a href="http://www.cgf-ai.com/links.html">http://www.cgf-ai.com/links.html</a><br>
+The parent site, “www.cgf-ai.com” is William van der Sterren’s company web site
+detailing his AI systems. <o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'>The links page contains many
+links to papers and articles for general game AI information.<br>
+<br>
+<a href="http://www.cs.tcd.ie/publications/tech-reports/reports.01/TCD-CS-2001-29.pdf">http://www.cs.tcd.ie/publications/tech-reports/reports.01/TCD-CS-2001-29.pdf</a><br>
+”Research Directions for AI in Computer Games” paper.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://www.cs.ualberta.ca/~mburo/ps/ORTS-JCIS03.pdf">http://www.cs.ualberta.ca/~mburo/ps/ORTS-JCIS03.pdf</a><br>
+”RTS Games as test-bed for real-time AI research” paper.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://www.cds.caltech.edu/~murray/projects/roboflag/zswh03-acc.pdf">http://www.cds.caltech.edu/~murray/projects/roboflag/zswh03-acc.pdf</a><br>
+”Balancing automated behavior and human control in multi-agent systems: a case
+study in Roboflag” paper.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://www.ai-center.com/projects/excalibur/">http://www.ai-center.com/projects/excalibur/</a><br>
+Site for a team working on a generic architecture for autonomous agents within
+computer games.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://www.itee.uq.edu.au/~penny/links.htm">http://www.itee.uq.edu.au/~penny/links.htm</a><br>
+A links page maintained by Penny Sweetster.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://www.itee.uq.edu.au/~penny/facilitating_learning_RTS.pdf">http://www.itee.uq.edu.au/~penny/facilitating_learning_RTS.pdf</a><br>
+”Facilitating Learning in a Real Time Strategy Computer Game” paper.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://www.gilgameshcontrite.com/Computer_AI/">http://www.gilgameshcontrite.com/Computer_AI/</a><br>
+”The Current State of Human-Level AI in Computer Simulations and Wargames”
+paper.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://staff.cs.utu.fi/~jounsmed/papers/PRinCG.pdf">http://staff.cs.utu.fi/~jounsmed/papers/PRinCG.pdf</a><br>
+”Role of Pattern Recognition in Computer Games” paper.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://www.toadstool.net/games/adventure/source.htm">http://www.toadstool.net/games/adventure/source.htm</a><br>
+Assembly source code for Adventure.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://www.codebeach.com/index.asp?tabID=1&amp;categoryID=3&amp;subcategoryID=11">http://www.codebeach.com/index.asp?tabID=1&amp;categoryID=3&amp;subcategoryID=11</a><br>
+A directory of downloadable, source included games.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://ai-depot.com/GameAI/GameTree.html">http://ai-depot.com/GameAI/GameTree.html</a><br>
+”Game Trees in Realtime Games” article.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://www.cs.ualberta.ca/~aixplore/learning/DecisionTrees/InterArticle/1-DecisionTree.html">http://www.cs.ualberta.ca/~aixplore/learning/DecisionTrees/InterArticle/1-DecisionTree.html</a><br>
+Using a decision tree to solve your office sports pool.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://www.planetquake.com/minion/home.htm">http://www.planetquake.com/minion/home.htm</a><br>
+Page with lots of info on creating Quake Bots.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://ai.eecs.umich.edu/cogarch3/Brooks/Brooks.html">http://ai.eecs.umich.edu/cogarch3/Brooks/Brooks.html</a><br>
+Reference page for Rodney Brooks’ subsumption architecture paper.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://www.gamedev.net/reference/articles/article200.asp">http://www.gamedev.net/reference/articles/article200.asp</a><br>
+FAQ for comp.ai.games.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://www.red3d.com/breese/navigation.html">http://www.red3d.com/breese/navigation.html</a><br>
+Links page to lots of navigation issues: robotics, games, others.<br
+style='mso-special-character:line-break'>
+<![if !supportLineBreakNewLine]><br style='mso-special-character:line-break'>
+<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://www.isd.mel.nist.gov/projects/teamapi/Software/FiniteStateMachine/doc/index.html">http://www.isd.mel.nist.gov/projects/teamapi/Software/FiniteStateMachine/doc/index.html</a><br>
+A US government created, open source, Visual C++ class library for FSM
+creation.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://ai.eecs.umich.edu/people/laird/papers/GDC99.pdf">http://ai.eecs.umich.edu/people/laird/papers/GDC99.pdf</a><br>
+Michael van Lent and John Laird’s paper on the Soar project.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://ai.eecs.umich.edu/people/laird/gamesresearch.html">http://ai.eecs.umich.edu/people/laird/gamesresearch.html</a><br>
+John Laird’s Game AI research page.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://www.apa.org/journals/psp/psp784772.html">http://www.apa.org/journals/psp/psp784772.html</a><br>
+An article from the Jounal of Personality and Social Psychology detailing the
+effects of videogames on violence and behavior.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-family:Arial'><a href="http://faile.sourceforge.net/">http://faile.sourceforge.net/</a><br>
+The home page for Faile, an open source, free, master level chess program.<o:p></o:p></span></p>
+
+<p class=MsoNormal><span style='font-size:10.5pt;font-family:"Times New Roman"'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+</div>
+
+</div>
+
+</span>
+</body>
+
+</html>

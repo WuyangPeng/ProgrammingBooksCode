@@ -1,0 +1,166 @@
+<html>
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>Fly3D Tutorial 12 - Creating a front-end</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<h1>Fly3D SDK</h1>
+<h2><a href="tutorials.htm">Tutorials</a></h2>
+<h3 align="right"><a href="../fly3d.htm">Home</a></h3>
+<h3>Tutorial 12</h3>
+<p>Creating a front-end</p>
+<p>&middot; Introduction</p>
+<p>After finishing this tutorial you will have created a new front-end executable. 
+  This front-end will be able to run any Fly3D level and is the simplest possible 
+  front end. It creates a window, sets full screen mode, initialises the engine, 
+  loads a level and starts the game</p>
+<p>&middot; Visual C++ operations</p>
+<p>1) Open the Visual C++ Fly3D Workspace</p>
+<p>2) Select the menu option File/New to create a new project</p>
+<p>3) Select the projects tab and the Win32 Application type</p>
+<p>4) Set the project location to the flysdk\frontend path and name the project 
+  'flyfe'. Make sure to select 'add to curent workspace' to keep all Fly3D front-ends 
+  projects in a single workspace.</p>
+<p>5) Select an empty project and add the following flyfe.cpp file to the project:</p>
+<p class="code">#include &lt;windows.h><br>
+  #include &lt;Fly3D.h><br>
+  <br>
+  char szTitle[100]="MyGame Title";<br>
+  char szWindowClass[100]="MyGame";<br>
+  <br>
+  // loads the menu level<br>
+  void LoadLevel(HWND hWnd, HINSTANCE hInst)<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;init_engine(hWnd,hInst,FLYAPPID_FLYFRONTEND);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;init_directx();<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;init_render(FLY_RENDER_OPENGL);<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;fullscreen=1;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;rend-&gt;SetFullScreen();<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;flyengine-&gt;open_fly_file(&quot;menu/menu.fly&quot;);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;flyengine-&gt;init_texture_cache();<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;InvalidateRect(hFlyWnd, 0, 0);<br>
+  }<br>
+  <br>
+  // main window message processing<br>
+  LRESULT CALLBACK WinFunc (HWND hWnd, UINT mens, WPARAM wParam, LPARAM lParam)<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp; switch (mens)<br>
+  &nbsp;&nbsp;&nbsp; {<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // window resize<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case WM_SIZE:<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (rend)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  rend-&gt;ResizeView(LOWORD(lParam),HIWORD(lParam));<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // window activation<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case WM_ACTIVATE:<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (flyengine)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  if (LOWORD(wParam)==WA_INACTIVE || flyengine-&gt;con.mode)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  flyengine-&gt;noinput=1;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  else<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  flyengine-&gt;noinput=0;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // quit app<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case WM_DESTROY:<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; PostQuitMessage 
+  (0);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; break;<br>
+  &nbsp;&nbsp;&nbsp; }<br>
+  <br>
+  &nbsp;&nbsp;&nbsp; return DefWindowProc(hWnd, mens, wParam, lParam);<br>
+  }<br>
+  <br>
+  int WINAPI WinMain (HINSTANCE hInst, HINSTANCE hPrev, LPSTR lp, int nCmd)<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp; WNDCLASS wcl;<br>
+  &nbsp;&nbsp;&nbsp; MSG msg;<br>
+  <br>
+  &nbsp;&nbsp;&nbsp; // register window class<br>
+  &nbsp;&nbsp;&nbsp; wcl.style = CS_HREDRAW | CS_VREDRAW;<br>
+  &nbsp;&nbsp;&nbsp; wcl.lpfnWndProc = (WNDPROC)WinFunc;<br>
+  &nbsp;&nbsp;&nbsp; wcl.cbClsExtra = 0;<br>
+  &nbsp;&nbsp;&nbsp; wcl.cbWndExtra = 0;<br>
+  &nbsp;&nbsp;&nbsp; wcl.hInstance = hFlyInstance;<br>
+  &nbsp;&nbsp;&nbsp; wcl.hIcon = LoadIcon(NULL, IDI_WINLOGO);<br>
+  &nbsp;&nbsp;&nbsp; wcl.hCursor = 0;<br>
+  &nbsp;&nbsp;&nbsp; wcl.hbrBackground = (HBRUSH)(COLOR_WINDOW+1);<br>
+  &nbsp;&nbsp;&nbsp; wcl.lpszMenuName = NULL;<br>
+  &nbsp;&nbsp;&nbsp; wcl.lpszClassName = szWindowClass;<br>
+  &nbsp;&nbsp;&nbsp; if (!RegisterClass (&amp;wcl))<br>
+  &nbsp;&nbsp;&nbsp; {<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MessageBox (0, &quot;Can't register 
+  Window&quot;, &quot;ERROR&quot;, MB_OK);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
+  &nbsp;&nbsp;&nbsp; }<br>
+  <br>
+  &nbsp;&nbsp;&nbsp; // cerate main window<br>
+  &nbsp;&nbsp;&nbsp; HWND hWndMain = CreateWindowEx(0,szWindowClass,szTitle,WS_POPUP,0, 
+  0,<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GetSystemMetrics( 
+  SM_CXSCREEN ),GetSystemMetrics( SM_CYSCREEN ),<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NULL,NULL,hFlyInstance,NULL);<br>
+  <br>
+  &nbsp;&nbsp;&nbsp; // load the level<br>
+  &nbsp;&nbsp;&nbsp; ShowWindow (hWndMain, SW_MAXIMIZE);<br>
+  &nbsp;&nbsp;&nbsp; LoadLevel (hWndMain, hFlyInstance);<br>
+  <br>
+  &nbsp;&nbsp;&nbsp; // main loop<br>
+  &nbsp;&nbsp;&nbsp; while (1)&nbsp;<br>
+  &nbsp;&nbsp;&nbsp; {<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; while (PeekMessage(&amp;msg, NULL, 0, 0, PM_NOREMOVE) 
+  == TRUE)&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (GetMessage(&amp;msg, NULL, 0, 
+  0))&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (flyengine &amp;&amp; 
+  (<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (msg.message==WM_KEYDOWN 
+  &amp;&amp; msg.wParam==VK_ESCAPE) ||<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (msg.message==WM_CHAR 
+  &amp;&amp; flyengine-&gt;con.mode &amp;&amp; msg.wParam!=VK_ESCAPE)))<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  flyengine-&gt;con.key_press(msg.wParam);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TranslateMessage(&amp;msg);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DispatchMessage(&amp;msg);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else&nbsp;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // frees engine, render, 
+  directx and quits app<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;free_engine();<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;free_render(); <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; free_directx();<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return TRUE;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (rend &amp;&amp; flyengine)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (flyengine-&gt;step()) // simmulate<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rend-&gt;DrawView(); 
+  // draw view<br>
+  &nbsp;&nbsp;&nbsp; }<br>
+  } </p>
+<p>6) At the project settings change the follwing configurations in the Release 
+  and Debug versions:<br>
+</p>
+<p>- add the path '..\..\lib' to the 'Additional include directory' and 'Additional 
+  library path'.<br>
+  - change the 'Output file name' to '..\..\flyfe.exe' so that the exe is placed 
+  with the other front-ends at the flysdk root path.<br>
+  - set the 'Object/library modules' option to 'fly3d.lib user32.lib'</p>
+<p>7) Compile and run the new front-end. It will set full screen and run the
+menu.fly level. </p>
+<p>&nbsp;</p>
+</body>
+</html>

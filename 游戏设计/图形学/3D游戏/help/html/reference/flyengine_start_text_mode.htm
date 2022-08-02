@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>flyEngine::start_text_mode</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="flyengine.htm">flyEngine</a>::start_text_mode</h2>
+<h3>Prototype</h3>
+<p class="code">void start_text_mode()</p>
+<h3>Parameters</h3>
+<p>None</p>
+	
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This function starts text mode. It sets an orthographic camera and future rendering 
+  calls can use 2D vertices with screen co-ordinates. Use draw_text and draw_text 
+  center for drawing text with the current selected font in <i>fontspic</i> flyEngine 
+  member variable<i>.</i> All status and 2D game interface must be draw after 
+  starting text mode. Text mode is ended calling end_text_mode function.</p>
+</body>
+</html>

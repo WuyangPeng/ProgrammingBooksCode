@@ -1,0 +1,34 @@
+// this goes in PointLight.h
+
+class PointLight: public Light {	
+	public:
+			...		
+		virtual Vector3D
+		get_direction(ShadeRec& sr);
+
+		virtual RGBColor
+		L(ShadeRec& sr);
+
+	private:
+		
+		float 		ls;
+		RGBColor 	color;
+		Vector3D 	location;
+};
+
+
+
+
+
+// this goes in PointLight.cpp
+
+Vector3D
+PointLight::get_direction(ShadeRec& sr) {	
+	return ((location - sr.hitPoint).hat());
+}
+		
+RGBColor
+PointLight::L(const ShadeRec& sr) const {	
+	return (ls * color);
+}
+

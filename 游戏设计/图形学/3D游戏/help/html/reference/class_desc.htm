@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>class class_desc</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2>class class_desc</h2>
+<h3>Definition</h3>
+<p class="code">class class_desc<br>
+  {<br>
+  &nbsp; public:<br>
+  &nbsp; virtual void *create()=0;<br>
+  &nbsp; virtual char *get_name()=0;<br>
+  &nbsp;&nbsp;virtual int get_type()=0;<br>
+  };</p>
+<h3>Data Members</h3>
+<p>None</p>
+<h3>Methods</h3>
+<p><a href="class_desc_create.htm">create</a>, <a href="class_desc_get_name.htm">get_name</a>, 
+  <a href="class_desc_get_type.htm">get_type</a></p>
+<h3>Remarks</h3>
+<p>This class holds the description for the classes defined in Fly3D plug-ins. 
+  Each Fly3D plug-in will enumerate a fixed number of instances to this class and 
+  each will represent a game object. Its virtual functions are used to create 
+  and get information about the plug-in object class.</p>
+<h3>See Also</h3>
+<p><a href="param_desc.htm">param_desc</a>, <a href="flydll.htm">flydll</a>, <a href="flydllgroup.htm">flydllgroup</a></p>
+</body>
+</html>

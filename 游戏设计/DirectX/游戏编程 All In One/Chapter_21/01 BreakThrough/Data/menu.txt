@@ -1,0 +1,4 @@
+Graphics/menu.bmp 1
+255 0 255
+8 11
+1

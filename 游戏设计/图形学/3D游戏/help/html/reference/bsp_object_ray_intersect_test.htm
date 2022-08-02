@@ -1,0 +1,57 @@
+<html>
+
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>bsp_object::ray_intersect_test</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2><a href="bsp_object.htm">bsp_object</a>::ray_intersect_test</h2>
+
+<h3>Prototype</h3>
+
+<p class="code">virtual int ray_intersect_test(vector&amp; ro,vector&amp; rd,float
+rad=0.0f)</p>
+
+<h3>Parameters</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>ro</td>
+    <td><a href="vector.htm">vector</a>&amp;</td>
+    <td>ray origin</td>
+  </tr>
+  <tr>
+    <td>rd</td>
+    <td><a href="vector.htm">vector</a>&amp;</td>
+    <td>ray_direction</td>
+  </tr>
+  <tr>
+    <td>rad</td>
+    <td>float</td>
+    <td>radius of collision</td>
+  </tr>
+</table>
+
+<h3>Return Value</h3>
+
+<p>Returns TRUE on any intersection, FALSE for no intersection.</p>
+
+<h3>Remarks</h3>
+
+<p>This virtual function implements the ray intersection test with the object. 
+  It should return the first collision (not necessarily closest).</p>
+
+<p>Its default behavior is to call <i>get_mesh</i> and if a mesh is returned, 
+  it calls the mesh <u><i>ray_intersect_test</i></u>.</p>
+
+</body>
+</html>

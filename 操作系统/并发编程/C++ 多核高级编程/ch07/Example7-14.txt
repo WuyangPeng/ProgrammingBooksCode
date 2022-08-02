@@ -1,0 +1,21 @@
+//Example 7-14 The main line for character removal agent  
+
+ 1  #include "clear_text.h"
+ 2  #include <iostream>
+ 3
+ 4
+ 5  int main(int argc, char** argv) {
+ 6    
+ 7     if(argc != 2){
+ 8        cerr << "usage:  characters_removed FileName:"  << endl;
+ 9        exit(0);
+10     }
+11     clear_text  CharactersRemoved(argv[1]);
+12     if(CharactersRemoved()){
+13        CharactersRemoved.changesSaved();  
+14        return (1);
+15     }
+16     return(0);
+17  }
+18
+

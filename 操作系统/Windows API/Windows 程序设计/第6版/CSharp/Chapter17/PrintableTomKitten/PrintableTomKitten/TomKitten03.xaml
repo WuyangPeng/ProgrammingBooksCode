@@ -1,0 +1,13 @@
+﻿<UserControl
+    x:Class="PrintableTomKitten.TomKitten03"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Grid VerticalAlignment="Center"
+          MaxWidth="640">
+        <TextBlock Style="{StaticResource frontMatterTextStyle}">
+            THE TALE<LineBreak />OF<LineBreak />
+            <Run FontSize="48">TOM KITTEN</Run>
+        </TextBlock>
+    </Grid>
+</UserControl>

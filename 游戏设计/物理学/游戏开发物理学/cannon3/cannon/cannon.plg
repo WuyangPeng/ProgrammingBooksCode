@@ -1,0 +1,38 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: cannon - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "c:\windows\TEMP\RSP8241.TMP" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /FR"Debug/" /Fp"Debug/cannon.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /c 
+"C:\Program Files\Microsoft Visual Studio\My Projects\cannon3\cannon.c"
+]
+Creating command line "cl.exe @c:\windows\TEMP\RSP8241.TMP" 
+Creating temporary file "c:\windows\TEMP\RSP8242.TMP" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/cannon.pdb" /debug /machine:I386 /out:"Debug/cannon.exe" /pdbtype:sept 
+".\Debug\cannon.obj"
+".\Debug\resources.res"
+"..\..\..\Vc98\lib\Comctl32.lib"
+"..\..\..\Vc98\lib\User32.lib"
+]
+Creating command line "link.exe @c:\windows\TEMP\RSP8242.TMP"
+<h3>Output Window</h3>
+Compiling...
+cannon.c
+Linking...
+Creating command line "bscmake.exe /nologo /o"Debug/cannon.bsc"  ".\Debug\cannon.sbr""
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+cannon.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

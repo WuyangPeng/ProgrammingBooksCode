@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>bsp_object::step</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="bsp_object.htm">bsp_object</a>::step</h2>
+<h3>Prototype</h3>
+<p class="code">virtual int step(int dt)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>dt</td>
+	 <td>int</td>
+	 <td>time interval in ms from last frame</td>
+  </tr>
+  
+  
+</table>
+<h3>Return Value</h3>
+<p>If it returns TRUE, the object is repositioned in bsp tree, returns FALSE if 
+  the object does not move.</p>
+<h3>Remarks</h3>
+<p>This virtual function is used for updating the object. The object must do
+whatever it has to do for the elapsed time interval (move, rotate, attack, ...
+whatever).</p>
+<p>Its default behaviour is to move like a particle if not implemented by a sub-class.</p>
+</body>
+</html>

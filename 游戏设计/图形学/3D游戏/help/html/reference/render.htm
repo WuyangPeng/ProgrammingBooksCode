@@ -1,0 +1,70 @@
+<html>
+
+<head>
+<title>class render</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class render</h2>
+
+<h3>Definition</h3>
+
+<p class="code">class render<br>
+  {<br>
+  &nbsp;&nbsp;public:<br>
+  &nbsp;&nbsp;int type;<br>
+  <br>
+  &nbsp;&nbsp;virtual ~render()<br>
+  &nbsp;&nbsp;{ ; };<br>
+  <br>
+  &nbsp;&nbsp;virtual int CreateView(HWND wnd)=0;<br>
+  &nbsp;&nbsp;virtual void DeleteView()=0;<br>
+  &nbsp;&nbsp;virtual void ResizeView(int sx,int sy)=0;<br>
+  &nbsp;&nbsp;virtual void InitView()=0;<br>
+  &nbsp;&nbsp;virtual void DrawView()=0;<br>
+  &nbsp;&nbsp;virtual void SetFullScreen()=0;<br>
+  };</p>
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr> 
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr> 
+    <td>type</td>
+    <td>int</td>
+    <td>render type:<br>
+      0 - None<br>
+      1 - OpenGL</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p><a href="render_createview.htm">CreateView</a>, <a href="render_deleteview.htm">DeleteView</a>, 
+  <a href="render_resizeview.htm">ResizeView</a>, <a href="render_initview.htm">InitView</a>, 
+  <a href="render_drawview.htm">DrawView</a>, <a href="render_setfullscreen.htm">SetFullScreen</a></p>
+
+<h3>Remarks</h3>
+
+<p>This is the base class for the render. The OpenGL implementation of the
+render is made by sub-classing this class and implementing its virtual function
+in the selected graphics API.&nbsp;<br>
+ A global variable named <i>render</i> is the main interface with
+this class and must be initialized/freed with the <i>init_render</i> and <i>close_render</i>
+global functions.
+</p>
+
+<h3>See Also</h3>
+
+<p><a href="variables.htm">Global Variables</a>, <a href="functions.htm">Global Functions</a>,
+<a href="rendergl.htm">renderGL</a></p>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>face::inverse_map</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="face.htm">face</a>::inverse_map</h2>
+<h3>Prototype</h3>
+<p class="code">void inverse_map(vector&amp; p,float&amp; u,float&amp; v)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>p</td>
+	 <td><a href="vector.htm">vector</a>&amp;</td>
+	 <td>point in object space</td>
+  </tr>
+  <tr>
+	 <td>u</td>
+	 <td>float&amp;</td>
+	 <td>point co-ordinate in u axis</td>
+  </tr>
+  <tr>
+	 <td>v</td>
+	 <td>float&amp;</td>
+	 <td>point co-ordinate in v axis</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This function maps a point from object space into light map texture space.&nbsp;<br>
+  The <i>p</i> parameter defines a point in the object's space that is mapped 
+  into an object light map texture space 2D point.<br>
+  This is used to find which light map pixel corresponds to a point in the face 
+  surface.</p>
+
+</body>
+</html>

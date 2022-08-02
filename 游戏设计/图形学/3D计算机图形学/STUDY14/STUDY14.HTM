@@ -1,0 +1,144 @@
+<!doctype html public "-//IETF//DTD.HTM//EN">
+<HTML><HEAD>
+<TITLE>Learning Rendering:Study 14</TITLE>
+</HEAD>
+<BODY>
+<A HREF="../STUDY13/STUDY13.HTM">&lt;&lt;</A>
+<A HREF="../STUDY15/STUDY15.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>
+<HR>
+<H1>STUDIES 14-18	RADIOSITY STUDIES</H1>
+
+<H2>STUDY 14 BASIC CLASSICAL RADIOSITY </H2>
+<H3>(Hemi-cube evaluation of form factors,progressive refinement iteration, no subdivision).</H3>
+
+<table border=0 width="100%">
+<tr><td><A HREF="HCR_W.TIF"><IMG SRC="HCR_W.GIF" WIDTH=100 HEIGHT=75 ALT="hcr_w"></A></td><td>
+ wire frame of the scene used in this study. This scene has been carefully constructed to avoid problems that arise out of 'interpenetrating geometry'. Note that the table edge coincides with a subdivision line on the wall. When objects are treated as independently of each other, problems
+arise from light and shadow leakage. These are highlighted in<A HREF="../STUDY18/STUDY18.HTM"> STUDY 18</A>.</td></tr>
+<tr><td><A HREF="HCUBE_FL.TIF"><IMG SRC="HCUBE_FL.GIF" WIDTH=100 HEIGHT=75 ALT="hcube_fl"></A></td><td>	
+This interesting image shows the state of a hemicube placed on the window after all other patches in the scene have been projected onto it. A colour identifies each patch in the scene (and every partial patch) that can be seen by this hemi-cube. The algorithm then simply summates all the hemicube element form factors associated with each patch.</td></tr>
+</table>
+
+
+<table border=0>
+<tr><td colspan=3>The individual  hemicube face projections.</td></tr>
+<tr><td><A HREF="HCUBE_M.TIF"><IMG SRC="HCUBE_M.GIF" WIDTH=100 HEIGHT=100 ALT="hcube_m"></A></td><td>
+<A HREF="HCUBE_T.TIF"><IMG SRC="HCUBE_T.GIF" WIDTH=100 HEIGHT=100 ALT="hcube_t"></A></td><td>
+<A HREF="HCUBE_B.TIF"><IMG SRC="HCUBE_B.GIF" WIDTH=100 HEIGHT=100 ALT="hcube_b"></A></td></tr>
+<tr><td><A HREF="HCUBE_L.TIF"><IMG SRC="HCUBE_L.GIF" WIDTH=100 HEIGHT=100 ALT="hcube_l"></A></td><td>
+<A HREF="HCUBE_R.TIF"><IMG SRC="HCUBE_R.GIF" WIDTH=100 HEIGHT=100 ALT="hcube_r"></A>
+</td></tr>
+</table>
+
+<table border=0 width="100%">
+<tr><td><A HREF="HCR_M.TIF"><IMG SRC="HCR_M.GIF" WIDTH=100 HEIGHT=57 ALT="hcr_m"></A></td><td>
+image array of the following 12 images that are selected from the series
+hcr1 to hcr8 illustrate the radiosity solution after 20, 70,120, 250, 500, 1000, 2000, 5000.
+</td></tr>
+</table>
+
+<table border=0>
+<tr><td colspan=4>The individual images in the montage array are</td></tr>
+<tr>
+<td><A HREF="HCR1A.TIF"><IMG SRC="HCR1A.GIF" WIDTH=100 HEIGHT=75 ALT="hcr1a"></A></td>
+<td><A HREF="HCR1B.TIF"><IMG SRC="HCR1B.GIF" WIDTH=100 HEIGHT=75 ALT="hcr1b"></A></td>
+<td><A HREF="HCR1C.TIF"><IMG SRC="HCR1C.GIF" WIDTH=100 HEIGHT=75 ALT="hcr1c"></A></td>
+<td><A HREF="HCR1D.TIF"><IMG SRC="HCR1D.GIF" WIDTH=100 HEIGHT=75 ALT="hcr1d"></A></td>
+</tr>
+<tr><td>hcr1a</td><td>hcr1b</td><td>hcr1c</td><td>hcr1d</td></tr>
+<tr>
+<td><A HREF="HCR4A.TIF"><IMG SRC="HCR4A.GIF" WIDTH=100 HEIGHT=75 ALT="hcr4a"></A></td>
+<td><A HREF="HCR4B.TIF"><IMG SRC="HCR4B.GIF" WIDTH=100 HEIGHT=75 ALT="hcr4b"></A></td>
+<td><A HREF="HCR4C.TIF"><IMG SRC="HCR4C.GIF" WIDTH=100 HEIGHT=75 ALT="hcr4c"></A></td>
+<td><A HREF="HCR4D.TIF"><IMG SRC="HCR4D.GIF" WIDTH=100 HEIGHT=75 ALT="hcr4d"></A></td>
+</tr>
+<tr><td>hcr4a</td><td>hcr4b</td><td>hcr4c</td><td>hcr4d</td></tr>
+<tr>
+<td><A HREF="HCR8A.TIF"><IMG SRC="HCR8A.GIF" WIDTH=100 HEIGHT=75 ALT="hcr8a"></A></td>
+<td><A HREF="HCR8B.TIF"><IMG SRC="HCR8B.GIF" WIDTH=100 HEIGHT=75 ALT="hcr8b"></A></td>
+<td><A HREF="HCR8C.TIF"><IMG SRC="HCR8C.GIF" WIDTH=100 HEIGHT=75 ALT="hcr8c"></A></td>
+<td><A HREF="HCR8D.TIF"><IMG SRC="HCR8D.GIF" WIDTH=100 HEIGHT=75 ALT="hcr8d"></A></td>
+</tr>
+<tr><td>hcr8a</td><td>hcr8b</td><td>hcr8c</td><td>hcr8d</td></tr>
+</table>
+
+From left to right the images (below) are:
+
+<DL>
+<DT>hcr*a	 (* represents a number from 1-8)
+<DD>The radiosity solution as output from the iteration process. Each patch is allocated a constant radiosity.
+<DT>hcr*b 	
+<DD>The previous solution after it has been subject to a form of Gouraud interpolation. 
+<DT>hcr*c	
+<DD>The same solution with  the addition of an ambient term. The addition of an ambient term gives an early 'full lit' solution. The value of the ambient term is calculated by considering the total unshot energy and distributing it evenly amongst all the patches in the scene. As the solution progresses the 'incorrect' ambient term reduces as the unshot energy is distributed correctly around the scene.
+<DT>hcr*d
+<DD>The difference between *b and *c. This gives a visual indication of the energy that is to be added
+to account for the unshot energy. Going down the d column results in darker images as the
+ambient energy injected into the scene gets less and less
+<P>Going down the b column (no added ambient term) the image increase in brightness as more
+and more of the unshot energy is accounted for.</P>
+<P>Going down the c column (ambient  term included) the ambient energy decrease and the
+images get darker as they approach a solution. This because, although the added ambient term
+at each stage in the solution is calculated according to unshot energy, energy is being absorbed
+all the time because the patch reflectivities are less than unity.</P>
+</DL>
+
+<table border=0>
+<tr><th> hcr*a</th><th>hcr*b</th><th>hcr*c</th><th>hcr*d</th></tr>
+<tr>
+<td><A HREF="HCR1A.TIF"><IMG SRC="HCR1A.GIF" WIDTH=100 HEIGHT=75 ALT="hcr1a"></A></td>
+<td><A HREF="HCR1B.TIF"><IMG SRC="HCR1B.GIF" WIDTH=100 HEIGHT=75 ALT="hcr1b"></A></td>
+<td><A HREF="HCR1C.TIF"><IMG SRC="HCR1C.GIF" WIDTH=100 HEIGHT=75 ALT="hcr1c"></A></td>
+<td><A HREF="HCR1D.TIF"><IMG SRC="HCR1D.GIF" WIDTH=100 HEIGHT=75 ALT="hcr1d"></A></td></tr>
+<tr>
+<td><A HREF="HCR2A.TIF"><IMG SRC="HCR2A.GIF" WIDTH=100 HEIGHT=75 ALT="hcr2a"></A></td>
+<td><A HREF="HCR2B.TIF"><IMG SRC="HCR2B.GIF" WIDTH=100 HEIGHT=75 ALT="hcr2b"></A></td>
+<td><A HREF="HCR2C.TIF"><IMG SRC="HCR2C.GIF" WIDTH=100 HEIGHT=75 ALT="hcr2c"></A></td>
+<td><A HREF="HCR2D.TIF"><IMG SRC="HCR2D.GIF" WIDTH=100 HEIGHT=75 ALT="hcr2d"></A></td></tr>
+<tr>
+<td><A HREF="HCR3A.TIF"><IMG SRC="HCR3A.GIF" WIDTH=100 HEIGHT=75 ALT="hcr3a"></A></td>
+<td><A HREF="HCR3B.TIF"><IMG SRC="HCR3B.GIF" WIDTH=100 HEIGHT=75 ALT="hcr3b"></A></td>
+<td><A HREF="HCR3C.TIF"><IMG SRC="HCR3C.GIF" WIDTH=100 HEIGHT=75 ALT="hcr3c"></A></td>
+<td><A HREF="HCR3D.TIF"><IMG SRC="HCR3D.GIF" WIDTH=100 HEIGHT=75 ALT="hcr3d"></A></td></tr>
+<tr>
+<td><A HREF="HCR4A.TIF"><IMG SRC="HCR4A.GIF" WIDTH=100 HEIGHT=75 ALT="hcr4a"></A></td>
+<td><A HREF="HCR4B.TIF"><IMG SRC="HCR4B.GIF" WIDTH=100 HEIGHT=75 ALT="hcr4b"></A></td>
+<td><A HREF="HCR4C.TIF"><IMG SRC="HCR4C.GIF" WIDTH=100 HEIGHT=75 ALT="hcr4c"></A></td>
+<td><A HREF="HCR4D.TIF"><IMG SRC="HCR4D.GIF" WIDTH=100 HEIGHT=75 ALT="hcr4d"></A></td></tr>
+<tr>
+<td><A HREF="HCR5A.TIF"><IMG SRC="HCR5A.GIF" WIDTH=100 HEIGHT=75 ALT="hcr5a"></A></td>
+<td><A HREF="HCR5B.TIF"><IMG SRC="HCR5B.GIF" WIDTH=100 HEIGHT=75 ALT="hcr5b"></A></td>
+<td><A HREF="HCR5C.TIF"><IMG SRC="HCR5C.GIF" WIDTH=100 HEIGHT=75 ALT="hcr5c"></A></td>
+<td><A HREF="HCR5D.TIF"><IMG SRC="HCR5D.GIF" WIDTH=100 HEIGHT=75 ALT="hcr5d"></A></td></tr>
+<tr>
+<td><A HREF="HCR6A.TIF"><IMG SRC="HCR6A.GIF" WIDTH=100 HEIGHT=75 ALT="hcr6a"></A></td>
+<td><A HREF="HCR6B.TIF"><IMG SRC="HCR6B.GIF" WIDTH=100 HEIGHT=75 ALT="hcr6b"></A></td>
+<td><A HREF="HCR6C.TIF"><IMG SRC="HCR6C.GIF" WIDTH=100 HEIGHT=75 ALT="hcr6c"></A></td>
+<td><A HREF="HCR6D.TIF"><IMG SRC="HCR6D.GIF" WIDTH=100 HEIGHT=75 ALT="hcr6d"></A></td></tr>
+<tr>
+<td><A HREF="HCR7A.TIF"><IMG SRC="HCR7A.GIF" WIDTH=100 HEIGHT=75 ALT="hcr7a"></A></td>
+<td><A HREF="HCR7B.TIF"><IMG SRC="HCR7B.GIF" WIDTH=100 HEIGHT=75 ALT="hcr7b"></A></td>
+<td><A HREF="HCR7C.TIF"><IMG SRC="HCR7C.GIF" WIDTH=100 HEIGHT=75 ALT="hcr7c"></A></td>
+<td><A HREF="HCR7D.TIF"><IMG SRC="HCR7D.GIF" WIDTH=100 HEIGHT=75 ALT="hcr7d"></A></td></tr>
+<tr>
+<td><A HREF="HCR8A.TIF"><IMG SRC="HCR8A.GIF" WIDTH=100 HEIGHT=75 ALT="hcr8a"></A></td>
+<td><A HREF="HCR8B.TIF"><IMG SRC="HCR8B.GIF" WIDTH=100 HEIGHT=75 ALT="hcr8b"></A></td>
+<td><A HREF="HCR8C.TIF"><IMG SRC="HCR8C.GIF" WIDTH=100 HEIGHT=75 ALT="hcr8c"></A></td>
+<td><A HREF="HCR8D.TIF"><IMG SRC="HCR8D.GIF" WIDTH=100 HEIGHT=75 ALT="hcr8d"></A></td></tr>
+</table>
+
+<table border=0 width="100%">
+<tr><td><A HREF="HCR8E.TIF"><IMG SRC="HCR8E.GIF" WIDTH=100 HEIGHT=75 ALT="hcr8e"></A></td>	
+<td>Final texture mapped solution</td></tr>
+<tr><td><A HREF="HCR8F.TIF"><IMG SRC="HCR8F.GIF" WIDTH=100 HEIGHT=75 ALT="hcr8f"></A></td>	
+<td>Radiosity with a ray tracing pass for the specular objects</td></tr>
+</table>
+
+
+<HR>
+<A HREF="../STUDY13/STUDY13.HTM">&lt;&lt;</A>
+<A HREF="../STUDY15/STUDY15.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>

@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>flydllgroup::load_default_param</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="flydllgroup.htm">flydllgroup</a>::load_default_param</h2>
+<h3>Prototype</h3>
+<p class="code">void load_default_param(bsp_object *o,char *sec,fly_pak *file)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 
+    <td>o</td>
+	 
+    <td><a href="bsp_object.htm">bsp_object</a> *</td>
+	 
+    <td>object to set parameters</td>
+  </tr>
+  <tr>
+	 
+    
+    
+    <td>sec</td>
+	 
+    <td>char *</td>
+	 
+    <td>section from .fly file to get parameters from</td>
+  </tr>
+  <tr>
+	 
+    
+    
+    
+    <td>file</td>
+	 
+    <td><a href="fly_pak.htm">fly_pak</a> *</td>
+    <td>.fly file</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This function loads all default parameters (<i>pos</i>, <i>vel</i>, <i>force</i>, 
+  <i>rot</i>, <i>life</i>, <i>colflag</i>, <i>mass</i>, <i>radius</i>, <i>bump</i>, 
+  <i>friction</i>, <i>active</i>, <i>latedraw</i>) for the specified object. All 
+  <i> bsp_object</i> derived classes (implemented in Fly3D plug-ins) have these 
+  12 default parameters. </p>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<Page
+    x:Class="SkewSlideInText.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SkewSlideInText"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock Text="Hello!"
+                   FontSize="192"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   RenderTransformOrigin="0.5 1">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <SkewTransform x:Name="skew" />
+                    <TranslateTransform x:Name="translate" />
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+    </Grid>
+    
+    <Page.Triggers>
+        <EventTrigger>
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="translate"
+                                     Storyboard.TargetProperty="X"
+                                     From="-1000" Duration="0:0:1" />
+                    
+                    <DoubleAnimationUsingKeyFrames
+                                     Storyboard.TargetName="skew"
+                                     Storyboard.TargetProperty="AngleX">
+                        <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="15" />
+                        <LinearDoubleKeyFrame KeyTime="0:0:1" Value="30" />
+                        <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="0">
+                            <EasingDoubleKeyFrame.EasingFunction>
+                                <ElasticEase />
+                            </EasingDoubleKeyFrame.EasingFunction>
+                        </EasingDoubleKeyFrame>
+                    </DoubleAnimationUsingKeyFrames>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Page.Triggers>    
+</Page>

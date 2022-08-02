@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>flyEngine::join_multiplayer</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="flyengine.htm">flyEngine</a>::join_multiplayer</h2>
+<h3>Prototype</h3>
+<p class="code">int join_multiplayer(HWND hWnd,HINSTANCE hInst)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>hWnd</td>
+	 <td>HWND</td>
+	 <td>frontend window handle</td>
+  </tr>
+  <tr>
+	 <td>hInst</td>
+	 <td>HINSTANCE</td>
+	 <td>frontend instance handle</td>
+  </tr>
+  
+</table>
+<h3>Return Value</h3>
+<p>Returns TRUE if a game is joined, FALSE on any error or join cancel.</p>
+<h3>Remarks</h3>
+<p>This function is used to join a multiplayer game. A dialogue is shown with 
+  the player name and it lets the user select the server and the game to join. 
+  If a game is selected for joining, it loads the level the game is running on 
+  and returns TRUE. If the level is not in the user computer or the level name 
+  is not received, it returns FALSE and the game is not joined. When leaving the 
+  game, the multiplayer mode must be closed with the <i>close_multiplayer</i> 
+  function.</p>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!doctype html public "-//IETF//DTD.HTM//EN">
+<HTML><HEAD>
+<TITLE>Learning Rendering: Study 4a</TITLE>
+</HEAD>
+<BODY>
+<A HREF="STUDY4.HTM">&lt;&lt;</A>
+<A HREF="STUDY4B.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="INDEX.HTM" TARGET="_top">Top</a>
+<HR>
+<H1>STUDY 4	TEXTURE MAPPING</H1>
+
+
+<H2>ENVIRONMENT MAPPING</H2>
+<TABLE width="100%" border=0>
+<tr><TD>
+<A HREF="ENVM1.TIF"><IMG SRC="ENVM1.GIF" WIDTH=100 HEIGHT=75 ALT="envm1.gif"></A>		
+</td><td>
+Environment mapped teapot - low env. map resolution (32x32 for each of the six images.) The environment map is computed with the teapot removed from the scene and the view position at the centre of the teapot.
+</td></tr><tr><TD>
+<A HREF="ENVM1Z.TIF"><IMG SRC="ENVM1Z.GIF" WIDTH=100 HEIGHT=75 ALT="envm1z.gif"></A>	
+</td><td>
+Zoom in on the teapot. The reflections appear pixelated due to low map resolution. Note that this is entirely tolerable for the normal sized image and can also be used to simulate a non-perfect specular reflector
+</td></tr>
+</table>
+<TABLE border=0>
+<tr><TD>
+<A HREF="ENVM1A.TIF"><IMG SRC="ENVM1A.GIF" WIDTH=32 HEIGHT=32 ALT="envm1a.gif"></A>	
+</td><TD>
+<A HREF="ENVM1B.TIF"><IMG SRC="ENVM1B.GIF" WIDTH=32 HEIGHT=32 ALT="envm1b.gif"></A>	
+</td><TD>
+<A HREF="ENVM1C.TIF"><IMG SRC="ENVM1C.GIF" WIDTH=32 HEIGHT=32 ALT="envm1c.gif"></A>	
+</td></tr><tr><TD>
+<A HREF="ENVM1D.TIF"><IMG SRC="ENVM1D.GIF" WIDTH=32 HEIGHT=32 ALT="envm1d.gif"></A>	
+</td><TD>
+<A HREF="ENVM1E.TIF"><IMG SRC="ENVM1E.GIF" WIDTH=32 HEIGHT=32 ALT="envm1e.gif"></A>	
+</td><TD>
+<A HREF="ENVM1F.TIF"><IMG SRC="ENVM1F.GIF" WIDTH=32 HEIGHT=32 ALT="envm1f.gif"></A>	
+</td></tr>
+<tr><td colspan=3>
+images making up the environment map (32x32 pixels)
+</td></tr>
+</table>
+
+<TABLE width="100%" border=0>
+<tr><TD>
+<A HREF="ENVM1M.TIF"><IMG SRC="ENVM1M.GIF" WIDTH=100 HEIGHT=75 ALT="envm1m"></A>	
+</td><td>
+montage of the above six images in an environment cube.
+</td></tr><tr><TD>
+<A HREF="ENVM2.TIF"><IMG SRC="ENVM2.GIF" WIDTH=100 HEIGHT=75 ALT="envm2"></A>		
+</td><td>
+resolution of environment map images is  now increased to 128x128
+</td></tr><tr><TD>
+<A HREF="ENVM2Z.TIF"><IMG SRC="ENVM2Z.GIF" WIDTH=100 HEIGHT=75 ALT="envm2z"></A>
+</td><td>
+Zoom the in on teapot. Note that the  reflections are much sharper than before. The environment map is geometrically incorrect (see later comparison with a ray traced version). The 'incorrectness' is a function of the real size of the object in the environment. Another defect of environment mapping is that you cannot see self reflections (a  reflection of teapot itself). When the environment amp is generated the teapot is removed from the scene.
+</td></tr>
+</table>
+
+<TABLE border=0>
+<tr><TD>
+<A HREF="ENVM2A.TIF"><IMG SRC="ENVM2A.GIF" WIDTH=50 HEIGHT=50 ALT="envm2a"></A>	
+</td><TD>
+<A HREF="ENVM2B.TIF"><IMG SRC="ENVM2B.GIF" WIDTH=50 HEIGHT=50 ALT="envm2b"></A>	
+</td><TD>
+<A HREF="ENVM2C.TIF"><IMG SRC="ENVM2C.GIF" WIDTH=50 HEIGHT=50 ALT="envm2c"></A>	
+</td></tr><tr><TD>
+<A HREF="ENVM2D.TIF"><IMG SRC="ENVM2D.GIF" WIDTH=50 HEIGHT=50 ALT="envm2d"></A>	
+</td><TD>
+<A HREF="ENVM2E.TIF"><IMG SRC="ENVM2E.GIF" WIDTH=50 HEIGHT=50 ALT="envm2e"></A>	
+</td><TD>
+<A HREF="ENVM2F.TIF"><IMG SRC="ENVM2F.GIF" WIDTH=50 HEIGHT=50 ALT="envm2f"></A>	
+</td></tr>
+<tr><td colspan=3>
+images making up env map
+</td></tr>
+</table>
+
+<TABLE width="100%" border=0>
+<tr><TD>
+<A HREF="ENVM2M.TIF"><IMG SRC="ENVM2M.GIF" WIDTH=100 HEIGHT=75 ALT="envm2m"></A>	
+</td><td>
+montage of env images
+</td></tr><tr><TD>
+
+<A HREF="ENVM3.TIF"><IMG SRC="ENVM3.GIF" WIDTH=100 HEIGHT=75 ALT="envm3"></A>		
+</td><td>
+An attempt to use environment mapping to create reflections in the 
+mirror on the wall. Here the problem is where to position the viewpoint for the 
+environment map. With the resolution still at 128x128, the centre of the environment map is positioned just in front of the mirror surface. The reflections appear fuzzy even at the higher resolution because of the large planar surface.
+</td></tr><tr><TD>
+<A HREF="ENVM3Z.TIF"><IMG SRC="ENVM3Z.GIF" WIDTH=100 HEIGHT=75 ALT="envm3z"></A>	
+</td><td>
+Zoom in on  the mirror. The128x128 resolution works fine for teapot but not for the flat mirror because the teapot has curved surfaces and hence indexes into many parts of the environment map. However, with the mirror, the range of reflected angles is small and  only a small part of the environment map is used - hence the pixelated appearance of the reflections. This could be improved by increasing the resolution of the env map but the majority of it will still remain unused, wasting memory and computation. (see later for alternative method).
+</td></tr><tr><TD>
+<A HREF="ENVM4.TIF"><IMG SRC="ENVM4.GIF" WIDTH=100 HEIGHT=75 ALT="envm4"></A>		
+</td><td>
+This is a ray traced image of the teapot which uses geometrically correct reflections. Compare this to envm2z to show that environment mapping is not geometrically correct. The teapot now shows multiple reflections with itself.
+</td></tr><tr><TD>
+<A HREF="ENVM5.TIF"><IMG SRC="ENVM5.GIF" WIDTH=100 HEIGHT=75 ALT="envm5"></A>		
+</td><td>
+Here the size of the teapot has been increased by 50% to show that the geometric errors get worse as the size of the object increases - compare this with the next image.
+</td></tr><tr><TD>
+<A HREF="ENVM6.TIF"><IMG SRC="ENVM6.GIF" WIDTH=100 HEIGHT=75 ALT="envm6"></A>		
+</td><td>
+ray traced image with bigger teapot.
+</td></tr><tr><TD>
+<A HREF="ENVM7.TIF"><IMG SRC="ENVM7.GIF" WIDTH=100 HEIGHT=75 ALT="envm7"></A>		
+</td><td>
+This image is to show that extra effects can be created by performing  image processing on the images which comprise the environment map.Here, a low pass filter has been applied which blurs the images. The effect is similar to a reflective surface which also causes slight scattering of the light.
+</td></tr><tr><TD>
+<A HREF="ENVM7M.TIF"><IMG SRC="ENVM7M.GIF" WIDTH=100 HEIGHT=75 ALT="envm7m"></A>	
+</td><td>
+the environment cube for the above image.
+</td></tr><tr><TD>
+<A HREF="ENVM8.TIF"><IMG SRC="ENVM8.GIF" WIDTH=100 HEIGHT=75 ALT="envm8"></A>		
+</td><td>
+This to show that environment mapping can be used with real images as well as computer generated scenes.
+</td></tr><tr><TD>
+<A HREF="ENVM8M.TIF"><IMG SRC="ENVM8M.GIF" WIDTH=100 HEIGHT=75 ALT="envm8m"></A>	
+</td><td>
+The environment cube for the above image. Here the environment map was created 'artificially' from a 4 image panorama - the 4 centre images. The sky and ground images were created by arbitrarily/wrongly cutting and pasting from the panorama.
+</td></tr>
+</table>
+
+<HR>
+<A HREF="STUDY4.HTM">&lt;&lt;</A>
+<A HREF="STUDY4B.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>

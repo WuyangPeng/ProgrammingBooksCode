@@ -1,0 +1,83 @@
+<html>
+
+<head>
+<title>class fly_pak</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class fly_pak</h2>
+
+<h3>Definition</h3>
+
+<p class="code">class fly_pak<br>
+{<br>
+&nbsp; public:<br>
+&nbsp; char *buf;<br>
+&nbsp; unsigned long pos, len;<br>
+<br>
+&nbsp; fly_pak();<br>
+<br>
+&nbsp; void seek(long offset);<br>
+&nbsp; bool open(char *filename);<br>
+&nbsp; void close();<br>
+&nbsp; int read(void *dest, int size);<br>
+&nbsp; void get_profile_string(char *section, char *key, char *dest);<br>
+&nbsp; void get_string(char *dest);<br>
+&nbsp; int get_int();<br>
+&nbsp; float get_float();<br>
+&nbsp; FILE *get_fp(char *filename);<br>
+<br>
+&nbsp; ~fly_pak();<br>
+};</p>
+
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>buf</td>
+    <td>char *</td>
+    <td>file buffer</td>
+  </tr>
+  <tr>
+    <td>pos</td>
+    <td>unsigned long</td>
+    <td>position inside buffer</td>
+  </tr>
+  <tr>
+    <td>len</td>
+    <td>unsigned long</td>
+    <td>length of buffer</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p> <a href="fly_pak_seek.htm">seek</a>,
+<a href="fly_pak_open.htm">open</a>, <a href="fly_pak_close.htm">close</a>, <a
+href="fly_pak_read.htm">read</a>, <a href="fly_pak_get_profile_string.htm">get_profile_string</a>,
+<a href="fly_pak_get_string.htm">get_string</a>, <a href="fly_pak_get_int.htm">get_int</a>,
+<a href="fly_pak_get_float.htm">get_float</a>, <a href="fly_pak_get_fp.htm">get_fp</a> </p>
+
+<h3>Remarks</h3>
+
+<p>This class implements the loading of files. It should be used as it can read 
+  standalone files or files included in .fpk packages. The .fpk file is a group 
+  of files that are packed into a single file. When opening a file, first it tries 
+  to open the standalone file, and if it fails to find the file, it looks up the 
+  file path for a .fpk file that could contain the desired file.</p>
+
+<h3>See Also</h3>
+
+<p><a href="fly_pak_util.htm">flypakutil</a></p>
+
+</body>
+</html>

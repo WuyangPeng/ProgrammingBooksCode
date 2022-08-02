@@ -1,0 +1,35 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Connect_SocketObject - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP42A.tmp" with contents
+[
+/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/Connect_SocketObject.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"G:\Source\Book\Chapter5\Connect_SocketObject\Connect_SocketObject.cpp"
+"G:\Source\Book\Chapter5\SocketObject\SocketObject.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP42A.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP42B.tmp" with contents
+[
+ws2_32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/Connect_SocketObject.pdb" /machine:I386 /out:"Release/Connect_SocketObject.exe" 
+.\Release\Connect_SocketObject.obj
+.\Release\SocketObject.obj
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP42B.tmp"
+<h3>Output Window</h3>
+Compiling...
+Connect_SocketObject.cpp
+SocketObject.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+Connect_SocketObject.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

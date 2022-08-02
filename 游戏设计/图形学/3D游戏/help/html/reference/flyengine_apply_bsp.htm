@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>flyEngine::apply_bsp</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="flyengine.htm">flyEngine</a>::apply_bsp</h2>
+<h3>Prototype</h3>
+<p class="code">void apply_bsp(bsp_node *n,vector& p,float rad,void *data,void (*func)(void 
+  *data,bsp_object *e))<br>
+void apply_bsp(bsp_node *n,vector *p,int np,void *data,void (*func)(void *data,bsp_object *e));</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>n</td>
+	 <td><a href="bsp_node.htm">bsp_node</a> *</td>
+	 <td>bsp root node</td>
+  </tr>
+  <tr>
+	 <td>p</td>
+	 <td><a href="vector.htm">vector</a>&amp;</td>
+	 <td>point</td>
+  </tr>
+  <tr>
+	 <td>p</td>
+	 <td>vector *</td>
+	 <td>array of points defining a volume</td>
+  </tr>
+  <tr>
+	 <td>np</td>
+	 <td>int</td>
+	 <td>number of points in p array</td>
+  </tr>
+  <tr>
+	 <td>rad</td>
+	 <td>float</td>
+	 <td>radius</td>
+  </tr>
+  <tr>
+	 <td>data</td>
+	 <td>void *</td>
+	 <td>general pointer data</td>
+  </tr>
+  <tr>
+	 <td>func</td>
+	 <td>void (*)(void 
+  *data,bsp_object *e)</td>
+	 
+    <td>call-back function</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This function is used select objects inside a region. The call-back 
+  function will be called for every plug-in object (bsp_object derived) inside 
+  the region defined by the parameters. It is used by homing missiles, enemies 
+  and any object that needs to look around it. Even the fog maps use this function 
+  to easily select the faces it should apply the fog to.</p>
+<p>The region can be defiend using a sphere of influence (p and rad) or a set of
+points (5 an define a frustum, 8 a box, etc...).</p>
+</body>
+</html>

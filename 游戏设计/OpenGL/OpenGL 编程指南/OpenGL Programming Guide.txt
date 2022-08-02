@@ -1,0 +1,17 @@
+OpenGL 编程指南（OpenGL Programming Guide）
+
+官方网站：
+http://www.opengl-redbook.com、 
+http://www.opengl.org/resources、 
+http://www.xmission.com/~nate/tutors.html
+
+第7版
+★
+作者： Dave Shreiner
+
+    
+
+第9版
+★
+作者： Dave Shreiner
+ 。   

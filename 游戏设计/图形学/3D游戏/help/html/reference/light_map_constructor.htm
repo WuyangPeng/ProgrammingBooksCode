@@ -1,0 +1,70 @@
+<html>
+
+<head>
+<title>light_map constructor</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2><a href="light_map.htm">light_map</a> constructor</h2>
+
+<h3>Prototype</h3>
+
+<p class="code">light_map(int f,int p,int x,int y,int sx,int sy,int bp=3)</p>
+
+<h3>Parameters</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>f</td>
+    <td>int</td>
+    <td>face using this light map (can be -1 for non coplanar faces)</td>
+  </tr>
+  <tr>
+    <td>p</td>
+    <td>int</td>
+    <td>light_map_pic for the light_map</td>
+  </tr>
+  <tr>
+    <td>x</td>
+    <td>int</td>
+    <td>x offset into light_map_pic</td>
+  </tr>
+  <tr>
+    <td>y</td>
+    <td>int</td>
+    <td>y offset into light_map_pic</td>
+  </tr>
+  <tr>
+    <td>sx</td>
+    <td>int</td>
+    <td>x size of light_map (power of 2 or not)</td>
+  </tr>
+  <tr>
+    <td>sy</td>
+    <td>int</td>
+    <td>y size of light_map (power of 2 or not)</td>
+  </tr>
+  <tr>
+    <td>bp</td>
+    <td>int</td>
+    <td>light_map bytes per pixel:<br>
+      3 - RGB (light map)<br>
+      4 - RGBA (fog map)</td>
+  </tr>
+</table>
+
+<h3>Remarks</h3>
+
+<p>Creates the light map and allocates the <i>bmp</i> array.</p>
+
+</body>
+</html>

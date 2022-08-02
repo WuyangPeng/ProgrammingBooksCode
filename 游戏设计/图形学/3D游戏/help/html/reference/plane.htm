@@ -1,0 +1,60 @@
+<html>
+
+<head>
+<title>plane</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class plane</h2>
+
+<h3>Definition</h3>
+
+<p class="code">class plane<br>
+{<br>
+&nbsp; public:<br>
+&nbsp; vector normal;<br>
+&nbsp; float d0;<br>
+<br>
+&nbsp; inline float distance(vector &amp;v)<br>
+&nbsp; { return vec_dot(normal,v)+d0; }<br>
+};</p>
+
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>normal</td>
+    <td><a href="vector.htm">vector</a></td>
+    <td>normalized plane normal</td>
+  </tr>
+  <tr>
+    <td>d0</td>
+    <td>float</td>
+    <td>smallest distance from plane to origin.</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p><a href="plane_distance.htm">distance</a></p>
+
+<h3>Remarks</h3>
+
+<p>This class implements a plane is 3D space.<br>
+Classes like the <em>bsp_node</em> and <em>face</em> derive from a plane.</p>
+
+<h3>See Also</h3>
+
+<p><a href="vector.htm">vector</a>, <a href="bsp_node.htm">bsp_node</a>, <a
+href="face.htm">face</a></p>
+</body>
+</html>

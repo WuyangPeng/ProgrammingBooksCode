@@ -1,0 +1,88 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: AISteroids - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\bschwab\LOCALS~1\Temp\RSP2D6.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/AISteroids.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\CDROM\Chapter 16--FuSM\AIControl.cpp"
+"C:\CDROM\Chapter 16--FuSM\FuSMAIControl.cpp"
+"C:\CDROM\Chapter 16--FuSM\FStateApproach.cpp"
+"C:\CDROM\Chapter 16--FuSM\FStateAttack.cpp"
+"C:\CDROM\Chapter 16--FuSM\FStateEvade.cpp"
+"C:\CDROM\Chapter 16--FuSM\FStateGetPowerup.cpp"
+"C:\CDROM\Chapter 16--FuSM\FuSMMachine.cpp"
+"C:\CDROM\Chapter 16--FuSM\utility.cpp"
+"C:\CDROM\Chapter 16--FuSM\Ast.cpp"
+"C:\CDROM\Chapter 16--FuSM\Bullet.cpp"
+"C:\CDROM\Chapter 16--FuSM\Exp.cpp"
+"C:\CDROM\Chapter 16--FuSM\GameObj.cpp"
+"C:\CDROM\Chapter 16--FuSM\Powerup.cpp"
+"C:\CDROM\Chapter 16--FuSM\Saucer.cpp"
+"C:\CDROM\Chapter 16--FuSM\Ship.cpp"
+"C:\CDROM\Chapter 16--FuSM\Target.cpp"
+"C:\CDROM\Chapter 16--FuSM\asteroids.cpp"
+"C:\CDROM\Chapter 16--FuSM\GameSession.cpp"
+"C:\CDROM\Chapter 16--FuSM\HumanControl.cpp"
+]
+Creating command line "snCl.exe @C:\DOCUME~1\bschwab\LOCALS~1\Temp\RSP2D6.tmp" 
+Creating temporary file "C:\DOCUME~1\bschwab\LOCALS~1\Temp\RSP2D7.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/AISteroids.pdb" /machine:I386 /out:"Release/AISteroids.exe" 
+".\Release\AIControl.obj"
+".\Release\FuSMAIControl.obj"
+".\Release\FStateApproach.obj"
+".\Release\FStateAttack.obj"
+".\Release\FStateEvade.obj"
+".\Release\FStateGetPowerup.obj"
+".\Release\FuSMMachine.obj"
+".\Release\utility.obj"
+".\Release\Ast.obj"
+".\Release\Bullet.obj"
+".\Release\Exp.obj"
+".\Release\GameObj.obj"
+".\Release\Powerup.obj"
+".\Release\Saucer.obj"
+".\Release\Ship.obj"
+".\Release\Target.obj"
+".\Release\asteroids.obj"
+".\Release\GameSession.obj"
+".\Release\HumanControl.obj"
+]
+Creating command line "snLink.exe @C:\DOCUME~1\bschwab\LOCALS~1\Temp\RSP2D7.tmp"
+<h3>Output Window</h3>
+Compiling...
+snCL -- Detected win32 build...passing to cl.exe
+AIControl.cpp
+FuSMAIControl.cpp
+FStateApproach.cpp
+FStateAttack.cpp
+FStateEvade.cpp
+FStateGetPowerup.cpp
+FuSMMachine.cpp
+utility.cpp
+Ast.cpp
+Bullet.cpp
+Exp.cpp
+GameObj.cpp
+Powerup.cpp
+Saucer.cpp
+Ship.cpp
+Target.cpp
+asteroids.cpp
+GameSession.cpp
+HumanControl.cpp
+Linking...
+snCL -- Detected win32 build...passing to link.exe
+
+
+
+<h3>Results</h3>
+AISteroids.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

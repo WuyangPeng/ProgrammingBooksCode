@@ -1,0 +1,71 @@
+<html>
+
+<head>
+<title>class textcacheGL</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class textcacheGL : public <a href="textcache.htm">textcache</a></h2>
+
+<h3>Definition</h3>
+
+<p class="code">class textcacheGL : public textcache<br>
+  {<br>
+  public:<br>
+  &nbsp;&nbsp;textcacheGL();<br>
+  &nbsp;&nbsp;~textcacheGL();<br>
+  <br>
+  &nbsp;&nbsp;unsigned *tex;<br>
+  <br>
+  &nbsp;&nbsp;void init(int np,picture **pic);<br>
+<br>
+  &nbsp;&nbsp;int add_picture(int sx,int sy,int bytespixel,unsigned char *buf);<br>
+  &nbsp;&nbsp;void update_picture(int picnum,int sx,int sy,int bytespixel,unsigned 
+  char *buf);<br>
+  &nbsp;&nbsp;void update_sub_picture(int picnum,int x,int y,int sx,int sy,int 
+  bytespixel,unsigned char *buf);<br>
+  <br>
+  &nbsp;&nbsp;inline void use(int pic=-1,int textunit=0); <br>
+  &nbsp;&nbsp;inline void use_triangles(int pic=-1,int textunit=0); <br>
+  };</p>
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr> 
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr> 
+    <td>tex</td>
+    <td>unsigned *</td>
+    <td>the OpenGL texture handles</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p> 
+  <a href="textcachegl_add_picture.htm">add_picture</a>, <a href="textcachegl_update_picture.htm">update_picture</a>, 
+  <a href="textcachegl_update_sub_picture.htm">update_sub_picture</a>, <a href="textcachegl_use.htm">use</a>, 
+  <a href="textcachegl_use_triangles.htm">use_triangles</a>, <a href="textcachegl_init.htm">init</a></p>
+
+<h3>Remarks</h3>
+
+<p>This class is the OpenGL implementation sub-classed from the <i>textcache</i> 
+  base class.<br>
+Use the flyEngine <i>init_texture_cache</i> and <i>free_texture_cache</i> to
+initialize and free the global variable <i>tc</i> that is the main interface to
+this class.&nbsp;</p>
+
+<h3>See Also</h3>
+
+<p><a href="variables.htm">Global Variables</a>, <a href="textcache.htm">textcache</a>,
+<a href="flyengine.htm">flyEngine</a></p>
+
+</body>
+</html>

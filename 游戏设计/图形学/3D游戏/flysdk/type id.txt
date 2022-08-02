@@ -1,0 +1,87 @@
+TYPE ID
+=======
+
+Plugin exported parameters must be of type:
+
+0-255 - standard types:
+
+'a' - angle
+'i' - int
+'f' - float
+'v' - vector
+'c' - color
+'3' - 3ds file
+'b' - bezier curve
+'h' - bezier patch
+'w' - wav file
+'b' - bsp file
+'p' - picture
+'o' - stock object
+'d' - active object
+'s' - string
+
+>255 - plugin object types:
+       single: id 
+       range:  idfrom|(idto<<16)
+
+gamelib.dll
+0x110 TYPE_SOUND
+0x111 TYPE_PARTICLE_SYSTEM
+0x112 TYPE_EXPLODE
+0x113 TYPE_EXP_SPHERE
+0x114 TYPE_SHADOW
+0x115 TYPE_FAO_MESH
+0x116 TYPE_SUBDIV_MESH
+0x117 TYPE_CARTOON_MESH
+
+lights.dll
+0x120 TYPE_LIGHT
+0x121 TYPE_SPOT_LIGHT
+0x122 TYPE_SPRITE_LIGHT
+0x123 TYPE_MESH_LIGHT
+
+bezobj.dll
+0x130 TYPE_BEZIER_EXTRUDE
+0x131 TYPE_BEZIER_LOFT
+0x132 TYPE_BEZIER_SURFACE
+
+volfog.dll
+0x140 TYPE_FOGSPHERE
+0x141 TYPE_FOGBOX
+
+panorama.dll
+0x150 TYPE_PANORAMA
+
+viewport.dll
+0x160 TYPE_VIEWPORT
+
+weapon.dll
+0x170 TYPE_GUN
+0x171 TYPE_HITMARK
+0x171 TYPE_LASER
+0x172 TYPE_MISSILE
+0x173 TYPE_MINE
+
+menu.dll
+0x180 TYPE_MENUGROUP
+0x180 TYPE_MENUITEM
+0x180 TYPE_MENUCAMERA
+
+ship.dll
+0x200 TYPE_SHIP
+0x201 TYPE_TURRET
+0x202 TYPE_ROBOT
+0x203 TYPE_POWERUP
+0x204 TYPE_CONTAINER
+
+walk.dll
+0x300 TYPE_PERSON
+0x301 TYPE_JUMP_PAD
+0x302 TYPE_BIRTH_PAD
+0x303 TYPE_GIB
+
+car.dll
+0x400 TYPE_CAMERA
+0x401 TYPE_CAR
+0x402 TYPE_SUN
+

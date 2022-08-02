@@ -1,0 +1,68 @@
+// Example 7-11  Skeleton program using the peer-to-peer model
+//...
+pthread_t Thread[N]
+
+// initial thread
+{
+   
+    pthread_create(&(Thread[1]...taskX...);   
+    pthread_create(&(Thread[2]...taskY...);   
+    pthread_create(&(Thread[3]...taskZ...);   
+    //...
+    pthread_create(&(Thread[N]...?...);  
+  }
+
+void *taskX(void *X)
+{
+    loop while (Type XRequests are available)
+          set mutex
+          extract Request
+          unlock mutex
+          process request
+          lock mutex
+          enqueue results
+          unlock mutex
+    end loop
+    return(NULL)
+}
+
+//... 
+  
+
+
+void *taskY(void *X)
+{
+   loop
+       waiting for signal
+       when signaled
+       loop while YQueue is not empty
+          lock mutex
+          dequeue request
+    release mutex
+          process request
+          set mutex
+          enqueue results
+          release queue
+       end loop
+   until done
+}
+
+void *taskZ(void *X)
+{
+   loop
+       waiting for signal
+       when signaled
+       loop while ZQueue is not empty
+          lock mutex
+          dequeue request
+   release mutex
+          process request
+          set mutex
+          enqueue results
+          release queue
+       end loop
+   until done
+}
+
+//... 
+

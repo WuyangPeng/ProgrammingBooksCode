@@ -1,0 +1,6 @@
+Graphics\block.bmp 1
+255 0 255
+30 15
+1
+1
+0 0

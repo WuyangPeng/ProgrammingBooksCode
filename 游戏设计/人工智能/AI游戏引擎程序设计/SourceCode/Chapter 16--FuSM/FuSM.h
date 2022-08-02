@@ -1,0 +1,24 @@
+#ifndef __FUSM
+#define __FUSM
+
+//FuSM state types
+enum
+{
+	FUSM_STATE_NONE,
+	FUSM_STATE_APPROACH,
+	FUSM_STATE_ATTACK,
+	FUSM_STATE_EVADE,
+	FUSM_STATE_GETPOWERUP,
+	FUSM_STATE_COUNT
+};
+
+//FuSM machine types
+enum
+{
+	FUSM_MACH_NONE,
+	FUSM_MACH_SAUCER,
+    FUSM_MACH_COUNT
+};
+
+
+#endif

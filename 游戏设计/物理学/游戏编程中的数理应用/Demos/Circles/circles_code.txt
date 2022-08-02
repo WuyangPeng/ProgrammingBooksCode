@@ -1,0 +1,507 @@
+// Ball.h ////////////////////////////////////////////////////////////////////
+//
+// The Ball class contains all of the variables and methods needed to show
+// a ball on the screen, move it around the screen, and check for a collision
+// with a wall or another ball.
+//
+//////////////////////////////////////////////////////////////////////////////
+
+#ifndef _BALL_H_
+#define _BALL_H_
+
+#include <windows.h>
+
+class Ball
+{
+	private:
+		int diameter;	// The size of the ball
+		RECT bounds;	// Bounding rectangle for the ball
+		SIZE vector;	// The direction the ball is traveling
+
+	public:
+		// Constructor for the ball
+		// Initialize the bounding rectangle and the vector of the ball
+		Ball();
+
+		// Move the ball based on the vector of the ball
+		void move();
+
+		// Draw the ball on the screen
+		//
+		// In : hDC - The handle to the device context
+		void show(HDC hDC);
+
+		// Check for a collision with the wall
+		void checkWallCollision();
+
+		// Check for a collision with another ball
+		//
+		// In : ball2 - the ball to check collision with
+		//
+		// Return : True if there was a collision with another ball
+		bool checkBallCollision(Ball &ball2);
+		
+		// The Destructor
+		virtual ~Ball() {}
+};
+
+#endif
+//////////////////////////////////////////////////////////////////////////////
+
+
+
+// Ball.cpp //////////////////////////////////////////////////////////////////
+//
+// Implementation for the Ball class
+//
+//////////////////////////////////////////////////////////////////////////////
+
+#include <math.h>
+#include "ball.h"
+
+// Define a MACRO for squaring a number since none is defined by windows
+#define SQUARE(x) ((x) * (x))
+
+extern HWND g_main_window_handle;	// The main window handle
+
+//////////////////////////////////////////////////////////////////////////////
+// Constructor for the ball
+// Initialize the bounding rectangle and the vector of the ball
+//////////////////////////////////////////////////////////////////////////////
+Ball::Ball() 
+{	
+	// Get the bounds of the arena
+	RECT cr;
+	GetClientRect(g_main_window_handle, &cr);
+
+	// Set the diameter of the ball randomly between 35 and 45
+	diameter = (rand() % 10) + 35;
+
+	// Set the bounding rectangle of the ball.
+	// Make the top left corner random, within the range of the screen
+	// and then set the bottom right corner based on the balls diameter
+	bounds.left = (rand() % ((cr.right - 50) - (cr.left + 15) + 1)) + (cr.left + 15);
+	bounds.top = (rand() % ((cr.bottom - 50) - (cr.top + 15) + 1)) + (cr.top + 15);
+	bounds.right = bounds.left + diameter;
+	bounds.bottom = bounds.top + diameter;
+	
+	// Set up the direction of the ball
+	vector.cx = (rand() % 15) + 5;
+	vector.cy = (rand() % 15) + 5;
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// move : Move the ball based on the vector of the ball
+//////////////////////////////////////////////////////////////////////////////
+void Ball::move() 
+{
+	// Advance the ball
+	bounds.left += vector.cx;
+	bounds.right += vector.cx;
+	bounds.top += vector.cy;
+	bounds.bottom += vector.cy;
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// show : Draw the ball on the screen
+//
+// In : hDC - The handle to the device context
+//////////////////////////////////////////////////////////////////////////////
+void Ball::show(HDC hDC)
+{
+	// Show the Ball
+	Ellipse(hDC, bounds.left, bounds.top, bounds.right, bounds.bottom);
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// checkWallCollision : Check for a collision with the wall
+//////////////////////////////////////////////////////////////////////////////
+void Ball::checkWallCollision() 
+{
+	// Get the Client Rectangle
+	RECT cr;
+	GetClientRect(g_main_window_handle, &cr);
+
+	// Check for collision with Top Wall
+	if (bounds.top <= cr.top) 
+	{
+		// Reverse the Y vector
+		vector.cy = -vector.cy;
+
+		// Reset the bounding rectangle so the ball never appears outside of the screen
+		bounds.top = cr.top + 1;
+		bounds.bottom = bounds.top + diameter;
+	}
+	// Check for collision with Bottom Wall
+	else if (bounds.bottom >= cr.bottom) 
+	{
+		// Reverse the Y vector
+		vector.cy = -vector.cy;
+
+		// Reset the bounding rectangle so the ball never appears outside of the screen
+		bounds.bottom = cr.bottom - 1;
+		bounds.top = bounds.bottom - diameter;
+	}
+	// Check for collision with Left Wall
+	else if (bounds.left <= cr.left)
+	{
+		// Reverse the X vector
+		vector.cx = -vector.cx;
+
+		// Reset the bounding rectangle so the ball never appears outside of the screen
+		bounds.left = cr.left + 1;
+		bounds.right = bounds.left + diameter;
+	}
+	// Check for collision with Right Wall
+	else if (bounds.right >= cr.right) 
+	{
+		// Reverse the X vector
+		vector.cx = -vector.cx;
+
+		// Reset the bounding rectangle so the ball never appears outside of the screen
+		bounds.right = cr.right - 1;
+		bounds.left = bounds.right - diameter;
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// checkBallCollision : Check for a collision with another ball
+//
+// In : ball2 - the ball to check collision with
+//
+// Return : True if there was a collision with another ball
+//////////////////////////////////////////////////////////////////////////////
+bool Ball::checkBallCollision(Ball &ball2)
+{
+	// The radius of the balls
+	int radius1 = diameter / 2;
+	int radius2 = ball2.diameter / 2;
+	
+	// The center point of the first ball
+	POINT center1;
+	center1.x = radius1 + bounds.left;
+	center1.y = radius1 + bounds.top;
+
+	// The center point of the second ball
+	POINT center2;
+	center2.x = radius2 + ball2.bounds.left;
+	center2.y = radius2 + ball2.bounds.top;
+	
+	// The distance between the two balls centers
+	double distance = sqrt(SQUARE(center2.x - center1.x) + SQUARE(center2.y - center1.y));
+
+	// See if they have collided
+	if (distance <= radius1 + radius2)
+	{
+		// Find the distance between the x and the y values
+		int xDistance = abs(center1.x - center2.x);
+		int yDistance = abs(center1.y - center2.y);
+
+		if (xDistance <= yDistance)
+		// They collided on the top or bottom of the balls
+		{
+			if ((vector.cy > 0 && bounds.top < ball2.bounds.top) || 
+				(vector.cy < 0 && bounds.top > ball2.bounds.top))
+			// Ball1 was traveling downward and collided with the top of ball2,
+			// or ball1 was traveling upward and collided with the bottom of ball2,
+			// so we want to send ball1 back in the opposite Y direction
+			{
+				vector.cy = -vector.cy;
+			}
+			if ((ball2.vector.cy > 0 && ball2.bounds.top < bounds.top) || 
+				(ball2.vector.cy < 0 && ball2.bounds.top > bounds.top))
+			// Ball2 was traveling downward and collided with the top of ball1,
+			// or ball2 was traveling upward and collided with the bottom of ball1,
+			// so we want to send ball2 back in the opposite Y direction
+			{
+				ball2.vector.cy = -ball2.vector.cy;
+			}
+		}
+		else if (xDistance > yDistance)
+		// They collided on the left or right of the balls
+		{
+			if ((vector.cx > 0 && bounds.left < ball2.bounds.left) || 
+				(vector.cx < 0 && bounds.left > ball2.bounds.left))
+			// Ball1 was traveling right and collided with the left of ball2,
+			// or ball1 was traveling left and collided with the right of ball2,
+			// so we want to send ball1 back in the opposite X direction
+			{
+				vector.cx = -vector.cx;
+			}
+			if ((ball2.vector.cx > 0 && ball2.bounds.left < bounds.left) || 
+				(ball2.vector.cx < 0 && ball2.bounds.left > bounds.left))
+			// Ball2 was traveling right and collided with the left of ball1,
+			// or ball2 was traveling left and collided with the right of ball1,
+			// so we want to send ball2 back in the opposite X direction
+			{
+				ball2.vector.cx = -ball2.vector.cx;
+			}
+		}
+
+		// There was a collision
+		return true;
+	}
+	// No collision was detected
+	return false;
+}
+
+
+
+// Circles.cpp /////////////////////////////////////////////////////////////
+//
+// This example is used to demonstrate the movement and collision of two
+// balls with the bounds of the screen and each other.  This program uses
+// a frame based loop rather than relying on windows messages, in order to 
+// regulate the speed of the balls.
+//
+////////////////////////////////////////////////////////////////////////////
+
+#define WIN32_LEAN_AND_MEAN				// We don't need any MFC objects
+
+// INCLUDES ////////////////////////////////////////////////////////////////
+
+#include <windows.h>					// Include std windows library
+#include <time.h>
+#include <stdlib.h>
+
+#include "Ball.h"						// Our Ball Class
+
+// DEFINES /////////////////////////////////////////////////////////////////
+
+#define WINDOW_CLASS_NAME "WINCLASS1"	// The name of our window class
+#define WINDOW_WIDTH 640				// The initial width of the window
+#define WINDOW_HEIGHT 480				// The initial height of the window
+
+// GLOBALS /////////////////////////////////////////////////////////////////
+
+HWND g_main_window_handle = NULL;		// globally track main window
+HINSTANCE hinstance_app = NULL;			// globally track hinstance
+
+// FUNCTIONS ///////////////////////////////////////////////////////////////
+
+LRESULT CALLBACK WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+
+	// what is the message 
+	switch(msg)
+	{	
+		// Make sure that the user can not resize the screen smaller than 400 x 300
+		case WM_GETMINMAXINFO:
+		{
+			// Retrieve the window size info from the lParam
+			LPMINMAXINFO lpnmi = (LPMINMAXINFO)lParam;
+			// Create a new point set to the min width and min height of the screen
+			POINT ts;
+			ts.x = 400;
+			ts.y = 300;
+			// Set the minTrackSize (the smallest size the window can be set to) 
+			// to the new POINT
+			lpnmi->ptMinTrackSize = ts;
+		}
+		break;
+
+		case WM_DESTROY: 
+		{
+
+			// Kill the application, this sends a WM_QUIT message 
+			PostQuitMessage(0);
+
+			// Return success
+			return(0);
+		} 
+		break;
+
+		default:break;
+
+	} // end switch
+
+	// Process any messages that we didn't take care of 
+	return (DefWindowProc(hWnd, msg, wParam, lParam));
+
+} // end WinProc
+
+// WINMAIN /////////////////////////////////////////////////////////////////
+int WINAPI WinMain(	HINSTANCE hinstance,
+					HINSTANCE hprevinstance,
+					LPSTR lpcmdline,
+					int ncmdshow)
+{
+
+	WNDCLASSEX winclass; // this will hold the class we create
+	HWND	   hWnd;	 // generic window handle
+	MSG		   msg;		 // generic message
+
+	// first fill in the window class stucture
+	winclass.cbSize         = sizeof(WNDCLASSEX);
+	winclass.style			= CS_DBLCLKS | CS_OWNDC | 
+							  CS_HREDRAW | CS_VREDRAW;
+	winclass.lpfnWndProc	= WindowProc;
+	winclass.cbClsExtra		= 0;
+	winclass.cbWndExtra		= 0;
+	winclass.hInstance		= hinstance;
+	winclass.hIcon			= NULL;
+	winclass.hCursor		= LoadCursor(NULL, IDC_ARROW); 
+	winclass.hbrBackground	= (HBRUSH)GetStockObject(BLACK_BRUSH);
+	winclass.lpszMenuName	= NULL;
+	winclass.lpszClassName	= WINDOW_CLASS_NAME;
+	winclass.hIconSm        = NULL;
+
+	// Save hinstance globally
+	hinstance_app = hinstance;
+
+	// Register the window class
+	if (!RegisterClassEx(&winclass))
+		return(0);
+
+	// Create the window
+	if (!(hWnd = CreateWindowEx(NULL,						// extended window style
+								WINDOW_CLASS_NAME,			// class
+								"CIRCLES",					// title
+								WS_OVERLAPPEDWINDOW | WS_VISIBLE,	// window style
+					 			100,20,						// initial x,y
+								WINDOW_WIDTH,WINDOW_HEIGHT,	// initial width, height
+								NULL,						// handle to parent 
+								NULL,						// handle to menu
+								hinstance,					// instance of this application
+								NULL)))						// extra creation parms
+		return(0);
+
+	// Save main window handle
+	g_main_window_handle = hWnd;
+
+	HDC	hDC, hMemDC;		// Handles to a device context
+	HBITMAP hOldBmp, hBmp;	// Bitmaps used for blitting the screen
+
+	// Seed the random number generator
+	srand(time(0));
+
+	// Create the balls
+	Ball ball1;
+	Ball ball2;
+
+	// Make some new pens and brushes for drawing the balls
+	HPEN green_pen = CreatePen(PS_SOLID, 1, RGB(0,255,0));
+	HBRUSH green_brush = CreateSolidBrush(RGB(0,255,0));
+	HPEN blue_pen = CreatePen(PS_SOLID, 1, RGB(0,0,255));
+	HBRUSH blue_brush = CreateSolidBrush(RGB(0,0,255));
+	
+	// Create a variable to store the time a collision happened.  This will be used to display 
+	// a collision message to the screen for 1.5 seconds
+	DWORD dwCollisionTime = 0;
+
+	// Enter main loop
+	while(TRUE)
+	{
+		// Get the client area
+		RECT cr;
+		GetClientRect(hWnd, &cr);
+
+		// Test if there is a message in queue, if so get it
+		if (PeekMessage(&msg,NULL,0,0,PM_REMOVE))
+		{ 
+			// Test if this is a quit
+			if (msg.message == WM_QUIT)
+			   break;
+			// Translate any messages
+			TranslateMessage(&msg);
+			// Send the message to the window proc
+			DispatchMessage(&msg);
+		} // end if
+
+		// Get the time this function began executing
+		DWORD dwStartTime = GetTickCount();
+		// Get the display device context
+		hDC = GetDC(hWnd);
+		// Get the client retangle for the display bitmap
+		GetClientRect(hWnd, &cr);
+
+		// Create a new memory device context
+		hMemDC = CreateCompatibleDC(hDC);
+		// Create a bitmap for the memory DC
+		hBmp = CreateCompatibleBitmap(hDC, cr.right, cr.bottom);
+		// Attach the new bitmap to the memory DC
+		hOldBmp = (HBITMAP)SelectObject(hMemDC, hBmp); 
+		
+		// Move the balls
+		ball1.move();
+		ball2.move();
+
+		// Check for a collision with the wall
+		ball1.checkWallCollision();
+		ball2.checkWallCollision();
+
+		// Check to see if the two balls collided, and if it's been more than 
+		// 500 milliseconds since the last collision, to ensure the balls 
+		// don't 'stick' to each other
+		if (GetTickCount() - dwCollisionTime > 500 && ball1.checkBallCollision(ball2))
+		{
+			// They collided, so set the collision time to the current time
+			dwCollisionTime = GetTickCount();
+		} // end if
+
+		// Display a message showing the collision for 1.5 seconds after a collision has occured
+		if (GetTickCount() - dwCollisionTime < 1500)
+		{
+			// The string we want to output
+			char string[] = "Collision Detected";
+
+			// Set the Colors for outputing text to the screen
+			// Set the foreground color to green
+			SetTextColor(hMemDC, RGB(0,255,0));
+			// Set the background color to black
+			SetBkColor(hMemDC, RGB(0,0,0));
+			// Set the transparency mode to OPAQUE
+			SetBkMode(hMemDC, OPAQUE);
+			// Show the message at the bottom center of the screen
+			TextOut(hMemDC,(cr.right - cr.left) / 2 - (strlen(string) / 2) * 7,
+					cr.bottom - 15, string, strlen(string));
+		} // end if
+
+		// Save the original pen and brush and select the Green ones into the DC
+		HPEN original_pen = (HPEN)SelectObject(hMemDC, green_pen);
+		HBRUSH original_brush = (HBRUSH)SelectObject(hMemDC, green_brush);
+
+		// Draw the first ball to the screen
+		ball1.show(hMemDC);
+
+		// Select the Blue pen and brush into the DC
+		SelectObject(hMemDC, blue_pen);
+		SelectObject(hMemDC, blue_brush);
+
+		// Draw the second ball to the screen
+		ball2.show(hMemDC);
+
+		// Select the original drawing tools back into the DC
+		SelectObject(hMemDC, original_pen);
+		SelectObject(hMemDC, original_brush);
+
+		// Blit the new bitmap to the screen
+		BitBlt(hDC, cr.left, cr.top, cr.right, cr.bottom, hMemDC, cr.left, cr.top, SRCCOPY);
+		// Attach the old bitmap to the memory DC
+		SelectObject(hMemDC, hOldBmp);
+		// Delete the memory DC
+		DeleteDC(hMemDC);
+		// Delete the bitmap
+		DeleteObject(hBmp);
+		// Release the display DC
+		ReleaseDC(hWnd, hDC); 
+
+		// Wait until a frame phase has passed
+		while((GetTickCount() - dwStartTime) < 33); 
+
+	} // end while
+
+	// Delete all of the pens and brushes that we created
+	DeleteObject(green_pen);
+	DeleteObject(green_brush);
+	DeleteObject(blue_pen);
+	DeleteObject(blue_brush);
+
+	// Return to Windows
+	return(msg.wParam);
+
+} // end WinMain
+
+////////////////////////////////////////////////////////////////////////////
+
+

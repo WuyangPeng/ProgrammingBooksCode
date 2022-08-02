@@ -1,0 +1,26 @@
+class SolidCylinder: public Compound {
+	public:
+		
+		SolidCylinder(void);   									
+		
+		SolidCylinder(const double bottom, const double top, const double radius);
+		
+		SolidCylinder(const SolidCylinder& cc); 
+					...						
+};
+
+SolidCylinder::SolidCylinder(	const double bottom, 
+								const double top, 
+								const double radius)
+			: Compound() {
+		
+	objects.push_back(new Disk(	Point3D(0, bottom, 0), 			// bottom
+								Normal(0, -1, 0), 
+								radius));  
+		
+	objects.push_back(new Disk(	Point3D(0, top, 0), 			// top
+								Normal(0, 1, 0), 
+								radius));   	
+		
+	objects.push_back(new OpenCylinder(bottom, top, radius));	// wall
+}

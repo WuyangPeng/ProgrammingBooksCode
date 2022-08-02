@@ -1,0 +1,4 @@
+base referer
+rect $contacts_8h.html 405,56 488,83
+rect $body_8h.html 536,56 597,83
+rect $core_8h.html 645,56 704,83

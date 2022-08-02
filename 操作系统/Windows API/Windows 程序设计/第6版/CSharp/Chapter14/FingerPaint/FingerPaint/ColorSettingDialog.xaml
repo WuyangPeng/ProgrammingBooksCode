@@ -1,0 +1,34 @@
+﻿<UserControl
+    x:Class="FingerPaint.ColorSettingDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FingerPaint"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid>
+        <Border Background="White"
+                BorderBrush="Black"
+                BorderThickness="3"
+                Padding="32">
+            <StackPanel>
+                <Path Data="M 0 50 C 80 0 160 100 256 0"
+                      StrokeStartLineCap="Round"
+                      StrokeEndLineCap="Round"
+                      StrokeThickness="{Binding Thickness}"
+                      Margin="0 12">
+                    <Path.Stroke>
+                        <SolidColorBrush Color="{Binding Color}" />
+                    </Path.Stroke>
+                </Path>
+
+                <local:HslColorSelector x:Name="hslColorSelector"
+                                        Foreground="Black"
+                                        Color="{Binding Path=Color, Mode=TwoWay}" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>flyEngine::set_camera</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="flyengine.htm">flyEngine</a>::set_camera</h2>
+<h3>Prototype</h3>
+<p class="code">void set_camera(bsp_object *d)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>d</td>
+	 <td><a href="bsp_object.htm">bsp_object</a> *</td>
+	 
+    <td>camera is set to view from the object</td>
+  </tr>
+  
+  
+</table>
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This function is used to place the camera at a specified object. It computes 
+  the view frustum and sets the hardware projection matrix. All render calls after 
+  this function will use a camera placed at the object looking down its negative 
+  Z axis.</p>
+</body>
+</html>

@@ -1,0 +1,13 @@
+ 
+// Commands (ID_* and IDM_*) 
+ 
+// Prompts (IDP_*) 
+ 
+// Resources (IDR_*) 
+ 
+// Dialogs (IDD_*) 
+HIDD_CUSTOM1                            0x20081
+HIDD_CUSTOM2                            0x20082
+HIDD_CUSTOM3                            0x20083
+ 
+// Frame Controls (IDW_*) 

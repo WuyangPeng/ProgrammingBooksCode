@@ -1,0 +1,32 @@
+// Example 7-13 Skeleton program using the pipeline model
+//...
+
+pthread_t Thread[N]
+Queues[N]
+
+// initial thread
+{
+    place all input into stage1's queue
+    pthread_create(&(Thread[1]...stage1...);   
+    pthread_create(&(Thread[2]...stage2...);   
+    pthread_create(&(Thread[3]...stage3...);   
+    //...
+  }
+
+void *stageX(void *X)
+{
+    loop
+      suspend until input unit is in queue
+      loop while XQueue is not empty
+          lock mutex
+          dequeue input unit
+          unlock mutex
+          perform stage X processing 
+          enqueue input unit into next stage's queue
+       end loop
+    until done
+    return(NULL)
+}
+
+//...        
+
