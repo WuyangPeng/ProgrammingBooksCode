@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>Handling Multiple Win32 Operating Environments</title>
+</head>
+
+<body>
+
+<H4>Listing 6  WinSTLÕs listbox_front_inserter function object</H4>
+
+<pre>
+namespace winstl
+{
+  struct listbox_front_inserter
+  {
+  public:
+    explicit listbox_front_inserter(HWND hwndListbox)
+      : m_hwndListbox(hwndListbox)
+      , m_bUnicode(::IsWindowUnicode(hwndListbox))
+    {}
+
+    void operator ()(char const *s)
+    {
+      insert(s);
+    }
+    void operator ()(wchar_t const *s)
+    {
+      insert(s);
+    }
+
+  // Implementation
+  private:
+    void insert(char const *s)
+    {
+      if(m_bUnicode)
+      {
+        listbox_insertstring_w(m_hwndListbox, a2w(s), 0);
+      }
+      else
+      {
+        listbox_insertstring_a(m_hwndListbox, s, 0);
+      }
+    }
+    void insert(wchar_t const *s)
+    {
+      if(m_bUnicode)
+      {
+        listbox_insertstring_w(m_hwndListbox, s, 0);
+      }
+      else
+      {
+        listbox_insertstring_a(m_hwndListbox, w2a(s), 0);
+      }
+    }
+
+  private:
+    HWND  m_hwndListbox;
+    bool  m_bUnicode;
+  };
+} // namespace winstl</pre>
+</body>
+</html>

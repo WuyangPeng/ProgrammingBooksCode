@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>Win32 Performance Measurement Options</title>
+</head>
+
+<body>
+
+
+<h4>Listing 1  Extract from winstl_tick_counter.h</h4>
+
+<pre>
+
+/* /////////////////////////////////////////////////////////////
+ * ...
+ *
+ * Extract from winstl_tick_counter.h
+ *
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * (Licensed under the Synesis Software Standard Source License:
+ *  http://www.synesis.com.au/licenses/ssssl.html)
+ *
+ * ...
+ * ////////////////////////////////////////////////////////// */
+
+// Operations
+inline void tick_counter::start()
+{
+    m_start = ::GetTickCount();
+}
+
+inline void tick_counter::stop()
+{
+    m_end = ::GetTickCount();
+}
+
+// Attributes
+inline tick_counter::interval_type tick_counter::get_period_count() const
+{
+    return static_cast&lt;interval_type&gt;(m_end - m_start);
+}
+
+inline tick_counter::interval_type tick_counter::get_seconds() const
+{
+    return get_period_count() / interval_type(1000);
+}
+
+inline tick_counter::interval_type tick_counter::get_milliseconds() const
+{
+    return get_period_count();
+}
+
+inline tick_counter::interval_type tick_counter::get_microseconds() const
+{
+    return get_period_count() * interval_type(1000);
+}
+
+</pre>
+</body>
+</html>

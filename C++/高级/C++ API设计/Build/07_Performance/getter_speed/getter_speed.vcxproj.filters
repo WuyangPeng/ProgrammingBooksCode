@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{D0118511-1C9C-3607-9898-82F29B4A6B70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Head Files">
+      <UniqueIdentifier>{76b53105-79ce-4997-8791-e7232a280757}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\07_Performance\getter_speed\vector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\07_Performance\getter_speed\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\07_Performance\getter_speed\vector.h">
+      <Filter>Head Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\07_Performance\getter_speed\CMakeLists.txt" />
+  </ItemGroup>
+</Project>

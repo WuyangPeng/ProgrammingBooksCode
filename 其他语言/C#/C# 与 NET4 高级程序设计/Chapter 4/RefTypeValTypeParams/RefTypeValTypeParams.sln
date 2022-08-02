@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 10
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefTypeValTypeParams", "RefTypeValTypeParams.csproj", "{F633A344-54C3-40A4-80A2-E7FB2B8A91D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F633A344-54C3-40A4-80A2-E7FB2B8A91D4}.Debug|x86.ActiveCfg = Debug|x86
+		{F633A344-54C3-40A4-80A2-E7FB2B8A91D4}.Debug|x86.Build.0 = Debug|x86
+		{F633A344-54C3-40A4-80A2-E7FB2B8A91D4}.Release|x86.ActiveCfg = Release|x86
+		{F633A344-54C3-40A4-80A2-E7FB2B8A91D4}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

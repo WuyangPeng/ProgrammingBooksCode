@@ -1,0 +1,6 @@
+OgreAL
+☆
+
+1. 版本：0.2。
+2. 官方网站：http://wiki.ogre3d.org/tiki-index.php?page=OgreAL。
+             https://sourceforge.net/projects/ogreal/。

@@ -1,0 +1,145 @@
+<html>
+<head>
+<title></title>
+</head>
+
+<body>
+
+
+<h4>Listing 10  Extract from winstl_performance_counter.h</h4>
+
+<pre>
+
+/* /////////////////////////////////////////////////////////////
+ * ...
+ *
+ * Extract from winstl_performance_counter.h
+ *
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * (Licensed under the Synesis Software Standard Source License:
+ *  http://www.synesis.com.au/licenses/ssssl.html)
+ *
+ * ...
+ * ////////////////////////////////////////////////////////// */
+
+inline /* static */ performance_counter::interval_type performance_counter::_query_frequency()
+{
+    interval_type   frequency;
+
+    // If no high-performance counter is available ...
+    if( !::QueryPerformanceFrequency(reinterpret_cast&lt;LARGE_INTEGER*>
+        (&frequency)) ||
+        frequency == 0)
+    {
+        // ... then set the divisor to be the frequency for GetTickCount(), 
+        // which is 1000 since it returns intervals in milliseconds.
+        frequency = 1000;
+    }
+
+    return frequency;
+}
+
+inline /* static */ performance_counter::interval_type performance_counter::_frequency()
+{
+    static interval_type    s_frequency = _query_frequency();
+
+    return s_frequency;
+}
+
+inline /* static */ void performance_counter::_qpc(epoch_type &epoch)
+{
+    ::QueryPerformanceCounter(reinterpret_cast&lt;LARGE_INTEGER*>(&epoch));
+}
+
+inline /* static */ void performance_counter::_gtc(epoch_type &epoch)
+{
+    epoch = ::GetTickCount();
+}
+
+inline /* static */ performance_counter::measure_fn_type 
+  performance_counter::_get_measure_fn()
+{
+    measure_fn_type fn;
+    epoch_type      frequency;
+
+    if(QueryPerformanceFrequency(reinterpret_cast&lt;LARGE_INTEGER*>(&frequency)))
+    {
+        fn = _qpc;
+    }
+    else
+    {
+        fn = _gtc;
+    }
+
+    return fn;
+}
+
+inline /* static */ void performance_counter::_measure(epoch_type &epoch)
+{
+    static measure_fn_type  fn  =   _get_measure_fn();
+
+    fn(epoch);
+}
+
+// Operations
+inline void performance_counter::start()
+{
+    _measure(m_start);
+}
+
+inline void performance_counter::stop()
+{
+    _measure(m_end);
+}
+
+// Attributes
+inline performance_counter::interval_type performance_counter::get_period_count()
+   const
+{
+    return static_cast&lt;interval_type>(m_end - m_start);
+}
+
+inline performance_counter::interval_type performance_counter::get_seconds() 
+   const
+{
+    return get_period_count() / _frequency();
+}
+
+inline performance_counter::interval_type performance_counter::get_milliseconds() 
+   const
+{
+    interval_type   result;
+    interval_type   count   =   get_period_count();
+
+    if(count &lt; __STLSOFT_GEN_SINT64_SUFFIX(0x20C49BA5E353F7))
+    {
+        result = (count * interval_type(1000)) / _frequency();
+    }
+    else
+    {
+        result = (count / _frequency()) * interval_type(1000);
+    }
+
+    return result;
+}
+
+inline performance_counter::interval_type performance_counter::get_microseconds() 
+   const
+{
+    interval_type   result;
+    interval_type   count   =   get_period_count();
+
+    if(count &lt; __STLSOFT_GEN_SINT64_SUFFIX(0x8637BD05AF6))
+    {
+        result = (count * interval_type(1000000)) / _frequency();
+    }
+    else
+    {
+        result = (count / _frequency()) * interval_type(1000000);
+    }
+
+    return result;
+}
+</pre>
+</body>
+</html>

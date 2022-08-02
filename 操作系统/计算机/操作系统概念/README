@@ -1,0 +1,20 @@
+Each directory contains the associated source code files that are in Operating Systems
+Concepts - Seventh Edition.
+
+In this situation where there are multiple files in a directory, please consult the 
+README file for information about which file corresponds to which figure in the text.
+
+The program files may compile with:
+
+Java programs - javac  - available at www.javasoft.com
+
+POSIX programs - gcc - available for most UNIX-style platforms including Linux, Solaris,
+FreeBSD, and Mac OS X.
+
+Win32 programs - There are sevral compilers available for Win32 programming. The 
+Microsoft Developer Studio provides a C compiler that will compile these programs.
+A good freeware compiler I have had luck with is lcc-Win32 available from
+
+http://www.cs.virginia.edu/~lcc-win32/
+
+Greg Gagne

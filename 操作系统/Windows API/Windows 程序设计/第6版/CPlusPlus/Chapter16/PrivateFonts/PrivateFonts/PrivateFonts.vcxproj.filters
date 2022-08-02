@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>598b9b9f-95fb-4b80-93fc-4ef28d662f37</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>770868dc-4616-4cfd-868d-2a8de9791781</UniqueIdentifier>
+    </Filter>
+    <Page Include="Common\StandardStyles.xaml">
+      <Filter>Common</Filter>
+    </Page>
+    <Image Include="Assets\Logo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SmallLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\StoreLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SplashScreen.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Filter Include="Fonts">
+      <UniqueIdentifier>{ad8b3679-f363-4714-8be0-3913c0c0751a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="App.xaml.cpp" />
+    <ClCompile Include="MainPage.xaml.cpp" />
+    <ClCompile Include="pch.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="App.xaml.h" />
+    <ClInclude Include="MainPage.xaml.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PrivateFonts_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="MainPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Fonts\Kooten.ttf">
+      <Filter>Fonts</Filter>
+    </Font>
+    <Font Include="Fonts\Linds.ttf">
+      <Filter>Fonts</Filter>
+    </Font>
+    <Font Include="Fonts\Miramo.ttf">
+      <Filter>Fonts</Filter>
+    </Font>
+    <Font Include="Fonts\Miramob.ttf">
+      <Filter>Fonts</Filter>
+    </Font>
+    <Font Include="Fonts\Peric.ttf">
+      <Filter>Fonts</Filter>
+    </Font>
+    <Font Include="Fonts\Pericl.ttf">
+      <Filter>Fonts</Filter>
+    </Font>
+    <Font Include="Fonts\Pesca.ttf">
+      <Filter>Fonts</Filter>
+    </Font>
+    <Font Include="Fonts\Pescab.ttf">
+      <Filter>Fonts</Filter>
+    </Font>
+  </ItemGroup>
+</Project>

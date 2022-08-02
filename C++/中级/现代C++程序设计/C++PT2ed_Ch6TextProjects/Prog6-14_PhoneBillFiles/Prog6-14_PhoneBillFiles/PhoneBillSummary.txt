@@ -1,0 +1,7 @@
+
+ Customer: Bjarne Stroustrup
+ Jan-Dec, 2007
+ Phone Bill Summary for C++ Phone Company
+ Total yearly phone cost is $570.14
+ Average monthly phone bill is $47.51
+ Max Month is $52.65

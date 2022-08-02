@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "imageStorage", "imageStorage.vcproj", "{77AA7EA8-63B8-4670-A601-BC1D167E4375}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{77AA7EA8-63B8-4670-A601-BC1D167E4375}.Debug.ActiveCfg = Debug|Win32
+		{77AA7EA8-63B8-4670-A601-BC1D167E4375}.Debug.Build.0 = Debug|Win32
+		{77AA7EA8-63B8-4670-A601-BC1D167E4375}.Release.ActiveCfg = Release|Win32
+		{77AA7EA8-63B8-4670-A601-BC1D167E4375}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

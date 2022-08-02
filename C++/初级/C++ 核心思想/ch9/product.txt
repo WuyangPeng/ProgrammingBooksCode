@@ -1,0 +1,35 @@
+AcerAcros 75                     3499.00   71
+ACMA P75                         3195.00   54
+AMAX Powerstation 75             3298.90   62
+AMS Infogold P75                 2595.00   58
+Austin 75                        2699.00   75
+CompuAdd CP75p                   2916.00   62
+Comtrade Tornado                 2495.00   60
+Cornell P75                      2295.00   57
+Dell XPS P75                     2632.00   60
+Diamond Thunder                  2595.00   62
+Digital 575                      4021.00   59
+DTK QUIN-35                      2250.00   50
+Everex Step SP/75                3479.00   57
+GST PT75                         2799.00   59
+Hertz P75e                       2645.00   53
+HR P5-75                         2799.00   62
+HP VL 5/75                       2923.00   62
+Insight P75 MM                   3299.00   66
+Intelesys Star 75                2499.00   30
+Maximus Magna Media              2195.00   72
+Micro Express MicroFLEX          2499.00   23
+Micron P75 PowerStation          2499.00   62
+MidWest Micro P575               2999.00   75
+Mitac Performance 75             2399.00   55
+NMC Expert-System                2593.00   62
+NEC PowerMate                    2929.00   70
+Polywell Poly 575IP              2338.00   64
+Reason Square 5-LXP/IP-75        2495.00   76
+Summit Mount Brooks              2995.00   48
+Tagram P75                       2195.00   68
+Tangent PCI-575                  2475.00   53
+TC-P5-75 Media                   2195.00   66
+Tri-CAD P-75                     2999.00   79
+USA Flex PT-75                   2595.00   80
+ZEOS Pentium-75                  2545.00   70

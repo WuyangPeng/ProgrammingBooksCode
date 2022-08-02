@@ -1,0 +1,23 @@
+// Example 6-2 Using an attribute object to create a detached thread and changing
+// a joinable thread to a detached thread.
+
+//...
+
+int main(int argc, char *argv[])
+{
+
+   pthread_t ThreadA,ThreadB;
+   pthread_attr_t DetachedAttr;
+   
+   pthread_attr_init(&DetachedAttr);
+   pthread_attr_setdetachstate(&DetachedAttr,PTHREAD_CREATE_DETACHED);
+   pthread_create(&ThreadA,&DetachedAttr,task1,NULL);
+   pthread_create(&ThreadB,NULL,task2,NULL);
+
+   //...
+
+   pthread_detach(pthread_t ThreadB);
+   //pthread_join(ThreadB,NULL); cannot call once detached
+   return (0);
+}
+

@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>February 2003/Avoiding the Visual C++ Runtime Library</title>
+</head>
+
+<body>
+
+
+<h4>Listing 7  Extract from strncat.c</h4>
+
+<pre>
+
+/* /////////////////////////////////////////////////////////////
+ * ...
+ *
+ * Extract from strncat.c
+ *
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * (Licensed under the Synesis Software Standard Source License:
+ *  http://www.synesis.com.au/licenses/ssssl.html)
+ *
+ * ...
+ * ////////////////////////////////////////////////////////// */
+
+char * __cdecl strncat(char *dest, const char *src, size_t count)
+{
+    char *dst;
+
+    for(dst = dest; *dst; ++dst);
+
+    for(; count &amp;&amp; (*dst = *src) != '\0'; ++dst, ++src, --count)
+    {}
+
+    if(count)
+    {
+        *dst = '\0';
+    }
+
+    return dest;
+}
+
+</pre>
+</body>
+</html>

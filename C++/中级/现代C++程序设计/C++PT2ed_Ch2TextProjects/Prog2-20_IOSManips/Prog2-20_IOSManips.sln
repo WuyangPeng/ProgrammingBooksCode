@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Prog2-20_IOSManips", "Prog2-20_IOSManips\Prog2-20_IOSManips.vcproj", "{7A4A7EF6-D327-4988-A1EB-5272335E8E98}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A4A7EF6-D327-4988-A1EB-5272335E8E98}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7A4A7EF6-D327-4988-A1EB-5272335E8E98}.Debug|Win32.Build.0 = Debug|Win32
+		{7A4A7EF6-D327-4988-A1EB-5272335E8E98}.Release|Win32.ActiveCfg = Release|Win32
+		{7A4A7EF6-D327-4988-A1EB-5272335E8E98}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

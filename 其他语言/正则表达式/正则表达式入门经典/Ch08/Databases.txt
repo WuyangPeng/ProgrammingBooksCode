@@ -1,0 +1,1 @@
+The current version of Microsoft SQL Server is SQL Server 2000. However a new version, SQL Server 2005 is scheduled for release for the calendar year 2005. The MySQL database product lacks some of the features of big commercial database products like SQL Server but the product team is working hard to provide an improved set of features.

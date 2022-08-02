@@ -1,0 +1,5 @@
+全局光照算法技术 （Advanced Global Illumination）
+（第2版）
+
+★★★
+作者： Philip Dutre

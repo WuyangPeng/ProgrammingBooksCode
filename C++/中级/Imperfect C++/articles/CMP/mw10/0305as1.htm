@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>Initialized Counters</title>
+</head>
+
+<body>
+
+
+<h1>Initialized Counters</h1>
+<p>If you need to have your counter class initialized to meaningful values from the point of its construction, you can derive from the one you are interested in, and call its <b>start()</b> and <b>stop()</b> members in the constructor of your derived class. Alternatively, you can use the WinSTL class performance_counter_init template:</p>
+
+<pre>
+template &lt;class C&gt;
+class performance_counter_init
+  : public C
+{
+public:
+  typedef C     counter_type;
+
+// Conclusion
+public:
+  performance_counter_init()
+  {
+    counter_type  &amp;counter  = *this;
+
+    counter.start();
+    counter.stop();
+  }
+};
+</pre>
+
+<p>which basically does this for you for any class on which you parameterize it, as in:</p>
+
+<pre>
+  performance_counter_init&lt;tick_counter&gt;  counter;
+
+  some_timed_operation();
+
+  counter.stop();
+
+  dump(counter.get_milliseconds());
+</pre>
+
+<p> &#151; M.W.</p>
+
+</body>
+</html>

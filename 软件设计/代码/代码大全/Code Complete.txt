@@ -1,0 +1,29 @@
+代码大全（Code Complete）
+（第2版)
+
+官方网站：
+https://stevemcconnell.com/、
+http://www.cc2e.com/ （已失效）。
+
+IEEE标准：
+https://www.computer.org/csdl/home。
+
+程序代码：
+https://sourceforge.net/。
+
+Construx软件专业开发阶梯：
+https://www.construx.com/。
+
+美国计算机协会：
+https://www.acm.org/
+
+技术杂志：
+https://www.drdobbs.com/、 
+https://www.computer.org/
+
+★★☆
+作者：Steve McConnell
+其他书籍：《软件估算：“黑匣子”揭秘》。
+
+联系作者：
+stevemcc@construx.com 

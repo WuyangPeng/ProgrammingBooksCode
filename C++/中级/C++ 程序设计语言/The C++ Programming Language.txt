@@ -1,0 +1,27 @@
+C++ 程序设计语言（The C++ Programming Language）
+
+华章网站：
+http://www.hzcourse.com/web/teachRes/detail/3883/208、 
+http://www.hzcourse.com/web/refbook/detail/6641/208。
+
+官方网站：
+http://www.stroustrup.com、
+http://www.research.att.com/~bs/covers.html （已失效）。
+
+Origin库：
+https://github.com/asutton/origin。
+
+特别版
+★★
+作者：Bjarne Stroustrup
+其他书籍：《C++ 语言导学》、《C++ 程序设计原理与实践》、《C++ 语言的设计和演化》。
+
+第4版第1-3部分
+★★★★
+作者：Bjarne Stroustrup
+其他书籍：《C++ 语言导学》、《C++ 程序设计原理与实践》、《C++ 语言的设计和演化》。
+
+第4版第4部分
+★★★
+作者：Bjarne Stroustrup
+其他书籍：《C++ 语言导学》、《C++ 程序设计原理与实践》、《C++ 语言的设计和演化》。

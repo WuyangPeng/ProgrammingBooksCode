@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>February 2003/Avoiding the Visual C++ Runtime Library</title>
+</head>
+
+<body>
+
+
+<h4>Listing 6  Basic leak detection</h4>
+
+<pre>
+
+void trace_leaks()
+{
+    PROCESS_HEAP_ENTRY  heapentry;
+    HANDLE              hHeap   =   GetProcessHeap();
+
+    heapentry.lpData    =   NULL;
+
+    HeapLock(hHeap);
+    while(HeapWalk(hHeap, &amp;heapentry))
+    {
+        char    szMessage[201];
+
+        wsprintf(   szMessage,
+                    "Allocated block at %08x, size %d\n",
+                    heapentry.lpData,
+                    heapentry.cbData);
+                    OutputDebugStringA(szMessage);
+    }
+    HeapUnlock(hHeap);
+}
+
+</pre>
+</body>
+</html>

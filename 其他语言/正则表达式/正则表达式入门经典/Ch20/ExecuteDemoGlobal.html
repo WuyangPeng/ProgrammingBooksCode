@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>The Length Property of a Match Object</title>
+<script language="vbscript" type="text/vbscript">
+Function MatchLength
+Dim myRegExp, TestName, Match, Matches, displayString
+displayString = ""
+Set myRegExp = new RegExp
+myRegExp.Pattern = "[A-Z]\d"
+myRegExp.IgnoreCase = True
+myRegExp.Global = True
+TestString = InputBox("Enter characters and numbers in the text box below.")
+Set Matches = myRegexp.Execute(TestString)
+  For Each Match in Matches
+    displayString = displayString & "Match found at position " & Match.FirstIndex & "."
+    displayString = displayString & "The match value is '" & Match.Value & "'." & VBCrLf
+    'displayString = ""
+  Next
+  MsgBox displayString
+End Function
+
+</script>
+</head>
+<body onload="MatchLength">
+
+</body>
+</html>

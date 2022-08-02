@@ -1,0 +1,9 @@
+游戏开发物理学（Physics for Game Developers）
+（第1版）
+
+官方网站： 
+http://www.oreilly.com、 
+http://www.oreilly.com.cn
+
+★★
+作者： David M.Bourg 

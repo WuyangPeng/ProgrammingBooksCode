@@ -1,0 +1,59 @@
+<html>
+<head>
+<title></title>
+</head>
+
+<body>
+
+
+<h4>Listing 6  Extract from winstl_processtimes_counter.h</h4>
+
+<pre>
+
+/* /////////////////////////////////////////////////////////////
+ * ...
+ *
+ * Extract from winstl_processtimes_counter.h
+ *
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * (Licensed under the Synesis Software Standard Source License:
+ *  http://www.synesis.com.au/licenses/ssssl.html)
+ *
+ * ...
+ * ////////////////////////////////////////////////////////// */
+
+inline /* static */ HANDLE processtimes_counter::_get_process_handle()
+{
+	static HANDLE	s_hProcess	=	::GetCurrentProcess();
+
+	return s_hProcess;
+}
+
+// Operations
+inline void processtimes_counter::start()
+{
+    FILETIME    creationTime;
+    FILETIME    exitTime;
+
+    ::GetProcessTimes(  _get_process_handle(),
+                        &amp;creationTime,
+                        &amp;exitTime,
+                        reinterpret_cast&lt;LPFILETIME&gt;(&amp;m_kernelStart),
+                        reinterpret_cast&lt;LPFILETIME&gt;(&amp;m_userStart));
+}
+
+inline void processtimes_counter::stop()
+{
+    FILETIME    creationTime;
+    FILETIME    exitTime;
+
+    ::GetProcessTimes(  _get_process_handle(),
+                        &amp;creationTime,
+                        &amp;exitTime,
+                        reinterpret_cast&lt;LPFILETIME&gt;(&amp;m_kernelEnd),
+                        reinterpret_cast&lt;LPFILETIME&gt;(&amp;m_userEnd));
+}
+
+</pre>
+</body>
+</html>

@@ -1,0 +1,5 @@
+数据挖掘原理与应用——SQL Server 2008数据库  （Data Mining with SQL Server 2008）
+
+★
+作者：  Jamie MacLennan、ZhaoHui Tang、Bogdan Crivat 
+

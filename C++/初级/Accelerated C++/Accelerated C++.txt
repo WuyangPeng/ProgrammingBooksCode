@@ -1,0 +1,8 @@
+﻿Accelerated C++
+
+官方网站 
+http://www.acceleratedcpp.com。
+
+●
+作者：Andrew Koenig、Barbara E.Moo
+其他书籍：《C++ 沉思录》，Barbara E.Moo《C++ Primer》。 

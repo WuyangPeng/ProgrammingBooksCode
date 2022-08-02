@@ -1,0 +1,33 @@
+// Listing 5-6
+// This is a client process that
+// uses named pipes to perform
+// interprocess communication with npipe.exe
+
+#define INCL_DOSQUEUES
+#include <os2.h>
+#include <fstream.h>
+#include <string.h>
+
+char PipeName[40] = "";
+HFILE PipeHandle, PipeOut;
+unsigned long NumBytesRead;
+unsigned long Action;
+char Buffer1[2] ="";
+char Buffer2[2] = "";
+
+void main(void)
+{
+
+    strcpy(PipeName,"\\PIPE\\PIPE1");
+    DosOpen(PipeName,&PipeHandle,&Action,0,FILE_NORMAL,FILE_OPEN,
+	    OPEN_ACCESS_READWRITE | OPEN_SHARE_DENYNONE,(PEAOP) NULL);
+    DosRead(PipeHandle,Buffer1,1,&NumBytesRead);
+    DosRead(PipeHandle,Buffer2,1,&NumBytesRead);
+    cout << "Client Read " << Buffer1 << " " << Buffer2 << endl;
+    DosWrite(PipeHandle,Buffer1,1,&NumBytesRead);
+    DosWrite(PipeHandle,Buffer2,1,&NumBytesRead);
+
+
+}
+
+

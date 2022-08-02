@@ -1,0 +1,21 @@
+
+Field properties
+================
+
+field_property_get
+field_property_set
+
+field_property_get_indirect
+field_property_set_indirect
+
+Method properties
+=================
+
+method_property_get
+method_property_set
+method_property_getset
+
+method_property_get_indirect
+method_property_set_indirect
+method_property_getset_indirect
+

@@ -1,0 +1,10 @@
+//Example 6-6 shows a wrapper for system functions 
+
+int OldType;
+pthread_setcanceltype(PTHREAD_CANCEL_DEFERRED,&OldType);
+system_call(); //some library of system call
+pthread_setcanceltype(OldType,NULL);
+pthread_testcancel();
+
+//...
+ 

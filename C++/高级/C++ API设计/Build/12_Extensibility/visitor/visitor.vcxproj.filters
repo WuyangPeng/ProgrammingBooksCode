@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{D0118511-1C9C-3607-9898-82F29B4A6B70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Head Files">
+      <UniqueIdentifier>{e1882a76-eaaa-4494-a52e-048ba5dea23f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\12_Extensibility\visitor\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\12_Extensibility\visitor\scenegraph.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\12_Extensibility\visitor\nodevisitor.h">
+      <Filter>Head Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\12_Extensibility\visitor\scenegraph.h">
+      <Filter>Head Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\12_Extensibility\visitor\CMakeLists.txt" />
+  </ItemGroup>
+</Project>

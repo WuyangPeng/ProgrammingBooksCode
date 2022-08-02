@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>3f686350-95e5-4c12-902b-4cc82c28117e</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="LineSegment.cpp" />
+    <ClCompile Include="ArcSegment.cpp" />
+    <ClCompile Include="RoundCappedLine.cpp" />
+    <ClCompile Include="RoundCappedPath.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="IGeometrySegment.h" />
+    <ClInclude Include="LineSegment.h" />
+    <ClInclude Include="ArcSegment.h" />
+    <ClInclude Include="RoundCappedLine.h" />
+    <ClInclude Include="RoundCappedPath.h" />
+  </ItemGroup>
+</Project>

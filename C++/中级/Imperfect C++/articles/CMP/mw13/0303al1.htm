@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>Adapting Win32 Enumeration APIs to STL Iterator Concepts</title>
+</head>
+
+<body>
+
+
+<h4>Listing 1  Identifying case-sensitive filenames that would clash as duplicates on case-insensitive  filesystems</h4>
+
+<pre>
+
+int cmp_no_case( struct dirent const *lhs
+               , struct dirent const *rhs);
+
+int main(int , char **)
+{
+  using unixstl::readdir_sequence;
+
+  readdir_sequence                 files("/usr/include");
+  readdir_sequence::const_iterator begin_o(files.begin());
+  readdir_sequence::const_iterator end_o(files.end());
+
+  for(; begin_o != end_o; ++begin_o) // outer loop
+  {
+    readdir_sequence::const_iterator begin_i  = begin_o;
+
+    for(++begin_i; begin_i != end_o; ++begin_i) // inner loop
+    {
+      if(0 == cmp_no_case(*begin_o, *begin_i))
+      {
+        printf("Duplicate: %s, %s\n",
+            (*begin_o)-&gt;d_name,
+            (*begin_i)-&gt;d_name);
+      }
+    }
+  }
+
+  return 0;
+}
+
+</pre>
+</body>
+</html>

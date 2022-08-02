@@ -1,0 +1,35 @@
+Release 3.0a
+March 5, 2001
+
+This release is fully compatible with the original release of v. 3.0.
+ 
+Bug fixes:
+
+-Project>Move didn't detect an incorrect move into a subdirectory 
+-When user joined multiple projects at the same time, scripts with identical short file names could have been overwritten by the dispatcher 
+-Conflict between label scripts blocked synch area 
+-If all corrupted files were unrecoverable, Project>Repair blocked the synch area 
+-Some cases of name conflict during uncheckout and restore were resolved incorrectly 
+-Uncheckout during synch didn't set the the file's R/O attribute 
+-Some "Copy Of" files resulting from name conflicts were not cleaned up correctly 
+-File filter in History was not always parsed correctly 
+-Keybord input in file filter wasn't working 
+-Project>Repair was available incorrectly when synch was pending 
+-Keyboard accellerators were available for disabled commands 
+-Dispatcher didn't email a script even when user's answer to the question about unknown user was "remote" 
+-Dispatcher didn't deal correctly with R/O scripts 
+-It was possible, incorrectly, to create a project inside another project's tree 
+-Differ didn't work without Code Co-op installed 
+-On some sytems the differ's splitter bar was initialized incorrectly hiding the comparison pane
+
+Command-line bug fixes:
+
+-Checkout -r and -a didn't work 
+-Uncheckout with -r and -a didn't work as expected 
+-Synch didn't always work correctly 
+-Applets didn't accept directory names even with -a and -r flags 
+-Applets didn't deal correctly with paths starting with a backslash
+
+Additions:
+
+-The "status" command-line applet

@@ -1,0 +1,5 @@
+自动机理论、语言和计算导论（Automata Theory,Languages,and Computation）
+（第3版）
+
+★
+作者： John E.Hopcroft、Rajeev Motwani、Jeffrey D.Ullman

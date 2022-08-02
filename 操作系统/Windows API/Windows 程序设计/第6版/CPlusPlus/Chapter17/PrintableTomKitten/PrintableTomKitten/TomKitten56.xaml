@@ -1,0 +1,20 @@
+﻿<UserControl
+    x:Class="PrintableTomKitten.TomKitten56"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Grid VerticalAlignment="Center"
+          MaxWidth="640">
+        <StackPanel>
+            <TextBlock Style="{StaticResource paragraphTextStyle}">
+                &#x2003;&#x2003;As for the Puddle-Ducks—they went into a 
+                pond.
+            </TextBlock>
+
+            <TextBlock Style="{StaticResource paragraphTextStyle}">
+                &#x2003;&#x2003;The clothes all came off directly, because 
+                there were no buttons.
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>

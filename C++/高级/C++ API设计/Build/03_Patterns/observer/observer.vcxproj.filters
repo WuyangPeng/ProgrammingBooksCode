@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{D0118511-1C9C-3607-9898-82F29B4A6B70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Head Files">
+      <UniqueIdentifier>{4c610221-b2e0-4805-bf7a-c6f91d4c7299}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\03_Patterns\observer\subject.h">
+      <Filter>Head Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\03_Patterns\observer\observer.h">
+      <Filter>Head Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\03_Patterns\observer\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\03_Patterns\observer\observer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\03_Patterns\observer\subject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\03_Patterns\observer\CMakeLists.txt" />
+  </ItemGroup>
+</Project>

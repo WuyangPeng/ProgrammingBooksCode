@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "prog6-12_BingoFuncs", "prog6-12_BingoFuncs\prog6-12_BingoFuncs.vcproj", "{7F75382B-D01B-4D36-AFD8-1FB5C1D9B10F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7F75382B-D01B-4D36-AFD8-1FB5C1D9B10F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7F75382B-D01B-4D36-AFD8-1FB5C1D9B10F}.Debug|Win32.Build.0 = Debug|Win32
+		{7F75382B-D01B-4D36-AFD8-1FB5C1D9B10F}.Release|Win32.ActiveCfg = Release|Win32
+		{7F75382B-D01B-4D36-AFD8-1FB5C1D9B10F}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

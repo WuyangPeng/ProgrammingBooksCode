@@ -1,0 +1,5 @@
+OpenAL Soft
+★
+
+1. 版本：1.20.1。
+2. 官方网站：https://www.openal-soft.org/。

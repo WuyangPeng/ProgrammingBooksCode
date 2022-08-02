@@ -1,0 +1,38 @@
+<Page
+    x:Class="SimpleAnimation.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SimpleAnimation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <Page.Resources>
+        <Storyboard x:Key="storyboard">
+            <DoubleAnimation Storyboard.TargetName="txtblk"
+                             Storyboard.TargetProperty="FontSize"
+                             EnableDependentAnimation="True"
+                             From="1" To="144" Duration="0:0:3" />
+        </Storyboard>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Name="txtblk"
+                   Text="Animated Text"
+                   Grid.Row="0"
+                   FontSize="48"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
+
+        <Button Content="Trigger!"
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Click="OnButtonClick" />
+    </Grid>
+</Page>

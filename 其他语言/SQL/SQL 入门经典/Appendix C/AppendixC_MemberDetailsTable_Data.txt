@@ -1,0 +1,161 @@
+INSERT INTO MemberDetails
+(
+  MemberId,
+  FirstName,
+  LastName,
+  DateOfBirth,
+  Street,
+  City,
+  State,
+  ZipCode,
+  Email,
+  DateOfJoining
+)
+VALUES
+ ( 
+  1,
+  'Katie', 
+  'Smith', 
+  '1977-01-09', 
+  'Main Road',
+  'Townsville',
+  'Stateside',
+  '123456',
+  'katie@mail.com',
+  '2004-02-23'
+ );
+
+INSERT INTO MemberDetails 
+(
+  MemberId,
+  FirstName,
+  LastName,
+  DateOfBirth,
+  Street,
+  City,
+  State,
+  ZipCode,
+  Email,
+  DateOfJoining
+)
+VALUES
+ ( 
+  2,
+  'Bob', 
+  'Robson', 
+  '1987-01-09', 
+  'Little Street',
+  'Big City',
+  'Small State',
+  '34565',
+  'rob@mail.com',
+  '2004-03-13'
+ );
+
+INSERT INTO MemberDetails 
+(
+  MemberId,
+  FirstName,
+  LastName,
+  DateOfBirth,
+  Street,
+  City,
+  State,
+  ZipCode,
+  Email,
+  DateOfJoining
+)
+VALUES
+ ( 
+  3,
+  'Sandra', 
+  'Jakes', 
+  '1957-05-15', 
+  'The Avenue',
+  'Windy Village',
+  'Golden State',
+  '65423',
+  'sandra@her_mail.com',
+  '2004-04-13'
+ );
+
+INSERT INTO MemberDetails 
+(
+  MemberId,
+  FirstName,
+  LastName,
+  DateOfBirth,
+  Street,
+  City,
+  State,
+  ZipCode,
+  Email,
+  DateOfJoining
+)
+VALUES
+ ( 
+  4,
+  'Steve', 
+  'Gee', 
+  '1967-10-05', 
+  'The Road',
+  'Windy Village',
+  'Golden State',
+  '65424',
+  'steve@gee.com',
+  '2004-02-22'
+ );
+
+INSERT INTO MemberDetails 
+(
+  MemberId,
+  FirstName,
+  LastName,
+  DateOfBirth,
+  Street,
+  City,
+  State,
+  ZipCode,
+  Email,
+  DateOfJoining
+)
+VALUES
+ ( 
+  5,
+  'John', 
+  'Jones', 
+  '1952-10-05', 
+  'New Lane',
+  'Big Apple City',
+  'New State',
+  '88776',
+  'jj@jonesmail.org',
+  '2005-01-02'
+ );
+
+INSERT INTO MemberDetails 
+(
+  MemberId,
+  FirstName,
+  LastName,
+  DateOfBirth,
+  Street,
+  City,
+  State,
+  ZipCode,
+  Email,
+  DateOfJoining
+)
+VALUES
+ ( 
+  6,
+  'Jenny', 
+  'Jones', 
+  '1953-08-25', 
+  'New Lane',
+  'Big Apple City',
+  'New State',
+  '88776',
+  'jj@jonesmail.org',
+  '2005-01-02'
+ );

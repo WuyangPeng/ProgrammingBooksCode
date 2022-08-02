@@ -1,0 +1,6 @@
+http://www.w3.org/
+
+ftp://www.XMML.com/
+
+mailto:someone@example.org
+

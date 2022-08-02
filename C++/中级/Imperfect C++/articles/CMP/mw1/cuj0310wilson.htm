@@ -1,0 +1,183 @@
+<HTML>
+<HEAD>
+<TITLE>Identity and Equality: Syntax and Semantics</TITLE>
+</HEAD><BODY>
+<h2>Identity and Equality: Syntax and Semantics</h2>
+<p>Courtesy of <i>C/C++ Users Journal</i> (October 2003)</p>
+<h3>Matthew Wilson</h3>
+
+<P>The use of C-based syntax in modern C-family and related languages affords a significant advantage to software developers when transferring their skills from one language to others. Unfortunately, this very utility masks some serious pitfalls from the unwary; these pitfalls form the focus of this article.<P>
+
+<P>Object-oriented languages necessarily provide facilities for creating and manipulating objects. Two important aspects of the characteristics of objects are identity and equality. Object identity pertains to the uniqueness of an object. If an object reference is identity compared to another object reference, the result will be true only if the two object references refer to the same object.<P>
+
+<P>Object equality pertains to the value of an object. If an object reference is equality compared to another object reference, the result will be true if the referenced objects are logically equal. This equality can be as simple as the two objects having the same internal values, or may be determined via an equality method (whether instance/non-static or class/static) and therefore as complex/convoluted as the author of the class deems appropriate.<P>
+
+<h3>Syntax</h3>
+<P>There is a significant variation in the syntax used for testing identity and equality across the C-family and related languages, as shown in <a href="cuj0310wilson_t1.htm">Table 1</a>.<P>
+
+<P>In C++, testing of identity is done by comparing the addresses of the instances or references concerned with the <B>==</B> operator, and testing of equality by use of the <B>==</B> operator on the references or instances themselves, as in<P>
+
+<pre>
+// C++
+class X{};
+
+X  x1 = . . .; // An instance
+X  &amp;x2 = . . .;  // A reference
+
+if(&amp;x1 == &amp;x2) // Identity
+{
+  printf("x1 and x2 refer to the same 
+    objects\n");
+}
+if(x1 == x2) // Equality
+{
+  printf("x1 and x2 are equal\n");
+}
+</pre>
+
+<P>In C#, D, Java, J#, Python, and VB.NET, you cannot directly access object instances. They are only manipulable indirectly via references (except for value types in C#, that is).<P>
+
+<P>Java and the .NET language J# perform identity tests by applying the <B>==</B> operator to the references, and perform equality comparison by calling the <B>equals()</B> (Java) or <B>Equals()</B> (J#) method, as in<P>
+
+<pre>
+// Java &amp; J#
+class X{}
+
+X  x1 = . . .; // A reference
+X  x2 = . . .; // A reference
+
+if(x1 == x2)
+{
+  System.out.println("x1 and x2 refer to
+    the same objects\n");
+}
+if(x1.equals(x2)) // Java
+if(x1.Equals(x2)) // J#
+{
+  System.out.println("x1 and x2 are 
+    equal\n");
+}
+</pre>
+
+<P>The implementation of <B>equals()</B> (Java), <B>Equals()</B> (C#, J#, VB.NET), or <B>eq()</B> (D) in the root-most <B>Object</B> class simply conducts an identity test by comparing only the values (i.e., the <I>addresses</I> of their referenced instances) of the references themselves, not the values of the referenced instances. Hence, equality comparison is only available in these languages to classes that explicitly provide it by implementing and overriding these methods, or by inheriting from classes that do so. If you create a type whose value can be meaningfully compared &#151; such as a String, a Person, an XmlNode &#151; you will want to overload the equality method.<P>
+
+<P>Python and VB.NET use the <B>is/Is</B> keywords for identity comparison and <B>==/=</B> for equivalence, as in<P>
+
+<pre>
+// Python
+
+if x1 is x2:
+  print "x1 and x2 refer to the same object"
+if x1 == x2:
+  print("x1 and x2 are equal"
+
+// VB.NET
+
+If (x1 Is x2) Then
+  System.Console.WriteLine("x1 and x2 
+    refer to the same object")
+End If
+If x1.Equals(x2) Then
+  System.Console.WriteLine("x1 and x2 
+    are equal")
+End If
+</pre>
+
+<P><b>D</b> uses <B>=== / !==</B> for identity comparison and <B>== / !=</B> for equality comparison, as in<P>
+
+<pre>
+// D
+if(x1 === x2)
+{
+  printf("x1 and x2 refer to the same objects\n");
+}
+if(x1 == x2)
+{
+  printf("x1 and x2 are equal\n");
+}
+</pre>
+
+<P>There is a fair amount of variation in syntax with all these languages. The first problem is not just that the syntax differs between the languages, but that the syntaxes overlap and therefore will likely lead to mistakes. For example, C++ and D use <B>==</B> for comparing equality, which seems a valid choice given the fact that they are C-family languages and C uses that operator for equality. For basic types, Java and J# use <B>==</B> for comparing equality, but for object types (or rather, object references), <B>==</B> compares identity. It can be argued that this is consistent in one sense, since it is the values of object references that are being compared for equality, which translates to a comparison of identity for the referenced objects. Nonetheless, it is needlessly confusing and leads to problems when mixing languages.<P>
+
+<P>It can be argued that this is a biased perspective, from one with a C++ background, and that Java programmers quickly get used to the situation. Nonetheless, there is an inconsistency between the syntax and semantics of built-in types, for which <B>==</B> provides value comparison and there is no identity comparison, and class types, for which <B>equals()</B> provides value comparison and <B>==</B> provides identity comparison. But you have to wonder how they will deal with implementing generics in future versions of the language if the semantics of such fundamental operators are dependent on the types to which they&#146;reapplied.<P>
+
+<P>Even after half a decade of Java, I still occasionally use <B>==</B> when I should use <B>equals()</B>. Python offers a better approach by providing the <B>is</B> keyword, which performs identity tests, and saving <B>==</B> for equivalence testing. But this is such a rich seam of fervent lingua-religious debate, so I&#146;m content just to stipulate that my preferences are partial and as (in)valid as the next.<P>
+
+<P>What is important is to note that there are inconsistencies. This leads to the second problem in our language family. Perhaps mindful of the confusing variation in syntax, the architects of C# seem to have tried to obviate the situtation, and at the same time win over C++ programmers, by providing for the overloading of the <B>==</B> and <B>!=</B> operators for equivalence testing. Alas, they&#146;ve opened a hornet&#146;s nest of potential problems.<P>
+
+<P>C# allows you to use the <B>Object</B> class/static method <B>ReferenceEquals()</B> for conducting an identity test. This method works fine and, aside from the fact that it appears to not be inlined (as we will see in the second installment of this article), it is the appropriate choice. <B>ReferenceEquals()</B> can be considered equivalent to the Python <B>is</B> keyword. For equality tests, C# provides the two-parameter <B>Object</B> class/static method <B>Equals()</B> and the one-parameter overrideable <B>Object</B> instance/non-static method <B>Equals()</B>. The two are used as follows:<P>
+
+<pre>
+// C#
+if(Object.ReferenceEquals(x1, x2))
+{
+  printf("x1 and x2 refer to the same objects\n");
+}
+if(Object.Equals(x1, x2)) // Class/static
+{
+  printf("x1 and x2 are equal\n");
+}
+if(x1.Equals(x2))         // Instance/non-static
+{
+  printf("x1 and x2 are equal\n");
+}
+</pre>
+
+<P>As I said, C# provides the facility to overload the <B>==</B> and <B>!=</B> operators on a per-class basis. (In fact, it mandates that if you overload <B>==</B> then you must overload <B>!=</B>, and vice versa, which is probably a good idea.) However, this is an accident waiting to happen. If your class does not overload these operators, and does not inherit from one that does, then <B>==</B> will translate to an identity check, i.e., equivalent to a call to <B>Object.ReferenceEquals()</B>. Conversely, if your class, or one of its ancestors, does overload these operators, use of <B>==</B> will result in a call to that overloaded operator which, as we see below, will be implemented as a call to the instance/non-static <B>Equals()</B> method for that class. (C# also requires you to provide overloads of <B>Object.Equals()</B> and <B>Object.GetHashCode()</B> if you overload <B>==</B> and <B>!=</B>. Again this is probably a good idea, though it does make writing simple test programs for article research somewhat tedious.)<P>
+
+<P>I don&#146;t know if I&#146;m the only one who thinks so, but this situation seems crazy. Testing for identity and equality are completely different things conceptually [1]. To not know which you are getting when you type in <B>==</B> is nonsensical. Having to resort to the documentation (should there be any) or the assembler on a per-class basis to elicit the semantics of basic syntactic elements doesn&#146;t stand up. Even worse, the class(es) you are working with may be redefined after your first version of code is written and working, resulting in both semantic and probably performance changes to your code without you having altered a character. C# aficionados may counter that C++ (which is, perhaps obviously, my primary language of choice) provides the same dangers, if not more so. But this does not hold water. In C++, the semantics of <B>==</B> are only changed from meaning a test of equality by incompetent or malicious action. In C# they can be shifted from identity to equality, or vice versa, by the informed action of experienced developers. (Of course, the .NET version-locking mechanisms are designed in part to prevent such potentially destructive changes in semantics from affecting client code, but that can only work when they are used. During development, or when using publicly available binaries/source, it can be impractical/undesirable to operate these mechanisms, hence the risk is real.)<P>
+
+<h3>Null</h3>
+<P>There is another gotcha lurking under the surface of all of these languages, save for C++. Apart from C++ [2] and Python [3], all the languages discussed here can have null references. Calling a method on a null reference leads either to a <B>NullReferenceException/NullPointerException</B> being thrown (C#, Java, J#, VB.NET) or to a generic Exception (with &#147;Access Violation&#148; message) being thrown in D. [4]<P>
+
+<P>In C++, equality comparison is a first-class concept, supported by both the language and the compiler, and adaptable and re-definable under programmer control. Hence, writing <B>x == y</B> has well-defined and supported semantics.<P>
+
+<P>In C#, D, Java, J#, Python, and VB.NET, equality is provided by calling instance/non-static methods (<B>Equals()</B>, <B>equals()</B>, <B>eq()</B>, <B>__eq__()</B>) on reference instances (see Table 1). This reflects the fundamental difference with C++, in that a reference may never be (legally) null in C++ [2], but a reference can be null in the other languages (except for Python [3]). An analogy would be so-called &#147;smart&#148; pointers in C++, where <B>operator -&gt;()</B> provides access to the &#147;actual&#148; object instance, but there is no guarantee that the result of <B>sp-&gt;()</B> is non-null.<P>
+
+<P>Thus, when calling the equality method in these languages you must ensure that the instance on which it is called (and probably also the one serving as argument) is non-null, as in<P>
+
+<pre>
+// C#, J#
+if( x1 != null &amp;&amp;
+    x2 != null &amp;&amp;
+    x1.Equals(x2)) . . .
+// Java
+if( x1 != null &amp;&amp;
+    x2 != null &amp;&amp;
+    x1.equals(x2)) . . .
+// D
+if( x1 !== null &amp;&amp;
+    x2 !== null &amp;&amp;
+    x1.eq(x2)) . . .
+// VB.NET
+if( x1 Is Not Nothing &amp;&amp;
+    x2 Is Not Nothing &amp;&amp;
+    x1.Equals(x2)) . . .
+</pre>
+
+<P>Without such checks, the calls will result in the throwing of an exception. But this is ugly stuff, to be sure! Such checks only need to be made in circumstances where the validity of a reference has not already been established, so would not be needed on every test. Nevertheless, it remains a common and necessary thing.<P>
+
+<P><b>D</b> also provides the <B>==</B> and <B>!=</B> operators for equality tests that translate into calls to <B>eq()</B>, as follows: <B>x1 == x2</B> and <B>x1 != x2</B> will be translated by the compiler into <B>x1.eq(x2)</B> and <B>!x1.eq(x2)</B>. This is a nice convenience as far as it goes; I&#146;ve never written a <B>!=</B> that wasn&#146;t a logical inverse of <B>==</B>.<P>
+
+<P><b>D</b> does not &#147;overload&#148; the meaning of this operator by also using it to test for identity, as do C#, Java, and J#: identity checks in D use the <B>===</B> and <B>!==</B> operators &#151; which is a good thing. Unfortunately, because of the automatic translation into calls to the <B>eq()</B> instance/non-static method, if the left-hand parameter is a null reference, or the <B>null</B> keyword itself, an exception (<B>Exception(&#147;Access Violation&#148;</B>) is thrown!<P>
+
+<P>As noted above, C# provides the ability to overload <B>==</B> and <B>!=</B>, and it does this on a class/non-static method basis. This is better than the D solution, but only as long as you either test for the operands being null, or pass them off to a compare function that makes such checks (such as <B>Object.Equals()</B>). Correctly written C# <B>==</B> and <B>!=</B> overloads do, therefore, represent a superior solution for equality testing. (Or they would were it not for the semantic &#147;overload&#148; clash with identity checking, mentioned above.)<P>
+
+<P>The situation with Python is somewhat similar. There are no null references, so you don&#146;t have this precise problem. However, because it is untyped, it is possible to call <B>x == y</B> where the two operands are completely different types. In such a circumstance, the <B>__eq__</B> method of the <B>x</B> variable will be used if one has been defined, otherwise the interpreter will do a member-wise comparison. In the former case, the implementation will reference members on the right-hand operand, which may well not exist, resulting in an <B>AttributeError</B> exception being thrown.<P>
+
+<P>All this is one in the eye for the critics of C++&#146;s support for pointers, since <B>==</B> on a pointer compares identity and on a reference/instance compares equality. Of the pointers-as-references languages, perhaps the most sensible approach is taken in D, which uses <B>==</B> for equivalence and <B>===</B> for identity, although there is a nasty gotcha with that as well.<P>
+
+<P>In my opinion, the best way for these things to be handled in the non-pointer languages would be a combination of the approaches of D, C#, and Python. Identity testing would always be effected by the <B>is</B> keyword, just as Python does. As an aside, I would suggest the test against type would be via the <B>isa</B> keyword (this is what the C# <B>is</B> keyword does). Equality testing would be via the <B>==</B> / <B>!=</B> keywords, which would be automatically translated by the compiler into to an <B>Equals()</B> method, in the way D does. However, it would guarantee that the object on which <B>Equals()</B> is called and the parameter given to it (which correspond to the left- and right-hand sides of the <B>==</B> <B>&amp;</B> <B>!=</B> operators) would be non-null. Where necessary, the compiler would emit code to test for null references, but where the references can be determined to be non-null, the compiler would optimize out the null tests. This solution would thus fold semantics into a single meaning, ensure safety, and maximize efficiency.<P>
+
+<h3>Notes</h3>
+<P>[1]  Equality testing is kind of a superset of identity testing in that when two object references refer to the same object, it is axiomatic that the objects so referenced are equal.<P>
+<P>[2]  One can perversely create a null reference by  <B>X &amp;xr = *(X*)0</B> but this is a deliberate violation of the language rules, rather than a normal part of C++ usage.<P>
+<P>[3]  I am no Python expert, but as far as I know one cannot have a <B>null</B> reference because they are created when assigned to, and there is no <B>null</B> keyword to act as the right-hand side of an assignment.<P>
+<P>[4]  Walter Bright informs me that he plans to change this to be an instance of <b>SystemException</b> or derived class. <P>
+
+<hr>
+<i><B>Matthew Wilson</B> is a software development consultant for Synesis Software, 
+specializing in robustness and performance in C, C++, C# and Java. Matthew is 
+the author of the STLSoft libraries, and the forthcoming book </i>Imperfect C++<i> 
+(to be published by Addison-Wesley, 2004). He can be contacted via <a href="mailto:matthew@synesis.com.au">matthew@synesis.com.au</a> 
+or at <a href="http://stlsoft.org/" _target = "blank">http://stlsoft.org/</a>.</i></HTML>

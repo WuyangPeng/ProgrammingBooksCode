@@ -1,0 +1,4 @@
+LIBRARY     OAB_SERVER.DLL
+
+EXPORTS
+    _make_Object                  = make_Object                         ; make_Object

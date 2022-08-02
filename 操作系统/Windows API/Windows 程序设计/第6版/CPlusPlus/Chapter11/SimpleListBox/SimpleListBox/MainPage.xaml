@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="SimpleListBox.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SimpleListBox"
+    xmlns:ch11="using:PetzoldProgrammingWindows6Chapter11"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <Page.Resources>
+        <ch11:NamedColor x:Key="namedColor" />
+    </Page.Resources>
+
+    <Grid>
+        <ListBox Name="lstbox"
+                 ItemsSource="{Binding Source={StaticResource namedColor},
+                                       Path=All}"
+                 DisplayMemberPath="Name"
+                 Width="288"
+                 HorizontalAlignment="Center" />
+        
+        <Grid.Background>
+            <SolidColorBrush Color="{Binding ElementName=lstbox,
+                                             Path=SelectedItem.Color}" />
+        </Grid.Background>
+    </Grid>
+</Page>

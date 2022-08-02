@@ -1,0 +1,5 @@
+Java虚拟机规范（The Jave Virtual Machine Specification） 
+
+☆
+作者： Tim Lindholm
+

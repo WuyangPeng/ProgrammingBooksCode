@@ -1,0 +1,256 @@
+<html>
+<head>
+<title>June, 2004: Identity &amp; Equality In .NET</title>
+</head>
+
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#330066" ALINK="#ff0000" TEXT="#000000">
+<!--Copyright &#169; Dr. Dobb's Journal-->
+
+<h1>Identity &amp; Equality In .NET</h1>
+<p>Courtesy of <i>Dr. Dobb's Journal</i> (June, 2004)</p>
+<h2>Efficiently  implementing Equality methods in C#</h2>
+
+<h3>By Matthew Wilson</h3>
+
+<I>Matthew is a software development consultant specializing in performance and robustness, and the author of the forthcoming Imperfect C++ (Addison-Wesley, 2004). He can be contacted via http:// stlsoft.org/.</I>
+
+<hr>
+
+
+<p>In .NET terminology, value types are those that are derived from <i>System.ValueType</i> and have the defining characteristics of being small, usually allocated on the thread's stack, not garbage collected, and passed by value to functions. Whether a type is a value type or reference type (those manipulable via references), it may be appropriate to compare it by value. In such types, the <i>Object</i>-derived virtual method <i>Equals()</i> will be overridden and implemented to provide a meaningful equality comparison for the referenced objects. The canonical form of <i>Equals()</i> for equivalence is usually expressed as in <a name="rl1"></a><a href="#l1">Listing One</a>.</p>
+
+<p>A more succinct, but mostly equivalent, form can be achieved by using the C# <i>as</i> operator, which tests an object instance against a type, and returns a reference to the given type if the instance is not null and is of said type, otherwise returning null. It is mostly equivalent because the previous implementation only compared types that are exactly equivalent. The <i>as </i>form evaluates the two instances if they are the same type or if <i>obj</i> is of a type derived from <i>SomeType</i> (<a name="rl2"></a><a href="#l2">Listing Two</a>). Though this is usually correct semantically, there may be circumstances in which it is not appropriate.</p>
+
+<p>When overriding the <i>Equals()</i> method of types for which you wish to provide equality comparison as a replacement for the default identity comparison, C# provides the additional facility to overload operators <i>==</i> and <i>!=</i>. Unfortunately, it is all too common to see (even in textbooks) implementations such as <a name="rl3"></a><a href="#l3">Listing Three</a>, which is quite wrong. If <i>o1</i> is null, then a <i>NullReferenceException</i> is thrown as the nonstatic <i>Equals()</i> method is called on the null reference. Ouch! This bug can exist for a long time within seemingly stable components, just waiting for a time when it will be precipitated, and you'll have to ship a new version of your components and start messing around with the configuration and the GAC to make your clients think they're dealing with your old version. (Fingers crossed that you've not introduced some new bugs in the changes you'll have made to other parts of your assembly!) As <a name="rl4"></a><a href="#l4">Listing Four</a> shows, the correct version couldn't be simpler.</p>
+
+<p>The implementation of <i>Object</i>'s class/static <i>Equals()</i> method tests the object references against null and calls the override of <i>Equals()</i> on the left parameter if both parameters are nonnull, otherwise evaluating the equivalence of the null parameter(s). However, it seems potentially inefficient to call a function that will then call, virtually, another (your class's instance/nonstatic <i>Equals()</i> method). Hence, you may wish to write your own inline code, but beware. You can write it mindful of the potential for a null reference, but still be wrong. It's not unusual to see code like <a name="rl5"></a><a href="#l5">Listing Five</a>. Unfortunately, this is also wrong. In the circumstances in which <i>o1</i> and <i>o2</i> are both null, then they will be evaluated as not equal! It should look like <a name="rl6"></a><a href="#l6">Listing Six</a>. However, this is still wrong&#151;there's another nasty problem in this one. It recurses forever&#151;since <i>o1</i> is of type <i>SomeType,</i> the test against <i>null</i> results in operator <i>==</i> or operator <i>!=</i> being called, ad infinitum. The instance references need to be cast to <i>Object</i> before testing against null, as in <a name="rl7"></a><a href="#l7">Listing Seven</a>. Often the best thing to do is to stick with <i>Object.Equals()</i>, except where efficiency is very important.</p>
+<h3>Efficiency</h3>
+
+<p>You may be asking whether there are performance differences between the various implementation options presented; indeed, there are. For the test program in <a name="rl8"></a><a href="#l8">Listing Eight</a>, I wrote six variants of the class&#151;<i>Normal, Inline</i>, <i>Reorder</i>, <i>WithAsRefEquals</i>, <i>WithAsCastObject</i>, and <i>Combined</i>. The implementations for all six, along with the test program and supporting binary components used to derive the results described here, are available electronically; see "Resource Center," page 3.</p>
+
+<p>The implementation of the <i>Normal</i> class's <i>Equals()</i> method is according to <a name="rl1"></a><a href="#l1">Listing One</a>, and its <i>==</i> and <i>!=</i> operators according to <a name="rl4"></a><a href="#l4">Listing Four</a>. The <i>Inline</i> class differs only by having its operators defined as in <a name="rl7"></a><a href="#l7">Listing Seven</a>. Note from <a name="rl1"></a><a href="#l1">Listing One</a> that the comparison of the member variables of the two <i>comparand</i> instances are compared in the order <i>m_string</i>, <i>m_int</i> as they are in the class definition. You'd instinctively assume that comparing an integer would be quicker than comparing a string, so the <i>Reorder</i> type has the same implementation as <i>Normal</i> with the exception that the member variable comparison order is reversed.</p>
+
+<p>The <i>WithAsRefEquals</i> type corresponds to that of <a name="rl2"></a><a href="#l2">Listing Two</a>. The <i>WithAsCastObject</i> is identical to the <i>WithAsRefEquals</i> type except that the conditional <i>if(Object.ReferenceEquals(rhs, null))</i> is rewritten as <i>if((Object)rhs == null)</i> to ascertain whether an inline identity comparison is faster than calling <i>ReferenceEquals()</i>. The final type, <i>Combined</i>, is a combination of all the fastest elements from the other enhancements over the original <i>Normal</i> type.</p>
+
+<p><a name="rt1"></a><a href="0406kt1.html">Table 1</a> shows the results of the timings for the six variants. The timings were derived from a single session in which one execution of the test program generates five timings for each of the variants, of which the average is presented in the table. The program was compiled using both .NET SDK 1.0 and 1.1, and executed on a single-processor 512-MB, 2-GHz PC running Windows XP. The timings were measured with a performance counter component freely available from http://synsoft.org/dotnet.html.</p>
+
+<p>As you can see, each of the given steps affords a significant performance advantage over the canonical version. The single biggest factor is the use of the <i>as</i> keyword, which removes approximately 60 percent of the cost of the original version. Overall, nearly 80 percent of the cost of the original version can be removed by using the <i>as</i> operator, inlining the null-checking in the <i>==</i> and <i>!=</i> operators, and reordering the member tests. When object equality testing is being conducted on a frequent basis, such as in indexed/hashed containers, there are serious performance gains to be had!</p>
+
+<p>One last thing: Don't forget to implement the <i>GetHashCode()</i> method correctly (C# makes you override it if you're overriding <i>Equals()</i>, and vice versa), or your types will do strange things in associative containers.</p>
+
+
+<p><b>DDJ</b></p>
+
+
+
+	
+	
+<br>
+<br>
+<b><a name="l1"></a>Listing One</b><br>
+<pre>class SomeType
+{
+  private string m_string;
+  private int    m_int;
+  public override bool Equals(Object obj)
+  {
+    // Check against null
+    if(obj == null)
+    {
+      return false;
+    }
+    else
+    {
+      // Check against different type
+      if(this.GetType() != obj.GetType())
+      {
+        return false;
+      }
+      else
+      {
+        // Safely convert to "SomeType"
+        SomeType  rhs = (SomeType)obj;
+
+        // Compare values
+        return (m_string == rhs.m_string &amp;&amp; m_int == rhs.m_int);
+      }
+    }
+  }
+  ...
+}</pre>
+<a href="#rl1">Back to article</a><br>
+	
+	
+	
+<br>
+<br>
+<b><a name="l2"></a>Listing Two</b><br>
+<pre>public sealed class SomeType
+{
+  ...
+  public override bool Equals(Object obj)
+  {
+    // Check against null
+    if(obj == null)
+    {
+      return false;
+    }
+    else
+    {
+      // Get if is a "SomeType"
+      SomeType  rhs = obj as SomeType;
+      if(Object.ReferenceEquals(rhs, null))
+      {
+        return false;
+      }
+      else
+      {
+        // Compare values if given instance of SomeType
+        return (m_string == rhs.m_string &amp;&amp; m_int == rhs.m_int);
+      }
+    }
+  }
+}</pre>
+<a href="#rl2">Back to article</a><br>
+	
+	
+	
+<br>
+<br>
+<b><a name="l3"></a>Listing Three</b><br>
+<pre>class SomeType
+{
+  ...
+  public static bool operator ==(SomeType o1, SomeType o2)
+  {
+    return o1.Equals(o2);
+  }
+  public static bool operator !=(SomeType o1, SomeType o2)
+  {
+    return !o1.Equals(o2);
+  }
+  ...
+}</pre>
+<a href="#rl3">Back to article</a><br>
+	
+	
+	
+<br>
+<br>
+<b><a name="l4"></a>Listing Four</b><br>
+<pre>class SomeType
+{
+  ...
+  public static bool operator ==(SomeType o1, SomeType o2)
+  {
+    return Object.Equals(o1, o2);
+  }
+  public static bool operator !=(SomeType o1, SomeType o2)
+  {
+    return !Object.Equals(o1, o2);
+  }
+  ...
+}</pre>
+<a href="#rl4">Back to article</a><br>
+	
+	
+	
+<br>
+<br>
+<b><a name="l5"></a>Listing Five</b><br>
+<pre>class SomeType
+{
+  ...
+  public static bool operator ==(SomeType o1, SomeType o2)
+  {
+    return o1 == null ? false : o1.Equals(o2);
+  }
+  public static bool operator !=(SomeType o1, SomeType o2)
+  {
+    return o1 != null ? false : !o1.Equals(o2);
+  }
+  ...
+}</pre>
+<a href="#rl5">Back to article</a><br>
+	
+	
+	
+<br>
+<br>
+<b><a name="l6"></a>Listing Six</b><br>
+<pre>class SomeType
+{
+  ...
+  public static bool operator ==(SomeType o1, SomeType o2)
+  {
+    return o1 == null ? o2 == null : o1.Equals(o2);
+  }
+  public static bool operator !=(SomeType o1, SomeType o2)
+  {
+    return o1 != null ? o2 != null :!o1.Equals(o2);
+  }
+  ...
+}</pre>
+<a href="#rl6">Back to article</a><br>
+	
+	
+	
+<br>
+<br>
+<b><a name="l7"></a>Listing Seven</b><br>
+<pre>class SomeType
+{
+  ...
+  public static bool operator ==(WithAsInline o1, WithAsInline o2)
+  {
+    return (Object)o1 == null ? (Object)o2 == null : o1.Equals(o2);
+  }
+  public static bool operator !=(WithAsInline o1, WithAsInline o2)
+  {
+    return (Object)o1 == null ? (Object)o2 != null : !o1.Equals(o2);
+  }
+  ...
+}</pre>
+<a href="#rl7">Back to article</a><br>
+	
+	
+	
+<br>
+<br>
+<b><a name="l8"></a>Listing Eight</b><br>
+<pre>using PerfCntrType = 
+                 SynSoft.Performance.PerformanceCounter;
+
+. . .
+
+PerfCntrType  counter = new PerfCntrType();
+const int     CELEMENTS = 100000;
+TestType[]    objects   = new TestType[CELEMENTS];
+
+for(i = 0; i &lt; CELEMENTS; ++i)
+{
+  const int mod = 512;
+
+  objects[i] = new TestType("String #" + (i % mod), args);
+}
+
+counter.Start();
+for(i = 0, k = 0; i &lt; CELEMENTS; ++i)
+{
+  for(j = i + 1; j &lt; CELEMENTS; ++j)
+  {
+    if(objects[i] == objects[j])
+    {
+      ++k;
+    }
+  }
+}
+counter.Stop();</pre>
+<a href="#rl8">Back to article</a><br>
+	
+	
+	
+
+
+</body>
+</html>

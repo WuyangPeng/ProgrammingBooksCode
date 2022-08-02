@@ -1,0 +1,218 @@
+INSERT INTO Films 
+(
+  FilmId,
+  FilmName,
+  YearReleased,
+  PlotSummary,
+  AvailableOnDVD,
+  Rating,
+  CategoryId
+)
+VALUES
+ ( 
+  1,
+  'The Dirty Half Dozen',
+  1987,
+  'Six men go to war wearing unwashed uniforms.  The horror!',
+  'N',
+  2,
+  4
+ );
+
+
+INSERT INTO Films 
+(
+  FilmId,
+  FilmName,
+  YearReleased,
+  PlotSummary,
+  AvailableOnDVD,
+  Rating,
+  CategoryId
+)
+VALUES
+ ( 
+  2,
+  'On Golden Puddle',
+  1967,
+  'A couple find love while wading through a puddle',
+  'Y',
+  4,
+  2
+ );
+
+
+INSERT INTO Films 
+(
+  FilmId,
+  FilmName,
+  YearReleased,
+  PlotSummary,
+  AvailableOnDVD,
+  Rating,
+  CategoryId
+)
+VALUES
+ ( 
+  3,
+  'The Lion, the Witch, and the Chest of Drawers',
+  1977,
+  'A fun film for all those interested in zoo/magic/furniture drama',
+  'N',
+  1,
+  3
+ );
+
+
+INSERT INTO Films 
+(
+  FilmId,
+  FilmName,
+  YearReleased,
+  PlotSummary,
+  AvailableOnDVD,
+  Rating,
+  CategoryId
+)
+VALUES
+ ( 
+  4,
+  'Nightmare on Oak Street, Part 23',
+  1997,
+  'The murderous Terry stalks Oak Street',
+  'Y',
+  2,
+  3
+ );
+
+
+INSERT INTO Films 
+(
+  FilmId,
+  FilmName,
+  YearReleased,
+  PlotSummary,
+  AvailableOnDVD,
+  Rating,
+  CategoryId
+)
+VALUES
+ ( 
+  5,
+  'The Wide Brimmed Hat',
+  2005,
+  'Fascinating life story of a wide brimmed hat',
+  'N',
+  1,
+  5
+ );
+
+
+INSERT INTO Films 
+(
+  FilmId,
+  FilmName,
+  YearReleased,
+  PlotSummary,
+  AvailableOnDVD,
+  Rating,
+  CategoryId
+)
+VALUES
+ ( 
+  6,
+  'Sense and Insensitivity',
+  2001,
+  'She longs for a new life with Mr Arcy, he longs for a small cottage in the Hamptons',
+  'Y',
+  3,
+  6
+ );
+
+
+INSERT INTO Films 
+(
+  FilmId,
+  FilmName,
+  YearReleased,
+  PlotSummary,
+  AvailableOnDVD,
+  Rating,
+  CategoryId
+)
+VALUES
+ ( 
+  7,
+  'Planet of the Japes',
+  1967,
+  'Earth has been destroyed, to be taken over by a species of comedians',
+  'Y',
+  5,
+  4
+ );
+
+
+INSERT INTO Films 
+(
+  FilmId,
+  FilmName,
+  YearReleased,
+  PlotSummary,
+  AvailableOnDVD,
+  Rating,
+  CategoryId
+)
+VALUES
+ ( 
+  8,
+  'The Maltese Poodle',
+  1947,
+  'A mysterious bite mark, a guilty looking poodle. 1st class thriller',
+  'Y',
+  1,
+  1
+ );
+
+
+INSERT INTO Films 
+(
+  FilmId,
+  FilmName,
+  YearReleased,
+  PlotSummary,
+  AvailableOnDVD,
+  Rating,
+  CategoryId
+)
+VALUES
+ ( 
+  2,
+  '15th Late Afternoon',
+  1989,
+  'One of Shakespeare''s lesser known plays',
+  'N',
+  5,
+  6
+ );
+
+
+INSERT INTO Films 
+(
+  FilmId,
+  FilmName,
+  YearReleased,
+  PlotSummary,
+  AvailableOnDVD,
+  Rating,
+  CategoryId
+)
+VALUES
+ ( 
+  2,
+  'Soylent Yellow',
+  1967,
+  'Detective Billy Brambles discovers Soylent Yellow is made of Soya Bean.  Ewwww!',
+  'Y',
+  5,
+  5
+ );

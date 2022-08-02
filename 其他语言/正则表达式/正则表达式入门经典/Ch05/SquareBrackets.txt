@@ -1,0 +1,7 @@
+These are alphabetic characters [A to Z and a to z].
+
+myVariable = myArray[3];
+
+Character[7]
+
+The first five characters in the ASCII character set after upper case Z are [, \, ], ^ and _.

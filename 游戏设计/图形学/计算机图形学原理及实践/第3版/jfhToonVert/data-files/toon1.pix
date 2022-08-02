@@ -1,0 +1,49 @@
+#version 120 // -*- c++ -*-
+/**
+ Per-vertex Toon Shading
+ */
+
+/** Diffuse/ambient surface color */
+uniform vec3 diffuseColor;
+
+/** Specular surface color.  Used for both glossy and perfect reflection. */
+uniform vec3 specularColor;
+
+/** Intensity of the diffuse term. */
+uniform float diffuseScalar;
+
+/** Intensity of the specular term. */
+uniform float specularScalar;
+
+/** Phong exponent; 100 = sharp highlight, 1 = broad highlight */
+uniform float shine;
+
+/** Unit world space direction to the (infinite, directional) light source */
+uniform vec3 wsLight;
+
+/** Color of the light source */
+uniform vec3 lightColor;
+
+/** Color of ambient light */
+uniform vec3 ambientLightColor;
+
+varying vec3 wsInterpolatedNormal;
+varying vec3 wsInterpolatedEye;
+
+varying float lambertFraction;
+
+void main() {
+	vec3 color;	
+	float intensity = lambertFraction;
+
+		if (intensity > 0.95)
+			color = diffuseColor;
+		else if (intensity > 0.5)
+			color = diffuseColor * 0.6;
+		else if (intensity > 0.25)
+			color = diffuseColor * 0.4;
+		else
+			color = diffuseColor * 0.2;
+
+		gl_FragColor.rgb = color;
+}

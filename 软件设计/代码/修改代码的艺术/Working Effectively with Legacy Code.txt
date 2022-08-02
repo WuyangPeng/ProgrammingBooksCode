@@ -1,0 +1,8 @@
+修改代码的艺术（Working Effectively with Legacy Code）
+
+官方网站：
+http://www.objectmentor.com、 
+http://www.michaelfeathers.com （已失效）
+
+★ 
+作者：Michael C.Feathers 

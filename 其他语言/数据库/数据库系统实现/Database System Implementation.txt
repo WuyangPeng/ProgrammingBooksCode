@@ -1,0 +1,8 @@
+数据库系统实现 （Database System Implementation）
+（第2版） 
+
+官方网站：
+http://infolab.stanford.edu/~ullman/fcdb.html
+
+★
+作者： Hector Garcia-Molina、Jeffrey D.Ullman、Jennifer Widom 

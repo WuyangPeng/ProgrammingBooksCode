@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual C++ Express 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "D3DSample", "D3DSample\D3DSample.vcproj", "{3B4B768D-FA20-4C8F-9631-D36E550DBC53}"
+	ProjectSection(ProjectDependencies) = postProject
+		{645025B0-A652-4958-8E36-567E62AF4D62} = {645025B0-A652-4958-8E36-567E62AF4D62}
+		{D29DCD4F-7D0A-4925-B4D5-3BD64EFB6668} = {D29DCD4F-7D0A-4925-B4D5-3BD64EFB6668}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameLib", "GameLib\GameLib.vcproj", "{D29DCD4F-7D0A-4925-B4D5-3BD64EFB6668}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "math3D", "math3D\math3D.vcproj", "{645025B0-A652-4958-8E36-567E62AF4D62}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3B4B768D-FA20-4C8F-9631-D36E550DBC53}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3B4B768D-FA20-4C8F-9631-D36E550DBC53}.Debug|Win32.Build.0 = Debug|Win32
+		{3B4B768D-FA20-4C8F-9631-D36E550DBC53}.Release|Win32.ActiveCfg = Release|Win32
+		{3B4B768D-FA20-4C8F-9631-D36E550DBC53}.Release|Win32.Build.0 = Release|Win32
+		{D29DCD4F-7D0A-4925-B4D5-3BD64EFB6668}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D29DCD4F-7D0A-4925-B4D5-3BD64EFB6668}.Debug|Win32.Build.0 = Debug|Win32
+		{D29DCD4F-7D0A-4925-B4D5-3BD64EFB6668}.Release|Win32.ActiveCfg = Release|Win32
+		{D29DCD4F-7D0A-4925-B4D5-3BD64EFB6668}.Release|Win32.Build.0 = Release|Win32
+		{645025B0-A652-4958-8E36-567E62AF4D62}.Debug|Win32.ActiveCfg = Debug|Win32
+		{645025B0-A652-4958-8E36-567E62AF4D62}.Debug|Win32.Build.0 = Debug|Win32
+		{645025B0-A652-4958-8E36-567E62AF4D62}.Release|Win32.ActiveCfg = Release|Win32
+		{645025B0-A652-4958-8E36-567E62AF4D62}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

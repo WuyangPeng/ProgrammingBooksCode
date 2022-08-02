@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>Adapting Win32 Enumeration APIs to STL Iterator Concepts</title>
+</head>
+
+<body>
+
+
+<h4>Listing 10   Extract from REGTREE</h4>
+
+<pre>
+void FillLevel(HWND hwndKeys, HTREEITEM hParent, reg_key_a const &key)
+{
+  reg_key_sequence_a                  keys(key);
+  reg_key_sequence_a::const_iterator  begin   =   keys.begin();
+  reg_key_sequence_a::const_iterator  end     =   keys.end();
+
+  for(; begin != end; ++begin)
+  {
+    reg_key_a key   = *begin;
+    HTREEITEM hItem = InsertItem(hwndKeys, hParent, key);
+
+    FillLevel(hwndKeys, hItem, key);
+  }
+}
+
+</pre>
+</body>
+</html>

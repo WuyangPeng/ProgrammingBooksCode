@@ -1,0 +1,5 @@
+Visual Leak Detector 
+★
+
+1. 版本：2.7.0。
+2. git地址：https://github.com/oneiric/vld。

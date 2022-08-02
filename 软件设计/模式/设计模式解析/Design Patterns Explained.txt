@@ -1,0 +1,10 @@
+设计模式解析（Design Patterns Explained）
+（第2版）
+
+官方网站：
+http://www.netobjectives.com/dpexplained （已失效） 、
+https://portal.netobjectives.com/pages/books/design-patterns-explained/
+
+★★☆
+作者：  Alan Shalloway、James R.Trott 
+ 

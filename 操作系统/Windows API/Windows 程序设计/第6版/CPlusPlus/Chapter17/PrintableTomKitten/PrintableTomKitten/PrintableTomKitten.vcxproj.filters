@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>d2c85656-dcb0-485d-9dd5-9d1e0b96a292</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>c1250021-041e-4ad7-b6cb-da796e80752a</UniqueIdentifier>
+    </Filter>
+    <Page Include="Common\StandardStyles.xaml">
+      <Filter>Common</Filter>
+    </Page>
+    <Image Include="Assets\Logo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SmallLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\StoreLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SplashScreen.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Filter Include="Images">
+      <UniqueIdentifier>{374e8af4-9672-444f-828a-e38de7c1e4e2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="App.xaml.cpp" />
+    <ClCompile Include="MainPage.xaml.cpp" />
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="TomKitten03.xaml.cpp" />
+    <ClCompile Include="TomKitten04.xaml.cpp" />
+    <ClCompile Include="TomKitten05.xaml.cpp" />
+    <ClCompile Include="TomKitten06.xaml.cpp" />
+    <ClCompile Include="TomKitten07.xaml.cpp" />
+    <ClCompile Include="TomKitten08.xaml.cpp" />
+    <ClCompile Include="TomKitten09.xaml.cpp" />
+    <ClCompile Include="TomKitten10.xaml.cpp" />
+    <ClCompile Include="TomKitten11.xaml.cpp" />
+    <ClCompile Include="TomKitten12.xaml.cpp" />
+    <ClCompile Include="TomKitten13.xaml.cpp" />
+    <ClCompile Include="TomKitten14.xaml.cpp" />
+    <ClCompile Include="TomKitten15.xaml.cpp" />
+    <ClCompile Include="TomKitten16.xaml.cpp" />
+    <ClCompile Include="TomKitten17.xaml.cpp" />
+    <ClCompile Include="TomKitten18.xaml.cpp" />
+    <ClCompile Include="TomKitten19.xaml.cpp" />
+    <ClCompile Include="TomKitten20.xaml.cpp" />
+    <ClCompile Include="TomKitten21.xaml.cpp" />
+    <ClCompile Include="TomKitten22.xaml.cpp" />
+    <ClCompile Include="TomKitten23.xaml.cpp" />
+    <ClCompile Include="TomKitten24.xaml.cpp" />
+    <ClCompile Include="TomKitten25.xaml.cpp" />
+    <ClCompile Include="TomKitten26.xaml.cpp" />
+    <ClCompile Include="TomKitten27.xaml.cpp" />
+    <ClCompile Include="TomKitten28.xaml.cpp" />
+    <ClCompile Include="TomKitten29.xaml.cpp" />
+    <ClCompile Include="TomKitten30.xaml.cpp" />
+    <ClCompile Include="TomKitten31.xaml.cpp" />
+    <ClCompile Include="TomKitten32.xaml.cpp" />
+    <ClCompile Include="TomKitten33.xaml.cpp" />
+    <ClCompile Include="TomKitten34.xaml.cpp" />
+    <ClCompile Include="TomKitten35.xaml.cpp" />
+    <ClCompile Include="TomKitten36.xaml.cpp" />
+    <ClCompile Include="TomKitten37.xaml.cpp" />
+    <ClCompile Include="TomKitten38.xaml.cpp" />
+    <ClCompile Include="TomKitten39.xaml.cpp" />
+    <ClCompile Include="TomKitten40.xaml.cpp" />
+    <ClCompile Include="TomKitten41.xaml.cpp" />
+    <ClCompile Include="TomKitten42.xaml.cpp" />
+    <ClCompile Include="TomKitten43.xaml.cpp" />
+    <ClCompile Include="TomKitten44.xaml.cpp" />
+    <ClCompile Include="TomKitten45.xaml.cpp" />
+    <ClCompile Include="TomKitten46.xaml.cpp" />
+    <ClCompile Include="TomKitten47.xaml.cpp" />
+    <ClCompile Include="TomKitten48.xaml.cpp" />
+    <ClCompile Include="TomKitten49.xaml.cpp" />
+    <ClCompile Include="TomKitten50.xaml.cpp" />
+    <ClCompile Include="TomKitten51.xaml.cpp" />
+    <ClCompile Include="TomKitten52.xaml.cpp" />
+    <ClCompile Include="TomKitten53.xaml.cpp" />
+    <ClCompile Include="TomKitten54.xaml.cpp" />
+    <ClCompile Include="TomKitten55.xaml.cpp" />
+    <ClCompile Include="TomKitten56.xaml.cpp" />
+    <ClCompile Include="TomKitten57.xaml.cpp" />
+    <ClCompile Include="TomKitten58.xaml.cpp" />
+    <ClCompile Include="TomKitten59.xaml.cpp" />
+    <ClCompile Include="CustomPageRange.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="App.xaml.h" />
+    <ClInclude Include="MainPage.xaml.h" />
+    <ClInclude Include="TomKitten03.xaml.h" />
+    <ClInclude Include="TomKitten04.xaml.h" />
+    <ClInclude Include="TomKitten05.xaml.h" />
+    <ClInclude Include="TomKitten06.xaml.h" />
+    <ClInclude Include="TomKitten07.xaml.h" />
+    <ClInclude Include="TomKitten08.xaml.h" />
+    <ClInclude Include="TomKitten09.xaml.h" />
+    <ClInclude Include="TomKitten10.xaml.h" />
+    <ClInclude Include="TomKitten11.xaml.h" />
+    <ClInclude Include="TomKitten12.xaml.h" />
+    <ClInclude Include="TomKitten13.xaml.h" />
+    <ClInclude Include="TomKitten14.xaml.h" />
+    <ClInclude Include="TomKitten15.xaml.h" />
+    <ClInclude Include="TomKitten16.xaml.h" />
+    <ClInclude Include="TomKitten17.xaml.h" />
+    <ClInclude Include="TomKitten18.xaml.h" />
+    <ClInclude Include="TomKitten19.xaml.h" />
+    <ClInclude Include="TomKitten20.xaml.h" />
+    <ClInclude Include="TomKitten21.xaml.h" />
+    <ClInclude Include="TomKitten22.xaml.h" />
+    <ClInclude Include="TomKitten23.xaml.h" />
+    <ClInclude Include="TomKitten24.xaml.h" />
+    <ClInclude Include="TomKitten25.xaml.h" />
+    <ClInclude Include="TomKitten26.xaml.h" />
+    <ClInclude Include="TomKitten27.xaml.h" />
+    <ClInclude Include="TomKitten28.xaml.h" />
+    <ClInclude Include="TomKitten29.xaml.h" />
+    <ClInclude Include="TomKitten30.xaml.h" />
+    <ClInclude Include="TomKitten31.xaml.h" />
+    <ClInclude Include="TomKitten32.xaml.h" />
+    <ClInclude Include="TomKitten33.xaml.h" />
+    <ClInclude Include="TomKitten34.xaml.h" />
+    <ClInclude Include="TomKitten35.xaml.h" />
+    <ClInclude Include="TomKitten36.xaml.h" />
+    <ClInclude Include="TomKitten37.xaml.h" />
+    <ClInclude Include="TomKitten38.xaml.h" />
+    <ClInclude Include="TomKitten39.xaml.h" />
+    <ClInclude Include="TomKitten40.xaml.h" />
+    <ClInclude Include="TomKitten41.xaml.h" />
+    <ClInclude Include="TomKitten42.xaml.h" />
+    <ClInclude Include="TomKitten43.xaml.h" />
+    <ClInclude Include="TomKitten44.xaml.h" />
+    <ClInclude Include="TomKitten45.xaml.h" />
+    <ClInclude Include="TomKitten46.xaml.h" />
+    <ClInclude Include="TomKitten47.xaml.h" />
+    <ClInclude Include="TomKitten48.xaml.h" />
+    <ClInclude Include="TomKitten49.xaml.h" />
+    <ClInclude Include="TomKitten50.xaml.h" />
+    <ClInclude Include="TomKitten51.xaml.h" />
+    <ClInclude Include="TomKitten52.xaml.h" />
+    <ClInclude Include="TomKitten53.xaml.h" />
+    <ClInclude Include="TomKitten54.xaml.h" />
+    <ClInclude Include="TomKitten55.xaml.h" />
+    <ClInclude Include="TomKitten56.xaml.h" />
+    <ClInclude Include="TomKitten57.xaml.h" />
+    <ClInclude Include="TomKitten58.xaml.h" />
+    <ClInclude Include="TomKitten59.xaml.h" />
+    <ClInclude Include="CustomPageRange.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PrintableTomKitten_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="MainPage.xaml" />
+    <Page Include="TomKitten03.xaml" />
+    <Page Include="TomKitten04.xaml" />
+    <Page Include="TomKitten05.xaml" />
+    <Page Include="TomKitten06.xaml" />
+    <Page Include="TomKitten07.xaml" />
+    <Page Include="TomKitten08.xaml" />
+    <Page Include="TomKitten09.xaml" />
+    <Page Include="TomKitten10.xaml" />
+    <Page Include="TomKitten11.xaml" />
+    <Page Include="TomKitten12.xaml" />
+    <Page Include="TomKitten13.xaml" />
+    <Page Include="TomKitten14.xaml" />
+    <Page Include="TomKitten15.xaml" />
+    <Page Include="TomKitten16.xaml" />
+    <Page Include="TomKitten17.xaml" />
+    <Page Include="TomKitten18.xaml" />
+    <Page Include="TomKitten19.xaml" />
+    <Page Include="TomKitten20.xaml" />
+    <Page Include="TomKitten21.xaml" />
+    <Page Include="TomKitten22.xaml" />
+    <Page Include="TomKitten23.xaml" />
+    <Page Include="TomKitten24.xaml" />
+    <Page Include="TomKitten25.xaml" />
+    <Page Include="TomKitten26.xaml" />
+    <Page Include="TomKitten27.xaml" />
+    <Page Include="TomKitten28.xaml" />
+    <Page Include="TomKitten29.xaml" />
+    <Page Include="TomKitten30.xaml" />
+    <Page Include="TomKitten31.xaml" />
+    <Page Include="TomKitten32.xaml" />
+    <Page Include="TomKitten33.xaml" />
+    <Page Include="TomKitten34.xaml" />
+    <Page Include="TomKitten35.xaml" />
+    <Page Include="TomKitten36.xaml" />
+    <Page Include="TomKitten37.xaml" />
+    <Page Include="TomKitten38.xaml" />
+    <Page Include="TomKitten39.xaml" />
+    <Page Include="TomKitten40.xaml" />
+    <Page Include="TomKitten41.xaml" />
+    <Page Include="TomKitten42.xaml" />
+    <Page Include="TomKitten43.xaml" />
+    <Page Include="TomKitten44.xaml" />
+    <Page Include="TomKitten45.xaml" />
+    <Page Include="TomKitten46.xaml" />
+    <Page Include="TomKitten47.xaml" />
+    <Page Include="TomKitten48.xaml" />
+    <Page Include="TomKitten49.xaml" />
+    <Page Include="TomKitten50.xaml" />
+    <Page Include="TomKitten51.xaml" />
+    <Page Include="TomKitten52.xaml" />
+    <Page Include="TomKitten53.xaml" />
+    <Page Include="TomKitten54.xaml" />
+    <Page Include="TomKitten55.xaml" />
+    <Page Include="TomKitten56.xaml" />
+    <Page Include="TomKitten57.xaml" />
+    <Page Include="TomKitten58.xaml" />
+    <Page Include="TomKitten59.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\tom04.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom05.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom08.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom11.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom12.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom15.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom16.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom19.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom20.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom23.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom24.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom27.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom28.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom31.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom32.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom35.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom36.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom39.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom40.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom43.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom44.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom47.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom48.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom51.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom52.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom55.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom57.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom58.jpg">
+      <Filter>Images</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>Positive and Negative Lookahead</title>
+<script language="vbscript" type="text/vbscript">
+Function MatchLookaheads
+Dim myRegExp, TestName, Match, Matches, displayString
+displayString = ""
+Set myRegExp = new RegExp
+myRegExp.Pattern = "the(?=atre)" 'matches, for example, the in theatre
+myRegExp.IgnoreCase = True
+myRegExp.Global = True
+TestString = InputBox("Enter characters and numbers in the text box below.")
+Set Matches = myRegexp.Execute(TestString)
+displayString = displayString & "MATCH ATTEMPT 1: 'the' in 'theatre'" & VBCrLf
+  For Each Match in Matches
+    displayString = displayString & "Match found at position " & Match.FirstIndex & "."
+    displayString = displayString & "The match value is '" & Match.Value & "'." & VBCrLf
+  Next
+displayString = displayString & VBCrLf & VBCrLf
+'Begin a new match which produces a new Match collection.
+myRegExp.Pattern = "the(?!atre)" 'matches the NOT in theatre
+Set Matches = myRegexp.Execute(TestString)
+displayString = displayString & "MATCH ATTEMPT 2: 'the' not in 'theatre'" & VBCrLf
+  For Each Match in Matches
+    displayString = displayString & "Match found at position " & Match.FirstIndex & "."
+    displayString = displayString & "The match value is '" & Match.Value & "'." & VBCrLf
+  Next
+  MsgBox displayString
+End Function
+
+</script>
+</head>
+<body onload="MatchLookaheads">
+
+</body>
+</html>

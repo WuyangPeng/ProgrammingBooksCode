@@ -1,0 +1,8 @@
+Imperfect C++
+
+官方网站：
+http://imperfectcplusplus.com。
+
+★★★★★
+作者：Matthew Wilson
+其他书籍：《STL 扩展技术手册》。

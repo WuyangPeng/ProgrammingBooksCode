@@ -1,0 +1,5 @@
+Advanced C++
+
+○
+作者：James O.Coplien
+其他书籍：《C++ 多范型设计》、《程序设计的模式语言》。 

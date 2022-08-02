@@ -1,0 +1,9 @@
+This is regular but not an expression.
+
+Here is a simple regular expression pattern: \d.
+
+Regex is an abbreviation for regular expression.
+
+Some people use the abbreviation regexp.
+
+The plural of regex is regexes.

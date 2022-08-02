@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>Processing a 16 digit credit card number.</title>
+<script language="ecmascript" >
+var myRegExp = /\d{4}\s\d{4}\s\d{4}\s\d{4}/;
+// \d{4} match four numeric digits
+// \s match a whitespace character
+// \d{4} match four numeric digits
+// \s match a whitespace character
+// \d{4] match four numeric digits
+// \s match a whitespace character
+// \d{4} match four numeric digits
+
+var entry;
+
+function Validate(){
+entry = document.simpleForm.CCNBox.value;
+if (myRegExp.test(entry)) {
+alert("The value you entered, " + entry + "\nmatches the regular expression, " + myRegExp + ". \nIt is a valid 16 digit credit card number." );
+} // end of the if statement
+else
+{
+alert("The value you entered," + entry + ",\nis not a valid 16 digit credit card number. Please try again.");
+} // end of else clause
+} // end Validate() function
+
+function ClearBox(){
+document.simpleForm.CCNBox.value = "";
+// The above line clears the texbox when it receives focus
+} // end ClearBox() function
+</script>
+</head>
+<body>
+<form name="simpleForm" >
+<table>
+<tr>
+<td width="50%">Enter a valid 16 digit credit card number here, separating the groups of four numbers by spaces:</td>
+<td width="40%"><input name="CCNBox" width="50" onfocus="ClearBox()" type="text" value="Enter a credit card number here"></input></td>
+</tr>
+<tr>
+<td><input name="Submit" type="submit" value="Check the Credit Card Number" onclick="Validate()" ></input></td>
+</tr>
+</table>
+</form>
+</body>
+</html>

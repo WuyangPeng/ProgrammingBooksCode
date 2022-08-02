@@ -1,0 +1,5 @@
+mysql++
+☆
+
+1. 版本：3.2.5。
+2. 官方网站：https://tangentsoft.com/mysqlpp/home。

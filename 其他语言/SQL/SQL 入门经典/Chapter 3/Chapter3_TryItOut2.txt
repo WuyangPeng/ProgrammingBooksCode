@@ -1,0 +1,6 @@
+SELECT FirstName, LastName, City, DateOfBirth
+FROM MemberDetails
+WHERE
+( City = 'Townsville' OR City = 'Big City' )
+AND
+(DateOfBirth > '1989-05-31' OR DateOfBirth <= '1945-05-31')

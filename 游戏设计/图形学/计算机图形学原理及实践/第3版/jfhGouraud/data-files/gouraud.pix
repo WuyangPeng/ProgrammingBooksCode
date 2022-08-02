@@ -1,0 +1,22 @@
+#version 120 // -*- c++ -*-
+/**
+ Per-pixel Gouraud Shading. 
+
+ */
+
+/** Diffuse/ambient surface color */
+uniform vec3 diffuseColor;
+
+/** Intensity of the diffuse term. */
+uniform float diffuse;
+
+/** Color of the light source */
+uniform vec3 lightColor;
+
+/** dot product of surf normal with light */
+varying float gouraudFactor;
+
+void main() {
+    gl_FragColor.rgb =
+        diffuse  * diffuseColor  * ((max(gouraudFactor, 0.0) * lightColor));
+}

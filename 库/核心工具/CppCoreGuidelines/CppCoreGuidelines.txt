@@ -1,0 +1,5 @@
+CppCoreGuidelines
+★★★
+
+1. 官方网站：https://github.com/isocpp/CppCoreGuidelines。
+2. git地址：https://github.com/isocpp/CppCoreGuidelines.git。

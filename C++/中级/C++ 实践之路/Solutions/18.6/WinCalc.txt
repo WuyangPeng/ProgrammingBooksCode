@@ -1,0 +1,23 @@
+Version	Created By	Date	State	Script ID
+				
+18. Cosmetics: start with a smaller window 	Bartosz Milewski	Sun Feb 18 17:35:05 2001	Confirmed	0-15
+17. Load memory dialog box 	Bartosz Milewski	Sun Feb 18 17:34:19 2001	Confirmed	0-14
+16. Save memory dialog box 	Bartosz Milewski	Sun Feb 18 17:33:32 2001	Confirmed	0-13
+15. About dialog box 	Bartosz Milewski	Sun Feb 18 17:32:45 2001	Confirmed	0-12
+14. Message preprocessor 	Bartosz Milewski	Sun Feb 18 17:31:46 2001	Confirmed	0-11
+13. Clear memory with user message and dynamic menu item 	Bartosz Milewski	Sun Feb 18 17:30:54 2001	Confirmed	0-10
+12. Dynamic menu refresh 	Bartosz Milewski	Sun Feb 18 17:29:40 2001	Confirmed	0-f
+11. Dynamic menu system 	Bartosz Milewski	Sun Feb 18 17:28:10 2001	Confirmed	0-e
+10. Introduced command vector 	Bartosz Milewski	Sun Feb 18 17:26:50 2001	Confirmed	0-d
+9. Remove static menu 	Bartosz Milewski	Sun Feb 18 17:25:33 2001	Confirmed	0-c
+8. Menu: not so great a solution 	Bartosz Milewski	Sun Feb 18 17:24:56 2001	Confirmed	0-b
+7. Working memory display with notifications 	Bartosz Milewski	Sun Feb 18 17:24:10 2001	Confirmed	0-a
+6. Stubbed notification sink 	Bartosz Milewski	Sun Feb 18 17:23:09 2001	Confirmed	0-9
+5. Working calculator without memory display 	Bartosz Milewski	Sun Feb 18 17:22:24 2001	Confirmed	0-8
+4. Stubbed OnCommand and OnControl 	Bartosz Milewski	Sun Feb 18 17:21:10 2001	Confirmed	0-7
+3. Window subclassing 	Bartosz Milewski	Sun Feb 18 17:20:10 2001	Confirmed	0-6
+2. Plugged in child window controls and implemented resizing 	Bartosz Milewski	Sun Feb 18 17:09:13 2001	Confirmed	0-5
+1. Extended library: child windows, controls, etc. 	Bartosz Milewski	Sun Feb 18 17:07:19 2001	Confirmed	0-4
+New User Anonymous 	Bartosz Milewski	Sat Feb 17 16:18:23 2001	(Confirmed)	0-2
+File(s) Added During Project Creation 	Bartosz Milewski	Sat Feb 17 16:16:01 2001	Confirmed	0-1
+Project 'WinCalc' created Sat Feb 17 16:15:44 2001 	Bartosz Milewski	Sat Feb 17 16:15:44 2001	Milestone	0-0

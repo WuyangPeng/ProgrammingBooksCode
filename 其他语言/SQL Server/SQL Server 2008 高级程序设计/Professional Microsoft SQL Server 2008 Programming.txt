@@ -1,0 +1,8 @@
+SQL Server 2008 高级程序设计  （Professional Microsoft SQL Server 2008 Programming）
+ 
+官方网站：
+http://www.wrox.com 
+
+★
+作者：Robert Vieria  
+

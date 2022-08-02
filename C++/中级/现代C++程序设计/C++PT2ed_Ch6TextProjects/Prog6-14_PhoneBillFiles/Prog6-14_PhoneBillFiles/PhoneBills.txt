@@ -1,0 +1,15 @@
+C++ Phone Company
+Customer: Bjarne Stroustrup
+Jan-Dec, 2007
+45.14
+45.14
+47.72
+48.43
+45.14
+45.14
+51.78
+49.73
+45.14
+52.65
+45.14
+48.99

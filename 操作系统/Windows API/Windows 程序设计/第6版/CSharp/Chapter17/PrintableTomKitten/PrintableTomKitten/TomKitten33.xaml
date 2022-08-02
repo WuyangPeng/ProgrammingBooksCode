@@ -1,0 +1,15 @@
+﻿<UserControl
+    x:Class="PrintableTomKitten.TomKitten33"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Grid VerticalAlignment="Center"
+          MaxWidth="640">
+        <TextBlock Style="{StaticResource paragraphTextStyle}">
+            &#x2003;&#x2003;While they were in difficulties, there was 
+            a pit pat paddle pat! and the three Puddle-Ducks came along 
+            the hard high road, marching one behind the other and doing 
+            the goose step — pit pat paddle pat! pit pat waddle pat!
+        </TextBlock>
+    </Grid>
+</UserControl>

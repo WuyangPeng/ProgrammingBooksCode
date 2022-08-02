@@ -1,0 +1,121 @@
+<html>
+<head>
+<title>March 04: D and JavaTwo more languages are added to the map</title>
+</head>
+
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#330066" ALINK="#ff0000" TEXT="#000000">
+<!--Copyright &#169; C/C++ Users Journal-->
+
+<h3>Listing 5: <i>The </i>Search.nextElement()<i> method.</i></h3>
+<pre>
+ /* /////////////////////////////////////////////////////////////
+ * Extract from recls_Search.cpp
+ * www:    www.synesis.com.au/software
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * (Licensed under the Synesis Software Standard Source License:
+ *  http://www.synesis.com.au/licenses/ssssl.html)
+ * ////////////////////////////////////////////////////////// */
+
+const char CLSNM_ENTRY[]          = "Lorg/recls/Entry;";
+const char CLSNM_STRING[]         = "Ljava/lang/String;";
+const char CLSNM_NOSUCHELEMENTX[] = "Ljava/lang/NoSuchElementException;";
+const char CLSNM_ILLEGALSTATEX[]  = "Ljava/lang/IllegalStateException;";
+const char FIELDNAME_HSRCH[]      = "m_hSearch";
+
+jfieldID GetSearchFieldID(JNIEnv *henv, jobject obj)
+{
+  jclass    clsEntry  = henv->GetObjectClass(obj);
+  jfieldID  fid       = henv->GetFieldID(clsEntry, FIELDNAME_HSRCH, "I");
+  return fid;
+}
+hrecls_t SearchFromJObject(JNIEnv *henv, jobject obj)
+{
+  jfieldID  fid = GetSearchFieldID(henv, obj);
+  return reinterpret_cast&lt;hrecls_t>(henv->GetIntField(obj, fid));
+}
+void ThrowException(JNIEnv *henv, char const *className, char const *message)
+{
+  va_list args;
+  va_start(args, message);
+  jclass  clsX  = henv->FindClass(className);
+  if(NULL != clsX)
+  {
+    henv->ThrowNew(clsX, message);
+    henv->DeleteLocalRef(clsX);
+  }
+  va_end(args);
+}
+jstring StringFromRange(JNIEnv *henv, recls_char_t const *from, 
+                                                   recls_char_t const *to)
+{
+  typedef  stlsoft::auto_buffer&lt;recls_char_t
+                              , stlsoft::malloc_allocator&lt;recls_char_t>
+                              , RECLS_PATH_MAX
+                              >                 buffer_t;
+  buffer_t  buffer(1 + (to - from));
+#ifdef RECLS_CHAR_TYPE_IS_CHAR
+  strncpy(buffer, from, buffer.size() - 1);
+  buffer[buffer.size() - 1] = 0;
+    return henv->NewStringUTF(buffer);
+#elif defined(RECLS_CHAR_TYPE_IS_WCHAR
+  wcsncpy(buffer, from, buffer.size() - 1);
+  buffer[buffer.size() - 1] = 0;
+  return henv->NewString(buffer);
+#else /* ?char type */
+# error recls char type must be discriminated
+#endif /* char type */
+}
+JNIEXPORT jobject JNICALL Java_org_recls_Search_nextElement
+  (JNIEnv *henv, jobject obj)
+{
+  hrecls_t    hSrch = SearchFromJObject(henv, obj);
+  recls_rc_t  rc;
+  jobject     entry;
+  if( NULL == hSrch ||
+      RECLS_FAILED(rc = Recls_GetLastError(hSrch)))
+  {
+    ThrowException(henv, CLSNM_NOSUCHELEMENTX, "No more elements in search");
+    entry = NULL;
+  }
+  else
+  {
+    recls_info_t  hEntry;
+    // (i) Get the details of the current position ...
+    rc = Recls_GetDetails(hSrch, &hEntry);
+    if(RECLS_SUCCEEDED(rc))
+    {
+      jclass        clsEntry      = henv->FindClass(CLSNM_ENTRY);
+      jmethodID     midEntryCtor  = henv->GetMethodID(clsEntry, "&lt;init>", 
+                                 "(ILjava/lang/String;[Ljava/lang/String;)V");
+      size_t        cDirParts     = Recls_GetDirectoryPartProperty(hEntry, 
+                                                                 -1, NULL, 0);
+      jstring       path          = StringFromRange(henv, hEntry->path.begin, 
+                                                          hEntry->path.end);
+      jclass        clsString     = henv->FindClass(CLSNM_STRING);
+      jobjectArray  dirParts      = henv->NewObjectArray(cDirParts, 
+                                                            clsString, NULL);
+      for(size_t i = 0; i < cDirParts; ++i)
+      {
+        recls_strptrs_t const *part = hEntry->directoryParts.begin + i;
+        jstring dirPart = StringFromRange(henv, part->begin, part->end);
+        henv->SetObjectArrayElement(dirParts, i, dirPart);
+      }
+      entry = henv->NewObject(clsEntry, midEntryCtor, hEntry, path, dirParts);
+      // (ii) ... and then advance to the next
+      rc = Recls_GetNext(hSrch);
+      if(RECLS_FAILED(rc))
+      {
+        jfieldID  fid = GetSearchFieldID(henv, obj);
+        henv->SetIntField(obj, fid, 0);
+        Recls_SearchClose(hSrch);
+      }
+    }
+    else
+    {
+     ThrowException(henv,CLSNM_ILLEGALSTATEX,"Search entry retrieval failed");
+    }
+  }
+  return entry; 
+}
+</body>
+</html>

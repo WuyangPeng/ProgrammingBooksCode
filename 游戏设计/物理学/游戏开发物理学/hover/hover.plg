@@ -1,0 +1,58 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: hover - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\David\LOCALS~1\Temp\RSPE.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /FR"Debug/" /Fp"Debug/hover.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /c 
+"C:\Program Files\Microsoft Visual Studio\My Projects\Hover\physics.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\David\LOCALS~1\Temp\RSPE.tmp" 
+Creating temporary file "C:\DOCUME~1\David\LOCALS~1\Temp\RSPF.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/hover.pdb" /debug /machine:I386 /out:"Debug/hover.exe" /pdbtype:sept 
+".\Debug\d3dstuff.obj"
+".\Debug\physics.obj"
+".\Debug\winmain.obj"
+"..\..\Vc98\lib\D3drm.lib"
+"..\..\Vc98\lib\Ddraw.lib"
+"..\..\Vc98\lib\Gdi32.lib"
+"..\..\Vc98\lib\User32.lib"
+"..\..\Vc98\lib\Winmm.lib"
+]
+Creating command line "link.exe @C:\DOCUME~1\David\LOCALS~1\Temp\RSPF.tmp"
+<h3>Output Window</h3>
+Compiling...
+physics.cpp
+C:\Program Files\Microsoft Visual Studio\My Projects\Hover\physics.cpp(91) : warning C4305: '=' : truncation from 'const double' to 'float'
+C:\Program Files\Microsoft Visual Studio\My Projects\Hover\physics.cpp(590) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\My Projects\Hover\physics.cpp(596) : warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\My Projects\Hover\physics.cpp(596) : warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\My Projects\Hover\physics.cpp(597) : warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\My Projects\Hover\physics.cpp(597) : warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\My Projects\Hover\physics.cpp(599) : warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\My Projects\Hover\physics.cpp(599) : warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\My Projects\Hover\physics.cpp(600) : warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\My Projects\Hover\physics.cpp(600) : warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\My Projects\Hover\physics.cpp(604) : warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\My Projects\Hover\physics.cpp(605) : warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\My Projects\Hover\physics.cpp(607) : warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\My Projects\Hover\physics.cpp(608) : warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\My Projects\Hover\physics.cpp(857) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\My Projects\Hover\physics.cpp(858) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+Linking...
+Creating command line "bscmake.exe /nologo /o"Debug/hover.bsc"  ".\Debug\d3dstuff.sbr" ".\Debug\physics.sbr" ".\Debug\winmain.sbr""
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+hover.exe - 0 error(s), 16 warning(s)
+</pre>
+</body>
+</html>

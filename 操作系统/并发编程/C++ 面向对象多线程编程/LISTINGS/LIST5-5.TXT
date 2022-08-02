@@ -1,0 +1,48 @@
+// Listing 5-5
+// This program demonstrates the use
+// of named pipes for interprocess
+// communication.  This process acts as the
+// server.
+#define INCL_DOSNMPIPES
+#define INCL_DOSPROCESS
+#include <os2.h>
+#include <fstream.h>
+#include <string.h>
+
+
+const int PipeSz = 256;
+char PipeName[40] = "";
+char Buffer[PipeSz] = "";
+HFILE PipeHandle;
+unsigned long PipeMode;
+unsigned long OMode;
+unsigned long Duration;
+unsigned long NumBytes;
+unsigned long NumBytesRead;
+char Problem[PipeSz];
+RESULTCODES Result;
+
+void main(void)
+{
+
+     OMode = NP_ACCESS_DUPLEX;
+     PipeMode = NP_WMESG | NP_RMESG | 0x01;
+     Duration = 20000;
+     strcpy(PipeName,"\\PIPE\\PIPE1");
+     DosCreateNPipe(PipeName,&PipeHandle,OMode,PipeMode,255,255,Duration);
+     DosExecPgm(Problem,PipeSz,EXEC_ASYNC,NULL,NULL,&Result,"CLNPIPE.exe");
+     DosConnectNPipe(PipeHandle);
+     DosWrite(PipeHandle,"5",1,&NumBytes);
+     DosWrite(PipeHandle,"4",1,&NumBytes);
+     DosRead(PipeHandle,Buffer,1,&NumBytesRead);
+     cout << "Server Read: " << Buffer << endl;
+     DosRead(PipeHandle,Buffer,1,&NumBytesRead);
+     cout << "Server Read: " << Buffer << endl;
+     DosClose(PipeHandle);
+
+}
+
+
+
+
+

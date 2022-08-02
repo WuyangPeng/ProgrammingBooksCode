@@ -1,0 +1,23 @@
+HKCR
+{
+	MyServer.MyServer.1 = s 'MyServer Class'
+	{
+		CLSID = s '{E6E002E2-0284-49D8-A555-FBEB9E389A6A}'
+	}
+	MyServer.MyServer = s 'MyServer Class'
+	{
+		CurVer = s 'MyServer.MyServer.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {E6E002E2-0284-49D8-A555-FBEB9E389A6A} = s 'MyServer Class'
+		{
+			ProgID = s 'MyServer.MyServer.1'
+			VersionIndependentProgID = s 'MyServer.MyServer'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+		}
+	}
+}

@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "synchronization", "synchronization.vcproj", "{88C7EFC1-EC46-4D51-8C91-38F9550C3833}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{88C7EFC1-EC46-4D51-8C91-38F9550C3833}.Debug.ActiveCfg = Debug|Win32
+		{88C7EFC1-EC46-4D51-8C91-38F9550C3833}.Debug.Build.0 = Debug|Win32
+		{88C7EFC1-EC46-4D51-8C91-38F9550C3833}.Release.ActiveCfg = Release|Win32
+		{88C7EFC1-EC46-4D51-8C91-38F9550C3833}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,45 @@
+<html>
+<head>
+	<title>Code Co-op Tutorial</title>
+</head>
+<body bgcolor="White" background="../images/grid.gif">
+
+<table border="0" cellpadding="10">
+<tr><td width="20"></td>
+<td bgcolor="#99cccc" width="600"> 
+<font face="Arial" size=2>
+<center><h2>Join Project</h2></center>
+
+<p>Once somebody has created a project, other members may join in. After selecting <i>Join</i> from the <i>Project</i> menu, you'll be presented with the following dialog:
+<p><img src="../images/join.gif" width="602" height="419" border="0" alt="Join project dialog">
+<p>You'll have to specify the directory for the copy of the <b>source tree</b> on your machine. 
+<p><b>Project name</b> must be the same as defined by the original creator of the project (the <i>administrator</i>).
+<p>You have to specify the <b>email</b> address of an existing <b>member</b> of the project you're joining. It may be the creator of the project or somebody else, who joined later. Your request to join will be sent to this project member.
+<p>Finally, provide your own personal data.
+<hr>
+<p>After you join, a <b>Join Script</b> is created and dispatched. To accomplish that, the Dispatcher will use the email address of the project member you have specified in your join request. If you're on a hub and the member is on another hub, the Dispatcher will use <b>Simple MAPI</b> to talk to your email program (see Code Co-op Help on <b>dispatching</b>) and send the script. If your email programs are configured correctly, you're set. Just wait for the Full Synch script.
+
+<p>If you're on a Satellite, the Dispatcher will copy the script to the forwarding folder. When the Hub receives this script in its Public Inbox (if you're using a diskette, that's where you should copy the script), the Dispatcher will dispatch it to the appropriate project.
+
+<p>Notice: If the satellite user hasn't specified the sharing path to their Public Inbox (either during setup or in Dispatcher/Preferences), the hub's Dispatcher will ask a question about how to forward scripts to the new Satellite project member. In this dialog:
+<ul>
+<li>If you're on the network, specify the Satellite's shared Public Inbox.
+<li>If you're using a diskette, specify a diskette path, e.g., <var>a:\</var>.
+</ul>
+<hr>
+<p><img src="../images/icobusy.gif" width=131 height=28 border=0 alt="Dispatcher busy icon" align="right" hspace=10>
+<p>When the Dispatcher has a script that hasn't been taken care of, its icon changes color and shape:
+
+<p>You can double-click on the Dispatcher's icon to find out which projects have incoming or outgoing scripts. You deal with <b>incoming scripts</b> by firing off Code Co-op, visiting the projects in question and unpacking the scripts. Outgoing scripts should be visible only when you have <i>manual</i> email settings in the Dispatcher. By selecting <i>Send Mail</i> from the Dispatcher's context menu, you'll make them go away. Occasionally, outgoing scripts will be temporarily stuck when a network connection is down or a diskette is not available. The Dispatcher will keep retrying broken network connections once in a while. You can also select <i>Dispatch Locally</i> to force network or diskette dispatching.
+<hr>
+<p>This is what the incoming Join Request script looks like in the administrator's Code Co-op:
+<p><img src="../images/joinreq.gif" width="388" height="208" border="0" alt="Join request script">
+<p>The administrator should now unpack this script by clicking on the first button from the left (the upside-down envelope spilling its contents). This will result in the creation of the <b>Full-Synch</b> script, which will be propagated by the Dispatcher back to the joinee.
+<p>Notice: If the join request was sent to a member who is <i>not</i> the administrator, their Code Co-op will forward it to the administrator.
+<p><a href="tut3.html">Previous</a>, <a href="tut5.html">Next</a>
+
+
+</font>
+</td></tr></table>
+</body>
+</html>

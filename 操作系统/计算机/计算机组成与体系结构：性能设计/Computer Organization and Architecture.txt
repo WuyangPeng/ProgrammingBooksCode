@@ -1,0 +1,10 @@
+计算机组成与体系结构：性能设计（Computer Organization and Architecture）
+（第8版）
+
+★
+作者： William Stallings
+其他书籍：《密码编码学与网络安全——原理与实践》、《操作系统——精髓与设计原理》
+
+官方网站：
+https://www.pearsonhighered.com/stallings
+http://williamstallings.com/

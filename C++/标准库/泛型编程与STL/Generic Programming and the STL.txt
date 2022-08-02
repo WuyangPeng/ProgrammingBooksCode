@@ -1,0 +1,7 @@
+泛型编程与STL（Generic Programming and the STL）
+
+官方网站：
+http://www.sgi.com/Technology/stl
+
+☆
+作者：Matthew H.Austern 

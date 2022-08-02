@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02 ArgsAndVars", "02 ArgsAndVars\02 ArgsAndVars.csproj", "{88F580A1-B106-4036-B8BB-DFAB97C0A8B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88F580A1-B106-4036-B8BB-DFAB97C0A8B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88F580A1-B106-4036-B8BB-DFAB97C0A8B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88F580A1-B106-4036-B8BB-DFAB97C0A8B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88F580A1-B106-4036-B8BB-DFAB97C0A8B0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

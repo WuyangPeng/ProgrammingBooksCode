@@ -1,0 +1,48 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="JackpotDeluxe.StarButton"
+	x:Name="UserControl"
+	d:DesignWidth="136" d:DesignHeight="131">
+
+	<Grid x:Name="LayoutRoot">
+		<VisualStateManager.VisualStateGroups>
+			<VisualStateGroup x:Name="MouseStateGroup">
+				<VisualStateGroup.Transitions>
+					<VisualTransition GeneratedDuration="00:00:01" To="MouseDownStar"/>
+				</VisualStateGroup.Transitions>
+				<VisualState x:Name="MouseEnterStar">
+					<Storyboard>
+						<ColorAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="path" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
+							<SplineColorKeyFrame KeyTime="00:00:00" Value="#FFE1512D"/>
+						</ColorAnimationUsingKeyFrames>
+						<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="path" Storyboard.TargetProperty="(Shape.StrokeThickness)">
+							<SplineDoubleKeyFrame KeyTime="00:00:00" Value="5"/>
+						</DoubleAnimationUsingKeyFrames>
+					</Storyboard>
+				</VisualState>
+				<VisualState x:Name="MouseExitStar"/>
+				<VisualState x:Name="MouseDownStar">
+					<Storyboard>
+						<DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Duration="00:00:00.0010000" Storyboard.TargetName="path" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(SkewTransform.AngleX)">
+							<SplineDoubleKeyFrame KeyTime="00:00:00" Value="-12"/>
+						</DoubleAnimationUsingKeyFrames>
+					</Storyboard>
+				</VisualState>
+			</VisualStateGroup>
+		</VisualStateManager.VisualStateGroups>
+		<Path x:Name="path" Fill="#FFF89108" Stretch="Fill" Stroke="#FF1B26CB" StrokeThickness="3" Data="M142.5,279.5 C153.91126,270.75492 161.01491,264.95526 166,250 166.66667,250 167.33333,250 168,250 169.53986,245.38042 171.12064,242.87936 175,239 175,257.474 181.82721,262.65442 190,279 198.42053,295.84107 211.93178,289 236,289 232.20415,300.38756 209.44246,314.22346 197,322 186.65989,328.46257 188.42242,324.21556 193,341 195.80699,351.29229 196.50767,360.01534&#xa;201,369 188.76,356.76 177.66073,344.36976 162,337 149.28172,331.01493 150.37693,348.35175 137,352 126.84614,354.76923 120.00171,359.99829 112,368 115.04026,349.75844 128.6286,331.74281 137,315 125.75646,303.75646 106.83949,301.51846 101,284 113.35251,284 130.23267,280.15953 142.5,279.5 z" RenderTransformOrigin="0.5,0.5" MouseDown="StarControl_MouseDown" MouseEnter="StarControl_MouseEnter" MouseLeave="StarControl_MouseLeave">
+			<Path.RenderTransform>
+				<TransformGroup>
+					<ScaleTransform/>
+					<SkewTransform/>
+					<RotateTransform/>
+					<TranslateTransform/>
+				</TransformGroup>
+			</Path.RenderTransform>
+		</Path>
+	</Grid>
+</UserControl>

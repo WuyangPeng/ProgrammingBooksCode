@@ -1,0 +1,1 @@
+INSERT INTO Category (CategoryId, Category) VALUES (9,'Film Noir');

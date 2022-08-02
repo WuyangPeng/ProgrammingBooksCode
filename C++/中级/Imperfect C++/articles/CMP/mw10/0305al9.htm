@@ -1,0 +1,108 @@
+<html>
+<head>
+<title></title>
+</head>
+
+<body>
+
+
+<h4>Listing 9  Extract from counter_resolution.cpp</h4>
+
+<pre>
+
+/* /////////////////////////////////////////////////////////////
+ * ...
+ *
+ * Extract from counter_resolution.cpp
+ *
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * (Licensed under the Synesis Software Standard Source License:
+ *  http://www.synesis.com.au/licenses/ssssl.html)
+ *
+ * ...
+ * ////////////////////////////////////////////////////////// */
+
+#include &lt;stdio.h>
+
+#define _WINSTL_NO_NAMESPACES
+
+#include &lt;winstl.h>
+#include &lt;winstl_tick_counter.h>
+#include &lt;winstl_multimedia_counter.h>
+#include &lt;winstl_systemtime_counter.h>
+#include &lt;winstl_highperformance_counter.h>
+#include &lt;winstl_threadtimes_counter.h>
+#include &lt;winstl_processtimes_counter.h>
+#include &lt;winstl_performance_counter.h>
+
+#include &lt;stlsoft_limit_traits.h>
+
+/* ////////////////////////////////////////////////////////////////////// */
+
+const int   C_ITERATIONS    =   1000000;
+
+/* ////////////////////////////////////////////////////////////////////// */
+
+template &lt;ws_typename_param_k C>
+inline ws_typename_type_k C::interval_type test_resolution(C &counter)
+{
+  typedef ws_typename_type_k C::interval_type interval_type;
+
+  interval_type   min_inc = stlsoft::limit_traits&lt;interval_type>::maximum();
+
+  for(volatile int i = 0; i &lt; C_ITERATIONS; ++i)
+  {
+    counter.start();
+
+    // Execute a short inner loop, capping at 2048 repeats
+    for(volatile int j = 0; j &lt; (i & 0x7ff); ++j)
+    {}
+
+    counter.stop();
+
+    interval_type   interval = counter.get_microseconds();
+
+    if( interval != 0 &&
+        interval &lt; min_inc)
+    {
+      min_inc = interval;
+    }
+  }
+
+  return min_inc;
+}
+
+int main(int /* argc */, char* /* argv */[])
+{
+
+#if defined(_STLSOFT_COMPILER_IS_BORLAND) || \
+    defined(_STLSOFT_COMPILER_IS_INTEL) || \
+    defined(_STLSOFT_COMPILER_IS_MSVC)    
+ #define _counter_test_fmt	"%I64d"
+#else
+ #define _counter_test_fmt	"%lld"
+#endif /* compiler */
+
+#define _test_counter(_x)   \
+  do \
+  { \
+    _x x; \
+   \
+    printf( #_x ": " _counter_test_fmt "us\n", \
+            test_resolution(x)); \
+  } \
+  while(0)
+
+  _test_counter(tick_counter);
+  _test_counter(multimedia_counter);
+  _test_counter(systemtime_counter);
+  _test_counter(highperformance_counter);
+  _test_counter(threadtimes_counter);
+  _test_counter(processtimes_counter);
+  _test_counter(performance_counter);
+
+  return 0;
+}
+</pre>
+</body>
+</html>

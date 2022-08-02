@@ -1,0 +1,17 @@
+Visual C++ 入门经典 （Ivor Horton's Beginning Visual C++）
+
+官方网站： 
+http://www.wrox.com、 
+http://www.tupwk.com.cn/downpage、 
+http://www.nuonsoft.com/blog
+
+第5版 
+○ 
+作者：Ivor Horton
+其他书籍：《C++17 入门经典》、《C++ 标准模板库编程实战》
+
+第7版
+
+○ 
+作者：Ivor Horton
+其他书籍：《C++17 入门经典》、《C++ 标准模板库编程实战》

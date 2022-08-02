@@ -1,0 +1,17 @@
+//Example 5-2 shows how setpriority() and getpriority() can be used.
+
+#include <sys/resource.h>
+
+//...
+id_t pid = 0;
+int which  = PRIO_PROCESS;
+int value = 10;
+int nice_value;
+int ret;
+
+nice_value = getpriority(which,pid);
+if(nice_value < value){
+   ret = setpriority(which,pid,value);
+}
+//...
+

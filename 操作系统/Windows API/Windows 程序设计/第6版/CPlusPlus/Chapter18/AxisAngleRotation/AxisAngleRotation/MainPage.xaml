@@ -1,0 +1,115 @@
+﻿<Page
+    x:Class="AxisAngleRotation.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AxisAngleRotation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style x:Key="DefaultTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Lucida Sans Unicode" />
+            <Setter Property="FontSize" Value="36" />
+            <Setter Property="Margin" Value="0 0 48 0" />
+        </Style>
+        
+        <Style x:Key="rightText" TargetType="TextBlock"
+               BasedOn="{StaticResource DefaultTextBlockStyle}">
+            <Setter Property="TextAlignment" Value="Right" />
+            <Setter Property="Margin" Value="48 0 0 0" />
+        </Style>
+    </Page.Resources>
+    
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            
+            <!-- Grid showing Pitch, Roll, and Yaw -->
+            <Grid HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                
+                <Grid.Resources>
+                    <Style TargetType="TextBlock"
+                           BasedOn="{StaticResource DefaultTextBlockStyle}" />
+                </Grid.Resources>
+                
+                <TextBlock Text="Pitch: " Grid.Row="0" Grid.Column="0" />
+                <TextBlock Name="pitchText" Grid.Row="0" Grid.Column="1"
+                           Style="{StaticResource rightText}" />
+                
+                <TextBlock Text="Roll: " Grid.Row="1" Grid.Column="0" />
+                <TextBlock Name="rollText" Grid.Row="1" Grid.Column="1"
+                           Style="{StaticResource rightText}" />
+                
+                <TextBlock Text="Yaw: " Grid.Row="2" Grid.Column="0" />
+                <TextBlock Name="yawText" Grid.Row="2" Grid.Column="1"
+                           Style="{StaticResource rightText}" />
+            </Grid>
+            <!-- Grid for RotationMatrix -->
+            <Grid HorizontalAlignment="Center"
+                  Margin="0 48">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                
+                <Grid.Resources>
+                    <Style TargetType="TextBlock" BasedOn="{StaticResource rightText}" />
+                </Grid.Resources>
+                
+                <TextBlock Name="m11Text" Grid.Row="0" Grid.Column="0" />
+                <TextBlock Name="m12Text" Grid.Row="0" Grid.Column="1" />
+                <TextBlock Name="m13Text" Grid.Row="0" Grid.Column="2" />
+
+                <TextBlock Name="m21Text" Grid.Row="1" Grid.Column="0" />
+                <TextBlock Name="m22Text" Grid.Row="1" Grid.Column="1" />
+                <TextBlock Name="m23Text" Grid.Row="1" Grid.Column="2" />
+                
+                <TextBlock Name="m31Text" Grid.Row="2" Grid.Column="0" />
+                <TextBlock Name="m32Text" Grid.Row="2" Grid.Column="1" />
+                <TextBlock Name="m33Text" Grid.Row="2" Grid.Column="2" />
+            </Grid>
+            <!-- Axis/Angle rotation display -->
+            <Grid HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                
+                <Grid.Resources>
+                    <Style TargetType="TextBlock"
+                           BasedOn="{StaticResource DefaultTextBlockStyle}" />
+                </Grid.Resources>
+                
+                <TextBlock Text="Angle:" Grid.Row="0" Grid.Column="0" />
+                <TextBlock Name="angleText" Grid.Row="0" Grid.Column="1"
+                           TextAlignment="Center"/>
+                <TextBlock Text="Axis:" Grid.Row="1" Grid.Column="0" />
+                <TextBlock Name="axisText" Grid.Row="1" Grid.Column="1"
+                           TextAlignment="Center" />
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

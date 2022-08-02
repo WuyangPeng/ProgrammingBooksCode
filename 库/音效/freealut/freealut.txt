@@ -1,0 +1,6 @@
+freealut
+☆
+
+1. 版本：1.1.0。
+2. 官方网站：https://github.com/vancegroup/freealut。
+3. git地址：https://github.com/vancegroup/freealut.git。

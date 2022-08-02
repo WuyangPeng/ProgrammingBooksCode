@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual C++ Express 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PathPlan", "PathPlan\PathPlan.vcproj", "{A708D742-BC2C-4C0D-A4F3-A9FA3E10A3C5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "math3D", "math3D\math3D.vcproj", "{8884D89A-7E7F-4049-8707-C25D3FFF8E9F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "neuralNet", "neuralNet\neuralNet.vcproj", "{E9232BFD-ED88-44F3-A093-05752A5A278A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8884D89A-7E7F-4049-8707-C25D3FFF8E9F} = {8884D89A-7E7F-4049-8707-C25D3FFF8E9F}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "potentialFunc", "potentialFunc\potentialFunc.vcproj", "{B58199DD-C8BD-43EA-82D4-9E8969ED99DC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8884D89A-7E7F-4049-8707-C25D3FFF8E9F} = {8884D89A-7E7F-4049-8707-C25D3FFF8E9F}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A708D742-BC2C-4C0D-A4F3-A9FA3E10A3C5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A708D742-BC2C-4C0D-A4F3-A9FA3E10A3C5}.Debug|Win32.Build.0 = Debug|Win32
+		{A708D742-BC2C-4C0D-A4F3-A9FA3E10A3C5}.Release|Win32.ActiveCfg = Release|Win32
+		{A708D742-BC2C-4C0D-A4F3-A9FA3E10A3C5}.Release|Win32.Build.0 = Release|Win32
+		{8884D89A-7E7F-4049-8707-C25D3FFF8E9F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8884D89A-7E7F-4049-8707-C25D3FFF8E9F}.Debug|Win32.Build.0 = Debug|Win32
+		{8884D89A-7E7F-4049-8707-C25D3FFF8E9F}.Release|Win32.ActiveCfg = Release|Win32
+		{8884D89A-7E7F-4049-8707-C25D3FFF8E9F}.Release|Win32.Build.0 = Release|Win32
+		{E9232BFD-ED88-44F3-A093-05752A5A278A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E9232BFD-ED88-44F3-A093-05752A5A278A}.Debug|Win32.Build.0 = Debug|Win32
+		{E9232BFD-ED88-44F3-A093-05752A5A278A}.Release|Win32.ActiveCfg = Release|Win32
+		{E9232BFD-ED88-44F3-A093-05752A5A278A}.Release|Win32.Build.0 = Release|Win32
+		{B58199DD-C8BD-43EA-82D4-9E8969ED99DC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B58199DD-C8BD-43EA-82D4-9E8969ED99DC}.Debug|Win32.Build.0 = Debug|Win32
+		{B58199DD-C8BD-43EA-82D4-9E8969ED99DC}.Release|Win32.ActiveCfg = Release|Win32
+		{B58199DD-C8BD-43EA-82D4-9E8969ED99DC}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

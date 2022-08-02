@@ -1,0 +1,1 @@
+This document shouldn't be detected because the protocol, http, is omitted. The site that I visited was www.w3.org.

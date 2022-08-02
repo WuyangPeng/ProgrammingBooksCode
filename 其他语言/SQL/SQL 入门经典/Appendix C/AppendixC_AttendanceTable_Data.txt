@@ -1,0 +1,179 @@
+INSERT INTO Attendance 
+(
+  LocationId,
+  MeetingDate,
+  MemberAttended,
+  MemberId
+)
+VALUES
+ ( 
+  2,
+  '2004-01-01',
+  'Y',
+  1
+ );
+
+INSERT INTO Attendance 
+(
+  LocationId,
+  MeetingDate,
+  MemberAttended,
+  MemberId
+)
+VALUES
+ ( 
+  2,
+  '2004-01-01',
+  'N',
+  2
+ );
+
+INSERT INTO Attendance 
+(
+  LocationId,
+  MeetingDate,
+  MemberAttended,
+  MemberId
+)
+VALUES
+ ( 
+  2,
+  '2004-01-01',
+  'Y',
+  3
+ );
+
+INSERT INTO Attendance 
+(
+  LocationId,
+  MeetingDate,
+  MemberAttended,
+  MemberId
+)
+VALUES
+ ( 
+  2,
+  '2004-01-01',
+  'N',
+  4
+ );
+
+INSERT INTO Attendance 
+(
+  LocationId,
+  MeetingDate,
+  MemberAttended,
+  MemberId
+)
+VALUES
+ ( 
+  2,
+  '2004-01-01',
+  'Y',
+  5
+ );
+
+INSERT INTO Attendance 
+(
+  LocationId,
+  MeetingDate,
+  MemberAttended,
+  MemberId
+)
+VALUES
+ ( 
+  2,
+  '2004-01-01',
+  'Y',
+  6
+ );
+
+INSERT INTO Attendance 
+(
+  LocationId,
+  MeetingDate,
+  MemberAttended,
+  MemberId
+)
+VALUES
+ ( 
+  1,
+  '2004-03-01',
+  'Y',
+  1
+ );
+
+INSERT INTO Attendance 
+(
+  LocationId,
+  MeetingDate,
+  MemberAttended,
+  MemberId
+)
+VALUES
+ ( 
+  1,
+  '2004-03-01',
+  'N',
+  2
+ );
+
+INSERT INTO Attendance 
+(
+  LocationId,
+  MeetingDate,
+  MemberAttended,
+  MemberId
+)
+VALUES
+ ( 
+  1,
+  '2004-03-01',
+  'Y',
+  3
+ );
+
+INSERT INTO Attendance 
+(
+  LocationId,
+  MeetingDate,
+  MemberAttended,
+  MemberId
+)
+VALUES
+ ( 
+  1,
+  '2004-03-01',
+  'Y',
+  4
+ );
+
+INSERT INTO Attendance 
+(
+  LocationId,
+  MeetingDate,
+  MemberAttended,
+  MemberId
+)
+VALUES
+ ( 
+  1,
+  '2004-03-01',
+  'N',
+  5
+ );
+
+INSERT INTO Attendance 
+(
+  LocationId,
+  MeetingDate,
+  MemberAttended,
+  MemberId
+)
+VALUES
+ ( 
+  1,
+  '2004-03-01',
+  'N',
+  6
+ );

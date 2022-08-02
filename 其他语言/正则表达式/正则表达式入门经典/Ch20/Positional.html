@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>Positional Metacharacters</title>
+<script language="vbscript" type="text/vbscript">
+Dim myRegExp, TestString, displayString, MatchOrNot
+
+Function FindMatch
+displayString = ""
+Set myRegExp = new RegExp
+myRegExp.Pattern = "[A-Z]\d{2}"
+myRegExp.IgnoreCase = False
+myRegExp.Global = False
+TestString = InputBox("Enter one alphabetic character and two numbers in the text box below.")
+MatchOrNot = myRegexp.Test(TestString)
+If MatchOrNot Then
+displayString = "When the pattern is '" & myRegExp.Pattern & "' the input '" _
+	& TestString & "' contains a match."
+Else
+displayString = "When the pattern is '" & myRegExp.Pattern & "' the input '" _
+	& TestString & "' does not contain a match."
+End If
+myRegExp.Pattern = "^[A-Z]\d{2}$"
+MatchOrNot = myRegexp.Test(TestString)
+If MatchOrNot Then
+displayString = displayString & VBCrLf & "When the pattern is '" & myRegExp.Pattern & "' the input '" _
+	& TestString & "' contains a match."
+Else
+displayString = displayString & VBCrLf & "When the pattern is '" & myRegExp.Pattern & "' the input '" _
+	& TestString & "' does not contain a match."
+End If
+
+MsgBox displayString
+End Function
+
+</script>
+</head>
+<body onload="FindMatch">
+
+</body>
+</html>

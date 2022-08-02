@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>February 2003/Avoiding the Visual C++ Runtime Library</title>
+</head>
+
+<body>
+
+
+<h4>Listing 13  Constructing and destroying static class instances</h4>
+
+<pre>
+
+class X
+{
+public:
+    X()
+    {}
+    ~X()
+    {}
+
+public:
+    void func1()
+    {}
+    void func2()
+    {}
+};
+
+void *operator new(size_t /* si */, void *pv)
+{
+    return pv;
+}
+
+void operator delete (void *pv, void *)
+{
+}
+
+extern "C" int __cdecl atexit(void (__cdecl *)(void))
+{
+    // Do nothing
+
+    return 0;
+}
+
+X   x;  // The static instance
+
+
+int APIENTRY WinMain(HINSTANCE,
+                     HINSTANCE,
+                     LPSTR ,
+                     int)
+{
+    // In-place construct, using placement new
+    new (&amp;_x)X();
+
+    // the code that uses x
+
+    x.func1();
+
+    ...
+
+    x.func2();
+
+    ...
+
+    // Explicitly call the dtor
+
+    _x.~X();
+
+    return 0;
+}
+
+</pre>
+</body>
+</html>

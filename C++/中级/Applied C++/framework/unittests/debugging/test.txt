@@ -1,0 +1,50 @@
+Sat Mar 15 19:56:00 2003: This is output to the debug string
+This is line 4
+This line goes to test.txt
+Sat Mar 15 19:56:00 2003: Also to test.txt, but with a timestamp
+Sat Mar 15 19:56:00 2003: This is level 1
+Sat Mar 15 19:56:00 2003: This is line 0
+Sat Mar 15 19:56:00 2003: This is line 1
+Sat Mar 15 19:56:00 2003: This is line 2
+Sat Mar 15 19:56:00 2003: This is line 3
+Sat Mar 15 19:56:00 2003: This is line 4
+Sat Mar 15 19:56:00 2003: This is line 5
+Sat Mar 15 19:56:00 2003: This is line 6
+Sat Mar 15 19:56:00 2003: This is line 7
+Sat Mar 15 19:56:00 2003: This is line 8
+Sat Mar 15 19:56:00 2003: This is line 9
+Sat Mar 15 19:56:00 2003: Again, this is line 0
+Sat Mar 15 19:56:00 2003: Again, this is line 1
+Sat Mar 15 19:56:00 2003: Again, this is line 2
+Sat Mar 15 19:56:00 2003: Again, this is line 3
+Sat Mar 15 19:56:00 2003: Again, this is line 4
+Sat Mar 15 19:56:00 2003: Again, this is line 5
+Sat Mar 15 19:56:00 2003: Again, this is line 6
+Sat Mar 15 19:56:00 2003: Again, this is line 7
+Sat Mar 15 19:56:00 2003: Again, this is line 8
+Sat Mar 15 19:56:00 2003: Again, this is line 9
+Sat Mar 15 19:56:20 2003: This is output to the debug string
+This is line 4
+This line goes to test.txt
+Sat Mar 15 19:56:20 2003: Also to test.txt, but with a timestamp
+Sat Mar 15 19:56:20 2003: This is level 1
+Sat Mar 15 19:56:20 2003: This is line 0
+Sat Mar 15 19:56:20 2003: This is line 1
+Sat Mar 15 19:56:20 2003: This is line 2
+Sat Mar 15 19:56:20 2003: This is line 3
+Sat Mar 15 19:56:20 2003: This is line 4
+Sat Mar 15 19:56:20 2003: This is line 5
+Sat Mar 15 19:56:20 2003: This is line 6
+Sat Mar 15 19:56:20 2003: This is line 7
+Sat Mar 15 19:56:20 2003: This is line 8
+Sat Mar 15 19:56:20 2003: This is line 9
+Sat Mar 15 19:56:20 2003: Again, this is line 0
+Sat Mar 15 19:56:20 2003: Again, this is line 1
+Sat Mar 15 19:56:20 2003: Again, this is line 2
+Sat Mar 15 19:56:20 2003: Again, this is line 3
+Sat Mar 15 19:56:20 2003: Again, this is line 4
+Sat Mar 15 19:56:20 2003: Again, this is line 5
+Sat Mar 15 19:56:20 2003: Again, this is line 6
+Sat Mar 15 19:56:20 2003: Again, this is line 7
+Sat Mar 15 19:56:20 2003: Again, this is line 8
+Sat Mar 15 19:56:20 2003: Again, this is line 9

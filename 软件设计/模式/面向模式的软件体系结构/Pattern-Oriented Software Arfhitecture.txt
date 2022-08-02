@@ -1,0 +1,25 @@
+面向模式的软件体系结构 （Pattern-Oriented Software Arfhitecture）
+
+官方网站：
+http://www.hillside.net/patterns、 
+http://www.posa3.org
+
+卷1：模式系统（A System of Patterns）
+★
+作者： Frank Buschmann、Regine Meunier、Hans Rohnert、Peter sommerlad、Michael Stal 
+
+卷2：用于并发和网络化对象模式（Patterns for Concurrent and Networked Objects）
+★★★
+作者：  Douglas C.Schmidt、Michael Stal、Hans Rohnert、Frank Buschmann
+
+卷3：资源管理（Patterns for Resource Managerment）
+★★☆
+作者：  Michael Kircher、Prashant Jain
+
+卷4：分布式计算的模式语言（A Pattern Language for Distributed Computing）
+★★☆
+作者：  Frank Buschmann、Kevlin Henney、Douglas C.Schmidt 
+
+卷5：模式与模式语言（On Patterns and Pattern Languages）
+★
+作者：  Frank Buschmann、Kevlin Henney、Douglas C.Schmidt

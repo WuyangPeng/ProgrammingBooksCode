@@ -1,0 +1,54 @@
+<html>
+<head>
+<title></title>
+</head>
+
+<body>
+
+
+<h4>Listing 3  Extract from winstl_systemtime_counter.h</h4>
+
+<pre>
+
+/* /////////////////////////////////////////////////////////////
+ * ...
+ *
+ * Extract from winstl_systemtime_counter.h
+ *
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * (Licensed under the Synesis Software Standard Source License:
+ *  http://www.synesis.com.au/licenses/ssssl.html)
+ *
+ * ...
+ * ////////////////////////////////////////////////////////// */
+
+// Operations
+inline void systemtime_counter::start()
+{
+    ::GetSystemTimeAsFileTime(reinterpret_cast&lt;LPFILETIME&gt;(&amp;m_start));
+}
+
+inline void systemtime_counter::stop()
+{
+    ::GetSystemTimeAsFileTime(reinterpret_cast&lt;LPFILETIME&gt;(&amp;m_end));
+}
+
+// Attributes
+inline systemtime_counter::interval_type systemtime_counter::get_seconds() const
+{
+    return get_period_count() / interval_type(10000000);
+}
+
+inline systemtime_counter::interval_type systemtime_counter::get_milliseconds() const
+{
+    return get_period_count() / interval_type(10000);
+}
+
+inline systemtime_counter::interval_type systemtime_counter::get_microseconds() const
+{
+    return get_period_count() / interval_type(10);
+}
+
+</pre>
+</body>
+</html>

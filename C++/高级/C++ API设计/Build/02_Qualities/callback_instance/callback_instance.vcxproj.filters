@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{D0118511-1C9C-3607-9898-82F29B4A6B70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Head Files">
+      <UniqueIdentifier>{8bf751cb-f4f1-4407-82ac-d87f2df5213e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\02_Qualities\callback_instance\moduleb.h">
+      <Filter>Head Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\02_Qualities\callback_instance\modulea.h">
+      <Filter>Head Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\02_Qualities\callback_instance\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\02_Qualities\callback_instance\modulea.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\02_Qualities\callback_instance\moduleb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\02_Qualities\callback_instance\CMakeLists.txt" />
+  </ItemGroup>
+</Project>

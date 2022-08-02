@@ -1,0 +1,28 @@
+<Page
+    x:Class="WhatSize.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WhatSize"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontSize="36"
+    SizeChanged="OnPageSizeChanged">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Top">
+            &#x21A4; <Run x:Name="widthText" /> pixels &#x21A6;
+        </TextBlock>
+
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
+            &#x21A5;
+            <LineBreak />
+            <Run x:Name="heightText" /> pixels
+            <LineBreak />
+            &#x21A7;
+        </TextBlock>
+    </Grid>
+</Page>

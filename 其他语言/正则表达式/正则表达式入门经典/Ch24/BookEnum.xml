@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Book xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\BRegExp\Ch24\BookEnum.xsd">
+  <Chapter number="1">Some content</Chapter>
+  <Chapter number="2">Some content</Chapter>
+  <Chapter number="3">Some content</Chapter>
+  <Chapter number="4">Some content</Chapter>
+  <Chapter number="5">Some content</Chapter>
+</Book>

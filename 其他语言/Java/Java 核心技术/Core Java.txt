@@ -1,0 +1,14 @@
+Java 核心技术  （Core Java）
+ （第10版）
+
+官方网站：
+http://horstmann.com/corejava 
+
+卷1：基础知识（Fundamentals）
+★
+作者：Horstmann Gay S. 
+
+卷2：高级特征（Advanced Features）
+★
+作者：Horstmann Gay S. 
+

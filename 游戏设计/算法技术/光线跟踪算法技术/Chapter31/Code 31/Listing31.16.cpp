@@ -1,0 +1,1 @@
+RGBColor 														RampFBmTexture::get_color(const ShadeRec& sr) const {	float 	y 		= sr.local_hit_point.y;	float 	u 		= (1.0 + sin(y)) / 2.0;	int 	row 	= 0;    // use top row of ramp image	int 	column 	= (int) (u * (ramp_ptr ->hres - 1));	return (ramp_ptr->get_color(row, column));}

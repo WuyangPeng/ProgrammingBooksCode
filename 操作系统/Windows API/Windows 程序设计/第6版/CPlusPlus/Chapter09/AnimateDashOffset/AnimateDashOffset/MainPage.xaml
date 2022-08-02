@@ -1,0 +1,39 @@
+<Page
+    x:Class="AnimateDashOffset.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AnimateDashOffset"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Storyboard x:Key="storyboard">
+            <DoubleAnimation Storyboard.TargetName="path"
+                             Storyboard.TargetProperty="StrokeDashOffset"
+                             EnableDependentAnimation="True"
+                             From="0" To="1.5" Duration="0:0:1"
+                             RepeatBehavior="Forever" />
+        </Storyboard>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Viewbox>
+            <Path Name="path"
+                  Margin="12"
+                  Stroke="{StaticResource ApplicationForegroundThemeBrush}"
+                  StrokeThickness="24"
+                  StrokeDashArray="0 1.5"
+                  StrokeDashCap="Round"
+                  Data="M 100   0
+                        C  45   0,   0  45, 0 100
+                        S  45 200, 100 200
+                        S 200 150, 250 100
+                        S 345   0, 400   0
+                        S 500  45, 500 100
+                        S 455 200, 400 200
+                        S 300 150, 250 100
+                        S 155   0, 100   0" />
+        </Viewbox>
+    </Grid>
+</Page>

@@ -1,0 +1,8 @@
+测试驱动的面向对象软件开发 （Growing Object-Oriented Software,Guided by Tests）
+
+官方网站：
+http://www.m3p.co.uk （已失效）
+
+★★
+作者：Steve Freeman、Nat Pryce 
+ 

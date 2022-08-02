@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>February 2003/Avoiding the Visual C++ Runtime Library</title>
+</head>
+
+<body>
+
+
+<h4>Listing 10  Initializing constant variables</h4>
+
+<pre>
+
+extern "C"
+{
+    unsigned int _osver;
+    unsigned int _winver;
+    unsigned int _winmajor;
+    unsigned int _winminor;
+}
+
+int WINAPI WinMain( ... )
+{
+    _osver = GetVersion();
+
+    _winminor = (_osver &gt;&gt; 8) &amp; 0x00FF ;
+    _winmajor = _osver &amp; 0x00FF ;
+    _winver = (_winmajor &lt;&lt; 8) + _winminor;
+    _osver = (_osver &gt;&gt; 16) &amp; 0x00FFFF ;
+}
+
+</pre>
+</body>
+</html>

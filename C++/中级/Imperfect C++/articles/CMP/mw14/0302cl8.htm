@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>February 2003/Avoiding the Visual C++ Runtime Library</title>
+</head>
+
+<body>
+
+
+<h4>Listing 8  An extract from the stlsoft::char_traits class</h4>
+
+<pre>
+
+/* /////////////////////////////////////////////////////////////
+ * ...
+ *
+ * Extract from stlsoft_char_traits.h
+ *
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * (Licensed under the Synesis Software Standard Source License:
+ *  http://www.synesis.com.au/licenses/ssssl.html)
+ *
+ * ...
+ * ////////////////////////////////////////////////////////// */
+
+static char_type const *find(   char_type const *s,
+                                size_type       cch,
+                                char_type const &amp;c)
+{
+    for(; 0 &lt; cch; --cch, ++s)
+    {
+        if(eq(*s, c))
+        {
+            break;
+        }
+    }
+
+    return (0 &lt; cch) ? s : NULL;
+}
+
+</pre>
+</body>
+</html>

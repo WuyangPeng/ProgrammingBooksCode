@@ -1,0 +1,17 @@
+<Button
+    x:Class="DependencyPropertiesWithBindings.GradientButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Name="root">
+
+    <Button.Foreground>
+        <LinearGradientBrush>
+            <GradientStop Offset="0" 
+                          Color="{Binding ElementName=root, 
+                                          Path=Color1}" />
+            <GradientStop Offset="1" 
+                          Color="{Binding ElementName=root, 
+                                          Path=Color2}" />
+        </LinearGradientBrush>
+    </Button.Foreground>
+</Button>

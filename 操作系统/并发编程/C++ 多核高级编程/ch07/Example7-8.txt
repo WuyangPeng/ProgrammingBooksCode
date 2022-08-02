@@ -1,0 +1,11 @@
+// Example 7-8 New code for tasks in Listing 7-5
+    
+ 3  void *task1(void *X)
+ 4  {
+ 5     pthread_mutex_lock(&Mutex);
+ 6     Answer = Answer * 32; //critical section
+ 7     pthread_mutex_unlock(&Mutex);
+ 8     cout << "thread A Answer = " << Answer << endl;
+ 9   
+10  }
+

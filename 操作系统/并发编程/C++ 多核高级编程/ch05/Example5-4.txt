@@ -1,0 +1,17 @@
+//Example 5-4 Using setrlimit() to set the soft limit for file size.
+
+#include <sys/resource.h>
+
+//...
+struct rlimit R_limit;
+struct rlimit R_limit_values;
+
+//...
+
+R_limit.rlim_cur = 2000;
+R_limit.rlim_max = RLIM_SAVED_MAX;
+setrlimit(RLIMIT_FSIZE,&R_limit);
+getrlimit(RLIMIT_FSIZE,&R_limit_values);
+cout << "file size soft limit: " << R_limit_values.rlim_cur << endl;
+
+//...

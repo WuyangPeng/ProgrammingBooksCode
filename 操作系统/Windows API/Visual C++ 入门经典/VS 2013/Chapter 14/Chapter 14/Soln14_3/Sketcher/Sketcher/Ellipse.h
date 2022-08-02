@@ -1,0 +1,17 @@
+#pragma once
+#include "element.h"
+
+class CEllipse : public CElement
+{
+public:
+  virtual ~CEllipse(void){}
+  virtual void Draw(CDC* pDC) override;                                // Function to display an ellipse
+
+ 
+ CEllipse(const CPoint& start, const CPoint& end, COLORREF color);     // Constructor for an ellipse object
+
+protected:
+  CPoint m_BottomRight;                                                // Bottom-right point for the rectangle defining the ellipse
+  CEllipse(void) {}                                                    // Default constructor - should not be used
+};
+

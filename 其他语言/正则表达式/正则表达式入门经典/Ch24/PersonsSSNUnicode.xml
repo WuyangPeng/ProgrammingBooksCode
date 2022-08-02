@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PersonsSSN xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\BRegExp\Ch24\PersonsSSNUnicode.xsd">
+  <Person>
+    <Name>Peter Schmidt</Name>
+    <SSN>123-45-6789</SSN>
+  </Person>
+  <Person>
+    <Name>Yasmin Brown</Name>
+    <SSN>987-65-4321</SSN>
+  </Person>
+</PersonsSSN>

@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>Adapting Win32 Enumeration APIs to STL Iterator Concepts</title>
+</head>
+
+<body>
+
+
+<h4>Listing 4   Simple example using findfile_sequence</h4>
+
+<pre>
+void dump_file(char const *file)
+{
+  printf("%s\n", file);
+}
+
+void list_sub_directories(char const *dir)
+{
+  typedef winstl::findfile_sequence_a find_seq_t;
+
+  find_seq_t  files(dir, "*.*", find_seq_t::files);
+
+  std::for_each(files.begin(), files.end(), dump_file);
+}
+
+int main(int, char**)
+{
+  list_sub_directories("c:");
+
+  return 0;
+}
+</pre>
+</body>
+</html>

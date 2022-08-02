@@ -1,0 +1,7 @@
+实时阴影技术（Real-Time Shadows）
+
+官方网站： 
+http://www.realtimeshadows.com
+
+★★★
+作者： Elmar Eisemann、Michael Schwarz、Uif Assarsson、Michael Wimmer 

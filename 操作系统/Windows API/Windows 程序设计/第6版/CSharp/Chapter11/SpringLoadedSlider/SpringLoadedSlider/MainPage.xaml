@@ -1,0 +1,115 @@
+﻿<Page
+    x:Class="SpringLoadedSlider.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SpringLoadedSlider"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <ControlTemplate x:Key="sliderTemplate"
+                         TargetType="Slider">
+            <Grid>
+                <Grid.Resources>
+                    <Style TargetType="Path">
+                        <Setter Property="StrokeThickness" Value="6" />
+                        <Setter Property="StrokeLineJoin" Value="Round" />
+                        <Setter Property="Stretch" Value="Fill" />
+                    </Style>
+                </Grid.Resources>
+                
+                <Grid Name="HorizontalTemplate"
+                      Background="Transparent"
+                      Height="48">
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <Rectangle Name="HorizontalTrackRect"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3"
+                               Fill="Transparent" />
+
+                    <Thumb Name="HorizontalThumb"
+                           Grid.Column="1"
+                           DataContext="{TemplateBinding Value}"
+                           Width="12" />
+
+                    <Rectangle Name="HorizontalDecreaseRect"
+                               Grid.Column="0"
+                               Fill="Transparent" />
+                    
+                    <Path Stroke="Red"
+                          Grid.Column="0"
+                          Width="{Binding ElementName=HorizontalDecreaseRect, 
+                                          Path=Width}"
+                          Data="M 0 0 L 100 100, 200 0, 300 100, 400 0, 
+                                400 100, 300 0, 200 100, 100 0, 0 100 Z" />
+                    
+                    <Path Stroke="Blue"
+                          Grid.Column="2"
+                          Data="M 0 0 L 100 100, 200 0, 300 100, 400 0, 
+                                400 100, 300 0, 200 100, 100 0, 0 100 Z" />
+                </Grid>
+
+                <Grid Name="VerticalTemplate"
+                      Visibility="Collapsed"
+                      Background="Transparent"
+                      Width="48">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Rectangle Name="VerticalTrackRect"
+                               Grid.Row="0"
+                               Grid.RowSpan="3"
+                               Fill="Transparent" />
+
+                    <Thumb Name="VerticalThumb"
+                           Grid.Row="1"
+                           DataContext="{TemplateBinding Value}"
+                           Height="12" />
+
+                    <Rectangle Name="VerticalDecreaseRect"
+                               Grid.Row="2"
+                               Fill="Transparent" />
+                    
+                    <Path Stroke="Red"
+                          Grid.Row="2"
+                          Height="{Binding ElementName=VerticalDecreaseRect, 
+                                           Path=Height}"
+                          Data="M 0 0 L 100 100, 0 200, 100 300, 0 400, 
+                                100 400, 0 300, 100 200, 0 100, 100 0 Z" />
+
+                    <Path Stroke="Blue"
+                          Grid.Row="0"
+                          Data="M 0 0 L 100 100, 0 200, 100 300, 0 400, 
+                                100 400, 0 300, 100 200, 0 100, 100 0 Z" />
+                </Grid>
+            </Grid>
+        </ControlTemplate>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Slider Grid.Row="0"
+                Template="{StaticResource sliderTemplate}"
+                Margin="48" />
+
+        <Slider Grid.Row="1"
+                Template="{StaticResource sliderTemplate}"
+                Orientation="Vertical"
+                Margin="48" />
+
+    </Grid>
+</Page>

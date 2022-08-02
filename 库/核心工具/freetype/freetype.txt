@@ -1,0 +1,5 @@
+freetype 
+★
+
+1. 版本：2.10.2。
+2. 官方网站：https://www.freetype.org/

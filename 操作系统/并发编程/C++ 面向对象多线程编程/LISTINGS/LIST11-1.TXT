@@ -1,0 +1,53 @@
+    1   // Listing 11 - 1
+    2   // Definitions For threaded_calculator
+    3   
+    4   #include <calculat.h>
+    5   #include <ctthread.h>
+    6   
+    7   
+    8   threaded_calculator::threaded_calculator(void)
+    9   {
+   10        Result = 0;
+   11   }
+   12   
+   13   double  threaded_calculator::evaluate(string Input)
+   14   {
+   15       ct_thread Thread;
+   16       double Temp;
+   17       lock();
+   18       InputString = Input;
+   19       Thread.begin(::evaluate,this);
+   20       Thread.wait();
+   21       Temp = Result;
+   22       unlock();
+   23       return(Temp);
+   24   }
+   25   
+   26   list<expression_component> threaded_calculator::parse(string Input)
+   27   {
+   28      ct_thread Thread;
+   29      list<expression_component> Temp;
+   30      lock();
+   31      InputString = Input;
+   32      Thread.begin(::parse,this);
+   33      Thread.wait();
+   34      Temp = Tokens;
+   35      unlock();
+   36      return(Temp);
+   37   }
+   38   
+   39   void evaluate(void *X)
+   40   {
+   41      threaded_calculator *Calc;
+   42      Calc = static_cast<threaded_calculator *> (X);
+   43      mt_calculator Calculator;
+   44      Calc->Result = Calculator.evaluate(Calc->InputString);
+   45   }
+   46   
+   47   void parse(void *X)
+   48   {
+   49     threaded_calculator *Calc;
+   50     Calc = static_cast<threaded_calculator *> (X);
+   51     mt_calculator Calculator;
+   52     Calc->Tokens = Calculator.parse(Calc->InputString);
+   53   }

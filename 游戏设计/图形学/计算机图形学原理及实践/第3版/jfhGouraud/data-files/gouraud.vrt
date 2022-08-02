@@ -1,0 +1,24 @@
+#version 120 // -*- c++ -*-
+/**
+  Per-pixel Gouraud Shading. 
+
+ */
+/* G3D now always defines these, so we have to do so as well */
+attribute vec4 g3d_Vertex;
+attribute vec3 g3d_Normal;
+
+/** How well-lit is this vertex? */
+varying float gouraudFactor;
+
+/** Unit world space direction to the (infinite, directional) light source */
+uniform vec3 wsLight;
+
+/** Non-unit surface normal in world space */
+varying vec3 wsInterpolatedNormal; // now declared outside of "main"
+
+void main(void) {
+    wsInterpolatedNormal = normalize(g3d_ObjectToWorldNormalMatrix * g3d_Normal);
+	gouraudFactor = dot(wsInterpolatedNormal, wsLight);
+
+    gl_Position = g3d_ModelViewProjectionMatrix * g3d_Vertex;
+}

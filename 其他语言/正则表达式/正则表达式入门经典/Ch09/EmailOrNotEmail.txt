@@ -1,0 +1,11 @@
+@Home
+@ttitude
+John@somewhere.invalid
+Peter@example.org
+Peter@example.info
+John@Smith@example.com
+20 @ $10 each
+@@@ This is a comment @@@
+Jane@example.net
+Peter.Smith@example.net
+

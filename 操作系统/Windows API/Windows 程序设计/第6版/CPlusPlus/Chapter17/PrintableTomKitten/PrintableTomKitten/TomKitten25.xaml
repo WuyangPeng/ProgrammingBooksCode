@@ -1,0 +1,21 @@
+﻿<UserControl
+    x:Class="PrintableTomKitten.TomKitten25"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Grid VerticalAlignment="Center"
+          MaxWidth="640">
+        <StackPanel>
+            <TextBlock Style="{StaticResource paragraphTextStyle}">
+                &#x2003;&#x2003;Moppet and Mittens walked down the garden 
+                path unsteadily. Presently they trod upon their pinafores 
+                and fell on their noses.
+            </TextBlock>
+
+            <TextBlock Style="{StaticResource paragraphTextStyle}">
+                &#x2003;&#x2003;When they stood up there were several green 
+                smears!
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>

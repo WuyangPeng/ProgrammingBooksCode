@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>February 2003/Avoiding the Visual C++ Runtime Library</title>
+</head>
+
+<body>
+
+
+<h4>Listing 4  A fully compatible plug-in for memcpy()</h4>
+
+<pre>
+
+/* /////////////////////////////////////////////////////////////
+ * ...
+ *
+ * Extract from memcpy.c
+ *
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * (Licensed under the Synesis Software Standard Source License:
+ *  http://www.synesis.com.au/licenses/ssssl.html)
+ *
+ * ...
+ * ////////////////////////////////////////////////////////// */
+
+void *__cdecl memcpy(void *pvDest, const void *pvSrc, size_t count)
+{
+    byte    *begin  =   (byte*)pvDest;
+    byte    *src    =   (byte*)pvSrc;
+    byte    *end    =   begin + count;
+
+    for(; begin != end; ++begin, ++src)
+    {
+        *begin = *src;
+    }
+
+    return pvDest;
+}
+
+
+</pre>
+</body>
+</html>

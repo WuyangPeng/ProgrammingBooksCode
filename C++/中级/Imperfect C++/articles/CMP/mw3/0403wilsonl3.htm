@@ -1,0 +1,120 @@
+<html>
+<head>
+<title>March 04: D and JavaTwo more languages are added to the map</title>
+</head>
+
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#330066" ALINK="#ff0000" TEXT="#000000">
+<!--Copyright &#169; C/C++ Users Journal-->
+
+<h3>Listing 3: <i>Implementing class wrappers.</i></h3>
+<pre>
+/* /////////////////////////////////////////////////////////////
+ * Extract from std/recls.d
+ * www:    http://www.digitalmars.com/d
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * (Licensed under the Synesis Software Standard Source License:
+ *  http://www.synesis.com.au/licenses/ssssl.html)
+ * ////////////////////////////////////////////////////////// */
+
+// Classes
+public class Entry
+{
+private:
+  this(recls_info_t entry)
+  {
+    m_entry = entry;
+  }
+  ~this()
+  {
+    Search_CloseEntry(m_entry);
+  }
+public:
+  char[]        Path()
+  in
+  {
+    assert(null !== m_entry);
+  }
+  body
+  {
+    return Search_GetEntryPath(m_entry);
+  }
+  . . . // All the other properties
+  boolean       IsLink()
+  in
+  {
+    assert(null !== m_entry);
+  }
+  body
+  {
+    return Search_IsEntryLink(m_entry);
+  }
+private:
+  recls_info_t  m_entry;
+}
+public class Search
+{
+public:
+  this(in char[] searchRoot, in char[] pattern, in uint flags)
+  {
+    m_searchRoot  = searchRoot;
+    m_pattern     = pattern;
+    m_flags       = flags;
+  }
+public:
+  int opApply(int delegate(inout Entry entry) dg)
+  {
+    int           result  = 0;
+    hrecls_t      hSrch;
+    recls_rc_t    rc   = Search_Create(m_searchRoot,m_pattern,m_flags,hSrch);
+    recls_info_t  entry;
+    do
+    {
+      if(RECLS_FAILED(rc))
+      {
+        result = 1;
+      }
+      else
+      {
+        rc = Search_GetEntry(hSrch, entry);
+        if(RECLS_FAILED(rc))
+        {
+          result = 1;
+        }
+        else
+        {
+          try
+          {
+            Entry e = new Entry(entry);
+
+            result = dg(e);
+          }
+          finally
+          {
+            Search_CloseEntry(entry);
+          }
+        }
+        rc = Search_GetNextEntry(hSrch, entry);
+      }
+    } while(result == 0);
+    return result;
+  }
+/// Members
+private:
+  char[]  m_searchRoot;
+  char[]  m_pattern;
+  uint  m_flags;
+}
+// Unittest
+unittest
+{
+  Search  search  = new Search(".", "*.*", RECLS_FLAG.RECLS_F_RECURSIVE);
+  foreach(Entry entry; search)
+  {
+    char[] path = entry.Path();
+    char[] directory = entry.Directory();
+    . . . // Call all other properties
+    entry.IsLink();
+  }
+}
+</body>
+</html>

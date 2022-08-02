@@ -1,0 +1,11 @@
+﻿<UserControl
+    x:Class="BetterCharacterInput.RudimentaryTextBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Background="DarkBlue">
+        <TextBlock Name="txtblk"
+                   Foreground="Yellow"
+                   FontSize="24"
+                   TextWrapping="Wrap" />
+    </Grid>
+</UserControl>

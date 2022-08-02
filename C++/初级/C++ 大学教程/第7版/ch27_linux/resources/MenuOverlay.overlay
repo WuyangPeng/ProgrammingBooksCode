@@ -1,0 +1,167 @@
+// An Overlay to display an options menu
+MenuOverlay
+{
+   // set a high z-order to display on top of everything
+   zorder 600
+
+   // the root container for the menu items
+   container Panel(rootPanel)
+   {
+      material menu
+
+      // text for the root Panel
+      element TextArea(instructionsText)
+      {
+         // position the text toward the bottom center of the screen
+         top 0.8
+         left 0.2
+
+         // set font use for caption and set the size and color
+         font_name BlueBold
+         char_height .05
+         colour 0 0 0
+         caption Press Enter to start or Esc to exit
+      }
+      // end of instructionsText
+
+      // container for the Ball options
+      container Panel(ballPanel)
+      {
+         // position the container toward the left side of the screen
+         top 0.1
+         left 0.1
+         width 0.3
+         height 0.5
+
+         // TextAreas to display Ball options
+
+         element TextArea(ballOptionsTitle)
+         {
+            // position and size the TextArea
+            height 0.1
+            left 0.05
+
+            // set font use for caption and set the size and color
+            font_name BlueBold
+            char_height .05
+            colour 0 0 0
+            caption Ball Options
+         }
+         // end of ballOptionsTitle
+
+         element TextArea(ballSlow)
+         {
+            // position and size the text
+            top 0.2
+            height 0.1
+
+            // set font use for caption and set the size and color
+            font_name BlueBold
+            char_height .05
+            colour 0 0 0
+            caption Slow Ball (Press A)
+         }
+         // end of ballSlow
+
+         element TextArea(ballMedium)
+         {
+            // position and size the text
+            top 0.3
+            height 0.1
+
+            // set font use for caption and set the size and color
+            font_name BlueBold
+            char_height .05
+            colour 1.0 0 0
+            caption Medium Ball (Press B)
+         }
+         // end of ballMedium
+
+         element TextArea(ballFast)
+         {
+            // position and size the text
+            top 0.4
+            height 0.1
+
+            // set font use for caption and set the size and color
+            font_name BlueBold
+            char_height .05
+            colour 0 0 0
+            caption Fast Ball (Press C)
+         }
+         // end of ballFast
+      }
+      // end of ballPanel
+
+      // container for the Paddle options
+      container Panel(paddlePanel)
+      {
+         // position the container toward the right side of the screen
+         top 0.1
+         left 0.5
+         width 0.3
+         height 0.5
+
+         // TextAreas to display Paddle options
+
+         element TextArea(paddleOptionsTitle)
+         {
+            // position and size the text
+            height 0.1
+            left 0.05
+
+            // set font use for caption and set the size and color
+            font_name BlueBold
+            char_height .05
+            colour 0 0 0
+            caption Paddle Options
+         }
+         // end of paddleOptionsTitle
+
+         element TextArea(paddleSlow)
+         {
+            // position and size the text
+            top 0.2
+            height 0.1
+
+            // set font use for caption and set the size and color
+            font_name BlueBold
+            char_height .05
+            colour 0 0 0
+            caption Slow Paddles (Press 1)
+         }
+         // end of paddleSlow
+
+         element TextArea(paddleMedium)
+         {
+            // position and size the text
+            top 0.3
+            height 0.1
+
+            // set font use for caption and set the size and color
+            font_name BlueBold
+            char_height .05
+            colour 0 0 1.0
+            caption Medium Paddles (Press 2)
+         }
+         // end of paddleMedium
+
+         element TextArea(paddleFast)
+         {
+            // position and size the text
+            top 0.4
+            height 0.1
+
+            // set font use for caption and set the size and color
+            font_name BlueBold
+            char_height .05
+            colour 0 0 0
+            caption Fast Paddles (Press 3)
+         }
+         // end of paddleFast
+      }
+      // end of paddlePanel
+   }
+   // end of rootPanel
+}
+// end of MenuOverlay

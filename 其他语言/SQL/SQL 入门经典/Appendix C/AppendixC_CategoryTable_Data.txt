@@ -1,0 +1,6 @@
+INSERT INTO Category (CategoryId, Category) VALUES (1, 'Thriller');
+INSERT INTO Category (CategoryId, Category) VALUES (2, 'Romance');
+INSERT INTO Category (CategoryId, Category) VALUES (3, 'Horror');
+INSERT INTO Category (CategoryId, Category) VALUES (4, 'War');
+INSERT INTO Category (CategoryId, Category) VALUES (5, 'Sci-fi');
+INSERT INTO Category (CategoryId, Category) VALUES (6, 'Historical');

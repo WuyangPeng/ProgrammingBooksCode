@@ -1,0 +1,70 @@
+<Page
+    x:Class="SkewPlusSkew.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SkewPlusSkew"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock Text="SKEW"
+                   FontSize="288"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   RenderTransformOrigin="0.5 0.5">
+            <TextBlock.RenderTransform>
+                <SkewTransform x:Name="skew" />
+            </TextBlock.RenderTransform>
+        </TextBlock>
+    </Grid>
+
+    <Page.Triggers>
+        <EventTrigger>
+            <BeginStoryboard>
+                <Storyboard SpeedRatio="0.5" RepeatBehavior="Forever">
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="skew"
+                                                   Storyboard.TargetProperty="AngleX">
+
+                        <!-- Back and forth for 4 seconds -->
+                        <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                        <LinearDoubleKeyFrame KeyTime="0:0:1" Value="90" />
+                        <LinearDoubleKeyFrame KeyTime="0:0:2" Value="0" />
+                        <LinearDoubleKeyFrame KeyTime="0:0:3" Value="-90" />
+                        <LinearDoubleKeyFrame KeyTime="0:0:4" Value="0" />
+
+                        <!-- Do nothing for 4 seconds -->
+                        <DiscreteDoubleKeyFrame KeyTime="0:0:8" Value="0" />
+
+                        <!-- Back and forth for 4 seconds -->
+                        <LinearDoubleKeyFrame KeyTime="0:0:9" Value="90" />
+                        <LinearDoubleKeyFrame KeyTime="0:0:10" Value="0" />
+                        <LinearDoubleKeyFrame KeyTime="0:0:11" Value="-90" />
+                        <LinearDoubleKeyFrame KeyTime="0:0:12" Value="0" />
+                    </DoubleAnimationUsingKeyFrames>
+
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="skew"
+                                                   Storyboard.TargetProperty="AngleY">
+
+                        <!-- Do nothing for 4 seconds -->
+                        <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                        <DiscreteDoubleKeyFrame KeyTime="0:0:4" Value="0" />
+
+                        <!-- Back and forth for 4 seconds -->
+                        <LinearDoubleKeyFrame KeyTime="0:0:5" Value="-90" />
+                        <LinearDoubleKeyFrame KeyTime="0:0:6" Value="0" />
+                        <LinearDoubleKeyFrame KeyTime="0:0:7" Value="90" />
+                        <LinearDoubleKeyFrame KeyTime="0:0:8" Value="0" />
+
+                        <!-- Back and forth for 4 seconds -->
+                        <LinearDoubleKeyFrame KeyTime="0:0:9" Value="-90" />
+                        <LinearDoubleKeyFrame KeyTime="0:0:10" Value="0" />
+                        <LinearDoubleKeyFrame KeyTime="0:0:11" Value="90" />
+                        <LinearDoubleKeyFrame KeyTime="0:0:12" Value="0" />
+                    </DoubleAnimationUsingKeyFrames>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Page.Triggers>
+</Page>

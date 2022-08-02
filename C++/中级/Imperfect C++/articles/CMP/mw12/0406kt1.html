@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>June, 2004: Identity &amp; Equality In .NET</title>
+</head>
+
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#330066" ALINK="#ff0000" TEXT="#000000">
+<!--Copyright &#169; Dr. Dobb's Journal-->
+
+
+
+
+
+
+<table cellpadding=3 cellspacing=3>
+  <tr bgcolor="lightblue">
+    <td>Type</td>
+    <td colspan ="2" align="center">.NET SDK 1.0</td>
+    <td colspan ="2" align="center">.NET SDK 1.1</td>
+  </tr>
+  <tr bgcolor="lightblue">
+    <td></td>
+    <td>Time (ms)</td>
+    <td>% of Normal</td>
+    <td>Time (ms)</td>
+    <td>% of Normal</td>
+  </tr>
+  <tr>
+    <td>Normal</td>
+    <td>10093.8</td>
+    <td>100.0%</td>
+    <td>10768.8</td>
+    <td>100.0%</td>
+  </tr>
+  <tr>
+    <td>Inline</td>
+    <td>9837.6</td>
+    <td>97.5%</td>
+    <td>10719.0</td>
+    <td>99.5%</td>
+  </tr>
+  <tr>
+    <td>Reorder</td>
+    <td>7981.2</td>
+    <td>79.1%</td>
+    <td>9212.8</td>
+    <td>85.6%</td>
+  </tr>
+  <tr>
+    <td>WithAsRefEquals</td>
+    <td>3953.4</td>
+    <td>39.2%</td>
+    <td>4037.6</td>
+    <td>37.5%</td>
+  </tr>
+  <tr>
+    <td>WithAsCastObject</td>
+    <td>3584.4</td>
+    <td>35.5%</td>
+    <td>3615.4</td>
+    <td>33.6%</td>
+  </tr>
+  <tr>
+    <td>Combined</td>
+    <td>2318.4</td>
+    <td>23.0%</td>
+    <td>2475.0</td>
+    <td>23.0%</td>
+  </tr>
+</table>
+
+<h4><b>Table 1: <i></b>Timing results for the six variants.</i></h4>
+
+<a href="0406k.html#rt1">Back to Article</a>
+
+</body>
+</html>

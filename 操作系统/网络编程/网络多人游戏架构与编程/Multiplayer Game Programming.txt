@@ -1,0 +1,8 @@
+网络多人游戏架构与编程 （Multiplayer Game Programming）
+
+官方网站：
+https://github.com/MultiplayerBook。
+
+★★★
+作者：Joshua Glazer、Sanjay Madhav
+其他书籍：Sanjay Madhav 《游戏编程算法与技巧》。 

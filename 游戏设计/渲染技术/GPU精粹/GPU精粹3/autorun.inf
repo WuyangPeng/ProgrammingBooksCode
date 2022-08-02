@@ -1,0 +1,4 @@
+[AutoRun]
+ICON=Images/nvicon.ico
+OPEN=Wscript ShellExecute.js //B //nologo Index.html
+

@@ -1,0 +1,38 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows 8
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SegoeSymbols", "SegoeSymbols\SegoeSymbols.vcxproj", "{8295087E-2419-400E-A6C5-4A5219257BC5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|ARM = Release|ARM
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8295087E-2419-400E-A6C5-4A5219257BC5}.Debug|ARM.ActiveCfg = Debug|ARM
+		{8295087E-2419-400E-A6C5-4A5219257BC5}.Debug|ARM.Build.0 = Debug|ARM
+		{8295087E-2419-400E-A6C5-4A5219257BC5}.Debug|ARM.Deploy.0 = Debug|ARM
+		{8295087E-2419-400E-A6C5-4A5219257BC5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8295087E-2419-400E-A6C5-4A5219257BC5}.Debug|Win32.Build.0 = Debug|Win32
+		{8295087E-2419-400E-A6C5-4A5219257BC5}.Debug|Win32.Deploy.0 = Debug|Win32
+		{8295087E-2419-400E-A6C5-4A5219257BC5}.Debug|x64.ActiveCfg = Debug|x64
+		{8295087E-2419-400E-A6C5-4A5219257BC5}.Debug|x64.Build.0 = Debug|x64
+		{8295087E-2419-400E-A6C5-4A5219257BC5}.Debug|x64.Deploy.0 = Debug|x64
+		{8295087E-2419-400E-A6C5-4A5219257BC5}.Release|ARM.ActiveCfg = Release|ARM
+		{8295087E-2419-400E-A6C5-4A5219257BC5}.Release|ARM.Build.0 = Release|ARM
+		{8295087E-2419-400E-A6C5-4A5219257BC5}.Release|ARM.Deploy.0 = Release|ARM
+		{8295087E-2419-400E-A6C5-4A5219257BC5}.Release|Win32.ActiveCfg = Release|Win32
+		{8295087E-2419-400E-A6C5-4A5219257BC5}.Release|Win32.Build.0 = Release|Win32
+		{8295087E-2419-400E-A6C5-4A5219257BC5}.Release|Win32.Deploy.0 = Release|Win32
+		{8295087E-2419-400E-A6C5-4A5219257BC5}.Release|x64.ActiveCfg = Release|x64
+		{8295087E-2419-400E-A6C5-4A5219257BC5}.Release|x64.Build.0 = Release|x64
+		{8295087E-2419-400E-A6C5-4A5219257BC5}.Release|x64.Deploy.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

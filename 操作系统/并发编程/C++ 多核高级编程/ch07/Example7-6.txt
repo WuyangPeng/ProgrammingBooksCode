@@ -1,0 +1,19 @@
+//Example 7-6 The definition for close()
+
+231  int posix_queue::close(void)
+232 {
+233
+234     int StatusCode = 0;
+235     StatusCode = mq_close(PosixQueue);
+236     if(errno == EBADF){
+237        StatusCode = errno;   
+238        cerr << "PosixQueue is not a valid descriptor open for 
+                    writing" << endl;              
+239     }
+240    if(StatusCode == -1){
+241        cerr << "unknown error in mq_close() " << endl;                
+242    }   
+243    return(StatusCode);
+244
+245  }   
+

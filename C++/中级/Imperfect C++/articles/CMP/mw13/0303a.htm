@@ -1,0 +1,631 @@
+<html>
+<head>
+<title>Adapting Win32 Enumeration APIs to STL Iterator Concepts</title>
+</head>
+
+<body>
+
+<h2>Adapting Win32 Enumeration APIs to STL Iterator Concepts</h2>
+<p>Courtesy of <i>Windows Developer Network</i> (March 2003)</p>
+<h3>By Matthew Wilson</h3>
+<hr>
+
+<p>Operating system APIs that allow access to collections of entities are common; for example, the UNIX <b>opendir()</b>/<b>readdir()</b> functions. The Win32 API has many functions for enumerating the elements in collections, expressing one of a number of common models &#151; including call-backs (i.e., <b>EnumChildWindows()</b>), get-first/get-next (i.e., <b>FindFirst/NextFile()</b>), and get-nth (i.e., <b>RegEnumValue()</b>) &#151; which are quite different in semantics.</p>
+
+
+<p>The C++ community is gradually moving towards an STL-compliant common coding form, in terms of containers (sequence and associative), iterators, functionals (or functors, or function objects), algorithms, and adaptors. The great advantage with this is that disparate entities can be manipulated in a common fashion, dramatically reducing developer effort, and at the same time improving robustness, maintainability, and reuse.</p>
+
+<p>One of the reasons that the use of STL techniques is not as widespread as it might be is that, apart from the classes and functions provided by the standard library itself (list, vector, for_each, and so on), there is a paucity of available STL-compliant libraries, particularly for operating system APIs. This is in part due to the complexity involved in translating one programming model to another, particularly when talking about collections and sequences. This article describes the practical application of STL sequence concepts to two Win32 enumeration models, creating lightweight sequence classes that wrap the APIs and provide iterators that can be used for manipulating the enumerated entities by algorithms in an STL-standard fashion.</p>
+
+<p><a name="1_return"></a><a name="2_return"></a>The classes presented form part 
+  of the WinSTL libraries. WinSTL [<a href="#1%60">1</a>] is a subproject of STLSoft 
+  [<a href="#2">2</a>], a public domain, open-source organization that applies 
+  STL concepts to a variety of technologies and operating systems.</p>
+
+<p>The first class presented, winstl::findfile_sequence, demonstrates an adaptation of the get-first/get-next enumeration model, as used by the <b>FindFirstFile()</b> API for the enumeration of filesystem entities, to the STL Input Iterator concept. As described later, the get-first/get-next model may only be straightforwardly adapted to the Input Iterator concept because the handles they provide are not usually cloneable (i.e., copying the handle value does not do a deep copy of the enumeration state).</p>
+
+<p>The second class presented is the winstl::reg_key_sequence, which is an adaptation of the get-nth model as used in the <b>RegEnumKeyEx()</b> API for the numeration of registry keys. As we shall see, get-nth enumeration models are readily adaptable to both the Input Iterator concept and the Forward Iterator concept and, with a little effort, the Bidirectional and Random Access Iterator concepts. This is because iteration state is represented as a numeric index, so iterators may be copied, iteration may be forked, and sequence-subsets iterated.</p>
+
+<p>Also discussed in this article (and supplied in the archive) are a couple of example programs that demonstrate the ease of use of these sequence classes. One is a simple GUI program that recursively searches a registry key and places the items in a tree, and the other is an STL reworking of the classic WHEREIS program.</p>
+
+
+
+<h4><a name="3_return"></a>Sequence Concept</h4>
+
+
+<p>The STL defines a Sequence [<a href="#3">3</a>] as a "variable-sized container 
+  whose elements are arranged in a strict linear order, [that] supports insertion 
+  and removal of elements," and stipulates a number of characteristics, properties, 
+  and operations that a sequence should support.</p>
+
+
+<p>These stipulations are vital for the development of the actual STL (container) class libraries, since they provide guarantees that users of such libraries rely on when selecting one type of container over another (for instance, one may prefer a list for constant time insertion, or a vector to be able to pass the contents as an array). Unfortunately, when adapting different enumeration models, over whose implementation we likely have no control, many of the constraints of the Sequence concept may not be achievable. Most of this nonconformance is moot when the adapted sequence is read only, as are those presented in this article, but I shall nevertheless refer to the classes presented as sequences with a small "s," in respect of their lack of strict conformance. (To further ease the burden of understanding in this nomenclatural haze, I shall refer to the "iteration" of the sequence classes and their iterators, as opposed to the "enumeration" of the underlying API collections.)</p>
+
+<p>The important characteristics of adapted sequences are that they provide a common and well-understood syntax, notably in the form of their iterators, and that they provide correct and well-defined semantics. As this article will demonstrate, the first of these challenges is usually relatively straightforward, and the second one usually isn't.</p>
+
+
+
+<h4><a name="4_return"></a><a name="5_return"></a>Input Iterator Concept </h4>
+
+
+<p>All Sequences provide iterators, which support one or more of the iterator 
+  concepts [<a href="#4">4</a>, <a href="#5">5</a>]. When dealing with read-only 
+  Sequences, the four models of concern are Input, Forward, Bidirectional, and 
+  Random Access, each of which is a superset of the previous one. There are a 
+  number of good sources for definitions of the iterator concepts [<a href="#5">5</a>, 
+  <a href="#4">4</a>], so I will give a brief explanation in so far as the characteristics 
+  of the concepts pertain to implementing sequences.</p>
+
+
+<p><a name="6_return"></a><a name="7_return"></a>An Input Iterator [<a href="#6">6</a>] 
+  has many of the qualities &#151; equality-comparable [<a href="#7">7</a>], dereferenceable, 
+  incrementable &#151; commonly associated with iterators in general. The important 
+  characteristic missing from an Input Iterator is that of being cloneable (copying 
+  with deep enumeration semantics, in particular the enumeration state), which 
+  means that a range defined by Input Iterators may support only single-pass algorithms. 
+  The salient phrases from the SGI web site [<a href="#6">6</a>] are "After executing 
+  <b>++i</b>, it is not required that copies of the old value of <b>i</b> be dereferenceable 
+  or that they be in the domain of <b>operator==()</b>" and "It is not guaranteed 
+  that it is possible to pass through the same input iterator twice." Matt Austern 
+  [<a href="#5">5</a>] also provides an excellent theoretical exposition of this 
+  subject, but I want to give a simple practical example, since this is about 
+  the most misunderstood aspect of the differences between the iterator concepts.</p>
+
+<p><a name="8_return"></a>Consider the case where we want to identify files residing 
+  on a case-sensitive filesystem that would clash as duplicates on case-insensitive 
+  filesystems. We could use the unixstl::readdir_sequence (UNIXSTL [<a href="#8">8</a>] 
+  is a peer project with WinSTL) class, which is similar to the WinSTL findfile_sequence 
+  class described below, to locate them, as in <A HREF="0303al1.htm" target="_BLANK">Listing 
+  1</A>.</p>
+
+<p>For most iterator concepts, the code would have the expected behavior, and successfully identify and trace all case-insensitive name clashes. However, because unixstl:: readdir_sequence::const_iterator is an Input Iterator, the code will compile without problems, and will also execute and find any duplicates of the first file in the sequence, but will never execute the outer loop more than once. This is because when the begin_o iterator is copied to the begin_i iterator, the state of the iteration will also be passed over to it. Therefore, the inner loop will be affecting (either directly or indirectly) begin_o as well as begin_i. Depending on the precise nature of the sequence implementation, a subsequent increment of begin_o will either crash/hang the program or will modify begin_o to be equal to end_o. In either case, the intended behavior will not be seen.</p>
+
+<p>This is the characteristic restriction of Input Iterator sequences to single-pass iteration. In most cases this may be all that is required, but multiple passes can be more subtle than you might think, since iteration loops are also contained within many algorithms, such as for_each, sort, and transform. For example, the code in <A HREF="0303al2.htm" target="_BLANK">Listing 2</A> is intended to count the number of matching files, using the <b>count_if</b> algorithm and the not1, ptr_fun, and bind1st function adapters (which effectively allow the free function, <b>strcmp_no_case()</b>, along with the value of *begin_o, to act as an invariant against which to test the inner-loop items). Nevertheless, this would fail in exactly the same way as in the previous version; despite the fact that there is no obvious copying and iterating, the <b>count_if()</b> algorithm does both, hence the effective multipass.</p>
+
+<p><a name="9_return"></a>Interestingly, the very fact that algorithms need to 
+  be (singly) applicable to Input Iterators require that they have copy constructors, 
+  due to the fact that algorithms take their iterator parameters by value. This 
+  forces them to have copyable syntax, despite this being semantically more like 
+  a move than a copy. (Move semantics are actually quite a lot more complex than 
+  one might imagine, as described in [<a href="#9">9</a>].)</p>
+
+<p>It is possible to write iterator classes that do not have copy constructors at all, and this would prevent the problem of multipass algorithms for Input Iterators, protecting against the problem by causing a compile error. It would, however, also prevent their use with algorithms. But algorithms are an essential and useful part of the STL, and especially so when used with other types of iterators that support inner-loop scenarios as the one just mentioned. Conversely, if algorithm iterator arguments were by reference to help their use with input-iterators, then such inner-loops would have the undesirable side effect of altering outer-loop state. On balance, therefore, algorithms take iterators by value, all other iterator concepts are correctly and usefully supported, and we just need to be mindful of the multipass caveat for Input Iterator types.</p>
+
+
+
+<h4><a name="11_return"></a><a name="10_return"></a>Forward Iterator Concept</h4>
+
+
+<p>The Forward Iterator [<a href="#10">10</a>, 5] concept essentially describes 
+  a mechanism for traversing a linear sequence of values. (SGI's site [<a href="#10">10</a>] 
+  describes it thus: "It is possible to use Forward Iterators in multipass algorithms. 
+  Forward Iterators do not, however, allow stepping backwards through a sequence, 
+  but only, as the name suggests, forward.") The Forward Iterator concept is considered 
+  to be a refinement of both Input Iterator and Output Iterator [<a href="#11">11</a>] 
+  concepts. For our purposes (since we are only implementing sequences that are 
+  essentially constant), we need focus only on the capability over and above Input 
+  Iterators of supporting multipass algorithms.</p>
+
+
+<p>It comes in two types: mutable and constant. Mutable forward iterators allow modification of the values in the sequence. Constant forward iterators (usually defined as the member type const_iterator of the providing sequence) allow only read-only access to the values in the sequence. All the sequences we consider in this article provide constant iterators only. (Of course, the terminology is not the best. They could be better named as mutating-iterators and nonmutating-iterators, since the iterators themselves are not mutable or constant, rather the values they refer to.)</p>
+
+<p>In terms of implementation, the ability to support multipass algorithms may or may not be a major technical challenge, depending on the particular API for which we are providing iterable access. For example, the Win32 FindFile API does not contain any facility for cloning a search handle. If you copy the search handle, then the underlying enumeration state is affected in the same way whether you call <b>FindNextFile()</b> on the original handle or on the copy. We shall see how this issue restricts the implementation described later.</p>
+
+
+
+<h4><a name="12_return"></a>Bidirectional Iterator Concept </h4>
+
+
+<p>Conceptually, the Bidirectional Iterator [<a href="#12">12</a>] concept is 
+  identical to that of the Forward Iterator concept, with the additional ability 
+  to iterate backwards as well as forwards. In practice, however, providing the 
+  decrement operators adds an overhead, although in most cases this is the same 
+  or less work than was required to implement the forward iteration. </p>
+
+
+<p><a name="13_return"></a>Bidirectional containers (and our sequences) provide, 
+  in addition to the <b>begin()</b> and <b>end()</b> methods for forward iteration, 
+  the methods <b>rbegin()</b> and <b>rend()</b>, which provide reverse iterators 
+  that may be used in iterator backwards through the range of values contained 
+  in the sequence. Scott Meyers provides an illuminating examination of the relationship 
+  of forward and reverse iterators, which I highly recommend, in <i>Effective 
+  STL</i> [<a href="#13">13</a>].</p>
+
+<p>The mechanics of reverse iteration is such that it is built on the ability of a container's iterators to iterate in both the forward and reverse directions, hence bidirectional. Thus, in addition to the ++() operator (or operators, if providing both pre and post versions), the &#151; () operator(s) must be implemented. Then the <b>rbegin()</b> and <b>rend()</b> methods are implemented in terms of <b>end()</b> and <b>begin()</b> and a reversing type (usually std::reverse_iterator), as can be seen in <A HREF="0303al3.htm" target="_BLANK">Listing 3</A>.</p>
+
+<p>It is important to note that, unlike the Input and Forward Iterator concepts, the end iterator value (that returned by <b>end()</b>) must be decrementable in Bidirectional Iterators, because it is by decrementing the underlying <b>end()</b> value that <b>rbegin()</b> increments from its starting position. This can have a bearing on the choice of implementation for an enumeration adapting implementation, as we shall see in the implementation of the reg_key_sequence iterator class.</p>
+
+
+
+<h4>Random Access Iterator Concept</h4>
+
+
+<p>The Random Access Iterator concept represents the most powerful of all the iterator concepts, and includes the semantics of pointers. Iterators supporting the Random Access Iterator concept have all the abilities expressed in the concepts already described, along with the ability to engage in pointer, or rather iterator, arithmetic. For example, one can now write statements such as: </p>
+
+<pre>
+X::iterator   it = x.begin();
+  size_t        cElems = x.end() - it;
+
+  it += cElems - 1;
+  ( &#151; it)[1];
+</pre>
+<p><a name="14_return"></a>Because of this, whereas iterators supporting all other 
+  Iterator concepts must support the Equality Comparable [7] concept, those supporting 
+  the Random Access concept must also be LessThan Comparable [<a href="#14">14</a>]. 
+  This is due to the requirement for testing whether one iterator has exceeded 
+  another one, not just whether it has equaled it.</p>
+
+<p>It is frequently the case that when a sequence (or any STL Container) provides Random Access Iterators, it can also provide indexing operators (i.e., operator [](int index)). The best example of a Random Access sequence is that of a vector, with which items may be access by the usual <b>begin()</b>-<b>end()</b> iteration, or by the index operator (i.e., v[12] = "13th element").</p>
+
+<p>As I mentioned, the Random Access Iterator concept incorporates the semantics of pointer types. This is an important point, since it is a challenge for most new (and some not so new) to the STL to realize that pointers are actually supported by only this most sophisticated iterator model, even though they have the simplest implementation (nothing to implement!) and the most straightforward semantics.</p>
+
+
+
+<h4>Steps in Implementing Sequences </h4>
+
+
+<p>A common usage scenario for STL-compliant sequences is: </p>
+
+
+<ol>
+  <li>Declare the sequence, instantiating with sequence class-specific information. 
+  <li>Iterate through the items from the beginning iteration point &#151; obtained 
+    from <b>begin()</b> &#151; incrementing it until the end point &#151; obtained 
+    from <b>end()</b> &#151; is reached, or the iteration is stopped for another 
+    reason. 
+  <li>For each item in the sequence, process it, obtaining it by dereferencing 
+    the iterator. 
+    
+</ol>
+
+<p>This can best be seen by a simple example (<A HREF="0303al4.htm" target="_BLANK">Listing 4</A>), using the WinSTL findfile_sequence class.</p>
+
+<p>This declares an ANSI version of the findfile_sequence template, and instantiates it with parameters requesting a search for all files in the directory C:\. It then iterates through all the items and prints out the names of all the files found. Sequences are that simple to use; the complexity is in implementing them in a correct, robust, and efficient way.</p>
+
+<p>When implementing STL-compliant sequences, there are a number of decisions to be made. </p>
+
+
+<ol>
+  <li>The most important decision is whether your sequence is going to be a read-only 
+    view on the collection it is representing, or whether it will allow modification 
+    of the collection. If the collection is to be modifiable, then you also need 
+    to decide whether modifications will apply to the items in the collection, 
+    or to the collection contents itself (i.e., removing, adding, or sorting elements). 
+    Nonmodifiable collections are the most commonly needed type and are by far 
+    the easiest to implement, and all the sequences described in this article 
+    are of this type. 
+    <p>Nonmodifiable sequences only need to provide const <b>begin()</b> and <b>end()</b> 
+      methods, each returning instances of const_iterator. (Modifiable sequences 
+      would provide non-const <b>begin()</b> and <b>end()</b> methods, and also 
+      <b>erase()</b>, insert(), and all the others described in Sequence Concept 
+      [3].) 
+  </li>
+  <li><a name="15_return"></a>The next decision is to determine what kind of iteration 
+    concept your sequence will provide. This is dependent not only on which model 
+    the underlying API facilitates, but also on how much effort you are willing 
+    to expend in order to leverage that support, or supplement it. For example, 
+    you may decide that even though the API will support the Random Access Iterator 
+    concept [<a href="#15">15</a>], you will be quite happy with the Bidirectional 
+    model. Conversely, you might need a minimum of Forward Iterator concept, and 
+    decide to provide that despite the extra work, even when the underlying API 
+    supports only Input Iteration. </li>
+  <li>Another important factor is determining how the items of the enumeration 
+    will be represented as the value_type of the sequence class and the reference 
+    type of the iterator. Dereferencing iterators (applying the indirection operator 
+    &#151; <b>operator *()</b>) can return values, references, or pointers to 
+    class/built-in types, and the selection of which will depend on whether you 
+    have a value to point/refer to, and also on efficiency and API stability. 
+    For example, if you were implementing a sequence that represented child windows, 
+    then the value-type could be HWND. For more sophisticated types, you need 
+    to carefully consider the various options. Occasionally, the value_type returned 
+    can be by reference (i.e., string *, string const &amp;), where the actual 
+    underlying item can be referenced (usually via pointer), but it is much more 
+    common to need to return the value_type by value (i.e., string). Care must 
+    be taken, therefore, to provide correct copy construction/assignment semantics 
+    for your value type. A further, more complex, option is to use a proxy type 
+    as the value_type, and defer expensive operations until the value_type instances 
+    are actually used.</li>
+  <li>Once you have decided what your value type is, you then need to work out 
+    the best way of implementing your iterator. There are a number of factors 
+    involved here (see the "<a href="0303as1.htm" target="_blank">Deriving User-Defined 
+    Iterator Types</a>" sidebar). 
+    <ol type="a">
+      <li>First, you need to determine whether your iterator will support the 
+        member-selection operator &#151; <b>operator -&gt;()</b> &#151; or will 
+        support only the indirection operator &#151; <b>operator *()</b>. This 
+        is a very important distinction, but the decision is rarely difficult 
+        once you get into the design of your class. Because the dereferencing 
+        operator must return an instance of a type to which the dereferencing 
+        operator can also be (re)applied, this constrains your using it to sequences 
+        from which one can obtain a pointer or reference to the instance. Since 
+        there usually isn't a pointer available to the underlying value residing 
+        within the API implementation, you may need to synthesize a copy in order 
+        to provide something to which the dereferencing operator of your iterator 
+        can point. However, most times you will want to implement as efficient 
+        a sequence as possible over the enumeration API you are using, so you 
+        might prefer to provide only the indirection operator. This should not 
+        significantly reduce the appeal of your API, since common idiom, and all 
+        the standard library algorithms, access iterators via the indirection 
+        operator only. The only likely complaints will come from users of your 
+        code who prefer typing: 
+        <pre>
+  it-&gt;do_something();
+</pre>
+        <p>to</p>
+        <pre>
+  (*it).do_something();
+</pre>
+        <p>and who claim, correctly in a few cases, that the former syntax is 
+          more efficient. However, as we have seen, most sequence containers that 
+          you implement over enumeration APIs will not have access to anything 
+          for which this argument could be put, since an instance of the value_type 
+          does not exist to be pointed to and so is synthesized by <b>operator 
+          *()</b>. (This is in contrast to standard containers, which contain 
+          elements directly, and therefore can give out pointers and references 
+          to these elements.) Hence, constraining your iterator syntax to the 
+          latter form will, overall, lead to writing algorithms that are more 
+          widely applicable. 
+      </li>
+      <li>Second, there is the issue of where the enumeration state is actually 
+        stored: Is it entirely in the iterator instance, or does the iterator 
+        store merely a part of this state and use a reference to the container 
+        in order to access the rest?</li>
+      <li>Closely related to this is whether the actual API enumeration starts 
+        in the container when it creates the begin iterator in its <b>begin()</b> 
+        method, or whether the iterator itself starts the enumeration when it 
+        is used.</li>
+      <li>Another important factor to consider is whether to provide post-increment/decrement 
+        operators in addition to the pre-increment/decrement ones. Whilst most 
+        STL algorithms use the pre-form, there are a few that need to use the 
+        post-form, and although some compilers will adapt the pre-form and use 
+        a temporary, other will fail to compile. (For example, Borland C++ 5.5 
+        reports "Overloaded prefix 'operator ++' used as a postfix operator in 
+        function for_each.") For maximal compatibility, therefore, it is usually 
+        worth the extra effort. </li>
+      <li>Next, you must work out what your end condition is and, therefore, what 
+        <b>end()</b> should be implemented to return. Most often it is implemented 
+        to return a default-constructed instance of the iterator type, but sometimes 
+        it is necessary to construct the iterator instance with a marker value 
+        (perhaps a NULL pointer, or a negative index), known as a sentinel.</li>
+      <li>For Input and Forward iterators, this sentinel can be an arbitrary unique 
+        value. However, for Bidirectional and Random Access Iterators it is necessary 
+        that the decrement operator ( &#151; ()) be callable on the <b>end()</b> 
+        value, the results of which must be a meaningful step in the reverse iteration 
+        sequence.</li>
+      <li>Finally, when it comes to comparing iterators, what matters is that 
+        the Equality and/or LessThan comparisons are always valid and meaningful. 
+        In particular, it is important not that the return from calls to <b>end()</b> 
+        and a one-past-the-end iterator are the same, but that they are equality-comparable; 
+        in other words, that there is an accessible and applicable <b>operator 
+        ==()</b> that returns True.</li>
+    </ol>
+  <li>Normally, the use of containers and their modifications of the container 
+    contents are based on an explicit relationship between modification and its 
+    effects on iteration state. This is not the case with API collection wrappers; 
+    especially those based on OS &amp; shared state. The sequence and its iterators 
+    must be coded such that they are robust in the face of such changes. The client 
+    code must neither crash nor go into an infinite loop. This can lead to taking 
+    some extra measures in the copy (or move [9]) construction and also in moving 
+    to and from the <b>end()</b> value.</li>
+</ol>
+
+
+
+<h4>findfile_sequence </h4>
+
+
+<p>Now that we've discussed the issues involved lets look at some actual implementations. The winstl::findfile_sequence class provides the ability to enumerate files and/or directories from a given search specification (i.e., "xyz*.p??"), in a given directory. The sequence is layered on top of the Win32 FindFile API, which comprises the three functions:</p>
+
+
+<pre>
+HANDLE FindFirstFile(
+    LPCTSTR lpszSearchSpec, 
+    WIN32_FIND_DATA *lpFindData);
+BOOL FindNextFile(
+    HANDLE hFind, 
+    WIN32_FIND_DATA lpFindData);
+BOOL FindClose(HANDLE hFind);
+</pre>
+
+<p><b>FindFirstFile()</b> starts an enumeration and creates a search handle to the caller, or returns INVALID_HANDLE_VALUE to indicate failure. <b>FindNextFile()</b> moves to the next element in the collection, or returns FALSE to indicate that the enumeration is complete. <b>FindClose()</b> closes a valid search handle and must be called, otherwise kernel resources are leaked until the process terminates. A typical program for the use of these functions is shown in <A HREF="0303al5.htm" target="_BLANK">Listing 5</A>. Note that the API returns both files and directories, including the current directory "." and (for nonroot directories) the parent directory "..".</p>
+
+<p>The findfile_sequence class wraps this functionality in the form of an Input Iterator-providing sequence. In addition, it contains logic for filtering out files, directories, and the "dots" (. and ..), such that you can request any permutation of these types at construction, relieving client code of the logic you see in <A HREF="0303al5.htm" target="_BLANK">Listing 5</A>, as can be seen in <A HREF="0303al4.htm" target="_BLANK">Listing 4</A>.</p>
+
+<p>The class is actually a template class, winstl::basic_findfile_sequence, which supports different parameterizations for use with ANSI and Unicode. The full implementation of this and all the supporting classes (winstl::basic_findfile_sequence_value and winstl::basic_findfile_sequence_const_iterator) is available in the archive and online [1], but simplified and truncated versions are shown in <A HREF="0303al6.htm" target="_BLANK">Listings 6</A> and <A HREF="0303al7.htm" target="_BLANK">7</A>. We focus on the ANSI parameterization, findfile_sequence_a, in the article and sample programs, but the principles described apply equally to any parameterization. The implementation addresses the decisions outlined above in the following ways:</p>
+
+<ol>
+  <li>The sequence is read only. </li>
+  <li>Only the Input Iterator concept is supported. (In actual fact, the full 
+    implementation of this class library also provides the more powerful but, 
+    in this case, less efficient forward iteration via its <b>begin_fwd()</b> 
+    and <b>begin_end()</b> methods. You can select this as the default via a preprocessor 
+    symbol definition.) </li>
+  <li>The value_type is the winstl::basic_findfile_sequence_value class, which 
+    is a simple class containing a fixed-sized (based on _MAX_PATH) character 
+    buffer, the search handle, and a back pointer to the sequence class (in order 
+    to obtain the full path). (Note that because filesystem entities have finite 
+    name lengths, all the members of the findfile_sequence_value class are plain 
+    members, avoiding expensive heap allocations.) The findfile_sequence_value 
+    class is also the iterator reference type, since the iterator does not store 
+    an instance to which a reference could be given. The original implementation, 
+    which used the raw WIN32_FIND_DATA as the value_type, did in fact return (WIN32_FIND_DATA 
+    const &amp;) as the iterator reference, which was slightly more efficient. 
+    However, this structure contains filenames only (no path) so the usability 
+    of the enhanced functionality provided in the current version was deemed to 
+    be worth the slight cost in efficiency (though the path is synthesized only 
+    when the value_type instance is retrieved via the iterator indirection operator) 
+    and complexity. </li>
+  <li> 
+    <ol type="a">
+      <li>Using the findfile_sequence_value class also means that the original 
+        implementation's dereferencing operator (<b>operator -&gt;()</b>) can 
+        no longer be supported. </li>
+      <li>The iteration state is comprised of the search handle only, on which 
+        subsequent calls to <b>FindNextFile()</b> are made. When the enumeration 
+        is complete (i.e., when <b>FindNextFile()</b> returns FALSE), the iterator 
+        closes the handle with <b>FindClose()</b>. </li>
+      <li>The iteration is commenced in the container (in the <b>_begin()</b> 
+        method called by <b>begin()</b>), which calls <b>FindFirstFile()</b>. 
+        If this call succeeds, then a valid iterator is returned; otherwise, the 
+        <b>end()</b> iterator value is returned. </li>
+      <li>The iterator class provides both pre- and post-increment operators, 
+        the latter being a simple implementation (see <A HREF="0303al7.htm" target="_BLANK">Listing 
+        7</A>) using a temporary and a call to the former. The post-forms are 
+        less efficient, since they incur the additional cost of creation and destruction 
+        of the temporaries. </li>
+      <li>The <b>end()</b> condition is implemented simply by setting the iterator's 
+        handle to the well-known INVALID_HANDLE_VALUE pseudo-value. </li>
+      <li>Since we are only supporting the Input Iterator concept, we do not provide 
+        the &#151; () operator(s). </li>
+      <li>Iterator comparison is affected by determining that either both iterator's 
+        handles are set to INVALID_HANDLE_VALUE, or that neither are, in which 
+        case a test against filename is conducted. This supports testing <b>end()</b> 
+        iterator values, and has the nice side effect of allowing safe and meaningful 
+        testing of iterators from one (<b>begin()</b>, <b>end()</b>) [5] range 
+        with those of another, in effect emulating multiple passes by separate 
+        enumerations on the same sequence class. If we did not want to support 
+        this capacity, then the comparison could simply be based on handle equality, 
+        and since all handle values are distinct but constant for any enumeration, 
+        the only positively equating comparison would be between <b>end()</b> 
+        values, which is correct behavior for Input Iterators. </li>
+    </ol>
+  </li>
+  <li>The sequence and iterator classes are robust in the face of changes to the 
+    underlying file-system contents, since the <b>end()</b> value is based on 
+    INVALID_HANDLE_VALUE. This prevents any iteration sequence from going uncontrollably 
+    "off the end," even when the filesystem is being actively changed during an 
+    iteration. Furthermore, since the iterator copy constructor is implemented 
+    as a move-constructor [9], which sets the copied iterator to the <b>end()</b> 
+    value, the infinite looping mentioned in the Input Iterator Concept section 
+    is avoided, and multipass iteration sequences fail gracefully. (Without the 
+    use of the move-constructor technique, the sample programs shown in the Input 
+    Iterator Concept section using the findfile_sequence class actually hang inside 
+    KERNEL32.DLL.)</li>
+</ol>
+<h4>reg_key_sequence </h4>
+
+
+<p>The API function used for enumerating registry keys is <b>RegEnumKeyEx()</b>, which has the following signature:</p>
+
+
+<pre>
+LONG RegEnumKeyEx(
+  HKEY hKey,		// handle to key to enumerate
+  DWORD dwIndex,		// subkey index
+  LPTSTR lpName,		// subkey name
+  LPDWORD lpcName,		// size of subkey buffer
+  LPDWORD lpReserved,		// reserved
+  LPTSTR lpClass,		// class string buffer
+  LPDWORD lpcClass,		// size of class string buffer
+  PFILETIME lpftLastWriteTime	// last write time
+);
+</pre>
+
+<p>The important thing to notice is the second parameter, dwIndex, which is the index to the requested item. To enumerate through a series, you call it with an index of 0 and continue with incrementing values until the return value is non-0. (The function returns ERROR_NO_MORE_ITEMS when the index is greater than or equal to the number of subkeys available.) A sequence iterator class would, of course, use the index for storing enumeration sequence state, and you do, therefore, get Forward Iterator support for free. (Indeed, it would be very hard to devise an implementation that did not provide Forward Iterator behavior.)</p>
+
+<p>The full implementation of the winstl::basic_reg_key_sequence template class (and its supporting winstl::basic_reg_key_sequence_ const_iterator and winstl::basic_reg_key_sequence_value classes) is available in the archive and online, but a simplified and truncated version is shown in <A HREF="0303al3.htm" target="_BLANK">Listings 3</A> and <A HREF="0303al8.htm" target="_BLANK">8</A>. (We focus on the ANSI parameterization, reg_key_sequence_a.) The implementation addresses the decisions outlined above in the following ways:</p>
+
+
+<ol>
+  <li>The sequence is read only. </li>
+  <li>The Bidirectional Iterator concept is supported. Since the enumeration state 
+    is represented by the index, it was a simple matter to implement a Bidirectional 
+    Iterator by adding <b>operator &#151; ()</b>, implemented simply by decrementing 
+    the index. The support is completed by supplying <b>rbegin()</b> and <b>rend()</b> 
+    returning instances of the sequence member type const_iterator. (This is implemented 
+    by using a class, stlsoft::reverse_bidirectional_iterator_base, to insulate 
+    the implementation from compiler specifics). It would be eminently feasible 
+    to provide Random Access iteration, which allows pointer arithmetic to be 
+    applied to iterators and the index operator &#151; operator []() &#151; to 
+    be applied to iterators and containers. However, no users have yet expressed 
+    a requirement for such capabilities, so it simply has not been done yet. (If 
+    anyone wants to take this up as an exercise for the reader...) </li>
+  <li>The value_type chosen is the winstl::basic_reg_key template class, which 
+    is a simple class that wraps a registry key and provides a few methods for 
+    querying the attributes of a key, including its name. The name is of string 
+    class type, since despite the fact that registry entity name lengths are limited 
+    to 255 characters on Windows 9x (95, 98, Me), other Win32 operating systems 
+    allow an unlimited representation. Because the registry API is accessed by 
+    an index, we do not have access to any underlying value state, so the reference 
+    type for the iterator is also reg_key; i.e., the iterator returns the result 
+    of <b>operator *()</b> by value. The reg_key class stores a duplicate copy 
+    of the key because it is reasonable for values to exist outside the lifetime 
+    scope of the sequence (something that cannot be said for the iterators). </li>
+  <li>The iterator is implemented as a separate class, which has a friendship 
+    relationship with the sequence class. (This is one of the few valid uses of 
+    the powerful C++ friend keyword, since the sequence and iterator classes are 
+    closely related and not meaningful independently of each other.) 
+    <ol type="a">
+      <li> 
+        <p>The registry enumeration model does not readily support the dereferencing 
+          operator (<b>operator -&gt;()</b>). 
+      </li>
+      <li>The iteration state is comprised of the registry key (against which 
+        to query for the next item name) and the index (representing the iteration 
+        state). The iterator class maintains a thin-copy, not a duplicate, of 
+        the registry key because the iterators are not valid outside the lifetime 
+        of the sequence from which they are obtained. Although the <b>RegEnumKeyEx()</b> 
+        takes an unsigned 32-bit integer for the index, the iterator's index type 
+        is signed, in order that the sentinel value can be negative. (It is unlikely 
+        that any registry key will have in excess of 2 billion subkeys, so there 
+        is little likelihood of this causing a problem!) No back pointer is maintained 
+        on the iterator's sequence class, nor is the key duplicated (it is simply 
+        copied), because STL iterators are only valid within the scope of their 
+        providing-sequence/container's lifetime. Note that for the sake of coherency, 
+        the iterator also contains the subkey name. While it is true that getting 
+        the name at the time of enumeration is less efficient in the cases where 
+        not every iteration state has its value taken (i.e., when doing a <b>distance()</b> 
+        or <b>advance()</b> [13]), in most cases this is not relevant. Moreover, 
+        since the registry may change due to action in another thread or process, 
+        it is arguably more correct to reflect the real state at iteration time 
+        rather than indirection time. </li>
+      <li>The enumeration is begun in the container's <b>begin()</b> method, which 
+        returns <b>end()</b> if <b>RegEnumKeyEx()</b> fails. </li>
+      <li>The iterator class provides both pre- and post-increment and decrement 
+        operators, with the post-forms implemented in terms of temporaries and 
+        the pre-forms. As usual, the pre-forms are more efficient. </li>
+      <li>Ordinarily, the iterator returned by a container's <b>end()</b> function 
+        contains a value that is linearly one off the end of the sequence, hence 
+        for pointer iterators <b>end() == begin() + size()</b>. This supports 
+        tests for equality as well as allowing for decrementing the end iterator 
+        back into the sequence proper. However, API enumeration changes would 
+        cause such an implementation to have potentially serious problems. If 
+        the end condition was implemented by the index value being equal to the 
+        number of subkeys of the registry key, this would be very fragile, since 
+        changes to the underlying sequence could lead to the <b>end()</b> method 
+        returning an iterator instance that fails to equate to one that had been 
+        iterated "off-the-end." Therefore, the iterator class has a static method 
+        returning a negative index (a sentinel value) and when an attempt to access 
+        the next element fails (i.e., end has been reached) the iterator index 
+        is set to this value. The iterator <b>operator ==()</b> simply checks 
+        for equality between the index members (though it does contain an assert 
+        verifying that the two iterators are operating on the same registry key). 
+      </li>
+      <li>In order to support the Bidirectional concept, the &#151; () operator 
+        looks for the sentinel value, and then sets the actual index to the current 
+        number of subkeys just prior to its being decremented and <b>RegEnumKeyEx()</b> 
+        being called. This scheme is robust even in the case where the sequence 
+        has no elements, because a failure of the <b>RegEnumKeyEx()</b> function 
+        simply results in the iterator taking the sentinel; i.e., the <b>end()</b> 
+        iterator value. </li>
+      <li>The comparison of the iterators simply compares the index members of 
+        the two iterators. There is an assert that the iterators being compared 
+        are in respect of the same registry key, but this is not a run-time feature 
+        because this would be an unnecessary test in correctly written code. It 
+        should be noted that the STL iteration model generally does not assume 
+        any kind of bounds checking, for performance reasons, and relies on an 
+        iterator to be checked against the <b>end()</b> value. I have followed 
+        this policy in the implementations of the classes in the WinSTL library. 
+      </li>
+    </ol>
+  </li>
+  <li>The sequence and iterator classes are robust in the face of changes to the 
+    underlying registry contents, since the use of the sentinel prevents the <b>end()</b> 
+    value comparisons from erroneously comparing an off-the-end index (say 17), 
+    with another obtained subsequent to a couple of subkeys being deleted (say 
+    15). In both cases the actual index will be the sentinel value, and comparison 
+    will be correct. It is also more efficient to use the sentinel than to query 
+    for the number of subkeys, particularly if doing so every time the <b>end()</b> 
+    value is returned in order to catch underlying changes to collection. The 
+    only caveat is that the value obtained from the <b>size()</b> method prior 
+    to an iteration and the number of elements iterated through can differ under 
+    conditions of underlying changes. </li>
+</ol>
+
+<h4>Using the Sequences </h4>
+
+
+<p>Using the sequences is as simple or as complex as using any other STL sequence. In <A HREF="0303al4.htm" target="_BLANK">Listing 4</A> we saw a simple example. A more complex example is seen in <A HREF="0303al9.htm" target="_BLANK">Listing 9</A>, which shows part of a replacement for the common WHEREIS utility. This program uses the winstl::findfile_sequence along with another WinSTL class, the searchpath_sequence (which provides an ordered collection of search paths for the calling process), such that a set of search sequences, such as "*.cpp;*.d;*.xml", can be applied to either a given directory, or to the system search paths. The full source is in the archive.</p>
+
+
+<p>Also included in the archive is the source to REGTREE (<A HREF="0303al10.htm" target="_BLANK">Listing 10</A>, <A HREF="0303af1.htm" target="_BLANK">Figure 1</A>), a simple registry enumerator program, that demonstrates a standard enumeration using for_each, as well as illustrating a combination of algorithms and sequences to perform a recursive enumeration of the registry.</p>
+
+
+
+<h4>Summary </h4>
+
+
+<p>This article has described some of the ideas represented in the STL Sequence and Iterator concepts. It has also highlighted some issues that are important when implementing your own STL-compliant sequences and iterators, and has illustrated these issues by presenting two enumeration API- adapting sequence classes, findfile_sequence, and reg_key_sequence, and their supporting classes.</p>
+
+
+<p>I've endeavored to show that the implementation of correct, robust, and efficient sequences and iterators, though involved, is not as complex as might be expected. Hopefully, I've demonstrated that using such classes is straightforward indeed, especially so given that they can be used with standard algorithms and functionals, as shown in the example programs included with this article.</p>
+
+<p>All the WinSTL classes, and supporting STLSoft code, are available online ([1]), along with an increasing number of other classes, algorithms, and functionals. Furthermore, the libraries are open to expansion for anyone who wishes to submit their own classes. </p>
+
+
+
+<h4>References </h4>
+
+
+<p><a name="1"></a>[1] <a href="http://winstl.org/" _target = "blank">http://winstl.org/</a>. <br>
+  [<a href="#1_return">return to text</a>]</p>
+
+
+<p><a name="2"></a>[2] <a href="http://stlsoft.org/" _target = "blank">http://stlsoft.org/</a>. 
+  <br>
+  [<a href="#2_return">return to text</a>] </p>
+
+<p><a name="3"></a>[3] <a href="http://www.sgi.com/tech/stl/Sequence.html" _target = "blank">http://www.sgi.com/tech/stl/Sequence.html</a>. 
+  <br>
+  [<a href="#3_return">return to text</a>] </p>
+
+<p><a name="4"></a>[4] <a href="http://www.sgi.com/tech/stl/Iterators.html" _target = "blank">http://www.sgi.com/tech/stl/Iterators.html</a>. 
+  <br>
+  [<a href="#4_return">return to text</a>] </p>
+
+<p><a name="5"></a>[5] <i>Generic Programming and the STL: Using and Extending 
+  the C++ Standard Template Library</i>, Matthew Austern, Addison-Wesley, 1998. 
+  <br>
+  [<a href="#5_return">return to text</a>] </p>
+
+<p><a name="6"></a>[6] <a href="http://www.sgi.com/tech/stl/InputIterator.html" _target = "blank">http://www.sgi.com/tech/stl/InputIterator.html</a>.<br>
+  [<a href="#6_return">return to text</a>] </p>
+
+<p><a name="7"></a>[7] <a href="http://www.sgi.com/tech/stl/EqualityComparable.html" _target = "blank">http://www.sgi.com/tech/stl/EqualityComparable.html</a>. 
+  <br>
+  [<a href="#7_return">return to text</a>] </p>
+
+<p><a name="8"></a>[8] <a href="http://unixstl.org/" _target = "blank">http://unixstl.org/</a>. 
+  <br>
+  [<a href="#8_return">return to text</a>] </p>
+
+<p><a name="9"></a>[9] "Move Constructors," Matthew Wilson, Synesis Technical 
+  Report, <a href="http://www.synesis.com.au/resources/articles/cpp/movectors.pdf" _target = "blank">http://www.synesis.com.au/resources/articles/cpp/movectors.pdf</a>. 
+  <br>
+  [<a href="#9_return">return to text</a>] </p>
+
+<p><a name="10"></a>[10] <a href="http://www.sgi.com/tech/stl/ForwardIterator.html" _target = "blank">http://www.sgi.com/tech/stl/ForwardIterator.html</a>.<br>
+  [<a href="#10_return">return to text</a>] </p>
+
+<p><a name="11"></a>[11] <a href="http://www.sgi.com/tech/stl/OutputIterator.html" _target = "blank">http://www.sgi.com/tech/stl/OutputIterator.html</a>. 
+  <br>
+  [<a href="#11_return">return to text</a>] </p>
+
+<p><a name="12"></a>[12] <a href="http://www.sgi.com/tech/stl/BidirectionalIterator.html" _target = "blank">http://www.sgi.com/tech/stl/BidirectionalIterator.html</a>. 
+  <br>
+  [<a href="#12_return">return to text</a>] </p>
+
+<p><a name="13"></a>[13] <i>Effective STL, 50 Specific Ways to Improve Your Use 
+  of the Standard Template Library</i>, Scott Meyers, Addison-Wesley, 2001. <br>
+  [<a href="#13_return">return to text</a>] </p>
+
+<p><a name="14"></a>[14] <a href="http://www.sgi.com/tech/stl/LessThanComparable.html" _target = "blank">http://www.sgi.com/tech/stl/LessThanComparable.html</a>. 
+  <br>
+  [<a href="#14_return">return to text</a>] </p>
+
+<p><a name="15"></a>[15] <a href="http://www.sgi.com/tech/stl/RandomAccessIterator.html" _target = "blank">http://www.sgi.com/tech/stl/RandomAccessIterator.html</a>. 
+  <br>
+  [<a href="#15_return">return to text</a>]<br>
+</p>
+
+<p>[16] <i>The C++ Programming Language</i>, Third Edition, Bjarne Stroustrup, 
+  Addison-Wesley, 1997. </p>
+
+
+<hr>
+<I>
+Matthew Wilson holds a degree in Information Technology and a Ph.D. in Electrical Engineering, and is a software development consultant for Synesis Software. Matthew's work interests are in writing bulletproof real-time, GUI, and software-analysis software in C, C++, and Java. He has been working with C++ for over 10 years and is currently bringing STLSoft.org and its offshoots into the public domain. Matthew can be contacted via <a href="mailto:matthew@synesis.com.au">matthew@synesis.com.au</a> or at <a href="http://stlsoft.org/" _target = "blank">http://stlsoft.org/</a>.</I>
+
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<Page
+    x:Class="RoutedEvents0.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RoutedEvents0"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"    
+    FontSize="48">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock Text="Left / Top"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Tapped="OnTextBlockTapped" />
+
+        <TextBlock Text="Center / Top"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   Tapped="OnTextBlockTapped" />
+
+        <TextBlock Text="Right / Top"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Top"
+                   Tapped="OnTextBlockTapped" />
+
+        <TextBlock Text="Left / Center"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Tapped="OnTextBlockTapped" />
+
+        <TextBlock Text="Center / Center"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Tapped="OnTextBlockTapped" />
+
+        <TextBlock Text="Right / Center"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Tapped="OnTextBlockTapped" />
+
+        <TextBlock Text="Left / Bottom"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Bottom"
+                   Tapped="OnTextBlockTapped" />
+
+        <TextBlock Text="Center / Bottom"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom"
+                   Tapped="OnTextBlockTapped" />
+
+        <TextBlock Text="Right / Bottom"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom"
+                   Tapped="OnTextBlockTapped" />
+    </Grid>
+</Page>

@@ -1,0 +1,21 @@
+<html>
+<head>
+<title>Handling Multiple Win32 Operating Environments</title>
+</head>
+
+<body>
+
+
+<h4>Listing 4 DEF file redefinition of exported symbols</h4>
+
+<pre>
+
+EXPORTS
+    SetCurrentDirectoryW	=   SetCurrentDirectoryW_impl
+    GetFileSizeEx		=   GetFileSizeEx_impl
+    GetFileAttributesExA	=   GetFileAttributesExA_impl
+    GetFileAttributesExW	=   GetFileAttributesExW_impl
+
+</pre>
+</body>
+</html>

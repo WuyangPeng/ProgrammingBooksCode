@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>RegExp exec() Method Example with no global attribute.</title>
+<script language="javascript" type="text/javascript">
+var myRegExp = /((A|B)(\d{3}))/i;
+var entry;
+
+function PatternProcess(entry){
+var displayString = "";
+result = myRegExp.exec(entry);
+for (n=0; n<5; n++){
+displayString += "Matched '" + result[n];
+displayString += "' in result[" + n + "].\n";
+} // end for loop
+
+alert(displayString);displayString = "";
+} // end function Process(entry)
+
+function ShowPrompt(){
+entry = prompt("This script tests for matches for the regular expression pattern: " + myRegExp + ".\nType in a string and click on the OK button.", "Type your text here.");
+PatternProcess(entry);
+} // end function ShowPrompt()
+
+</script>
+</head>
+<body>
+<form name="myForm">
+<br />
+<button type="Button" onclick="ShowPrompt()">Click here to enter text.</button>
+</form>
+</body>
+</html>

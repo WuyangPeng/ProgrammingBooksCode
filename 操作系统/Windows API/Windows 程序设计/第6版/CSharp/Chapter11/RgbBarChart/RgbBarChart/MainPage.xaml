@@ -1,0 +1,73 @@
+﻿<Page
+    x:Class="RgbBarChart.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RgbBarChart"
+    xmlns:ch11="using:Petzold.ProgrammingWindows6.Chapter11"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <Page.Resources>
+        <ch11:NamedColor x:Key="namedColor" />
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <ItemsControl ItemsSource="{Binding Source={StaticResource namedColor},
+                                            Path=All}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Name="stackPanel"
+                                Height="765"
+                                RenderTransformOrigin="0.5 0.5"
+                                Margin="1 0">
+                        <StackPanel.RenderTransform>
+                            <ScaleTransform ScaleY="-1" />
+                        </StackPanel.RenderTransform>
+                                
+                        <Rectangle Fill="Red" 
+                                   Height="{Binding Color.R}" />
+                        <Rectangle Fill="Green"
+                                   Height="{Binding Color.G}" />
+                        <Rectangle Fill="Blue"
+                                   Height="{Binding Color.B}" />
+
+                        <ToolTipService.ToolTip>
+                            <ToolTip x:Name="tooltip"
+                                     PlacementTarget="{Binding ElementName=stackPanel}">
+                                
+                                <!-- Set DataContext to StackPanel containing items-->
+                                <Grid DataContext="{Binding ElementName=tooltip, 
+                                                            Path=PlacementTarget}">
+                                    
+                                    <!-- Set DataContext to NamedColor -->
+                                    <StackPanel DataContext="{Binding DataContext}">
+                                        <TextBlock Text="{Binding Name}"
+                                                   HorizontalAlignment="Center" />
+                                        <StackPanel DataContext="{Binding Color}" 
+                                                    Orientation="Horizontal"
+                                                    HorizontalAlignment="Center">
+                                            <TextBlock Text="R=" />
+                                            <TextBlock Text="{Binding R}" />
+                                            <TextBlock Text=" G=" />
+                                            <TextBlock Text="{Binding G}" />
+                                            <TextBlock Text=" B=" />
+                                            <TextBlock Text="{Binding B}" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                            </ToolTip>
+                        </ToolTipService.ToolTip>
+
+                    </StackPanel>                    
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ch11:UniformGrid Rows="1" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </Grid>
+</Page>

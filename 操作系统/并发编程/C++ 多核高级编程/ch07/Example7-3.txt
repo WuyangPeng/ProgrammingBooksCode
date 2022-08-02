@@ -1,0 +1,48 @@
+// Example 7-3 The definition of send()
+
+146  int posix_queue::send(string Msg)
+147  {
+148
+149    int StatusCode = 0;
+150    if(Msg.size() > QueueAttr.mq_msgsize){
+151       cerr << "message to be sent is larger than max queue 
+                   message size " << endl;
+152       StatusCode = -1;
+153    }
+154    StatusCode = mq_send(PosixQueue,Msg.c_str(),Msg.size(),0);
+155    if(errno == EAGAIN){
+156       StatusCode = errno;
+157       cerr << "O_NONBLOCK not set and the queue is full " << endl;         
+158    }
+159    if(errno == EBADF){
+160       StatusCode = errno;
+161       cerr << "PosixQueue is not a valid descriptor open for 
+                   writing" << endl;              
+162    } 
+163    if(errno == EINVAL){
+164       StatusCode = errno;
+165       cerr << "msgprio is out side of the priority range for the 
+                   message queue or " << endl;
+166       cerr << "Thread my block causing a timing conflict with 
+                   time out" << endl;
+167    }
+168
+169    if(errno == EMSGSIZE){
+170       StatusCode = errno;
+171       cerr << "message size exceeds maximum size of message 
+                   parameter on message queue" << endl;
+172             
+173    }    
+174    if(errno == ETIMEDOUT){
+175       StatusCode = errno;
+176       cerr << "The O_NONBlock flag was not set, but the time expired 
+                   before the  message " << endl;
+177       cerr << "could be added to the queue " << endl;                  
+178    }
+179    if(StatusCode == -1){
+180       cerr << "unknown error in mq_send() " << endl;                
+181    } 
+182    return(StatusCode);
+183
+184  }
+

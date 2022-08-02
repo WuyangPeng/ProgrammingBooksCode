@@ -1,0 +1,4 @@
+事务处理：概念与技术（Transaction Processing:Concepts and Techniques）
+
+☆
+作者：Jim Gray、Andreas Reuter 

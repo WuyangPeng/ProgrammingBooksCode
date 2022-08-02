@@ -1,0 +1,44 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: graph - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x409 /fo"Debug/graph.res" /d "_DEBUG" "C:\graph\graph.rc"" 
+Creating temporary file "c:\windows\TEMP\RSP21A3.TMP" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Debug/graph.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\graph\graph.cpp"
+"C:\graph\graphDoc.cpp"
+"C:\graph\graphView.cpp"
+"C:\graph\MainFrm.cpp"
+]
+Creating command line "cl.exe @c:\windows\TEMP\RSP21A3.TMP" 
+Creating temporary file "c:\windows\TEMP\RSP21A4.TMP" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Debug/graph.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\graph\StdAfx.cpp"
+]
+Creating command line "cl.exe @c:\windows\TEMP\RSP21A4.TMP" 
+Creating command line "link.exe /nologo /subsystem:windows /profile /debug /machine:I386 /out:"Debug/graph.exe"  .\Debug\graph.obj .\Debug\graphDoc.obj .\Debug\graphView.obj .\Debug\MainFrm.obj .\Debug\StdAfx.obj .\Debug\graph.res "
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+graph.cpp
+graphDoc.cpp
+graphView.cpp
+MainFrm.cpp
+Generating Code...
+Linking...
+
+
+
+<h3>Results</h3>
+graph.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

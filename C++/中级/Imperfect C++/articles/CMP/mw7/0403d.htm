@@ -1,0 +1,413 @@
+<html>
+<head>
+<title>Mar04: Collection Enumeration Loops, Iterators,  & Nested Functions</title>
+</head>
+
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#330066" ALINK="#ff0000" TEXT="#000000">
+<!--Copyright &#169; Dr. Dobb's Journal-->
+
+<h1>Collection Enumeration Loops, Iterators,  &amp; Nested Functions</h1>
+<p>Courtesy of <i>Dr. Dobb's Journal</i> (March 2004)</p>
+<h2>Yes, all languages do it, but D's approach  is different</h2>
+
+<h3>By Walter Bright and Matthew Wilson</h3>
+
+<I>
+Matthew is the author of the STLSoft (C++) libraries, several D Standard Libraries, and the forthcoming book Imperfect C++ (Addison-Wesley, 2004). He can be reached at matthew@synesis.com.au or http://stlsoft.org/. Walter is the author of the D programming language and the Digital Mars C/C++ compiler. He can be reached at http://www.walterbright.com/. </I>
+
+<hr>
+
+<a name="rs1"><a href="0403ds1.htm">std.windows.registry</a><hr>
+
+<p>Manipulation of collections is a common operation in software engineering. Indeed, it is hard to conceive of a meaningful program that does not deal with at least one collection&#151;<i>argv</i> in C, lists in Perl and Python, <i>vector</i> and <i>list</i> in C++, and strings in pretty much any language. </p>
+<p>Enumeration is the process of sequentially visiting each element in a collection of elements. This works great for arrays. The most common (or, at least, most widely recognized) form of collection is the array, and the usual way of visiting each element of an array is with the <i>for</i> statement. Regardless of language, it is common to see something like <A NAME="rl1"><A HREF="#l1">Listing One</A>.</p>
+<DDJADVERTISEMENT INLINE>
+
+<p>But there are many other collection types, including linked lists, trees, associative arrays (maps), hash tables, sets, bags, and deques, to name a few. When you move beyond arrays, the syntactic commonality in the manipulation of collections is reduced, both between collection types in a given language and between the same collection types across languages. For example, in C, you can enumerate an array with <A NAME="rl2"><A HREF="#l2">Listing Two</A>, whereas enumerating a list (<A NAME="rl3"><A HREF="#l3">Listing Three</A>) looks quite different. This variation not only makes it difficult to change to a different containment model, but also places a greater burden of learning on you. Some languages, such as Perl and Python, have built-in support for enumerating collection types in a generalized form. Perl has the <i>foreach</i> statement (<A NAME="rl4"><A HREF="#l4">Listing Four</A>), while Python has its <i>for</i> statement (<A NAME="rl5"><A HREF="#l5">Listing Five</A>).</p>
+
+
+
+<h3>STL</h3>
+
+
+<p>For C++, the Standard Template Library (STL) has done an amazing job of homogenizing the syntax of manipulation of disparate collection types, and has done so according to the philosophy of C++&#151;by adding library elements rather than the specification of new language features. STL supports generic programming by defining the concepts of Containers, Iterators, Algorithms, Function Objects, and Adaptors. Iterators navigate over ranges of elements. Containers yield Iterators, via their <i>begin()</i> and <i>end()</i> methods, that define a range of elements that may be enumerated. Algorithms operate on ranges of elements defined by Iterators. Function Objects (also called "Functionals" and "Functors") are types that can act as functions, with or without maintaining state on a per-instance basis, and may be applied to elements within a range by algorithms.</p>
+
+
+<p>Hence, it is common to see code such as:</p>
+
+<blockquote><p>
+SomeContainerType cont;</p>
+
+<p>
+for_each(cont.begin(), cont.end(), f);</p>
+
+</blockquote><p>where <i>SomeContainerType</i> can be any type that satisfies the STL Container concept requirements. In fact, it does not even have to do that: All that is required of <i>SomeContainerType</i> is that it has <i>begin()</i> and <i>end()</i> member functions, whose return values are (or can act as) Iterators. <i>SomeContainerType</i> could be a list, vector, or any other STL container type, or it could be a user-defined collection type, such as those provided in the STLSoft libraries (http://stlsoft.org/), an open-source organization that provides freely available STL-like extensions.</p>
+
+
+<p>Similarly, <i>f</i>, which could be either a function or an instance of a class providing the function call operator <i>operator ()</i> can do almost anything, so long as it is compile-compatible with the types manipulated by the Iterators provided by <i>SomeContainerType</i>. For example, if <i>SomeContainerType</i> is <i>std::vector&lt;std::string&gt;,</i> <i>f</i> would manipulate <i>std::string</i> references. Alternatively, if <i>SomeContainerType</i> is WinSTL's <i>winstl::treeview_child_sequence</i> (http://winstl.org/), <i>f</i> would manipulate HTREEITEM values. In either case, the enumeration algorithm <i>for_each</i> is simply a generic template definition, whose instantiating types are selected by the compiler at compile time. This is the basis of STL's generic programming, and it is powerful, flexible, and extensible.</p>
+
+<p>There can be little doubt that STL saved C++ from obsolescence and, in our opinion, has placed it at the forefront of current language technology. However, D is another language that can make this claim. D looks like C and C++, but eliminates features that make programs difficult to write, debug, test, and maintain (see "The D Programming Language," by Walter Bright, <i>DDJ</i>, February 2002).</p>
+
+
+
+<h3>Enumeration in D </h3>
+
+
+<p>To support a generalized form of programming requires an enumeration construct that can iterate over any collection. D (available at http://www.digitalmars.com/d/) implements its collection enumeration in a novel way&#151;in the guise of the <i>foreach</i> statement. Using <i>foreach</i> to enumerate the contents of an array looks like <A NAME="rl6"><A HREF="#l6">Listing Six</A>. The body of the <i>foreach</i> statement works equivalently to other loop statements (in C-family languages); the <i>break, continue, goto,</i> and <i>return</i> statements within the body all have the usual meaning.</p>
+
+
+<p>There is no longer an obvious loop index variable. Indeed, the idea of a loop index variable makes no sense for many kinds of collections. <i>foreach</i> works just as well on associative arrays; see <A NAME="rl7"><A HREF="#l7">Listing Seven</A>.</p>
+
+<p>Where the novel implementation of D's <i>foreach</i> really comes into its own is in its support for enumeration of any user-defined collection type. Other languages that support enumeration of user-defined collection types in a syntactically standard form usually require the implementation of specific enumerator types, whose instances are returned by the enumerated object.</p>
+
+<p>For example, a COM Automation collection is required to implement the <i>_NewEnum</i> method, which returns an instance implementing the <i>IEnumVARIANT</i> interface. .NET requires that the collection type contains a method <i>GetEnumerator()</i> that returns an instance implementing the <i>IEnumerator</i> interface. In either case, a separate enumerator object must be created to act as a translating intermediary and to maintain the current state of the enumeration. Such intermediaries generally impact on efficiency since the additional level(s) of indirection have a speed cost; the intermediary itself is usually heap allocated and (in the case of COM, at least) requires timely deallocation.</p>
+
+<p>In C++, intermediaries are represented by Iterators, which can be raw pointers or user-defined types. Such types can often be efficient in implementation, and are usually entirely (including member variables) representable on the stack, which means that they can achieve high efficiency in execution, though this is not always the case. However, even where this does hold true, the syntax of enumeration of STL Containers can leave a little to be desired. If you have a suitable function or Function Object or one that is Adaptable, then <i>for_each</i> may be employed. However, where the manipulation of the enumerated items is more complex, you either have to write a custom&#151;and usually one-off&#151;Function Object, or hand-code the enumeration (as in <A NAME="rl8"><A HREF="#l8">Listing Eight</A>).</p>
+
+<p>In D, none of these issues are relevant. The actual translation of a <i>foreach</i> statement by the compiler depends on the type of collection being enumerated. If it is an array, then the compiler generates a loop somewhat equivalent to the <i>for</i> loop described at the start of the article. However, if the collection is a user-defined type, then the compiler translates the <i>foreach</i> statement into a loop construct and the body of the statement into a delegate (a callback function). (Associative arrays are treated in much the same way as a user-defined collection.) All that is required of the collection type (which can be a heap-based class or stack-based <i>struct</i>) is that it defines an <i>opApply()</i> method (<A NAME="rl9"><A HREF="#l9">Listing Nine</A>). This method is called in place of the <i>foreach</i>, passing the loop-body <i>delegate</i>, and the enumeration is conducted by the collection, which knows best how to do that.</p>
+
+<p>The <i>opApply()</i> method handles all the details of traversing the data structure, including maintaining any state. The return value from the delegate <i>dg()</i> is used to communicate with the <i>foreach</i> control code. All values other than 0 are reserved by the implementation and represent the language of interaction between the compiler-generated delegate and the compiler-generated <i>foreach</i> handler. This is why the <i>opApply()</i> function must preserve it and return it if it is not zero. Authors of <i>opApply()</i> methods have a responsibility, therefore, to return 0 or delegate result, and not any other value.</p>
+
+<p>This means that D's notion of a collection is extremely flexible. It can be a bonafide container, such as a list, or it can be a type that is not really a collection at all, similar to the STL notion of an input stream being a read-once collection. Furthermore, it is also simple to wrap operating system or framework collection APIs, and present them as first-class enumerable D types. This is the case with the D standard library's Win32 registry module (std.windows.registry); see the accompanying text box entitled "std.windows.registry."</p>
+
+
+
+<h3>Registry Enumeration</h3>
+
+
+<p>The registry module consists of several cooperating types&#151;<i>Registry, Key, Value, KeyNameSequence, KeySequence, ValueNameSequence,</i> and <i>ValueSequence</i>&#151;that together provide access to, and manipulation of, the registry on Win32 systems. A given registry <i>Key</i> provides access to its child keys and values in the form of instances of <i>KeySequence</i> and <i>ValueSequence</i>, returned via its <i>Keys</i> and <i>Values</i> properties. <A NAME="rl10"><A HREF="#l10">Listing Ten</A> shows the implementation of the <i>KeySequence</i> class. (The <i>_Reg_</i>*<i> </i>functions are internal functions that map the raw Win32 API to D-friendly signatures, but that otherwise have the semantics of their mapped equivalents.)</p>
+
+
+<p>There are several points to note:</p>
+
+<ul>
+
+  <li>The delegate's return value is tested and preserved. If it is not zero, enumeration is terminated and the value is returned to the caller unmolested.
+
+  <li>There is an optimization in the fact that the maximum subkey name length is obtained outside the enumeration loop. Thus, the string retrieval buffer <i>sName</i> is created once, and the actual name within <i>sName</i> is passed to the <i>Rey.GetKey()</i> method as an array slice (which does not do any allocation).
+
+  <li>In this implementation, a new <i>Key</i> instance is created each time through the loop. This is no less efficient than would be the case in other enumeration schemes (via the dereference of an STL Iterator to yield an instance of its value type). However, it is easy to imagine other kinds of collections for which it would be appropriate to do the "expensive" object allocation of an object once, and merely change its state for each enumeration point. Since the enumeration is conducted within the container, whose implementer knows whether such a thing would be sound, this affords an additional opportunity for optimization.
+
+  <li>Since changing the reference passed to the <i>delegate</i> is meaningless for the <i>KeySequence</i> class (because a new <i>Key</i> instance is returned for each step in the enumeration), the <i>inout</i> qualifier on the delegate is not required. Contrast this with the tree enumeration example, where the use of <i>inout</i> allows&#151;but does not require&#151;that the reference can be changed; that is, the tree node's value changed. (Whether you would want to change the value of a tree node in the real world is, of course, a matter for your conscience, not to say your job security.)
+
+  <li>If the retrieval of a registry key fails due to insufficient access rights (as will happen on just about any NT-family machine), the exception is swallowed, and the enumeration effectively skips that key. Without this, enumeration in many parts of the registry ends in failure. If you need to know about all parts of the registry, regardless of your rights to manipulate them, you can use the <i>Key.KeyNames</i> property, which returns an instance of <i>KeyNameSequence</i> type that enumerates all subkey names.
+
+  <li>The <i>opIndex()</i> method facilitates index operator syntax; for example, <i>ValueSequence vs = ...; vs[3];</i>.
+
+  <li>The invariant block is used when unit testing is switched on (<i>-unittest </i>to the compiler) to validate the state of the instance during method invocations. It is applied after all constructors, before the destructor, and before and after every method call.
+
+</ul>
+
+<h3>Maintaining Complex Enumeration State</h3>
+
+
+<p>Again, the interesting aspect of this technique is that there doesn't need to be a separate enumerator object to maintain the state from one enumeration point to the next. All state is held by the <i>opApply()</i> function. Since D also supports nested functions (a powerful and much missed feature in C/C++), this represents an extremely powerful mechanism. For example, if the collection needs an arbitrarily large amount of state, the implementation of the enumeration steps can be entirely represented within the <i>opApply()</i> method, and is, therefore, simplified considerably; see <A NAME="rl11"><A HREF="#l11">Listing Eleven</A>. The state required to visit each <i>TreeEntry</i> is neatly handled on the stack by the recursive nested function <i>traverse().</i> Summing all the data on the <i>Tree</i> looks like <A NAME="rl12"><A HREF="#l12">Listing Twelve</A>. If you were to do that via another technique, you would be in for some rather complex code. Naturally, <i>sum</i> could be abstracted in a template, as in <A NAME="rl13"><A HREF="#l13">Listing Thirteen</A>.</p>
+
+
+
+
+<h3>Conclusion</h3>
+
+
+<p>We've seen how the <i>foreach</i> statement provides a uniform structure around which different kinds of enumerations can be supported. No complicated state-preserving iterator or enumerator classes are needed, even for arbitrarily complex element traversal algorithms. Naturally, all this (and more) can be achieved in C++ using the concepts of the STL. (One of us spends a lot of time doing just that!) However, it is clearly significantly easier to make an arbitrary collection enumerable using D's <i>foreach/apply</i> than it is to write an equivalent in C++. If you're not convinced, you're welcome to download the WinSTL registry classes (http://winstl.org/downloads.html) and the source for the std.windows.registry module (http://www.digitalmars.com/d/) and compare them for complexity and readability; they had the same author.</p>
+
+
+<p>Debate in the D community is in the early stages regarding an equivalent to the STL for D. Unless and until such a library is implemented, <i>foreach</i> will be the primary enumeration mechanism. Only time will tell whether <i>foreach</i> wins out over STL-like techniques in D's generic containment libraries. What is certain is that for the enumeration of nongeneric container (or container-like) types (such as registry keys), <i>foreach</i> will continue to be a first choice mechanism.</p>
+
+
+<p><b>DDJ</b></p>
+<H4><A NAME="l1">Listing One</H4>
+
+
+<pre>T   ar[]; // Declare the array
+for(int i = 0; i &lt; ar.length; ++i)
+{
+  ar[i]; // Do something with the array element
+}
+</pre>
+<P>
+<A HREF="#rl1">Back to Article</A>
+</P>
+<H4><A NAME="l2">Listing Two</H4>
+
+
+<pre>T   ar[100]; // Declare the array
+int i;
+for(i = 0; i &lt; sizeof(ar) / sizeof(ar[0]); ++i)
+{
+  ar[i]; // Do something with the array element
+}
+</pre>
+<P>
+<A HREF="#rl2">Back to Article</A>
+</P>
+<H4><A NAME="l3">Listing Three</H4>
+
+
+<pre>struct Link
+{
+  int   value;
+  Link  *next;
+} *g_head;
+struct Link *l;
+for(l = g_head; NULL != l; l = l-&gt;next)
+{
+  l-&gt;value; // Do something with the list element
+}
+</pre>
+<P>
+<A HREF="#rl3">Back to Article</A>
+</P>
+<H4><A NAME="l4">Listing Four</H4>
+
+
+<pre>@allfiles = ...;
+foreach $file (@allfiles)
+{
+  print "File: " . $file . "\n";
+}
+</pre>
+<P>
+<A HREF="#rl4">Back to Article</A>
+</P>
+<H4><A NAME="l5">Listing Five</H4>
+
+
+<pre>languages = {}
+for language in languages.keys():
+    print language
+</pre>
+<P>
+<A HREF="#rl5">Back to Article</A>
+</P>
+<H4><A NAME="l6">Listing Six</H4>
+
+
+<pre>T   ar[]; // Declare the array
+foreach(T t; ar)
+{
+  ar[i]; // Do something with the array element
+}
+</pre>
+<P>
+<A HREF="#rl6">Back to Article</A>
+</P>
+<H4><A NAME="l7">Listing Seven</H4>
+
+
+<pre>uint[char[]] aa;    // associative array of uints indexed by a string
+ ...
+foreach (uint v; aa)
+{
+  v; // Do something with the value
+}
+foreach (char[] k; aa.keys)
+{
+  k; // Do something with the key
+}
+foreach (uint v, char[] k; aa)
+{
+  k; // Do something with the key
+  v; // Do something with the value
+}
+</pre>
+<P>
+<A HREF="#rl7">Back to Article</A>
+</P>
+<H4><A NAME="l8">Listing Eight</H4>
+
+
+<pre>SomeContainerType             cont;
+SomeContainerType::iterator   begin = cont.begin();
+SomeContainerType::iterator   end   = cont.end();
+for(; begin != end; ++begin)
+{
+  // Do something(s) with the elements
+}
+</pre>
+<P>
+<A HREF="#rl8">Back to Article</A>
+</P>
+<H4><A NAME="l9">Listing Nine</H4>
+
+
+<pre>struct IntegerRange
+{
+  this(int low, int high)
+  {
+    m_from  = low;
+    m_to = high;
+  }
+  int opApply(int delegate(int value) dg)
+  {
+    int res;
+    for(int i = m_from; i &lt; m_to; ++i)
+    {
+      if(0 != (res = dg(i)))
+      {
+        break;
+      }
+    }
+    return res;
+  }
+}
+</pre>
+<P>
+<A HREF="#rl9">Back to Article</A>
+</P>
+<H4><A NAME="l10">Listing Ten</H4>
+
+
+<pre>public class KeySequence
+{
+private:
+  this(Key key)
+  {
+    m_key = key;
+  }
+  invariant
+  {
+    assert(null !== m_key);
+  }
+public:
+  uint Count()
+  {
+    return m_key.SubKeyCount();
+  }
+  Key GetKey(uint index)
+  {
+    ... // Does something similar to the opApply()
+        // method to get hold of the requisite key
+  }
+  Key opIndex(uint index) // Provides indexing operator []
+  {
+    return GetKey(index);
+  }
+public:
+  int apply(int delegate(Key key) dg)
+  {
+    int     result  = 0;
+    HKEY    hkey    = m_key.m_hkey;
+    DWORD   cSubKeys;
+    DWORD   cchSubKeyMaxLen;
+    LONG    res     = _Reg_GetNumSubKeys(hkey, cSubKeys, cchSubKeyMaxLen);
+    char[]  sName   = new char[1 + cchSubKeyMaxLen];
+    for(DWORD index = 0; 0 == result; ++index)
+    {
+      DWORD   cchName = 1 + cchSubKeyMaxLen;
+      LONG    res     = _Reg_EnumKey(hkey, index, sName, cchName);
+      if(ERROR_NO_MORE_ITEMS == res)
+      {
+        // Enumeration complete
+      }
+      else if(ERROR_SUCCESS == res)
+      {
+        try
+        {
+          Key key = m_key.GetKey(sName[0 .. cchName]);
+          result = dg(key);
+        }
+        catch(RegistryException x)
+        {
+          if(x.Error == ERROR_ACCESS_DENIED)
+          {
+            // Skip inaccessible keys; they are
+            // accessible via the KeyNameSequence
+            continue;
+          }
+          throw x;
+        }
+      }
+      else
+      {
+        throw new RegistryException("Enumeration incomplete", res);
+        break;
+      }
+    }
+    return result;
+  }
+private:
+  Key m_key;
+}
+</pre>
+<P>
+<A HREF="#rl10">Back to Article</A>
+</P>
+<H4><A NAME="l11">Listing Eleven</H4>
+
+
+<pre>struct TreeEntry
+{
+  TreeEntry *m_left;
+  TreeEntry *m_right;
+  char[]    m_data;
+}
+struct Tree
+{
+  TreeEntry *m_root;
+  int opApply(int delegate(inout char[] value) dg)
+  {
+    int traverse(TreeEntry* te)
+    {
+      int result;
+      while(null != te)
+      {
+        result = dg(te.m_data);
+        if(0 != result)
+        {
+          return result;
+        }
+        result = traverse(te.m_left);
+        if(0 != result)
+        {
+          return result;
+        }
+        te = te.m_right;
+      }
+      return 0;
+    }
+    return traverse(m_root);
+  }
+}
+</pre>
+<P>
+<A HREF="#rl11">Back to Article</A>
+</P>
+<H4><A NAME="l12">Listing Twelve</H4>
+
+
+<pre>int sumTree(Tree tree)
+{
+  int sum = 0;
+  foreach(int value; tree)
+  {
+    sum += value;
+  }
+  return sum;
+}
+</pre>
+<P>
+<A HREF="#rl12">Back to Article</A>
+</P>
+<H4><A NAME="l13">Listing Thirteen</H4>
+
+
+<pre>template sum(R, V)
+{
+  R sumit(T t)
+  {
+    R sum;
+    foreach (int value; t)
+    {
+      sum += value;
+    }
+    return sum;
+  }
+}
+DDJ</pre>
+<P>
+<A HREF="#rl13">Back to Article</A>
+</P>
+
+</body>
+</html>

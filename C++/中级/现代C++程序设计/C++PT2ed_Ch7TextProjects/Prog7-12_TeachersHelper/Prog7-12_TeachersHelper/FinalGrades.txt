@@ -1,0 +1,15 @@
+
+ Grade Results for Southwestern C++ College's 
+ Advanced C++ Design
+ ID Course ID: CPP2278
+                Name      ID       Ave
+         Alton, Matt   83442     89.00
+        Dwarf, Dopey   73643     70.00
+     Freemont, Susan   73645     92.50
+        Johnson, Ben   25468     91.50
+         Enstein, Al   12233     96.75
+   Yarbrough, Carrie   98745     93.50
+
+ Course Ave 88.88
+ High Ave was 96.75 by Enstein, Al
+ Low Ave was 70.00 by Dwarf, Dopey

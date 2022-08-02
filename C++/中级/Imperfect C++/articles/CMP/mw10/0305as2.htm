@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>System Time</title>
+</head>
+
+<body>
+
+
+<h1>System Time</h1>
+<p>The documentation for <b>GetSystemTimeAsFileTime()</b> states that it is equivalent to consecutive calls to <b>GetSystemTime()</b> and <b>SystemTimeToFileTime()</b>, as in: </p>
+
+<pre>
+  void GetSystemTimeAsFileTime(LPFILETIME lpft)
+  {
+      SYSTEMTIME  st;
+
+      GetSystemTime(&amp;st);
+      SystemTimeToFileTime(&amp;st, lpft);
+  }
+</pre>
+
+<p>While this is true from a functional perspective, it is certainly not the case that it is actually implemented in this way on all operating systems, as can be seen in <A HREF="0305at6.htm" target="_BLANK">Table 6</A>.</p>
+
+<p>On Windows 98, the call costs are roughly equivalent. However, on all the NT-family operating systems, the cost of gleaning time in the form of an intermediate SYSTEMTIME is around 400 times that of <b>GetSystemTimeAsFileTime()</b>.</p>
+
+<p> &#151; M.W.</p>
+
+</body>
+</html>

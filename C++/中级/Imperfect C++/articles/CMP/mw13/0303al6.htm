@@ -1,0 +1,259 @@
+<html>
+<head>
+<title>Adapting Win32 Enumeration APIs to STL Iterator Concepts</title>
+</head>
+
+<body>
+
+
+<h4>Listing 6   findfile_sequence</h4>
+
+<pre>
+// Extract from winstl_findfile_sequence.h
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T = findfile_sequence_traits&lt;C>
+        >
+class basic_findfile_sequence
+{
+public:
+  typedef C                                         char_type;
+  typedef T                                         traits_type;
+  typedef basic_findfile_sequence&lt;C, T>             class_type;
+  typedef basic_findfile_sequence_value_type&lt;C, T>  value_type;
+  typedef basic_findfile_sequence_const_iterator&lt;C, T, value_type>
+                                                    const_iterator;
+  typedef value_type                                &reference;
+  typedef value_type const                          &const_reference;
+  typedef ws_typename_type_k traits_type::find_data_type
+                                                    find_data_type;
+  typedef ws_size_t                                 size_type;
+
+  enum
+  {
+      includeDots = 0x0008
+    , directories = 0x0010
+    , files       = 0x0020
+  };
+
+// Construction
+public:
+  ws_explicit_k basic_findfile_sequence(char_type const *searchSpec,
+                              ws_int_t flags = directories | files);
+  basic_findfile_sequence(char_type const *directory, 
+                          char_type const *searchSpec,
+                          ws_int_t flags = directories | files);
+
+// Iteration
+public:
+  const_iterator  begin() const;
+  const_iterator  end() const;
+
+// State
+public:
+  size_type         size() const;
+  ws_bool_t         empty() const;
+  static size_type  max_size();
+
+// Members
+private:
+  friend class basic_findfile_sequence_value_type&lt;C, T>;
+  friend class basic_findfile_sequence_const_iterator&lt;C, T, value_type>;
+
+  char_type   m_directory[_MAX_DIR + 1];
+  char_type   m_subpath[_MAX_PATH + 1];
+  char_type   m_search[_MAX_PATH + 1];
+  ws_int_t    m_flags;
+
+// Implementation
+protected:
+  static ws_int_t _validate_flags(ws_int_t flags);
+  static void     _extract_subpath(char_type *dest, 
+                                        char_type const *searchSpec);
+
+  HANDLE      _begin(find_data_type &findData) const;
+
+// Not to be implemented
+private:
+  basic_findfile_sequence(class_type const &);
+  basic_findfile_sequence const &operator =(class_type const &);
+};
+
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        >
+inline HANDLE basic_findfile_sequence&lt;C, T>::
+                _begin(find_data_type &findData) const
+{
+  HANDLE  hSrch = traits_type::find_first_file(m_search, &findData);
+
+  if(hSrch != INVALID_HANDLE_VALUE)
+  {
+    // Now need to validate against the flags
+
+    for(; hSrch != INVALID_HANDLE_VALUE; )
+    {
+      if((findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
+      {
+        // A file, and files requested, so break
+        if(m_flags & files)
+        {
+          break;
+        }
+      }
+      else
+      {
+        if(traits_type::is_dots(findData.cFileName))
+        {
+          if(m_flags & includeDots)
+          {
+            // A dots file, and dots are requested
+            break;
+          }
+        }
+        else if(m_flags & directories)
+        {
+          // A directory, and directories requested
+          break;
+        }
+      }
+
+      if(!traits_type::find_next_file(hSrch, &findData))
+      {
+        ::FindClose(hSrch);
+
+        hSrch = INVALID_HANDLE_VALUE;
+
+        break;
+      }
+    }
+  }
+
+  return hSrch;
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        >
+inline ws_int_t basic_findfile_sequence&lt;C, T>::
+                              _validate_flags(ws_int_t flags)
+{
+  return (flags & (directories | files)) == 0 
+            ? (flags | (directories | files)) : flags;
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        >
+inline void basic_findfile_sequence&lt;C, T>::
+      _extract_subpath(char_type *dest, char_type const *searchSpec)
+{
+  char_type *pFile;
+
+  traits_type::get_full_path_name(searchSpec, _MAX_PATH, dest, &pFile);
+
+  if(pFile != 0)
+  {
+    *pFile = '\0';
+  }
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        >
+inline basic_findfile_sequence&lt;C, T>::
+    basic_findfile_sequence(char_type const *searchSpec, 
+                            ws_int_t flags /* = directories | files */)
+  : m_flags(_validate_flags(flags))
+{
+  m_directory[0] = '\0';
+
+  traits_type::str_copy(m_search, searchSpec);
+
+  _extract_subpath(m_subpath, searchSpec);
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        >
+inline basic_findfile_sequence<C, T>::
+    basic_findfile_sequence(char_type const *directory, 
+                            char_type const * searchSpec,
+                            ws_int_t flags /* = directories | files */)
+  : m_flags(_validate_flags(flags))
+{
+  traits_type::str_copy(m_directory, directory);
+
+  traits_type::str_copy(m_search, directory);
+  traits_type::ensure_dir_end(m_search);
+  traits_type::str_cat(m_search, searchSpec);
+
+  _extract_subpath(m_subpath, m_search);
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        >
+inline ws_typename_type_k const_iterator 
+    basic_findfile_sequence&lt;C, T>::begin() const
+{
+  ws_typename_type_k traits_type::find_data_type  findData;
+  HANDLE                      hSrch = _begin(findData);
+
+  if(hSrch == INVALID_HANDLE_VALUE)
+  {
+    return const_iterator(*this);
+  }
+  else
+  {
+    return const_iterator(*this, hSrch, findData);
+  }
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        >
+inline ws_typename_type_k const_iterator 
+    basic_findfile_sequence&lt;C, T>::end() const
+{
+  return const_iterator(*this);
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        >
+inline ws_typename_type_k size_type
+    basic_findfile_sequence&lt;C, T>::size() const
+{
+  const_iterator  b = begin();
+  const_iterator  e = end();
+  size_type   c = 0;
+
+  for(; begin != end; ++begin)
+  {
+    ++c;
+  }
+
+  return c;
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        >
+inline ws_bool_t basic_findfile_sequence<C, T>::empty() const
+{
+  return begin() == end();
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        >
+inline ws_typename_type_k size_type 
+    basic_findfile_sequence&lt;C, T>::max_size()
+{
+  return static_cast&lt;size_type>(-1);
+}
+</pre>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0"?> 
+<address_book> 
+   <contact> 
+      <name>George Clooney</name> 
+      <street>1042 El Camino Real</street> 
+      <city>Beverly Hills</city> 
+      <state>CA</state> 
+      <zip>90214</zip> 
+   </contact> 
+   <contact> 
+      <name>Cathy Pearl</name> 
+      <street>405 A St.</street> 
+      <city>Palmdale</city> 
+      <state>CA</state> 
+      <zip>93352</zip> 
+   </contact> 
+   <contact> 
+      <name>Paris Hilton</name> 
+      <street>200 S. Elm St.</street> 
+      <city>Beverly Hills</city> 
+      <state>CA</state> 
+      <zip>90212</zip> 
+   </contact> 
+   <contact> 
+      <name>Wendy Jones</name> 
+      <street>982 Boundary Ave.</street> 
+      <city>Palmdale</city> 
+      <state>CA</state> 
+      <zip>93354</zip> 
+   </contact>    
+</address_book> 
+

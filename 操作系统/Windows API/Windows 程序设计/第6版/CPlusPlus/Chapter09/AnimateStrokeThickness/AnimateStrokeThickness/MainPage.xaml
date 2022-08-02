@@ -1,0 +1,27 @@
+<Page
+    x:Class="AnimateStrokeThickness.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AnimateStrokeThickness"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Storyboard x:Key="storyboard">
+            <DoubleAnimation Storyboard.TargetName="ellipse"
+                             Storyboard.TargetProperty="StrokeThickness"
+                             EnableDependentAnimation="True"
+                             From="1" To="100" Duration="0:0:4"
+                             AutoReverse="True"
+                             RepeatBehavior="Forever" />
+        </Storyboard>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Ellipse Name="ellipse"
+                 Stroke="Red"
+                 StrokeDashCap="Round"
+                 StrokeDashArray="0 2" />
+    </Grid>
+</Page>

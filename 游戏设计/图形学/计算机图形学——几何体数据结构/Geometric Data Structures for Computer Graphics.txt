@@ -1,0 +1,4 @@
+计算机图形学——几何体数据结构  （Geometric Data Structures for Computer Graphics）  
+
+★★
+作者： Elmar Langetepe

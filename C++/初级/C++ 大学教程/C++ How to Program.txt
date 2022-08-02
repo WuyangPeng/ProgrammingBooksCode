@@ -1,0 +1,31 @@
+C++ 大学教程（C++ How to Program）
+
+官方网站 
+http://www.pearsonhighered.com/deitel 、
+http://www.deitel.com/ 、
+http://www.deitel.com/books/cpphtp7 （已失效）、
+http://www.deitel.com/books/cpphtp9 （已失效）。
+
+C++编译器：
+https://www.thefreecountry.com/compilers/cpp.shtml 、
+http://www.compilers.net/dir/compilers/ccpp.htm。
+
+安全编码标准：
+https://www.sei.cmu.edu/about/divisions/cert/index.cfm
+
+在线实践：
+https://mlm.pearson.com/northamerica/myprogramminglab/
+
+第7版
+☆
+作者：Paul Deitel、Hapvey Deitel
+
+联系作者：
+deitel@deitel.com
+
+第9版
+★
+作者：Paul Deitel、Hapvey Deitel
+
+联系作者：
+deitel@deitel.com

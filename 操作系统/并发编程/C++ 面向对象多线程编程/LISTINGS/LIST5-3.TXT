@@ -1,0 +1,56 @@
+// Listing 5-3
+// Demonstrates the use of
+// anonymous pipes to redirect standard in
+// and standard out of a child process
+
+#define INCL_DOSQUEUES
+#define INCL_DOSPROCESS
+#include "mtration.h"
+#include <fstream.h>
+
+
+const int PipeSz = 256;
+char Buffer[PipeSz] = "";
+const int Sout = 1;
+const int Stin = 0;
+HFILE InPipe, OutPipe;
+
+HFILE TempOut;
+HFILE TempIn;
+HFILE Keep;
+HFILE KeepIn;
+char ErrorMessage[128] = "";
+
+RESULTCODES Result;
+
+ULONG NumBytesRead;
+ULONG NumBytes;
+
+
+mt_rational Number(1,1);
+
+void main(void)
+{
+
+     DosDupHandle(Sout,&Keep);
+     DosDupHandle(Stin,&KeepIn);
+     DosCreatePipe(&InPipe,&OutPipe,PipeSz);
+     DosDupHandle(OutPipe,&TempOut);
+     DosDupHandle(InPipe,&TempIn);
+     DosExecPgm(ErrorMessage,sizeof(ErrorMessage),EXEC_ASYNC,(PSZ) NULL,
+	       (PSZ) NULL,&Result,"unpipe.exe");
+     DosWrite(OutPipe,"5",sizeof(int),&NumBytes);
+     DosWrite(OutPipe,"4",sizeof(int),&NumBytes);
+     DosDupHandle(Keep,&TempOut);
+     DosRead(InPipe,Buffer,sizeof(int),&NumBytesRead);
+     cout << Buffer << endl;
+     DosRead(InPipe,Buffer,sizeof(int),&NumBytesRead);
+     cout << Buffer << endl;
+     DosClose(InPipe);
+     DosClose(OutPipe);
+}
+
+
+
+
+

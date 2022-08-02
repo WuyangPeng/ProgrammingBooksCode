@@ -1,0 +1,404 @@
+// Listing 10-1
+// The definitions for the query_processor application framework
+
+    1   
+    2   #include "qprocess.h"
+    3   #include "strstrea.h"
+    4   #include "algo.h"
+    5   
+    6   
+    7   
+    8   query_processor::query_processor(string Input)
+    9   {
+   10   
+   11       char Character;
+   12       InputString = Input;
+   13       ValidExpression = 1;
+   14       Character = '0';
+   15       while(Character <= '9')
+   16       {
+   17   
+   18   	  ValidNumbers.insert(Character);
+   19   	  ValidOperands.insert(Character);
+   20   	  ValidCharacters.insert(Character);
+   21   	  Character++;
+   22       }
+   23       ValidOperators.insert('*');
+   24       ValidOperators.insert('-');
+   25       ValidOperators.insert('+');
+   26       ValidOperators.insert('/');
+   27       //ValidOperators.insert('(');
+   28       //ValidOperators.insert(')');
+   29       Character = 'a';
+   30       while(Character <= 'z')
+   31       {
+   32   	  ValidLetters.insert(Character);
+   33   	  ValidCharacters.insert(Character);
+   34   	  Character++;
+   35       }
+   36       Character = 'A';
+   37       while(Character < 'Z')
+   38       {
+   39   	  ValidLetters.insert(Character);
+   40   	  ValidCharacters.insert(Character);
+   41   	  Character++;
+   42       }
+   43       ValidCharacters.insert(' ');
+   44       ValidCharacters.insert('.');
+   45       ValidCharacters.insert(')');
+   46       ValidCharacters.insert('(');
+   47       ValidCharacters.insert('*');
+   48       ValidCharacters.insert('/');
+   49       ValidCharacters.insert('+');
+   50       ValidCharacters.insert('-');
+   51   
+   52       ValidFunctions.insert("tan");
+   53       ValidFunctions.insert("sqr");
+   54       ValidFunctions.insert("log");
+   55       ValidFunctions.insert("sin");
+   56       ValidFunctions.insert("cos");
+   57       ValidFunctions.insert("acos");
+   58       ValidFunctions.insert("atan");
+   59       ValidFunctions.insert("asin");
+   60   
+   61   }
+   62   
+   63   query_processor::query_processor(string Input,VSet VOperands,
+   64   				VSet VOperators,
+   65   				VSet VFunctions,
+   66   				VSet VCharacters,
+   67   				VSet VLetters,
+   68   				VSet VNumbers)
+   69   {
+   70       ValidOperators = VOperators;
+   71       ValidCharacters = VCharacters;
+   72       ValidLetters = VLetters;
+   73       ValidNumbers = VNumbers;
+   74       InputString = Input;
+   75       ValidExpression = 1;
+   76       copy(VFunctions.begin(),VFunctions.end(),ValidFunctions.begin());
+   77   
+   78   }
+   79   
+   80   query_processor::query_processor(void)
+   81   {
+   82       char Character;
+   83       ValidExpression = 1;
+   84       Character = '0';
+   85       while(Character <= '9')
+   86       {
+   87   
+   88   	  ValidNumbers.insert(Character);
+   89   	  ValidOperands.insert(Character);
+   90   	  ValidCharacters.insert(Character);
+   91   	  Character++;
+   92       }
+   93       ValidOperators.insert('*');
+   94       ValidOperators.insert('-');
+   95       ValidOperators.insert('+');
+   96       ValidOperators.insert('/');
+   97       Character = 'a';
+   98       while(Character <= 'z')
+   99       {
+  100   	  ValidCharacters.insert(Character);
+  101   	  ValidLetters.insert(Character);
+  102   	  Character++;
+  103       }
+  104       Character = 'A';
+  105       while(Character < 'A')
+  106       {
+  107   	  ValidLetters.insert(Character);
+  108   	  ValidCharacters.insert(Character);
+  109   	  Character++;
+  110       }
+  111       ValidCharacters.insert(' ');
+  112       ValidCharacters.insert('.');
+  113       ValidCharacters.insert(')');
+  114       ValidCharacters.insert('(');
+  115       ValidCharacters.insert('*');
+  116       ValidCharacters.insert('/');
+  117       ValidCharacters.insert('+');
+  118       ValidCharacters.insert('-');
+  119   
+  120       ValidFunctions.insert("tan");
+  121       ValidFunctions.insert("sqr");
+  122       ValidFunctions.insert("log");
+  123       ValidFunctions.insert("sin");
+  124       ValidFunctions.insert("cos");
+  125       ValidFunctions.insert("acos");
+  126       ValidFunctions.insert("atan");
+  127       ValidFunctions.insert("asin");
+  128   
+  129   
+  130   }
+  131   
+  132   int query_processor::checkParenthesis(void)
+  133   {
+  134      int LeftParen = 0;
+  135      int RightParen = 0;
+  136      int Count = 0;
+  137      while((ValidExpression) && (Count < InputString.length()))
+  138      {
+  139         if(InputString[0] == ')'){
+  140   	 ValidExpression = 0;
+  141         }
+  142         if(InputString[InputString.length() -1] == '('){
+  143   	 ValidExpression = 0;
+  144         }
+  145         if(InputString[Count] == ')'){
+  146   	 RightParen++;
+  147         }
+  148         if(InputString[Count] == '('){
+  149   	 LeftParen++;
+  150         }
+  151         if(RightParen > LeftParen){
+  152   	 ValidExpression = 0;
+  153         }
+  154         Count++;
+  155      }
+  156      return(ValidExpression);
+  157   
+  158   }
+  159   
+  160   int query_processor::checkOperators(void)
+  161   {
+  162      int Count = 0;
+  163      while((Count <  InputString.length()) && (ValidExpression))
+  164      {
+  165          // checks for operators beginning a expression
+  166          if((InputString[0] == '*') || (InputString[0] == '/') ||
+  167   	 (InputString[0] == '+')){
+  168   	  ValidExpression = 0;
+  169          }
+  170          // checks for operators ending a expression
+  171          if(ValidOperators.count(InputString[InputString.length() -1])){
+  172   	   ValidExpression = 0;
+  173          }
+  174   
+  175          // checks for consecutive operators
+  176          if(ValidOperators.count(InputString[Count])){
+  177   	  if(ValidOperators.count(InputString[Count + 1])){
+  178   	     ValidExpression = 0;
+  179   	  }
+  180   	  if(Count > 0){
+  181   	     if(ValidOperators.count(InputString[Count - 1])){
+  182   	       ValidExpression = 0;
+  183   	     }
+  184   	  }
+  185          }
+  186          // checks for operators preceded by a character
+  187   
+  188          if(ValidOperators.count(InputString[Count])){
+  189   	  if(Count > 0){
+  190   	     if(ValidLetters.count((InputString[Count - 1]))){
+  191   		ValidExpression = 0;
+  192   	    }
+  193   	  }
+  194          }
+  195          Count++;
+  196   
+  197      }
+  198      ValidOperators.insert('(');
+  199      ValidOperators.insert(')');
+  200      return(ValidExpression);
+  201   }
+  202   
+  203   int query_processor::checkDecimals(void)
+  204   {
+  205      int Count = 0;
+  206   
+  207      // checks for decimal beginning an expression
+  208   
+  209      if(InputString[0] == '.'){
+  210         ValidExpression = 0;
+  211      }
+  212      // checks for decimal ending an expression
+  213   
+  214      if(InputString[InputString.length() - 1] == '.'){
+  215         ValidExpression = 0;
+  216      }
+  217      // checks for consecutive decimal and for decimals preceding
+  218      // or succeeding characters
+  219   
+  220   
+  221      while((ValidExpression) && (Count < InputString.length()))
+  222      {
+  223         if(InputString[Count] == '.'){
+  224   	 if((InputString[Count + 1] == '.') || (InputString[Count - 1] == '.')){
+  225   	    ValidExpression = 0;
+  226   	 }
+  227   	 if((ValidLetters.count((InputString[Count + 1]))) || (ValidLetters.count((InputString[Count - 1])))){
+  228   	     ValidExpression = 0;
+  229   	 }
+  230         }
+  231         Count++;
+  232      }
+  233      return(ValidExpression);
+  234   }
+  235   
+  236   int query_processor::checkCharacters(void)
+  237   {
+  238      int Count = 0;
+  239      while((Count < InputString.length()) && (ValidExpression))
+  240      {
+  241         if(!ValidCharacters.count(InputString[Count])){
+  242   	 ValidExpression = 0;
+  243         }
+  244         Count++;
+  245      }
+  246      return(ValidExpression);
+  247   }
+  248   
+  249   
+  250   string query_processor::inputString(void)
+  251   {
+  252      return(InputString);
+  253   }
+  254   
+  255   void query_processor::inputString(string Input)
+  256   {
+  257      InputString = Input;
+  258   }
+  259   
+  260   int query_processor::validExpression(void)
+  261   {
+  262       return(ValidExpression);
+  263   }
+  264   
+  265   char *query_processor::processFunction(int &Count)
+  266   {
+  267   
+  268       strcpy(FunctionResult,"");
+  269       strstream FunctionName;
+  270   
+  271       do{
+  272   	   if(ValidLetters.count(InputString[Count])){
+  273   	      FunctionName << InputString[Count];
+  274   	   }
+  275   	   Count++;
+  276       }while(ValidLetters.count(InputString[Count]) && (Count < InputString.length()));
+  277       FunctionName << ends;
+  278       FunctionName >> FunctionResult;
+  279       string F(FunctionResult);
+  280       if(ValidFunctions.count(F) == 0){
+  281          ValidExpression = 0;
+  282          strcpy(FunctionResult,"");
+  283       }
+  284       Count--;
+  285       return(FunctionResult);
+  286   }
+  287   
+  288   
+  289   int query_processor::parse(void)
+  290   {
+  291        double NumericResult = 0;
+  292        char FunctionName[10] = "";
+  293        int Count= 0;
+  294        while(Count < InputString.length())
+  295        {
+  296   	 if(InputString[Count] == ' '){
+  297   	    Count++;
+  298   	 }
+  299   	 if(ValidOperators.count(InputString[Count]) == 0){
+  300   	    if(ValidNumbers.count(InputString[Count])){
+  301   	       expression_component TempToken;
+  302   	       NumericResult = processNumber(Count);
+  303   	       TempToken.isOperand(1);
+  304   	       TempToken.value(NumericResult);
+  305   	       ExpressionTokens.push_back(TempToken);
+  306   
+  307   	    }
+  308   	    else{
+  309   		    if(ValidLetters.count(InputString[Count])){
+  310   		       expression_component TempToken;
+  311   		       strcpy(FunctionName,processFunction(Count));
+  312   		       TempToken.function(FunctionName);
+  313   		       TempToken.isOperator(1);
+  314   		       TempToken.isFunction(1);
+  315   		       TempToken.op('@');
+  316   		       ExpressionTokens.push_back(TempToken);
+  317   		    }
+  318   	    }
+  319   	 }
+  320   	 else{
+  321   	       expression_component TempToken;
+  322   	       TempToken.op(InputString[Count]);
+  323   	       TempToken.isOperator(1);
+  324   	       ExpressionTokens.push_back(TempToken);
+  325   
+  326   	 }
+  327   	 Count++;
+  328   
+  329        }
+  330        return(ValidExpression);
+  331   
+  332   }
+  333   
+  334   
+  335   
+  336   double query_processor::processNumber(int &Count)
+  337   {
+  338        double TempNumber;
+  339        int DecimalCount = 0;
+  340        strstream Number;
+  341        int NotFinish = 1;
+  342   
+  343        do{
+  344   	   if(InputString[Count] == '.'){
+  345   	      DecimalCount++;
+  346   	   }
+  347   	   if((ValidNumbers.count(InputString[Count])) || (InputString[Count] == '.')){
+  348   	      Number << InputString[Count];
+  349   	      Count++;
+  350   	   }
+  351   	   else{
+  352   		 NotFinish = 0;
+  353   	   }
+  354   
+  355        }while((Count < InputString.length()) && (DecimalCount <=1) && (NotFinish));
+  356        if(DecimalCount <= 1){
+  357   	Number << ends;
+  358   	Number >> TempNumber;
+  359        }
+  360        else{
+  361   	   TempNumber = 0;
+  362   	   ValidExpression = 0;
+  363        }
+  364        Count--;
+  365        return(TempNumber);
+  366   }
+  367   
+  368   list<expression_component> query_processor::expressionToken(void)
+  369   {
+  370   
+  371         return(ExpressionTokens);
+  372   }
+  373   
+  374   int query_processor::validate(void)
+  375   {
+  376   
+  377       if(checkParenthesis() == 0){
+  378   	return(0);
+  379        }
+  380        if(checkDecimals() == 0){
+  381   	return(0);
+  382        }
+  383        if(checkOperators() == 0){
+  384   	return(0);
+  385        }
+  386        if(checkCharacters() == 0){
+  387   	return(0);
+  388        }
+  389        return(1);
+  390   }
+  391   
+  392   void query_processor::process(void)
+  393   {
+  394        if(validate()){
+  395   	parse();
+  396   	evaluate();
+  397        }
+  398   }
+
+
+

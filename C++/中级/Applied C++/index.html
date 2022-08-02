@@ -1,0 +1,336 @@
+<html>
+
+<head>
+<title>Applied C++: Practical Techniques for Building Better Software</title>
+
+<style type="text/css">
+<!-- 
+  .noDecoration {text-decoration: none}
+
+  .description { font-family: arial,helvetica,sans-serif; font-size: medium; }
+  .smdescription { font-family: arial,helvetica,sans-serif; font-size: small; }
+
+  .toc_chapter { font-family: arial, Helvetica, serif; font-size: 10pt; font-weight: bold; vertical-align:top }
+  .toc_secnum { font-family: arial, Helvetica, serif; font-size:  9pt; font-weight: bold; vertical-align:top }
+  .toc_section { font-family: arial, Helvetica, serif; font-size:  9pt; vertical-align:top }
+
+  .nop        { font-family: arial, Helvetica, serif; }
+  .larger5    { font-family: arial, Helvetica, serif; font-size: 18pt }
+  .larger4    { font-family: arial, Helvetica, serif; font-size: 16pt }
+  .larger3    { font-family: arial, Helvetica, serif; font-size: 14pt }
+  .larger2    { font-family: arial, Helvetica, serif; font-size: 12pt }
+  .larger     { font-family: arial, Helvetica, serif; font-size: 10pt }
+  .smaller    { font-family: arial, Helvetica, serif; font-size:  9pt }
+  .smaller2   { font-family: arial, Helvetica, serif; font-size:  8pt }
+  .smaller3   { font-family: arial, Helvetica, serif; font-size:  7pt }
+
+  .code       { font-family: Courier, Helvetica, serif; font-size:  10pt }
+
+  body table tr td th { 
+    background-color: white;
+    font-family: arial,helvetica,sans-serif; 
+    font-size: medium;
+    color: black;
+  }
+     
+  A:link    { color: #0000EE }
+  A:visited { color: #551A8B }
+  A:active  { color: #FF0000 }
+
+ -->
+</style>
+</head>
+
+<body>
+<table width="700"><tr><td width="700" class="smaller">
+
+<b class="larger4">Applied C++</b><br>
+<b class="larger3">Practical Techniques for Building Better Software</b><br>
+<b class="larger2">Philip Romanik, Amy Muntz</b>
+<br><span class="smaller2">Version 1.2 (September 2006)</span>
+<br><br><br>
+
+<b class="larger">
+The software which originally accompanied our book as a CD-ROM is now 
+available online. You can download the entire contents as a single file, or browse the contents one file at a time.
+</b>
+
+<br><br><br><br>
+
+<b class="larger2">Download Entire Contents</b>
+<br><br>
+You can download the software as a single zip file by
+<a href="appliedcpp_12.zip">
+Clicking here.
+</a>
+
+<br><br><br>
+
+
+<b class="larger2">Browse Software</b>
+<br><br>
+
+<table cellpadding=3 cellspacing=3>
+<tr>
+  <td class="larger"><a href="index.html">index.html</a></td>
+  <td class="smaller">This file</td>
+</tr>
+<tr>
+  <td class="larger"><a href="license.txt">license.txt</a></td>
+  <td class="smaller">Copyright and license information</td>
+</tr>
+<tr>
+  <td class="larger" valign="top"><a href="Delegates">Delegates</a></td>
+  <td class="smaller">Third-party image processing and file format libraries
+    <table cellpadding=3 cellspacing=3>
+      <tr>
+        <td class="larger" valign="top"><a href="http://www.intel.com/software/products/ipp">IntelIPP</a></td>
+        <td class="smaller">
+          Intel&#174; Integrated Performance Primitives.
+          (Microsoft Windows and Linux)
+	  <br>
+          A low-level software library optimized for a broad range of
+          Intel microprocessors. We no longer can provide an evaluation
+	  version on our site. Please use this link,
+	  <br>
+	  <a href="http://www.intel.com/software/products/ipp">
+	  http://www.intel.com/software/products/ipp
+	  </a>
+	  <br>
+	  to download an evaluation version.
+          <br>
+
+          <br>
+	  <a href="http://www.appliedcpp.com/intel.html">
+          Registration page
+          </a>
+
+        </td>
+      </tr>
+      <tr>
+        <td class="larger" valign="top"><a href="Delegates/JPEG/index.html">JPEG</a></td>
+        <td class="smaller">
+        Source code to support the JPEG image compression format. (v6) 
+        <br>
+        <a href="http://www.ijg.org">Independent JPEG Group</a>
+        </td>
+      </tr>       
+      <tr>
+        <td class="larger" valign="top"><a href="Delegates/TIFF/index.html">TIFF</a></td>
+        <td class="smaller">
+        Source code to support the Tag Image File Format (TIFF). (v3.5.7) 
+        <br>
+	<a href="http://www.libtiff.org">http://www.libtiff.org</a>
+        </td>
+      </tr>       
+    </table>     
+
+  </td>
+</tr>
+<tr>
+  <td class="larger" valign="top"><a href="framework">Framework</a></td>
+  <td class="smaller">The framework described in the book
+    <table cellpadding=3 cellspacing=3>
+      <tr>
+        <td class="larger" valign="top"><a href="framework/common">common</a></td>
+        <td class="smaller">
+          General purpose source files
+        </td>
+      </tr>
+      <tr>
+        <td class="larger" valign="top"><a href="framework/delegates">delegates</a></td>
+        <td class="smaller">
+          File storage delegate source files
+        </td>
+      </tr>
+      <tr>
+        <td class="larger" valign="top"><a href="framework/image">image</a></td>
+        <td class="smaller">
+          Image framework source files
+        </td>
+      </tr>
+      <tr>
+        <td class="larger" valign="top"><a href="framework/include">include</a></td>
+        <td class="smaller">
+          Header files
+        </td>
+      </tr>
+      <tr>
+        <td class="larger" valign="top"><a href="framework/thirdparty">thirdparty</a></td>
+        <td class="smaller">
+          File delegates; third-party header and library files
+        </td>
+      </tr>
+      <tr>
+        <td class="larger" valign="top"><a href="framework/unittests">unittests</a></td>
+        <td class="smaller">
+          Unit tests for major framework components
+        </td>
+      </tr>
+      <tr>
+        <td class="larger" valign="top"><a href="framework/unix">unix</a></td>
+        <td class="smaller">
+          Unix-specific source files
+        </td>
+      </tr>
+      <tr>
+        <td class="larger" valign="top"><a href="framework/win32">win32</a></td>
+        <td class="smaller">
+          Microsoft Windows-specific source files
+        </td>
+      </tr>
+    </table>
+
+  </td>
+
+</tr>
+<tr>
+  <td class="larger" valign="top"><a href="Prototypes">Prototypes</a></td>
+  <td class="smaller">The image class prototypes
+
+    <table cellpadding=3 cellspacing=3>
+      <tr>
+        <td class="larger" valign="top"><a href="Prototypes/TestApplication">Test Application</a></td>
+        <td class="smaller">
+          Simple thumbnail application
+        </td>
+      </tr>
+
+        <td class="larger" valign="top"><a href="Prototypes/Prototype1">Prototype 1</a></td>
+        <td class="smaller">
+          Simple image objects
+        </td>
+      </tr>
+
+        <td class="larger" valign="top"><a href="Prototypes/Prototype2">Prototype 2</a></td>
+        <td class="smaller">
+          Templated image objects
+        </td>
+      </tr>
+
+        <td class="larger" valign="top"><a href="Prototypes/Prototype3">Prototype 3</a></td>
+        <td class="smaller">
+          Separating storage from image objects
+        </td>
+      </tr>
+
+    </table>
+
+  </td>
+
+</tr>
+<tr>
+  <td class="larger" valign="top">Utilities</td>
+  <td class="smaller">Useful applications and tools
+
+    <table cellpadding=3 cellspacing=3>
+      <tr>
+        <td class="larger" valign="top"><a href="http://www.sysinternals.com/ntw2k/freeware/debugview.shtml">DebugView</a></td>
+        <td class="smaller">
+          An application to monitor Win32 debug output (<code>OutputDebugString</code>). We no longer can provide a version on our site. Please use this link,
+	  <br>
+	  <a href="http://www.sysinternals.com/ntw2k/freeware/debugview.shtml">
+	  http://www.sysinternals.com/ntw2k/freeware/debugview.shtml
+	  </a>	  
+	  <br>
+	  to download.
+        </td>
+      </tr>
+      <tr>
+        <td class="larger" valign="top"><a href="http://www.intel.com/software/products/compilers/cwin">IntelC++Compiler</a></td>
+        <td class="smaller">
+        Intel&#174; C++ Compiler for Windows. Evaluation version. We no longer can
+	provide an evaluation version on our site. Please use this link,
+	<a href="http://www.intel.com/software/products/compilers/cwin">
+	http://www.intel.com/software/products/compilers/cwin
+	</a>
+	<br>
+	to download an evaluation version.
+
+        <br>
+        <br>
+	<a href="http://www.appliedcpp.com/intel.html">
+        Registration page
+        </a>
+
+        </td>
+      </tr>       
+    </table>
+
+  </td>
+</tr>
+</table>
+
+
+<br><br><br>
+<b class="larger2">Obtaining Third-Party Software</b>
+<br><br>
+
+Some files on this CD-ROM require third-party software in order to read
+or use. If your computer does not have any of these files, you can 
+obtain the needed software as follows.
+
+<br><br>
+<table cellpadding=3 cellspacing=3>
+<tr>
+  <td class="larger">
+    <a href="http://www.adobe.com/products/acrobat/readstep.html">
+    Adobe Acrobat Reader</a>
+  </td>
+  <td class="smaller">
+    Free software for viewing and printing Adobe Portable Document
+    Format (PDF) files.
+  </td>
+</tr>
+  <td class="larger">
+    <a href="http://www.winzip.com">WinZip</a>
+  </td>
+  <td class="smaller">
+    Software to uncompress ZIP files and other archive formats
+    on Microsoft Windows.
+  </td>
+</tr>
+</table>
+
+
+<br><br><br>
+<b class="larger2">Companion Web Site</b>
+<br><br>
+The companion Web site for the book and CD-ROM can be found at 
+<a href="http://appliedcpp.com">http://appliedcpp.com</a>
+
+<br><br><br>
+<b class="larger2">Copyright Notice</b>
+<br><br>
+
+<pre>
+Copyright (c) 2003 Philip Romanik, Amy Muntz
+
+Permission to use, copy, modify, distribute, and sell this software and
+its documentation for any purpose is hereby granted without fee, provided
+that (i) the above copyright notices and this permission notice appear in
+all copies of the software and related documentation, and (ii) the names
+of Philip Romanik and Amy Muntz may not be used in any advertising or
+publicity relating to the software without the specific, prior written
+permission of Philip Romanik and Amy Muntz.
+
+Use of this software and/or its documentation will be deemed to be
+acceptance of these terms.
+
+THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND,
+EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY
+WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+IN NO EVENT SHALL PHILIP ROMANIK OR AMY MUNTZ BE LIABLE FOR
+ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND,
+OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
+WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF
+LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
+OF THIS SOFTWARE.
+</pre>
+<br>
+
+</td></tr></table>
+</body>
+
+</html>

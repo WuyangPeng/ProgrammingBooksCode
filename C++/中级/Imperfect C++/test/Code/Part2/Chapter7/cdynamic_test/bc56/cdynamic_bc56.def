@@ -1,0 +1,4 @@
+LIBRARY     CDYNAMIC.DLL
+
+EXPORTS
+    cfunc                         @1   ; _cfunc

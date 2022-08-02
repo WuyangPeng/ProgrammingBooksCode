@@ -1,0 +1,269 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="GENERATOR" content="Microsoft FrontPage 12.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Iterative and Incremental development III</title>
+<link rel="stylesheet" type="text/css" href="../../../news.css">
+<meta name="Microsoft Theme" content="nature 011">
+<style type="text/css">
+.style1 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+}
+.style6 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+	color: #0000FF;
+}
+.style7 {
+	font-size: large;
+}
+.style8 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+	color: #0000FF;
+	font-size: large;
+}
+.style9 {
+	font-family: FZKai-Z03;
+}
+.style10 {
+	color: rgb(128, 0, 128);
+	font-family: FZKai-Z03;
+	font-size: large;
+}
+.style12 {
+	font-family: FZKai-Z03;
+	text-align: center;
+	text-indent: 36px;
+}
+.style13 {
+	font-family: FZKai-Z03;
+	text-align: left;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style14 {
+	color: #FF00FF;
+}
+.style15 {
+	text-align: center;
+}
+.style16 {
+	border: 1px solid #000000;
+}
+.style17 {
+	text-align: center;
+	border: 1px solid #000000;
+}
+.style18 {
+	font-family: FZKai-Z03;
+	text-align: left;
+	text-indent: 36px;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style19 {
+	font-family: FZKai-Z03;
+	text-align: center;
+	text-indent: 36px;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style20 {
+	font-family: FZKai-Z03;
+	text-align: left;
+	text-indent: 0;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+</style>
+</head>
+
+<body background="../../../nabkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#993333" vlink="#333399" alink="#006633">
+
+<p align="center" class="style1"><font size="7" color="#0000FF">敏捷软件开发：原则、模式与实践</font></p>
+<p align="center" class="style8">Agile Software Development</p>
+<p align="center" class="style6">&nbsp;<span class="style7">Principles, Patterns, and Practices</span></p>
+<p align="center" class="style6">
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>Iterative and Incremental development III</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p align="center" class="style9"><strong>迭代和增量开发（IID）</strong></p>
+<p align="center" class="style9">Robert C. Martin</p>
+<p align="center" class="style9">工程笔记本专栏</p>
+<p align="center" class="style9">C++报告，1999年6月</p>
+<p class="style18">在我的上一篇专栏中，我们研究了迭代和增量过程的基本原理。我们讨论了如何将软件项目划分为多个垂直部分，并依次分析、设计和实施每个部分。我们展示了如何通过将切片完成时间扩展切片数量来估计项目完成情况。我们讨论了分析和设计文档如何随着每个切片的完成而变得更加完整。我们讨论了如何使用流程生成的反馈来管理项目的范围、进度和人员配备。</p>
+<p class="style18">本月，我们将通过研究如何处理在瀑布中根深蒂固的公司流程，继续对IID的探索。我们还将讨论如何使用里程碑管理项目，如何让客户及早参与，如果早期切片非常错误会发生什么，以及如何管理可重用框架的创建。</p>
+<p class="style12"><strong>作假</strong></p>
+<p class="style18">Parnas<span class="style14"><sup>1</sup></span>告诉我们，我们永远不可能有一个完全合理的开发过程，因为：</p>
+<ul>
+	<li>
+	<p class="style20">系统的用户通常不确切知道他们想要什么，也无法清楚地表达他们所知道的一切。</p>
+	</li>
+	<li>
+	<p class="style20">即使我们可以陈述系统的所有要求，也有很多关于系统的细节，只有在我们很好地实施后才能发现。</p>
+	</li>
+	<li>
+	<p class="style20">即使我们知道所有这些细节，人类可以掌握的复杂程度也存在根本限制。</p>
+	</li>
+	<li>
+	<p class="style20">即使我们能够掌握所有这些复杂性，也存在远远超出项目控制范围的外部力量，它们会导致需求变化，其中一些可能会使早期的决策无效。</p>
+	</li>
+	<li>
+	<p class="style20">人类构建的系统总是会出现人为错误。</p>
+	</li>
+	<li>
+	<p class="style20">
+	当我们开始每个新项目时，我们会带上来自早期设计的思想包袱以及现有软件的经济包袱，这两者都会影响我们的决策，而不依赖于系统的实际需求。</p>
+	</li>
+</ul>
+<p class="style18">Parnas继续观察到“由于所有这些原因，软件设计师从需求陈述中以理性、无错误的方式推导出设计的画面是非常不现实的。”但帕纳斯继续说，伪造它既可能也是可取的。</p>
+<p class="style18">假设您有一个企业流程如此根深蒂固，以至于短期内不可能改变它。您是否被迫放弃IID？一点也不！事实上，IID可以用作瀑布下的迭代机制。</p>
+<p class="style19"><strong>设计和代码作为分析工具</strong></p>
+<p class="style18">考虑图1，它显示了一个项目被划分为迭代切片。在前几个切片中，我们主要探索问题域。尽管我们正在生成代码，但该代码对于我们获得的知识来说是附带的。这些知识与问题有关。用户在细化自己对问题的看法时，查看前几个切片的行为会添加新需求和更改旧需求。简而言之，这是分析。</p>
+<table style="width: 604px" align="center" class="style16">
+	<tr>
+		<td class="style17">分析</td>
+		<td class="style17">设计</td>
+		<td class="style17">实现</td>
+	</tr>
+</table>
+<table class="style21" align="center" style="border: 3px solid rgb(0, 0, 0); font-family: &quot;Microsoft YaHei&quot;; letter-spacing: normal; orphans: 2; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; width: 604.475px; height: 394px;">
+	<tr>
+		<td style="font-size: 9pt; font-family: FZKai-Z03; height: 32px;"></td>
+		<td class="style7" style="font-size: large; font-family: FZKai-Z03; height: 32px;">
+		&nbsp;</td>
+		<td class="style7" style="font-size: large; font-family: FZKai-Z03; height: 32px;">
+		&nbsp;</td>
+		<td class="style7" style="font-size: large; font-family: FZKai-Z03; height: 32px;">
+		&nbsp;</td>
+		<td class="style7" style="font-size: large; font-family: FZKai-Z03; height: 32px;">
+		&nbsp;</td>
+		<td class="style7" style="font-size: large; font-family: FZKai-Z03; height: 32px;">
+		&nbsp;</td>
+		<td class="style7" style="font-size: large; font-family: FZKai-Z03; height: 32px;">
+		高</td>
+		<td class="style7" style="font-size: large; font-family: FZKai-Z03; height: 32px;">
+		级</td>
+		<td class="style7" style="font-size: large; font-family: FZKai-Z03; height: 32px;">
+		分</td>
+		<td class="style7" style="font-size: large; font-family: FZKai-Z03; height: 32px;">
+		析</td>
+		<td class="style7" style="font-size: large; font-family: FZKai-Z03; height: 32px;">
+		&nbsp;</td>
+		<td class="style7" style="font-size: large; font-family: FZKai-Z03; height: 32px;">
+		&nbsp;</td>
+		<td class="style7" style="font-size: large; font-family: FZKai-Z03; height: 32px;">
+		&nbsp;</td>
+		<td class="style7" style="font-size: large; font-family: FZKai-Z03; height: 32px;">
+		&nbsp;</td>
+		<td class="style7" style="font-size: large; font-family: FZKai-Z03; height: 32px;">
+		&nbsp;</td>
+		<td class="style7" style="font-size: large; font-family: FZKai-Z03; height: 32px;">
+		&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="style22" style="font-size: large; font-family: FZKai-Z03; border: 1px solid rgb(0, 0, 0);">
+		片</td>
+		<td class="style22" style="font-size: large; font-family: FZKai-Z03; border: 1px solid rgb(0, 0, 0);">
+		片</td>
+		<td class="style22" style="font-size: large; font-family: FZKai-Z03; border: 1px solid rgb(0, 0, 0);">
+		片</td>
+		<td class="style22" style="font-size: large; font-family: FZKai-Z03; border: 1px solid rgb(0, 0, 0);">
+		片</td>
+		<td class="style22" style="font-size: large; font-family: FZKai-Z03; border: 1px solid rgb(0, 0, 0);">
+		片</td>
+		<td class="style22" style="font-size: large; font-family: FZKai-Z03; border: 1px solid rgb(0, 0, 0);">
+		片</td>
+		<td class="style22" style="font-size: large; font-family: FZKai-Z03; border: 1px solid rgb(0, 0, 0);">
+		片</td>
+		<td class="style22" style="font-size: large; font-family: FZKai-Z03; border: 1px solid rgb(0, 0, 0);">
+		片</td>
+		<td class="style22" style="font-size: large; font-family: FZKai-Z03; border: 1px solid rgb(0, 0, 0);">
+		片</td>
+		<td class="style22" style="font-size: large; font-family: FZKai-Z03; border: 1px solid rgb(0, 0, 0);">
+		片</td>
+		<td class="style22" style="font-size: large; font-family: FZKai-Z03; border: 1px solid rgb(0, 0, 0);">
+		片</td>
+		<td class="style22" style="font-size: large; font-family: FZKai-Z03; border: 1px solid rgb(0, 0, 0);">
+		片</td>
+		<td class="style22" style="font-size: large; font-family: FZKai-Z03; border: 1px solid rgb(0, 0, 0);">
+		片</td>
+		<td class="style22" style="font-size: large; font-family: FZKai-Z03; border: 1px solid rgb(0, 0, 0);">
+		片</td>
+		<td class="style22" style="font-size: large; font-family: FZKai-Z03; border: 1px solid rgb(0, 0, 0);">
+		片</td>
+		<td class="style22" style="font-size: large; font-family: FZKai-Z03; border: 1px solid rgb(0, 0, 0);">
+		片</td>
+	</tr>
+</table>
+<p class="style15" style="font-family: FZKai-Z03; text-indent: 0px; color: rgb(0, 0, 0); font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
+已知&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 已知</p>
+<p class="style15" style="font-family: FZKai-Z03; text-indent: 0px; color: rgb(0, 0, 0); font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
+开始日期&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+结束日期&nbsp;&nbsp;</p>
+<p class="style15" style="font-family: FZKai-Z03; text-indent: 0px; color: rgb(0, 0, 0); font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
+图1.使用增量伪造瀑布。</p>
+<p class="style18">执行分析的一种方法是构建问题域的模型并根据用户的期望测试这些模型。但是另一种非常有效的分析方法是构建项目的工作增量并让用户检查这些切片。无论哪种方式，我们都在探索问题域并理解要解决的问题。</p>
+<p class="style18">代码是一个完全有效的分析工具。它可以用作非常准确的工具来预测需求并根据用户的期望对其进行测试。因此，在切片套件中的某个时刻，我们可以声明分析是完整的……实际上，分析从来都不是绝对完整的，而是经过足够的时间后，我们可以说它对于瀑布的目的来说已经足够完整了。</p>
+<p class="style18">相同的技术可用于设计。一旦我们很好地创建了切片，开发的重点就会从问题转移到解决方案上。在这个阶段，我们正在寻找合适的系统架构。切片专注于寻找解决问题域问题的最佳方法。因此，代码被用作设计工具。一个接一个地为软件的结构和架构添加知识。</p>
+<p class="style18">请记住，随着每个切片的进行，我们会发现之前切片中我们不喜欢的东西。我们立即将那些先前的切片重构为当前切片的一部分。因此，随着迭代过程的继续，设计变得越来越精致。</p>
+<p class="style18">最终，系统的架构稳定下来，我们可以宣布设计完成。从这一点开始，切片开始启动，对之前的切片几乎没有影响。问题已经确定，架构稳定，我们正在实施。因此，实施阶段已经开始。</p>
+<p class="style18">应该注意的是，在此过程中的任何时候活动都没有差异。每个切片都是根据自己的要求开发的。从切片到切片，过程没有区别。然而，随着切片的堆积，工程师对项目的了解完全按照瀑布的预期发生变化。首先要解决的问题是关于问题域的问题。后来解决方案域变得越来越清晰。最后，实施刚刚开始。</p>
+<p class="style18">因此，如果您有一个根深蒂固的瀑布式企业环境，您仍然可以使用IID来伪造一个瀑布式。事实上，您甚至可以生产所有必要的工作产品。例如，在分析结束时，您可以生成问题域模型。完成探索问题域的切片后，您将处于创建该模型的非常好的位置。涉及的猜测很少。该模型将只是对切片教给您的内容的重述。</p>
+<p class="style18">同样，在设计结束时，您可以生成显示项目设计的设计文档。该文档将非常准确，并且只是对构建切片时演变的设计的翻译。</p>
+<p class="style18">从顶部看，这个过程看起来就像一个瀑布模型。唯一的区别是您将代码用作探索问题和解决方案域的工具。您将切片用作收集瀑布阶段所需的问题域和解决方案域知识的一种方式。</p>
+<p class="style19"><strong>设定里程碑</strong></p>
+<p class="style18">当然，瀑布的主要吸引力之一是管理人员能够设定里程碑日期。这仍然可以完成，即使使用IID。然而，里程碑在IID中的风格与在瀑布中的风格截然不同。在IID中，里程碑不是承诺。相反，它是一个决策点。</p>
+<p class="style18">在IID中，我们使用该过程来生成数据，这些数据告诉我们我们是如何按照计划进行的。我们不承诺在特定时间完成特定切片。相反，我们使用生成切片所需的时间作为输入来计算何时完成所有切片。这为我们提供了一种衡量项目进度和预测完成日期的方法。</p>
+<p class="style18">然而，假设一个项目不应该有里程碑是不现实的。确实，应该！这些里程碑可能有一些令人欣慰的名字，比如“分析完成”或“设计完成”；所以从顶部看起来我们正在做瀑布。这些里程碑可能是某个工作产品的完成，也可能是一个日期。无论里程碑是什么，它都是某种事件。</p>
+<p class="style18">IID的不同之处在于我们处理该事件的方式。我们不将其视为承诺。项目团队不承诺完成所有里程碑。项目经理承诺通过里程碑管理项目以获得可接受的最终结果。项目经理使用里程碑作为触发决策的事件。</p>
+<p class="style18">这些决定应该提前写下来，并经常审查。项目中的任何人都不应该对通过里程碑时发生的事情感到惊讶；这一切都应该提前写下来。</p>
+<p class="style18">例如，假设我们有一个项目，在2000年9月1日有一个里程碑。这个里程碑没有完成标准。相反，它只是一个做出决定的日期。该决定可能如下所示：</p>
+<ul>
+	<li>
+	<p class="style20">如果切片7完成，则按计划继续。</p>
+	</li>
+	<li>
+	<p class="style20">如果切片6已完成，则从计划中删除切片12。</p>
+	</li>
+	<li>
+	<p class="style20">如果切片5已完成，则从计划中删除切片12和15。</p>
+	</li>
+	<li>
+	<p class="style20">如果切片4已完成，则从计划中删除第12片和第15片，并在10月1日之前添加另一名工程师。</p>
+	</li>
+	<li>
+	<p class="style20">如果切片4未完成，则取消该项目。</p>
+	</li>
+</ul>
+<p class="style12"><strong>让客户尽早参与</strong></p>
+<p class="style18">在IID的分析“阶段”，让客户或其代表参与对不断发展的项目的评估至关重要。当客户真正能够触摸和感受项目时，他们总是会认为他们所看到的并不是他们真正想要的。他们将提交更改。</p>
+<p class="style18">这是一件好事！我们希望尽早做出改变。我们希望客户相信我们正在构建正确的东西。因此，在这个初始阶段，项目计划会有点颠簸。可能会添加切片，删除其他切片，并且许多切片会发生显着变化。</p>
+<p class="style18">随着时间的推移，分析“阶段”接近尾声，用户将逐渐减少他们想要进行的更改的数量。然而，它们不太可能完全停止。事实上，随着用户环境和业务问题的变化，他们很可能会增加变更请求的数量。</p>
+<p class="style18">每个此类更改都会影响项目中的切片数组。它会影响一些已经完成的，以及一些尚未完成的。它也可以添加或删除切片。但是由于我们一直在根据切片完成来衡量我们的“速度”，我们将能够估计每次更改的进度效果。用户在面对日程安排的后果时，可以选择接受对日程安排的更改，或推迟更改。</p>
+<p class="style18">所有这些都具有让用户控制的效果。用户从不将这个项目视为一个人力黑坑，从那里除了神秘的文件什么都没有。相反，用户积极参与项目的开发和演变。</p>
+<p class="style12"><strong>当切片出错时</strong></p>
+<p class="style18">当然，以这种方式让用户参与意味着当这些用户进行更改时，将会有大量的返工。事实上，随着问题域和解决方案域的稳定，也会有返工。有时返工可能非常重要，以至于团队决定重新实现整个切片。只要这种情况很少发生，这不是一件坏事。</p>
+<p class="style18">一旦确定切片完全错误，就应该丢弃并重新实现它。如果切片处于项目的早期并且正在定义关键的架构元素，则尤其如此。我们不希望不正确的架构毒害项目的其余部分。实际上，如果丢弃这些错误的部分，而不是保留它们，项目里程碑更有可能产生良好的结果。保留它们将迫使每个人都必须解决问题并减慢整个项目的速度。重构和修复它们消除了障碍。</p>
+<p class="style18">有人可能会争辩说，一种更侧重于前期分析和设计的方法将消除或减轻这种返工。这是值得怀疑的。当切片出错时，毫无疑问它出错了。但是当一个分析模型或设计模型出错时，我们通常直到我们实施它才发现它。因此，虽然切片中的错误被及早发现并在它们造成很大伤害之前进行修复；分析和设计模型中的错误直到许多其他模型和决策都基于它们之后才被发现。</p>
+<p class="style12"><strong>管理可重用的框架</strong></p>
+<p class="style18">这将我们引向可重用框架的主题。这样的框架不应该是一个切片或一组切片。自行开发的可重用框架可能不会非常可重用。相反，需要在应用程序切片的上下文中构建可重用的框架。如果可能的话，不止一个。</p>
+<p class="style18">如果您需要构建一个可重用的框架，那么请注意选择您的切片。与往常一样，确保它们是具有丰富用户功能的切片，并且跨越整个系统而不是实现子系统。让切片开发人员协作创建可重用框架，坚持不将任何东西放入框架，除非它被多个切片重用。永远不要将任何东西放入框架中，因为它“看起来是个好主意”。相反，坚持认为进入框架的唯一内容是需要在两个或多个切片中重复的内容。</p>
+<p class="style18">工程师可以协商正确的抽象，以允许从每个切片中正确访问可重用元素。这确保了框架中的抽象适用于至少两个切片的重用。在两个人能够重复使用它的地方，可能会有更多人效仿。</p>
+<p class="style12"><strong>结论</strong></p>
+<p class="style18">这结束了我们对迭代和增量开发的讨论。在这一系列文章中，我们探讨了瀑布模型的失败和谬误，展示了如何将项目划分为二进制可交付成果的增量。我们已经展示了如何估计项目完成情况以及如何管理项目以获得良好的结果。</p>
+<p class="style18">本系列文章中出现的建议和技术对我和其他人都有效。但它们并不完美。他们不会解决所有的软件开发问题。软件仍然会迟到，仍然非常复杂，仍然非常难以开发。毕竟，软件就是软件。但是，我们概述的过程确实具有生成数据的好处。并且可以管理产生数据的过程。不产生数据的过程是无法管理的。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style13"><span class="style14"><sup>1</sup></span>Parnas,D.andClements,P.1986.ARationalDesignProcess:HowandwhytoFakeIt.IEEETransactionsonSoftwareEngineeringvol.SE-12(2)p251asquotedbyBoochinObjectSolutions,AddisonWesley,1996,p9.</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="前言.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
+
+</body>
+
+</html>

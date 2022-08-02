@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>b0ecd5b4-3f38-4a8f-890e-f3fd6654ca8e</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>37f06d9a-e4ad-4904-a427-95c552fc389a</UniqueIdentifier>
+    </Filter>
+    <Page Include="Common\StandardStyles.xaml">
+      <Filter>Common</Filter>
+    </Page>
+    <Image Include="Assets\Logo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SmallLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\StoreLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SplashScreen.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Filter Include="Images">
+      <UniqueIdentifier>{ccd77ccf-0b7c-4622-b4de-ffa3b95ab5f4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="BlankPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="App.xaml.h" />
+    <ClInclude Include="BlankPage.xaml.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="App.xaml.cpp" />
+    <ClCompile Include="BlankPage.xaml.cpp" />
+    <ClCompile Include="pch.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TheTaleOfTomKitten_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images\tom04.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom05.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom08.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom11.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom12.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom15.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom16.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom19.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom20.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom23.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom24.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom27.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom28.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom31.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom32.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom35.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom36.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom39.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom40.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom43.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom44.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom47.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom48.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom51.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom52.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom55.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom57.jpg">
+      <Filter>Images</Filter>
+    </Image>
+    <Image Include="Images\tom58.jpg">
+      <Filter>Images</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

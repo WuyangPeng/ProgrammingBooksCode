@@ -1,0 +1,7 @@
+Here is a sentence where one can look ahead to interesting character sequences.
+
+This sentence does not contain interesting characters.
+
+Here is a sequence of characters.
+
+Which sequence of characters is contained in this sentence?

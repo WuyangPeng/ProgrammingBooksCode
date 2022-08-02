@@ -1,0 +1,17 @@
+DROP TABLE Attendance;
+CREATE TABLE Attendance
+(
+    MeetingDate date,
+    LocationId integer,
+    MemberAttended char(1),
+    MemberId integer
+);
+
+CREATE TABLE Location
+(
+    LocationId integer,
+    Street varchar(100),
+    City varchar(75),
+    State varchar(75)
+);
+

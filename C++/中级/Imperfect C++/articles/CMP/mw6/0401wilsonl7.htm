@@ -1,0 +1,146 @@
+<html>
+<head>
+<title>January 04: Introducing recls Mappings It's STL and C#'s turn</title>
+</head>
+
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#330066" ALINK="#ff0000" TEXT="#000000">
+<!--Copyright &#169; C/C++ Users Journal-->
+
+
+<h4>Listing 7:	recls::FileSearch <i>class</i>. </h4>
+
+<pre>
+namespace recls
+{
+  public class FileSearch
+  {
+    /// &lt;summary>
+    /// Creates a search for the items identified by . . .
+    /// &lt;/summary>
+    public FileSearch(string searchRoot, string pattern, uint flags)
+    {
+      m_searchRoot  = searchRoot;
+      m_pattern     = pattern;
+      m_flags       = flags;
+    }
+
+    public IEnumerator GetEnumerator()
+    {
+      return new Enumerator(m_searchRoot, m_pattern, m_flags);
+    }
+
+    private sealed class Enumerator
+      : IEnumerator
+      , IDisposable
+    {
+      internal Enumerator(string searchRoot, string pattern, uint flags)
+      {
+        m_searchRoot  = searchRoot;
+        m_pattern     = pattern;
+        m_flags       = flags;
+        m_hSrch       = IntPtr.Zero;
+        m_entry       = IntPtr.Zero;
+        m_bComplete   = false;
+      }
+
+      ~Enumerator()
+      {
+        Dispose();
+      }
+      public void Dispose()
+      {
+        recls_api.CloseSearch(ref m_hSrch);
+        recls_api.CloseEntry(ref m_entry);
+      }
+
+      /// &lt;summary>
+      /// Gets the current element in the collection.
+      /// &lt;/summary>
+      public object Current
+      {
+        get
+        {
+          if(IntPtr.Zero == m_entry)
+          {
+            throw new InvalidOperationException("Enumeration is positioned before the first element, or after the last element");
+          }
+
+          return new FileEntry(m_entry);
+        }
+      }
+
+      /// &lt;summary>
+      /// Advances the enumerator to the next element of the collection.
+      /// &lt;/summary>
+      public bool MoveNext()
+      {
+        // MoveNext() must be called before Current is used, whether
+        // that is for a newly created enumerator or after Reset() is
+        // called. Hence,
+
+        if(m_bComplete)
+        {
+          // Was completed on the last call.
+          return false;
+        }
+        else
+        {
+          recls_api.CloseEntry(ref m_entry);
+
+          if(IntPtr.Zero == m_hSrch)
+          {
+            // Start a new enumeration
+            m_hSrch = recls_api.OpenSearch(m_searchRoot, m_pattern, m_flags);
+
+            if(IntPtr.Zero == m_hSrch)
+            {
+              m_bComplete = true;
+              return false;
+            }
+            else
+            {
+              recls_api.GetEntry(m_hSrch, out m_entry);
+            }
+          }
+          else
+          {
+            // Enumeration is in progress, so just try and advance
+            if(!recls_api.NextEntry(m_hSrch, out m_entry))
+            {
+              m_bComplete = true;
+              return false;
+            }
+          }
+        }
+
+        return true;
+      }
+
+      /// &lt;summary>
+      /// Sets the enumerator to its initial position, which . . .
+      /// &lt;/summary>
+      public void Reset()
+      {
+        // Since Reset() resets an enumerator to *exactly* the same
+        // state as when newly created, we can just close anything
+        // that's open.
+        recls_api.CloseSearch(ref m_hSrch);
+        recls_api.CloseEntry(ref m_entry);
+        m_bComplete = false;
+      }
+
+      private IntPtr      m_hSrch;
+      private IntPtr      m_entry;
+      private string      m_searchRoot;
+      private string      m_pattern;
+      private RECLS_FLAG  m_flags;
+      private bool        m_bComplete;
+    }
+
+    private string      m_searchRoot;
+    private string      m_pattern;
+    private RECLS_FLAG  m_flags;
+  }
+}
+</body>
+</html>

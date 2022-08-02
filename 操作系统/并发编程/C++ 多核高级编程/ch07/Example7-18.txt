@@ -1,0 +1,20 @@
+//Example 7-18 The assert method defined in the class char_assertion
+
+ 1  bool char_assertion::assert(void)
+ 2  {
+ 3    
+ 4   
+ 5     if(PermitIn.available()){
+ 6        TokenString = ListIn.front();
+ 7        ListIn.pop();
+ 8        remove(TokenString.begin(),TokenString.end(),RemovedCharacter);
+ 9        PermitIn.not_in_use();      
+10      }
+11     if(PermitOut.available()){
+12        ListOut.push(TokenString);
+13        PermitOut.not_in_use();
+14     }
+15    
+16     return(true);
+17  }    
+

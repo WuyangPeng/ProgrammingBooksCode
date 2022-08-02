@@ -1,0 +1,14 @@
+//Example 6-8
+
+void *task5(void *X)
+{ 
+   int *Tid;
+   Tid = new int;
+   // do some work
+   //...
+   pthread_cleanup_push(cleanup_task5,Tid);
+   // do some more work
+   //...
+   pthread_cleanup_pop(1);
+}
+

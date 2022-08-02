@@ -1,0 +1,10 @@
+数据挖掘：实用机器学习工具与技术（Data Mining:Practical Machine Learning Tools and Techniques）
+（第3版） 
+
+☆
+作者：Ian H.Witten、Eibe Frank、Mark A.Hall
+
+官方网站：
+http://www.cs.waikato.ac.nz/ml/weka
+
+   

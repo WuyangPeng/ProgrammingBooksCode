@@ -1,0 +1,7 @@
+Hello world!
+
+Hello with initial upper case.
+
+hello with initial lower case.
+
+Goodbye!

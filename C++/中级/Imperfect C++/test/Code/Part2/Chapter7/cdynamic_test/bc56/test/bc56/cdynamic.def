@@ -1,0 +1,5 @@
+LIBRARY     CDYNAMIC.DLL
+
+EXPORTS
+    ___CPPdebugHook                @2   ; ___CPPdebugHook
+    cfunc                          @1   ; cfunc

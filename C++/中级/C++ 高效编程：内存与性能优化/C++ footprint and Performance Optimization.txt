@@ -1,0 +1,8 @@
+C++ 高效编程：内存与性能优化（C++ footprint and Performance Optimization）
+
+官方网站：
+http://www.samspublishing.com、 
+http://www.informit.com/store/c-plus-plus-footprint-and-performance-optimization-9780672319044。
+
+☆
+作者：Rene Alexander、Graham Bensley

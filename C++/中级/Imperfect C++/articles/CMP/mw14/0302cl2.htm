@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>February 2003/Avoiding the Visual C++ Runtime Library</title>
+</head>
+
+<body>
+
+
+<h4>Listing 2  Accessing the  command-line arguments</h4>
+
+<pre>
+
+    LPCTSTR lpszCmdLine;
+
+    lpszCmdLine = GetCommandLine();
+
+    if(*lpszCmdLine == '\"')
+    {
+        while(  (*(++lpszCmdLine) != '\"') &amp;&amp;
+            (*lpszCmdLine != '\0'))
+        {}
+
+        if ( *lpszCmdLine == '\"')
+        {
+            ++lpszCmdLine;
+        }
+    }
+    else
+    {
+        while(*lpszCmdLine &gt; ' ')
+        {
+            ++lpszCmdLine;
+        }
+    }
+
+    while(  *lpszCmdLine &amp;&amp;
+            (*lpszCmdLine &lt;= ' '))
+    {
+        ++lpszCmdLine;
+    }
+
+    return lpszCmdLine;
+
+</pre>
+</body>
+</html>

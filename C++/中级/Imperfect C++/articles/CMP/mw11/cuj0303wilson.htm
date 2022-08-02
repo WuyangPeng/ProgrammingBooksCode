@@ -1,0 +1,129 @@
+<HTML>
+<HEAD>
+<TITLE>True typedefs</TITLE>
+</HEAD><body bgcolor="#FFFFFF" text="#000000">
+
+<h2>True typedefs</H2>
+<p>Courtesy of <i>C/C++ Users Journal</i> (March, 2003)</p>
+<H3>Matthew Wilson</h3>
+<i>A template wrapper that provides type uniqueness for otherwise synonymous types.</i><P>
+<h3>Introduction</h3>
+One of the few legitimate criticisms of C++ is the fact that <B>typedef</B>s are always weak. One can define two types from the same base type and, without constraint (or even a compiler warning!), mix these types. Not only can this lead to problems in erroneous assignment of one type to another, or between a <B>typedef</B> and its base type, but it also precludes the use of overloaded functions based on such types.<P>
+<pre>
+typedef int  channel_t;
+typedef int  protocol_t;
+
+int        i  = 10;
+channel_t  ch = i;  // Not desired
+protocol_t pr = ch; // Not desired
+
+void log(int i)        {}
+void log(channel_t i)  {} // Error
+void log(protocol_t i) {} // Error
+</pre>
+One common technique for making stronger types is to <B>typedef</B> pointers to 
+(usually anonymous) structures by use of a macro, but using these types is onerous 
+and requires casting (either C-style or <B>reinterpret_cast&lt;&gt;</B>) when 
+assigning or testing (e.g., when matching bit patterns), as shown in <a href="cuj0303wilson_l1.htm">Listing 
+1</a>. Furthermore, these types cannot be used to represent (other than as a pointer 
+to) types that are larger than the ambient pointer size and therefore are unsuitable 
+for representing rich user-defined types (e.g., a string object).
+<P>
+This article describes a simple template class, <B>true_typedef</B>, that solves these issues and provides strongly typed <B>typedef</B>s. Strongly typed <B>typedef</B>s are built around a base type, which is usually, but not necessarily, a fundamental type. They may be constructed from base type values and also a method to (explicitly) access the base type value where necessary. Even when different types are built around the same base type, they are mutually incompatible and can be used to overload functions correctly.<P>
+<h3>Implementation</h3>
+The implementation of the <B>true_typedef</B> class [1] is very simple (see <a href="cuj0303wilson_l2.htm">Listing 
+2</a>). The class has a single member of the base type, which is used to store 
+the actual value and which may only be accessed via the <B>base_type_value()</B> methods. Three constructors are provided: one default, one for conversion from 
+the base type, and one copy constructor. The conversion constructor is explicit 
+and, along with the lack of a conversion operator, helps enforce the mechanics 
+of the strong typing. 
+<P> The class is a template, which is parameterized by a base type (<B>T</B>) 
+  and a unique type (<B>U</B>). The unique type is provided by use of the macro 
+  shown in <a href="cuj0303wilson_l1.htm">Listing 1</a>, which allows the use 
+  of the vulgar <B>typedef</B> pointer technique to be kept to a discrete minimum. 
+  Each instantiation of a <B>true_typedef</B> template must be provided with a 
+  distinct unique type, assuring the strong typing.
+<P> In addition to the <B>true_typedef</B> class, a number of operators are provided, 
+  defined as free functions, which manipulate the <B>true_typedef</B> instances 
+  via the <B>base_type_value()</B> methods. It is, needless to say, valid to include 
+  modifying operations, since the intent behind <B>true_typedef</B> is to be a 
+  strongly typed type, rather than a strongly valued type (i.e., an <B>enum</B>). 
+  The operators currently supplied are <B>+</B>, <B>-</B>, <B>/</B>, <B>%</B>, 
+  <B>*</B>, <B>^</B>, <B>~</B>, <B>==</B>, <B>!=</B>, <B>&amp;</B>, <B>|</B>, 
+  <B>&lt;</B>, <B>&lt;=</B>, <B>&gt;</B>, <B>&gt;=</B>, <B>++</B> (pre and post), 
+  and <B>&#150;&#150;</B> (pre and post). The binary operators are expressed in 
+  terms of both the parameterized <B>true_typedef</B> and its base type. Examples 
+  of some of these free functions are shown in <a href="cuj0303wilson_l3.htm">Listing 
+  3</a>.
+<P>
+<h3>Conclusion</h3>
+The <B>true_typedef</B> class completely answers the problems of weak <B>typedef</B>s: it prevents types with identical base types from being implicitly converted to each other, and it facilitates overloading on types with identical base types. In this way, the role of a type is protected.<P>
+<pre>
+stlsoft_gen_opaque(forename_u)
+stlsoft_gen_opaque(surname_u)
+typedef true_typedef&lt;string,
+         forename_u&gt; forename_tt;
+typedef true_typedef&lt;string,
+         surname_u&gt;  surname_tt;
+
+void storeName( forename_tt fn,
+                surname_tt sn);
+
+forename_tt    fn("Matthew");
+surname_tt     sn("Wilson");
+
+storeName(sn, fn); // Error. Phew!
+
+
+stlsoft_gen_opaque(channel_u)
+stlsoft_gen_opaque(protocol_u)
+typedef true_typedef&lt;int,
+          channel_u&gt;  channel_tt;
+typedef true_typedef&lt;int,
+          protocol_u&gt; protocol_tt;
+
+void func(int i)         {}
+void func(channel_tt i)  {} // OK
+void func(protocol_tt i) {} // OK
+
+channel_tt  ch(3);
+protocol_tt pr(ch); // Error, Phew!
+
+--ch++;
+ch = ~ch;
+
+pr = ch.base_type_vale(); // If we must
+</pre>
+Furthermore, it is efficient [2] and restricts operations of the parameterized type by virtue of their absence/inaccessibility on the parameterizing type: indeed, one could define an <B>int</B>-based true type that allowed <B>++</B> but not <B>&#150;&#150;</B> (by wrapping in an intermediate class where <B>&#150;&#150;</B> was protected/private)!<P>
+Nevertheless, the current implementation is less than perfect for a number of reasons:<P>
+<ul><li>  It is verbose (the many operator functions).
+<li>  It is incomplete. (why not <B>-&gt;</B>, <B>!</B>, <B>&amp;&amp;</B>, or <B>||</B> ?)
+<li>  It exposes a potential superset of desired operations.</ul>
+Work is in progress to parameterize the available methods by policy [3].<P>
+Also, it is not fool proof: it can be defeated if the developer mistakenly uses the same unique type in two separate <B>true_typedef</B> instantiations. However, in practice such mistakes have not been witnessed and would always be less subtly hidden from code inspection than cross-contamination.<P>
+Despite these criticisms, it has proved to be extremely useful in reducing subtle/hidden cross-contamination bugs and has become an invaluable item in my toolkit [4].<P>
+<h3>Acknowledgements</h3>
+I'd like to thank Walter Bright, author of the excellent Digital Mars compiler [5], for providing me with feedback on the viability of adding true <B>typedef</B>s to the language (and to compilers), as in:<P>
+<pre>
+true typedef string forename_tt;
+true typedef string surname_tt;
+
+// All the methods of string are available
+// to string true typedefs
+forename_tt fn("Matthew");
+surname_tt  sn("Wilson", 6);
+
+// If we must access it as a string
+string &amp;fn_str = base_type_cast&lt;string&amp;&gt;(fn);
+</pre>
+Walter says it's certainly feasible, but won't be adding it to the Digital Mars compiler without a lot more requests. I leave it in your hands. <P>
+<h3>Notes and References</h3>
+[1]  <B>true_typedef</B> is part of the STLSoft Types Library (v1.3.1 onwards) and is available at &lt;http://stlsoft.org/libraries/types_library.html&gt;. STLSoft is an open-source organization for the development of robust, lightweight, cross-platform STL software.<P>
+[2]  There should be no efficiency cost in manipulating the type, since the <B>base_type_value()</B> methods are inline, and the compiler will optimize all operations direct to the contained base-type instance. However, since the constructor takes only a reference to a base-type instance, it constrains initialization of instances of the class and may thus result in a (potentially inefficient) copy from a multi-argument constructed base-type instance, though this does not, of course, apply to built-in types.<P>
+[3]  This may be available from the STLSoft website by the time this article goes to press.<P>
+[4]  One valuable application has been to detect inefficient instances of post-increment/decrement by implementing iterators in true types for which these operators are inaccessible.<P>
+[5]  Digital Mars C/C++ compiler is available for free at &lt;http://digitalmars.com&gt;. Walter is also the author of the D language/compiler, which has true <B>typedef</B>s built in!<p>
+<h3>About the Author</h3>
+Matthew Wilson holds a degree in Information Technology and a Phd in Electrical Engineering and is a software development consultant for Synesis Software. Matthew's work interests are in writing bullet-proof real-time, GUI, and software-analysis software in C, C++, and Java. He has been working with C++ for over 10 years and is currently bringing STLSoft.org and its offshoots into the public domain. Matthew can be contacted via <B>matthew@synesis.com.au</b>.<p>
+</BODY>
+</HTML>

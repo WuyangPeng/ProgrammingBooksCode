@@ -1,0 +1,53 @@
+# Unix makefile. This version is compact and works fine with GNU make
+
+# Using pthreads via the FSF pth library with pthread interface enabled
+# http://www.fsf.org/software/pth/pth.html
+#   ./configure --enable-pthread
+#
+#
+# NOTES:
+#
+# On Redhad Linux (and probaly other platforms), building the tiff and
+# jpeg delegates using default settings will not enable proper
+# stack unwinding. If you attempt to call C++ exceptions from
+# error handlers you write, the C code will abort. With gcc you need
+# to specify '-fexceptions' to make sure exceptions work properly.
+#
+# The jpeg libraray was configured with:
+#     ./configure CFLAGS='-O2 -fexceptions'
+# The tiff library was configured by modifying the configure app to:
+#    - Disable DSO (DSO=no)
+#    - Support stack unwinding:   OPTIMIZER=-O -fexceptions
+#
+# You may also need to enable LZW compression when building libtiff.
+# See the file libtiff-lzw-compression-kit-1.3/README-LZW-COMPRESSION
+# for more information on how to do this and LZW licensing issues.
+
+CXX=c++
+DEBUG= -g
+OPTFLAG=-O2 -DHasPTHREADS -DNEEDS_UINTPTR_T -pthread
+WARNFLAG=-W
+INCLUDEDIRS= -I../../include -I../../thirdparty/include/linux
+LIBDIRS=-L. -L../../thirdparty/lib/linux
+LIBS=-lm -ljpeg -ltiff
+
+CXXFLAGS=$(OPTFLAG) $(WARNFLAG) $(DEBUG) $(INCLUDEDIRS) $(DEFINES)
+LIBFLAGS=$(LIBDIRS) $(LIBS)
+
+# VPATH points to other locations where source files can be found
+VPATH = ../../../framework/common:../../../framework/delegates:../../../framework/image:../../../framework/unix
+
+
+all: filedelegates
+
+clean:
+	rm filedelegates $(objects)
+
+
+%.o : %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+objects = main.o imageTmpl.o imageStorage.o imageTypes.o imageTools.o io.o jpeg.o tiff.o iap.o geometry.o bstring.o timing.o fastTiming.o lock.o unitTest.o
+
+filedelegates: $(objects)
+	$(CXX) $(CXXFLAGS) -o filedelegates $(objects) $(LIBFLAGS)

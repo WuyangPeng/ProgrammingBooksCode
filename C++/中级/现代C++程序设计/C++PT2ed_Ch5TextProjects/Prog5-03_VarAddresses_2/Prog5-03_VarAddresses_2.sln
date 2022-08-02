@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Prog5-03_VarAddresses_2", "Prog5-03_VarAddresses_2\Prog5-03_VarAddresses_2.vcproj", "{57E36276-323F-49A6-A072-3722F8B7B868}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57E36276-323F-49A6-A072-3722F8B7B868}.Debug|Win32.ActiveCfg = Debug|Win32
+		{57E36276-323F-49A6-A072-3722F8B7B868}.Debug|Win32.Build.0 = Debug|Win32
+		{57E36276-323F-49A6-A072-3722F8B7B868}.Release|Win32.ActiveCfg = Release|Win32
+		{57E36276-323F-49A6-A072-3722F8B7B868}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

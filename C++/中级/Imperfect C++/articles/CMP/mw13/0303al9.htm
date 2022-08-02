@@ -1,0 +1,171 @@
+<html>
+<head>
+<title>Adapting Win32 Enumeration APIs to STL Iterator Concepts</title>
+</head>
+
+<body>
+
+
+<h4>Listing 9  Extract from whereis.cpp</h4>
+
+<pre>
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * Copyright (C) 1987-2002, Digital Mars.
+ *
+ * www:    http://www.synesis.com.au
+ *         http://www.digitalmars.com/
+ *
+ */
+
+// struct trace_file
+//
+// This functional traces individual file records to stdout.
+
+struct trace_file
+  : public unary_function&lt;findfile_sequence_a::value_type const&, void>
+{
+public:
+  trace_file(bool bVerbose)
+    : m_bVerbose(bVerbose)
+  {}
+
+  void operator ()(findfile_sequence_a::value_type const &value)
+  {
+    if(m_bVerbose)
+    {
+        ...
+    }
+    else
+    {
+      fprintf(stdout, "%s\n", c_str_ptr(value));
+    }
+  }
+
+// Members
+protected:
+  ws_bool_t m_bVerbose;
+};
+
+// struct process_searchspec
+//
+// This functional processes a search-spec within a given directory,
+// passing any file to be processed by trace_file.
+
+struct process_searchspec
+  : public unary_function&lt;tokeniser_type::value_type const&, void>
+{
+public:
+  process_searchspec(char const *path, ws_bool_t bVerbose)
+    : m_path(path)
+    , m_bVerbose(bVerbose)
+  {}
+
+  void operator ()(tokeniser_type::value_type const &value)
+  {
+    findfile_sequence_a files(m_path, c_str_ptr(value), 
+                                findfile_sequence_a::files);
+
+    for_each(files.begin(), files.end(), trace_file(m_bVerbose));
+  }
+
+// Members
+protected:
+  char const *const m_path;
+  ws_bool_t         m_bVerbose;
+};
+
+// struct process_path
+//
+// This functional creates a search sequence for each path, and
+// then processes each one with the trace_file functional.
+
+struct process_path
+  : public unary_function&lt;searchpath_sequence_a::value_type const&, void>
+{
+public:
+  process_path(char const *searchSpec, ws_bool_t bVerbose)
+    : m_searchSpec(searchSpec)
+    , m_bVerbose(bVerbose)
+  {}
+
+  void operator ()(searchpath_sequence_a::value_type const &value)
+  {
+    // Now split with the string_tokeniser into all the constituent
+    tokeniser_type    specs(m_searchSpec, ';');
+
+    for_each(specs.begin(), specs.end(), 
+              process_searchspec(value, m_bVerbose));
+  }
+
+// Members
+protected:
+  char const *const m_searchSpec;
+  ws_bool_t         m_bVerbose;
+};
+
+// struct trace_dir
+//
+// This functional provides processing of a directory, used by the
+// recursive option. It processes the current directory (via 
+// process_path), and then all subdirectories (via process_path),
+// before calling itself recursively.
+
+struct trace_dir
+  : public unary_function&lt;char const *, void>
+{
+public:
+  trace_dir(char const *searchSpec, ws_bool_t bVerbose)
+    : m_searchSpec(searchSpec)
+    , m_bVerbose(bVerbose)
+  {}
+
+  void operator ()(char const *value)
+  {
+    process_path  f(m_searchSpec, m_bVerbose);
+
+    f(value);
+
+    findfile_sequence_a   directories(value, "*.*",
+                                      findfile_sequence_a::directories);
+
+    for_each(directories.begin(), directories.end(),
+                  process_path(m_searchSpec, m_bVerbose));
+    for_each(directories.begin(), directories.end(),
+                  trace_dir(m_searchSpec, m_bVerbose));
+  }
+
+protected:
+  char const *const m_searchSpec;
+  ws_bool_t         m_bVerbose;
+};
+
+
+int main(int argc, char **argv)
+{
+  ...
+
+  if(bSearchPathsOnly)
+  {
+    typedef vector&lt;searchpath_sequence_a::value_type> searchpath_vector;
+
+    // Get the search paths sequence ...
+    searchpath_sequence_a paths;
+    // ... and copy all the elements into a vector
+    searchpath_vector   sorted(paths.begin(), paths.end());
+
+    // Remove any duplicates. This is necessary since the
+    // PATH environment variable may contain duplicate elements
+    remove_duplicates_from_unordered_sequence(sorted, 
+                    compare_path&lt;searchpath_sequence_a::char_type>());
+
+    // Now execute over the duplicate-free (but still in the correct search
+    // order) sequence, applying the process_path functional to each one.
+    for_each(sorted.begin(), sorted.end(), process_path(searchSpec, bVerbose));
+  }
+
+  ...
+
+}
+</pre>
+</body>
+</html>

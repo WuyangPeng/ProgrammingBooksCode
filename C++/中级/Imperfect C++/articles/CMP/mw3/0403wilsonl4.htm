@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>March 04: D and JavaTwo more languages are added to the map</title>
+</head>
+
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#330066" ALINK="#ff0000" TEXT="#000000">
+<!--Copyright &#169; C/C++ Users Journal-->
+
+<h3>Listing 4: <i>The </i>org.recls.Search <i>class.</i></h3>
+<pre>
+ * Extract from org/recls/Search.java
+ * www:    http://www.recls.org/
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * (Licensed under the Synesis Software Standard Source License:
+ *  http://www.synesis.com.au/licenses/ssssl.html)
+ * ////////////////////////////////////////////////////////// */
+
+package org.recls;
+
+import java.io.File;
+import java.util.Enumeration;
+
+public class Search
+  implements Enumeration
+{
+  public static final int RECLS_F_FILES           = 0x00000001;
+  public static final int RECLS_F_DIRECTORIES     = 0x00000002;
+  public static final int RECLS_F_LINKS           = 0x00000004;
+  public static final int RECLS_F_DEVICES         = 0x00000008;
+  public static final int RECLS_F_RECURSIVE       = 0x00010000;
+  public static final int RECLS_F_NO_FOLLOW_LINKS = 0x00020000;
+  public static final int RECLS_F_DIRECTORY_PARTS = 0x00040000;
+  public static final int RECLS_F_DETAILS_LATER   = 0x00080000;
+
+  private Search(String searchRoot, String pattern, int flags)
+  {
+    // Ctors cannot be native
+    m_hSearch = Initialise(searchRoot, pattern, flags);
+  }
+  public native void Close();
+  public void Finalize()
+  {
+    Close();
+  }
+  public static Search MakeSearch(String searchRoot, String pattern, 
+                                            int flags) throws ReclsException
+  {
+    return new Search(searchRoot, pattern, flags);
+  }
+  public final native boolean hasMoreElements();
+  public final native Object nextElement();
+/// Native method implementations
+  private native int Initialise(String searchRoot,String pattern,int flags);
+// Implementation
+  static 
+  {
+    System.loadLibrary("recls_jni");
+  }
+/// Members
+  private int   m_hSearch;
+  private int   m_rc;
+}
+</body>
+</html>

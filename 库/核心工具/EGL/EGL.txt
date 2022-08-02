@@ -1,0 +1,6 @@
+EGL
+★
+
+1. 版本：1.5。
+2. 官方网站：https://www.khronos.org/registry/EGL/。
+3. git地址：https://github.com/KhronosGroup/EGL-Registry.git。

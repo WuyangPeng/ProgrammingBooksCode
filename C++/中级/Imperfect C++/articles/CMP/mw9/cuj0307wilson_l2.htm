@@ -1,0 +1,57 @@
+<HTML>
+<HEAD>
+<TITLE>Listing 2:	Embedded namespace implementation</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF" text="#000000"><B> Listing 2:</B>	Embedded namespace implementation<p>
+<pre>
+// in stlsoft_frame_string.h
+namespace stlsoft
+{
+  template &lt;...&gt;
+  basic_frame_string
+  {
+    ...
+  };
+}
+
+// in unixstl.h
+namespace stlsoft
+{
+  namespace unix_project
+  {
+    ...
+  }
+}
+
+// Assigned here, because unixstl.h included by
+// all other UNIXSTL files
+namespace unixstl = stlsoft::unix_project;
+
+// in unixstl_readdir_sequence.h
+namespace stlsoft
+{
+  namespace unix_project
+  {
+    class readdir_sequence
+    {
+    public:
+      typedef basic_frame_string&lt; char
+                                , NAME_MAX
+                                &gt;   string_type;
+      ...
+    };
+  }
+}
+
+// implementation file
+int main(int argc, char **argv)
+{
+  unixstl::readdir_sequence   entries(argv[1]);  
+
+  std::for_each(entries.begin(), entries.end(), ...);
+
+  ...
+}</pre></BODY>
+
+</HTML>

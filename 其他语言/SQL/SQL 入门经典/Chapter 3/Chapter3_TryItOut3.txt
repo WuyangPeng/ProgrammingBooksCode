@@ -1,0 +1,46 @@
+INSERT INTO Films 
+  (FilmId, FilmName, YearReleased, PlotSummary, AvailableOnDVD, Rating, CategoryId)
+VALUES 
+  (9, 'One Flew Over the Crow''s Nest',1975,
+  'Life and times of a scary crow.', 'Y',2,3);
+
+INSERT INTO Films 
+  (FilmId, FilmName, YearReleased, PlotSummary, AvailableOnDVD, Rating, CategoryId)
+VALUES 
+  (10, 'Raging Bullocks',1980,
+  'A pair of bulls get cross with each other.', 'N',4,1);
+
+INSERT INTO Films 
+  (FilmId, FilmName, YearReleased, PlotSummary, AvailableOnDVD, Rating, CategoryId)
+VALUES 
+  (11, 'The Life Of Bob',1984,
+  'A 7 hour drama about Bob''s life. What fun!', 'Y',1,1);
+
+INSERT INTO Films 
+  (FilmId, FilmName, YearReleased, PlotSummary, AvailableOnDVD, Rating, CategoryId)
+VALUES 
+  (12, 'Gone With the Window Cleaner',1988,
+  'Historical documentary on window cleaners. Thrilling', 'Y',3,6);
+
+INSERT INTO Films 
+  (FilmId, FilmName, YearReleased, PlotSummary, AvailableOnDVD, Rating, CategoryId)
+VALUES 
+  (12, 'The Good, the Bad, and the Facially Challenged',1989,
+  'Joe seeks plastic surgery in this spaghetti Western.', 'Y',5,6);
+
+
+SELECT FilmName, YearReleased, Rating, AvailableOnDVD
+FROM Films
+WHERE ( YearReleased BETWEEN 1980 AND 1989 )
+AND
+( Rating BETWEEN 2 AND 4 )
+AND
+( AvailableOnDVD = 'Y' );
+
+SELECT FilmName 
+FROM Films
+WHERE ( YearReleased NOT BETWEEN 1960 AND 1969 )
+AND
+( FilmName BETWEEN 'P' AND 'T' );
+
+

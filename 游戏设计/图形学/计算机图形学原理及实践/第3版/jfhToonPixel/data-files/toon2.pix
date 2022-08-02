@@ -1,0 +1,26 @@
+#version 120 // -*- c++ -*-
+/**
+Per-Pixel Toon-shading
+
+*/
+/** Diffuse/ambient surface color */
+uniform vec3 diffuseColor;
+
+/** Unit world space direction to the (infinite, directional) light source */
+uniform vec3 wsLight;
+
+varying vec3 wsInterpolatedNormal;
+
+void main() {
+
+    // Note the normalization of the interpolated normal!
+    float intensity = dot(normalize(wsInterpolatedNormal), wsLight);
+	vec3 color;
+
+		if (intensity > 0.95)
+			gl_FragColor.rgb = diffuseColor;
+		else if (intensity > 0.4)
+			gl_FragColor.rgb = diffuseColor * 0.6;
+		else
+			gl_FragColor.rgb = diffuseColor * 0.2;
+}

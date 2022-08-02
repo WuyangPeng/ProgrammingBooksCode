@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>March 04: D and JavaTwo more languages are added to the map</title>
+</head>
+
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#330066" ALINK="#ff0000" TEXT="#000000">
+<!--Copyright &#169; C/C++ Users Journal-->
+
+<h3>Listing 2: <i>D equivalents to the raw API.</i></h3>
+<pre>
+/* /////////////////////////////////////////////////////////////
+ * Extract from std/recls.d
+ * www:    http://www.digitalmars.com/d
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * (Licensed under the Synesis Software Standard Source License:
+ *  http://www.synesis.com.au/licenses/ssssl.html)
+ * ////////////////////////////////////////////////////////// */
+
+// Public functions
+public recls_rc_t Search_Create(in char[] searchRoot, in char[] pattern, 
+                                           in int flags, out hrecls_t hSrch)
+{
+  return Recls_Search(toStringz(searchRoot),toStringz(pattern),flags,&hSrch);
+}
+ . . .
+public void Search_Close(inout hrecls_t hSrch)
+{
+  Recls_SearchClose(hSrch);
+  hSrch = null;
+}
+ . . .
+public recls_info_t Search_CopyEntry(in recls_info_t entry)
+{
+  recls_info_t  copy;
+  if(RECLS_FAILED(Recls_CopyDetails(entry, &copy)))
+  {
+    copy = null;
+  }
+  return copy;
+}
+ . . .
+public char[] Search_GetErrorString(in recls_rc_t rc)
+{
+  uint    cch = Recls_GetErrorString(rc, null, 0);
+  char[]  err = new char[cch];
+  cch = Recls_GetErrorString(rc, err, err.length);
+  assert(cch <= err.length);
+  return err;
+}
+public char[] Search_GetEntryPath(in recls_info_t entry)
+in
+{
+  assert(null !== entry);
+}
+body
+{
+  uint    cch   = Recls_GetPathProperty(entry, null, 0);
+  char[]  path  = new char[cch];
+  cch = Recls_GetPathProperty(entry, path, path.length);
+  assert(cch <= path.length);
+  return path;
+}
+ . . .
+public char[][] Search_GetEntryDirectoryParts(in recls_info_t entry)
+in
+{
+  assert(null !== entry);
+}
+body
+{
+  uint      cParts  = Recls_GetDirectoryPartProperty(entry, -1, null, 0);
+  char[][]  parts = new char[][cParts];
+  for(int i = 0; i < cParts; ++i)
+  {
+    uint    cch = Recls_GetDirectoryPartProperty(entry, i, null, 0);
+    char[]  str = new char[cch];
+    cch = Recls_GetDirectoryPartProperty(entry, i, str, str.length);
+    assert(cch <= str.length);
+    parts[i] = str;
+  }
+  return parts;
+}
+</body>
+</html>

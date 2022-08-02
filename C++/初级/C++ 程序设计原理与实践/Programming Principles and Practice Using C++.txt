@@ -1,0 +1,18 @@
+C++ 程序设计原理与实践（Programming Principles and Practice Using C++）
+（第2版）
+
+官方网站 
+https://www.stroustrup.com/programming.html。
+
+编译器：
+https://www.stroustrup.com/compilers.html。
+
+基础篇
+★★★
+作者：Bjarne Stroustrup
+其他书籍：《C++ 语言导学》、《C++ 程序设计语言》、《C++ 语言的设计和演化》、《现代C++白皮书》。
+ 
+进阶篇
+★★★
+作者：Bjarne Stroustrup
+其他书籍：《C++ 语言导学》、《C++ 程序设计语言》、《C++ 语言的设计和演化》、《现代C++白皮书》。 

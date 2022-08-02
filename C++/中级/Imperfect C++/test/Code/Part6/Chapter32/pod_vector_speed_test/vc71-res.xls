@@ -1,0 +1,49 @@
+pod_vector_speed_test: Visual C++
+std::vector, push-front (50) 	511
+stlsoft::pod_vector, push-front (50) 	328
+
+
+std::vector, push-front (100) 	1056
+stlsoft::pod_vector, push-front (100) 	945
+
+
+std::vector, push-back (50) 	375
+stlsoft::pod_vector, push-back (50) 	46
+
+
+std::vector, push-back (100) 	576
+stlsoft::pod_vector, push-back (100) 	131
+
+
+std::vector, push-back-reserve (50) 	162
+stlsoft::pod_vector, push-back-reserve (50) 	45
+
+
+std::vector, push-back-reserve (100) 	297
+stlsoft::pod_vector, push-back-reserve (100) 	114
+
+
+std::vector, erase-front (50) 	141
+stlsoft::pod_vector, erase-front (50) 	45
+
+
+std::vector, erase-front (100) 	427
+stlsoft::pod_vector, erase-front (100) 	111
+
+
+std::vector, erase-back (50) 	39
+stlsoft::pod_vector, erase-back (50) 	11
+
+
+std::vector, erase-back (100) 	54
+stlsoft::pod_vector, erase-back (100) 	43
+
+
+std::vector, insert-block-back (50) 	436
+stlsoft::pod_vector, insert-block-back (50) 	151
+
+
+std::vector, insert-block-back (100) 	691
+stlsoft::pod_vector, insert-block-back (100) 	310
+
+

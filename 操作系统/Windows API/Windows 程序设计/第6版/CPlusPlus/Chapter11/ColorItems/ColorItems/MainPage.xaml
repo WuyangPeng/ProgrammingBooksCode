@@ -1,0 +1,79 @@
+﻿<Page
+    x:Class="ColorItems.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ColorItems"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <ScrollViewer>
+            <ItemsControl Name="itemsControl"
+                          FontSize="24">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="240"
+                              Margin="0 12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="144" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Rectangle Grid.Column="0"
+                                       Grid.Row="0"
+                                       Grid.RowSpan="4"
+                                       Margin="12 0">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush Color="{Binding}" />
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            
+                            <!-- Bindings to A, R, G, and B don't work here because these are fields in the
+                                    C++ version of the Color structure rather than properties as in C# -->
+                            
+                            <StackPanel Grid.Column="1"
+                                        Grid.Row="0"
+                                        Orientation="Horizontal">
+                                <TextBlock Text="A =&#x00A0;" />
+                                <!--<TextBlock Text="{Binding A}" />-->
+                                <TextBlock Text="???" />
+                            </StackPanel>
+                            
+                            <StackPanel Grid.Column="1"
+                                        Grid.Row="1"
+                                        Orientation="Horizontal">
+                                <TextBlock Text="R =&#x00A0;" />
+                                <!--<TextBlock Text="{Binding R}" />-->
+                                <TextBlock Text="???" />
+                            </StackPanel>
+                            
+                            <StackPanel Grid.Column="1"
+                                        Grid.Row="2"
+                                        Orientation="Horizontal">
+                                <TextBlock Text="G =&#x00A0;" />
+                                <!--<TextBlock Text="{Binding G}" />-->
+                                <TextBlock Text="???" />
+                            </StackPanel>
+                            
+                            <StackPanel Grid.Column="1"
+                                        Grid.Row="3"
+                                        Orientation="Horizontal">
+                                <TextBlock Text="B =&#x00A0;" />
+                                <!--<TextBlock Text="{Binding B}" />-->
+                                <TextBlock Text="???" />
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</Page>

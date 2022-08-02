@@ -1,0 +1,131 @@
+INSERT INTO FavCategory 
+(
+  CategoryId,
+  MemberId
+)
+VALUES
+ ( 
+  1,
+  3
+ );
+
+INSERT INTO FavCategory 
+(
+  CategoryId,
+  MemberId
+)
+VALUES
+ ( 
+  1,
+  5
+ );
+
+INSERT INTO FavCategory 
+(
+  CategoryId,
+  MemberId
+)
+VALUES
+ ( 
+  1,
+  2
+ );
+
+INSERT INTO FavCategory 
+(
+  CategoryId,
+  MemberId
+)
+VALUES
+ ( 
+  1,
+  3
+ );
+
+INSERT INTO FavCategory 
+(
+  CategoryId,
+  MemberId
+)
+VALUES
+ ( 
+  2,
+  1
+ );
+
+INSERT INTO FavCategory 
+(
+  CategoryId,
+  MemberId
+)
+VALUES
+ ( 
+  2,
+  3
+ );
+
+INSERT INTO FavCategory 
+(
+  CategoryId,
+  MemberId
+)
+VALUES
+ ( 
+  3,
+  3
+ );
+
+INSERT INTO FavCategory 
+(
+  CategoryId,
+  MemberId
+)
+VALUES
+ ( 
+  4,
+  6
+ );
+
+INSERT INTO FavCategory 
+(
+  CategoryId,
+  MemberId
+)
+VALUES
+ ( 
+  4,
+  1
+ );
+
+INSERT INTO FavCategory 
+(
+  CategoryId,
+  MemberId
+)
+VALUES
+ ( 
+  5,
+  2
+ );
+
+INSERT INTO FavCategory 
+(
+  CategoryId,
+  MemberId
+)
+VALUES
+ ( 
+  5,
+  3
+ );
+
+INSERT INTO FavCategory 
+(
+  CategoryId,
+  MemberId
+)
+VALUES
+ ( 
+  5,
+  4
+ );

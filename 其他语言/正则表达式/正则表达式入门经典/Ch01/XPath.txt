@@ -1,0 +1,7 @@
+Xpath is an abbreviation for the XML Path Language.
+
+XPath is used to navigate around a tree model of an XML document.
+
+There are significant differences in the data model of XpatH 1.0 and Xpath 2.0.
+
+XSLT is one of the technologies with which xpath is often used.

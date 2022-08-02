@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>2d3015bf-fd33-462c-84d2-b994f1985d59</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>9cafd11f-b13b-4c93-a81c-b7ad8a12f4d7</UniqueIdentifier>
+    </Filter>
+    <Page Include="Common\StandardStyles.xaml">
+      <Filter>Common</Filter>
+    </Page>
+    <Image Include="Assets\Logo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SmallLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\StoreLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SplashScreen.png">
+      <Filter>Assets</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="SplitContainer.xaml" />
+    <Page Include="SettingsDialog.xaml" />
+    <Page Include="RulerContainer.xaml" />
+    <Page Include="MainPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="App.xaml.h" />
+    <ClInclude Include="SplitContainer.xaml.h" />
+    <ClInclude Include="AppSettings.h" />
+    <ClInclude Include="EditOrientationRadioButton.h" />
+    <ClInclude Include="SettingsDialog.xaml.h" />
+    <ClInclude Include="TabbableTextBox.h" />
+    <ClInclude Include="MainPage.xaml.h" />
+    <ClInclude Include="RulerContainer.xaml.h" />
+    <ClInclude Include="EditOrientation.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="App.xaml.cpp" />
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="SplitContainer.xaml.cpp" />
+    <ClCompile Include="AppSettings.cpp" />
+    <ClCompile Include="SettingsDialog.xaml.cpp" />
+    <ClCompile Include="TabbableTextBox.cpp" />
+    <ClCompile Include="MainPage.xaml.cpp" />
+    <ClCompile Include="RulerContainer.xaml.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="XamlCruncher_TemporaryKey.pfx" />
+  </ItemGroup>
+</Project>

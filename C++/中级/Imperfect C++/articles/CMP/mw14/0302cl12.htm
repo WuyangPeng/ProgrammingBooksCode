@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>February 2003/Avoiding the Visual C++ Runtime Library</title>
+</head>
+
+<body>
+
+
+<h4>Listing 12  int_cdecl_purecall()</h4>
+
+<pre>
+
+/* /////////////////////////////////////////////////////////////
+ * ...
+ *
+ * Extract from purecall.c
+ *
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * (Licensed under the Synesis Software Standard Source License:
+ *  http://www.synesis.com.au/licenses/ssssl.html)
+ *
+ * ...
+ * ////////////////////////////////////////////////////////// */
+
+int __cdecl _purecall(void)
+{
+typedef int (WINAPI *PfnMsgBoxA)(HWND , LPCSTR , LPCSTR , UINT );
+
+    HINSTANCE   hlib    =   LoadLibraryA("USER32.DLL");
+    PfnMsgBoxA  pfn     =   (PfnMsgBoxA)GetProcAddress(hlib, 
+                                    "MessageBoxA");
+
+    if(pfn)
+    {
+        pfn(NULL,
+            "A pure virtual function was called. "
+            "This is a fatal error, and indicates "
+            "a serious error in the implementation "
+            "of the application",
+            "PureCall",
+            MB_ICONSTOP | MB_TASKMODAL);
+    }
+
+    ExitProcess(1);
+
+    return 0;
+}
+
+</pre>
+</body>
+</html>

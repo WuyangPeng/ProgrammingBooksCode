@@ -1,0 +1,23 @@
+#version 120 // -*- c++ -*-
+/**
+ Per-pixel Phong Shading
+
+ @file phong.vrt
+ @author Morgan McGuire, http://graphics.cs.williams.edu
+ */
+
+/** Camera origin in world space */
+uniform vec3 wsEyePosition;
+
+/** Non-unit vector to the eye from the vertex */
+varying vec3 wsInterpolatedEye;
+
+/** Non-unit surface normal in world space */
+varying vec3 wsInterpolatedNormal;
+
+void main(void) {
+    wsInterpolatedNormal = g3d_ObjectToWorldNormalMatrix * gl_Normal;
+    wsInterpolatedEye    = wsEyePosition - (g3d_ObjectToWorldMatrix * gl_Vertex).xyz;
+
+    gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
+}

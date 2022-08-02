@@ -1,0 +1,14 @@
+﻿<UserControl
+    x:Class="PrintableTomKitten.TomKitten54"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Grid VerticalAlignment="Center"
+          MaxWidth="640">
+        <TextBlock Style="{StaticResource paragraphTextStyle}">
+            &#x2003;&#x2003;And I think that some day I shall have to 
+            make another, larger, book, to tell you more about Tom 
+            Kitten!
+        </TextBlock>
+    </Grid>
+</UserControl>

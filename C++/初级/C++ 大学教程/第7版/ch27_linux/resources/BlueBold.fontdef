@@ -1,0 +1,15 @@
+// define the BlueBold font
+BlueBold
+{
+   // define the font type
+   type truetype
+
+   // set the source file for the font
+   source bluebold.ttf
+
+   // set the font size
+   size 16
+
+   // set the font resolution (96 is standard)
+   resolution 96
+}

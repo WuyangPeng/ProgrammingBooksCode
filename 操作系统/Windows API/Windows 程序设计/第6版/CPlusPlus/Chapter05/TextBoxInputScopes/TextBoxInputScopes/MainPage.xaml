@@ -1,0 +1,115 @@
+<Page
+    x:Class="TextBoxInputScopes.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TextBoxInputScopes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="6" />
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Width" Value="320" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0 6" />
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Multiline with Return, no wrapping -->
+            <TextBlock Text="Multiline (accepts Return, no wrap):"
+                       Grid.Row="0" Grid.Column="0" />
+
+            <TextBox AcceptsReturn="True"
+                     Grid.Row="0" Grid.Column="1" />
+
+            <!-- Multiline with no Return, wrapping -->
+            <TextBlock Text="Multiline (ignores Return, wraps):"
+                       Grid.Row="1" Grid.Column="0" />
+
+            <TextBox TextWrapping="Wrap"
+                     Grid.Row="1" Grid.Column="1" />
+
+            <!-- Multiline with Return and wrapping -->
+            <TextBlock Text="Multiline (accepts Return, wraps):"
+                       Grid.Row="2" Grid.Column="0" />
+
+            <TextBox AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     Grid.Row="2" Grid.Column="1" />
+
+            <!-- Default input scope -->
+            <TextBlock Text="Default input scope:"
+                       Grid.Row="3" Grid.Column="0" />
+
+            <TextBox Grid.Row="3" Grid.Column="1"
+                     InputScope="Default" />
+
+            <!-- Email address input scope -->
+            <TextBlock Text="Email address input scope:"
+                       Grid.Row="4" Grid.Column="0" />
+
+            <TextBox Grid.Row="4" Grid.Column="1"
+                     InputScope="EmailSmtpAddress" />
+
+            <!-- Number input scope -->
+            <TextBlock Text="Number input scope:"
+                       Grid.Row="5" Grid.Column="0" />
+
+            <TextBox Grid.Row="5" Grid.Column="1"
+                     InputScope="Number" />
+
+            <!-- Search input scope -->
+            <TextBlock Text="Search input scope:"
+                       Grid.Row="6" Grid.Column="0" />
+
+            <TextBox Grid.Row="6" Grid.Column="1"
+                     InputScope="Search" />
+
+            <!-- Telephone number input scope -->
+            <TextBlock Text="Telephone number input scope:"
+                       Grid.Row="7" Grid.Column="0" />
+
+            <TextBox Grid.Row="7" Grid.Column="1"
+                     InputScope="TelephoneNumber" />
+
+            <!-- URL input scope -->
+            <TextBlock Text="URL input scope:"
+                       Grid.Row="8" Grid.Column="0" />
+
+            <TextBox Grid.Row="8" Grid.Column="1"
+                     InputScope="Url" />
+
+            <!-- PasswordBox -->
+            <TextBlock Text="PasswordBox:"
+                       Grid.Row="9" Grid.Column="0" />
+
+            <PasswordBox Grid.Row="9" Grid.Column="1" />
+        </Grid>
+    </Grid>
+</Page>

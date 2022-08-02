@@ -1,0 +1,43 @@
+<UserControl
+    x:Class="AlphabetBlocks.Block"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AlphabetBlocks"
+    Width="144"
+    Height="144"
+    Name="root">
+
+    <Grid>
+        <Thumb DragStarted="OnThumbDragStarted"
+               DragDelta="OnThumbDragDelta"
+               Margin="18 18 6 6" />
+
+        <!-- Left -->
+        <Polygon Points="0 6, 12 18, 12 138, 0 126"
+                 Fill="#E0C080" />
+
+        <!-- Top -->
+        <Polygon Points="6 0, 18 12, 138 12, 126 0"
+                 Fill="#F0D090" />
+
+        <!-- Edge -->
+        <Polygon Points="6 0, 18 12, 12 18, 0 6"
+                 Fill="#E8C888" />
+
+        <Border BorderBrush="{Binding ElementName=root, Path=Foreground}"
+                BorderThickness="12"
+                Background="#FFE0A0"
+                CornerRadius="6"
+                Margin="12 12 0 0"
+                IsHitTestVisible="False" />
+
+        <TextBlock FontFamily="Courier New"
+                   FontSize="156"
+                   FontWeight="Bold"
+                   Text="{Binding ElementName=root, Path=Text}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Margin="12 18 0 0"
+                   IsHitTestVisible="False" />
+    </Grid>
+</UserControl>

@@ -1,0 +1,1013 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<customers>
+  <customer ID="ALFKI" City="Berlin" Company="Alfreds Futterkiste">
+    <order orderID="10643" orderDay="25" orderMonth="8" orderYear="1997" orderTotal="1086.0000" />
+    <order orderID="10692" orderDay="3" orderMonth="10" orderYear="1997" orderTotal="878.0000" />
+    <order orderID="10702" orderDay="13" orderMonth="10" orderYear="1997" orderTotal="330.0000" />
+    <order orderID="10835" orderDay="15" orderMonth="1" orderYear="1998" orderTotal="851.0000" />
+    <order orderID="10952" orderDay="16" orderMonth="3" orderYear="1998" orderTotal="491.2000" />
+    <order orderID="11011" orderDay="9" orderMonth="4" orderYear="1998" orderTotal="960.0000" />
+  </customer>
+  <customer ID="ANATR" City="México D.F." Company="Ana Trujillo Emparedados y helados">
+    <order orderID="10308" orderDay="18" orderMonth="9" orderYear="1996" orderTotal="88.8000" />
+    <order orderID="10625" orderDay="8" orderMonth="8" orderYear="1997" orderTotal="479.7500" />
+    <order orderID="10759" orderDay="28" orderMonth="11" orderYear="1997" orderTotal="320.0000" />
+    <order orderID="10926" orderDay="4" orderMonth="3" orderYear="1998" orderTotal="514.4000" />
+  </customer>
+  <customer ID="ANTON" City="México D.F." Company="Antonio Moreno Taquería">
+    <order orderID="10365" orderDay="27" orderMonth="11" orderYear="1996" orderTotal="403.2000" />
+    <order orderID="10507" orderDay="15" orderMonth="4" orderYear="1997" orderTotal="881.2500" />
+    <order orderID="10535" orderDay="13" orderMonth="5" orderYear="1997" orderTotal="2156.5000" />
+    <order orderID="10573" orderDay="19" orderMonth="6" orderYear="1997" orderTotal="2082.0000" />
+    <order orderID="10677" orderDay="22" orderMonth="9" orderYear="1997" orderTotal="956.9000" />
+    <order orderID="10682" orderDay="25" orderMonth="9" orderYear="1997" orderTotal="375.5000" />
+    <order orderID="10856" orderDay="28" orderMonth="1" orderYear="1998" orderTotal="660.0000" />
+  </customer>
+  <customer ID="AROUT" City="London" Company="Around the Horn">
+    <order orderID="10355" orderDay="15" orderMonth="11" orderYear="1996" orderTotal="480.0000" />
+    <order orderID="10383" orderDay="16" orderMonth="12" orderYear="1996" orderTotal="899.0000" />
+    <order orderID="10453" orderDay="21" orderMonth="2" orderYear="1997" orderTotal="453.0000" />
+    <order orderID="10558" orderDay="4" orderMonth="6" orderYear="1997" orderTotal="2142.9000" />
+    <order orderID="10707" orderDay="16" orderMonth="10" orderYear="1997" orderTotal="1704.0000" />
+    <order orderID="10741" orderDay="14" orderMonth="11" orderYear="1997" orderTotal="285.0000" />
+    <order orderID="10743" orderDay="17" orderMonth="11" orderYear="1997" orderTotal="336.0000" />
+    <order orderID="10768" orderDay="8" orderMonth="12" orderYear="1997" orderTotal="1477.0000" />
+    <order orderID="10793" orderDay="24" orderMonth="12" orderYear="1997" orderTotal="191.1000" />
+    <order orderID="10864" orderDay="2" orderMonth="2" orderYear="1998" orderTotal="282.0000" />
+    <order orderID="10920" orderDay="3" orderMonth="3" orderYear="1998" orderTotal="390.0000" />
+    <order orderID="10953" orderDay="16" orderMonth="3" orderYear="1998" orderTotal="4675.0000" />
+    <order orderID="11016" orderDay="10" orderMonth="4" orderYear="1998" orderTotal="491.5000" />
+  </customer>
+  <customer ID="BERGS" City="Luleå" Company="Berglunds snabbköp">
+    <order orderID="10278" orderDay="12" orderMonth="8" orderYear="1996" orderTotal="1488.8000" />
+    <order orderID="10280" orderDay="14" orderMonth="8" orderYear="1996" orderTotal="613.2000" />
+    <order orderID="10384" orderDay="16" orderMonth="12" orderYear="1996" orderTotal="2222.4000" />
+    <order orderID="10444" orderDay="12" orderMonth="2" orderYear="1997" orderTotal="1031.7000" />
+    <order orderID="10445" orderDay="13" orderMonth="2" orderYear="1997" orderTotal="174.9000" />
+    <order orderID="10524" orderDay="1" orderMonth="5" orderYear="1997" orderTotal="3192.6500" />
+    <order orderID="10572" orderDay="18" orderMonth="6" orderYear="1997" orderTotal="1565.6500" />
+    <order orderID="10626" orderDay="11" orderMonth="8" orderYear="1997" orderTotal="1503.6000" />
+    <order orderID="10654" orderDay="2" orderMonth="9" orderYear="1997" orderTotal="668.7000" />
+    <order orderID="10672" orderDay="17" orderMonth="9" orderYear="1997" orderTotal="4210.5000" />
+    <order orderID="10689" orderDay="1" orderMonth="10" orderYear="1997" orderTotal="630.0000" />
+    <order orderID="10733" orderDay="7" orderMonth="11" orderYear="1997" orderTotal="1459.0000" />
+    <order orderID="10778" orderDay="16" orderMonth="12" orderYear="1997" orderTotal="96.5000" />
+    <order orderID="10837" orderDay="16" orderMonth="1" orderYear="1998" orderTotal="1254.0000" />
+    <order orderID="10857" orderDay="28" orderMonth="1" orderYear="1998" orderTotal="2630.9500" />
+    <order orderID="10866" orderDay="3" orderMonth="2" orderYear="1998" orderTotal="1461.6000" />
+    <order orderID="10875" orderDay="6" orderMonth="2" orderYear="1998" orderTotal="729.5000" />
+    <order orderID="10924" orderDay="4" orderMonth="3" orderYear="1998" orderTotal="2034.5000" />
+  </customer>
+  <customer ID="BLAUS" City="Mannheim" Company="Blauer See Delikatessen">
+    <order orderID="10501" orderDay="9" orderMonth="4" orderYear="1997" orderTotal="149.0000" />
+    <order orderID="10509" orderDay="17" orderMonth="4" orderYear="1997" orderTotal="136.8000" />
+    <order orderID="10582" orderDay="27" orderMonth="6" orderYear="1997" orderTotal="330.0000" />
+    <order orderID="10614" orderDay="29" orderMonth="7" orderYear="1997" orderTotal="464.0000" />
+    <order orderID="10853" orderDay="27" orderMonth="1" orderYear="1998" orderTotal="625.0000" />
+    <order orderID="10956" orderDay="17" orderMonth="3" orderYear="1998" orderTotal="677.0000" />
+    <order orderID="11058" orderDay="29" orderMonth="4" orderYear="1998" orderTotal="858.0000" />
+  </customer>
+  <customer ID="BLONP" City="Strasbourg" Company="Blondesddsl père et fils">
+    <order orderID="10265" orderDay="25" orderMonth="7" orderYear="1996" orderTotal="1176.0000" />
+    <order orderID="10297" orderDay="4" orderMonth="9" orderYear="1996" orderTotal="1420.0000" />
+    <order orderID="10360" orderDay="22" orderMonth="11" orderYear="1996" orderTotal="7390.2000" />
+    <order orderID="10436" orderDay="5" orderMonth="2" orderYear="1997" orderTotal="2210.8000" />
+    <order orderID="10449" orderDay="18" orderMonth="2" orderYear="1997" orderTotal="1838.2000" />
+    <order orderID="10559" orderDay="5" orderMonth="6" orderYear="1997" orderTotal="547.8000" />
+    <order orderID="10566" orderDay="12" orderMonth="6" orderYear="1997" orderTotal="2040.0000" />
+    <order orderID="10584" orderDay="30" orderMonth="6" orderYear="1997" orderTotal="625.0000" />
+    <order orderID="10628" orderDay="12" orderMonth="8" orderYear="1997" orderTotal="450.0000" />
+    <order orderID="10679" orderDay="23" orderMonth="9" orderYear="1997" orderTotal="660.0000" />
+    <order orderID="10826" orderDay="12" orderMonth="1" orderYear="1998" orderTotal="730.0000" />
+  </customer>
+  <customer ID="BOLID" City="Madrid" Company="Bólido Comidas preparadas">
+    <order orderID="10326" orderDay="10" orderMonth="10" orderYear="1996" orderTotal="982.0000" />
+    <order orderID="10801" orderDay="29" orderMonth="12" orderYear="1997" orderTotal="4035.8000" />
+    <order orderID="10970" orderDay="24" orderMonth="3" orderYear="1998" orderTotal="280.0000" />
+  </customer>
+  <customer ID="BONAP" City="Marseille" Company="Bon app'">
+    <order orderID="10331" orderDay="16" orderMonth="10" orderYear="1996" orderTotal="88.5000" />
+    <order orderID="10340" orderDay="29" orderMonth="10" orderYear="1996" orderTotal="2564.4000" />
+    <order orderID="10362" orderDay="25" orderMonth="11" orderYear="1996" orderTotal="1549.6000" />
+    <order orderID="10470" orderDay="11" orderMonth="3" orderYear="1997" orderTotal="1820.8000" />
+    <order orderID="10511" orderDay="18" orderMonth="4" orderYear="1997" orderTotal="3000.0000" />
+    <order orderID="10525" orderDay="2" orderMonth="5" orderYear="1997" orderTotal="846.0000" />
+    <order orderID="10663" orderDay="10" orderMonth="9" orderYear="1997" orderTotal="2032.0000" />
+    <order orderID="10715" orderDay="23" orderMonth="10" orderYear="1997" orderTotal="1296.0000" />
+    <order orderID="10730" orderDay="5" orderMonth="11" orderYear="1997" orderTotal="509.7500" />
+    <order orderID="10732" orderDay="6" orderMonth="11" orderYear="1997" orderTotal="360.0000" />
+    <order orderID="10755" orderDay="26" orderMonth="11" orderYear="1997" orderTotal="2598.0000" />
+    <order orderID="10827" orderDay="12" orderMonth="1" orderYear="1998" orderTotal="843.0000" />
+    <order orderID="10871" orderDay="5" orderMonth="2" orderYear="1998" orderTotal="2083.4000" />
+    <order orderID="10876" orderDay="9" orderMonth="2" orderYear="1998" orderTotal="917.0000" />
+    <order orderID="10932" orderDay="6" orderMonth="3" orderYear="1998" orderTotal="1925.5000" />
+    <order orderID="10940" orderDay="11" orderMonth="3" orderYear="1998" orderTotal="360.0000" />
+    <order orderID="11076" orderDay="6" orderMonth="5" orderYear="1998" orderTotal="1057.0000" />
+  </customer>
+  <customer ID="BOTTM" City="Tsawassen" Company="Bottom-Dollar Markets">
+    <order orderID="10389" orderDay="20" orderMonth="12" orderYear="1996" orderTotal="1832.8000" />
+    <order orderID="10410" orderDay="10" orderMonth="1" orderYear="1997" orderTotal="802.0000" />
+    <order orderID="10411" orderDay="10" orderMonth="1" orderYear="1997" orderTotal="1208.5000" />
+    <order orderID="10431" orderDay="30" orderMonth="1" orderYear="1997" orderTotal="2523.0000" />
+    <order orderID="10492" orderDay="1" orderMonth="4" orderYear="1997" orderTotal="896.0000" />
+    <order orderID="10742" orderDay="14" orderMonth="11" orderYear="1997" orderTotal="3118.0000" />
+    <order orderID="10918" orderDay="2" orderMonth="3" orderYear="1998" orderTotal="1930.0000" />
+    <order orderID="10944" orderDay="12" orderMonth="3" orderYear="1998" orderTotal="1139.1000" />
+    <order orderID="10949" orderDay="13" orderMonth="3" orderYear="1998" orderTotal="4422.0000" />
+    <order orderID="10975" orderDay="25" orderMonth="3" orderYear="1998" orderTotal="717.5000" />
+    <order orderID="10982" orderDay="27" orderMonth="3" orderYear="1998" orderTotal="1014.0000" />
+    <order orderID="11027" orderDay="16" orderMonth="4" orderYear="1998" orderTotal="1170.3000" />
+    <order orderID="11045" orderDay="23" orderMonth="4" orderYear="1998" orderTotal="1309.5000" />
+    <order orderID="11048" orderDay="24" orderMonth="4" orderYear="1998" orderTotal="525.0000" />
+  </customer>
+  <customer ID="BSBEV" City="London" Company="B's Beverages">
+    <order orderID="10289" orderDay="26" orderMonth="8" orderYear="1996" orderTotal="479.4000" />
+    <order orderID="10471" orderDay="11" orderMonth="3" orderYear="1997" orderTotal="1328.0000" />
+    <order orderID="10484" orderDay="24" orderMonth="3" orderYear="1997" orderTotal="386.2000" />
+    <order orderID="10538" orderDay="15" orderMonth="5" orderYear="1997" orderTotal="139.8000" />
+    <order orderID="10539" orderDay="16" orderMonth="5" orderYear="1997" orderTotal="355.5000" />
+    <order orderID="10578" orderDay="24" orderMonth="6" orderYear="1997" orderTotal="477.0000" />
+    <order orderID="10599" orderDay="15" orderMonth="7" orderYear="1997" orderTotal="493.0000" />
+    <order orderID="10943" orderDay="11" orderMonth="3" orderYear="1998" orderTotal="711.0000" />
+    <order orderID="10947" orderDay="13" orderMonth="3" orderYear="1998" orderTotal="220.0000" />
+    <order orderID="11023" orderDay="14" orderMonth="4" orderYear="1998" orderTotal="1500.0000" />
+  </customer>
+  <customer ID="CACTU" City="Buenos Aires" Company="Cactus Comidas para llevar">
+    <order orderID="10521" orderDay="29" orderMonth="4" orderYear="1997" orderTotal="225.5000" />
+    <order orderID="10782" orderDay="17" orderMonth="12" orderYear="1997" orderTotal="12.5000" />
+    <order orderID="10819" orderDay="7" orderMonth="1" orderYear="1998" orderTotal="477.0000" />
+    <order orderID="10881" orderDay="11" orderMonth="2" orderYear="1998" orderTotal="150.0000" />
+    <order orderID="10937" orderDay="10" orderMonth="3" orderYear="1998" orderTotal="644.8000" />
+    <order orderID="11054" orderDay="28" orderMonth="4" orderYear="1998" orderTotal="305.0000" />
+  </customer>
+  <customer ID="CENTC" City="México D.F." Company="Centro comercial Moctezuma">
+    <order orderID="10259" orderDay="18" orderMonth="7" orderYear="1996" orderTotal="100.8000" />
+  </customer>
+  <customer ID="CHOPS" City="Bern" Company="Chop-suey Chinese">
+    <order orderID="10254" orderDay="11" orderMonth="7" orderYear="1996" orderTotal="625.2000" />
+    <order orderID="10370" orderDay="3" orderMonth="12" orderYear="1996" orderTotal="1174.0000" />
+    <order orderID="10519" orderDay="28" orderMonth="4" orderYear="1997" orderTotal="2356.0000" />
+    <order orderID="10731" orderDay="6" orderMonth="11" orderYear="1997" orderTotal="1990.0000" />
+    <order orderID="10746" orderDay="19" orderMonth="11" orderYear="1997" orderTotal="2311.7000" />
+    <order orderID="10966" orderDay="20" orderMonth="3" orderYear="1998" orderTotal="1255.6000" />
+    <order orderID="11029" orderDay="16" orderMonth="4" orderYear="1998" orderTotal="1286.8000" />
+    <order orderID="11041" orderDay="22" orderMonth="4" orderYear="1998" orderTotal="1887.0000" />
+  </customer>
+  <customer ID="COMMI" City="Sao Paulo" Company="Comércio Mineiro">
+    <order orderID="10290" orderDay="27" orderMonth="8" orderYear="1996" orderTotal="2169.0000" />
+    <order orderID="10466" orderDay="6" orderMonth="3" orderYear="1997" orderTotal="216.0000" />
+    <order orderID="10494" orderDay="2" orderMonth="4" orderYear="1997" orderTotal="912.0000" />
+    <order orderID="10969" orderDay="23" orderMonth="3" orderYear="1998" orderTotal="108.0000" />
+    <order orderID="11042" orderDay="22" orderMonth="4" orderYear="1998" orderTotal="405.7500" />
+  </customer>
+  <customer ID="CONSH" City="London" Company="Consolidated Holdings">
+    <order orderID="10435" orderDay="4" orderMonth="2" orderYear="1997" orderTotal="631.6000" />
+    <order orderID="10462" orderDay="3" orderMonth="3" orderYear="1997" orderTotal="156.0000" />
+    <order orderID="10848" orderDay="23" orderMonth="1" orderYear="1998" orderTotal="931.5000" />
+  </customer>
+  <customer ID="DRACD" City="Aachen" Company="Drachenblut Delikatessen">
+    <order orderID="10363" orderDay="26" orderMonth="11" orderYear="1996" orderTotal="447.2000" />
+    <order orderID="10391" orderDay="23" orderMonth="12" orderYear="1996" orderTotal="86.4000" />
+    <order orderID="10797" orderDay="25" orderMonth="12" orderYear="1997" orderTotal="420.0000" />
+    <order orderID="10825" orderDay="9" orderMonth="1" orderYear="1998" orderTotal="1030.7600" />
+    <order orderID="11036" orderDay="20" orderMonth="4" orderYear="1998" orderTotal="1692.0000" />
+    <order orderID="11067" orderDay="4" orderMonth="5" orderYear="1998" orderTotal="86.8500" />
+  </customer>
+  <customer ID="DUMON" City="Nantes" Company="Du monde entier">
+    <order orderID="10311" orderDay="20" orderMonth="9" orderYear="1996" orderTotal="268.8000" />
+    <order orderID="10609" orderDay="24" orderMonth="7" orderYear="1997" orderTotal="424.0000" />
+    <order orderID="10683" orderDay="26" orderMonth="9" orderYear="1997" orderTotal="63.0000" />
+    <order orderID="10890" orderDay="16" orderMonth="2" orderYear="1998" orderTotal="860.1000" />
+  </customer>
+  <customer ID="EASTC" City="London" Company="Eastern Connection">
+    <order orderID="10364" orderDay="26" orderMonth="11" orderYear="1996" orderTotal="950.0000" />
+    <order orderID="10400" orderDay="1" orderMonth="1" orderYear="1997" orderTotal="3063.0000" />
+    <order orderID="10532" orderDay="9" orderMonth="5" orderYear="1997" orderTotal="796.3500" />
+    <order orderID="10726" orderDay="3" orderMonth="11" orderYear="1997" orderTotal="655.0000" />
+    <order orderID="10987" orderDay="31" orderMonth="3" orderYear="1998" orderTotal="2772.0000" />
+    <order orderID="11024" orderDay="15" orderMonth="4" orderYear="1998" orderTotal="1966.8100" />
+    <order orderID="11047" orderDay="24" orderMonth="4" orderYear="1998" orderTotal="1090.5000" />
+    <order orderID="11056" orderDay="28" orderMonth="4" orderYear="1998" orderTotal="3740.0000" />
+  </customer>
+  <customer ID="ERNSH" City="Graz" Company="Ernst Handel">
+    <order orderID="10258" orderDay="17" orderMonth="7" orderYear="1996" orderTotal="2018.6000" />
+    <order orderID="10263" orderDay="23" orderMonth="7" orderYear="1996" orderTotal="2464.8000" />
+    <order orderID="10351" orderDay="11" orderMonth="11" orderYear="1996" orderTotal="5677.6000" />
+    <order orderID="10368" orderDay="29" orderMonth="11" orderYear="1996" orderTotal="1834.2000" />
+    <order orderID="10382" orderDay="13" orderMonth="12" orderYear="1996" orderTotal="2900.0000" />
+    <order orderID="10390" orderDay="23" orderMonth="12" orderYear="1996" orderTotal="2275.2000" />
+    <order orderID="10402" orderDay="2" orderMonth="1" orderYear="1997" orderTotal="2713.5000" />
+    <order orderID="10403" orderDay="3" orderMonth="1" orderYear="1997" orderTotal="1005.9000" />
+    <order orderID="10430" orderDay="30" orderMonth="1" orderYear="1997" orderTotal="5796.0000" />
+    <order orderID="10442" orderDay="11" orderMonth="2" orderYear="1997" orderTotal="1792.0000" />
+    <order orderID="10514" orderDay="22" orderMonth="4" orderYear="1997" orderTotal="8623.4500" />
+    <order orderID="10571" orderDay="17" orderMonth="6" orderYear="1997" orderTotal="647.7500" />
+    <order orderID="10595" orderDay="10" orderMonth="7" orderYear="1997" orderTotal="6300.0000" />
+    <order orderID="10633" orderDay="15" orderMonth="8" orderYear="1997" orderTotal="6483.0500" />
+    <order orderID="10667" orderDay="12" orderMonth="9" orderYear="1997" orderTotal="1921.0000" />
+    <order orderID="10698" orderDay="9" orderMonth="10" orderYear="1997" orderTotal="3600.7300" />
+    <order orderID="10764" orderDay="3" orderMonth="12" orderYear="1997" orderTotal="2540.0000" />
+    <order orderID="10771" orderDay="10" orderMonth="12" orderYear="1997" orderTotal="344.0000" />
+    <order orderID="10773" orderDay="11" orderMonth="12" orderYear="1997" orderTotal="2216.2500" />
+    <order orderID="10776" orderDay="15" orderMonth="12" orderYear="1997" orderTotal="6984.5000" />
+    <order orderID="10795" orderDay="24" orderMonth="12" orderYear="1997" orderTotal="2499.2500" />
+    <order orderID="10836" orderDay="16" orderMonth="1" orderYear="1998" orderTotal="4705.5000" />
+    <order orderID="10854" orderDay="27" orderMonth="1" orderYear="1998" orderTotal="3490.0000" />
+    <order orderID="10895" orderDay="18" orderMonth="2" orderYear="1998" orderTotal="6379.4000" />
+    <order orderID="10968" orderDay="23" orderMonth="3" orderYear="1998" orderTotal="1408.0000" />
+    <order orderID="10979" orderDay="26" orderMonth="3" orderYear="1998" orderTotal="4813.5000" />
+    <order orderID="10990" orderDay="1" orderMonth="4" orderYear="1998" orderTotal="4931.0000" />
+    <order orderID="11008" orderDay="8" orderMonth="4" orderYear="1998" orderTotal="4903.5000" />
+    <order orderID="11017" orderDay="13" orderMonth="4" orderYear="1998" orderTotal="6750.0000" />
+    <order orderID="11072" orderDay="5" orderMonth="5" orderYear="1998" orderTotal="5218.0000" />
+  </customer>
+  <customer ID="FAMIA" City="Sao Paulo" Company="Familia Arquibaldo">
+    <order orderID="10347" orderDay="6" orderMonth="11" orderYear="1996" orderTotal="928.0000" />
+    <order orderID="10386" orderDay="18" orderMonth="12" orderYear="1996" orderTotal="166.0000" />
+    <order orderID="10414" orderDay="14" orderMonth="1" orderYear="1997" orderTotal="231.4000" />
+    <order orderID="10512" orderDay="21" orderMonth="4" orderYear="1997" orderTotal="618.0000" />
+    <order orderID="10581" orderDay="26" orderMonth="6" orderYear="1997" orderTotal="387.5000" />
+    <order orderID="10650" orderDay="29" orderMonth="8" orderYear="1997" orderTotal="1820.2000" />
+    <order orderID="10725" orderDay="31" orderMonth="10" orderYear="1997" orderTotal="287.8000" />
+  </customer>
+  <customer ID="FISSA" City="Madrid" Company="FISSA Fabrica Inter. Salchichas S.A." />
+  <customer ID="FOLIG" City="Lille" Company="Folies gourmandes">
+    <order orderID="10408" orderDay="8" orderMonth="1" orderYear="1997" orderTotal="1622.4000" />
+    <order orderID="10480" orderDay="20" orderMonth="3" orderYear="1997" orderTotal="756.0000" />
+    <order orderID="10634" orderDay="15" orderMonth="8" orderYear="1997" orderTotal="4985.5000" />
+    <order orderID="10763" orderDay="3" orderMonth="12" orderYear="1997" orderTotal="616.0000" />
+    <order orderID="10789" orderDay="22" orderMonth="12" orderYear="1997" orderTotal="3687.0000" />
+  </customer>
+  <customer ID="FOLKO" City="Bräcke" Company="Folk och fä HB">
+    <order orderID="10264" orderDay="24" orderMonth="7" orderYear="1996" orderTotal="724.5000" />
+    <order orderID="10327" orderDay="11" orderMonth="10" orderYear="1996" orderTotal="2262.5000" />
+    <order orderID="10378" orderDay="10" orderMonth="12" orderYear="1996" orderTotal="103.2000" />
+    <order orderID="10434" orderDay="3" orderMonth="2" orderYear="1997" orderTotal="360.0000" />
+    <order orderID="10460" orderDay="28" orderMonth="2" orderYear="1997" orderTotal="234.8000" />
+    <order orderID="10533" orderDay="12" orderMonth="5" orderYear="1997" orderTotal="2295.2000" />
+    <order orderID="10561" orderDay="6" orderMonth="6" orderYear="1997" orderTotal="2844.5000" />
+    <order orderID="10703" orderDay="14" orderMonth="10" orderYear="1997" orderTotal="2545.0000" />
+    <order orderID="10762" orderDay="2" orderMonth="12" orderYear="1997" orderTotal="4337.0000" />
+    <order orderID="10774" orderDay="11" orderMonth="12" orderYear="1997" orderTotal="875.0000" />
+    <order orderID="10824" orderDay="9" orderMonth="1" orderYear="1998" orderTotal="250.8000" />
+    <order orderID="10880" orderDay="10" orderMonth="2" orderYear="1998" orderTotal="1875.0000" />
+    <order orderID="10902" orderDay="23" orderMonth="2" orderYear="1998" orderTotal="1015.8000" />
+    <order orderID="10955" orderDay="17" orderMonth="3" orderYear="1998" orderTotal="93.0000" />
+    <order orderID="10977" orderDay="26" orderMonth="3" orderYear="1998" orderTotal="2233.0000" />
+    <order orderID="10980" orderDay="27" orderMonth="3" orderYear="1998" orderTotal="310.0000" />
+    <order orderID="10993" orderDay="1" orderMonth="4" orderYear="1998" orderTotal="6527.2500" />
+    <order orderID="11001" orderDay="6" orderMonth="4" orderYear="1998" orderTotal="2769.0000" />
+    <order orderID="11050" orderDay="27" orderMonth="4" orderYear="1998" orderTotal="900.0000" />
+  </customer>
+  <customer ID="FRANK" City="München" Company="Frankenversand">
+    <order orderID="10267" orderDay="29" orderMonth="7" orderYear="1996" orderTotal="4031.0000" />
+    <order orderID="10337" orderDay="24" orderMonth="10" orderYear="1996" orderTotal="2467.0000" />
+    <order orderID="10342" orderDay="30" orderMonth="10" orderYear="1996" orderTotal="2300.8000" />
+    <order orderID="10396" orderDay="27" orderMonth="12" orderYear="1996" orderTotal="1903.8000" />
+    <order orderID="10488" orderDay="27" orderMonth="3" orderYear="1997" orderTotal="1560.0000" />
+    <order orderID="10560" orderDay="6" orderMonth="6" orderYear="1997" orderTotal="1257.3000" />
+    <order orderID="10623" orderDay="7" orderMonth="8" orderYear="1997" orderTotal="1429.7500" />
+    <order orderID="10653" orderDay="2" orderMonth="9" orderYear="1997" orderTotal="1203.5000" />
+    <order orderID="10670" orderDay="16" orderMonth="9" orderYear="1997" orderTotal="2301.7500" />
+    <order orderID="10675" orderDay="19" orderMonth="9" orderYear="1997" orderTotal="1423.0000" />
+    <order orderID="10717" orderDay="24" orderMonth="10" orderYear="1997" orderTotal="1331.7500" />
+    <order orderID="10791" orderDay="23" orderMonth="12" orderYear="1997" orderTotal="1926.0600" />
+    <order orderID="10859" orderDay="29" orderMonth="1" orderYear="1998" orderTotal="1438.2500" />
+    <order orderID="10929" orderDay="5" orderMonth="3" orderYear="1998" orderTotal="1174.7500" />
+    <order orderID="11012" orderDay="9" orderMonth="4" orderYear="1998" orderTotal="2974.0000" />
+  </customer>
+  <customer ID="FRANR" City="Nantes" Company="France restauration">
+    <order orderID="10671" orderDay="17" orderMonth="9" orderYear="1997" orderTotal="920.1000" />
+    <order orderID="10860" orderDay="29" orderMonth="1" orderYear="1998" orderTotal="519.0000" />
+    <order orderID="10971" orderDay="24" orderMonth="3" orderYear="1998" orderTotal="1733.0600" />
+  </customer>
+  <customer ID="FRANS" City="Torino" Company="Franchi S.p.A.">
+    <order orderID="10422" orderDay="22" orderMonth="1" orderYear="1997" orderTotal="49.8000" />
+    <order orderID="10710" orderDay="20" orderMonth="10" orderYear="1997" orderTotal="93.5000" />
+    <order orderID="10753" orderDay="25" orderMonth="11" orderYear="1997" orderTotal="88.0000" />
+    <order orderID="10807" orderDay="31" orderMonth="12" orderYear="1997" orderTotal="18.4000" />
+    <order orderID="11026" orderDay="15" orderMonth="4" orderYear="1998" orderTotal="1030.0000" />
+    <order orderID="11060" orderDay="30" orderMonth="4" orderYear="1998" orderTotal="266.0000" />
+  </customer>
+  <customer ID="FURIB" City="Lisboa" Company="Furia Bacalhau e Frutos do Mar">
+    <order orderID="10328" orderDay="14" orderMonth="10" orderYear="1996" orderTotal="1168.0000" />
+    <order orderID="10352" orderDay="12" orderMonth="11" orderYear="1996" orderTotal="154.0000" />
+    <order orderID="10464" orderDay="4" orderMonth="3" orderYear="1997" orderTotal="1848.0000" />
+    <order orderID="10491" orderDay="31" orderMonth="3" orderYear="1997" orderTotal="305.3000" />
+    <order orderID="10551" orderDay="28" orderMonth="5" orderYear="1997" orderTotal="1836.0000" />
+    <order orderID="10604" orderDay="18" orderMonth="7" orderYear="1997" orderTotal="256.5000" />
+    <order orderID="10664" orderDay="10" orderMonth="9" orderYear="1997" orderTotal="1515.7500" />
+    <order orderID="10963" orderDay="19" orderMonth="3" orderYear="1998" orderTotal="68.0000" />
+  </customer>
+  <customer ID="GALED" City="Barcelona" Company="Galería del gastrónomo">
+    <order orderID="10366" orderDay="28" orderMonth="11" orderYear="1996" orderTotal="136.0000" />
+    <order orderID="10426" orderDay="27" orderMonth="1" orderYear="1997" orderTotal="338.2000" />
+    <order orderID="10568" orderDay="13" orderMonth="6" orderYear="1997" orderTotal="155.0000" />
+    <order orderID="10887" orderDay="13" orderMonth="2" orderYear="1998" orderTotal="70.0000" />
+    <order orderID="10928" orderDay="5" orderMonth="3" orderYear="1998" orderTotal="137.5000" />
+  </customer>
+  <customer ID="GODOS" City="Sevilla" Company="Godos Cocina Típica">
+    <order orderID="10303" orderDay="11" orderMonth="9" orderYear="1996" orderTotal="1242.0000" />
+    <order orderID="10550" orderDay="28" orderMonth="5" orderYear="1997" orderTotal="749.0000" />
+    <order orderID="10629" orderDay="12" orderMonth="8" orderYear="1997" orderTotal="2775.0500" />
+    <order orderID="10872" orderDay="5" orderMonth="2" orderYear="1998" orderTotal="2166.8000" />
+    <order orderID="10874" orderDay="6" orderMonth="2" orderYear="1998" orderTotal="310.0000" />
+    <order orderID="10888" orderDay="16" orderMonth="2" orderYear="1998" orderTotal="605.0000" />
+    <order orderID="10911" orderDay="26" orderMonth="2" orderYear="1998" orderTotal="858.0000" />
+    <order orderID="10948" orderDay="13" orderMonth="3" orderYear="1998" orderTotal="2362.2500" />
+    <order orderID="11009" orderDay="8" orderMonth="4" orderYear="1998" orderTotal="702.0000" />
+    <order orderID="11037" orderDay="21" orderMonth="4" orderYear="1998" orderTotal="60.0000" />
+  </customer>
+  <customer ID="GOURL" City="Campinas" Company="Gourmet Lanchonetes">
+    <order orderID="10423" orderDay="23" orderMonth="1" orderYear="1997" orderTotal="1020.0000" />
+    <order orderID="10652" orderDay="1" orderMonth="9" orderYear="1997" orderTotal="331.7800" />
+    <order orderID="10685" orderDay="29" orderMonth="9" orderYear="1997" orderTotal="801.1000" />
+    <order orderID="10709" orderDay="17" orderMonth="10" orderYear="1997" orderTotal="3424.0000" />
+    <order orderID="10734" orderDay="7" orderMonth="11" orderYear="1997" orderTotal="1498.3500" />
+    <order orderID="10777" orderDay="15" orderMonth="12" orderYear="1997" orderTotal="280.0000" />
+    <order orderID="10790" orderDay="22" orderMonth="12" orderYear="1997" orderTotal="850.0000" />
+    <order orderID="10959" orderDay="18" orderMonth="3" orderYear="1998" orderTotal="155.0000" />
+    <order orderID="11049" orderDay="24" orderMonth="4" orderYear="1998" orderTotal="342.0000" />
+  </customer>
+  <customer ID="GREAL" City="Eugene" Company="Great Lakes Food Market">
+    <order orderID="10528" orderDay="6" orderMonth="5" orderYear="1997" orderTotal="396.2000" />
+    <order orderID="10589" orderDay="4" orderMonth="7" orderYear="1997" orderTotal="72.0000" />
+    <order orderID="10616" orderDay="31" orderMonth="7" orderYear="1997" orderTotal="5032.0000" />
+    <order orderID="10617" orderDay="31" orderMonth="7" orderYear="1997" orderTotal="1650.0000" />
+    <order orderID="10656" orderDay="4" orderMonth="9" orderYear="1997" orderTotal="671.3500" />
+    <order orderID="10681" orderDay="25" orderMonth="9" orderYear="1997" orderTotal="1327.0000" />
+    <order orderID="10816" orderDay="6" orderMonth="1" orderYear="1998" orderTotal="8891.0000" />
+    <order orderID="10936" orderDay="9" orderMonth="3" orderYear="1998" orderTotal="570.0000" />
+    <order orderID="11006" orderDay="7" orderMonth="4" orderYear="1998" orderTotal="391.5800" />
+    <order orderID="11040" orderDay="22" orderMonth="4" orderYear="1998" orderTotal="200.0000" />
+    <order orderID="11061" orderDay="30" orderMonth="4" orderYear="1998" orderTotal="510.0000" />
+  </customer>
+  <customer ID="GROSR" City="Caracas" Company="GROSELLA-Restaurante">
+    <order orderID="10268" orderDay="30" orderMonth="7" orderYear="1996" orderTotal="1101.2000" />
+    <order orderID="10785" orderDay="18" orderMonth="12" orderYear="1997" orderTotal="387.5000" />
+  </customer>
+  <customer ID="HANAR" City="Rio de Janeiro" Company="Hanari Carnes">
+    <order orderID="10250" orderDay="8" orderMonth="7" orderYear="1996" orderTotal="1813.0000" />
+    <order orderID="10253" orderDay="10" orderMonth="7" orderYear="1996" orderTotal="1444.8000" />
+    <order orderID="10541" orderDay="19" orderMonth="5" orderYear="1997" orderTotal="2162.8000" />
+    <order orderID="10645" orderDay="26" orderMonth="8" orderYear="1997" orderTotal="1535.0000" />
+    <order orderID="10690" orderDay="2" orderMonth="10" orderYear="1997" orderTotal="1150.0000" />
+    <order orderID="10770" orderDay="9" orderMonth="12" orderYear="1997" orderTotal="315.0000" />
+    <order orderID="10783" orderDay="18" orderMonth="12" orderYear="1997" orderTotal="1442.5000" />
+    <order orderID="10886" orderDay="13" orderMonth="2" orderYear="1998" orderTotal="3127.5000" />
+    <order orderID="10903" orderDay="24" orderMonth="2" orderYear="1998" orderTotal="932.0500" />
+    <order orderID="10922" orderDay="3" orderMonth="3" orderYear="1998" orderTotal="742.5000" />
+    <order orderID="10925" orderDay="4" orderMonth="3" orderYear="1998" orderTotal="559.0000" />
+    <order orderID="10981" orderDay="27" orderMonth="3" orderYear="1998" orderTotal="15810.0000" />
+    <order orderID="11022" orderDay="14" orderMonth="4" orderYear="1998" orderTotal="1402.0000" />
+    <order orderID="11052" orderDay="27" orderMonth="4" orderYear="1998" orderTotal="1665.0000" />
+  </customer>
+  <customer ID="HILAA" City="San Cristóbal" Company="HILARION-Abastos">
+    <order orderID="10257" orderDay="16" orderMonth="7" orderYear="1996" orderTotal="1119.9000" />
+    <order orderID="10395" orderDay="26" orderMonth="12" orderYear="1996" orderTotal="2333.2000" />
+    <order orderID="10476" orderDay="17" orderMonth="3" orderYear="1997" orderTotal="182.4000" />
+    <order orderID="10486" orderDay="26" orderMonth="3" orderYear="1997" orderTotal="1272.0000" />
+    <order orderID="10490" orderDay="31" orderMonth="3" orderYear="1997" orderTotal="3163.2000" />
+    <order orderID="10498" orderDay="7" orderMonth="4" orderYear="1997" orderTotal="575.0000" />
+    <order orderID="10552" orderDay="29" orderMonth="5" orderYear="1997" orderTotal="880.5000" />
+    <order orderID="10601" orderDay="16" orderMonth="7" orderYear="1997" orderTotal="2285.0000" />
+    <order orderID="10613" orderDay="29" orderMonth="7" orderYear="1997" orderTotal="358.0000" />
+    <order orderID="10641" orderDay="22" orderMonth="8" orderYear="1997" orderTotal="2054.0000" />
+    <order orderID="10705" orderDay="15" orderMonth="10" orderYear="1997" orderTotal="378.0000" />
+    <order orderID="10796" orderDay="25" orderMonth="12" orderYear="1997" orderTotal="2878.0800" />
+    <order orderID="10863" orderDay="2" orderMonth="2" orderYear="1998" orderTotal="519.0000" />
+    <order orderID="10901" orderDay="23" orderMonth="2" orderYear="1998" orderTotal="934.5000" />
+    <order orderID="10957" orderDay="18" orderMonth="3" orderYear="1998" orderTotal="1762.7000" />
+    <order orderID="10960" orderDay="19" orderMonth="3" orderYear="1998" orderTotal="276.6000" />
+    <order orderID="10976" orderDay="25" orderMonth="3" orderYear="1998" orderTotal="912.0000" />
+    <order orderID="11055" orderDay="28" orderMonth="4" orderYear="1998" orderTotal="1727.5000" />
+  </customer>
+  <customer ID="HUNGC" City="Elgin" Company="Hungry Coyote Import Store">
+    <order orderID="10375" orderDay="6" orderMonth="12" orderYear="1996" orderTotal="338.0000" />
+    <order orderID="10394" orderDay="25" orderMonth="12" orderYear="1996" orderTotal="442.0000" />
+    <order orderID="10415" orderDay="15" orderMonth="1" orderYear="1997" orderTotal="102.4000" />
+    <order orderID="10600" orderDay="16" orderMonth="7" orderYear="1997" orderTotal="479.8000" />
+    <order orderID="10660" orderDay="8" orderMonth="9" orderYear="1997" orderTotal="1701.0000" />
+  </customer>
+  <customer ID="HUNGO" City="Cork" Company="Hungry Owl All-Night Grocers">
+    <order orderID="10298" orderDay="5" orderMonth="9" orderYear="1996" orderTotal="3127.0000" />
+    <order orderID="10309" orderDay="19" orderMonth="9" orderYear="1996" orderTotal="1762.0000" />
+    <order orderID="10335" orderDay="22" orderMonth="10" orderYear="1996" orderTotal="2545.2000" />
+    <order orderID="10373" orderDay="5" orderMonth="12" orderYear="1996" orderTotal="1708.0000" />
+    <order orderID="10380" orderDay="12" orderMonth="12" orderYear="1996" orderTotal="1419.8000" />
+    <order orderID="10429" orderDay="29" orderMonth="1" orderYear="1997" orderTotal="1748.5000" />
+    <order orderID="10503" orderDay="11" orderMonth="4" orderYear="1997" orderTotal="2048.5000" />
+    <order orderID="10516" orderDay="24" orderMonth="4" orderYear="1997" orderTotal="2614.5000" />
+    <order orderID="10567" orderDay="12" orderMonth="6" orderYear="1997" orderTotal="3109.0000" />
+    <order orderID="10646" orderDay="27" orderMonth="8" orderYear="1997" orderTotal="1928.0000" />
+    <order orderID="10661" orderDay="9" orderMonth="9" orderYear="1997" orderTotal="703.2500" />
+    <order orderID="10687" orderDay="30" orderMonth="9" orderYear="1997" orderTotal="6201.9000" />
+    <order orderID="10701" orderDay="13" orderMonth="10" orderYear="1997" orderTotal="3370.0000" />
+    <order orderID="10712" orderDay="21" orderMonth="10" orderYear="1997" orderTotal="1238.4000" />
+    <order orderID="10736" orderDay="11" orderMonth="11" orderYear="1997" orderTotal="997.0000" />
+    <order orderID="10897" orderDay="19" orderMonth="2" orderYear="1998" orderTotal="10835.2400" />
+    <order orderID="10912" orderDay="26" orderMonth="2" orderYear="1998" orderTotal="8267.4000" />
+    <order orderID="10985" orderDay="30" orderMonth="3" orderYear="1998" orderTotal="2248.2000" />
+    <order orderID="11063" orderDay="30" orderMonth="4" orderYear="1998" orderTotal="1445.5000" />
+  </customer>
+  <customer ID="ISLAT" City="Cowes" Company="Island Trading">
+    <order orderID="10315" orderDay="26" orderMonth="9" orderYear="1996" orderTotal="516.8000" />
+    <order orderID="10318" orderDay="1" orderMonth="10" orderYear="1996" orderTotal="240.4000" />
+    <order orderID="10321" orderDay="3" orderMonth="10" orderYear="1996" orderTotal="144.0000" />
+    <order orderID="10473" orderDay="13" orderMonth="3" orderYear="1997" orderTotal="230.4000" />
+    <order orderID="10621" orderDay="5" orderMonth="8" orderYear="1997" orderTotal="758.5000" />
+    <order orderID="10674" orderDay="18" orderMonth="9" orderYear="1997" orderTotal="45.0000" />
+    <order orderID="10749" orderDay="20" orderMonth="11" orderYear="1997" orderTotal="1080.0000" />
+    <order orderID="10798" orderDay="26" orderMonth="12" orderYear="1997" orderTotal="446.6000" />
+    <order orderID="10829" orderDay="13" orderMonth="1" orderYear="1998" orderTotal="1764.0000" />
+    <order orderID="10933" orderDay="6" orderMonth="3" orderYear="1998" orderTotal="920.6000" />
+  </customer>
+  <customer ID="KOENE" City="Brandenburg" Company="Königlich Essen">
+    <order orderID="10323" orderDay="7" orderMonth="10" orderYear="1996" orderTotal="164.4000" />
+    <order orderID="10325" orderDay="9" orderMonth="10" orderYear="1996" orderTotal="1497.0000" />
+    <order orderID="10456" orderDay="25" orderMonth="2" orderYear="1997" orderTotal="656.0000" />
+    <order orderID="10457" orderDay="25" orderMonth="2" orderYear="1997" orderTotal="1584.0000" />
+    <order orderID="10468" orderDay="7" orderMonth="3" orderYear="1997" orderTotal="717.6000" />
+    <order orderID="10506" orderDay="15" orderMonth="4" orderYear="1997" orderTotal="462.0000" />
+    <order orderID="10542" orderDay="20" orderMonth="5" orderYear="1997" orderTotal="493.8000" />
+    <order orderID="10630" orderDay="13" orderMonth="8" orderYear="1997" orderTotal="918.0000" />
+    <order orderID="10718" orderDay="27" orderMonth="10" orderYear="1997" orderTotal="3463.0000" />
+    <order orderID="10799" orderDay="26" orderMonth="12" orderYear="1997" orderTotal="1585.0000" />
+    <order orderID="10817" orderDay="6" orderMonth="1" orderYear="1998" orderTotal="11490.7000" />
+    <order orderID="10849" orderDay="23" orderMonth="1" orderYear="1998" orderTotal="1052.1400" />
+    <order orderID="10893" orderDay="18" orderMonth="2" orderYear="1998" orderTotal="5502.1100" />
+    <order orderID="11028" orderDay="16" orderMonth="4" orderYear="1998" orderTotal="2160.0000" />
+  </customer>
+  <customer ID="LACOR" City="Versailles" Company="La corne d'abondance">
+    <order orderID="10858" orderDay="29" orderMonth="1" orderYear="1998" orderTotal="649.0000" />
+    <order orderID="10927" orderDay="5" orderMonth="3" orderYear="1998" orderTotal="800.0000" />
+    <order orderID="10972" orderDay="24" orderMonth="3" orderYear="1998" orderTotal="251.5000" />
+    <order orderID="10973" orderDay="24" orderMonth="3" orderYear="1998" orderTotal="291.5500" />
+  </customer>
+  <customer ID="LAMAI" City="Toulouse" Company="La maison d'Asie">
+    <order orderID="10350" orderDay="11" orderMonth="11" orderYear="1996" orderTotal="713.4000" />
+    <order orderID="10358" orderDay="20" orderMonth="11" orderYear="1996" orderTotal="452.0000" />
+    <order orderID="10371" orderDay="3" orderMonth="12" orderYear="1996" orderTotal="91.2000" />
+    <order orderID="10413" orderDay="14" orderMonth="1" orderYear="1997" orderTotal="2123.2000" />
+    <order orderID="10425" orderDay="24" orderMonth="1" orderYear="1997" orderTotal="480.0000" />
+    <order orderID="10454" orderDay="21" orderMonth="2" orderYear="1997" orderTotal="414.0000" />
+    <order orderID="10493" orderDay="2" orderMonth="4" orderYear="1997" orderTotal="676.0000" />
+    <order orderID="10500" orderDay="9" orderMonth="4" orderYear="1997" orderTotal="550.8000" />
+    <order orderID="10610" orderDay="25" orderMonth="7" orderYear="1997" orderTotal="399.0000" />
+    <order orderID="10631" orderDay="14" orderMonth="8" orderYear="1997" orderTotal="62.0000" />
+    <order orderID="10787" orderDay="19" orderMonth="12" orderYear="1997" orderTotal="2760.8000" />
+    <order orderID="10832" orderDay="14" orderMonth="1" orderYear="1998" orderTotal="568.9500" />
+    <order orderID="10923" orderDay="3" orderMonth="3" orderYear="1998" orderTotal="936.0000" />
+    <order orderID="11051" orderDay="27" orderMonth="4" orderYear="1998" orderTotal="45.0000" />
+  </customer>
+  <customer ID="LAUGB" City="Vancouver" Company="Laughing Bacchus Wine Cellars">
+    <order orderID="10495" orderDay="3" orderMonth="4" orderYear="1997" orderTotal="278.0000" />
+    <order orderID="10620" orderDay="5" orderMonth="8" orderYear="1997" orderTotal="57.5000" />
+    <order orderID="10810" orderDay="1" orderMonth="1" orderYear="1998" orderTotal="187.0000" />
+  </customer>
+  <customer ID="LAZYK" City="Walla Walla" Company="Lazy K Kountry Store">
+    <order orderID="10482" orderDay="21" orderMonth="3" orderYear="1997" orderTotal="147.0000" />
+    <order orderID="10545" orderDay="22" orderMonth="5" orderYear="1997" orderTotal="210.0000" />
+  </customer>
+  <customer ID="LEHMS" City="Frankfurt a.M." Company="Lehmanns Marktstand">
+    <order orderID="10279" orderDay="13" orderMonth="8" orderYear="1996" orderTotal="468.0000" />
+    <order orderID="10284" orderDay="19" orderMonth="8" orderYear="1996" orderTotal="1452.0000" />
+    <order orderID="10343" orderDay="31" orderMonth="10" orderYear="1996" orderTotal="1586.0000" />
+    <order orderID="10497" orderDay="4" orderMonth="4" orderYear="1997" orderTotal="1380.6000" />
+    <order orderID="10522" orderDay="30" orderMonth="4" orderYear="1997" orderTotal="2657.8000" />
+    <order orderID="10534" orderDay="12" orderMonth="5" orderYear="1997" orderTotal="517.4000" />
+    <order orderID="10536" orderDay="14" orderMonth="5" orderYear="1997" orderTotal="2085.0000" />
+    <order orderID="10557" orderDay="3" orderMonth="6" orderYear="1997" orderTotal="1152.5000" />
+    <order orderID="10592" orderDay="8" orderMonth="7" orderYear="1997" orderTotal="543.6500" />
+    <order orderID="10593" orderDay="9" orderMonth="7" orderYear="1997" orderTotal="2493.0000" />
+    <order orderID="10772" orderDay="10" orderMonth="12" orderYear="1997" orderTotal="3603.2200" />
+    <order orderID="10862" orderDay="30" orderMonth="1" orderYear="1998" orderTotal="581.0000" />
+    <order orderID="10891" orderDay="17" orderMonth="2" orderYear="1998" orderTotal="388.3500" />
+    <order orderID="10934" orderDay="9" orderMonth="3" orderYear="1998" orderTotal="500.0000" />
+    <order orderID="11070" orderDay="5" orderMonth="5" orderYear="1998" orderTotal="1873.5000" />
+  </customer>
+  <customer ID="LETSS" City="San Francisco" Company="Let's Stop N Shop">
+    <order orderID="10579" orderDay="25" orderMonth="6" orderYear="1997" orderTotal="317.7500" />
+    <order orderID="10719" orderDay="27" orderMonth="10" orderYear="1997" orderTotal="1125.6700" />
+    <order orderID="10735" orderDay="10" orderMonth="11" orderYear="1997" orderTotal="596.0000" />
+    <order orderID="10884" orderDay="12" orderMonth="2" orderYear="1998" orderTotal="1450.6000" />
+  </customer>
+  <customer ID="LILAS" City="Barquisimeto" Company="LILA-Supermercado">
+    <order orderID="10283" orderDay="16" orderMonth="8" orderYear="1996" orderTotal="1414.8000" />
+    <order orderID="10296" orderDay="3" orderMonth="9" orderYear="1996" orderTotal="1050.6000" />
+    <order orderID="10330" orderDay="16" orderMonth="10" orderYear="1996" orderTotal="1940.0000" />
+    <order orderID="10357" orderDay="19" orderMonth="11" orderYear="1996" orderTotal="1360.0000" />
+    <order orderID="10381" orderDay="12" orderMonth="12" orderYear="1996" orderTotal="112.0000" />
+    <order orderID="10461" orderDay="28" orderMonth="2" orderYear="1997" orderTotal="2051.6000" />
+    <order orderID="10499" orderDay="8" orderMonth="4" orderYear="1997" orderTotal="1412.0000" />
+    <order orderID="10543" orderDay="21" orderMonth="5" orderYear="1997" orderTotal="1770.0000" />
+    <order orderID="10780" orderDay="16" orderMonth="12" orderYear="1997" orderTotal="720.0000" />
+    <order orderID="10823" orderDay="9" orderMonth="1" orderYear="1998" orderTotal="3107.5000" />
+    <order orderID="10899" orderDay="20" orderMonth="2" orderYear="1998" orderTotal="144.0000" />
+    <order orderID="10997" orderDay="3" orderMonth="4" orderYear="1998" orderTotal="1980.0000" />
+    <order orderID="11065" orderDay="1" orderMonth="5" orderYear="1998" orderTotal="252.5600" />
+    <order orderID="11071" orderDay="5" orderMonth="5" orderYear="1998" orderTotal="510.0000" />
+  </customer>
+  <customer ID="LINOD" City="I. de Margarita" Company="LINO-Delicateses">
+    <order orderID="10405" orderDay="6" orderMonth="1" orderYear="1997" orderTotal="400.0000" />
+    <order orderID="10485" orderDay="25" orderMonth="3" orderYear="1997" orderTotal="1760.0000" />
+    <order orderID="10638" orderDay="20" orderMonth="8" orderYear="1997" orderTotal="2720.0500" />
+    <order orderID="10697" orderDay="8" orderMonth="10" orderYear="1997" orderTotal="1073.9000" />
+    <order orderID="10729" orderDay="4" orderMonth="11" orderYear="1997" orderTotal="1850.0000" />
+    <order orderID="10811" orderDay="2" orderMonth="1" orderYear="1998" orderTotal="852.0000" />
+    <order orderID="10838" orderDay="19" orderMonth="1" orderYear="1998" orderTotal="2584.5000" />
+    <order orderID="10840" orderDay="19" orderMonth="1" orderYear="1998" orderTotal="264.0000" />
+    <order orderID="10919" orderDay="2" orderMonth="3" orderYear="1998" orderTotal="1122.8000" />
+    <order orderID="10954" orderDay="17" orderMonth="3" orderYear="1998" orderTotal="1902.1000" />
+    <order orderID="11014" orderDay="10" orderMonth="4" orderYear="1998" orderTotal="270.2000" />
+    <order orderID="11039" orderDay="21" orderMonth="4" orderYear="1998" orderTotal="3090.0000" />
+  </customer>
+  <customer ID="LONEP" City="Portland" Company="Lonesome Pine Restaurant">
+    <order orderID="10307" orderDay="17" orderMonth="9" orderYear="1996" orderTotal="424.0000" />
+    <order orderID="10317" orderDay="30" orderMonth="9" orderYear="1996" orderTotal="288.0000" />
+    <order orderID="10544" orderDay="21" orderMonth="5" orderYear="1997" orderTotal="417.2000" />
+    <order orderID="10662" orderDay="9" orderMonth="9" orderYear="1997" orderTotal="125.0000" />
+    <order orderID="10665" orderDay="11" orderMonth="9" orderYear="1997" orderTotal="1295.0000" />
+    <order orderID="10867" orderDay="3" orderMonth="2" orderYear="1998" orderTotal="98.4000" />
+    <order orderID="10883" orderDay="12" orderMonth="2" orderYear="1998" orderTotal="36.0000" />
+    <order orderID="11018" orderDay="13" orderMonth="4" orderYear="1998" orderTotal="1575.0000" />
+  </customer>
+  <customer ID="MAGAA" City="Bergamo" Company="Magazzini Alimentari Riuniti">
+    <order orderID="10275" orderDay="7" orderMonth="8" orderYear="1996" orderTotal="307.2000" />
+    <order orderID="10300" orderDay="9" orderMonth="9" orderYear="1996" orderTotal="608.0000" />
+    <order orderID="10404" orderDay="3" orderMonth="1" orderYear="1997" orderTotal="1675.0000" />
+    <order orderID="10467" orderDay="6" orderMonth="3" orderYear="1997" orderTotal="235.2000" />
+    <order orderID="10635" orderDay="18" orderMonth="8" orderYear="1997" orderTotal="1380.2500" />
+    <order orderID="10754" orderDay="25" orderMonth="11" orderYear="1997" orderTotal="55.2000" />
+    <order orderID="10784" orderDay="18" orderMonth="12" orderYear="1997" orderTotal="1650.0000" />
+    <order orderID="10818" orderDay="7" orderMonth="1" orderYear="1998" orderTotal="833.0000" />
+    <order orderID="10939" orderDay="10" orderMonth="3" orderYear="1998" orderTotal="750.0000" />
+    <order orderID="10950" orderDay="16" orderMonth="3" orderYear="1998" orderTotal="110.0000" />
+  </customer>
+  <customer ID="MAISD" City="Bruxelles" Company="Maison Dewey">
+    <order orderID="10529" orderDay="7" orderMonth="5" orderYear="1997" orderTotal="946.0000" />
+    <order orderID="10649" orderDay="28" orderMonth="8" orderYear="1997" orderTotal="1434.0000" />
+    <order orderID="10760" orderDay="1" orderMonth="12" orderYear="1997" orderTotal="3304.0000" />
+    <order orderID="10892" orderDay="17" orderMonth="2" orderYear="1998" orderTotal="2200.0000" />
+    <order orderID="10896" orderDay="19" orderMonth="2" orderYear="1998" orderTotal="750.5000" />
+    <order orderID="10978" orderDay="26" orderMonth="3" orderYear="1998" orderTotal="1500.7000" />
+    <order orderID="11004" orderDay="7" orderMonth="4" orderYear="1998" orderTotal="295.3800" />
+  </customer>
+  <customer ID="MEREP" City="Montréal" Company="Mère Paillarde">
+    <order orderID="10332" orderDay="17" orderMonth="10" orderYear="1996" orderTotal="2233.6000" />
+    <order orderID="10339" orderDay="28" orderMonth="10" orderYear="1996" orderTotal="3463.2000" />
+    <order orderID="10376" orderDay="9" orderMonth="12" orderYear="1996" orderTotal="420.0000" />
+    <order orderID="10424" orderDay="23" orderMonth="1" orderYear="1997" orderTotal="11493.2000" />
+    <order orderID="10439" orderDay="7" orderMonth="2" orderYear="1997" orderTotal="1078.0000" />
+    <order orderID="10505" orderDay="14" orderMonth="4" orderYear="1997" orderTotal="147.9000" />
+    <order orderID="10565" orderDay="11" orderMonth="6" orderYear="1997" orderTotal="711.0000" />
+    <order orderID="10570" orderDay="17" orderMonth="6" orderYear="1997" orderTotal="2595.0000" />
+    <order orderID="10590" orderDay="7" orderMonth="7" orderYear="1997" orderTotal="1140.0000" />
+    <order orderID="10605" orderDay="21" orderMonth="7" orderYear="1997" orderTotal="4326.0000" />
+    <order orderID="10618" orderDay="1" orderMonth="8" orderYear="1997" orderTotal="2697.5000" />
+    <order orderID="10619" orderDay="4" orderMonth="8" orderYear="1997" orderTotal="1260.0000" />
+    <order orderID="10724" orderDay="30" orderMonth="10" orderYear="1997" orderTotal="638.5000" />
+  </customer>
+  <customer ID="MORGK" City="Leipzig" Company="Morgenstern Gesundkost">
+    <order orderID="10277" orderDay="9" orderMonth="8" orderYear="1996" orderTotal="1200.8000" />
+    <order orderID="10575" orderDay="20" orderMonth="6" orderYear="1997" orderTotal="2147.4000" />
+    <order orderID="10699" orderDay="9" orderMonth="10" orderYear="1997" orderTotal="114.0000" />
+    <order orderID="10779" orderDay="16" orderMonth="12" orderYear="1997" orderTotal="1335.0000" />
+    <order orderID="10945" orderDay="12" orderMonth="3" orderYear="1998" orderTotal="245.0000" />
+  </customer>
+  <customer ID="NORTS" City="London" Company="North/South">
+    <order orderID="10517" orderDay="24" orderMonth="4" orderYear="1997" orderTotal="352.0000" />
+    <order orderID="10752" orderDay="24" orderMonth="11" orderYear="1997" orderTotal="252.0000" />
+    <order orderID="11057" orderDay="29" orderMonth="4" orderYear="1998" orderTotal="45.0000" />
+  </customer>
+  <customer ID="OCEAN" City="Buenos Aires" Company="Océano Atlántico Ltda.">
+    <order orderID="10409" orderDay="9" orderMonth="1" orderYear="1997" orderTotal="319.2000" />
+    <order orderID="10531" orderDay="8" orderMonth="5" orderYear="1997" orderTotal="110.0000" />
+    <order orderID="10898" orderDay="20" orderMonth="2" orderYear="1998" orderTotal="30.0000" />
+    <order orderID="10958" orderDay="18" orderMonth="3" orderYear="1998" orderTotal="781.0000" />
+    <order orderID="10986" orderDay="30" orderMonth="3" orderYear="1998" orderTotal="2220.0000" />
+  </customer>
+  <customer ID="OLDWO" City="Anchorage" Company="Old World Delicatessen">
+    <order orderID="10305" orderDay="13" orderMonth="9" orderYear="1996" orderTotal="4157.0000" />
+    <order orderID="10338" orderDay="25" orderMonth="10" orderYear="1996" orderTotal="934.5000" />
+    <order orderID="10441" orderDay="10" orderMonth="2" orderYear="1997" orderTotal="1755.0000" />
+    <order orderID="10594" orderDay="9" orderMonth="7" orderYear="1997" orderTotal="565.5000" />
+    <order orderID="10680" orderDay="24" orderMonth="9" orderYear="1997" orderTotal="1682.5000" />
+    <order orderID="10706" orderDay="16" orderMonth="10" orderYear="1997" orderTotal="1893.0000" />
+    <order orderID="10808" orderDay="1" orderMonth="1" orderYear="1998" orderTotal="1660.0000" />
+    <order orderID="10855" orderDay="27" orderMonth="1" orderYear="1998" orderTotal="2275.2500" />
+    <order orderID="10965" orderDay="20" orderMonth="3" orderYear="1998" orderTotal="848.0000" />
+    <order orderID="11034" orderDay="20" orderMonth="4" orderYear="1998" orderTotal="554.4000" />
+  </customer>
+  <customer ID="OTTIK" City="Köln" Company="Ottilies Käseladen">
+    <order orderID="10260" orderDay="19" orderMonth="7" orderYear="1996" orderTotal="1746.2000" />
+    <order orderID="10407" orderDay="7" orderMonth="1" orderYear="1997" orderTotal="1194.0000" />
+    <order orderID="10508" orderDay="16" orderMonth="4" orderYear="1997" orderTotal="240.0000" />
+    <order orderID="10554" orderDay="30" orderMonth="5" orderYear="1997" orderTotal="1819.5000" />
+    <order orderID="10580" orderDay="26" orderMonth="6" orderYear="1997" orderTotal="1067.1000" />
+    <order orderID="10684" orderDay="26" orderMonth="9" orderYear="1997" orderTotal="1768.0000" />
+    <order orderID="10766" orderDay="5" orderMonth="12" orderYear="1997" orderTotal="2310.0000" />
+    <order orderID="10833" orderDay="15" orderMonth="1" orderYear="1998" orderTotal="1007.7000" />
+    <order orderID="10999" orderDay="3" orderMonth="4" orderYear="1998" orderTotal="1261.0000" />
+    <order orderID="11020" orderDay="14" orderMonth="4" orderYear="1998" orderTotal="744.0000" />
+  </customer>
+  <customer ID="PARIS" City="Paris" Company="Paris spécialités" />
+  <customer ID="PERIC" City="México D.F." Company="Pericles Comidas clásicas">
+    <order orderID="10322" orderDay="4" orderMonth="10" orderYear="1996" orderTotal="112.0000" />
+    <order orderID="10354" orderDay="14" orderMonth="11" orderYear="1996" orderTotal="568.8000" />
+    <order orderID="10474" orderDay="13" orderMonth="3" orderYear="1997" orderTotal="1249.1000" />
+    <order orderID="10502" orderDay="10" orderMonth="4" orderYear="1997" orderTotal="816.3000" />
+    <order orderID="10995" orderDay="2" orderMonth="4" orderYear="1998" orderTotal="1196.0000" />
+    <order orderID="11073" orderDay="5" orderMonth="5" orderYear="1998" orderTotal="300.0000" />
+  </customer>
+  <customer ID="PICCO" City="Salzburg" Company="Piccolo und mehr">
+    <order orderID="10353" orderDay="13" orderMonth="11" orderYear="1996" orderTotal="10741.6000" />
+    <order orderID="10392" orderDay="24" orderMonth="12" orderYear="1996" orderTotal="1440.0000" />
+    <order orderID="10427" orderDay="27" orderMonth="1" orderYear="1997" orderTotal="651.0000" />
+    <order orderID="10489" orderDay="28" orderMonth="3" orderYear="1997" orderTotal="502.2000" />
+    <order orderID="10530" orderDay="8" orderMonth="5" orderYear="1997" orderTotal="4180.0000" />
+    <order orderID="10597" orderDay="11" orderMonth="7" orderYear="1997" orderTotal="800.1000" />
+    <order orderID="10686" orderDay="30" orderMonth="9" orderYear="1997" orderTotal="1638.4500" />
+    <order orderID="10747" orderDay="19" orderMonth="11" orderYear="1997" orderTotal="1912.8500" />
+    <order orderID="10844" orderDay="21" orderMonth="1" orderYear="1998" orderTotal="735.0000" />
+    <order orderID="11053" orderDay="27" orderMonth="4" orderYear="1998" orderTotal="3658.7500" />
+  </customer>
+  <customer ID="PRINI" City="Lisboa" Company="Princesa Isabel Vinhos">
+    <order orderID="10336" orderDay="23" orderMonth="10" orderYear="1996" orderTotal="316.8000" />
+    <order orderID="10397" orderDay="27" orderMonth="12" orderYear="1996" orderTotal="843.2000" />
+    <order orderID="10433" orderDay="3" orderMonth="2" orderYear="1997" orderTotal="851.2000" />
+    <order orderID="10477" orderDay="17" orderMonth="3" orderYear="1997" orderTotal="672.0000" />
+    <order orderID="11007" orderDay="8" orderMonth="4" orderYear="1998" orderTotal="2633.9000" />
+  </customer>
+  <customer ID="QUEDE" City="Rio de Janeiro" Company="Que Delícia">
+    <order orderID="10261" orderDay="19" orderMonth="7" orderYear="1996" orderTotal="448.0000" />
+    <order orderID="10291" orderDay="27" orderMonth="8" orderYear="1996" orderTotal="552.8000" />
+    <order orderID="10379" orderDay="11" orderMonth="12" orderYear="1996" orderTotal="959.2000" />
+    <order orderID="10421" orderDay="21" orderMonth="1" orderYear="1997" orderTotal="1273.2000" />
+    <order orderID="10587" orderDay="2" orderMonth="7" orderYear="1997" orderTotal="807.3800" />
+    <order orderID="10647" orderDay="27" orderMonth="8" orderYear="1997" orderTotal="636.0000" />
+    <order orderID="10720" orderDay="28" orderMonth="10" orderYear="1997" orderTotal="550.0000" />
+    <order orderID="10794" orderDay="24" orderMonth="12" orderYear="1997" orderTotal="393.4500" />
+    <order orderID="10989" orderDay="31" orderMonth="3" orderYear="1998" orderTotal="1353.6000" />
+  </customer>
+  <customer ID="QUEEN" City="Sao Paulo" Company="Queen Cozinha">
+    <order orderID="10372" orderDay="4" orderMonth="12" orderYear="1996" orderTotal="12281.2000" />
+    <order orderID="10406" orderDay="7" orderMonth="1" orderYear="1997" orderTotal="2018.2000" />
+    <order orderID="10487" orderDay="26" orderMonth="3" orderYear="1997" orderTotal="925.1000" />
+    <order orderID="10637" orderDay="19" orderMonth="8" orderYear="1997" orderTotal="2896.2500" />
+    <order orderID="10659" orderDay="5" orderMonth="9" orderYear="1997" orderTotal="1291.6000" />
+    <order orderID="10704" orderDay="14" orderMonth="10" orderYear="1997" orderTotal="595.5000" />
+    <order orderID="10728" orderDay="4" orderMonth="11" orderYear="1997" orderTotal="1296.7500" />
+    <order orderID="10786" orderDay="19" orderMonth="12" orderYear="1997" orderTotal="1913.8500" />
+    <order orderID="10868" orderDay="4" orderMonth="2" orderYear="1998" orderTotal="2004.6000" />
+    <order orderID="10913" orderDay="26" orderMonth="2" orderYear="1998" orderTotal="958.7500" />
+    <order orderID="10914" orderDay="27" orderMonth="2" orderYear="1998" orderTotal="537.5000" />
+    <order orderID="10961" orderDay="19" orderMonth="3" orderYear="1998" orderTotal="1122.0000" />
+    <order orderID="11068" orderDay="4" orderMonth="5" orderYear="1998" orderTotal="2384.8000" />
+  </customer>
+  <customer ID="QUICK" City="Cunewalde" Company="QUICK-Stop">
+    <order orderID="10273" orderDay="5" orderMonth="8" orderYear="1996" orderTotal="2142.4000" />
+    <order orderID="10285" orderDay="20" orderMonth="8" orderYear="1996" orderTotal="2179.2000" />
+    <order orderID="10286" orderDay="21" orderMonth="8" orderYear="1996" orderTotal="3016.0000" />
+    <order orderID="10313" orderDay="24" orderMonth="9" orderYear="1996" orderTotal="182.4000" />
+    <order orderID="10345" orderDay="4" orderMonth="11" orderYear="1996" orderTotal="2924.8000" />
+    <order orderID="10361" orderDay="22" orderMonth="11" orderYear="1996" orderTotal="2273.6000" />
+    <order orderID="10418" orderDay="17" orderMonth="1" orderYear="1997" orderTotal="1814.8000" />
+    <order orderID="10451" orderDay="19" orderMonth="2" orderYear="1997" orderTotal="4277.4000" />
+    <order orderID="10515" orderDay="23" orderMonth="4" orderYear="1997" orderTotal="10588.5000" />
+    <order orderID="10527" orderDay="5" orderMonth="5" orderYear="1997" orderTotal="1670.0000" />
+    <order orderID="10540" orderDay="19" orderMonth="5" orderYear="1997" orderTotal="10191.7000" />
+    <order orderID="10549" orderDay="27" orderMonth="5" orderYear="1997" orderTotal="4181.5000" />
+    <order orderID="10588" orderDay="3" orderMonth="7" orderYear="1997" orderTotal="3900.0000" />
+    <order orderID="10658" orderDay="5" orderMonth="9" orderYear="1997" orderTotal="4668.0000" />
+    <order orderID="10691" orderDay="3" orderMonth="10" orderYear="1997" orderTotal="10164.8000" />
+    <order orderID="10694" orderDay="6" orderMonth="10" orderYear="1997" orderTotal="4825.0000" />
+    <order orderID="10721" orderDay="29" orderMonth="10" orderYear="1997" orderTotal="972.5000" />
+    <order orderID="10745" orderDay="18" orderMonth="11" orderYear="1997" orderTotal="4529.8000" />
+    <order orderID="10765" orderDay="4" orderMonth="12" orderYear="1997" orderTotal="1684.0000" />
+    <order orderID="10788" orderDay="22" orderMonth="12" orderYear="1997" orderTotal="770.0000" />
+    <order orderID="10845" orderDay="21" orderMonth="1" orderYear="1998" orderTotal="4059.0000" />
+    <order orderID="10865" orderDay="2" orderMonth="2" orderYear="1998" orderTotal="17250.0000" />
+    <order orderID="10878" orderDay="10" orderMonth="2" orderYear="1998" orderTotal="1620.0000" />
+    <order orderID="10938" orderDay="10" orderMonth="3" orderYear="1998" orderTotal="3642.5000" />
+    <order orderID="10962" orderDay="19" orderMonth="3" orderYear="1998" orderTotal="3584.0000" />
+    <order orderID="10991" orderDay="1" orderMonth="4" orderYear="1998" orderTotal="2870.0000" />
+    <order orderID="10996" orderDay="2" orderMonth="4" orderYear="1998" orderTotal="560.0000" />
+    <order orderID="11021" orderDay="14" orderMonth="4" orderYear="1998" orderTotal="6941.4900" />
+  </customer>
+  <customer ID="RANCH" City="Buenos Aires" Company="Rancho grande">
+    <order orderID="10448" orderDay="17" orderMonth="2" orderYear="1997" orderTotal="443.4000" />
+    <order orderID="10716" orderDay="24" orderMonth="10" orderYear="1997" orderTotal="706.0000" />
+    <order orderID="10828" orderDay="13" orderMonth="1" orderYear="1998" orderTotal="932.0000" />
+    <order orderID="10916" orderDay="27" orderMonth="2" orderYear="1998" orderTotal="686.7000" />
+    <order orderID="11019" orderDay="13" orderMonth="4" orderYear="1998" orderTotal="76.0000" />
+  </customer>
+  <customer ID="RATTC" City="Albuquerque" Company="Rattlesnake Canyon Grocery">
+    <order orderID="10262" orderDay="22" orderMonth="7" orderYear="1996" orderTotal="624.8000" />
+    <order orderID="10272" orderDay="2" orderMonth="8" orderYear="1996" orderTotal="1456.0000" />
+    <order orderID="10294" orderDay="30" orderMonth="8" orderYear="1996" orderTotal="1887.6000" />
+    <order orderID="10314" orderDay="25" orderMonth="9" orderYear="1996" orderTotal="2327.0000" />
+    <order orderID="10316" orderDay="27" orderMonth="9" orderYear="1996" orderTotal="2835.0000" />
+    <order orderID="10346" orderDay="5" orderMonth="11" orderYear="1996" orderTotal="1731.2000" />
+    <order orderID="10401" orderDay="1" orderMonth="1" orderYear="1997" orderTotal="3868.6000" />
+    <order orderID="10479" orderDay="19" orderMonth="3" orderYear="1997" orderTotal="10495.6000" />
+    <order orderID="10564" orderDay="10" orderMonth="6" orderYear="1997" orderTotal="1299.0000" />
+    <order orderID="10569" orderDay="16" orderMonth="6" orderYear="1997" orderTotal="977.5000" />
+    <order orderID="10598" orderDay="14" orderMonth="7" orderYear="1997" orderTotal="2388.5000" />
+    <order orderID="10761" orderDay="2" orderMonth="12" orderYear="1997" orderTotal="629.5000" />
+    <order orderID="10820" orderDay="7" orderMonth="1" orderYear="1998" orderTotal="1140.0000" />
+    <order orderID="10852" orderDay="26" orderMonth="1" orderYear="1998" orderTotal="2984.0000" />
+    <order orderID="10889" orderDay="16" orderMonth="2" orderYear="1998" orderTotal="11380.0000" />
+    <order orderID="10988" orderDay="31" orderMonth="3" orderYear="1998" orderTotal="3772.0000" />
+    <order orderID="11000" orderDay="6" orderMonth="4" orderYear="1998" orderTotal="1075.0000" />
+    <order orderID="11077" orderDay="6" orderMonth="5" orderYear="1998" orderTotal="1374.6000" />
+  </customer>
+  <customer ID="REGGC" City="Reggio Emilia" Company="Reggiani Caseifici">
+    <order orderID="10288" orderDay="23" orderMonth="8" orderYear="1996" orderTotal="89.0000" />
+    <order orderID="10428" orderDay="28" orderMonth="1" orderYear="1997" orderTotal="192.0000" />
+    <order orderID="10443" orderDay="12" orderMonth="2" orderYear="1997" orderTotal="537.6000" />
+    <order orderID="10562" orderDay="9" orderMonth="6" orderYear="1997" orderTotal="543.0000" />
+    <order orderID="10586" orderDay="2" orderMonth="7" orderYear="1997" orderTotal="28.0000" />
+    <order orderID="10655" orderDay="3" orderMonth="9" orderYear="1997" orderTotal="193.0000" />
+    <order orderID="10727" orderDay="3" orderMonth="11" orderYear="1997" orderTotal="1710.0000" />
+    <order orderID="10812" orderDay="2" orderMonth="1" orderYear="1998" orderTotal="1852.0000" />
+    <order orderID="10908" orderDay="26" orderMonth="2" orderYear="1998" orderTotal="698.0000" />
+    <order orderID="10942" orderDay="11" orderMonth="3" orderYear="1998" orderTotal="560.0000" />
+    <order orderID="11010" orderDay="9" orderMonth="4" orderYear="1998" orderTotal="645.0000" />
+    <order orderID="11062" orderDay="30" orderMonth="4" orderYear="1998" orderTotal="508.0000" />
+  </customer>
+  <customer ID="RICAR" City="Rio de Janeiro" Company="Ricardo Adocicados">
+    <order orderID="10287" orderDay="22" orderMonth="8" orderYear="1996" orderTotal="924.0000" />
+    <order orderID="10299" orderDay="6" orderMonth="9" orderYear="1996" orderTotal="349.5000" />
+    <order orderID="10447" orderDay="14" orderMonth="2" orderYear="1997" orderTotal="914.4000" />
+    <order orderID="10481" orderDay="20" orderMonth="3" orderYear="1997" orderTotal="1472.0000" />
+    <order orderID="10563" orderDay="10" orderMonth="6" orderYear="1997" orderTotal="965.0000" />
+    <order orderID="10622" orderDay="6" orderMonth="8" orderYear="1997" orderTotal="605.0000" />
+    <order orderID="10648" orderDay="28" orderMonth="8" orderYear="1997" orderTotal="382.5000" />
+    <order orderID="10813" orderDay="5" orderMonth="1" orderYear="1998" orderTotal="648.0000" />
+    <order orderID="10851" orderDay="26" orderMonth="1" orderYear="1998" orderTotal="2740.0000" />
+    <order orderID="10877" orderDay="9" orderMonth="2" orderYear="1998" orderTotal="2086.0000" />
+    <order orderID="11059" orderDay="29" orderMonth="4" orderYear="1998" orderTotal="1838.0000" />
+  </customer>
+  <customer ID="RICSU" City="Genève" Company="Richter Supermarkt">
+    <order orderID="10255" orderDay="12" orderMonth="7" orderYear="1996" orderTotal="2490.5000" />
+    <order orderID="10419" orderDay="20" orderMonth="1" orderYear="1997" orderTotal="2208.0000" />
+    <order orderID="10537" orderDay="14" orderMonth="5" orderYear="1997" orderTotal="1823.8000" />
+    <order orderID="10666" orderDay="12" orderMonth="9" orderYear="1997" orderTotal="4666.9400" />
+    <order orderID="10751" orderDay="24" orderMonth="11" orderYear="1997" orderTotal="1701.4600" />
+    <order orderID="10758" orderDay="28" orderMonth="11" orderYear="1997" orderTotal="1644.6000" />
+    <order orderID="10931" orderDay="6" orderMonth="3" orderYear="1998" orderTotal="837.0000" />
+    <order orderID="10951" orderDay="16" orderMonth="3" orderYear="1998" orderTotal="482.9000" />
+    <order orderID="11033" orderDay="17" orderMonth="4" orderYear="1998" orderTotal="3592.0000" />
+    <order orderID="11075" orderDay="6" orderMonth="5" orderYear="1998" orderTotal="586.0000" />
+  </customer>
+  <customer ID="ROMEY" City="Madrid" Company="Romero y tomillo">
+    <order orderID="10281" orderDay="14" orderMonth="8" orderYear="1996" orderTotal="86.5000" />
+    <order orderID="10282" orderDay="15" orderMonth="8" orderYear="1996" orderTotal="155.4000" />
+    <order orderID="10306" orderDay="16" orderMonth="9" orderYear="1996" orderTotal="498.5000" />
+    <order orderID="10917" orderDay="2" orderMonth="3" orderYear="1998" orderTotal="365.8900" />
+    <order orderID="11013" orderDay="9" orderMonth="4" orderYear="1998" orderTotal="361.0000" />
+  </customer>
+  <customer ID="SANTG" City="Stavern" Company="Santé Gourmet">
+    <order orderID="10387" orderDay="18" orderMonth="12" orderYear="1996" orderTotal="1058.4000" />
+    <order orderID="10520" orderDay="29" orderMonth="4" orderYear="1997" orderTotal="200.0000" />
+    <order orderID="10639" orderDay="20" orderMonth="8" orderYear="1997" orderTotal="500.0000" />
+    <order orderID="10831" orderDay="14" orderMonth="1" orderYear="1998" orderTotal="2684.4000" />
+    <order orderID="10909" orderDay="26" orderMonth="2" orderYear="1998" orderTotal="670.0000" />
+    <order orderID="11015" orderDay="10" orderMonth="4" orderYear="1998" orderTotal="622.3500" />
+  </customer>
+  <customer ID="SAVEA" City="Boise" Company="Save-a-lot Markets">
+    <order orderID="10324" orderDay="8" orderMonth="10" orderYear="1996" orderTotal="6155.9000" />
+    <order orderID="10393" orderDay="25" orderMonth="12" orderYear="1996" orderTotal="3302.6000" />
+    <order orderID="10398" orderDay="30" orderMonth="12" orderYear="1996" orderTotal="2736.0000" />
+    <order orderID="10440" orderDay="10" orderMonth="2" orderYear="1997" orderTotal="5793.1000" />
+    <order orderID="10452" orderDay="20" orderMonth="2" orderYear="1997" orderTotal="2096.0000" />
+    <order orderID="10510" orderDay="18" orderMonth="4" orderYear="1997" orderTotal="4735.4400" />
+    <order orderID="10555" orderDay="2" orderMonth="6" orderYear="1997" orderTotal="3680.5000" />
+    <order orderID="10603" orderDay="18" orderMonth="7" orderYear="1997" orderTotal="1508.0000" />
+    <order orderID="10607" orderDay="22" orderMonth="7" orderYear="1997" orderTotal="6475.4000" />
+    <order orderID="10612" orderDay="28" orderMonth="7" orderYear="1997" orderTotal="6375.0000" />
+    <order orderID="10627" orderDay="11" orderMonth="8" orderYear="1997" orderTotal="1264.5000" />
+    <order orderID="10657" orderDay="4" orderMonth="9" orderYear="1997" orderTotal="4371.6000" />
+    <order orderID="10678" orderDay="23" orderMonth="9" orderYear="1997" orderTotal="5256.5000" />
+    <order orderID="10700" orderDay="10" orderMonth="10" orderYear="1997" orderTotal="2048.0000" />
+    <order orderID="10711" orderDay="21" orderMonth="10" orderYear="1997" orderTotal="4451.7000" />
+    <order orderID="10713" orderDay="22" orderMonth="10" orderYear="1997" orderTotal="2827.9000" />
+    <order orderID="10714" orderDay="22" orderMonth="10" orderYear="1997" orderTotal="2941.0000" />
+    <order orderID="10722" orderDay="29" orderMonth="10" orderYear="1997" orderTotal="1570.0000" />
+    <order orderID="10748" orderDay="20" orderMonth="11" orderYear="1997" orderTotal="2196.0000" />
+    <order orderID="10757" orderDay="27" orderMonth="11" orderYear="1997" orderTotal="3082.0000" />
+    <order orderID="10815" orderDay="5" orderMonth="1" orderYear="1998" orderTotal="40.0000" />
+    <order orderID="10847" orderDay="22" orderMonth="1" orderYear="1998" orderTotal="6164.9000" />
+    <order orderID="10882" orderDay="11" orderMonth="2" orderYear="1998" orderTotal="988.4000" />
+    <order orderID="10894" orderDay="18" orderMonth="2" orderYear="1998" orderTotal="2898.0000" />
+    <order orderID="10941" orderDay="11" orderMonth="3" orderYear="1998" orderTotal="4769.0000" />
+    <order orderID="10983" orderDay="27" orderMonth="3" orderYear="1998" orderTotal="796.5000" />
+    <order orderID="10984" orderDay="30" orderMonth="3" orderYear="1998" orderTotal="1809.7500" />
+    <order orderID="11002" orderDay="6" orderMonth="4" orderYear="1998" orderTotal="1902.0000" />
+    <order orderID="11030" orderDay="17" orderMonth="4" orderYear="1998" orderTotal="16321.9000" />
+    <order orderID="11031" orderDay="17" orderMonth="4" orderYear="1998" orderTotal="2393.5000" />
+    <order orderID="11064" orderDay="1" orderMonth="5" orderYear="1998" orderTotal="4722.3000" />
+  </customer>
+  <customer ID="SEVES" City="London" Company="Seven Seas Imports">
+    <order orderID="10359" orderDay="21" orderMonth="11" orderYear="1996" orderTotal="3654.4000" />
+    <order orderID="10377" orderDay="9" orderMonth="12" orderYear="1996" orderTotal="1016.0000" />
+    <order orderID="10388" orderDay="19" orderMonth="12" orderYear="1996" orderTotal="1274.0000" />
+    <order orderID="10472" orderDay="12" orderMonth="3" orderYear="1997" orderTotal="1051.2000" />
+    <order orderID="10523" orderDay="1" orderMonth="5" orderYear="1997" orderTotal="2715.9000" />
+    <order orderID="10547" orderDay="23" orderMonth="5" orderYear="1997" orderTotal="1908.0000" />
+    <order orderID="10800" orderDay="26" orderMonth="12" orderYear="1997" orderTotal="1632.1500" />
+    <order orderID="10804" orderDay="30" orderMonth="12" orderYear="1997" orderTotal="2290.4000" />
+    <order orderID="10869" orderDay="4" orderMonth="2" orderYear="1998" orderTotal="1630.0000" />
+  </customer>
+  <customer ID="SIMOB" City="Kobenhavn" Company="Simons bistro">
+    <order orderID="10341" orderDay="29" orderMonth="10" orderYear="1996" orderTotal="412.0000" />
+    <order orderID="10417" orderDay="16" orderMonth="1" orderYear="1997" orderTotal="11283.2000" />
+    <order orderID="10556" orderDay="3" orderMonth="6" orderYear="1997" orderTotal="835.2000" />
+    <order orderID="10642" orderDay="22" orderMonth="8" orderYear="1997" orderTotal="870.0000" />
+    <order orderID="10669" orderDay="15" orderMonth="9" orderYear="1997" orderTotal="570.0000" />
+    <order orderID="10802" orderDay="29" orderMonth="12" orderYear="1997" orderTotal="3923.7500" />
+    <order orderID="11074" orderDay="6" orderMonth="5" orderYear="1998" orderTotal="244.3000" />
+  </customer>
+  <customer ID="SPECD" City="Paris" Company="Spécialités du monde">
+    <order orderID="10738" orderDay="12" orderMonth="11" orderYear="1997" orderTotal="52.3500" />
+    <order orderID="10907" orderDay="25" orderMonth="2" orderYear="1998" orderTotal="108.5000" />
+    <order orderID="10964" orderDay="20" orderMonth="3" orderYear="1998" orderTotal="2052.5000" />
+    <order orderID="11043" orderDay="22" orderMonth="4" orderYear="1998" orderTotal="210.0000" />
+  </customer>
+  <customer ID="SPLIR" City="Lander" Company="Split Rail Beer &amp; Ale">
+    <order orderID="10271" orderDay="1" orderMonth="8" orderYear="1996" orderTotal="48.0000" />
+    <order orderID="10329" orderDay="15" orderMonth="10" orderYear="1996" orderTotal="4819.4000" />
+    <order orderID="10349" orderDay="8" orderMonth="11" orderYear="1996" orderTotal="141.6000" />
+    <order orderID="10369" orderDay="2" orderMonth="12" orderYear="1996" orderTotal="2527.2000" />
+    <order orderID="10385" orderDay="17" orderMonth="12" orderYear="1996" orderTotal="864.0000" />
+    <order orderID="10432" orderDay="31" orderMonth="1" orderYear="1997" orderTotal="485.0000" />
+    <order orderID="10756" orderDay="27" orderMonth="11" orderYear="1997" orderTotal="2487.5000" />
+    <order orderID="10821" orderDay="8" orderMonth="1" orderYear="1998" orderTotal="678.0000" />
+    <order orderID="10974" orderDay="25" orderMonth="3" orderYear="1998" orderTotal="439.0000" />
+  </customer>
+  <customer ID="SUPRD" City="Charleroi" Company="Suprêmes délices">
+    <order orderID="10252" orderDay="9" orderMonth="7" orderYear="1996" orderTotal="3730.0000" />
+    <order orderID="10302" orderDay="10" orderMonth="9" orderYear="1996" orderTotal="2708.8000" />
+    <order orderID="10458" orderDay="26" orderMonth="2" orderYear="1997" orderTotal="3891.0000" />
+    <order orderID="10463" orderDay="4" orderMonth="3" orderYear="1997" orderTotal="713.3000" />
+    <order orderID="10475" orderDay="14" orderMonth="3" orderYear="1997" orderTotal="1770.8000" />
+    <order orderID="10767" orderDay="5" orderMonth="12" orderYear="1997" orderTotal="28.0000" />
+    <order orderID="10841" orderDay="20" orderMonth="1" orderYear="1998" orderTotal="4581.0000" />
+    <order orderID="10846" orderDay="22" orderMonth="1" orderYear="1998" orderTotal="1112.0000" />
+    <order orderID="10885" orderDay="12" orderMonth="2" orderYear="1998" orderTotal="1209.0000" />
+    <order orderID="10930" orderDay="6" orderMonth="3" orderYear="1998" orderTotal="2455.0000" />
+    <order orderID="11035" orderDay="20" orderMonth="4" orderYear="1998" orderTotal="1754.5000" />
+    <order orderID="11038" orderDay="21" orderMonth="4" orderYear="1998" orderTotal="751.0000" />
+  </customer>
+  <customer ID="THEBI" City="Portland" Company="The Big Cheese">
+    <order orderID="10310" orderDay="20" orderMonth="9" orderYear="1996" orderTotal="336.0000" />
+    <order orderID="10708" orderDay="17" orderMonth="10" orderYear="1997" orderTotal="180.4000" />
+    <order orderID="10805" orderDay="30" orderMonth="12" orderYear="1997" orderTotal="2775.0000" />
+    <order orderID="10992" orderDay="1" orderMonth="4" orderYear="1998" orderTotal="69.6000" />
+  </customer>
+  <customer ID="THECR" City="Butte" Company="The Cracker Box">
+    <order orderID="10624" orderDay="7" orderMonth="8" orderYear="1997" orderTotal="1393.2400" />
+    <order orderID="10775" orderDay="12" orderMonth="12" orderYear="1997" orderTotal="228.0000" />
+    <order orderID="11003" orderDay="6" orderMonth="4" orderYear="1998" orderTotal="326.0000" />
+  </customer>
+  <customer ID="TOMSP" City="Münster" Company="Toms Spezialitäten">
+    <order orderID="10249" orderDay="5" orderMonth="7" orderYear="1996" orderTotal="1863.4000" />
+    <order orderID="10438" orderDay="6" orderMonth="2" orderYear="1997" orderTotal="567.5000" />
+    <order orderID="10446" orderDay="14" orderMonth="2" orderYear="1997" orderTotal="273.6000" />
+    <order orderID="10548" orderDay="26" orderMonth="5" orderYear="1997" orderTotal="275.1000" />
+    <order orderID="10608" orderDay="23" orderMonth="7" orderYear="1997" orderTotal="1064.0000" />
+    <order orderID="10967" orderDay="23" orderMonth="3" orderYear="1998" orderTotal="910.4000" />
+  </customer>
+  <customer ID="TORTU" City="México D.F." Company="Tortuga Restaurante">
+    <order orderID="10276" orderDay="8" orderMonth="8" orderYear="1996" orderTotal="420.0000" />
+    <order orderID="10293" orderDay="29" orderMonth="8" orderYear="1996" orderTotal="848.7000" />
+    <order orderID="10304" orderDay="12" orderMonth="9" orderYear="1996" orderTotal="954.4000" />
+    <order orderID="10319" orderDay="2" orderMonth="10" orderYear="1996" orderTotal="1191.2000" />
+    <order orderID="10518" orderDay="25" orderMonth="4" orderYear="1997" orderTotal="4150.0500" />
+    <order orderID="10576" orderDay="23" orderMonth="6" orderYear="1997" orderTotal="838.4500" />
+    <order orderID="10676" orderDay="22" orderMonth="9" orderYear="1997" orderTotal="534.8500" />
+    <order orderID="10842" orderDay="20" orderMonth="1" orderYear="1998" orderTotal="975.0000" />
+    <order orderID="10915" orderDay="27" orderMonth="2" orderYear="1998" orderTotal="539.5000" />
+    <order orderID="11069" orderDay="4" orderMonth="5" orderYear="1998" orderTotal="360.0000" />
+  </customer>
+  <customer ID="TRADH" City="Sao Paulo" Company="Tradição Hipermercados">
+    <order orderID="10292" orderDay="28" orderMonth="8" orderYear="1996" orderTotal="1296.0000" />
+    <order orderID="10496" orderDay="4" orderMonth="4" orderYear="1997" orderTotal="200.0000" />
+    <order orderID="10606" orderDay="22" orderMonth="7" orderYear="1997" orderTotal="1413.0000" />
+    <order orderID="10830" orderDay="13" orderMonth="1" orderYear="1998" orderTotal="1974.0000" />
+    <order orderID="10834" orderDay="15" orderMonth="1" orderYear="1998" orderTotal="1508.1200" />
+    <order orderID="10839" orderDay="19" orderMonth="1" orderYear="1998" orderTotal="919.5000" />
+  </customer>
+  <customer ID="TRAIH" City="Kirkland" Company="Trail's Head Gourmet Provisioners">
+    <order orderID="10574" orderDay="19" orderMonth="6" orderYear="1997" orderTotal="764.3000" />
+    <order orderID="10577" orderDay="23" orderMonth="6" orderYear="1997" orderTotal="569.0000" />
+    <order orderID="10822" orderDay="8" orderMonth="1" orderYear="1998" orderTotal="237.9000" />
+  </customer>
+  <customer ID="VAFFE" City="Århus" Company="Vaffeljernet">
+    <order orderID="10367" orderDay="28" orderMonth="11" orderYear="1996" orderTotal="834.2000" />
+    <order orderID="10399" orderDay="31" orderMonth="12" orderYear="1996" orderTotal="1765.6000" />
+    <order orderID="10465" orderDay="5" orderMonth="3" orderYear="1997" orderTotal="2719.0000" />
+    <order orderID="10591" orderDay="7" orderMonth="7" orderYear="1997" orderTotal="812.5000" />
+    <order orderID="10602" orderDay="17" orderMonth="7" orderYear="1997" orderTotal="65.0000" />
+    <order orderID="10688" orderDay="1" orderMonth="10" orderYear="1997" orderTotal="3490.0000" />
+    <order orderID="10744" orderDay="17" orderMonth="11" orderYear="1997" orderTotal="920.0000" />
+    <order orderID="10769" orderDay="8" orderMonth="12" orderYear="1997" orderTotal="1704.0000" />
+    <order orderID="10921" orderDay="3" orderMonth="3" orderYear="1998" orderTotal="1936.0000" />
+    <order orderID="10946" orderDay="12" orderMonth="3" orderYear="1998" orderTotal="1407.5000" />
+    <order orderID="10994" orderDay="2" orderMonth="4" orderYear="1998" orderTotal="990.0000" />
+  </customer>
+  <customer ID="VICTE" City="Lyon" Company="Victuailles en stock">
+    <order orderID="10251" orderDay="8" orderMonth="7" orderYear="1996" orderTotal="670.8000" />
+    <order orderID="10334" orderDay="21" orderMonth="10" orderYear="1996" orderTotal="144.8000" />
+    <order orderID="10450" orderDay="19" orderMonth="2" orderYear="1997" orderTotal="531.4000" />
+    <order orderID="10459" orderDay="27" orderMonth="2" orderYear="1997" orderTotal="1688.0000" />
+    <order orderID="10478" orderDay="18" orderMonth="3" orderYear="1997" orderTotal="496.0000" />
+    <order orderID="10546" orderDay="23" orderMonth="5" orderYear="1997" orderTotal="2812.0000" />
+    <order orderID="10806" orderDay="31" orderMonth="12" orderYear="1997" orderTotal="572.1000" />
+    <order orderID="10814" orderDay="5" orderMonth="1" orderYear="1998" orderTotal="2070.0000" />
+    <order orderID="10843" orderDay="21" orderMonth="1" orderYear="1998" orderTotal="212.0000" />
+    <order orderID="10850" orderDay="23" orderMonth="1" orderYear="1998" orderTotal="740.0000" />
+  </customer>
+  <customer ID="VINET" City="Reims" Company="Vins et alcools Chevalier">
+    <order orderID="10248" orderDay="4" orderMonth="7" orderYear="1996" orderTotal="440.0000" />
+    <order orderID="10274" orderDay="6" orderMonth="8" orderYear="1996" orderTotal="538.6000" />
+    <order orderID="10295" orderDay="2" orderMonth="9" orderYear="1996" orderTotal="121.6000" />
+    <order orderID="10737" orderDay="11" orderMonth="11" orderYear="1997" orderTotal="139.8000" />
+    <order orderID="10739" orderDay="12" orderMonth="11" orderYear="1997" orderTotal="240.0000" />
+  </customer>
+  <customer ID="WANDK" City="Stuttgart" Company="Die Wandernde Kuh">
+    <order orderID="10301" orderDay="9" orderMonth="9" orderYear="1996" orderTotal="755.0000" />
+    <order orderID="10312" orderDay="23" orderMonth="9" orderYear="1996" orderTotal="1614.8000" />
+    <order orderID="10348" orderDay="7" orderMonth="11" orderYear="1996" orderTotal="396.0000" />
+    <order orderID="10356" orderDay="18" orderMonth="11" orderYear="1996" orderTotal="1106.4000" />
+    <order orderID="10513" orderDay="22" orderMonth="4" orderYear="1997" orderTotal="2427.5000" />
+    <order orderID="10632" orderDay="14" orderMonth="8" orderYear="1997" orderTotal="620.0000" />
+    <order orderID="10640" orderDay="21" orderMonth="8" orderYear="1997" orderTotal="945.0000" />
+    <order orderID="10651" orderDay="1" orderMonth="9" orderYear="1997" orderTotal="530.4000" />
+    <order orderID="10668" orderDay="15" orderMonth="9" orderYear="1997" orderTotal="694.7500" />
+    <order orderID="11046" orderDay="23" orderMonth="4" orderYear="1998" orderTotal="1564.0000" />
+  </customer>
+  <customer ID="WARTH" City="Oulu" Company="Wartian Herkku">
+    <order orderID="10266" orderDay="26" orderMonth="7" orderYear="1996" orderTotal="364.8000" />
+    <order orderID="10270" orderDay="1" orderMonth="8" orderYear="1996" orderTotal="1376.0000" />
+    <order orderID="10320" orderDay="3" orderMonth="10" orderYear="1996" orderTotal="516.0000" />
+    <order orderID="10333" orderDay="18" orderMonth="10" orderYear="1996" orderTotal="954.0000" />
+    <order orderID="10412" orderDay="13" orderMonth="1" orderYear="1997" orderTotal="372.0000" />
+    <order orderID="10416" orderDay="16" orderMonth="1" orderYear="1997" orderTotal="720.0000" />
+    <order orderID="10437" orderDay="5" orderMonth="2" orderYear="1997" orderTotal="393.0000" />
+    <order orderID="10455" orderDay="24" orderMonth="2" orderYear="1997" orderTotal="2684.0000" />
+    <order orderID="10526" orderDay="5" orderMonth="5" orderYear="1997" orderTotal="1344.0000" />
+    <order orderID="10553" orderDay="30" orderMonth="5" orderYear="1997" orderTotal="1546.3000" />
+    <order orderID="10583" orderDay="30" orderMonth="6" orderYear="1997" orderTotal="2413.9000" />
+    <order orderID="10636" orderDay="19" orderMonth="8" orderYear="1997" orderTotal="629.5000" />
+    <order orderID="10750" orderDay="21" orderMonth="11" orderYear="1997" orderTotal="1871.2500" />
+    <order orderID="10781" orderDay="17" orderMonth="12" orderYear="1997" orderTotal="1132.3500" />
+    <order orderID="11025" orderDay="15" orderMonth="4" orderYear="1998" orderTotal="300.0000" />
+  </customer>
+  <customer ID="WELLI" City="Resende" Company="Wellington Importadora">
+    <order orderID="10256" orderDay="15" orderMonth="7" orderYear="1996" orderTotal="517.8000" />
+    <order orderID="10420" orderDay="21" orderMonth="1" orderYear="1997" orderTotal="1897.6000" />
+    <order orderID="10585" orderDay="1" orderMonth="7" orderYear="1997" orderTotal="142.5000" />
+    <order orderID="10644" orderDay="25" orderMonth="8" orderYear="1997" orderTotal="1422.0000" />
+    <order orderID="10803" orderDay="30" orderMonth="12" orderYear="1997" orderTotal="1255.8000" />
+    <order orderID="10809" orderDay="1" orderMonth="1" orderYear="1998" orderTotal="140.0000" />
+    <order orderID="10900" orderDay="20" orderMonth="2" orderYear="1998" orderTotal="45.0000" />
+    <order orderID="10905" orderDay="24" orderMonth="2" orderYear="1998" orderTotal="360.0000" />
+    <order orderID="10935" orderDay="9" orderMonth="3" orderYear="1998" orderTotal="700.0000" />
+  </customer>
+  <customer ID="WHITC" City="Seattle" Company="White Clover Markets">
+    <order orderID="10269" orderDay="31" orderMonth="7" orderYear="1996" orderTotal="676.0000" />
+    <order orderID="10344" orderDay="1" orderMonth="11" orderYear="1996" orderTotal="2856.0000" />
+    <order orderID="10469" orderDay="10" orderMonth="3" orderYear="1997" orderTotal="1125.5000" />
+    <order orderID="10483" orderDay="24" orderMonth="3" orderYear="1997" orderTotal="704.0000" />
+    <order orderID="10504" orderDay="11" orderMonth="4" orderYear="1997" orderTotal="1388.5000" />
+    <order orderID="10596" orderDay="11" orderMonth="7" orderYear="1997" orderTotal="1476.1000" />
+    <order orderID="10693" orderDay="6" orderMonth="10" orderYear="1997" orderTotal="2334.0000" />
+    <order orderID="10696" orderDay="8" orderMonth="10" orderYear="1997" orderTotal="996.0000" />
+    <order orderID="10723" orderDay="30" orderMonth="10" orderYear="1997" orderTotal="468.4500" />
+    <order orderID="10740" orderDay="13" orderMonth="11" orderYear="1997" orderTotal="1770.0000" />
+    <order orderID="10861" orderDay="30" orderMonth="1" orderYear="1998" orderTotal="3523.4000" />
+    <order orderID="10904" orderDay="24" orderMonth="2" orderYear="1998" orderTotal="1924.2500" />
+    <order orderID="11032" orderDay="17" orderMonth="4" orderYear="1998" orderTotal="8902.5000" />
+    <order orderID="11066" orderDay="1" orderMonth="5" orderYear="1998" orderTotal="928.7500" />
+  </customer>
+  <customer ID="WILMK" City="Helsinki" Company="Wilman Kala">
+    <order orderID="10615" orderDay="30" orderMonth="7" orderYear="1997" orderTotal="120.0000" />
+    <order orderID="10673" orderDay="18" orderMonth="9" orderYear="1997" orderTotal="412.3500" />
+    <order orderID="10695" orderDay="7" orderMonth="10" orderYear="1997" orderTotal="642.0000" />
+    <order orderID="10873" orderDay="6" orderMonth="2" orderYear="1998" orderTotal="336.8000" />
+    <order orderID="10879" orderDay="10" orderMonth="2" orderYear="1998" orderTotal="611.3000" />
+    <order orderID="10910" orderDay="26" orderMonth="2" orderYear="1998" orderTotal="452.9000" />
+    <order orderID="11005" orderDay="7" orderMonth="4" orderYear="1998" orderTotal="586.0000" />
+  </customer>
+  <customer ID="WOLZA" City="Warszawa" Company="Wolski  Zajazd">
+    <order orderID="10374" orderDay="5" orderMonth="12" orderYear="1996" orderTotal="459.0000" />
+    <order orderID="10611" orderDay="25" orderMonth="7" orderYear="1997" orderTotal="808.0000" />
+    <order orderID="10792" orderDay="23" orderMonth="12" orderYear="1997" orderTotal="399.8500" />
+    <order orderID="10870" orderDay="4" orderMonth="2" orderYear="1998" orderTotal="160.0000" />
+    <order orderID="10906" orderDay="25" orderMonth="2" orderYear="1998" orderTotal="427.5000" />
+    <order orderID="10998" orderDay="3" orderMonth="4" orderYear="1998" orderTotal="686.0000" />
+    <order orderID="11044" orderDay="23" orderMonth="4" orderYear="1998" orderTotal="591.6000" />
+  </customer>
+</customers>

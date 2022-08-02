@@ -1,0 +1,12 @@
+测试驱动开发的艺术 （Test Driven:Practical TDD and Acceptance TDD for Jave Developers）
+
+官方网站：
+http://lassekoskela.com/thoughts （已失效）、
+http://www.manning.com/koskela、
+http://www.manning-sandbox.com/forum.jspa?forumaId=306 （已失效）、
+http://www.manning.com/kosketa （已失效）
+
+★
+作者： Lasse Koskela
+
+ 

@@ -1,0 +1,38 @@
+// atl_bolt_in.idl : IDL source for atl_bolt_in.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (atl_bolt_in.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+	[
+	
+		uuid(83382C08-6CD0-43F3-8AD4-BE2F02893F4A),
+	
+		helpstring("IMyServer Interface"),
+		pointer_default(unique)
+	]
+	interface IMyServer : IUnknown
+	{
+	};
+[
+	uuid(AB315967-25BE-4B9A-B410-4AC028F089DB),
+	version(1.0),
+	helpstring("atl_bolt_in 1.0 Type Library")
+]
+library ATL_BOLT_INLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(E6E002E2-0284-49D8-A555-FBEB9E389A6A),
+		helpstring("MyServer Class")
+	]
+	coclass MyServer
+	{
+		[default] interface IMyServer;
+	};
+};

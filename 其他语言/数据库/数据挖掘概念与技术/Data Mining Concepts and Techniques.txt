@@ -1,0 +1,11 @@
+数据挖掘概念与技术（Data Mining Concepts and Techniques）
+（第3版） 
+
+☆
+作者：Jiawei Han、Micheline Kamber、Jian Pei
+
+官方网站：
+http://www.booksite.mkp.com/datamining3e/ 
+http://www.cs.uiuc.edu/~hanj/bk3
+ 
+

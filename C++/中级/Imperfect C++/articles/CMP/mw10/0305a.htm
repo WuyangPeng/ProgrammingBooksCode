@@ -1,0 +1,260 @@
+<html>
+<head>
+<title>Win32 Performance Measurement Options</title>
+</head>
+
+<body>
+
+<h1>Win32 Performance Measurement Options</h1>
+<p>Courtesy of <i>Windows Developer Network</i> (May, 2003)</p>
+<h2>Choose the right profiling class to get the optimum result</h2>
+<h3>By Matthew Wilson</h3>
+
+
+<p>Most real-world programs have performance requirements for profiling in order to determine where any bottlenecks may lie. Developers are notoriously bad at intuiting which parts of their code need optimization and which do not, and so are advised to profile their code before attempting optimizations. However, they are often left without adequate guidance as to the best way of determining accurate performance analysis data, or indeed what performance measurement functions are appropriate for a particular scenario. By knowing the costs and benefits of the available timing options, developers can better judge which profiling techniques to use, and this will help them to factor profiling side effects into their data. </p>
+
+
+<p>The Win32 API provides a number of different functions for eliciting timing information that may be useful in determining performance metrics. These functions, and the timing information they provide, vary in call cost, resolution, accuracy, scope, and availability, and the choice of which should be used depends on a number of factors, particularly the requirements for efficiency, accuracy, and the targeted platform(s).</p>
+
+<p>This article will describe the six main Win32 timing functions and present corresponding performance counter classes that wrap these functions. The classes provide a simple and consistent interface, allowing developers to swap timing functionality as needed. I'll also present a template class that manipulates instances of any of the six timing classes in order to provide scoped timing operations.</p>
+
+<p>All measurement affects that which is being measured, and software profiling is no exception. Indeed, it is often the case that such profiling has a deleterious and misleading effect on the system being measured. I'll compare the various timing functions available by qualitative analyses of documented resolution and availability (OS support), and quantitative analyses of their practical resolutions (how accurately they measure intervals) and call costs (how much the act of measurement costs).</p>
+
+<p>I will discuss the costs and benefits of each approach and offer advice on when each is most suitable, as well as highlighting some techniques for increasing accuracy by reducing the impact of the measurement process. Finally, a seventh performance counter class will be presented that provides an optimal blend of the examined timing functionality, attempting to use the high-resolution functions but defaulting to a less accurate, but ubiquitous, function when the best timer is not available.</p>
+
+
+
+<h4>Win32 API Timing Functions</h4>
+
+
+<p>The five Win32 timing functions provided by the base API (as implemented in KERNEL32.dll) are <b>GetTickCount</b>, <b>GetSystemTime()</b>/G<b>etSystemTimeAsFileTime()</b> (see the sidebar "<A HREF="0305as2.htm" target="_BLANK">System Time</A>"), <b>QueryPerformanceCounter()</b>, <b>GetThreadTimes()</b>, and <b>GetProcessTimes()</b> &#151; these are shown in <A HREF="0305at1.htm" target="_BLANK">Table 1</A>, along with the commonly used <b>timeGetTime()</b> function provided by the Windows MultiMedia API, in WINMM.DLL. (The KERNEL32 functions require linking to kernel32.lib, and <b>timeGetTime()</b> requires linking to winmm.lib.)</p>
+
+
+<p><b>GetTickCount()</b> takes no argument, and simply returns the number of milliseconds that have elapsed since the system was started. <b>GetTickCount()</b> is the only timing function (that is used &#151; see the sidebar "<A HREF="0305as2.htm" target="_BLANK">System Time</A>") that is provided by all operating systems and on all hardware. <A HREF="0305at2.htm" target="_BLANK">Table 2</A> lists the functions and their support on Windows 9x (95, 98, and Me), Windows NT (NT 3.5, 3.51, 4, 2000, and XP), and Windows CE operating systems. <b>timeGetTime()</b> has the same signature and semantics as <b>GetTickCount()</b>. On Windows 9x systems its resolution is 1ms, whereas on Windows NT systems it is usually 5ms or more, but can be modified by calling the <b>timeBeginPeriod()</b> function. In the tests described here, it was left at its default behavior.</p>
+
+<p>While in almost all cases the multimedia timer offers no advantage over <b>GetTickCount()</b>, it still finds popular use since its measurement resolution is configurable. In addition, the fact that its resolution was 10 times better than <b>GetTickCount()</b> on one of the machines examined shows that it is worth having in one's toolbox. The <b>timeGetSystemTime()</b> function was not examined since its documentation states it has a higher cost than <b>timeGetTime()</b>. Also, its use would result in a more complicated class implementation.</p><p>
+
+<b>GetSystemTime()</b> retrieves the current system time and instantiates a SYSTEMTIME structure, which is composed of a number of separate fields including year, month, day, hours, minutes, seconds, and milliseconds. A peer function, <b>GetSystemTimeAsFileTime()</b>, retrieves the current system time in a single 64-bit argument (in the form of the Win32 FILETIME structure), measured in 100ns intervals. See the sidebar "<A HREF="0305as2.htm" target="_BLANK">System Time</A>" for a discussion of their implementation relationship.</p>
+
+<p>If a system has a high-resolution counter, then <b>QueryPerformanceCounter()</b> may be used to obtain the current (64-bit) value of the high-performance counter, in the form of a Win32 LARGE_INTEGER structure. The value returned is the current count of the hardware counter and does not, in and of itself, represent a specific time unit. Because different hardware counters may use different counting frequencies, <b>QueryPerformanceFrequency()</b> must be called (once per host session) to determine the high-performance counter frequency in order to convert the performance counter values into time intervals. For example, if the high-performance counter frequency is 1,000,000, and two successive calls to <b>QueryPerformanceCounter()</b> yield a difference of 2000, then 2ms have elapsed. When no hardware counter is available, both <b>QueryPerformanceCounter()</b> and <b>QueryPerformanceFrequency()</b> return False. In practice, I have not encountered a laptop or desktop machine (running 9x or NT) on which a high-performance counter is not available.</p>
+
+<p>Note that while I have not seen it documented that the value returned by <b>QueryPerformanceFrequency()</b> is fixed for a particular processor, I have never encountered a machine on which this does not hold true. Indeed, experiments showed that while the processor frequency for one of the laptops used in these tests is affected by running in battery mode, the performance frequency is unaffected (3,579,545 in both cases). I am, therefore, reasonably confident that this assumption holds in all cases.</p><p>
+
+<b>GetTickCount()</b>, <b>timeGetTime()</b>, <b>GetSystemTime()</b>/<b>GetSystemTimeAsFileTime()</b>, and <b>QueryPerformanceCounter()</b> all yield values on a systemwide basis. In other words, they measure absolute times on the system, so if the system has other busy processes, the measured values will reflect that activity. While it is commonly the case that one can run performance tests on a system where all other processes are in a quiescent state, sometimes it is not possible. Furthermore, it is sometimes desirable to get a finer-grained look into a process's activities, in terms of the individual performance costs of the kernel and user components.</p>
+
+<p>On Windows NT operating systems, the <b>GetThreadTimes()</b> and <b>GetProcessTimes()</b> functions provide this information on a per-thread and per-process basis, respectively. These Win32 functions provide four 64-bit values (of type FILETIME) to the caller for the creation time, exit time, current kernel time, and current user time for the given thread/process, measured in 100ns intervals. </p>
+
+
+
+<h4>The Performance Counter Classes</h4>
+
+
+<p>The six classes presented here &#151; tick_counter, multimedia_counter, systemtime_counter, highperformance_counter, threadtimes_counter, and processtimes_counter &#151; are from the WinSTL  performance library, and are based on the six Win32 timing functions described in <A HREF="0305at1.htm" target="_BLANK">Table 1</A>. The essentials of each implementation are shown in <A HREF="0305al1.htm" target="_BLANK">Listings 1</A>, <A HREF="0305al2.htm" target="_BLANK">2</A>, <A HREF="0305al3.htm" target="_BLANK">3</A>, <A HREF="0305al4.htm" target="_BLANK">4</A>, <A HREF="0305al5.htm" target="_BLANK">5</A>, and <A HREF="0305al6.htm" target="_BLANK">6</A>. (The full implementations are provided in the archive and are available in their most up-to-date form online at <a href="http://winstl.org/" _target = "blank">http://winstl.org/</a>.) They all have a similar form and semantics according to the following format:</p>
+
+
+<pre>
+  class xxx_counter
+  {
+  public:
+    ...
+
+    typedef ws_sint64_t epoch_type;
+    typedef ws_sint64_t interval_type;
+
+  // Operations
+  public:
+    void start();
+    void stop();
+
+  // Attributes
+  public:
+    interval_type get_period_count() const;
+    interval_type get_seconds() const;
+    interval_type get_milliseconds() const;
+    interval_type get_microseconds() const;
+
+    ...
+};
+</pre>
+
+<p>By providing the same interface, they can easily be substituted (either by a single typedef change or as a result of preprocessor environment discrimination) to suit the needs of the program(mer).</p>
+
+<p>The <b>start()</b> method causes the first timing instant to be recorded, and the <b>stop()</b> method causes the second timing instant to be recorded. <b>start()</b> and <b>stop()</b> can be called multiple times, allowing staged timings, although obviously you will get nonsense values from the period attributes if <b>start()</b> is called after calling <b>stop()</b>. (Indeed, this is the reason that the interval types are signed, so that such values are negative and can, therefore, be more easily spotted.) Each of the classes calculates the elapsed time from the difference between these two instant values.</p>
+
+<p>The elapsed time for the measured period is provided by each class in units of seconds, milliseconds, and microseconds via the <b>get_seconds()</b>, <b>get_milliseconds()</b>, and <b>get_microseconds()</b> methods, respectively. The resolution of the return values from these methods depends on the underlying timing function; i.e., tick_counter's <b>get_microseconds()</b> will always return exactly 1000 times the value returned by <b>get_milliseconds()</b>, since <b>GetTickCount()</b>'s measurement resolution is (at best) 1 millisecond. </p>
+
+<p>Each class also provides the <b>get_period_ count()</b> method, which returns the extent of the elapsed period &#151; in timing function-specific increments &#151; by calculating the difference between the start and stop instant values. This can be of use when doing relative performance measures, since this method generally has a lower performance cost than any of the elapsed time methods (because most of them have to perform additional multiplications/divisions in order to convert into time units).</p>
+
+<p>The methods of all the classes are implemented inline for maximum efficiency. (Examination of the generated object code has shown that the inlining is carried out, and there is no significant additional overhead when using the class implementations over the Win32 functions directly.) Furthermore, having all the methods as inline simplifies use of the library since there are no implementation files to compile and link. Where pertinent, late-evaluation (also known as lazy-evaluation) techniques and static members are used so that the costs of calls (such as to <b>GetCurrentProcess()</b>) are only incurred once, and only when their information is actually needed. </p><p>
+
+
+<b></b><b>tick_counter and multimedia_counter</b> &#151; tick_ counter and multimedia_counter record the 32-bit unsigned values returned by <b>GetTickCount()</b> and <b>timeGetTime()</b>, respectively, in the <b>start()</b> and <b>stop()</b> methods into their m_start and m_end members. <b>get_milliseconds()</b> simply returns <b>get_period_count()</b>, <b>get_microseconds()</b> returns <b>get_period_count()</b> multiplied by 1000, and <b>get_seconds()</b> returns <b>get_period_count()</b> divided by 1000.</p><p>
+
+
+<b>systemtime_counter</b> &#151; systemtime_counter records the FILETIME value obtained from <b>GetSystemTimeAsFileTime()</b> in its <b>start()</b> and <b>stop()</b> methods, converting to ws_sint64_t (see the sidebar "<A HREF="0305as3.htm" target="_BLANK">Win32 64-Bit Integers</A>"). <b>get_period_count()</b> returns a value in 100ns increments, so <b>get_seconds()</b>, <b>get_milliseconds()</b>, and <b>get_microseconds()</b> are implemented to return this value divided by 10,000,000, 10000, and 10, respectively. <b>GetSystemTimeAsFileTime()</b> is preferred over <b>GetSystemTime()</b> (since it exists on all platforms save CE), is far more efficient on NT, and affords a simple and cleaner implementation of the class.</p><p>
+
+<b>highperformance_counter</b> &#151; highperformance_counter records the LARGE_INTEGER values obtained from <b>QueryPerformanceCounter()</b> in its <b>start()</b> and <b>stop()</b> methods, converting to ws_sint64_t (see the sidebar "<A HREF="0305as3.htm" target="_BLANK">Win32 64-Bit Integers</A>"). <b>get_seconds()</b> is implemented by dividing the value returned from <b>get_period_count()</b> by the frequency (obtained from <b>QueryPerformanceFrequency()</b>). This frequency is hardware dependent, but is commonly the processor frequency or a small factor thereof. The <b>_frequency()</b> method obtains the frequency via a once-only (since the s_frequency variable is static) call to <b>_query_frequency()</b>. <b>_query_frequency()</b> is implemented such that if <b>QueryPerformanceFrequency</b> returns False, indicating the absence of high-performance counter support, the value returned is the maximum value for its type, so that future divisions will evaluate to 0, rather than crashing on a divide-by-zero error.</p>
+
+<p><b>get_milliseconds()</b> and <b>get_microseconds()</b> are implemented by multiplying <b>get_ period_count()</b> by 1000 and 1,000,000, respectively, and dividing by the frequency. In order to avoid truncation of the result when the period_count is low, or overflow when it is high, the multiplication is carried out first if overflow will not occur, and afterwards if it will. </p>
+
+<p>Since it is required only for calculating the period, rather than measuring it, I employed a combination of late evaluation and statics to defer the expensive call to <b>QueryPerformanceFrequency()</b> until after the measurement is complete, as well as, of course, only doing it once per process. Indeed, if you only use <b>get_period_count()</b> &#151; and not <b>get_seconds()</b>, <b>get_milliseconds()</b>, or <b>get_microseconds()</b> &#151; then this cost is not incurred at all.</p>
+
+<p><b>processtimes_counter and threadtimes_ counter</b> &#151; As well as providing the four period methods that all the other counter classes provide, these two classes also provide four corresponding methods each for kernel time and user time. processtimes_counter and threadtimes_counter record the values for kernel and user time obtained from <b>GetProcessTimes()</b> and <b>GetThreadTimes()</b>, respectively, in their <b>start()</b> and <b>stop()</b> methods into the m_kernelStart, m_kernelEnd, m_userStart, and m_userEnd members (casting in the same way as in systemtime_counter). In addition to this being a finer-grained level of measurement, the figures obtained from this class are not affected by other processes, which is the case for the three other classes. (I have included a program, counter_isolation, in the archive that demonstrates this behavior for the threadtimes_counter class).</p>
+
+
+<p>The thread/process handles are specified as the current ones, via <b>GetCurrentThread()</b>/ <b>GetCurrentProcess()</b>. threadtimes_counter records the current thread handle in a member variable to avoid unnecessarily repeating this small but nonzero cost. processtimes_ counter uses a static technique such that <b>GetCurrentProcess()</b> is called only once per process. The creation time and exit time values obtained from <b>GetThreadTimes()</b>/<b>GetProcessTimes()</b> are ignored. (They are, in fact, fixed values, and the exit time is not actually valid until the given thread has exited.)</p>
+
+<p>These two classes have the following attribute methods in addition to those they share with the three other classes:</p>
+
+<pre>
+...
+
+  // Attributes
+  public:
+    ...
+
+    interval_type get_kernel_period_count() const;
+    interval_type get_kernel_seconds() const;
+    interval_type get_kernel_milliseconds() const;
+    interval_type get_kernel_microseconds() const;
+    interval_type get_user_period_count() const;
+    interval_type get_user_seconds() const;
+    interval_type get_user_milliseconds() const;
+    interval_type get_user_microseconds() const;
+
+    ...
+};
+</pre>
+
+<p><b>get_kernel_period_count()</b> and <b>get_user_ period_count()</b> are implemented as returning the difference of the kernel members and user members, respectively. The implementation of <b>get_period_count()</b> is as the sum of <b>get_kernel_period_count()</b> and <b>get_user_ period_count()</b>. The calculations of all the seconds, milliseconds, and microseconds are performed in the same way as those of systemtime_counter.</p>
+
+<p><b>counter_scope</b> &#151; The similar public interface to each class facilitates the use of a scoping template class, performance_counter_scope (shown in <A HREF="0305al7.htm" target="_BLANK">Listing 7</A>) &#151; implementing the "Resource Acquisition Is Initialization" idiom &#151; which may be parameterized on a particular counter class. The constructor takes a reference to a counter class instance, and then calls <b>start()</b>. <b>stop()</b> is called in the destructor, providing a scoped timing operation. It also provides access to the <b>stop()</b> method in order to support intermediate staged timings, and a reference to const of the managed counter class such that intermediate timing values can be obtained. An example of its use is shown in <A HREF="0305al8.htm" target="_BLANK">Listing 8</A>.</p>
+
+
+<p>The original proprietary implementations of the performance classes called their <b>start()</b> methods in their constructors, as well as initializing their member variables, as a syntactic convenience, such that the following would produce meaningful results:</p>
+
+<pre>
+  performance_counter counter;
+
+  some_operation();
+  counter.stop();
+
+  printf("...", counter.get_xxx());
+</pre>
+
+<p>However, the observed use of these classes &#151; in almost all cases &#151; along with the strong requirement for them to be as efficient as possible, has shown this to be a mistake. Because instances are often used in a number of <b>start()</b>-<b>stop()</b> cycles, as can be seen in the test program, having <b>start()</b> called in the constructor complicates the semantics for no net benefit. Nor does it ensure that the instance has a coherent state, since only when a subsequent <b>stop()</b> call is made do the attribute calls have well-defined behavior (see the sidebar "<A HREF="0305as1.htm" target="_BLANK">Initialized Counters</A>").</p>
+
+
+
+<h4>Performance Analysis</h4>
+
+
+<p>The test scenarios described here were executed on the following platforms: Windows 98 (233 MHz), NT 4 (400 MHz), 2000 (650-MHz laptop), 2000 (dual 550 MHz), NT 4 (dual 933 MHz), 2000 (dual 933 MHz), and XP (2 GHz). (All program code and supporting files are included in the archive, along with Visual C++ 6 and Metrowerks CodeWarrior 8 projects.) </p>
+
+
+
+
+<h4>Call Costs</h4>
+
+
+<p>Any measurements on a system affect the behavior being measured. Therefore, an important characteristic of the performance classes (and their underlying timing functions) is the cost of the timing function calls. The first part of the analysis is to quantify the call costs of the functions.</p>
+
+
+<p><A HREF="0305al8.htm" target="_BLANK">Listing 8</A> shows the essentials of the counter_cost application. For each of the counter classes, the template <b>test_cost()</b> function is called, and the returned timing results, representing the total call costs, are printed to stdout. </p>
+
+<p>The <b>test_cost()</b> function takes the form of an outer loop (which is executed twice in order to eliminate any caching effects, and the value of the second iteration is used), and an inner loop within which <b>start()</b> and <b>stop()</b> are called 1,000,000 times on an instance of the counter type being examined. The main application counter (which is an instance of highperformance_counter) measures the cost of the inner loop using the performance_counter_scope template.</p>
+
+<p>Because the operating systems are on machines with widely different hardware, comparisons of the actual time costs over different systems are not meaningful. Since the call costs of <b>GetTickCount()</b> were lower than those of any other timing function (except <b>GetSystemTimeAsFileTime()</b> on XP), the results are expressed as a percentage of the <b>GetTickCount()</b> time on each platform to provide meaningful comparisons. The results are shown in <A HREF="0305at3.htm" target="_BLANK">Table 3</A>.</p>
+
+<p>The results clearly demonstrate that <b>GetTickCount()</b> has the lowest performance cost on all operating systems, except the single case of <b>GetSystemTimeAsFileTime()</b> on XP. Also clear is the fact that <b>timeGetTime()</b> costs between four and 69 times that of <b>GetTickCount()</b>. </p>
+
+<p>On NT operating systems, <b>GetSystemTimeAsFileTime()</b> has barely any additional cost over <b>GetTickCount()</b>. It is also notable that <b>GetSystemTimeAsFileTime()</b> has a relatively better performance on later operating-system variants. However, on Windows 98, this call has an exceedingly high cost, nearly 8000 times that of <b>GetTickCount()</b>. <b>QueryPerformanceCounter()</b> has a high call cost on all operating systems, ranging from 49 to 2080 times that of <b>GetTickCount()</b>.</p>
+
+<p>The cost of <b>GetThreadTimes()</b> and <b>GetProcessTimes()</b> is very consistent over all flavors of NT operating systems (between 296 and 924 times that of <b>GetTickCount()</b>). Note that the figures are not shown for Windows 98, since these two functions are not implemented on 9x.</p>
+
+<p>One final point is that <b>QueryPerformanceCounter</b> has a higher cost than <b>GetThreadTimes()</b>/<b>GetProcessTimes()</b> on single processor machines, but lower on multiprocessor machines. Presumably this is because access to the thread/system time infrastructure on multiprocessor machines requires synchronization, and that to the performance counter hardware does not.</p>
+
+
+
+<h4>Call Resolution</h4>
+
+
+<p>The other characteristic examined is that of the resolution of the various timing functions. Their documented resolutions are listed in <A HREF="0305at4.htm" target="_BLANK">Table 4</A>. The second part of the analysis quantifies the actual resolutions of the functions.</p>
+
+
+<p><A HREF="0305al9.htm" target="_BLANK">Listing 9</A> shows the implementation of the counter_resolution application. For each of the counter classes, the <b>test_resolution()</b> template function is called, and the returned results, representing the minimum measured resolution for the counter class, are printed to stdout.</p>
+
+<p>The <b>test_resolution()</b> function takes the form of an outer loop, which executes 100,000 times. Within that loop, an inner loop of a limited maximum 2048 iterations is executed, and its execution time measured. The minimum nonzero (since it is likely that some intervals will be reported to be 0) interval is recorded, and returned as the result of the function. The results are shown in <A HREF="0305at4.htm" target="_BLANK">Table 4</A>.</p>
+
+<p>The results mainly illustrate that every timing function save <b>QueryPerformanceCounter()</b> (between 1_s and 5_s) has a significantly lower actual resolution than stated. The three exceptions are <b>GetTickCount()</b> and <b>timeGetTime()</b> on Windows 98, and <b>timeGetTime() </b>on one particular dual-processor Windows 2000 machine (though the other SMP 2000 machine does not show this). In all other cases, the best resolution ranges from 10ms to 20ms.</p>
+
+<p>It is also interesting to note that for most machines, the resolutions obtainable from <b>GetThreadTimes()</b>, <b>GetProcessTimes()</b>, <b>GetSystemTimeAsFileTime()</b>, and <b>timeGetTime() </b>are (roughly) equivalent to that of <b>GetTickCount()</b>, suggesting that all these functions derive their timing information from a common low-resolution source.</p>
+
+
+
+<h4>No Single Solution</h4>
+
+
+<p>A summary of the characteristics of the counter classes (and their underlying timing functions) is given in <A HREF="0305at5.htm" target="_BLANK">Table 5</A>. The first thing to note is that none is an out and out winner in every conceivable scenario. As mentioned in the introduction, the selection of a particular measurement function (or class) depends not only on its availability on your targeted platform(s) and on the type or measurement (systemwide/per-process/per-thread), but also on the actual resolution of the measurement and on its cost.</p>
+
+
+<p>If you want user and/or kernel timings, then you must use either the threadtimes_counter or processtimes_counter classes, but these are only functional on NT operating systems.</p>
+
+<p>If you want timings that give useful results on busy systems, again the threadtimes_counter or processtimes_counter classes are your choice. Since systems where you cannot suspend or terminate other busy processes are most likely to be high-performance servers, the specificity to NT systems is unlikely to be a problem. </p>
+
+<p>If you want high timing resolutions, then you must use the highperformance_counter class. This does have a high call cost, but has the highest resolution by far. In addition, it appears that the call cost is relatively lower on newer operating systems, so the dissuasively high costs seen in Windows NT 4 are likely to be less and less significant in the future. (Note that highperformance_ counter has a wrap time of 100+ years. Each time the processor speed doubles, the wrapping time will halve, so when we have 1-THz machines, we will have to worry about catching the wrapping.)</p>
+
+<p>If minimal call cost is the most important factor, tick_counter or multimedia_counter should be used, but be aware that they may wrap on a system that has been active, especially if it has been suspended: The value continues to be incremented when a machine is suspended. A simple program that demonstrates this is: </p>
+
+<pre>
+  void main()
+  {
+    DWORD const dw = ::GetTickCount();
+
+    for(; ; ::Sleep(500))
+    {
+      printf("%d\n", ::GetTickCount() - dw);
+    }
+  }
+</pre>
+
+<p>On NT operating systems, systemtime_ counter is almost as low cost, and it does not have the wrap problem. </p>
+
+<p>If you require support on every operating system, without the use of any dispatching by either the precompiler or at run time, then you must use tick_counter.</p>
+
+<p>Overall, the choice of a class depends on the circumstances in which it is to be used. Hopefully, the information in the article should be of use when making such assessments, and the two programs described may be executed on your target system(s) to provide more detailed information.</p>
+
+
+
+<h4>performance_counter</h4>
+
+
+<p>Because no single class provides the best solutions in all cases, a seventh counter class, performance_counter, is provided, which has the functionality of highperformance_counter where a high-performance hardware counter is available, otherwise defaulting to that provided by tick_counter. Its implementation is shown in <A HREF="0305al10.htm" target="_BLANK">Listing 10</A>. It also uses the late-evaluation and statics techniques to work out (one time only) whether the hardware counter support is present. </p>
+
+
+<p>Despite having to call the underlying timing functions via an additional indirection, the call costs of this class range from 101-106 percent of that of the performance_counter class over the range of systems used in this analysis. </p>
+
+<p>A final point worth remembering is that if you do not need absolute times, only relative ones, then you should just call <b>get_period_count()</b> on instances of this, or any other, counter class.</p>
+
+
+
+<h4>References</h4>
+
+
+<p><i>Java 2 Performance and Idiom Guide</i>, Craig Larman &amp; Rhett Guthrie, Prentice-Hall PTR, 2000.</p>
+
+
+<p><i>More Effective C++</i>, Scott Meyers, Addison-Wesley, 1996.</p><p>
+
+<i>More Exceptional C++</i>, Herb Sutter, Addison-Wesley, 2002.</p>
+
+<p>The five original classes  &#151; TickCounter, PerformanceCounter, SystemTimer, ThreadTimes, and ProcessTimes &#151; were developed by my employer Synesis Software (<a href="http://synesis.com.au" _target = "blank">http://synesis.com.au</a>). They have been donated, and reworked somewhat, to form part of the WinSTL open-source project, which aims to apply STL programming techniques to the Win32 API in the form of a robust, lightweight, header-only library (<a href="http://winstl.org/" _target = "blank">http://winstl.org/</a>). </p>
+
+
+<hr>
+<I>
+Matthew Wilson holds a degree in Information Technology and a Ph.D. in Electrical Engineering, and is a software-development consultant for Synesis Software. Matthew's work interests are in writing bulletproof real-time, GUI, and software-analysis software in C, C++, and Java. He has been working with C++ for over 10 years, and is currently bringing STLSoft.org and its offshoots into the public domain. Matthew can be contacted via <a href="mailto:matthew@synesis.com.au">matthew@synesis.com.au</a> or at <a href="http://stlsoft.org/" _target = "blank">http://stlsoft.org/</a>.</I>
+
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<html>
+<head>
+<title>Introducing recls</title>
+</head>
+
+<body>
+
+
+<h2>Introducing recls</h2>
+<p>Courtesy of <i>C/C++ Users Journal</i> (November 2003)</p>
+<h3>By Matthew Wilson</h3>
+
+<p>Welcome to Positive Integration! Ever since I learned about <b>extern "C,"</b> I've been interested in language integration, especially when integrating C and C++ with languages like Python and Java. I also like writing libraries, not to mention the challenge of platform-independent development. That's why my first project in this column involves creating a platform-independent recursive search API, then mapping it to every language I can think of. </p>
+<p>I call the API "recls" (short for "recursive ls"), and it's available at <a href="http://recls.org/" _target = "blank">http://recls.org/</a> and <a href="http://www.cuj.com/code/" _target = "blank">http://www.cuj.com/code/</a>. It is implemented in C and  C++, and presents a pure C face to the world. This is because almost all of the languages it interoperates with require free functions, with explicit calling and naming conventions. The languages I plan to tackle include C++ (regular classes), C++ (STL-like sequences), C# (Native Interop), COM (probably using ATL), D (regular classes and the new <b>foreach</b> syntax), Java (via JNI), Managed C++, Perl, Python, and, hopefully, Ruby. If I were to provide a C++ interface, only the C++, STL, COM, and the Managed C++ mappings would be able to use our API (without wrapping behind a different C layer). </p>
+
+
+
+<h3>Feeling recls</h3>
+
+
+<p>The recls API needs to support input iteration [1], rather than any higher <b>Iterator</b> model. This means that only a single pass can be made through the matching items for a given search procedure; the search cannot reverse, nor can the current state of the search be copied and the two streams proceed independently. The reasons for this are straightforward: </p>
+
+
+<ul>
+  <li>In almost all conceivable cases, API users will want to make a single pass. You seldom do a large-scale search of a filesystem to find items of interest, then search for the items again to process them. Searching the filesystem is a slow activity, so the tendency is either to process the items as you go, or to remember any paths of interest (in a <b>std::list&lt;std::string&gt;</b>, for example), then process them en masse after enumeration is complete. 
+  <li>The reason we're not going for, say, forward iterator [1] is that the contents of the filesystem are changeable, as a result of action(s) by other processes (or threads). Because filesystem enumeration APIs are, in the main, of the one-at-a-time form, you would have to reenumerate the entire sequence up to the current point to copy an enumeration state. Besides being inefficient, there is the strong possibility that items will have been removed or added while the second enumeration is carried out, making the two state copies at best inconsistent, and at worst, positively erroneous.
+
+
+</ul>
+
+<p>So input iteration it is. Presumably, we'll have a function to start the enumeration, one to close the enumeration, a third to advance the enumeration, and a fourth to retrieve the attributes of the currently enumerated item. </p>
+
+<p>The UNIX readdir API consists of three functions that correspond to these four operations:</p>
+
+<pre>
+DIR             *opendir(char const *dirName);
+int            closedir(DIR *dir);
+struct dirent  *readdir(DIR *dir);
+</pre>
+<b>readdir() </b>actually performs the advance and retrieval steps in one operation, which is usually convenient. It returns all the elements in a given directory, including the dots directories ("." and ".."), and finally returns <b>NULL</b> to indicate that enumeration is complete.<p></p>
+
+
+<p>The Win32 API provides an equivalent set of functions:</p>
+
+<pre>
+HANDLE FindFirstFile
+               (char const *srchSpec, 
+                WIN32_FIND_DATA *lpData);
+BOOL   FindClose(HANDLE hSrch);
+BOOL   FindNextFile(HANDLE hSrch,
+                WIN32_FIND_DATA *lpData);
+</pre>
+
+<p>These functions operate slightly differently in that they return the items that match a search specification, which may contain wildcards. Only matching entries within the single directory composed in the search specification are returned; for example, <b>C:\bin\*.exe</b> returns files with the extension ".exe in C:\Bin" alone, not in any subdirectories. <b>FindFirstFile(),</b> the function that starts the enumeration, retrieves the details for the first matched item as well as returning the search handle; the remainder of the sequence is enumerated with calls to <b>FindNextFile().</b></p>
+
+<p>These differences present slightly different challenges when adapting to STL-like sequences [2], but the differences and challenges are manageable. Such differences do, however, raise the question of how platform-independent APIs should behave. Again, it should be of a similar <b>open/get-next/close</b> form, but the precise form of the <b>get-next</b> part is not clear. Since you want to integrate with other languages, it's worth looking at how some of these languages do their enumeration because this may inform the design choices.</p>
+
+<p>Well, with plain-old C++, you can pretty much handle any flavor of <b>get-next</b> with equal alacrity. When you want to adapt to an STL-like sequence [2], however, it's easier to work with the <b>get-first/get-next</b> Win32 model, than with the <b>open/get-next</b> model of <b>readdir()</b>, though I concede there's not much in it. Given that the advance of iterators and their dereferencing to yield a value are independent, and oftentimes iteration passes through (parts of) a sequence without dereferencing, it would be nice if the API would directly support that because it would yield more efficient implementations.</p>
+
+<p>With C# (and .NET in general), it's desirable to enumerate sequences via the <b>foreach</b> statement. This requires that the collection item has a method <b>GetEnumerator()</b> that returns an instance of the <b>IEnumerator</b> interface, which (in pseudo Managed C++) looks like:</p>
+
+<pre>
+interface IEnumerator
+{
+  Object* get_Current();
+  bool    MoveNext();
+  void    Reset();
+};
+</pre>
+<p>Your collection item can be anything. It does not need to be a genuine collection &#151; it just has to return a semantically correct enumerator.</p>
+
+
+<p>The semantics of this interface stipulate that a call to <b>MoveNext()</b> must always precede a call to <b>get_Current().</b> Hence, an API tailored to .NET would provide separate operations for advancing iteration position and for retrieving the attributes of the currently enumerated item.</p>
+
+<p>The Java <b>Enumeration</b> interface achieves much the same thing, apart from the ability to reset enumeration, but with slightly different behavior:</p>
+
+<pre>
+interface Enumeration
+{
+  boolean hasMoreElements();
+  Object  nextElement();
+};
+</pre>
+<p>The <b>nextElement()</b> method returns the element and advances the position at the same time. Its semantics are <b>get-current-then-next</b>. Rather than require an implementation of the <b>Enumeration</b> interface to register that it just did a successful <b>get-next</b> and remember the information before advancing upon the next call, you need to either provide a single API function with the necessary semantics, or provide separate <b>get</b> and <b>next</b> functions.</p>
+
+
+<p>There are similar variations for all the language mappings. In <A HREF="0311wilsonl1.htm" target="_BLANK">Listing 1</A>, I've accommodated these differing requirements by providing the <b>Recls_GetNext(), Recls_GetDetails() </b>and <b>Recls_GetNextDetails()</b> functions [3]. (It's a minor sacrifice of orthogonality, but worth it in the consequent simplification of client code and language mappings.) In the C# implementation, you can implement <b>MoveNext()</b> with a call to <b>Recls_GetNext(),</b> and <b>get_Current()</b> with a call to <b>Recls_GetDetails().</b> In Java, you can implement <b>nextElement()</b> with a call to <b>Recls_GetDetails(</b><i>)</i>, followed by a call to <b>Recls_GetNext()</b>, remembering the success/failure of the latter call in a Boolean to be returned by <b>hasMoreElements().</b></p>
+
+<p>The public API (<A HREF="0311wilsonl1.htm" target="_BLANK">Listing 1</A>) resides in the API main header recls.h. A search is started by calling <b>Recls_Search(),</b> passing the root directory (for instance, "<b>H:\Dev</b>"), a search pattern (such as "<b>Re*.exe</b>"), some flags to moderate the search behavior, and a pointer to receive the search handle (of the opaque type <b>hrecls_t</b>). The flags determine whether the search is to recurse, the types of entries to locate, and the amount of information to be retrieved about each item. The search handle is then used to advance the search using the methods just mentioned, and is finally closed using <b>Recls_SearchClose().</b> It's a pretty standard form, and lends itself well to encapsulation in a class in whatever language.</p>
+
+<p>(All the names are long and hideous because the API has to be C-compatible, and C has no namespace mechanism. There are shorter names for many of the types in the namespace <b>recls</b>, for example, <b>recls::info_t == recls_info_t</b>, when in C++ and namespaces are enabled.)</p>
+
+<p>Note that the information for a particular entry is retrieved at the point at which the search passes it. The API does not merely cache the name, then get the other information later. The fact that filesystems are constantly changing means that there's just no sensible way to define, to API users, when a particular piece of information is valid. It is conceivable that the search could return a name. Then, when the client code accesses the information, the file may have disappeared or, perhaps worse, may have been deleted and another created with the same name but entirely different contents. So, the information is valid when it is retrieved, and that's the only guarantee given (or that you could sensibly expect).</p>
+
+<p>Note also that the structure <b>recls_fileinfo_t</b> is not defined here. When writing cross-platform APIs, it is desirable to have a single definition for all public types and functions, and handle all the platform-specific differences in the implementation files. However, when some of the things that form part of the public interface are necessarily different between platforms, things become a bit sticky. For instance, UNIX filesystems do not have the concept of a drive. Conversely, Win32 systems do not have links. (At least, they don't in the fully featured way as on UNIX. On Windows 2000 and later, there is limited support for links on the same drive, but they are effectively multiple references to the same file, rather than bona fide links. If you create a link to an existing file, then delete the original, the actual file continues to exist, but only via the second link, and may be under a different name. It's useful when sharing unchanging headers between different projects, but text editors tend to save by deleting and creating, rather than overwriting and extending/truncating, which breaks the links. If you want to do such things, you can download the hl.exe tool from <a href="http://synesis.com.au/r_systools.html" _target = "blank">http://synesis.com.au/r_systools.html</a>.)</p>
+
+<p>One way to handle such differences is to provide access only to the common features of all target platforms &#151; not exactly a useful solution. Another way is to provide conditional compilation of the attributes and functions. This results in cross-platform preprocessor spaghetti in client code. A third way is to provide a union of all attributes and functions across the target platforms. The problem then is that client code may need to test for the "validity" of features at run time, which is a real pain. (Witness the endless checks and workarounds when writing code to run on Windows 9x and on NT.)</p>
+
+<p>There's no best solution here; hence, I've settled on a compromise. The main functions of the API are provided for all platforms in the main header recls.h, which contains no per-platform definition of functions. This includes the function <b>Recls_IsFileLink(),</b> which always returns False on Win32; this is fine since False is always the correct answer. I've done the same for the function <b>Recls_GetShortFileProperty()</b>, which always returns the same value as <b>Recls_GetFileProperty()</b> on UNIX.</p>
+
+<p>However, where there is no obvious sensible semantic to a platform-specific characteristic, the requisite function resides in a separate file. For example, <b>Recls_GetDriveProperty()</b> is provided for Win32 only, and therefore resides in the header recls_win32.h. (This, or its UNIX analog recls_unix.h, are conditionally included automatically within recls.h, unless the <b>RECLS_PURE_API</b> symbol is defined.)</p>
+
+<p>Thus, the platform-independent way to retrieve the information about a particular file entry is to call one of <b>Recls_Get...Property()</b> functions. For performance reasons, however, this may not be desirable, so there is another way to retrieve the information.</p>
+
+<p>The <b>dirent</b> structure returned from <b>readdir()</b> has a variable definition, depending on platform, and is only guaranteed to contain the member <b>d_name</b>, which is a character buffer containing a null-terminated string of the entry name. In the same vein, the <b>recls</b> types are defined differently, using preprocessor discrimination, in recls_platform.h; see <A HREF="0311wilsonl2.htm" target="_BLANK">Listing 2</A>. The contents of the <b>recls_fileinfo_t</b> are not guaranteed to be the same between platforms. </p>
+
+<p>The fixed-sized attributes, such as file size and modification time, are located directly within the structure. Variable-sized attributes, such as the various components of the path name, are identified by instances of <b>recls_strptrs_t</b>, which represent the asymmetric range of the given attribute. For example, the file extension is denoted by <b>[fileExt.begin, fileExt.end)</b>, which allows all the path components to be precisely identified and accessible, without requiring a separate null-terminated copy of each one. Hence, memory use is minimized. (The actual memory containing the variable-size components is appended to the structure from <b>data[0]</b> onwards. Hence, the structure is of variable size, and is created by helper functions within the API implementation.)</p>
+
+<p>One of the bugbears of dealing with path names is the fact that "/" (or "\") is the name of the root directory, but is the path separator for all other directories. A better way to look at this is that all directory names end in "/," and it's just the case that the root directory has no name. To be kind to my clients, the implementation ensures that every directory is properly ended in "/." Thus, retrieving the directory property, via <b>Recls_GetDirectoryProperty()</b>, for the entry "/home/recls/include/recls_language.h" returns "/home/recls/include/" rather than "/home/recls/include". This means there's no need for checking for a trailing path separator when building paths.</p>
+
+<p>Given this representation, it is a simple matter to extend the technique and provide identification for the various constituent directories in the path accessible via the <b>directoryParts</b> member (which is an asymmetric range of asymmetric strings ranges). It's always a lot of tedious and error-prone boilerplate when writing code to navigate up and down directory hierarchies. Now, all the path components are accessible in the range <b>[directoryParts.begin, directoryParts.end)</b>. Of course, there's a little more processing to calculate the path components, so the flag <b>RECLS_F_DIRECTORY_PARTS</b> can be specified to turn this off when you don't need it. In that case, <b>directoryParts.begin == directoryParts.end.</b></p>
+
+<p>The entry property functions handle all the business of determining range, and ascertaining whether your buffer is large enough, so you have two choices as to how to retrieve the data:</p>
+
+<pre>
+recls_info_t    info = . . . // from a call to Recls_Get(Next)Details()
+// Into a character buffer
+char  fileExt[RECLS_PATH_MAX];
+Recls_GetFileExtProperty(info, fileExt, RECLS_PATH_MAX);
+// or into a string
+std::string fileExt(info-&gt;fileExt.begin, info-&gt;fileExt.end);
+</pre>
+<p>This facilitates both types of programming, as well as the different mechanisms for creating strings for the mapped languages.</p>
+
+
+
+
+<h3>Object Models</h3>
+
+
+<p>Most of the mappings we want are to object-oriented languages. It is likely that you'll have, say, a <b>FileSearch</b> class, which hands out instances of <b>FileEntry</b> classes to represent the entries retrieved within that search. What is also likely is that instances of <b>FileEntry</b> will be copied to, and perhaps stored in, client code. To avoid the costs in copying the contents of the <b>recls_fileinfo_t</b> structure (not to mention the costs in recalculating all the pointer offsets), they are reference counted. Calling <b>Recls_CopyDetails()</b> simply adds a reference to the given structure, and calling <b>Recls_CloseDetails()</b> removes a reference and deletes it if all outstanding references are done. Because I've chosen to make an entry's data immutable, effecting this sharing is valid and simple.</p>
+
+
+<p>Implementations of the <b>FileEntry</b> (or equivalent) class can be straightforward. The class should take a copy of the information when it is copied itself, rather than having a host of members caching that information within each instance. For example, in a COM implementation, rather than creating BSTR versions of <b>path, directory, file, fileName, fileExt</b>, and all the directory parts (which it would then have to copy out to the caller anyway), it can simply create them upon request, saving implementation (read maintenance) costs, and run time and space costs.</p>
+
+<p>This technique pays off when mapping to garbage-collecting languages (C#, D, Java). When copying items in, say, C#, there'll only be one copy of the file entry data, no matter how many copies of the C#-side objects. Hence, you minimize the extent to which your native memory use is subject to the vagaries of the garbage collector's nondeterministic finalization and resource cleanup.</p>
+
+<p>(While enumerating or closing a search in a different thread is "undefined," the API specifically allows the copying and release of information blocks to support the language mappings.)</p>
+
+
+
+<h3>Next Steps</h3>
+
+
+<p>Now that I've covered the design decisions and the public interface of the API, the next installment will introduce integration with C++ classes, STL sequences, and (space permitting) either COM or C#.</p>
+
+
+<p>The API is by no means complete, and as the work progresses on integration, I'll also address the several flaws it currently has, including:</p>
+
+<ul>
+
+  <li>Only the Win32 version is currently implemented. A UNIX version is required.
+
+  <li>It only works with the <b>char</b> type. Support for <b>wchar_t</b> is required.
+
+  <li>It is not documented. I plan to provide full documentation, using Doxygen, along with samples.
+
+  <li>It relies on the partial wildcards support of the Win32 <b>FindFile()</b> functions. Matching using regular expressions would be preferable, and is necessary to achieve behavioral parity between the different platforms
+
+  <li>Only file entries are enumerated. It will be necessary to return directory entries as well as, or instead of, file entries according to the flags specified when initiating a search.
+
+  <li>The implementation conducts two passes for each directory traverse &#151; One to get the matching files in that directory, and another to the locate subdirectories. Once regular expression matching is built in, it should be easy to conduct a single pass.
+
+  <li>Currently, only a single pattern ("*.cpp") can be specified. Supporting composite patterns ("*.cpp;*.h;*.java") would be desirable.
+
+  <li>It's designed only for filesystems. It'd be nice to let it also work with FTP. 
+
+
+</ul>
+
+<p>The code and project files (for CodeWarrior, C++ Builder, Digital Mars, and Visual C++) for the initial implementation, along with the C++ wrapper classes, are available at <a href="http://recls.org/" _target = "blank">http://recls.org/</a>.</p>
+
+
+
+
+<h3>References</h3>
+
+
+<p>[1]	<a href="http://www.sgi.com/tech/stl/Iterators.html" _target = "blank">http://www.sgi.com/tech/stl/Iterators.html</a>.</p>
+
+<p>[2]	The UNIXSTL <b>readdir_sequence</b> class and WinSTL <b>findfile_sequence</b> template do exactly this. (UNIXSTL and WinSTL are OS-specific subprojects of STLSoft.) They're used in the implementation of the recls API on their respective platforms.</p>
+
+<p>[3]	I recognize that the naming of some of these functions could be better, so they'll probably change as we progress. For example, <b>Recls_CopyDetails()</b> should probably be called <b>Recls_CopyEntryDetails().</b> This process will be useful though, since maintaining compatibility of language mappings to APIs that change is a real problem. </p>
+
+<hr><I>
+<b>Matthew Wilson</b> is a software development consultant for Synesis Software, specializing in robustness and performance in C, C++, C# and Java. He is also the author of the STLSoft libraries, and the forthcoming book </i>Imperfect C++<i> (to be published by Addison-Wesley, 2004). Matthew can be contacted via <a href="mailto:matthew@synesis.com.au">matthew@synesis.com.au</a> or at <a href="http://stlsoft.org/" target="_blank">http://stlsoft.org/</a>.</I>
+
+<hr>
+
+</body>
+</html>

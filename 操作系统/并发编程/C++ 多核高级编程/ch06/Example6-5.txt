@@ -1,0 +1,33 @@
+//Example 6-5 shows two threads being canceled
+
+ //...
+int main(int argc, char *argv[])
+{
+   pthread_t Threads[2];
+   void *Status;
+
+   pthread_create(&(Threads[0]),NULL,task1,NULL);
+   pthread_create(&(Threads[1]),NULL,task3,NULL);
+   
+
+    // ...
+
+   pthread_cancel(Threads[0]);
+   pthread_cancel(Threads[1]);
+   
+
+   for(int Count = 0;Count < 2;Count++)
+   {
+      pthread_join(Threads[Count],&Status);
+      if(Status == PTHREAD_CANCELED){
+         cout << "thread" << Count << " has been canceled" << endl;
+      }
+      else{
+              cout << "thread" << Count << " has survived" << endl;
+      }
+   }
+   return (0);
+}
+ 
+
+

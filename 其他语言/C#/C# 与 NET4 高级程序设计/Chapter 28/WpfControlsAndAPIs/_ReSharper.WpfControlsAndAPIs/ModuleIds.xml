@@ -1,0 +1,4 @@
+<Modules>
+  <Module PersistentId="B37E27B1-3ACB-43B3-9AD3-F5B4E6CD7C23" ModuleId="WpfControlsAndAPIs" />
+  <Module PersistentId="PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" ModuleId="PresentationFramework" />
+</Modules>

@@ -1,0 +1,107 @@
+INSERT INTO 
+MemberDetails (MemberId, FirstName,LastName,DateOfBirth,Street,City,State,ZipCode,Email,DateOfJoining)
+VALUES 
+(
+  10, 'Susie','Simons','1937-1-20','Main Road','Townsville',
+  'Mega State','123456','susie@mailme.com','2005-08-20'
+);
+
+INSERT INTO 
+FavCategory (CategoryId, MemberId)
+VALUES ( 1, 10 );
+
+INSERT INTO 
+FavCategory (CategoryId, MemberId)
+VALUES ( 3, 10 );
+
+INSERT INTO 
+FavCategory (CategoryId, MemberId)
+VALUES ( 6, 10 );
+
+INSERT INTO 
+MemberDetails (MemberId, FirstName,LastName,DateOfBirth,Street,City,State,ZipCode,Email,DateOfJoining)
+VALUES 
+(
+  11, 'Jamie','Hills','1992-07-17','Newish Lane','Orange Town',
+  'New State','88776','jamie@the_hills.com','2005-08-22'
+);
+
+INSERT INTO 
+FavCategory (CategoryId, MemberId)
+VALUES ( 4, 11 );
+
+INSERT INTO 
+FavCategory (CategoryId, MemberId)
+VALUES ( 3, 11 );
+
+INSERT INTO 
+FavCategory (CategoryId, MemberId)
+VALUES ( 5, 11 );
+
+INSERT INTO 
+MemberDetails (MemberId, FirstName,LastName,DateOfBirth,Street,City,State,ZipCode,Email,DateOfJoining)
+VALUES 
+(
+  12, 'Stuart','Dales','1956-08-07','Long Lane','Windy Village',
+  'Golden State','65422','sdales@mymail.org','2005-08-27'
+);
+
+INSERT INTO 
+FavCategory (CategoryId, MemberId)
+VALUES ( 1, 12 );
+
+INSERT INTO 
+FavCategory (CategoryId, MemberId)
+VALUES ( 4, 12 );
+
+INSERT INTO 
+FavCategory (CategoryId, MemberId)
+VALUES ( 6, 12 );
+
+INSERT INTO 
+MemberDetails (MemberId, FirstName,LastName,DateOfBirth,Street,City,State,ZipCode,Email,DateOfJoining)
+VALUES 
+(
+  13, 'William','Doors','1994-05-28','Winding Road','Big City',
+  'Mega State','34512','knockon@thedoors.com','2005-08-29'
+);
+
+INSERT INTO 
+FavCategory (CategoryId, MemberId)
+VALUES ( 3, 13 );
+
+INSERT INTO 
+FavCategory (CategoryId, MemberId)
+VALUES ( 5, 13 );
+
+INSERT INTO 
+MemberDetails (MemberId, FirstName,LastName,DateOfBirth,Street,City,State,ZipCode,Email,DateOfJoining)
+VALUES 
+(
+  14, 'Doris','Night','1997-05-28','White Cliff Street','Dover',
+  'Golden State','68122','dnight@whitecliffs.net','2005-09-02'
+);
+
+INSERT INTO 
+FavCategory (CategoryId, MemberId)
+VALUES ( 2, 14 );
+
+INSERT INTO 
+FavCategory (CategoryId, MemberId)
+VALUES ( 6, 14 );
+
+SELECT FirstName, LastName, Street, City, State, ZipCode
+FROM MemberDetails
+WHERE DateOfJoining >= '2005-01-01' And DateOfJoining <= '2005-01-31';
+
+
+SELECT FirstName, LastName
+FROM MemberDetails
+WHERE DateOfBirth <= '1989-05-01' AND State = 'New State';
+
+
+SELECT FirstName, DateOfBirth, State
+FROM MemberDetails
+WHERE DateOfBirth <= '1945-05-31' AND
+State = 'Mega State' OR State = 'Golden State';
+

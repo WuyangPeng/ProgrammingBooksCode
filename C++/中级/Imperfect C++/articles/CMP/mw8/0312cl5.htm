@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>Handling Multiple Win32 Operating Environments</title>
+</head>
+
+<body>
+
+<H4>Listing 5  Providing missing functions</H4>
+
+<pre>
+#ifdef WDN_SHAREDCU
+
+# define GetFileSizeEx_impl         GetFileSizeEx
+
+. . .
+
+#endif /* WDN_SHAREDCU */
+
+. . .
+
+static BOOL WINAPI GetFileSizeEx_impl_NT(HANDLE hFile, PLARGE_INTEGER lpFileSize)
+{
+  typedef BOOL (WINAPI *PFnGetFileSizeEx)(HANDLE , PLARGE_INTEGER );
+
+  PFnGetFileSizeEx  pfn = (PFnGetFileSizeEx)GetProcAddress(GetInstance_Kernel32(), "GetFileSizeEx");
+
+  return (NULL == pfn) ? FALSE : pfn(hFile, lpFileSize);
+}
+
+static BOOL WINAPI GetFileSizeEx_impl_9x(HANDLE hFile, PLARGE_INTEGER 			lpFileSize)
+{
+  DWORD dwHigh;
+  DWORD dwLow = GetFileSize(hFile, &dwHigh);
+
+  if( dwLow != INVALID_FILE_SIZE ||
+      GetLastError() == ERROR_SUCCESS)
+  {
+    lpFileSize->LowPart = dwLow;
+    lpFileSize->HighPart = dwHigh;
+
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
+#ifdef WDN_SHAREDCU
+# pragma warning(disable : 4273)
+#endif /* WDN_SHAREDCU */
+
+#ifdef WDN_DLL
+extern __declspec(dllexport)
+#endif /* WDN_DLL */
+BOOL WINAPI GetFileSizeEx_impl(HANDLE hFile, PLARGE_INTEGER lpFileSize)
+{
+  if(IsWinNT4Plus())
+  {
+    debug_printf("GetFileSizeEx_impl: calling GetFileSizeEx_impl_NT()\n");
+
+    return GetFileSizeEx_impl_NT(hFile, lpFileSize);
+  }
+  else
+  {
+    debug_printf("GetFileSizeEx_impl: calling GetFileSizeEx_impl_9x()\n");
+
+    return GetFileSizeEx_impl_9x(hFile, lpFileSize);
+  }
+}
+
+#ifdef WDN_SHAREDCU
+# pragma warning(default : 4273)
+#endif /* WDN_SHAREDCU */
+</pre>
+</body>
+</html>

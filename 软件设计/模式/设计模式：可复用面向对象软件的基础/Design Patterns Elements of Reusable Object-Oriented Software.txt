@@ -1,0 +1,9 @@
+设计模式：可复用面向对象软件的基础  （Design Patterns:Elements of Reusable Object-Oriented Software）
+
+官方网站：
+http://st-www.cs.uiuc.edu/users/patterns/DPBook/DPBook.html （已失效）
+
+★★★
+作者：Erich Gamma、Richard Helm、Ralph Johnson、John Vlissides 
+
+ 

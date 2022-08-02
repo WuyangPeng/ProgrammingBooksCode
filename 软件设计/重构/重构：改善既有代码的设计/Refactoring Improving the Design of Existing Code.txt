@@ -1,0 +1,11 @@
+重构：改善既有代码的设计（Refactoring:Improving the Design of Existing Code）
+
+官方网站：
+http://www.martinfowler.com、
+http://www.refactoring.com
+
+★★★
+作者：Martin Fowler  
+
+
+ 

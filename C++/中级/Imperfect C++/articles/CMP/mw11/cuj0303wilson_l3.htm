@@ -1,0 +1,82 @@
+<HTML>
+<HEAD>
+<TITLE>Listing 3: Free function examples</TITLE>
+</HEAD><body bgcolor="#FFFFFF" text="#000000">
+
+<B> Listing 3:</b>	Free function examples <p>
+<pre>
+/* /////////////////////////////////////////////////////////////
+ *
+ * ...
+ *
+ * Extract from stlsoft_true_typedef.h
+ *
+ * www:        http://www.synesis.com.au/stlsoft
+ *             http://www.stlsoft.org/
+ *
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * (Licensed under the Synesis Software Standard Source License:
+ *  http://www.synesis.com.au/licenses/ssssl.html)
+ *
+ * ...
+ *
+ * ////////////////////////////////////////////////////////// */
+
+...
+
+
+// operator ~
+
+template &lt;ss_typename_param_k T, ss_typename_param_k U&gt;
+inline true_typedef&lt;T, U&gt; operator ~(const true_typedef&lt;T,U&gt; &amp;v)
+{
+    return ~v.base_type_value();
+}
+
+// Pre-increment
+
+template &lt;ss_typename_param_k T, ss_typename_param_k U&gt;
+inline true_typedef&lt;T, U&gt; &amp;operator ++(true_typedef&lt;T, U&gt; &amp;v)
+{
+    ++v.base_type_value();
+
+    return v;
+}
+
+// Post-decrement
+
+template &lt;ss_typename_param_k T, ss_typename_param_k U&gt;
+inline true_typedef&lt;T, U&gt; operator --(true_typedef&lt;T,U&gt; &amp;v, int)
+{
+    true_typedef&lt;T, U&gt;  r(v);
+
+    v.base_type_value()--;
+
+    return r;
+}
+
+// operator &lt;
+
+template &lt;ss_typename_param_k T, ss_typename_param_k U&gt;
+inline ss_bool_t operator &lt;(const true_typedef&lt;T, U&gt; &amp;lhs,
+                            const true_typedef&lt;T, U&gt; &amp;rhs)
+{
+    return lhs.base_type_value() &lt; rhs.base_type_value();
+}
+
+template &lt;ss_typename_param_k T, ss_typename_param_k U&gt;
+inline ss_bool_t operator &lt;(const true_typedef&lt;T, U&gt; &amp;lhs,
+                      const true_typedef&lt;T, U&gt;::value_type &amp;rhs)
+{
+    return lhs.base_type_value() &lt; rhs;
+}
+
+template &lt;ss_typename_param_k T, ss_typename_param_k U&gt;
+inline ss_bool_t operator &lt;(
+                      const true_typedef&lt;T, U&gt;::value_type &amp;lhs,
+                            const true_typedef&lt;T, U&gt; &amp;rhs)
+{
+    return lhs &lt; rhs.base_type_value();
+}</pre>
+</BODY>
+</HTML>

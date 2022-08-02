@@ -1,0 +1,6 @@
+高性能MySQL（High Performance MySQL）
+（第2版）
+
+☆
+作者：Baron Schwartz、Peter Zaitsev 
+

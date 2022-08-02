@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 10
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "23-16-JoinQuery", "23-16-JoinQuery.csproj", "{361AB9F0-1A70-4D6D-9117-93FB994CBBBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{361AB9F0-1A70-4D6D-9117-93FB994CBBBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{361AB9F0-1A70-4D6D-9117-93FB994CBBBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{361AB9F0-1A70-4D6D-9117-93FB994CBBBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{361AB9F0-1A70-4D6D-9117-93FB994CBBBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

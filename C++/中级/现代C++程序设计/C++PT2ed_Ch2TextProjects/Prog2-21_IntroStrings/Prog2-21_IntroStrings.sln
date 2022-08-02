@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Prog2-21_IntroStrings", "Prog2-21_IntroStrings\Prog2-21_IntroStrings.vcproj", "{9756288B-7A18-442D-ABA6-EFADAE7E660A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9756288B-7A18-442D-ABA6-EFADAE7E660A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9756288B-7A18-442D-ABA6-EFADAE7E660A}.Debug|Win32.Build.0 = Debug|Win32
+		{9756288B-7A18-442D-ABA6-EFADAE7E660A}.Release|Win32.ActiveCfg = Release|Win32
+		{9756288B-7A18-442D-ABA6-EFADAE7E660A}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

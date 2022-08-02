@@ -1,0 +1,43 @@
+#include <iostream>  
+#include <fstream>
+#include <string>
+#include "item2.h"
+using namespace std;
+
+StockItem::StockItem()
+: m_InStock(0), m_Price(0), m_Name(), 
+  m_Distributor(), m_UPC()
+{
+}
+
+StockItem::StockItem(string Name, short InStock, 
+short Price, string Distributor, string UPC)
+: m_InStock(InStock), m_Price(Price), m_Name(Name), 
+  m_Distributor(Distributor), m_UPC(UPC)
+{
+}
+
+void StockItem::Display()
+{
+  cout << "Name: ";
+  cout << m_Name << endl;
+  cout << "Number in stock: ";
+  cout << m_InStock << endl;
+  cout << "Price: ";
+  cout << m_Price << endl;
+  cout << "Distributor: ";
+  cout << m_Distributor << endl;
+  cout << "UPC: ";
+  cout << m_UPC << endl;
+  cout << endl;
+}
+
+void StockItem::Read(istream& is)
+{
+  getline(is,m_Name);
+  is >> m_InStock;
+  is >> m_Price;
+  is.ignore();
+  getline(is,m_Distributor);
+  getline(is,m_UPC);
+}

@@ -1,0 +1,15 @@
+计算机图形学原理及实践  （Computer Graphics Principles and Practice）
+
+官方网站：
+https://cgpp.net/about.xml
+
+第2版
+○
+作者： James D.Foley、Andries van.Dam、Steven K.Feine、John F.Hughes
+
+第3版
+★★★
+作者：John F.Hughes、Andries van Dam、Morgan Mcguire、David F.Sklar、James D.Foley、Steven K.Feiner、Kurt Akeley
+
+
+ 

@@ -1,0 +1,9 @@
+SQL Server 2008 编程入门经典  （Beginning Microsoft SQL Server 2008 Programming）
+ （第3版）
+
+官方网站：
+http://www.wrox.com 
+
+★
+作者：  Robert Vieria  
+

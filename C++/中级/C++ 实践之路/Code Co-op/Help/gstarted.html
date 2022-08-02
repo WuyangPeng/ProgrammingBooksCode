@@ -1,0 +1,96 @@
+<html>
+<head>
+<title> Code Co-op Manual: getting started </title>
+</head>
+
+<body bgcolor="#99ccff" text="#000000" background="../images/grid.gif" TOPMARGIN=0 LEFTMARGIN=0>
+<font face="Verdana, Sans-Serif">
+
+<!-- Navigation Bar -->
+<table border="0" cellspacing="0" cellpadding="0">
+<tr><td align="LEFT" valign="TOP">
+	<map name=navbar>
+<area href="coop.html"		coords="1,1,50,24"	alt="Documentation entry page" shape="RECT">
+<area href="gstarted.html"	coords="48,2,144,24"	alt="Step by step guide to commonly used functions" shape="RECT">
+<area href="quickref.html"	coords="144,3,239,24"	alt="Descriptions of Co-op windows and views" shape="RECT">
+<area href="command.html"	coords="242,3,336,24"	alt="Functional description of features" shape="RECT">
+<area href="faq.html" 		coords="337,3,392,24"	alt="Frequently Asked Questions" shape="RECT">
+<area href="dispatch.html"	coords="395,3,488,24"	alt="Synchronization script exchange component" shape="RECT">
+<area alt="Detailed reference" coords="490,2,564,24" href="function.html" shape="RECT">
+</map>
+<img src="../images/map.gif" usemap="#navbar" border="0" align="top" width="565" height="26">
+</td></tr>
+</table>
+
+<table width=580 cellpadding=8>
+<tr><!-- Spacer and table structure definition -->
+	<td height=25 width=20>&nbsp;</td><!-- Left margin -->
+	<td width=500>&nbsp;</td><!-- Content -->
+	<td width=20>&nbsp;</td><!-- Right margin -->
+</tr>
+
+<tr><!--Home button and Documentation Title-->
+	<td colspan=3>
+	<center><font color="#0000a0" size=6>
+	<img src="../images/coop.gif" border=0 alt="Coop logo"> <b><font face="Courier New" color="Red">Code Co-op 3.0</font></b>
+	</font></center>
+	<center><font size=2><i>Server-less Version Control System</i></font></center>
+	</td>
+</tr>
+	
+<!-- Page Title -->
+<tr><td colspan=3><p><center><font face="haettenschweiler, impact" size=6 color="#336666">Getting started</font></center></td></tr>
+
+<!-- Page content-->
+<tr>
+	<td></td>
+	<td bgcolor="#ccccff">
+		<font size=2>
+		<p>
+		<font size=3><b>In a nutshell</b></font>, our version control system lets you <a href="function.html#create"><b>create a project</b></a> to safe keep your source files. Once the project is created, other developers, wherever they are, may <a href="function.html#join"><b>join the project</b></a>. When you no longer want to be a member of a project, you <a href="function.html#defect"><b>defect</b></a> from it. (You can also <a href="function.html#branch"><b>branch</b></a> a project.)
+		<p>You can <b><a href="function.html#add">add</a></b> an existing file to the project, or create a <a href="function.html#new"><b>new</b></a> file in the project.
+		<p>The complete history of the project is available to you. You can view previous <a href="function.html#version"><b>versions</b></a> of files, restore them, or save under new names.
+
+		<p>
+		<table width="100%" border=2 cellpadding=5>
+		<tr><td bgcolor="#ffcccc">
+		<font size=3><b>Most of the time</b></font>,<font size=2> however, you'll work on editing files that are already in the project. You'll do that with your favorite editor or development environment. 
+<p>You'll notice that files in your project are made <b>read-only</b> by Co-op. Just keep your Co-op running and minimized, so that at any point in time you'll be able to <a href="function.html#out"><b>check out</b></a> files--which makes them <b>read-write</b> and ready for changes.
+		<p>Once you're done making changes, you <a href="function.html#in"><b>check in</b></a> the changed files and the system creates a <b><a href="function.html#script">differential script</a></b> of changes. Scripts are then <a href="dispatch.html"><b>dispatched</b></a> to all other members of the project.
+		<p>When you get a script from somebody else, you <a href="function.html#unpack"><b>synchronize</b></a> your project with it. The changes proposed by the script appear in your project directory. You can <a href="function.html#look"><b>review</b></a> the changes and accept them by performing the <a href="function.html#synch"><b>accept synch</b></a> operation.
+		</font></td></tr>
+		</table>
+
+		<p>Code Co-op also let's you <a href="function.html#rename"><b>rename</b></a> files and folders, <a href="function.html#move"><b>move</b></a> files between folders, as well as <a href="function.html#delete"><b>delete</b></a> them--all under strict version control.
+		<p>Sometimes the changes you receive are in <a href="function.html#conflict"><b>conflict</b></a> with the changes you made. The version control system helps you resolve such conflicts by <a href="function.html#reject"><b>rejecting</b></a> some scripts or <a href="function.html#merge"><b>merging</b></a> the conflicting changes.
+
+		<p>
+		<table width="100%" border=2 cellpadding=5>
+		<tr><td bgcolor=white>
+		<font color="#bb0000" size=2><font size=3><b>It is important</b></font> that you <b>don't by-pass Code Co-op</b> when you make changes to project files or folders:</font>
+		<font size=2>
+		<ul>
+			<li>Don't edit files that are not checked out.<br>
+			(Yes, you <b>could</b> do this by clearing the read-only status of the files, but doing so will break the database information that Co-op keeps. Run <i>Repair</i> from the <i>Project</i> menu to restore files after an accident like this.)
+			<li>Don't rename or move files using external applications (e. g., the shell explorer), even if they are checked out.
+			<li>Always perform <b>delete</b>, <b>rename</b> and <b>move</b> using Code Co-op.
+		</ul>
+		<p>In return you can expect that <b>fully transactional</b> Code Co-op will preserve the integrity of your project even if the power goes down in the middle of an operation (provided, of course, your file system is robust enough to recover from such a disaster).
+		</td>
+		</tr>
+		</table>
+
+		</font>
+	</td>
+	<td></td>
+</tr>
+<!-- Footer -->
+<tr>
+	<td></td>
+	<td><font size=1>Code Co-op User's manual. Copyright &copy; 1999, 2000 Reliable Software.</font></td>
+</tr>
+</table>
+
+</font>
+</body>
+</html>

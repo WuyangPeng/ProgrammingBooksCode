@@ -1,0 +1,168 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="GENERATOR" content="Microsoft FrontPage 12.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>第1章 导论</title>
+<link rel="stylesheet" type="text/css" href="../../../news.css">
+<meta name="Microsoft Theme" content="nature 011">
+<style type="text/css">
+.style1 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+}
+.style6 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+	color: #0000FF;
+}
+.style8 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+	color: #0000FF;
+	font-size: large;
+}
+.style9 {
+	font-family: FZKai-Z03;
+	text-indent: 32px;
+	text-align: left;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style10 {
+	font-family: FZKai-Z03;
+	text-align: center;
+	font-size: medium;
+}
+.style11 {
+	font-family: FZKai-Z03;
+	text-indent: 0;
+	text-align: center;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style12 {
+	font-family: FZKai-Z03;
+	text-indent: 0;
+	text-align: left;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style13 {
+	font-family: FZKai-Z03;
+	text-indent: 64px;
+	text-align: left;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+</style>
+</head>
+
+<body background="../../../nabkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#993333" vlink="#333399" alink="#006633">
+
+<p align="center" class="style1"><font size="7" color="#0000FF">代码阅读</font></p>
+<p align="center" class="style8">Code Reading</p>
+<p align="center" class="style6">
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第1章 
+导论</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style9">软件源码是用以交互程序操作，并将知识通过一种可执行的形式加以存储的明确媒介。</p>
+<p class="style9">程序理应为读而写，况且，无论代码是否易读，它们终究需要被人们阅读。</p>
+<p class="style11"><strong>1.1 为何以及如何阅读代码</strong></p>
+<p class="style11"><strong>1.1.1 将代码作为文献</strong></p>
+<p class="style9">养成阅读他人编写的高质量代码的习惯。</p>
+<p class="style9">阅读高质量的代码还可以提高你编写代码的水准。</p>
+<p class="style9">通过下面这些特征，可以轻松地识别出较低品质的代码：</p>
+<ul>
+	<li>
+	<p class="style12">编码风格不一致。</p>
+	</li>
+	<li>
+	<p class="style12">结构上毫无道理地复杂或可读性较差。</p>
+	</li>
+	<li>
+	<p class="style12">明显的逻辑错误和疏忽。</p>
+	</li>
+	<li>
+	<p class="style12">过度使用不可移殖的结构。</p>
+	</li>
+	<li>
+	<p class="style12">缺乏维护。</p>
+	</li>
+</ul>
+<p class="style9">另外一种积极地阅读现有代码的方式是改进它，而这些代码都是当做文献来阅读的。</p>
+<p class="style11"><strong>1.1.2 将代码作为范例</strong></p>
+<p class="style9">想要创建与给定实现相兼容的软件，代码阅读也可能是最可靠的方式。</p>
+<p class="style9">在将代码用做范例时，关键的思想是灵活性。要准备好通过大量不同的策略与方法来了解代码的工作方式。</p>
+<p class="style9">定位到目标代码后，撇开不相关的部分，对它进行研究分析。</p>
+<p class="style11"><strong>1.1.3 维护</strong></p>
+<p class="style9">从问题的表现形式到问题的根源来分析代码。不要沿不相关的路径往下走。</p>
+<p class="style11"><strong>1.1.4 演进</strong></p>
+<p class="style9">
+在多数情况下，阅读代码不是为了修复缺陷，而是为了增加新的功能、修改现有的特性、调整代码使其适应新的环境和需求，抑或重构以加强代码的非功能性质量。</p>
+<p class="style9">在有选择地处理大型系统的各个组成部分时，可以采用的策略如下：</p>
+<ul>
+	<li>
+	<p class="style12">定位到感兴趣的代码部分。</p>
+	</li>
+	<li>
+	<p class="style12">单独了解各个特定的部分。</p>
+	</li>
+	<li>
+	<p class="style12">推断摘选出的代码与其余代码的关系。</p>
+	</li>
+</ul>
+<p class="style9">在向系统中增加新功能时，首要任务是找到实现类似特性的代码，将其作为待实现功能的一个模板。</p>
+<p class="style9">if(pass == NULL)</p>
+<p class="style13">pass = getpass(&quot;Password:&quot;);</p>
+<p class="style9">n = command(&quot;PASS %s&quot;, pass);</p>
+<p class="style9">之后，开始研究其实现、设计或增加新的特性，以及定位可能受影响的区域——代码中与新代码发生交互的其他部分。</p>
+<p class="style9">重构行为对系统的更改，是保持系统的静态外部行为不变，而增强其非功能性品质，例如 ：简单性、灵活性、易理解性或高效性。</p>
+<p class="style11"><strong>1.1.5 重用</strong></p>
+<p class="style9">编写可重用的代码是很困难的。</p>
+<p class="style9">另一种可重用的活动是主动检查代码，发掘可重用的部分。</p>
+<p class="style11"><strong>1.1.6 检查</strong></p>
+<p class="style9">在这些情形中，代码阅读要求不同的理解、领会和警惕水平。需要一丝不苟地检查代码，去找到功能和逻辑上的错误。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+</p>
+<p class="style11"><strong>1.2 如何阅读本书</strong></p>
+<p class="style11"><strong>1.2.1 排版约定</strong></p>
+<p class="style9">$ grep -1 malloc *.c</p>
+<p class="style9">&gt; wc -1</p>
+<p class="style9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8</p>
+<p class="style9"><a href="file:///C:/grep">C:\grep</a> -1 malloc *.c | wc -1</p>
+<p class="style9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8</p>
+<p class="style9">&nbsp;</p>
+<p class="style9">main(argc, argv)</p>
+<p class="style9">[...]</p>
+<p class="style9">{</p>
+<p class="style9">&nbsp;&nbsp; if(argc &gt; 1)</p>
+<p class="style9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(;;)</p>
+<p class="style9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (void)puts(argv[1]);</p>
+<p class="style9">&nbsp; else for(;;)</p>
+<p class="style9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (void)puts(&quot;y&quot;);</p>
+<p class="style9">}</p>
+<p class="style11"><strong>1.2.2 图表</strong></p>
+<p class="style11">UML图的开源的解释性语言</p>
+<p class="style11"><a href="https://www.spinellis.gr/umlgraph">
+https://www.spinellis.gr/umlgraph</a></p>
+<p class="style11">GraphViz工具</p>
+<p class="style11"><a href="https://www.graphviz.org/">https://www.graphviz.org/</a></p>
+<p class="style11"><strong>1.2.3 练习</strong></p>
+<p class="style9">find /cdrom -name '*.c' -print | xargs grep 'malloc.*NULL'</p>
+<p class="style11"><strong>1.2.4 辅助材料</strong></p>
+<p class="style11"><strong>1.2.5 工具</strong></p>
+<p class="style11"><strong>1.2.6 提纲</strong></p>
+<p class="style11"><strong>1.2.7 关于“伟大语言”的争论</strong></p>
+<p class="style11">sourceforge.net</p>
+<p class="style11"><a href="https://sourceforge.net/">https://sourceforge.net/&nbsp;</a></p>
+<p class="style11"><strong>进阶阅读</strong></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="代码阅读.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
+
+</body>
+
+</html>

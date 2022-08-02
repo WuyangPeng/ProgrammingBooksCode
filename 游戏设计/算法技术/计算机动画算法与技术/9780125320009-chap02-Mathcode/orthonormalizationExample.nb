@@ -1,0 +1,172 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.2'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      4368,        123]*)
+(*NotebookOutlinePosition[      5007,        145]*)
+(*  CellTagsIndexPosition[      4963,        141]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+Cell[BoxData[
+    \(\(\( (*\ 
+      for\ right - 
+        handed\ coordinate\ systems\ \
+*) \)\(\[IndentingNewLine]\)\(\(dotproduct[v1_, 
+          v2_] := {\[IndentingNewLine]v1[\([1]\)]*v2[\([1]\)] + 
+            v1[\([2]\)]*v2[\([2]\)] + 
+            v1[\([3]\)]*v2[\([3]\)]\[IndentingNewLine]};\)\[IndentingNewLine]
+    \(crossproduct[v1_, 
+          v2_] := {\[IndentingNewLine]v1[\([2]\)]*v2[\([3]\)] - 
+            v1[\([3]\)] v2[\([2]\)], \[IndentingNewLine]v1[\([3]\)]*
+              v2[\([1]\)] - 
+            v1[\([1]\)] v2[\([3]\)], \[IndentingNewLine]v1[\([1]\)]*
+              v2[\([2]\)] - 
+            v1[\([2]\)] v2[\([1]\)]\[IndentingNewLine]};\)\[IndentingNewLine]
+    \(orthoNormalizeMatrix[R_] := \ {\[IndentingNewLine]v1 = R[\([1]\)]; 
+          v2 = R[\([2]\)]; 
+          v3 = R[\([3]\)]; \[IndentingNewLine]v3 = 
+            crossproduct[v1, v2]; \[IndentingNewLine]v2 = 
+            crossproduct[v3, v1]; \[IndentingNewLine]len1 = 
+            Sqrt[v1[\([1]\)]*v1[\([1]\)] + v1[\([2]\)]*v1[\([2]\)] + 
+                v1[\([3]\)]*v1[\([3]\)]]; \[IndentingNewLine]len2 = 
+            Sqrt[v2[\([1]\)]*v2[\([1]\)] + v2[\([2]\)]*v2[\([2]\)] + 
+                v2[\([3]\)]*v2[\([3]\)]]; \[IndentingNewLine]len3 = 
+            Sqrt[v3[\([1]\)]*v3[\([1]\)] + v3[\([2]\)]*v3[\([2]\)] + 
+                v3[\([3]\)]*v3[\([3]\)]]; \[IndentingNewLine]v1/len1, 
+          v2/len2, v3/len3\[IndentingNewLine]};\)\)\)\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+    \(\(R\  = \ {\ {4\ , 1, \(-2\)}, \ \ {1, 2, 3}, {3, \(-4\), 
+            5}};\)\), "\[IndentingNewLine]", 
+    \(R = orthoNormalizeMatrix[R]\)}], "Input"],
+
+Cell[BoxData[
+    \({{4\/\@21, 1\/\@21, \(-\(2\/\@21\)\)}, {1\/\@14, \@\(2\/7\), 
+        3\/\@14}, {1\/\@6, \(-\@\(2\/3\)\), 1\/\@6}}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+    \(dotproduct[R[\([1]\)], R[\([2]\)]]\), "\[IndentingNewLine]", 
+    \(dotproduct[R[\([2]\)], R[\([3]\)]]\), "\[IndentingNewLine]", 
+    \(dotproduct[R[\([3]\)], R[\([1]\)]]\), "\[IndentingNewLine]", 
+    \(N[dotproduct[R[\([1]\)], 
+        crossproduct[R[\([2]\)], R[\([3]\)]]]]\), "\[IndentingNewLine]", 
+    \(N[dotproduct[R[\([2]\)], 
+        crossproduct[R[\([3]\)], R[\([1]\)]]]]\), "\[IndentingNewLine]", 
+    \(N[dotproduct[R[\([3]\)], 
+        crossproduct[R[\([1]\)], R[\([2]\)]]]]\)}], "Input"],
+
+Cell[BoxData[
+    \({0}\)], "Output"],
+
+Cell[BoxData[
+    \({0}\)], "Output"],
+
+Cell[BoxData[
+    \({0}\)], "Output"],
+
+Cell[BoxData[
+    \({1.`}\)], "Output"],
+
+Cell[BoxData[
+    \({1.`}\)], "Output"],
+
+Cell[BoxData[
+    \({1.`}\)], "Output"]
+}, Open  ]]
+},
+FrontEndVersion->"5.2 for Macintosh",
+ScreenRectangle->{{4, 1440}, {0, 938}},
+WindowSize->{1033, 717},
+WindowMargins->{{Automatic, 155}, {Automatic, 26}}
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+Cell[1754, 51, 1443, 26, 299, "Input"],
+
+Cell[CellGroupData[{
+Cell[3222, 81, 173, 3, 43, "Input"],
+Cell[3398, 86, 148, 2, 53, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3583, 93, 523, 9, 107, "Input"],
+Cell[4109, 104, 37, 1, 27, "Output"],
+Cell[4149, 107, 37, 1, 27, "Output"],
+Cell[4189, 110, 37, 1, 27, "Output"],
+Cell[4229, 113, 39, 1, 27, "Output"],
+Cell[4271, 116, 39, 1, 27, "Output"],
+Cell[4313, 119, 39, 1, 27, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

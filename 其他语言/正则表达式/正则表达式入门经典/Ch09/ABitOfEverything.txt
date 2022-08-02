@@ -1,0 +1,13 @@
+ABC123
+
+DEF9FR
+
+Mary had a little lamb.
+
+var x = 234 / 1.56;
+
+<html><body></body></html>
+
+<book></book>
+
+This is a random 58#Gooede garbled piece of 8983ju**nk but it is still selected.

@@ -1,0 +1,22 @@
+GPU精粹（GPU Gems）
+
+官方网站：
+http://developer.nvidia.com/GPUGem （已失效）、
+http://developer.nvidia.com/GPUGems2 （已失效）、
+http://developer.nvidia.com/GPUGems3 （已失效）、
+http://www.awprofessional.com、
+https://developer.nvidia.com/gpugems/GPUGems/gpugems_pref01.html
+
+卷1：实时图形编程的技术、技巧和技艺（Programming Techniques,Tips,and Tricks for Real-Time Graphics）
+★★
+作者： Randima Fermando    
+
+卷2：高性能图形芯片和通用计算编程技巧（Programming Techniques for High-Performance Graphics and General-Purpose Computation）
+★★
+作者： Matt Pharr   
+
+卷3：GPU 3D和通用编程技巧
+★★
+作者：  Hubert Nguyen 
+
+  

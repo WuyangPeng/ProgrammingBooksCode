@@ -1,0 +1,315 @@
+listing 1
+#include <iostream> 
+#include <cmath> 
+#include <iomanip> 
+#include <locale> 
+ 
+using namespace std; 
+ 
+// Compute ;the regular payments on a loan. 
+double regpay(double principal, double intRate, 
+              int numYears, int payPerYear) {  
+  double numer;  
+  double denom;  
+  double b, e;  
+  
+  intRate /= 100.0; // convert percentage to fraction  
+ 
+  numer = intRate * principal / payPerYear;  
+ 
+  e = -(payPerYear * numYears);  
+  b = (intRate / payPerYear) + 1.0;  
+  
+  denom = 1.0 - pow(b, e);  
+  
+  return numer / denom;  
+}    
+ 
+int main() { 
+  double p, r; 
+  int y, ppy; 
+ 
+  // Set locale to English.  Adjust as necessary 
+  // for your language and/or egion. 
+  cout.imbue(locale("english")); 
+ 
+  cout << "Enter principal: "; 
+  cin >> p; 
+ 
+  cout << "Enter interest rate (as a percentage): "; 
+  cin >> r; 
+ 
+  cout << "Enter number years: "; 
+  cin >> y; 
+ 
+  cout << "Enter number of payments per year: "; 
+  cin >> ppy; 
+ 
+  cout << "\nPayment: " << fixed << setprecision(2) 
+       << regpay(p, r, y, ppy) << endl; 
+ 
+  return 0; 
+}
+
+listing 2
+#include <iostream> 
+#include <cmath> 
+#include <iomanip> 
+#include <locale> 
+ 
+using namespace std; 
+   
+// Compute the future value of an investment.  
+double futval(double principal, double rateOfRet, 
+              int numYears, int compPerYear) {  
+  double b, e; 
+  
+  rateOfRet /= 100.0; // convert percentage to fraction  
+ 
+  b = (1 + rateOfRet/compPerYear); 
+  e = compPerYear * numYears; 
+  
+  return principal * pow(b, e); 
+} 
+ 
+int main() { 
+  double p, r; 
+  int y, cpy; 
+ 
+  // Set locale to English.  Adjust as necessary 
+  // for your language and/or egion. 
+  cout.imbue(locale("english")); 
+ 
+  cout << "Enter principal: "; 
+  cin >> p; 
+ 
+  cout << "Enter rate of return (as a percentage): "; 
+  cin >> r; 
+ 
+  cout << "Enter number years: "; 
+  cin >> y; 
+ 
+  cout << "Enter number of compoundings per year: "; 
+  cin >> cpy; 
+ 
+  cout << "\nFuture value: " << fixed << setprecision(2) 
+       << futval(p, r, y, cpy) << endl; 
+ 
+  return 0; 
+}
+
+listing 3
+#include <iostream> 
+#include <cmath> 
+#include <iomanip> 
+#include <locale> 
+ 
+using namespace std; 
+   
+// Compute the initial investment necessary for  
+// a specified future value. 
+double initval(double targetValue, double rateOfRet, 
+               int numYears, int compPerYear) {  
+  double b, e;  
+ 
+  rateOfRet /= 100.0; // convert percentage to fraction  
+ 
+  b = (1 + rateOfRet/compPerYear);  
+  e = compPerYear * numYears;  
+  
+  return targetValue / pow(b, e);    
+}     
+ 
+int main() { 
+  double p, r; 
+  int y, cpy; 
+ 
+  // Set locale to English.  Adjust as necessary 
+  // for your language and/or egion. 
+  cout.imbue(locale("english")); 
+ 
+  cout << "Enter desired future value: "; 
+  cin >> p; 
+ 
+  cout << "Enter rate of return: "; 
+  cin >> r; 
+ 
+  cout << "Enter number years: "; 
+  cin >> y; 
+ 
+  cout << "Enter number of compoundings per year: "; 
+  cin >> cpy; 
+ 
+  cout << "\nInitial investment required: "  
+       << fixed << setprecision(2) 
+       << initval(p, r, y, cpy) << endl; 
+ 
+  return 0; 
+}
+
+listing 4
+#include <iostream> 
+#include <cmath> 
+#include <iomanip> 
+#include <locale> 
+ 
+using namespace std; 
+ 
+// Compute the initial investment necessary for  
+// a desired annuity. In other words, it finds  
+// the initial amount needed to allow the regular  
+// withdrawls of a desired amount over a period  
+// of time.  
+double annuity(double regWD, double rateOfRet, 
+               int numYears, int numPerYear) {  
+ 
+  double b, e;  
+  double t1, t2;  
+  
+  rateOfRet /= 100.0; // convert percentage to fraction  
+ 
+  t1 = (regWD * numPerYear) / rateOfRet;  
+  
+  b = (1 + rateOfRet/numPerYear);  
+  e = numPerYear * numYears;  
+  
+  t2 = 1 - (1 / pow(b, e));  
+     
+  return t1 * t2;  
+} 
+ 
+int main() { 
+  double wd, r; 
+  int y, wpy; 
+ 
+  // Set locale to English.  Adjust as necessary 
+  // for your language and/or egion. 
+  cout.imbue(locale("english")); 
+ 
+  cout << "Enter desired withdrawal: "; 
+  cin >> wd; 
+ 
+  cout << "Enter rate of return (as a percentage): "; 
+  cin >> r; 
+ 
+  cout << "Enter number years: "; 
+  cin >> y; 
+ 
+  cout << "Enter number of withdrawals per year: "; 
+  cin >> wpy; 
+ 
+  cout << "\nInitial investment required: "  
+       << fixed << setprecision(2) 
+       << annuity(wd, r, y, wpy) << endl; 
+ 
+  return 0; 
+}
+
+listing 5
+#include <iostream> 
+#include <cmath> 
+#include <iomanip> 
+#include <locale> 
+ 
+using namespace std; 
+ 
+// Compute the maximum annuity that can  
+// be withdrawn from an investment over  
+// a period of time.  */  
+double maxwd(double principal, double rateOfRet, 
+             int numYears, int numPerYear) {  
+ 
+  double b, e;  
+  double t1, t2;  
+  
+  rateOfRet /= 100.0; // convert percentage to fraction  
+ 
+  t1 = rateOfRet / numPerYear;  
+  
+  b = (1 + t1);  
+  e = numPerYear * numYears;  
+  
+  t2 = pow(b, e) - 1;  
+  
+  return principal * (t1/t2 + t1);  
+}     
+ 
+int main() { 
+  double p, r; 
+  int y, wpy; 
+ 
+  // Set locale to English.  Adjust as necessary 
+  // for your language and/or egion. 
+  cout.imbue(locale("english")); 
+ 
+  cout << "Enter principal: "; 
+  cin >> p; 
+ 
+  cout << "Enter rate of return (as a percentage): "; 
+  cin >> r; 
+ 
+  cout << "Enter number years: "; 
+  cin >> y; 
+ 
+  cout << "Enter number of withdrawals per year: "; 
+  cin >> wpy; 
+ 
+  cout << "\nMaximum withdrawal: " << fixed << setprecision(2) 
+       << maxwd(p, r, y, wpy) << endl; 
+ 
+  return 0; 
+}
+
+listing 6
+#include <iostream> 
+#include <cmath> 
+#include <iomanip> 
+#include <locale> 
+ 
+using namespace std; 
+   
+// Find the remaining balance on a loan.  
+double balance(double principal, double intRate, 
+               double payment, int payPerYear, 
+               int numPayments) {  
+ 
+  double bal = principal;  
+  double rate = intRate / payPerYear;  
+  
+  rate /= 100.0; // convert percentage to fraction  
+ 
+  for(int i = 0; i < numPayments; i++)  
+    bal -= payment - (bal * rate);  
+  
+  return bal;  
+} 
+ 
+int main() { 
+  double p, r, pmt; 
+  int ppy, npmt; 
+ 
+  // Set locale to English.  Adjust as necessary 
+  // for your language and/or egion. 
+  cout.imbue(locale("english")); 
+ 
+  cout << "Enter original principal: "; 
+  cin >> p; 
+ 
+  cout << "Enter interest rate (as a percentage): "; 
+  cin >> r; 
+ 
+  cout << "Enter payment: "; 
+  cin >> pmt; 
+ 
+  cout << "Enter number of payments per year: "; 
+  cin >> ppy; 
+ 
+  cout << "Enter number of payments made: "; 
+  cin >> npmt; 
+ 
+  cout << "Remaining balance: " << fixed << setprecision(2) 
+       << balance(p, r, pmt, ppy, npmt) << endl; 
+ 
+  return 0; 
+}
+

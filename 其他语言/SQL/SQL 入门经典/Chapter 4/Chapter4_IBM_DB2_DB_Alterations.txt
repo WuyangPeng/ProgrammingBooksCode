@@ -1,0 +1,282 @@
+CREATE TABLE TempLocation
+(
+    LocationId integer NOT NULL,
+    Street varchar(100),
+    City varchar(75),
+    State varchar(75)
+);
+
+INSERT INTO TempLocation SELECT * FROM Location;
+
+DROP TABLE Location;
+
+CREATE TABLE Location
+(
+    LocationId integer NOT NULL,
+    Street varchar(100),
+    City varchar(75),
+    State varchar(75)
+);
+
+INSERT INTO Location SELECT * FROM TempLocation;
+
+DROP TABLE TempLocation;
+
+
+CREATE TABLE TempAttendance
+(
+    MeetingDate date,
+    LocationId integer,
+    MemberId integer
+);
+
+INSERT INTO TempAttendance (MeetingDate, LocationId, MemberId) 
+SELECT MeetingDate, LocationId, MemberId FROM Attendance
+WHERE MemberAttended = 'Y';
+
+DROP TABLE Attendance;
+
+CREATE TABLE Attendance
+(
+    MeetingDate date NOT NULL,
+    LocationId integer NOT NULL,
+    MemberId integer NOT NULL
+);
+
+INSERT INTO Attendance (MeetingDate, LocationId, MemberId) 
+SELECT MeetingDate, LocationId, MemberId FROM Attendance;
+
+
+DROP TABLE TempAttendance;
+
+
+CREATE TABLE TempMemberDetails
+(
+    MemberId integer,
+    FirstName vargraphic(50),
+    LastName vargraphic(50),
+    DateOfBirth date,
+    Street varchar(100),
+    City varchar(75),
+    State varchar(75),
+    ZipCode varchar(12),
+    Email varchar(200),
+    DateOfJoining date
+
+);
+
+INSERT INTO TempMemberDetails 
+SELECT * FROM MemberDetails;
+
+DROP TABLE MemberDetails;
+
+CREATE TABLE MemberDetails
+(
+    MemberId integer NOT NULL,
+    FirstName vargraphic(50),
+    LastName vargraphic(50),
+    DateOfBirth date,
+    Street varchar(100),
+    City varchar(75),
+    State varchar(75),
+    ZipCode varchar(12),
+    Email varchar(200),
+    DateOfJoining date
+
+);
+
+INSERT INTO MemberDetails 
+SELECT * FROM TempMemberDetails;
+
+
+DROP TABLE TempMemberDetails;
+
+ALTER TABLE MemberDetails
+ADD CONSTRAINT memberdetails_pk PRIMARY KEY (MemberId);
+
+CREATE TABLE TempFilms
+(
+    FilmId integer,
+    FilmName varchar(100),
+    YearReleased integer,
+    PlotSummary varchar(2000),
+    AvailableOnDVD char(1),
+    Rating integer,
+    CategoryId integer 
+);
+
+INSERT INTO TempFilms 
+SELECT * FROM Films;
+
+DROP TABLE Films;
+
+CREATE TABLE Films
+(
+    FilmId integer NOT NULL,
+    FilmName varchar(100),
+    YearReleased integer,
+    PlotSummary varchar(2000),
+    AvailableOnDVD char(1),
+    Rating integer,
+    CategoryId integer 
+);
+
+INSERT INTO Films 
+SELECT * FROM TempFilms;
+DROP TABLE TempFilms;
+
+UPDATE Films
+SET FilmId = 13
+WHERE FilmId = 12 AND 
+FilmName = 'The Good, the Bad, and the Facially Challenged';
+
+UPDATE Films
+SET FilmId = 14
+WHERE FilmId = 2 AND 
+FilmName = '15th Late Afternoon';
+
+UPDATE Films
+SET FilmId = 15
+WHERE FilmId = 2 AND 
+FilmName = 'Soylent Yellow';
+
+ALTER TABLE Films
+ADD CONSTRAINT films_pk PRIMARY KEY (FilmId);
+
+
+CREATE TABLE TempCategory
+(
+    CategoryId integer,
+    Category varchar(100) 
+);
+
+INSERT INTO TempCategory 
+SELECT * FROM Category;
+
+DROP TABLE Category;
+
+CREATE TABLE Category
+(
+    CategoryId integer NOT NULL,
+    Category varchar(100) 
+);
+INSERT INTO Category
+SELECT * FROM TempCategory;
+DROP TABLE TempCategory;
+
+ALTER TABLE Category
+ADD CONSTRAINT category_pk PRIMARY KEY (CategoryId);
+
+CREATE TABLE TempFavCategory
+(
+    CategoryId integer,
+    MemberId integer
+);
+
+INSERT INTO TempFavCategory 
+SELECT * FROM FavCategory;
+
+DROP TABLE FavCategory;
+
+CREATE TABLE FavCategory
+(
+    CategoryId integer NOT NULL,
+    MemberId integer NOT NULL 
+);
+INSERT INTO FavCategory
+SELECT * FROM TempFavCategory;
+
+DROP TABLE TempFavCategory;
+
+ALTER TABLE FavCategory
+ADD CONSTRAINT favcategory_pk PRIMARY KEY (CategoryId, MemberId);
+
+
+CREATE TABLE TempFilms
+(
+    FilmId integer NOT NULL,
+    FilmName varchar(100),
+    YearReleased integer,
+    PlotSummary varchar(2000),
+    AvailableOnDVD char(1),
+    Rating integer,
+    CategoryId integer 
+);
+
+INSERT INTO TempFilms 
+SELECT * FROM Films;
+
+DROP TABLE Films;
+
+CREATE TABLE Films
+(
+    FilmId integer NOT NULL,
+    FilmName varchar(100) NOT NULL,
+    YearReleased integer,
+    PlotSummary varchar(2000),
+    AvailableOnDVD char(1),
+    Rating integer,
+    CategoryId integer 
+);
+
+INSERT INTO Films 
+SELECT * FROM TempFilms;
+DROP TABLE TempFilms;
+
+
+CREATE TABLE TempMemberDetails
+(
+    MemberId integer,
+    FirstName vargraphic(50),
+    LastName vargraphic(50),
+    DateOfBirth date,
+    Street varchar(100),
+    City varchar(75),
+    State varchar(75),
+    ZipCode varchar(12),
+    Email varchar(200),
+    DateOfJoining date
+
+);
+
+INSERT INTO TempMemberDetails 
+SELECT * FROM MemberDetails;
+
+DROP TABLE MemberDetails;
+
+CREATE TABLE MemberDetails
+(
+    MemberId integer NOT NULL,
+    FirstName vargraphic(50) NOT NULL,
+    LastName vargraphic(50) NOT NULL,
+    DateOfBirth date,
+    Street varchar(100),
+    City varchar(75),
+    State varchar(75),
+    ZipCode varchar(12),
+    Email varchar(200),
+    DateOfJoining date
+
+);
+
+INSERT INTO MemberDetails 
+SELECT * FROM TempMemberDetails;
+
+
+DROP TABLE TempMemberDetails;
+
+CREATE UNIQUE INDEX member_name_indx
+ON MemberDetails (LastName DESC, FirstName);
+
+
+ALTER TABLE Attendance
+ADD CONSTRAINT attend_loc_fk 
+FOREIGN KEY (LocationId) 
+REFERENCES Location(LocationId);
+
+ALTER TABLE Attendance
+ADD CONSTRAINT attend_memdet_fk 
+FOREIGN KEY (MemberId) 
+REFERENCES MemberDetails(MemberId);
+
+

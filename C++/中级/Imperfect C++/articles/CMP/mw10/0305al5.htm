@@ -1,0 +1,122 @@
+<html>
+<head>
+<title></title>
+</head>
+
+<body>
+
+
+<h4>Listing 5  Extract from winstl_threadtimes_counter.h</h4>
+
+<pre>
+
+/* /////////////////////////////////////////////////////////////
+ * ...
+ *
+ * Extract from winstl_threadtimes_counter.h
+ *
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * (Licensed under the Synesis Software Standard Source License:
+ *  http://www.synesis.com.au/licenses/ssssl.html)
+ *
+ * ...
+ * ////////////////////////////////////////////////////////// */
+
+inline threadtimes_counter::threadtimes_counter()
+    : m_thread(::GetCurrentThread())
+{
+}
+
+// Operations
+inline void threadtimes_counter::start()
+{
+    FILETIME    creationTime;
+    FILETIME    exitTime;
+
+    ::GetThreadTimes(   m_thread,
+                        &amp;creationTime,
+                        &amp;exitTime,
+                        reinterpret_cast&lt;LPFILETIME&gt;(&amp;m_kernelStart),
+                        reinterpret_cast&lt;LPFILETIME&gt;(&amp;m_userStart));
+}
+
+inline void threadtimes_counter::stop()
+{
+    FILETIME    creationTime;
+    FILETIME    exitTime;
+
+    ::GetThreadTimes(   m_thread,
+                        &amp;creationTime,
+                        &amp;exitTime,
+                        reinterpret_cast&lt;LPFILETIME&gt;(&amp;m_kernelEnd),
+                        reinterpret_cast&lt;LPFILETIME&gt;(&amp;m_userEnd));
+}
+
+// Attributes
+
+// Kernel
+inline threadtimes_counter::interval_type threadtimes_counter::get_kernel_period_count() const
+{
+    return static_cast&lt;interval_type&gt;(m_kernelEnd - m_kernelStart);
+}
+
+inline threadtimes_counter::interval_type threadtimes_counter::get_kernel_seconds() const
+{
+    return get_kernel_period_count() / interval_type(10000000);
+}
+
+inline threadtimes_counter::interval_type threadtimes_counter::get_kernel_milliseconds() const
+{
+    return get_kernel_period_count() / interval_type(10000);
+}
+
+inline threadtimes_counter::interval_type threadtimes_counter::get_kernel_microseconds() const
+{
+    return get_kernel_period_count() / interval_type(10);
+}
+
+// User
+inline threadtimes_counter::interval_type threadtimes_counter::get_user_period_count() const
+{
+    return static_cast&lt;interval_type&gt;(m_userEnd - m_userStart);
+}
+
+inline threadtimes_counter::interval_type threadtimes_counter::get_user_seconds() const
+{
+    return get_user_period_count() / interval_type(10000000);
+}
+
+inline threadtimes_counter::interval_type threadtimes_counter::get_user_milliseconds() const
+{
+    return get_user_period_count() / interval_type(10000);
+}
+
+inline threadtimes_counter::interval_type threadtimes_counter::get_user_microseconds() const
+{
+    return get_user_period_count() / interval_type(10);
+}
+
+// Total
+inline threadtimes_counter::interval_type threadtimes_counter::get_period_count() const
+{
+    return get_kernel_period_count() + get_user_period_count();
+}
+
+inline threadtimes_counter::interval_type threadtimes_counter::get_seconds() const
+{
+    return get_period_count() / interval_type(10000000);
+}
+
+inline threadtimes_counter::interval_type    threadtimes_counter::get_milliseconds() const
+{
+    return get_period_count() / interval_type(10000);
+}
+
+inline threadtimes_counter::interval_type    threadtimes_counter::get_microseconds() const
+{
+    return get_period_count() / interval_type(10);
+}
+
+</pre>
+</body>
+</html>

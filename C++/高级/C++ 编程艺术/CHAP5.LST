@@ -1,0 +1,570 @@
+listing 1
+// A file download subsystem.  
+#include <iostream>  
+#include <windows.h>  
+#include <wininet.h>  
+#include <fstream>  
+#include <cstdio>  
+  
+using namespace std;  
+  
+const int MAX_ERRMSG_SIZE = 80;  
+const int MAX_FILENAME_SIZE = 512;  
+const int BUF_SIZE = 1024;  
+  
+// Exception class for download errors.  
+class DLExc {  
+  char err[MAX_ERRMSG_SIZE];  
+public:  
+  DLExc(char *exc) {  
+    if(strlen(exc) < MAX_ERRMSG_SIZE)  
+      strcpy(err, exc);  
+  }  
+  
+  // Return a pointer to the error message.  
+  const char * geterr() {  
+    return err;  
+  }  
+};  
+  
+// A class for downloading files from the Internet.  
+class Download {  
+  static bool ishttp(char *url);  
+  static bool httpverOK(HINTERNET hIurl);  
+  static bool getfname(char *url, char *fname);  
+  static unsigned long openfile(char *url, bool reload,  
+                                ofstream &fout);  
+public:  
+  static bool download(char *url, bool restart=false,  
+     void (*update)(unsigned long, unsigned long)=NULL);  
+};  
+  
+  
+// Download a file.   
+//  
+// Pass the URL of the file to url.  
+//  
+// To reload a file, pass true to reload.  
+//  
+// To specify an update function that is called after  
+// each buffer is read, pass a pointer to that  
+// function as the third parameter.  If no update  
+// function is desired, then let the third parameter  
+// default to null.  
+bool Download::download(char *url, bool reload,   
+       void (*update)(unsigned long, unsigned long)) {  
+  
+  ofstream fout;           // output stream  
+  unsigned char buf[BUF_SIZE]; // input buffer  
+  unsigned long numrcved;  // number of bytes read  
+  unsigned long filelen;   // length of file on disk  
+  HINTERNET hIurl, hInet;  // Internet handles  
+  unsigned long contentlen;// length of content  
+  unsigned long len;       // length of contentlen  
+  unsigned long total = 0; // running total of bytes received  
+  char header[80];         // holds Range header  
+  
+  try {  
+    if(!ishttp(url))  
+      throw DLExc("Must be HTTP url.");  
+  
+    // Open the file specified by url.  
+    // The open stream will be returned  
+    // in fout.  If reload is true, then  
+    // any preexisting file will be truncated.  
+    // The length of any preexisting file (after   
+    // possible truncation) is returned.  
+    filelen = openfile(url, reload, fout);  
+  
+    // See if Internet connection available.  
+    if(InternetAttemptConnect(0) != ERROR_SUCCESS)   
+      throw DLExc("Can't connect.");  
+  
+    // Open Internet connection.  
+    hInet = InternetOpen("downloader",  
+                        INTERNET_OPEN_TYPE_DIRECT,  
+                        NULL, NULL,  0);  
+  
+    if(hInet == NULL)   
+      throw DLExc("Can't open connection.");  
+  
+    // Construct header requesting range of data.  
+    sprintf(header, "Range:bytes=%d-", filelen);   
+  
+    // Open the URL and request range.  
+    hIurl = InternetOpenUrl(hInet, url,  
+              header, -1,  
+              INTERNET_FLAG_NO_CACHE_WRITE, 0);  
+  
+    if(hIurl == NULL) throw DLExc("Can't open url.");  
+  
+    // Confirm that HTTP/1.1 or greater is supported.  
+    if(!httpverOK(hIurl))  
+      throw DLExc("HTTP/1.1 not supported.");  
+     
+    // Get content length.  
+    len = sizeof contentlen;  
+    if(!HttpQueryInfo(hIurl,  
+                      HTTP_QUERY_CONTENT_LENGTH |  
+                      HTTP_QUERY_FLAG_NUMBER,  
+                      &contentlen, &len, NULL))  
+      throw DLExc("File or content length not found.");  
+  
+    // If existing file (if any) is not complete,  
+    // then finish downloading.  
+    if(filelen != contentlen && contentlen)   
+      do {  
+        // Read a buffer of info.  
+        if(!InternetReadFile(hIurl, &buf,  
+                             BUF_SIZE, &numrcved))  
+          throw DLExc("Error occurred during download.");  
+  
+         // Write buffer to disk.  
+         fout.write((const char *) buf, numrcved);  
+         if(!fout.good())   
+           throw DLExc("Error writing file.");  
+       
+         total += numrcved; // update running total  
+  
+         // Call update function, if specified.  
+         if(update && numrcved > 0)  
+           update(contentlen+filelen, total+filelen);  
+  
+      } while(numrcved > 0);  
+    else  
+      if(update)  
+        update(filelen, filelen);  
+  
+  } catch(DLExc) {  
+    fout.close();  
+    InternetCloseHandle(hIurl);  
+    InternetCloseHandle(hInet);  
+  
+    throw; // rethrow the exception for use by caller  
+  }  
+  
+  fout.close();  
+  InternetCloseHandle(hIurl);  
+  InternetCloseHandle(hInet);  
+  
+  return true;  
+}  
+  
+// Return true if HTTP version of 1.1 or greater.  
+bool Download::httpverOK(HINTERNET hIurl) {  
+  char str[80];  
+  unsigned long len = 79;  
+  
+  // Get HTTP version.  
+  if(!HttpQueryInfo(hIurl, HTTP_QUERY_VERSION, &str, &len, NULL))  
+    return false;  
+ 
+  // First, check major version number.  
+  char *p = strchr(str, '/'); 
+  p++; 
+  if(*p == '0') return false; // can use HTTP 0.x 
+ 
+  // Now, find start of minor HTTP version number.  
+  p = strchr(str, '.');  
+  p++;  
+  
+  // Convert to int.  
+  int minorVerNum = atoi(p);  
+  
+  if(minorVerNum > 0) return true;  
+  return false;  
+}  
+  
+// Extract the filename from the URL.  Return false if  
+// the filename cannot be found.  
+bool Download::getfname(char *url, char *fname) {  
+  // Find last /.  
+  char *p = strrchr(url, '/');  
+  
+  // Copy filename after the last /.   
+  if(p && (strlen(p) < MAX_FILENAME_SIZE)) {  
+    p++;  
+    strcpy(fname, p);  
+    return true;  
+  }  
+  else  
+    return false;  
+}  
+  
+// Open the output file, initialize the output  
+// stream, and return the file's length.  If  
+// reload is true, first truncate any preexisting  
+// file.  
+unsigned long Download::openfile(char *url,  
+                                 bool reload,  
+                                 ofstream &fout) {  
+  char fname[MAX_FILENAME_SIZE];  
+  
+  if(!getfname(url, fname))   
+    throw DLExc("File name error.");  
+  
+  if(!reload)   
+    fout.open(fname, ios::binary | ios::out |  
+                     ios::app | ios::ate);    
+  else  
+    fout.open(fname, ios::binary | ios::out |  
+                     ios::trunc);    
+  
+  if(!fout)  
+    throw DLExc("Can't open output file.");    
+  
+  // Get current file length.  
+  return fout.tellp();  
+}  
+  
+// Confirm that the URL specifies HTTP.  
+bool Download::ishttp(char *url) {  
+  char str[5] = "";  
+  
+  // Get first four characters from URL.  
+  strncpy(str, url, 4);  
+  
+  // Convert to lowercase  
+  for(char *p=str; *p; p++) *p = tolower(*p);  
+    
+  return !strcmp("http", str);  
+}
+
+listing 2
+// Header file for downloader.  Call this file dl.h. 
+#include <iostream> 
+#include <string> 
+#include <windows.h> 
+#include <wininet.h> 
+#include <fstream> 
+using namespace std; 
+ 
+const int MAX_ERRMSG_SIZE = 80; 
+ 
+// Exception class for downloading errors. 
+class DLExc { 
+  char err[MAX_ERRMSG_SIZE]; 
+public: 
+  DLExc(char *exc) { 
+    if(strlen(exc) < MAX_ERRMSG_SIZE) 
+      strcpy(err, exc); 
+  } 
+ 
+  const char * geterr() { 
+    return err; 
+  } 
+}; 
+ 
+class Download { 
+  static bool httpverOK(HINTERNET hIurl); 
+  static bool getfname(char *url, char *fname); 
+  static unsigned long openfile(char *url, bool reload, 
+                                ofstream &fout); 
+public: 
+  static bool download(char *url, bool restart=false, 
+    void (*update)(unsigned long, unsigned long)=NULL); 
+};
+
+listing 3
+// A Sample program that uses Download. 
+#include <iostream> 
+#include "dl.h" 
+ 
+// This function displays the download progress as a percentage. 
+void showprogress(unsigned long total, unsigned long part) { 
+  int val = (int) ((double) part/total*100); 
+  cout << val << "%" << endl; 
+} 
+ 
+int main(int argc, char *argv[]) 
+{ 
+ 
+  // This URL is for demonstration purposes only.  Substitute 
+  // the URL of the file that you want to download. 
+  char url[] = 
+   "http://www.osborne.com/products/0072226803/0072226803_code.zip"; 
+ 
+  bool reload = false; 
+ 
+  if(argc==2 && !strcmp(argv[1], "reload")) 
+      reload = true; 
+ 
+  cout << "Beginning download.\n"; 
+ 
+  try { 
+    if(Download::download(url, reload, showprogress)) 
+      cout << "Download Complete\n"; 
+  } catch(DLExc exc) { 
+    cout << exc.geterr() << endl; 
+    cout << "Download Interrupted\n"; 
+  }    
+ 
+  return 0; 
+}
+
+listing 4
+// WinDL: A GUI-based file download utility. 
+ 
+#include <windows.h> 
+#include <commctrl.h> 
+#include <cstring> 
+#include <cstdio> 
+#include "windl.h" 
+#include <process.h> 
+#include "dl.h" 
+ 
+const int URL_BUF_SIZE = 1024; 
+ 
+LRESULT CALLBACK WindowFunc(HWND, UINT, WPARAM, LPARAM); 
+BOOL CALLBACK DialogFunc(HWND, UINT, WPARAM, LPARAM); 
+ 
+void showprogress(unsigned long total, 
+                  unsigned long part); 
+void resetprogress(); 
+unsigned __stdcall dlstart(void * reload); 
+ 
+char szWinName[] = "Download"; // name of window class  
+ 
+HINSTANCE hInst; // instance handle 
+HWND hwnd;       // handle of main window 
+HWND hProgWnd;   // handle of progress bar 
+ 
+HANDLE hThrd = 0;  // thread handle 
+unsigned long Tid; // thread ID 
+ 
+// Progress counters. 
+int percentdone = 0; 
+int oldpercentdone = 0; 
+ 
+// A small struct for passing info to dlstart(). 
+struct ThrdInfo { 
+  char *url;     // pointer to URL string 
+  int reload;    // reload flag 
+  HWND hPBStart; // handle of Start button 
+}; 
+ 
+int WINAPI WinMain(HINSTANCE hThisInst, HINSTANCE hPrevInst,  
+                   LPSTR lpszArgs, int nWinMode) 
+{ 
+  MSG msg; 
+  WNDCLASSEX wcl; 
+  INITCOMMONCONTROLSEX cc; 
+ 
+  // Define a window class.  
+  wcl.cbSize = sizeof(WNDCLASSEX);  
+ 
+  wcl.hInstance = hThisInst;     // handle to this instance  
+  wcl.lpszClassName = szWinName; // window class name  
+  wcl.lpfnWndProc = WindowFunc;  // window function  
+  wcl.style = 0;                 // default style  
+ 
+  wcl.hIcon = LoadIcon(NULL, IDI_APPLICATION); // large icon  
+  wcl.hIconSm = NULL; // use small version of large icon 
+  wcl.hCursor = LoadCursor(NULL, IDC_ARROW);  // cursor style 
+ 
+  wcl.lpszMenuName = NULL; // no menu  
+ 
+  wcl.cbClsExtra = 0; // no extras 
+  wcl.cbWndExtra = 0;  
+ 
+  wcl.hbrBackground = NULL; // not used 
+ 
+  // Register the window class.  
+  if(!RegisterClassEx(&wcl)) return 0; 
+ 
+  // Create a main window that won't be visible. 
+  hwnd = CreateWindow( 
+    szWinName,  // name of window class  
+    "File Downloader", // title 
+    0,          // no style needed 
+    0, 0, 0, 0, // no dimensions    
+    NULL,       // no parent window  
+    NULL,       // no menu 
+    hThisInst,  // instance handle 
+    NULL        // no additional arguments  
+  ); 
+ 
+  hInst = hThisInst; // save the current instance handle  
+ 
+  // Initialize the common controls. This is 
+  // needed because of the progress bar. 
+  cc.dwSize = sizeof(INITCOMMONCONTROLSEX); 
+  cc.dwICC = ICC_PROGRESS_CLASS;  
+  InitCommonControlsEx(&cc);  
+ 
+  // Show the window minimized. 
+  ShowWindow(hwnd, SW_SHOWMINIMIZED); 
+ 
+  // Create the download dialog box. 
+  DialogBox(hInst, "DLDB", hwnd, (DLGPROC) DialogFunc); 
+ 
+  // Create the message loop.  
+  while(GetMessage(&msg, NULL, 0, 0)) 
+  { 
+    TranslateMessage(&msg); // translate keyboard messages 
+    DispatchMessage(&msg); // return control to Windows 
+  } 
+ 
+  return msg.wParam; 
+} 
+ 
+// Window function. 
+LRESULT CALLBACK WindowFunc(HWND hwnd, UINT message, 
+                            WPARAM wParam, LPARAM lParam) 
+{ 
+  switch(message) { 
+    case WM_DESTROY: 
+      PostQuitMessage(0); // terminate the program 
+      break; 
+    default: 
+      return DefWindowProc(hwnd, message, wParam, lParam); 
+  } 
+  return 0; 
+} 
+ 
+// Downloader Dialog function. 
+BOOL CALLBACK DialogFunc(HWND hdwnd, UINT message, 
+                         WPARAM wParam, LPARAM lParam) 
+{ 
+  // Here, url is initialized with a sample url for 
+  // demonstration purposes only. 
+  static char url[URL_BUF_SIZE] = 
+    "http://www.osborne.com/products/0072226803/0072226803_code.zip"; 
+ 
+  static ThrdInfo ti; 
+ 
+  switch(message) { 
+    case WM_INITDIALOG: 
+      // Initialize edit box with URL. 
+      SetDlgItemText(hdwnd, IDD_EB1, url); 
+ 
+      // Create progress bar. 
+      hProgWnd = CreateWindow(PROGRESS_CLASS, 
+                   "", 
+                   WS_CHILD | WS_VISIBLE | WS_BORDER, 
+                   4, 64, 320, 12, 
+                   hdwnd, NULL, hInst, NULL); 
+ 
+      // Set step increment to 1. 
+      SendMessage(hProgWnd, PBM_SETSTEP, 1, 0); 
+ 
+      return 1; 
+    case WM_COMMAND: 
+      switch(LOWORD(wParam)) { 
+        case IDCANCEL: 
+          EndDialog(hdwnd, 0); 
+          PostQuitMessage(0); 
+ 
+          return 1; 
+ 
+        case IDD_START: // start download 
+          // Set position to zero. 
+          SendMessage(hProgWnd, PBM_SETPOS, 0, 0); 
+ 
+          // Get URL from edit box. 
+          GetDlgItemText(hdwnd, IDD_EB1, url, URL_BUF_SIZE); 
+          ti.url = url; 
+ 
+          // Get reload status. 
+          ti.reload = SendDlgItemMessage(hdwnd, IDD_CB1, 
+                       BM_GETCHECK, 0, 0); 
+ 
+          // Get handle to Start button. 
+          ti.hPBStart = GetDlgItem(hdwnd, IDD_START); 
+ 
+          // Reset progress counters. 
+          resetprogress(); 
+ 
+          // Start download thread. 
+          if(!hThrd)  
+            hThrd = (HANDLE) _beginthreadex(NULL, 0, dlstart, 
+                    (void *) &ti, 0, (unsigned *) &Tid);   
+   
+          return 1; 
+      } 
+  } 
+ 
+  return 0; 
+} 
+ 
+// Show progress in the progress bar.  This is called 
+// by the download() function. 
+void showprogress(unsigned long total, 
+                  unsigned long part) { 
+ 
+  percentdone = (part*100)/total; 
+ 
+  if(percentdone > oldpercentdone) { 
+    for(int i= oldpercentdone; i < percentdone; i++) { 
+      // Advance the progress bar. 
+      SendMessage(hProgWnd, PBM_STEPIT, 0, 0); 
+    } 
+    oldpercentdone = percentdone; 
+  } 
+} 
+ 
+// Reset the progress counters. 
+void resetprogress() { 
+  percentdone = 0; 
+  oldpercentdone = 0; 
+} 
+ 
+// Thread entry function that begins downloading. 
+unsigned __stdcall dlstart(void * param) { 
+  ThrdInfo *tip = (ThrdInfo *) param; 
+ 
+  // Disable Start button. 
+  EnableWindow(tip->hPBStart, 0); 
+ 
+  try { 
+    if(tip->reload == BST_CHECKED) 
+      Download::download(tip->url, true, showprogress); 
+    else 
+      Download::download(tip->url, false, showprogress); 
+  } catch(DLExc exc) { 
+      MessageBox(hwnd, exc.geterr(), 
+                 "Download Error", MB_OK); 
+  } 
+ 
+  // Enable Start button. 
+  EnableWindow(tip->hPBStart, 1); 
+ 
+  CloseHandle(hThrd); // close the thread handle 
+  hThrd = 0; // set thread handle to inactive 
+ 
+  return 0; 
+}
+
+
+listing 5
+// Resources for file downloader. 
+#include <windows.h> 
+#include "windl.h" 
+ 
+DLDB DIALOGEX 18, 18, 164, 100 
+CAPTION "Download a File" 
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | 
+      WS_SYSMENU | WS_VISIBLE 
+{ 
+  PUSHBUTTON "Start", IDD_START, 42, 80, 30, 14 
+  PUSHBUTTON "Cancel", IDCANCEL, 90, 80, 30, 14 
+ 
+  CTEXT "Download Progress", IDD_TEXT2, 2, 40, 160, 12 
+ 
+  CTEXT "Enter URL", IDD_TEXT1, 2, 16, 160, 12 
+  EDITTEXT IDD_EB1, 2, 1, 160, 12, ES_LEFT | WS_CHILD | 
+           WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL 
+ 
+  AUTOCHECKBOX "Reload", IDD_CB1, 62, 56, 36, 14 
+}
+
+listing 6
+#define IDD_START    100 
+ 
+#define IDD_CB1      200 
+ 
+#define IDD_EB1      300 
+ 
+#define IDD_TEXT1    401 
+#define IDD_TEXT2    402
+

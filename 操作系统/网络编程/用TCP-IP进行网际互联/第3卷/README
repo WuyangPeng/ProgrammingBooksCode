@@ -1,0 +1,19 @@
+
+	This is the source distribution for "Internetworking with TCP/IP,
+volume III," by Douglas E. Comer and David L. Stevens (Prentice Hall 2000).
+This code is for the Linux/POSIX sockets version.
+	Note that some versions of UNIX do not define "u_short" in the include
+file <sys/types.h>. In the interests of compatibility with the published
+sources, a portability fix for that has not been included. If you have problems
+because of "u_short" being undefined, try adding the following line either in
+the affected files, or one of the include files they include:
+
+	typedef	unsigned short	u_short;
+
+	Bug reports may be directed via e-mail to "dlstevens@us.ibm.com" or
+"comer@cs.purdue.edu".
+	Thank you for your interest in the book! 
+
+						+-DLS
+
+						David L Stevens, 7/1/00

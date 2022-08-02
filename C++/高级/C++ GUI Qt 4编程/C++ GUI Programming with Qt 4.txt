@@ -1,0 +1,12 @@
+C++ GUI Qt 4编程（C++ GUI Programming with Qt 4）
+（第2版）
+
+官方网站：
+http://www.trolltech.com/。
+
+qt网站：
+https://www.qt.io/
+
+☆
+作者：Jasmin Blanchette、Mark Summerfield
+其他书籍：Mark Summerfield《Python3 程序开发指南》、《Qt高级编程》

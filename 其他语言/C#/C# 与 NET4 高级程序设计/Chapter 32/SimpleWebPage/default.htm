@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>This is my simple web page</title>
+    <script language="javascript" type="text/javascript">
+// <![CDATA[
+
+        function btnShow_onclick() {
+            alert(txtUserMessage.value);
+        }
+
+// ]]>
+    </script>
+</head>
+<body bgcolor="#ffffcc">
+  <!-- Prompt for user input-->
+  <h1 align="center">Simple HTML Page</h1>
+  <p align="center"> 
+    <br/>
+    <i>Please enter a message</i>.
+  </p>
+<!-- Build a form to get user info -->
+<form id="defaultPage">
+  <p align="center">
+      Your Message:
+    <input id="txtUserMessage" type="text"/></p>
+  <p align="center">
+    <input id="btnShow" type="button" value="Show!" onclick="return btnShow_onclick()" />
+    <input id="btnReset" type="reset" value="Reset"/>
+  </p>
+</form>
+</body>
+</html>

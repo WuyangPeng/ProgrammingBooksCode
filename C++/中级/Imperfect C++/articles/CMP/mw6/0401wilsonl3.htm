@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>January 04: Introducing recls Mappings It's STL and C#'s turn</title>
+</head>
+
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#330066" ALINK="#ff0000" TEXT="#000000">
+<!--Copyright &#169; C/C++ Users Journal-->
+
+
+<h4>Listing 3:	recls_traits. </h4>
+
+<pre>
+template &lt;typename C&gt;
+struct reclstl_traits
+{
+public:
+  typedef void      char_type;       // placeholder type
+  typedef void      *entry_type;     // placeholder type
+public:
+  static hrecls_t   Search( char_type const *searchRoot, 
+                          char_type const *pattern, recls_uint32_t flags);
+  static recls_rc_t GetDetails(hrecls_t hSrch, entry_type *pinfo);
+  static recls_rc_t GetNextDetails(hrecls_t hSrch, entry_type *pinfo);
+  static void       CloseDetails(entry_type fileInfo);
+  static entry_type CopyDetails(entry_type fileInfo);
+  static char_type  *str_copy(char_type *, char_type const *);
+};
+</body>
+</html>

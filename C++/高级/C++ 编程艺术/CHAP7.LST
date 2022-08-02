@@ -1,0 +1,846 @@
+listing 1
+// A custom container that implements a 
+// range-selectable array. 
+// 
+// Call this file ra.h 
+// 
+#include <iostream> 
+#include <iterator> 
+#include <algorithm> 
+#include <cstdlib> 
+#include <stdexcept> 
+ 
+using namespace std; 
+ 
+// An exception class for RangeArray. 
+class RAExc { 
+  string err; 
+public: 
+ 
+  RAExc(string e) { 
+    err = e; 
+  } 
+ 
+  string geterr() { return err; } 
+}; 
+ 
+// A range-selectable array container. 
+template<class T, class Allocator = allocator<T> > 
+class RangeArray { 
+  T *arrayptr; // pointer to array that underlies the container 
+ 
+  unsigned len;   // holds length of the container 
+  int upperbound; // lower bound 
+  int lowerbound; // upper bound 
+ 
+  Allocator a; // allocator 
+public: 
+  // Required typedefs for container. 
+  typedef T value_type; 
+  typedef Allocator allocator_type; 
+  typedef typename Allocator::reference reference; 
+  typedef typename Allocator::const_reference const_reference; 
+  typedef typename Allocator::size_type size_type; 
+  typedef typename Allocator::difference_type difference_type; 
+  typedef typename Allocator::pointer pointer; 
+  typedef typename Allocator::const_pointer const_pointer; 
+ 
+  // Forward iterators. 
+  typedef T * iterator; 
+  typedef const T * const_iterator; 
+ 
+  // Note: This container does not support reverse 
+  // iterators, but you can add them if you like.  
+ 
+ 
+  // *****  Constructors and Destructor ***** 
+ 
+  // Default constructor. 
+  RangeArray() 
+  { 
+    upperbound = lowerbound = 0; 
+    len = 0; 
+    arrayptr = a.allocate(0); 
+  } 
+ 
+  // Construct an array of the specified range 
+  // with each element having the specified initial value. 
+  RangeArray(int low, int high, const T &t); 
+ 
+  // Construct zero-based array of num elements 
+  // with the value t. This constructor is required 
+  // for STL compatibility. 
+  RangeArray(int num, const T &t=T()); 
+ 
+  // Construct from range of iterators. 
+  RangeArray(iterator start, iterator stop); 
+ 
+  // Copy constructor. 
+  RangeArray(const RangeArray &o); 
+   
+  // Destructor. 
+  ~RangeArray(); 
+ 
+ 
+  // *****  Operator Functions ***** 
+ 
+  // Return reference to specified element. 
+  T &operator[](int i) 
+  { 
+    return arrayptr[i - lowerbound]; 
+  } 
+ 
+  // Return const references to specified element. 
+  const T &operator[](int i) const 
+  { 
+    return arrayptr[i - lowerbound]; 
+  } 
+   
+  // Assign one container to another. 
+  RangeArray &operator=(const RangeArray &o); 
+ 
+ 
+  // *****  Insert Functions ***** 
+ 
+  // Insert val at p. 
+  iterator insert(iterator p, const T &val); 
+ 
+  // Insert num copies of val at p. 
+  void insert(iterator p, int num, const T &val) 
+  { 
+    for(; num>0; num--) p = insert(p, val) + 1; 
+  } 
+ 
+  // Insert range specified by start and stop at p. 
+  void insert(iterator p, iterator start, iterator stop) 
+  { 
+    while(start != stop) { 
+      p = insert(p, *start) + 1; 
+      start++; 
+    } 
+  } 
+ 
+ 
+  // *****  Erase Functions ***** 
+ 
+  // Erase element at p. 
+  iterator erase(iterator p); 
+ 
+  // Erase specified range. 
+  iterator erase(iterator start, iterator stop) 
+  { 
+    iterator p = end(); 
+ 
+    for(int i=stop-start; i > 0; i--) 
+      p = erase(start); 
+ 
+    return p; 
+  } 
+ 
+ 
+  // *****  Push and Pop Functions *****  
+ 
+  // Add element to end. 
+  void push_back(const T &val) 
+  { 
+    insert(end(), val); 
+  } 
+ 
+  // Remove element from end. 
+  void pop_back() 
+  { 
+    erase(end()-1); 
+  } 
+ 
+  // Add element to front. 
+  void push_front(const T &val) 
+  { 
+    insert(begin(), val); 
+  } 
+ 
+  // Remove element from front. 
+  void pop_front() 
+  { 
+    erase(begin()); 
+  } 
+ 
+ 
+  // *****  front() and back() functions ***** 
+ 
+  // Return reference to first element. 
+  T &front() 
+  { 
+    return arrayptr[0]; 
+  } 
+ 
+  // Return const reference to first element. 
+  const T &front() const 
+  { 
+    return arrayptr[0]; 
+  } 
+ 
+  // Return reference to last element. 
+  T &back() 
+  { 
+    return arrayptr[len-1]; 
+  } 
+ 
+  // Return const reference to last element. 
+  const T &back() const 
+  { 
+    return arrayptr[len-1]; 
+  } 
+   
+ 
+  // *****  Iterator Functions ***** 
+ 
+  // Return iterator to first element. 
+  iterator begin() 
+  { 
+    return &arrayptr[0]; 
+  } 
+  
+  // Return iterator to last element. 
+  iterator end() 
+  { 
+    return &arrayptr[upperbound - lowerbound]; 
+  } 
+ 
+  // Return const iterator to first element. 
+  const_iterator begin() const 
+  { 
+    return &arrayptr[0]; 
+  } 
+  
+  // Return const iterator to last element. 
+  const_iterator end() const 
+  { 
+    return &arrayptr[upperbound - lowerbound]; 
+  } 
+ 
+ 
+  // *****  Misc. Functions ***** 
+ 
+  // The at() function performs a range check. 
+  // Return a reference to the specified element. 
+  T &at(int i) 
+  { 
+    if(i < lowerbound || i >= upperbound) 
+      throw out_of_range("Index Out of Range"); 
+ 
+    return arrayptr[i - lowerbound]; 
+  } 
+ 
+  // Return a const reference to the specified element. 
+  const T &at(int i) const 
+  { 
+    if(i < lowerbound || i >= upperbound) 
+      throw out_of_range("Index Out of Range"); 
+ 
+    return arrayptr[i - lowerbound]; 
+  }     
+ 
+  // Return the size of the container. 
+  size_type size() const 
+  {  
+    return end() - begin(); 
+  } 
+ 
+  // Return the maximum size of a RangeArray. 
+  size_type max_size() 
+  { 
+    return a.max_size(); 
+  } 
+ 
+  // Return true if container is empty. 
+  bool empty() 
+  {  
+    return size() == 0; 
+  } 
+ 
+  // Exchange the values of two containers. 
+  void swap(RangeArray &b) 
+  { 
+    RangeArray<T> tmp; 
+ 
+    tmp = *this; 
+    *this = b; 
+    b = tmp; 
+  } 
+ 
+  // Remove and destroy all elements. 
+  void clear() 
+  { 
+    erase(begin(), end()); 
+  } 
+ 
+  // ***** Non-STL functions ***** 
+ 
+  // Return endpoints. 
+  int getlowerbound() 
+  { 
+    return lowerbound; 
+  } 
+ 
+  int getupperbound() 
+  { 
+    return upperbound; 
+  } 
+ 
+}; 
+ 
+ 
+// ***** Implementations of non-inline functions ***** 
+ 
+// Construct an array of the specified range 
+// with each element having the specified initial value. 
+template <class T, class A>  
+RangeArray<T, A>::RangeArray(int low, int high, 
+                             const T &t) 
+{ 
+  if(high <= low) throw RAExc("Invalid Range"); 
+ 
+  high++;  
+ 
+  // Save endpoints. 
+  upperbound = high; 
+  lowerbound = low; 
+ 
+  // Allocate memory for the container. 
+  arrayptr = a.allocate(high - low); 
+     
+  // Save the length of the container. 
+  len = high - low; 
+ 
+  // Construct the elements. 
+  for(size_type i=0; i < size(); i++) 
+    a.construct(&arrayptr[i], t); 
+} 
+ 
+// Construct zero-based array of num elements 
+// with the value t. This constructor is required 
+// for STL compatibility. 
+template <class T, class A>  
+RangeArray<T, A>::RangeArray(int num, const T &t) { 
+ 
+  // Save endpoints. 
+  upperbound = num; 
+  lowerbound = 0; 
+ 
+  // Allocate memory for the container. 
+  arrayptr = a.allocate(num); 
+     
+  // Save the length of the container. 
+  len = num; 
+ 
+  // Construct the elements. 
+  for(size_type i=0; i < size(); i++) 
+    a.construct(&arrayptr[i], t); 
+ 
+} 
+ 
+// Construct zero-based array from range of iterators. 
+// This constructor is required for STL compatibility. 
+template <class T, class A>  
+RangeArray<T, A>::RangeArray(iterator start, 
+                             iterator stop) 
+{ 
+  // Allocate sufficient memory. 
+  arrayptr = a.allocate(stop - start); 
+ 
+  upperbound = stop - start; 
+  lowerbound = 0; 
+ 
+  len = stop - start; 
+ 
+  // Construct the elements using those 
+  // specified by the range of iterators. 
+  for(size_type i=0; i < size(); i++) 
+    a.construct(&arrayptr[i], *start++); 
+} 
+ 
+// Copy constructor. 
+template <class T, class A>  
+RangeArray<T, A>::RangeArray(const RangeArray<T, A> &o) 
+{ 
+  // Allocate memory for the copy. 
+  arrayptr = a.allocate(o.size()); 
+ 
+  upperbound = o.upperbound; 
+  lowerbound = o.lowerbound; 
+  len = o.len; 
+ 
+  // Make the copy. 
+  for(size_type i=0; i < size(); i++) 
+    a.construct(&arrayptr[i], o.arrayptr[i]); 
+} 
+ 
+// Destructor. 
+template <class T, class A> 
+RangeArray<T, A>::~RangeArray() 
+{ 
+  // Call destructors for elements in the container. 
+  for(size_type i=0; i < size(); i++) 
+    a.destroy(&arrayptr[i]); 
+ 
+  // Release memory. 
+  a.deallocate(arrayptr, size()); 
+} 
+ 
+// Assign one container to another. 
+template <class T, class A> RangeArray<T, A> &  
+RangeArray<T, A>::operator=(const RangeArray<T, A> &o) 
+{ 
+  // Call destructors for elements in target container. 
+  for(size_type i=0; i < size(); i++) 
+    a.destroy(&arrayptr[i]); 
+ 
+  // Release original memory. 
+  a.deallocate(arrayptr, size());  
+ 
+  // Allocate memory for new size. 
+  arrayptr = a.allocate(o.size()); 
+ 
+  upperbound = o.upperbound; 
+  lowerbound = o.lowerbound; 
+  len = o.len; 
+ 
+  // Make copy. 
+  for(size_type i=0; i < size(); i++) 
+    arrayptr[i] = o.arrayptr[i]; 
+ 
+  return *this; 
+} 
+ 
+// Insert val at p. 
+template <class T, class A> 
+typename RangeArray<T, A>::iterator  
+RangeArray<T, A>::insert(iterator p, const T &val) 
+{ 
+  iterator q; 
+  size_type i, j; 
+ 
+  // Get sufficient memory. 
+  T *tmp = a.allocate(size() + 1); 
+ 
+  // Copy existing elements to new array, 
+  // inserting new element if possible. 
+  for(i=j=0; i < size(); i++, j++) { 
+    if(&arrayptr[i] == p) {  
+      tmp[j] = val; 
+      q = &tmp[j]; 
+      j++; 
+    } 
+    tmp[j] = arrayptr[i]; 
+  } 
+ 
+  // Otherwise, the new element goes on end. 
+  if(p == end()) { 
+    tmp[j] = val; 
+    q = &tmp[j]; 
+  } 
+ 
+  // Adjust len and bounds. 
+  len++; 
+  if(p < &arrayptr[abs(lowerbound)]) 
+    lowerbound--; 
+  else  
+    upperbound++; 
+ 
+  // Call destructors for elements in old container. 
+  for(size_type i=0; i < size()-1; i++) 
+    a.destroy(&arrayptr[i]); 
+ 
+  // Release memory for old container. 
+  a.deallocate(arrayptr, size()-1); 
+ 
+  arrayptr = tmp; 
+ 
+  return q; 
+} 
+ 
+// Erase element at p. 
+template <class T, class A> 
+typename RangeArray<T, A>::iterator  
+RangeArray<T, A>::erase(iterator p) 
+{     
+  iterator q = p; 
+ 
+  // Destruct element being erased.  
+  if(p != end()) a.destroy(p); 
+ 
+  // Adjust len and bounds. 
+  len--; 
+  if(p < &arrayptr[abs(lowerbound)])  
+    lowerbound++; 
+  else  
+    upperbound--; 
+ 
+  // Compact remaining elements. 
+  for( ; p < end(); p++) 
+    *p = *(p+1); 
+ 
+  return q; 
+} 
+ 
+ 
+// ********  Relational Operators ************** 
+ 
+template<class T, class Allocator> 
+  bool operator==(const RangeArray<T, Allocator> &a, 
+                  const RangeArray<T, Allocator> &b) 
+{ 
+  if(a.size() != b.size()) return false; 
+ 
+  return equal(a.begin(), a.end(), b.begin()); 
+} 
+ 
+template<class T, class Allocator> 
+  bool operator!=(const RangeArray<T, Allocator> &a, 
+                  const RangeArray<T, Allocator> &b) 
+{ 
+  if(a.size() != b.size()) return true; 
+ 
+  return !equal(a.begin(), a.end(), b.begin()); 
+} 
+ 
+template<class T, class Allocator> 
+  bool operator<(const RangeArray<T, Allocator> &a, 
+                 const RangeArray<T, Allocator> &b) 
+{ 
+  return lexicographical_compare(a.begin(), a.end(), 
+                                 b.begin(), b.end()); 
+} 
+ 
+template<class T, class Allocator> 
+  bool operator>(const RangeArray<T, Allocator> &a, 
+                 const RangeArray<T, Allocator> &b) 
+{ 
+  return b < a; 
+} 
+ 
+template<class T, class Allocator> 
+  bool operator<=(const RangeArray<T, Allocator> &a, 
+                 const RangeArray<T, Allocator> &b) 
+{ 
+  return !(a > b); 
+} 
+ 
+template<class T, class Allocator> 
+  bool operator>=(const RangeArray<T, Allocator> &a, 
+                 const RangeArray<T, Allocator> &b) 
+{ 
+  return !(a < b); 
+}
+
+listing 2
+// Demonstrate basic RangeArray operations. 
+#include <iostream> 
+#include <algorithm> 
+#include <functional> 
+#include "ra.h" 
+using namespace std; 
+ 
+// Display integers -- for use by for_each. 
+void display(int v) 
+{ 
+  cout << v << " "; 
+}   
+ 
+int main() 
+{ 
+  RangeArray<int> ob(-5, 5, 0); 
+  RangeArray<int>::iterator p; 
+  int i, sum; 
+ 
+  cout << "Size of ob is: " << ob.size() << endl; 
+ 
+  cout << "Initial contents of ob:\n"; 
+  for(i=-5; i <= 5; i++) cout << ob[i] << " "; 
+  cout << endl; 
+ 
+  // Give ob some values. 
+  for(i=-5; i <= 5; i++) ob[i] = i; 
+ 
+  cout << "New values for ob: \n"; 
+  p = ob.begin(); 
+  do { 
+    cout << *p++ << " "; 
+  } while (p != ob.end()); 
+  cout << endl; 
+ 
+  // Display sum of negative indexes. 
+  sum = 0; 
+  for(i = ob.getlowerbound(); i < 0; i++) 
+    sum += ob[i]; 
+  cout << "Sum of values with negative subscripts is: "; 
+  cout << sum << "\n\n"; 
+ 
+  // Use copy() algorithm to copy one object to another. 
+  cout << "Copy ob to ob2 using copy() algorithm.\n"; 
+ 
+  RangeArray<int> ob2(-5, 5, 0); 
+  copy(ob.begin(), ob.end(), ob2.begin()); 
+ 
+  // Use for_each() algorithm to display ob2. 
+  cout << "Contents of ob2: \n"; 
+  for_each(ob2.begin(), ob2.end(), display);  
+  cout << "\n\n"; 
+ 
+  // Use replace_copy_if() algorithm to remove values less than zero. 
+  cout << "Replace values less than zero with zero.\n";  
+  cout << "Put the result into ob3.\n"; 
+  RangeArray<int> ob3(ob.begin(), ob.end()); 
+ 
+  // The next line uses the function object less() and 
+  // the binder bind2nd(). 
+  replace_copy_if(ob.begin(), ob.end(), ob3.begin(), 
+                  bind2nd(less<int>(), 0), 0); 
+  cout << "Contents of ob3: \n"; 
+  for_each(ob3.begin(), ob3.end(), display); 
+  cout << "\n\n"; 
+ 
+  cout << "Swap ob and ob3.\n"; 
+  ob.swap(ob3); // swap ob and ob3 
+  cout << "Here is ob3:\n"; 
+  for_each(ob3.begin(), ob3.end(), display); 
+  cout << endl; 
+  cout << "Swap again to restore.\n"; 
+  ob.swap(ob3); // restore  
+  cout << "Here is ob3 after second swap:\n"; 
+  for_each(ob3.begin(), ob3.end(), display); 
+  cout << "\n\n"; 
+ 
+  // Use insert() member functions. 
+  cout << "Element at ob[0] is " << ob[0] << endl; 
+  cout << "Insert values into ob.\n"; 
+  ob.insert(ob.end(), -9999); 
+  ob.insert(&ob[1], 99); 
+  ob.insert(&ob[-3], -99); 
+  for_each(ob.begin(), ob.end(), display); 
+  cout << endl; 
+  cout << "Element at ob[0] is " << ob[0] << "\n\n"; 
+ 
+  cout << "Insert -7 three times to front of ob.\n"; 
+  ob.insert(ob.begin(), 3, -7); 
+  for_each(ob.begin(), ob.end(), display); 
+  cout << endl; 
+  cout << "Element at ob[0] is " << ob[0] << "\n\n"; 
+ 
+  // Use push_back() and pop_back(). 
+  cout << "Push back the value 40 onto ob.\n"; 
+  ob.push_back(40); 
+  for_each(ob.begin(), ob.end(), display); 
+  cout << endl; 
+  cout << "Pop back two values from ob.\n"; 
+  ob.pop_back(); ob.pop_back(); 
+  for_each(ob.begin(), ob.end(), display); 
+  cout << "\n\n"; 
+ 
+  // Use push_front() and pop_front(). 
+  cout << "Push front the value 19 onto ob.\n"; 
+  ob.push_front(19); 
+  for_each(ob.begin(), ob.end(), display); 
+  cout << endl; 
+  cout << "Pop front two values from ob.\n"; 
+  ob.pop_front(); ob.pop_front(); 
+  for_each(ob.begin(), ob.end(), display); 
+  cout << "\n\n"; 
+ 
+  // Use front() and back() 
+  cout << "ob.front(): " << ob.front() << endl; 
+  cout << "ob.back(): " << ob.back() << "\n\n"; 
+ 
+  // Use erase(). 
+  cout << "Erase element at 0.\n"; 
+  p = ob.erase(&ob[0]); 
+  for_each(ob.begin(), ob.end(), display); 
+  cout << endl; 
+  cout << "Element at ob[0] is " << ob[0] << endl; 
+  cout << endl; 
+ 
+  cout << "Erase many elements in ob.\n"; 
+  p = ob.erase(&ob[-2], &ob[3]); 
+  for_each(ob.begin(), ob.end(), display); 
+  cout << endl; 
+  cout << "Element at ob[0] is " << ob[0] << endl; 
+  cout << endl; 
+ 
+  cout << "Insert ob4 into ob.\n"; 
+  RangeArray<int> ob4(0, 2, 0); 
+  for(i=0; i < 3; i++) ob4[i] = i+100; 
+  ob.insert(&ob[0], ob4.begin(), ob4.end()); 
+  for_each(ob.begin(), ob.end(), display); 
+  cout << endl; 
+  cout << "Element at ob[0] is " << ob[0] << endl; 
+  cout << endl; 
+ 
+  cout << "Here is ob shown with its indices:\n"; 
+  for(i=ob.getlowerbound(); i<ob.getupperbound(); i++) 
+    cout << "[" << i << "]: " << ob[i] << endl; 
+  cout << endl; 
+ 
+  // Use the at() function. 
+  cout << "Use the at() function.\n"; 
+  for(i=ob.getlowerbound(); i < ob.getupperbound(); i++) 
+    ob.at(i) = i * 11; 
+ 
+  for(i=ob.getlowerbound(); i < ob.getupperbound(); i++) 
+    cout << ob.at(i) << " "; 
+  cout << "\n\n"; 
+ 
+  // Use the clear() function. 
+  cout << "Clear ob.\n"; 
+  ob.clear(); 
+  for_each(ob.begin(), ob.end(), display); // no effect! 
+  cout << "Size of ob after clear: " << ob.size() 
+       << "\nBounds: " << ob.getlowerbound() 
+       << " to " << ob.getupperbound() << "\n\n"; 
+ 
+  // Create a copy of an object. 
+  cout << "Make a copy of ob2.\n"; 
+  RangeArray<int> ob5(ob2); 
+  for_each(ob5.begin(), ob5.end(), display); 
+  cout << "\n\n"; 
+   
+  // Construct a new object from a range. 
+  cout << "Construct object from a range.\n"; 
+  RangeArray<int> ob6(&ob2[-2], ob2.end()); 
+  cout << "Size of ob6: " << ob6.size() << endl; 
+  for_each(ob6.begin(), ob6.end(), display); 
+  cout << endl; 
+ 
+  return 0; 
+}
+
+listing 3
+// Demonstrate the relational operators. 
+#include <iostream> 
+#include "ra.h" 
+ 
+using namespace std; 
+ 
+// Display integers -- for use by for_each. 
+void display(int v) 
+{ 
+  cout << v << " "; 
+}   
+ 
+int main() 
+{ 
+  RangeArray<int> ob1(-3, 2, 0), ob2(-3, 2, 0), ob3(-4, 4, 0); 
+  int i; 
+ 
+  // Give ob1 and ob2 some values. 
+  for(i = -3; i < 3; i++) { 
+    ob1[i] = i; 
+    ob2[i] = i; 
+  } 
+   
+  cout << "Contents of ob1 and ob2:\n"; 
+  for(i=-3; i < 3; i++)  
+    cout << ob1[i] << " "; 
+  cout << endl; 
+ 
+  for(i=-3; i < 3; i++)  
+    cout << ob2[i] << " "; 
+  cout << "\n\n"; 
+ 
+  if(ob1 == ob2) cout << "ob1 == ob2\n"; 
+  if(ob1 != ob2) cout << "error\n"; 
+  cout << endl; 
+ 
+  cout << "Assign ob1[-1] the value 99\n"; 
+  ob1[-1] = 99; 
+  cout << "Contents of ob1 are now:\n"; 
+  for(i=-3; i < 3; i++)  
+    cout << ob1[i] << " "; 
+  cout << endl; 
+ 
+  if(ob1 == ob2) cout << "error\n"; 
+  if(ob1 != ob2) cout << "ob1 != ob2\n"; 
+  cout << endl; 
+ 
+  if(ob1 < ob2) cout << "ob1 < ob2\n"; 
+  if(ob1 <= ob2) cout << "ob1 <= ob2\n"; 
+  if(ob1 > ob2) cout << "ob1 > ob2\n"; 
+  if(ob1 >= ob2) cout << "ob1 >= ob2\n"; 
+ 
+  if(ob2 < ob1) cout << "ob2 < ob1\n"; 
+  if(ob2 <= ob1) cout << "ob2 <= ob1\n"; 
+  if(ob2 > ob1) cout << "ob2 > ob1\n"; 
+  if(ob2 >= ob1) cout << "ob2 >= ob1\n"; 
+  cout << endl; 
+ 
+  // Compare objects of differing sizes. 
+  if(ob3 != ob1) cout << "ob3 != ob1\n"; 
+  if(ob3 == ob1) cout << "ob3 == ob1\n"; 
+ 
+  return 0; 
+}
+
+listing 4
+// Store class objects in a RangeArray. 
+#include <iostream> 
+#include "ra.h" 
+ 
+using namespace std; 
+ 
+class test { 
+public: 
+  int a; 
+ 
+  test() { cout << "Constructing\n"; a=0; } 
+ 
+  test(const test &o) { 
+    cout << "Copy Constructor\n"; 
+    a = o.a; 
+  } 
+ 
+  ~test() { cout << "Destructing\n"; } 
+}; 
+ 
+int main() 
+{ 
+  RangeArray<test> t(-3, 1, test()); 
+  int i; 
+ 
+  cout << "Original contents of t:\n"; 
+  for(i=-3; i < 2; i++) cout << t[i].a << " "; 
+  cout << endl; 
+ 
+  // Give t some new values. 
+  for(i=-3; i < 2; i++) t[i].a = i; 
+ 
+  cout << "New contents of t:\n"; 
+  for(i=-3; i < 2; i++) cout << t[i].a << " "; 
+  cout << endl; 
+ 
+  // Copy to new container. 
+  RangeArray<test> t2(-7, 3, test()); 
+  copy(t.begin(), t.end(), &t2[-2]); 
+ 
+  cout << "Contents of t2:\n"; 
+  for(i=-7; i < 4; i++) cout << t2[i].a << " "; 
+  cout << endl; 
+ 
+  RangeArray<test> t3(t.begin()+1, t.end()-1); 
+  cout << "Contents of t3:\n"; 
+  for(i=t3.getlowerbound(); i < t3.getupperbound(); i++)  
+    cout << t3[i].a << " "; 
+  cout << endl; 
+ 
+  t.clear(); 
+ 
+  cout << "Size after clear(): " << t.size() << endl; 
+ 
+  // Assign container objects. 
+  t = t3; 
+  cout << "Contents of t:\n"; 
+  for(i=t.getlowerbound(); i<t.getupperbound(); i++) 
+    cout << t[i].a << " "; 
+  cout << endl; 
+ 
+  return 0; 
+}
+

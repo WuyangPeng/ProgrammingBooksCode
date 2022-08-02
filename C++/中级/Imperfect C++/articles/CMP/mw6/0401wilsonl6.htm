@@ -1,0 +1,146 @@
+<html>
+<head>
+<title>January 04: Introducing recls Mappings It's STL and C#'s turn</title>
+</head>
+
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#330066" ALINK="#ff0000" TEXT="#000000">
+<!--Copyright &#169; C/C++ Users Journal-->
+
+
+<h4>Listing 6:	recls <i>namespace worker classes</i>. </h4>
+
+<pre>
+namespace recls
+{
+  using System;
+  using System.Runtime.InteropServices;
+  using hrecls_t = IntPtr;
+  using recls_info_t = IntPtr;
+  using recls_filesize_t = System.UInt64;
+
+  [Flags]
+  public enum RECLS_FLAG
+  {
+      RECLS_F_FILES       = 0x00000001
+    , RECLS_F_DIRECTORIES = 0x00000002
+    . . .
+  };
+
+  public class ReclsException
+    : ApplicationException
+  {
+    internal ReclsException(string message, int code)
+      : base(_make_x_str(message, code))
+    {}
+
+    private static string _make_x_str(string message, int code)
+    {
+      if(code == recls_api.RECLS_RC_OK)
+      {
+        return message;
+      }
+      else
+      {
+        return message + ": " + recls_api.GetErrorString(code) + " (" + code + ")";
+      }
+    }
+  }
+
+  internal sealed class recls_api
+  {
+    private recls_api()
+    {}
+
+    public const int  RECLS_RC_OK                 = (0);
+    public const int  RECLS_RC_FAIL               = (-1);
+    . . .
+    public const int  RECLS_RC_NO_MORE_DATA       = ((-1 - 1003));
+
+    public static hrecls_t OpenSearch(string searchRoot, string pattern, uint flags)
+    {
+      hrecls_t  hSrch;
+      int     code = Recls_Search(searchRoot, pattern, flags, out hSrch);
+
+      if(code &lt; 0)
+      {
+        throw new ReclsException("Failed to create search", code);
+      }
+
+      return hSrch;
+    }
+    public static void CloseSearch(ref hrecls_t hSrch);
+
+    public static string GetErrorString(int code);
+
+    public static void CloseEntry(ref recls_info_t entry);
+    public static recls_info_t CopyEntry(recls_info_t entry);
+    public static bool NextEntry(hrecls_t hSrch, out recls_info_t entry)
+    {
+      int code = Recls_GetNextDetails(hSrch, out entry);
+
+      if(code == RECLS_RC_NO_MORE_DATA)
+      {
+        return false;
+      }
+      else if(code &lt; 0)
+      {
+        throw new ReclsException("Failed to get next entry", code);
+      }
+      else
+      {
+        return true;
+      }
+    }
+    public static void GetEntry(hrecls_t hSrch, out recls_info_t entry);
+
+    /// Delegate for functions that return a string property
+    private delegate uint Recls_GetString_dg(recls_info_t fileInfo
+                                , StringBuilder buffer, uint cchBuffer);
+
+    private static String GetEntryString(recls_info_t entry, Recls_GetString_dg dg)
+    {
+      uint          cch       = dg(entry, null, 0);
+      StringBuilder buffer    = new StringBuilder(1 + (int)cch);
+      uint          capacity  = (uint)buffer.Capacity;
+
+      cch = dg(entry, buffer, capacity);
+
+      buffer.Length = (int)cch;
+
+      return buffer.ToString();
+    }
+
+    public static String GetEntryPath(recls_info_t entry)
+    {
+      return GetEntryString(entry, new Recls_GetString_dg(Recls_GetPathProperty));
+    }
+    // same for Directory, DirectoryPath, File, ShortFile, FileName, FileExt
+
+    public static string GetEntryDirectoryPart(recls_info_t entry, int index);
+
+    public static DateTime GetEntryCreationTime(recls_info_t entry)
+    {
+      return DateTime.FromFileTime(Recls_GetCreationTime(entry));
+    }
+    // same for ModificationTime, LastAccessTime, LastStatusChangeTime
+
+    public static ulong GetEntrySize(recls_info_t entry)
+    {
+      recls_filesize_t  size;
+
+      Recls_GetSizeProperty(entry, out size);
+
+      return size;
+    }
+
+    public static bool GetEntryIsReadOnly(recls_info_t entry)
+    {
+      return 0 != Recls_IsFileReadOnly(entry);
+    }
+    public static bool GetEntryIsDirectory(recls_info_t entry);
+
+    . . . // All the DllImport import declarations
+  }
+}
+</body>
+</html>

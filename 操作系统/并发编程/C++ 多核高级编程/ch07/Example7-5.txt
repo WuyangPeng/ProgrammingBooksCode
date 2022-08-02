@@ -1,0 +1,12 @@
+//Example 7-5 The definition for remove()
+
+221  int  posix_queue::remove(void)
+222  {
+223     int StatusCode = 0;
+224     StatusCode = mq_unlink(QueueName.c_str());
+225     if(StatusCode != 0){
+226        cerr << "Did not unlink " << QueueName << endl;
+227     }
+228     return(StatusCode);   
+229  }
+230

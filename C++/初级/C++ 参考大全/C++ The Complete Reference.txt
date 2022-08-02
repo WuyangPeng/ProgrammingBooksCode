@@ -1,0 +1,8 @@
+C++ 参考大全（C++:The Complete Reference）
+（第4版）
+
+官方网站 
+http://www.osborne.com。
+
+○
+作者：Herbert Schildt 

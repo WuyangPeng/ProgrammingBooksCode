@@ -1,0 +1,101 @@
+<html>
+<head>
+<title> Code Co-op Manual: the Differ </title>
+</head>
+
+<body bgcolor="white" text="#000000" background="../images/grid.gif" TOPMARGIN=0 LEFTMARGIN=0>
+<font face="Verdana, Sans-Serif">
+
+<!-- Navigation Bar -->
+<table border="0" cellspacing="0" cellpadding="0">
+<tr><td align="LEFT" valign="TOP">
+	<map name=navbar>
+<area href="coop.html"		coords="1,1,50,24"	alt="Documentation entry page" shape="RECT">
+<area href="gstarted.html"	coords="48,2,144,24"	alt="Step by step guide to commonly used functions" shape="RECT">
+<area href="quickref.html"	coords="144,3,239,24"	alt="Descriptions of Co-op windows and views" shape="RECT">
+<area href="command.html"	coords="242,3,336,24"	alt="Functional description of features" shape="RECT">
+<area href="faq.html" 		coords="337,3,392,24"	alt="Frequently Asked Questions" shape="RECT">
+<area href="dispatch.html"	coords="395,3,488,24"	alt="Synchronization script exchange component" shape="RECT">
+<area alt="Detailed reference" coords="490,2,564,24" href="function.html" shape="RECT">
+</map>
+<img src="../images/map.gif" usemap="#navbar" border="0" align="top" width="565" height="26">
+</td></tr>
+</table>
+
+<table width=580 cellpadding=8>
+<tr><!-- Spacer and table structure definition -->
+	<td height=25 width=20>&nbsp;</td><!-- Left margin -->
+	<td width=500>&nbsp;</td><!-- Content -->
+	<td width=20>&nbsp;</td><!-- Right margin -->
+</tr>
+
+<tr><!--Home button and Documentation Title-->
+	<td colspan=3>
+	<center><font color="#0000a0" size=6>
+	<img src="../images/coop.gif" border=0 alt="Coop logo"> <b><font face="Courier New" color="Red">Code Co-op 3.0</font></b>
+	</font></center>
+	<center><font size=2><i>Server-less Version Control System</i></font></center>
+	</td>
+</tr>
+	
+<!-- Page Title -->
+<tr><td colspan=3><p><center><font face="haettenschweiler, impact" size=6 color="#336666">The Differ</font></center></td></tr>
+
+<!-- Page content-->
+<tr>
+	<td></td>
+	<td bgcolor="#ccccff">
+	<font size=2>
+	For your convenience, Code Co-op comes with a built-in viewer/editor/differ. You start the differ by double-clicking a file in the Code Co-op's File Area, Check-In Area, or Synch Area (You may also select the file and use <i>Open</i> from the <i>Selection</i> menu). Depending on the area and the state of the file, the differ will show a slightly different display.
+<p><font color="Red">New:</font> You may <b>check out</b> or un-checkout a file from inside the Differ.
+<p>When you open a file:
+<ul>
+<li>In the <a href="quickref.html#filea">File Area</a>, if the file is <b>checked in</b>, you'll be able to view the contents of the file, but not edit it. However, it is possible to check the file out directly from the differ (there is a button on the toolbar and also, when you try to edit the checked-in file, you'll be prompted to check it out. If the file is <b>checked out</b>, the differ becomes an editor. And if you don't like the changes made to the file, you have an options of un-checking it.
+<li>In the <a href="quickref.html#checkina">Check-In Area</a> the differ will show two panes. The left pane is the editor and the right pane is the differential display. If the file is <i>not</i> involved in a <b>pending synch</b>, the differential display will highlight the edits you've made since the check-out. If the file <i>is</i> involved in a synch, the differ will help you modify the <b>merge</b> if needed. Synch changes will be highlighted in purple and your changes in shades of yellow and green. The left pane will turn into an editor.
+<li>In the <a href="quickref.html#syncha">Synch Area</a>, if the file is <b>not checked out</b>, you'll be able to view the synch changes highlighted in purple. The left pane will show the file as modified by the synch (since it's not checked out, you won't be able to edit it, but again, you have an option of checking it out from the differ). If the file is <b>checked out</b>, the differ will help you perform the merge--the display will then be identical to that from the Check-In Area.
+</ul>
+
+	</font>
+	</td>
+	<td></td>
+</tr>
+
+<tr>
+<td colspan=3 height=6></td></tr>
+<tr><td></td>
+	<td bgcolor="#ccffff">
+	<hr><center><font face="haettenschweiler, impact" size=5>Differential Display</font></center><hr>
+	<font size=2>
+	<img src="../Images/differ.gif" width="532" height="245" border="0" alt="Differ showing merge">
+	<p><font size=1>Fig 1. Two-pane merge display. Buttons on the toolbar are: Open, Save, Refresh; <b>Check out</b>, <b>Un-check-out</b>; Cut, Copy, Paste, Delete; Previous Change, Next Change.</font>
+	<p>The differential display highlights the lines that were involved in a change. 
+<p>Your edits are highlighted in shades of yellow and green. An added line is bright yellow, a deleted line is dark green with the text crossed out. Lines that have been moved are shown in more subdued colors. When a chunk of text has been modified, it appears as a combination of deleted and added lines.
+<p>Synch changes are similarly highlighted in shades of purple.
+<p>To jump from one change to the next, click on the forward blue arrow button, or press F4. To jump to previous change, press the backward blue arrow, or Shift-F4. These functions are also available through the <i>Search</i> menu.
+<p>During a merge, the Differ distingushes between the edits you've made before unpacking the synch and the ones you've made later. The post-synch additions are highlighted in yellow in the left pane. They <b>remain highlighted</b> across differ sessions (or <i>saves</i>), to help you keep track of your merge progress.
+    </font>
+	</td>
+	<td></td>
+</tr>
+<tr><td colspan=3 height=6></td></tr>
+<tr>
+	<td></td>
+	<td bgcolor="#ffcccc">
+	<font size=2>
+	<hr><center><font face="haettenschweiler, impact" size=5>Editing</font></center><hr>
+	The differ may also serve as a rudimentary editor. It lacks certain standard editing functions, like undo, search and replace. But it lets you type in and delete text; copy, cut and paste to and from the clipboard, etc. Moreover, it lets you copy text from the right pane to the left pane, including <b>lines marked as deleted</b>. This way, you may undo some changes that came with a synch and with which you don't agree (you have to check the file out before accepting the synch, in order to be able to do the editing).
+<p>Although there is no <i>undo</i>, you might always discard the changes made since the last <i>save</i> (these changes are highlighted in yellow) by closing the differ without saving.
+	</font>
+	</td>
+	<td></td>
+</tr>
+<!-- Footer -->
+<tr>
+	<td></td>
+	<td><font size=1>Code Co-op User's manual. Copyright &copy; 1999, 2000 Reliable Software.</font></td>
+</tr>
+</table>
+
+</font>
+</body>
+</html>

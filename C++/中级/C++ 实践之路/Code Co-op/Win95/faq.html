@@ -1,0 +1,296 @@
+<html>
+<head>
+<title> Code Co-op Manual: frequently asked questions </title>
+</head>
+
+<body bgcolor="#99ccff" text="#000000" background="../images/grid.gif" TOPMARGIN=0 LEFTMARGIN=0>
+<font face="Verdana, Sans-Serif">
+
+<!-- Navigation Bar -->
+<table border="0" cellspacing="0" cellpadding="0">
+<tr><td align="LEFT" valign="TOP">
+	<map name=navbar>
+<area href="coop.html"		coords="1,1,50,24"	alt="Documentation entry page" shape="RECT">
+<area href="gstarted.html"	coords="48,2,144,24"	alt="Step by step guide to commonly used functions" shape="RECT">
+<area href="quickref.html"	coords="144,3,239,24"	alt="Descriptions of Co-op windows and views" shape="RECT">
+<area href="command.html"	coords="242,3,336,24"	alt="Functional description of features" shape="RECT">
+<area href="faq.html" 		coords="337,3,392,24"	alt="Frequently Asked Questions" shape="RECT">
+<area href="dispatch.html"	coords="395,3,488,24"	alt="Synchronization script exchange component" shape="RECT">
+<area alt="Detailed reference" coords="490,2,564,24" href="function.html" shape="RECT">
+</map>
+<img src="../images/map.gif" usemap="#navbar" border="0" align="top" width="565" height="26">
+</td></tr>
+</table>
+
+<table width=650 cellpadding=8>
+<tr><!-- Spacer and table structure definition -->
+	<td width=100 height=25>&nbsp;</td><!-- Description amd Left margin -->
+	<td width=550>&nbsp;</td><!-- Content -->
+
+</tr>
+
+<tr><!--Home button and Documentation Title-->
+	<td colspan=2>
+	<center><font color="#0000a0" size=6>
+	<img src="../images/coop.gif" border=0 alt="Coop logo"> <b><font face="Courier New" color="Red">Code Co-op 3.0</font></b>
+	</font></center>
+	<center><font size=2><i>Server-less Version Control System</i></font></center>
+	</td>
+</tr>
+	
+<!-- Page Title -->
+<tr><td colspan=2><center><font face="haettenschweiler, impact" size=6 color="#993333">Frequently Asked Questions</font></center></td></tr>
+
+<!-- Page content-->
+
+<tr> <!-- TOC-->
+	<td align=right valign=top><font size=2><i>What you can find on this page:</i></font></td>
+	<td colspan=2>
+		<font size=2>
+		<table bgcolor="#ffffff" cellpadding=5 border=1 width="50%" align=left>
+		<tr><td><font face="haettenschweiler, impact" color="#336666" size=5><center>Table of Contents</center></font>
+		<hr>
+		<font size=2>
+		<a href="#RejectedScripts">Rejected Scripts</a><br>
+		<a href="#LostAck">Lost Acknowledgments</a><br>
+		<a href="#ChecksumMismatch">Checksum Mismatch</a><br>
+		<a href="#Tentative">Tentative Versions</a><br>
+		<a href="#Vacation">Going on Vacation</a><br>
+		<a href="#Upgrade">Upgrading from Trial Version</a><br>
+		<a href="#MissingScripts">Missing Scripts</a><br>
+		<a href="#FileTypes">File Types and Extensions</a><br>
+		<a href="#Locking">Check-out Notification</a><br>
+		<a href="#Messaging">Windows Messaging Setup pops up</a><br>
+		<a href="#Backup">Undoing Merge</a><br>
+		<a href="#Panic">Project Beyond Repair!</a><br>
+		</font>
+		</td>
+		</tr>
+		</table>
+		<p><a href="http://www.relisoft.com/co_op/Help/faq.html">
+			<img src="../images/rs_ani.gif" alt="RS" border=0 width=32 height=32 align=left vspace=20 hspace=4>
+			<br>Go to the on-line version of this document
+		</a>
+	</font>
+	</td>
+</tr>
+
+<tr><td colspan=2 height=6></td></tr>
+
+<tr><td colspan=2 height=6></td></tr>
+<tr> <!-- Rejected scripts-->
+	<td align=right valign=top><font size=2><i>It seems like all scripts are being rejected. What happened and how can we fix the problem?</i></font>
+
+
+		<td bgcolor="#ffcccc" cellpadding=5 border=0>
+		<font face="haettenschweiler, impact" color="#993333" size=5><center>
+<a name="RejectedScripts">Rejected Scripts</a>
+		</center></font>
+		<hr>
+		<font size=2>
+		<p>To understand script rejections, you have to know that there is a "pecking order" among members of the project. They are ordered by their user id. The top dog, usually the administrator, is the one with the lowest id (often 0).
+		<p>A conflict happens when two scripts miss each other. (That's why it's a good idea to check your e-mail before doing a check-in. This doesn't always work, because there are sometimes large delays in e-mail.)
+		<p>Suppose user A with id 0 does a check-in and sends the script to user B. User B, with id 1, in the meanwhile, does a separate check-in, before obtaining the script from A. He sends his script to A. 
+		<p>What happens is the following:
+		<ul>
+			<li>User A gets a script from B and, since his id is 0, he wins. Script from B is <b>rejected</b>. He doesn't have to do anything other than delete the script from B.
+			<li>User B gets the script from A and unpacks it. Because of the <b>conflict</b>, his previous changes are automatically undone. They are not lost, however. All the files that were changed by his last check-in are checked out again, so that he can try checking them in again. That's what he should do: after accepting the synch from A, he should <b>check in</b> his files again. In some cases there might be overlap between changes from A and B. In such an event B still has the opportunity to modify his files (<b>merge</b> the changes) before checking them in.
+			<li>Suppose that there is user C and he gets the same scripts, but the script from B comes before the script from A. He first unpacks the script from B and continues happily. Now the script from A comes in and knocks out the losing script from B. The changes made by B are automatically undone--a dialog is displayed giving details of the restoration. User C can continue as if nothing had happened.
+		</ul>
+	</td>
+</tr>
+
+<tr> <!-- Lost Acknowledgments-->
+	<td align=right valign=top><font size=2><i>Are my problems due to lost ACK scripts?</i></font>
+	<td bgcolor="#ffffcc">
+	<font size=2><font face="haettenschweiler, impact" color="#336666" size=5><center>
+<a name="LostAck">Lost Acknowledgments</a>
+	</center></font>
+		<hr>
+		Occasional loss of acknowledgment scripts does not impair the working of the system. It only temporarily lengthens the lineage list sent with every script. Eventually, when a new version is voted in, the lineages shrink back to normal.
+<p>Acknowledgments work like this: every voting member, after receiving a script, produces an acknowledment addressed to the script's creator. After collecting all the acknowledgments, the creator sends one more final ack to everybody, thus blessing the version as "Confirmed."
+<p>A lineage of a script is the list of tentative versions upon which this script depends, ending with a confirmed version, whose acceptance has been confirmed by everybody.
+		</font>
+	</td>
+</tr>
+
+<tr><td colspan=2 height=6></td></tr>
+<tr> <!-- Checksum -->
+	<td align=right valign=top><font size=2><i>I get a "checksum mismatch" error</i></font>
+
+		<td bgcolor="#ffcccc">
+		<font size=2><font face="haettenschweiler, impact" color="#993333" size=5><center>
+<a name="ChecksumMismatch">Checksum Mismatch</a>
+		</center></font>
+		<hr>
+		<b>Do not</b> manipulate project files outside of Code Co-op. Especially do not change their read-only attribute. If you inadvertently do that, the next attempt to check the file out or synchronize it will fail. To fix the problem, run <i>Repair</i> from the <i>Project</i> menu.
+		</font>
+	</td>
+</tr>
+
+<tr><td colspan=2 height=6></td></tr>
+<tr> <!-- Tentative -->
+	<td align=right valign=top><font size=2><i>Why are some versions marked "tentative"?</i></font>
+
+		<td bgcolor="#ccccff">
+		<font size=2><font face="haettenschweiler, impact" color="#993333" size=5><center>
+<a name="Tentative">Tentative Versions</a>
+		</center></font>
+		<hr>
+		<p>A version is marked "tentative" if you haven't received all the acknowledgments scripts for it yet. There's nothing to be worried about. Even if a few acknowledgments are missing for a given script, some other script after that will be confirmed, thus automatically confirming all previous script. If the list of "tentative" versions doesn't seem to shrink for a long time, it means that there is a member of the project who is not responding to any scripts at all. Find out who it is, by double-clicking on some of the older "tentative" versions. At the very end of the listing, you'll see the line, "Expecting acknowledgments from:". There's your culprit!
+<p>If you know for sure that this person is no longer a member of the project, because he or she defected from it, ask somebody else to re-send this person's defect script to you.
+<p>If this person left for vacation, see the next article.
+		</font>
+	</td>
+</tr>
+
+<tr><td colspan=2 height=6></td></tr>
+<tr> <!-- Vacation -->
+	<td align=right valign=top><font size=2><i>The admin left for vacation!</i></font>
+	<td bgcolor="#ffffcc">
+	<font size=2><font face="haettenschweiler, impact" color="#336666" size=5><center>
+<a name="Vacation">Going on Vacation</a>
+	</center></font>
+		<hr>
+		<p>If a member of the project wants to go on vacation, he or she should change their status to <i>Observer</i>. This way nobody will be waiting for the acknowledgments from that person. After coming back from vacation, he or she will have to unpack and accept a whole bunch of scripts, and then change the status back to <i>Voting member</i>. (All this status changing is done through the <i>Members</i> dialog in the <i>Project</i> menu.)
+<p>What if somebody forgot to change their status? --The administrator can change it for them. What if the administrator left for vacation? --You have to invoke the <b>emergecy administrator election</b>. Look for it under <i>Administrator</i> in the <i>Project</i> menu.
+		</font>
+	</td>
+</tr>
+
+
+<tr><td colspan=2 height=6></td></tr>
+<tr> <!-- Upgrading -->
+	<td align=right valign=top><font size=2><i>I had a trial version of 1.0<br>Now I can't get the trial version of 2.1 to work.</i></font>
+
+		<td bgcolor="#ccccff">
+		<font size=2><font face="haettenschweiler, impact" color="#993333" size=5><center>
+<a name="Upgrade">Expired Trial Period</a>
+		</center></font>
+		<hr>
+		<p>In order to restart your trial period, you have to <b>defect</b> from all your projects, uninstall Code Co-op and install it again. The <i>uninstall</i> is available from your Control Panel, under <i>Add/Remove Programs</i>. Older versions of <i>uninstall</i> might not be thorough enough. In that case, after installing the newest version, uninstall it again and repeat the installation. 
+<p>Of course, if you have a <b>valid license</b>, none of this is necessary. The upgrade is automatic when you run the setup of a newer version of Code Co-op.
+		</font>
+	</td>
+</tr>
+
+
+<tr><td colspan=2 height=6></td></tr>
+<tr> <!-- Missing scripts-->
+	<td align=right valign=top><font size=2><i>Are scripts rejected because some scripts were lost in the mail?</i></font>
+
+
+		<td bgcolor="#ffffcc">
+		<font face="haettenschweiler, impact" color="#336666" size=5><center>
+<a name="MissingScripts">Missing Scripts</a>
+		</center></font>
+		<hr>
+		<font size=2>
+		<p>Scripts are not rejected because some scripts were lost. When a script is lost and co-op realizes this, it will display the missing script in the inbox (it knows its script id from the lineage of a later script) and mark it as missing. Ask some other member of the project to re-send a copy of the missing script to you. To re-send a script, select it in History view and click on the envelope button.
+		</font>
+	</td>
+</tr>
+
+
+
+<tr><td colspan=2 height=6></td></tr>
+<tr> <!-- Locking-->
+	<td align=right valign=top><font size=2><i>I'd like to know if the file is checked out by somebody else.</i></font>
+
+
+		<td bgcolor="#ffffcc">
+		<font face="haettenschweiler, impact" color="#336666" size=5><center>
+<a name="Locking">Check-out Notification</a>
+		</center></font>
+		<hr>
+		<font size=2>
+		<p>Some version-control systems notify other users when you check out a file. Others let you <b>lock</b> a file, so that nobody else can check it out. Code Co-op doesn't do it for several reasons. First of all, it's not very practical in a slow, distributed environment, where notification often travel by email. Second of all, there is no central server, so there is no sure way of locking a file, short of waiting for the lock acknowledgment from everybody. Finally, Code Co-op relies on <i>conflict resolution</i> rather than the more obtrusive <i>conflict prevention</i>. Which doesn't mean that in future releases we won't implement optional check-out notification, especially on local-network systems.
+		</font>
+	</td>
+</tr>
+
+
+<tr><td colspan=2 height=6></td></tr>
+<tr> <!-- File Types -->
+	<td align=right valign=top><font size=2><i>How can I change file type?
+	<p>What's binary type?</i></font>
+
+		<td bgcolor="#ccccff">
+		<font size=2><font face="haettenschweiler, impact" color="#993333" size=5><center>
+<a name="FileTypes">File Types</a>
+		</center></font>
+		<hr>
+		<p>The first time you add a file with a new extension, Code Co-op asks you about the associated type. You have a choice of header, source, text and binary. Binary types behave differently than others. They are diffed using our custom binary differ, so their storage and exchange is optimal. If you double-click on a binary file in Code Co-op, instead of firing the Differ, the program will use your shell's file-type association to call the appropriate application. Binary files cannot be merged, so when there is a conflict, Code Co-op makes a backup of your current version of a file using the name "Copy of..."
+		</font>
+	</td>
+</tr>
+
+
+<tr><td colspan=2 height=6></td></tr>
+<tr> <!-- Messaging-->
+	<td align=right valign=top><font size=2><i>I get the Windows Messaging Setup Wizard when I try to "Get Mail" in dispatcher.</i></font>
+
+
+		<td bgcolor="#ccffff">
+		<font face="haettenschweiler, impact" color="#336666" size=5><center>
+<a name="Messaging">Windows Messaging Setup</a>
+		</center></font>
+		<hr>
+		<font size=2>
+		<p>If Windows pops up a Windows Messaging Setup dialog when you try to <i>Get Mail</i> in the dispatcher, and you are presented with a list that doesn't have <i>Internet Mail</i> in it, try the following:
+		<ol>
+   <li> Click on "Start", "Settings", "Control Panel" and double-click "Add/Remove Programs",
+   <li> Click on the "Windows NT Setup" tab,
+   <li> Highlight "Windows Messaging" in the Components listbox,
+   <li> Click the "Details" button and make sure "Internet Mail" is checked and then click "OK", "OK".
+		</ol>
+		</font>
+	</td>
+</tr>
+
+<tr><td colspan=2 height=6></td></tr>
+<tr> <!-- Backup -->
+	<td align=right valign=top><font size=2><i>Can I undo automatic merge?</i></font>
+
+		<td bgcolor="#ffcccc">
+		<font size=2><font face="haettenschweiler, impact" color="#993333" size=5><center>
+<a name="Backup">Undo Merge</a>
+		</center></font>
+		<hr>
+		<p>On some occasions you might not like the results of automatic merge. You can always correct the results by editing the file inside the differ. But if you <i>really</i> want to see the original pre-merge file with your own edits, there is a back-door approach. First, find out the project  id (in the Projects area)and the file's global id (last column in File Area). Then, go to the Code Co-op's data directory for this particular project. In most cases it's in the <i>co-op\database\n</i> subdirectory of your project, where <i>n</i> is the project id. The file whose name is formed from the global id of the file in question followed by the extension .bak is your pre-merge copy. <b>Don't edit this file!</b> It's part of Code Co-op's database. Just copy it to a safe place and work with it. Remember, making any changes in Code Co-op's data directory will result in database corruption and possible loss of the project.
+		</font>
+	</td>
+</tr>
+
+
+<tr><td colspan=2 height=6></td></tr>
+<tr> <!-- Panic-->
+	<td align=right valign=top><font size=2><i>My project database is lost beyond repair!</i></font>
+
+
+		<td bgcolor="#ffffcc">
+		<font face="haettenschweiler, impact" color="#336666" size=5><center>
+<a name="Panic">Project Beyond Repair</a>
+		</center></font>
+		<hr>
+		<font size=2>
+		<p>Despite our best efforts, there is a non-zero chance that you will lose your project. Disks fail, files get overwritten or inadvertently deleted. If all your efforts to repair the project fail, your only resort is to defect and re-enlist. Sometimes you can't even defect--ask the administrator to remove you from the project. If you're the administrator, ask somebody to perform the <a href="#Vacation">emergency admin election</a>. As long as there are other project members, your project is safe. Code Co-op is a very reliable <b>backup system</b>. Just join the project again, and you'll get a fresh copy of all the files. Moreover, if you want, you can receive the whole history of the project from one of the members. <b>History>Export</b> produces a file containing history. This file can be moved to your machine and you can do <b>History>Import</b> to load it.
+
+<p>BTW, having an additional "observer" enlistment may be a good backup strategy.
+		</font>
+	</td>
+</tr>
+
+
+
+
+<!-- Footer -->
+<tr>
+	<td></td>
+	<td colspan=2><font size=1>Code Co-op User's manual. Copyright &copy; 1999, 2000 Reliable Software.</font></td>
+</tr>
+</table>
+
+</font>
+</body>
+</html>

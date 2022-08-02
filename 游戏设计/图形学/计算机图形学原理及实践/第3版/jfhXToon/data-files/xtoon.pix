@@ -1,0 +1,61 @@
+#version 120 // -*- c++ -*-
+/**
+ Per-pixel Phong Shading
+
+ @file phong.pix
+ @author Morgan McGuire, http://graphics.cs.williams.edu
+ */
+
+/** Diffuse/ambient surface color */
+uniform vec3 diffuseColor;
+
+/** Specular surface color.  Used for both glossy and perfect reflection. */
+uniform vec3 specularColor;
+
+/** Intensity of the diffuse term. */
+uniform float diffuseScalar;
+
+/** Intensity of the specular term. */
+uniform float specularScalar;
+
+/** Phong exponent; 100 = sharp highlight, 1 = broad highlight */
+uniform float shine;
+
+/** Intensity of perfect reflections */
+uniform float reflect;
+
+/** Unit world space direction to the (infinite, directional) light source */
+uniform vec3 wsLight;
+
+/** Color of the light source */
+uniform vec3 lightColor;
+
+/** Environment cube map used for reflections */
+uniform samplerCube environmentMap;
+
+/** xtoon map used XToon */
+uniform sampler2D xtoonMap;
+
+/** Modulates the environment map values to simulate darkness or increase
+   dynamic range when tone mapping*/
+uniform vec3 environmentMapColor;
+
+varying vec3 wsInterpolatedNormal;
+varying vec3 wsInterpolatedEye;
+/** Distance from eye to surface point */
+varying float dist;
+
+void main() {
+
+    // Unit normal in world space
+    vec3 wsNormal = normalize(wsInterpolatedNormal);
+
+    // Unit vector from the pixel to the eye in world space
+    vec3 wsEye = normalize(wsInterpolatedEye);
+
+	vec2 selector;
+
+	selector.x = (1.0 + dot(wsNormal, wsEye))/2.0;
+	selector.y = dist/2;
+    gl_FragColor.rgb =  texture2D(xtoonMap, selector).rgb;
+}

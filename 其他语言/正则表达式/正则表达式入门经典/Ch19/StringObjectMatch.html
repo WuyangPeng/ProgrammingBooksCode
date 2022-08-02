@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>The match() Method of the String Object.</title>
+<script language="javascript" type="text/javascript">
+var myRegExp = /\d+\.\d+/;
+var entryString;
+var displayString = "";
+
+function StringProcess(){
+if (entryString.match(myRegExp) != null ){
+var result = entryString.match(myRegExp);
+displayString += "Matched '" + result + ".\n";
+displayString += "result[0] is " + result[0] + ".\n";
+displayString += "result[1] is " + result[1] + ".\n";
+alert(displayString);
+displayString = "";
+} // end if statement
+else
+alert("The string you entered did not match the pattern " + myRegExp);
+} // end function StringProcess()
+
+function ShowPrompt(){
+entryString = prompt("Type a string which is or contains a decimal number.\nType and click on the OK button.", "Type a pattern here.");
+StringProcess();
+}
+
+</script>
+</head>
+<body>
+<form name="myForm">
+<br />
+<button type="Button" onclick="ShowPrompt()">Click here to enter a decimal value.</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,18 @@
+//Example 7-17 The some_assertion method defined in the base class assertion
+
+ 1  void *  some_assertion (void * X)
+ 2  {
+ 3
+ 4     assertion *Assertion;
+ 5     Assertion = static_cast<assertion *>(X);
+ 6     if(Assertion->assert()){
+ 7        Assertion->Sound = true;
+ 8     }  
+ 9     else{
+10            Assertion->Sound = false;     
+11     }
+12     return(NULL);
+13
+14
+15  }     
+

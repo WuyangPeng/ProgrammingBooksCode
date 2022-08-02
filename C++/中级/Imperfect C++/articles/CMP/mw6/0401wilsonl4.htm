@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>January 04: Introducing recls Mappings It's STL and C#'s turn</title>
+</head>
+
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#330066" ALINK="#ff0000" TEXT="#000000">
+<!--Copyright &#169; C/C++ Users Journal-->
+
+
+<h4>Listing 4:	basic_search_sequence_const_iterator <i>methods</i>.</h4>
+
+<pre>
+template&lt; typename C , typename T , typename V &gt;
+inline class_type &amp;basic_search_sequence_const_iterator&lt;C, T, V&gt;::operator ++()
+{
+  recls_message_assert("Attempting to increment invalid iterator", 
+                                                         NULL != m_hSrch);
+  if(RECLS_FAILED(Recls_GetNext(m_hSrch)))
+  {
+    Recls_SearchClose(m_hSrch);
+    m_hSrch = NULL;
+  }
+  return *this;
+}
+template&lt; typename C , typename T , typename V &gt;
+inline value_type 
+           basic_search_sequence_const_iterator&lt;C, T, V&gt;::operator *() const
+{
+  entry_type  info;
+  if( m_hSrch != NULL &amp;&amp;
+      RECLS_SUCCEEDED(traits_type::GetDetails(m_hSrch, &amp;info)))
+  {
+    return value_type(info);
+  }
+  else
+  {
+    recls_message_assert("Dereferencing end()-valued iterator", 0);
+    return value_type();
+  }
+}
+</body>
+</html>

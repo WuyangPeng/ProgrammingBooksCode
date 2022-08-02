@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>Adapting Win32 Enumeration APIs to STL Iterator Concepts</title>
+</head>
+
+<body>
+
+
+<h4>Listing 2   Counting the number of matching files</h4>
+
+<pre>
+
+int cmp_no_case( struct dirent const *lhs
+               , struct dirent const *rhs);
+
+int main(int , char **)
+{
+  using unixstl::readdir_sequence;
+
+  readdir_sequence                 files("/usr/include");
+  readdir_sequence::const_iterator begin_o(files.begin());
+  readdir_sequence::const_iterator end_o(files.end());
+
+  for(; begin_o != end_o; ++begin_o) // outer loop
+  {
+    using namespace std;
+
+    size_t cDups = count_if( begin_o
+                           , end_o
+                           , not1( bind1st( ptr_fun(cmp_no_case)
+                                          , *begin_o)));
+
+    if(cDups &gt; 1)
+    {
+      printf("Duplicate: %s, %d\n",
+              (*begin_o)-&gt;d_name,
+              cDups);
+    }
+  }
+
+  return 0;
+}
+
+</pre>
+</body>
+</html>

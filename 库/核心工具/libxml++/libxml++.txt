@@ -1,0 +1,5 @@
+libpng
+☆
+
+1. 版本：1.6.37。
+2. 官方网站：http://www.libpng.org/pub/png/libpng.html。

@@ -1,0 +1,200 @@
+<html>
+<head>
+<title> Code Co-op Manual: quick reference </title>
+</head>
+
+<body bgcolor="#99ccff" text="#000000" background="../images/grid.gif" TOPMARGIN=0 LEFTMARGIN=0>
+<font face="Verdana, Sans-Serif">
+
+<!-- Navigation Bar -->
+<table border="0" cellspacing="0" cellpadding="0">
+<tr><td align="LEFT" valign="TOP">
+	<map name=navbar>
+<area href="coop.html"		coords="1,1,50,24"	alt="Documentation entry page" shape="RECT">
+<area href="gstarted.html"	coords="48,2,144,24"	alt="Step by step guide to commonly used functions" shape="RECT">
+<area href="quickref.html"	coords="144,3,239,24"	alt="Descriptions of Co-op windows and views" shape="RECT">
+<area href="command.html"	coords="242,3,336,24"	alt="Functional description of features" shape="RECT">
+<area href="faq.html" 		coords="337,3,392,24"	alt="Frequently Asked Questions" shape="RECT">
+<area href="dispatch.html"	coords="395,3,488,24"	alt="Synchronization script exchange component" shape="RECT">
+<area alt="Detailed reference" coords="490,2,564,24" href="function.html" shape="RECT">
+</map>
+<img src="../images/map.gif" usemap="#navbar" border="0" align="top" width="565" height="26">
+</td></tr>
+</table>
+
+<table width=580 cellpadding=8>
+<tr><!-- Spacer and table structure definition -->
+	<td height=25 width=6>&nbsp;</td><!-- Left margin -->
+	<td width=528>&nbsp;</td><!-- Content -->
+	<td width=6>&nbsp;</td><!-- Right margin -->
+</tr>
+
+<tr><!--Home button and Documentation Title-->
+	<td colspan=3>
+	<center><font color="#0000a0" size=6>
+	<img src="../images/coop.gif" width=31 height=31 border=0 alt="Coop logo"> <b><font face="Courier New" color="Red">Code Co-op 3.0</font></b>
+	</font></center>
+	<center><font size=2><i>Server-less Version Control System</i></font></center>
+	</td>
+</tr>
+	
+<!-- Page Title -->
+<tr><td colspan=3><p><center><font face="haettenschweiler, impact" size=6 color="#336666">Quick Reference</font></center></td></tr>
+
+<!-- Page content-->
+<tr>
+	<td></td>
+	<td bgcolor="#ffccff">
+	<font size=2>
+	<center><font face="haettenschweiler, impact" size=5><a name="MainWindow">Main Window</a></font></center>
+	<hr>
+	<map name="MainWindow" id="MainWindow">
+<area href="#filea"		coords="7,48,51,72"		alt="Go to File area" shape="RECT">
+<area href="#checkina"	coords="51,48,139,72"	alt="Go to Check In area" shape="RECT">
+<area href="#mailbox"	coords="141,48,189,72"	alt="Go to Mailbox area" shape="RECT">
+<area href="#syncha" 	coords="189,48,264,72"	alt="Go to Synch area" shape="RECT">
+<area href="#historya"	coords="267,48,308,72"	alt="Go to History area" shape="RECT">
+<area href="#projecta"	coords="309,48,363,70"	alt="Go to Project area" shape="RECT">
+</map>
+	<p><img src="../images/screen.gif" border="1" alt="Code Co-op Window" align="right" usemap="#MainWindow" width="380" height="245">
+	<font size=5>T</font>he main window of Code Co-op contains <b>tabs</b> corresponding to different working areas:
+
+
+
+	<br>&nbsp;<a href="#filea"><b>Files</b></a>,
+	<br>&nbsp;<a href="#checkina"><b>Check-in</b></a>,
+	<br>&nbsp;<a href="#mailbox"><b>Mailbox</b></a>,
+	<br>&nbsp;<a href="#syncha"><b>Synch</b></a>,
+	<br>&nbsp;<a href="#historya"><b>History</b></a>,
+	<br>&nbsp;<a href="#projecta"><b>Projects</b></a> 
+
+	<br>(Click on the tab in the picture to jump to its description.)
+
+	<p>Directly below the tabs you see the <b>toolbar</b>. Its contents
+	is context-sensitive. Different buttons are visible in different areas. Some buttons are enabled only when there is a selection in the main window. All commands in the
+	toolbar are also available from the menus.
+
+	<p>You will probably use the file area most - let's see what you can do in it.
+	</font>
+	</td>
+	<td></td>
+</tr>
+
+<tr><td colspan=3 height=6></td></tr>
+<tr>
+	<td></td>
+	<td bgcolor="#ccffcc">
+	<font size=2>
+	<center><font face="haettenschweiler, impact" size=5><a name="filea">File area</a></font></center>
+	<hr>
+	<p><img src="../images/file.gif" border="1" alt="File area" align="right" width="334" height="158">
+	<p><b>Toolbar buttons</b> in the file area correspond to the following commands, from left to right,
+		<ul>
+		<li><a href="function.html#out">Check out</a> selected files.
+		<li>Check out all files in the current folder.
+		<li><a href="function.html#uncheck">Un-CheckOut</a> (restore selected files to their pre-check-out state).
+		<li>Create a brand <a href="function.html#new">new file</a> in the project.
+		<li><a href="function.html#add">Add</a> selected files and folders to the project.
+		<li>View file (also available by double-clicking on a file).
+		<li><a href="function.html#delete">Delete</a> selected file(s).
+		<li><a href="function.html#move">Cut</a> selected files (in preparation for move)
+		<li><a href="function.html#move">Paste</a> files (to finish move)
+		<li>Refresh
+		<li>Folder-up (folder-down is available by double-clicking on a folder).
+		</ul>
+	<p>	Some buttons are enabled only when you make a selection.
+	<p>In the File area, you can view files and folders that are in the project tree (not necessarily added to the project). This area corresponds to the file-system view of the project tree. Remember, files in the project can be also accessed directly from other applications, e.g., your editor or development environment. 
+	</font>
+	</td>
+	<td></td>
+</tr>
+
+<tr><td colspan=3 height=6></td></tr>
+<tr>
+	<td></td>
+	<td bgcolor="#ccffcc">
+	<font size=2>
+	<center><font face="haettenschweiler, impact" size=5><a name="checkina">Check-in area</a></font></center>
+	<hr>
+	This is where all the checked-out, deleted and new files go before being checked-in. Double clicking on a file in this area shows the differences between the current state of the file and the state from before the check-out. You can see what changes you've made so far.
+	<p><img src="../images/checkin.gif" border="1" alt="Check-in area" width="358" height="116">
+	<br>The first button, &quot;check-in all&quot;, is the most used one. In some situations, when you want to do a partial check-in, you can use the second, &quot;check-in selected&quot;, button. Using the third button you can Un-CheckOut a file and undo all the edits you've made since the check-out.
+	</font>
+	</td>
+	<td></td>
+</tr>
+
+<tr><td colspan=3 height=6></td></tr>
+<tr>
+	<td></td>
+	<td bgcolor="#ccffcc">
+	<font size=2>
+	<center><font face="haettenschweiler, impact" size=5><a name="mailbox">Mailbox</a></font></center>
+	<hr>
+	 The Mailbox area is where you can see all the synch scripts--incoming and outgoing. This is where you do the synchronization by unpacking scripts. Scripts that are ready to be unpacked have distinct icons. This area corresponds to the <a href="function.html#email">OutBox and InBox</a> folders in the file system.
+	<p><img src="../images/mailbox.gif" width="392" height="102" border="1" alt="Mailbox">
+	<p>The first button is used to unpack the message(s) marked as "Next" and perform the synch. If you hold the mouse cursor over the depressed area in the toolbar, you'll see the synch comment in full, as a tooltip (in case it doesn't fit in the depression).
+	</font>
+	</td>
+	<td></td>
+</tr>
+
+<tr><td colspan=3 height=6></td></tr>
+<tr>
+	<td></td>
+	<td bgcolor="#ccffcc">
+	<font size=2>
+	<center><font face="haettenschweiler, impact" size=5><a name="syncha">Synch Area</a></font></center>
+	<hr>
+	This is the area where you can examine the results of a synchronization. You can look at the files that were changed by the synch. Double clicking shows the differences between the new version and the old version. This is where you perform your code reviews. Once you are done reviewing the changes, you accept the synch (first button) and continue. 
+	<p><img src="../images/synch.gif" width="342" height="96" border="1" alt="Synch area">
+	<p>If you hold the mouse cursor over the depressed area in the toolbar, you'll see the synch comment in full, as a tooltip (in case it doesn't fit in the depression).
+	<p>&quot;Accept Synch All&quot; is the most common operation in the synch area--that's the first button. &quot;Accept Synch Selected&quot; follows it. Notice also the check-out buttons. You can do the &quot;pre-emptive check-out&quot; if you don't like some of the proposed changes and make some edits on the spot. The left pane of the Differ serves as an editor (remember to "refresh" the view in the Differ after you've checked out a file).
+	</font>
+	</td>
+	<td></td>
+</tr>
+
+<tr><td colspan=3 height=6></td></tr>
+<tr>
+	<td></td>
+	<td bgcolor="#ccffcc">
+	<font size=2>
+	<center><font face="haettenschweiler, impact" size=5><a name="historya">History</a></font></center>
+	<hr>
+	This is the repository of all executed scripts in the order in which they were applied to the project. Your scripts, generated during check-ins, are also shown here.
+	<p><img src="../images/hist.gif" width="462" height="172" border="1" alt="History area">
+	<p>You can type in file names (with wildcards) in the edit field of the combo box to view the history of selected files. An even better method is to go to the Files area, select some files and choose "View History" from the context menu (right button click). This will bring you to the History area and show you all the scripts that modified these files.
+	<p>In the History area you also have access to the selection menu that lets you view and restore previous versions of files or the entire project.<br>
+	</font>
+	</td>
+	<td></td>
+</tr>
+
+<tr><td colspan=3 height=6></td></tr>
+<tr>
+	<td></td>
+	<td bgcolor="#ccffcc">
+	<font size=2>
+	<center><font face="haettenschweiler, impact" size=5><a name="projecta">Projects</a></font></center>
+	<hr>
+		<p><img src="../Images/project.gif" width="374" height="140" border="1" alt="History area">
+
+	<p>This is the list of all projects on your machine. You can navigate between projects simply by double-clicking on them. Notice that projects with unprocessed incoming scripts are marked with a wave. 
+	<hr>
+	<p>Now you can study <a href="command.html">the functionality</a> of Code Co-op in more detail.
+	</font>
+	</td>
+	<td></td>
+</tr>
+
+<!-- Footer -->
+<tr>
+	<td></td>
+	<td><font size=1>Code Co-op User's manual. Copyright &copy; 1999, 2000 Reliable Software.</font></td>
+</tr>
+</table>
+<img src="../Images/transpix.gif" width=1 height=400 border=0>
+</font>
+</body>
+</html>

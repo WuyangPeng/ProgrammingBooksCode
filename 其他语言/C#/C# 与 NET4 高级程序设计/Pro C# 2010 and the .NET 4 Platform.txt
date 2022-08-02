@@ -1,0 +1,9 @@
+C# 与 NET4 高级程序设计 （Pro C# 2010 and the .NET 4 Platform）
+ （第5版） 
+
+官方网站： 
+http://www.apress.com
+
+○
+作者：Andrew Troelsen
+

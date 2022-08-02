@@ -1,0 +1,115 @@
+<html>
+
+<head>
+<title>CD-ROM: Applied C++: Practical Techniques for Building Better Software</title>
+
+<style type="text/css">
+<!-- 
+  .noDecoration {text-decoration: none}
+
+  .description { font-family: arial,helvetica,sans-serif; font-size: medium; }
+  .smdescription { font-family: arial,helvetica,sans-serif; font-size: small; }
+
+  .toc_chapter { font-family: arial, Helvetica, serif; font-size: 10pt; font-weight: bold; vertical-align:top }
+  .toc_secnum { font-family: arial, Helvetica, serif; font-size:  9pt; font-weight: bold; vertical-align:top }
+  .toc_section { font-family: arial, Helvetica, serif; font-size:  9pt; vertical-align:top }
+
+  .nop        { font-family: arial, Helvetica, serif; }
+  .larger5    { font-family: arial, Helvetica, serif; font-size: 18pt }
+  .larger4    { font-family: arial, Helvetica, serif; font-size: 16pt }
+  .larger3    { font-family: arial, Helvetica, serif; font-size: 14pt }
+  .larger2    { font-family: arial, Helvetica, serif; font-size: 12pt }
+  .larger     { font-family: arial, Helvetica, serif; font-size: 10pt }
+  .smaller    { font-family: arial, Helvetica, serif; font-size:  9pt }
+  .smaller2   { font-family: arial, Helvetica, serif; font-size:  8pt }
+  .smaller3   { font-family: arial, Helvetica, serif; font-size:  7pt }
+
+  .code       { font-family: Courier, Helvetica, serif; font-size:  10pt }
+
+  body table tr td th { 
+    background-color: white;
+    font-family: arial,helvetica,sans-serif; 
+    font-size: medium;
+    color: black;
+  }
+     
+  A:link    { color: #0000EE }
+  A:visited { color: #551A8B }
+  A:active  { color: #FF0000 }
+
+ -->
+</style>
+</head>
+
+<body>
+<table width="700"><tr><td width="700" class="smaller">
+
+<b class="larger4">Applied C++</b><br>
+<b class="larger3">Practical Techniques for Building Better Software</b>
+<br><br><br>
+
+<b class="larger2">TIFF Software</b>
+<br><br>
+
+<table cellpadding=3 cellspacing=3>
+<tr>
+  <td class="larger"><a href="tiff-v3.5.7.tar.gz">tiff-v3.5.7.tar.gz</a></td>
+  <td class="smaller">Source code</td>
+</tr>
+<tr>
+  <td class="larger"><a href="libtiff-lzw-compression-kit-1.3.tar.gz">libtiff-lzw-compression-kit-1.3.tar.gz</a></td>
+  <td class="smaller">
+    Source code (adds LZW compression)
+    <br>
+    <span class="smaller2">
+    (See licensing information in documentation)
+    </span>
+  </td>
+</tr>
+<tr>
+  <td class="larger"><a href="TIFF6.pdf">TIFF6.pdf</a></td>
+  <td class="smaller">TIFF 6.0 Specification</td>
+</tr>
+
+</table>
+
+<br><br>
+<table><tr><td class="smaller" width=600>
+Pre-built libraries for Microsoft Windows, Linux, and FreeBSD can be
+found in <a href="../../framework/thirdparty">framework/thirdparty</a>.
+</td></tr></table>
+
+
+<br><br>
+<table><tr><td class="smaller" width=600>
+<b>Notes:</b>
+<br><br>
+On FreeBSD (and probaly other platforms), building the 
+tiff delegate using default settings will not enable proper
+stack unwinding. If you attempt to generate C++ exceptions from
+error handlers you write, the C code will abort. With gcc you need
+to specify '<b class="code">-fexceptions</b>' to make sure exceptions
+work properly.
+
+<br><br>
+The tiff library was configured by modifying the <b>configure</b> app 
+as follows:
+<ul>
+<li>Disable DSO (<b class="code">DSO=no</b>)</li>
+<li>Support stack unwinding:   
+<b class="code">${OPTIMIZER=-O -fexceptions}</b></li>
+</ul>
+
+You may also need to enable LZW compression when building libtiff.
+See the file
+<br>
+<b>libtiff-lzw-compression-kit-1.3/README-LZW-COMPRESSION</b>
+for more information on how to do this as well as LZW licensing issues.
+
+</td></tr></table>
+
+
+</td></tr></table>
+</body>
+
+</html>

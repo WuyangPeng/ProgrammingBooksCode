@@ -1,0 +1,11 @@
+ABC
+
+ABBC
+
+AC
+
+A3C
+
+ABBBBBBC
+
+AbbCC

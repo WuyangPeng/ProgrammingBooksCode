@@ -1,0 +1,94 @@
+INSERT INTO MemberDetails 
+(
+  MemberId,
+  FirstName,
+  LastName,
+  DateOfBirth,
+  Street,
+  City,
+  State,
+  ZipCode,
+  Email,
+  DateOfJoining
+)
+VALUES
+ ( 
+  7,
+  'John', 
+  'Jackson', 
+  '27 May 1974', 
+  'Long Lane',
+  'Orange Town',
+  'New State',
+  '88992',
+  'jjackson@mailme.net',
+  '21 Nov 2005'
+ );
+
+
+INSERT INTO MemberDetails 
+(
+  MemberId,
+  FirstName,
+  LastName,
+  DateOfBirth,
+  Street,
+  City,
+  State,
+  ZipCode,
+  Email,
+  DateOfJoining
+)
+VALUES
+ ( 
+  8,
+  'Jack', 
+  'Johnson', 
+  '9 June 1945', 
+  'Main Street',
+  'Big City',
+  'Mega State',
+  '34566',
+  'jjohnson@me.com',
+  '02 June 2005'
+ );
+
+
+INSERT INTO MemberDetails 
+(
+  MemberId,
+  FirstName,
+  LastName,
+  DateOfBirth,
+  Street,
+  City,
+  State,
+  ZipCode,
+  Email,
+  DateOfJoining
+)
+VALUES
+ ( 
+  9,
+  'Seymour', 
+  'Botts', 
+  '21 Oct 1956', 
+  'Long Lane',
+  'Windy Village',
+  'Golden State',
+  '65422',
+  'Seymour@botts.org',
+  '17 July 2005'
+ );
+
+
+DELETE FROM Attendance WHERE MemberId = 2;
+
+DELETE FROM FavCategory WHERE MemberId = 2;
+
+DELETE FROM MemberDetails WHERE MemberId = 2;
+
+ UPDATE MemberDetails SET City = 'Big City' 
+ WHERE Street = 'Long Lane' AND City = 'Orange Town';
+
+COMMIT;

@@ -1,0 +1,85 @@
+<html>
+<head>
+<title>March 04: D and Java</title>
+</head>
+
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#330066" ALINK="#ff0000" TEXT="#000000">
+<!--Copyright &#169; C/C++ Users Journal-->
+
+<h3>Listing 6: <i>Definition of </i>Entry.</i></h3>
+<pre>
+/* /////////////////////////////////////////////////////////////
+ * Extract from org/recls/Search.java
+ * www:    http://www.recls.org/
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * (Licensed under the Synesis Software Standard Source License:
+ *  http://www.synesis.com.au/licenses/ssssl.html)
+ * ////////////////////////////////////////////////////////// */
+
+package org.recls;
+import java.util.Date;
+public class Entry
+{
+  private Entry(int hEntry, String path, String[] directoryParts)
+  {
+    m_hEntry          = hEntry;
+    m_path            = path;
+    m_directoryParts  = directoryParts;
+  }
+  public native void Close();
+  public void Finalize()
+  {
+    Close();
+  }
+// Properties
+  public String     getPath()
+  {
+    return m_path;
+  }
+  public native char    getDrive();
+  public native String  getDirectory();
+  public native String  getDirectoryPath();
+  public String[]     getDirectoryParts()
+  {
+    return m_directoryParts;
+  }
+  public native String  getFile();
+  public native String  getShortFile();
+  public native String  getFileName();
+  public native String  getFileExt();
+  public Date       getCreationTime()
+  {
+    return new Date(getCreationTime_());
+  }
+  public Date       getModificationTime()
+  {
+    return new Date(getModificationTime_());
+  }
+  public Date       getLastAccessTime()
+  {
+    return new Date(getLastAccessTime_());
+  }
+  public Date       getLastStatusChangeTime()
+  {
+    return new Date(getLastStatusChangeTime_());
+  }
+  public native long    getSize();
+  public native boolean isReadOnly();
+  public native boolean isDirectory();
+  public native boolean isLink();
+  public String toString()
+  {
+    return m_path;
+  }
+// Implementation methods
+  public native long    getCreationTime_();
+  public native long    getModificationTime_();
+  public native long    getLastAccessTime_();
+  public native long    getLastStatusChangeTime_();
+// Members
+  private int     m_hEntry; // The opaque handle to the entry
+  private String    m_path;
+  private String[]  m_directoryParts;
+}
+</body>
+</html>

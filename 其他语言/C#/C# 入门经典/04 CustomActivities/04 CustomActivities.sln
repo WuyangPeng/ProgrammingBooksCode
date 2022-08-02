@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04 CustomActivities", "04 CustomActivities\04 CustomActivities.csproj", "{FAB26124-9315-445E-A7D3-07810A3240FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomActivities", "CustomActivities\CustomActivities.csproj", "{D2C369CD-CCB0-47EB-BC8B-F38285B7B52E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FAB26124-9315-445E-A7D3-07810A3240FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAB26124-9315-445E-A7D3-07810A3240FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAB26124-9315-445E-A7D3-07810A3240FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAB26124-9315-445E-A7D3-07810A3240FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2C369CD-CCB0-47EB-BC8B-F38285B7B52E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2C369CD-CCB0-47EB-BC8B-F38285B7B52E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2C369CD-CCB0-47EB-BC8B-F38285B7B52E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2C369CD-CCB0-47EB-BC8B-F38285B7B52E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,107 @@
+<html>
+<head>
+<title>March 04: D and JavaTwo more languages are added to the map</title>
+</head>
+
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#330066" ALINK="#ff0000" TEXT="#000000">
+<!--Copyright &#169; C/C++ Users Journal-->
+
+<h3>Listing 1: <i>Declaring recls API functions.</i></h3>
+<pre>
+/* /////////////////////////////////////////////////////////////
+ * Extract from std/recls.d
+ * www:    http://www.digitalmars.com/d
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * (Licensed under the Synesis Software Standard Source License:
+ *  http://www.synesis.com.au/licenses/ssssl.html)
+ * ////////////////////////////////////////////////////////// */
+
+// Module
+module std.recls;
+// Imports
+import std.string;
+// Typedefs
+private alias int             recls_sint32_t;
+public alias uint             recls_uint32_t;
+public typedef int            recls_bool_t;
+public alias recls_bool_t     boolean;
+
+version(Windows)
+{
+  public struct               recls_time_t
+  {
+    uint  dwLowDateTime;
+    uint  dwHighDateTime; 
+  };
+  alias ulong                 recls_filesize_t;
+}
+else version(Linux)
+{
+  typedef time_t              recls_time_t;
+
+  typedef off_t               recls_filesize_t;
+}
+public typedef void           *hrecls_t;
+public typedef void           *recls_info_t;
+public typedef void           *recls_process_fn_param_t;
+public typedef recls_sint32_t recls_rc_t;
+public recls_bool_t RECLS_FAILED(recls_rc_t rc)
+{
+  return (recls_bool_t)(rc < 0);
+}
+public recls_bool_t RECLS_SUCCEEDED(recls_rc_t rc)
+{
+  return (recls_bool_t)!RECLS_FAILED(rc);
+}
+// Values
+public const recls_rc_t RECLS_RC_OK           = (recls_rc_t)(0);
+public const recls_rc_t RECLS_RC_NO_MORE_DATA = (recls_rc_t)(-1004);
+public enum RECLS_FLAG
+{
+    RECLS_F_FILES           = 0x00000001
+  , RECLS_F_DIRECTORIES     = 0x00000002
+  , RECLS_F_LINKS           = 0x00000004
+  , RECLS_F_DEVICES         = 0x00000008
+  , RECLS_F_RECURSIVE       = 0x00010000
+  , RECLS_F_NO_FOLLOW_LINKS = 0x00020000
+  , RECLS_F_DIRECTORY_PARTS = 0x00040000
+  , RECLS_F_DETAILS_LATER   = 0x00080000
+};
+// Private recls API declarations
+extern (Windows)
+{
+  private recls_rc_t Recls_Search(char            *searchRoot
+                                , char            *pattern
+                                , recls_uint32_t  flags
+                                , hrecls_t        *phSrch);
+  private void Recls_SearchClose(in hrecls_t hSrch);
+
+  private recls_rc_t Recls_GetNext(in hrecls_t hSrch);
+  private recls_rc_t Recls_GetDetails(in hrecls_t hSrch, 
+                                                 out recls_info_t pinfo);
+  private recls_rc_t Recls_GetNextDetails(in hrecls_t hSrch, 
+                                                 out recls_info_t pinfo);
+  private void Recls_CloseDetails(in recls_info_t fileInfo);
+  private recls_rc_t Recls_CopyDetails(in recls_info_t fileInfo, 
+                                                 in recls_info_t *pinfo);
+  private recls_rc_t Recls_OutstandingDetails(in hrecls_t hSrch, 
+                                                 out recls_uint32_t count);
+  private recls_rc_t Recls_GetLastError(in hrecls_t hSrch);
+  private int Recls_GetErrorString(in recls_rc_t rc, in char *buffer, 
+                                                 in uint cchBuffer);
+  private int Recls_GetLastErrorString(in hrecls_t hSrch, in char *buffer, 
+                                                 in uint cchBuffer);
+  private uint Recls_GetPathProperty(in recls_info_t fileInfo,in char *buffer,
+                                                 in uint cchBuffer);
+version(Windows)
+{
+  private void Recls_GetDriveProperty(in recls_info_t fileInfo, 
+                                                 out char chDrive);
+}
+  private uint Recls_GetDirectoryProperty(in recls_info_t fileInfo, 
+                                        in char *buffer, in uint cchBuffer);
+  . . . // And all the other functions
+}
+
+</body>
+</html>

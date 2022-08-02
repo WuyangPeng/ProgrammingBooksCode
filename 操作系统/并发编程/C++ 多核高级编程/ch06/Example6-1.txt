@@ -1,0 +1,31 @@
+// Example 6-1 Using the delegation model in a simple threaded program
+
+using namspace std;
+#include <iostream>
+#include <pthread.h>
+
+void *task1(void *X) //define task to be executed by ThreadA
+{
+   cout << "Thread A complete" << endl;
+   return (NULL);
+}
+
+void *task2(void *X) //define task to be executed by ThreadB
+
+{
+   cout << "Thread B complete" << endl;
+   return (NULL);
+}
+
+int main(int argc, char *argv[])
+{
+   pthread_t ThreadA,ThreadB; // declare threads
+
+   pthread_create(&ThreadA,NULL,task1,NULL); // create threads
+   pthread_create(&ThreadB,NULL,task2,NULL);
+   // additional processing
+   pthread_join(ThreadA,NULL); // wait for threads
+   pthread_join(ThreadB,NULL);
+   return (0);
+}
+

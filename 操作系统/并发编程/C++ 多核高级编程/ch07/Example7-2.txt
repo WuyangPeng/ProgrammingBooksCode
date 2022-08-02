@@ -1,0 +1,26 @@
+// Example 7-2 The definition of open()   
+   
+122  bool posix_queue::open(void)
+123  {
+124     bool Success = true;
+125     int RetCode;
+126     PosixQueue = mq_open(QueueName.c_str(),QueueFlags,OMode,&QueueAttr);
+127     if(errno == EACCES){
+128        cerr  << "Permission denied to created " << QueueName << endl;
+129        Success = false;
+130     }  
+131     RetCode = mq_getattr(PosixQueue,&QueueAttr);
+132     if(errno == EBADF){
+133        cerr << "PosixQueue is not a valid message descriptor" << endl;
+134        Success = false;     
+135        close();
+136
+137     }
+138     if(RetCode == -1){
+139        cerr << "unknown error in mq_getattr() " << endl;
+140        Success = false;
+141        close();      
+142     }
+143     return(Success);
+144  }
+

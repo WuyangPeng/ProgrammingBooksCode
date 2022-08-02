@@ -1,0 +1,11 @@
+Qt高级编程（Advanced Qt Programming）
+
+官方网站：
+http://www.qtrac.eu/
+
+qt网站：
+https://www.qt.io/
+
+☆
+作者：Mark Summerfield
+其他书籍：Mark Summerfield《Python3 程序开发指南》、《C++ GUI Qt 4编程》 

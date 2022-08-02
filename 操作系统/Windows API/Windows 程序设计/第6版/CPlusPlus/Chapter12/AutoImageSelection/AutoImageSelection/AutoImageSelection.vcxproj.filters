@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>4cdec6cd-3ea7-421a-bb8a-8be7082ab2d5</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>7522bd25-b553-46d5-8404-c573178fb53c</UniqueIdentifier>
+    </Filter>
+    <Page Include="Common\StandardStyles.xaml">
+      <Filter>Common</Filter>
+    </Page>
+    <Image Include="Assets\Logo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SmallLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\StoreLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SplashScreen.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Filter Include="Images1">
+      <UniqueIdentifier>{61afc10f-ae2b-4e9f-a1c1-c7193df2447b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Images2">
+      <UniqueIdentifier>{74e7e722-501e-4717-b5d6-4e417b2cd91b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Images2\scale-100">
+      <UniqueIdentifier>{e4a76b92-4ef1-4da7-acbe-673d9b93849c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Images2\scale-140">
+      <UniqueIdentifier>{9c374649-8107-4b56-b64b-56c15af80620}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Images2\scale-180">
+      <UniqueIdentifier>{6293fce5-fe89-4e7c-9fe1-4690552585f1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="App.xaml.cpp" />
+    <ClCompile Include="MainPage.xaml.cpp" />
+    <ClCompile Include="pch.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="App.xaml.h" />
+    <ClInclude Include="MainPage.xaml.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AutoImageSelection_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="MainPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Images1\PetzoldTablet.scale-100.jpg">
+      <Filter>Images1</Filter>
+    </Image>
+    <Image Include="Images1\PetzoldTablet.scale-140.jpg">
+      <Filter>Images1</Filter>
+    </Image>
+    <Image Include="Images1\PetzoldTablet.scale-180.jpg">
+      <Filter>Images1</Filter>
+    </Image>
+    <Image Include="Images2\scale-100\PetzoldTablet.jpg">
+      <Filter>Images2\scale-100</Filter>
+    </Image>
+    <Image Include="Images2\scale-140\PetzoldTablet.jpg">
+      <Filter>Images2\scale-140</Filter>
+    </Image>
+    <Image Include="Images2\scale-180\PetzoldTablet.jpg">
+      <Filter>Images2\scale-180</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

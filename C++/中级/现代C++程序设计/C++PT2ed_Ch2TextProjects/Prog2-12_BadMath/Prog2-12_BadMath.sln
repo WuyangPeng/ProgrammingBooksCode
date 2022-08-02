@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Prog2-12_BadMath", "Prog2-12_BadMath\Prog2-12_BadMath.vcproj", "{9B205FE7-10A4-457A-9A81-4B869EAD3D5E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B205FE7-10A4-457A-9A81-4B869EAD3D5E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9B205FE7-10A4-457A-9A81-4B869EAD3D5E}.Debug|Win32.Build.0 = Debug|Win32
+		{9B205FE7-10A4-457A-9A81-4B869EAD3D5E}.Release|Win32.ActiveCfg = Release|Win32
+		{9B205FE7-10A4-457A-9A81-4B869EAD3D5E}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

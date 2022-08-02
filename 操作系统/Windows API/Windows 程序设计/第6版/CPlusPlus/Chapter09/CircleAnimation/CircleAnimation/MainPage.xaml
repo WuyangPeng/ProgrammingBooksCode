@@ -1,0 +1,45 @@
+<Page
+    x:Class="CircleAnimation.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CircleAnimation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Storyboard x:Key="storyboard" SpeedRatio="3">
+            <DoubleAnimation Storyboard.TargetName="ball"
+                             Storyboard.TargetProperty="(Canvas.Left)"
+                             From="-350" To="350" Duration="0:0:2"
+                             AutoReverse="True"
+                             RepeatBehavior="Forever">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Storyboard.TargetName="ball"
+                             Storyboard.TargetProperty="(Canvas.Top)"
+                             BeginTime="0:0:1"
+                             From="-350" To="350" Duration="0:0:2"
+                             AutoReverse="True"
+                             RepeatBehavior="Forever">
+                <DoubleAnimation.EasingFunction>
+                    <SineEase EasingMode="EaseInOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Canvas HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="0 0 48 48">
+            <Ellipse Name="ball"
+                     Width="48"
+                     Height="48"
+                     Fill="Red" />
+        </Canvas>
+    </Grid>
+</Page>

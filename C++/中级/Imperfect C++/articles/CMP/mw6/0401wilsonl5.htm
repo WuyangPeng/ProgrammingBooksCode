@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>January 04: Introducing recls Mappings It's STL and C#'s turn</title>
+</head>
+
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#330066" ALINK="#ff0000" TEXT="#000000">
+<!--Copyright &#169; C/C++ Users Journal-->
+
+
+<h4>Listing 5:	<i>Public interface of </i>basic_search_sequence_value_type. </h4>
+
+<pre>
+class basic_search_sequence_value_type
+{
+  ...
+  string_t              get_path() const;
+#ifdef RECLS_PLATFORM_API_WIN32
+  char_type             get_drive() const;
+#endif /* RECLS_PLATFORM_API_WIN32 */
+  string_t              get_directory() const;
+  string_t              get_directory_path() const;
+  directory_parts_type  get_directory_parts() const;
+  string_t              get_file() const;
+  string_t              get_short_file() const;
+  string_t              get_filename() const;
+  string_t              get_fileext() const;
+  recls_time_t          get_creation_time() const;
+  recls_time_t          get_modification_time() const;
+  recls_time_t          get_last_access_time() const;
+  recls_time_t          get_last_status_change_time() const;
+  recls_filesize_t      get_size() const;
+  recls_bool_t          is_readonly() const;
+  recls_bool_t          is_directory() const;
+  recls_bool_t          is_link() const;
+  ...
+};
+template &lt;typename C, typename T&gt;
+inline class_type
+  &amp;basic_search_sequence_value_type&lt;C, T&gt;::operator =( class_type const &amp;rhs)
+{
+  if(NULL != m_info)
+  {
+    traits_type::CloseDetails(m_info);
+  }
+  m_info = traits_type::CopyDetails(rhs.m_info);
+  return *this;
+}
+template &lt;typename C, typename T&gt;
+inline string_t basic_search_sequence_value_type&lt;C, T&gt;::get_filename() const
+{
+  recls_assert(NULL != m_info);
+  return string_t(m_info-&gt;fileName.begin, m_info-&gt;fileName.end);
+}
+template &lt;typename C, typename T&gt;
+inline directory_parts_type 
+  basic_search_sequence_value_type&lt;C, T&gt;::get_directory_parts() const
+{
+  recls_assert(NULL != m_info);
+  return directory_parts_type( m_info-&gt;directoryParts.begin
+                             , m_info-&gt;directoryParts.end);
+}
+</body>
+</html>

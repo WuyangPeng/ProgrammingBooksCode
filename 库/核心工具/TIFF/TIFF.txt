@@ -1,0 +1,5 @@
+TIFF 
+☆
+
+1. 版本：4.1.0。
+2. 官方网站：http://www.libtiff.org/

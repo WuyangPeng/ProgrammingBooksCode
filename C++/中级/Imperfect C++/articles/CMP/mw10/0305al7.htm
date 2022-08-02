@@ -1,0 +1,68 @@
+<html>
+<head>
+<title></title>
+</head>
+
+<body>
+
+
+<h4>Listing 7 Extract from winstl_performance_counter_scope.h</h4>
+
+<pre>
+
+/* /////////////////////////////////////////////////////////////
+ * ...
+ *
+ * Extract from winstl_performance_counter_scope.h
+ *
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * (Licensed under the Synesis Software Standard Source License:
+ *  http://www.synesis.com.au/licenses/ssssl.html)
+ *
+ * ...
+ * ////////////////////////////////////////////////////////// */
+
+// class performance_counter_scope
+template &lt;ws_typename_param_k T>
+class performance_counter_scope
+{
+public:
+    typedef T                               counter_type;
+    typedef performance_counter_scope&lt;T>    class_type;
+
+public:
+    ws_explicit_k performance_counter_scope(counter_type &counter)
+        : m_counter(counter)
+    {
+        m_counter.start();
+    }
+    ~performance_counter_scope()
+    {
+        m_counter.stop();
+    }
+
+    void stop()
+    {
+        m_counter.stop();
+    }
+
+    // This method is const, to ensure that only the stop operation 
+    // (via performance_counter_scope::stop()) is accessible 
+    // on the managed counter.
+    const counter_type &get_counter() const
+    {
+        return m_counter;
+    }
+
+// Members
+protected:
+    T   &m_counter;
+
+// Not to be implemented
+private:
+    performance_counter_scope(class_type const &rhs);
+    class_type const &operator =(class_type const &rhs);
+};
+</pre>
+</body>
+</html>

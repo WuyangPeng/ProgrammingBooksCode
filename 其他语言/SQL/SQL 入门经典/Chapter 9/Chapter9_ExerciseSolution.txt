@@ -1,0 +1,27 @@
+CREATE TABLE FilmStars
+(
+ StarId integer,
+ StarName varchar(100),
+ StarAge integer
+);
+
+INSERT INTO FilmStars(StarId, StarName, StarAge)
+VALUES (1,'Boris Carlot',102);
+
+INSERT INTO FilmStars(StarId, StarName, StarAge)
+VALUES (1,'Scarlet O''Hairpin',89);
+
+INSERT INTO FilmStars(StarId, StarName, StarAge)
+VALUES (3,'Boris Carlot',102);
+
+INSERT INTO FilmStars(StarId, StarName, StarAge)
+VALUES (4,'Michael Hourglass',56);
+
+INSERT INTO FilmStars(StarId, StarName, StarAge)
+VALUES (5,'Dusty Hoffperson',48);
+
+INSERT INTO FilmStars(StarId, StarName, StarAge)
+VALUES (6,'Boris Carlot',102);
+
+INSERT INTO FilmStars(StarId, StarName, StarAge)
+VALUES (7,'Dusty Hoffperson',48);

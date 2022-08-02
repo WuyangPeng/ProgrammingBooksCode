@@ -1,0 +1,63 @@
+<Page
+    x:Class="WheresMyElement.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WheresMyElement"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Name="contentGrid"
+          Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock Name="txtblk"
+                   Text="Tap to Find"
+                   FontSize="96"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   RenderTransformOrigin="0.5 0.5">
+            <TextBlock.RenderTransform>
+                <CompositeTransform x:Name="transform" />
+            </TextBlock.RenderTransform>
+        </TextBlock>
+
+        <Polygon Name="polygon" Stroke="Blue" />
+        <Path Name="path" Stroke="Red" />
+    </Grid>
+
+    <Page.Triggers>
+        <EventTrigger>
+            <BeginStoryboard>
+                <Storyboard x:Name="storyboard">
+                    <DoubleAnimation Storyboard.TargetName="transform"
+                                     Storyboard.TargetProperty="TranslateX"
+                                     From="-300" To="300" Duration="0:0:2.11"
+                                     AutoReverse="True" RepeatBehavior="Forever" />
+                    <DoubleAnimation Storyboard.TargetName="transform"
+                                     Storyboard.TargetProperty="TranslateY"
+                                     From="-300" To="300" Duration="0:0:2.23"
+                                     AutoReverse="True" RepeatBehavior="Forever" />
+                    <DoubleAnimation Storyboard.TargetName="transform"
+                                     Storyboard.TargetProperty="Rotation"
+                                     From="0" To="360" Duration="0:0:2.51"
+                                     AutoReverse="True" RepeatBehavior="Forever" />
+                    <DoubleAnimation Storyboard.TargetName="transform"
+                                     Storyboard.TargetProperty="ScaleX"
+                                     From="1" To="2" Duration="0:0:2.77"
+                                     AutoReverse="True" RepeatBehavior="Forever" />
+                    <DoubleAnimation Storyboard.TargetName="transform"
+                                     Storyboard.TargetProperty="ScaleY"
+                                     From="1" To="2" Duration="0:0:3.07"
+                                     AutoReverse="True" RepeatBehavior="Forever" />
+                    <DoubleAnimation Storyboard.TargetName="transform"
+                                     Storyboard.TargetProperty="SkewX"
+                                     From="-30" To="30" Duration="0:0:3.31"
+                                     AutoReverse="True" RepeatBehavior="Forever" />
+                    <DoubleAnimation Storyboard.TargetName="transform"
+                                     Storyboard.TargetProperty="SkewY"
+                                     From="-30" To="30" Duration="0:0:3.53"
+                                     AutoReverse="True" RepeatBehavior="Forever" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Page.Triggers>
+</Page>

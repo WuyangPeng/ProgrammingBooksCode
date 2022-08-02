@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>Introducing recls</title>
+</head>
+
+<body>
+
+
+<h4>Listing 2:	recls <i>types are defined differently.</i></h4>
+
+<pre>
+// from recls_platform_types.h
+struct recls_strptrs_t
+{
+  char const                    *begin;
+  char const                    *end;
+};
+struct recls_strptrsptrs_t
+{
+  struct recls_strptrs_t const  *begin;
+  struct recls_strptrs_t const  *end;
+};
+struct recls_fileinfo_t
+{
+  recls_uint32_t                attributes;
+  struct recls_strptrs_t        path;
+#if defined(RECLS_PLATFORM_IS_WIN32)
+  char                          drive;
+#endif /* RECLS_PLATFORM_IS_WIN32 */
+  struct recls_strptrs_t        directory;
+  struct recls_strptrs_t        fileName;
+  struct recls_strptrs_t        fileExt;
+#if defined(RECLS_PLATFORM_IS_WIN32)
+  struct recls_strptrs_t        shortFile;
+#endif /* RECLS_PLATFORM_IS_WIN32 */
+  struct recls_strptrsptrs_t    directoryParts;
+#if defined(RECLS_PLATFORM_IS_WIN32)
+  recls_time_t                  creationTime;
+#endif /* RECLS_PLATFORM_IS_WIN32 */
+  recls_time_t                  modificationTime;
+  recls_time_t                  lastAccessTime;
+#if defined(RECLS_PLATFORM_IS_UNIX)
+  recls_time_t                  lastStatusChangeTime;
+#endif /* RECLS_PLATFORM_IS_UNIX */
+  recls_filesize_t              size;
+  recls_byte_t                  data[1];
+};
+</pre>
+</body>
+</html>

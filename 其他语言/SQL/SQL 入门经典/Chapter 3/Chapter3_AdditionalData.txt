@@ -1,0 +1,17 @@
+INSERT INTO Category (CategoryId, Category)
+VALUES (7, 'Comedy');
+
+
+INSERT INTO FavCategory (CategoryId, MemberId)
+VALUES (7, 6);
+
+INSERT INTO FavCategory (CategoryId, MemberId)
+VALUES (7, 4);
+
+
+INSERT INTO FavCategory (CategoryId, MemberId)
+VALUES (7, 12);
+
+INSERT INTO MemberDetails 
+(MemberId, FirstName, LastName, Email,DateOfJoining)
+VALUES (15, 'Catherine','Hawthorn', 'chawthorn@mailme.org', '2005-08-25');

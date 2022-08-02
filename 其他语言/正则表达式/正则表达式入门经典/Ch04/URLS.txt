@@ -1,0 +1,13 @@
+http://www.w3.org/
+
+http://www.amazon.com/
+
+http://www.w3.org\tr/
+
+http://www.XMML.com\default.svg
+
+http://www.wiley.com/
+
+http:\\www.wrox.com/
+
+http://www.example.org/

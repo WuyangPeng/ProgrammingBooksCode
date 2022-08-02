@@ -1,0 +1,1068 @@
+listing 1
+// A single-threaded garbage collector.   
+   
+#include <iostream>   
+#include <list>   
+#include <typeinfo>   
+#include <cstdlib> 
+   
+using namespace std;   
+   
+// To watch the action of the garbage collector, define DISPLAY.   
+// #define DISPLAY   
+   
+// Exception thrown when an attempt is made to    
+// use an Iter that exceeds the range of the    
+// underlying object.   
+//   
+class OutOfRangeExc {   
+  // Add functionality if needed by your application.   
+};   
+   
+// An iterator-like class for cycling through arrays   
+// that are pointed to by GCPtrs. Iter pointers   
+// ** do not ** participate in or affect garbage   
+// collection.  Thus, an Iter pointing to   
+// some object does not prevent that object   
+// from being recycled.   
+//   
+template <class T> class Iter {   
+  T *ptr;   // current pointer value   
+  T *end;   // points to element one past end   
+  T *begin; // points to start of allocated array   
+  unsigned length; // length of sequence   
+public:   
+   
+  Iter() {    
+    ptr = end = begin = NULL;   
+    length = 0;   
+  }   
+   
+  Iter(T *p, T *first, T *last) {   
+    ptr =  p;   
+    end = last;   
+    begin = first;   
+    length = last - first;   
+  }   
+     
+  // Return length of sequence to which this   
+  // Iter points.   
+  unsigned size() { return length; }   
+   
+  // Return value pointed to by ptr.   
+  // Do not allow out-of-bounds access. 
+  T &operator*() {    
+    if( (ptr >= end) || (ptr < begin) )   
+      throw OutOfRangeExc();   
+    return *ptr;   
+  }   
+   
+  // Return address contained in ptr.   
+  // Do not allow out-of-bounds access. 
+  T *operator->() {    
+    if( (ptr >= end) || (ptr < begin) )   
+      throw OutOfRangeExc();   
+    return ptr;   
+  }     
+   
+  // Prefix ++.   
+  Iter operator++() {   
+    ptr++;   
+    return *this;   
+  }   
+   
+  // Prefix --.   
+  Iter operator--() {   
+    ptr--;   
+    return *this;   
+  }   
+   
+  // Postfix ++.   
+  Iter operator++(int notused) {   
+    T *tmp = ptr;   
+   
+    ptr++;   
+    return Iter<T>(tmp, begin, end);   
+  }   
+   
+  // Postfix --.   
+  Iter operator--(int notused) {   
+    T *tmp = ptr;   
+   
+    ptr--;   
+    return Iter<T>(tmp, begin, end);   
+  }   
+   
+  // Return a reference to the object at the   
+  // specified index. Do not allow out-of-bounds   
+  // access.   
+  T &operator[](int i) {   
+    if( (i < 0) || (i >= (end-begin)) )   
+      throw OutOfRangeExc();   
+    return ptr[i];   
+  }   
+   
+  // Define the relational operators.   
+  bool operator==(Iter op2) {   
+    return ptr == op2.ptr;   
+  }   
+   
+  bool operator!=(Iter op2) {   
+    return ptr != op2.ptr;   
+  }   
+   
+  bool operator<(Iter op2) {   
+    return ptr < op2.ptr;   
+  }   
+   
+  bool operator<=(Iter op2) {   
+    return ptr <= op2.ptr;   
+  }   
+   
+  bool operator>(Iter op2) {   
+    return ptr > op2.ptr;   
+  }   
+   
+  bool operator>=(Iter op2) {   
+    return ptr >= op2.ptr;   
+  }   
+   
+  // Subtract an integer from an Iter.   
+  Iter operator-(int n) {   
+    ptr -= n;   
+    return *this;   
+  }   
+   
+  // Add an integer to an Iter.   
+  Iter operator+(int n) {   
+    ptr += n;   
+    return *this;   
+  }   
+   
+  // Return number of elements between two Iters.   
+  int operator-(Iter<T> &itr2) {   
+    return ptr - itr2.ptr;   
+  }   
+     
+};   
+   
+   
+// This class defines an element that is stored   
+// in the garbage collection information list.    
+//   
+template <class T> class GCInfo {   
+public:   
+  unsigned refcount; // current reference count 
+ 
+  T *memPtr; // pointer to allocated memory   
+   
+  /* isArray is true if memPtr points   
+     to an allocated array. It is false   
+     otherwise. */   
+  bool isArray; // true if pointing to array   
+   
+  /* If memPtr is pointing to an allocated   
+     array, then arraySize contains its size */   
+  unsigned arraySize; // size of array   
+   
+  // Here, mPtr points to the allocated memory. 
+  // If this is an array, then size specifies 
+  // the size of the array.   
+  GCInfo(T *mPtr, unsigned size=0) {   
+    refcount = 1; 
+    memPtr = mPtr;   
+    if(size != 0)   
+      isArray = true;   
+    else   
+      isArray = false;   
+   
+    arraySize = size;   
+  }   
+};   
+   
+// Overloading operator== allows GCInfos to be compared.   
+// This is needed by the STL list class.    
+template <class T> bool operator==(const GCInfo<T> &ob1,   
+                const GCInfo<T> &ob2) {   
+  return (ob1.memPtr == ob2.memPtr);   
+}   
+   
+   
+// GCPtr implements a pointer type that uses   
+// garbage collection to release unused memory.   
+// A GCPtr must only be used to point to memory   
+// that was dynamically allocated using new.    
+// When used to refer to an allocated array,   
+// specify the array size.   
+//   
+template <class T, int size=0> class GCPtr {   
+ 
+  // gclist maintains the garbage collection list.   
+  static list<GCInfo<T> > gclist;   
+ 
+  // addr points to the allocated memory to which   
+  // this GCPtr pointer currently points.   
+  T *addr;   
+   
+  /* isArray is true if this GCPtr points   
+     to an allocated array. It is false   
+     otherwise. */   
+  bool isArray; // true if pointing to array   
+   
+  // If this GCPtr is pointing to an allocated   
+  // array, then arraySize contains its size.   
+  unsigned arraySize; // size of the array   
+ 
+  static bool first; // true when first GCPtr is created 
+ 
+  // Return an interator to pointer info in gclist.   
+  typename list<GCInfo<T> >::iterator findPtrInfo(T *ptr); 
+ 
+public:   
+   
+  // Define an iterator type for GCPtr<T>.   
+  typedef Iter<T> GCiterator;   
+   
+  // Construct both initialized and uninitialized objects.   
+  GCPtr(T *t=NULL) { 
+ 
+    // Register shutdown() as an exit function.  
+    if(first) atexit(shutdown); 
+    first = false; 
+ 
+    list<GCInfo<T> >::iterator p; 
+ 
+    p = findPtrInfo(t); 
+ 
+    // If t is already in gclist, then 
+    // increment its reference count.  
+    // Otherwise, add it to the list. 
+    if(p != gclist.end())  
+      p->refcount++; // increment ref count 
+    else { 
+      // Create and store this entry.   
+      GCInfo<T> gcObj(t, size);   
+      gclist.push_front(gcObj);   
+    } 
+ 
+    addr = t;   
+    arraySize = size;   
+    if(size > 0) isArray = true;   
+    else isArray = false;   
+    #ifdef DISPLAY   
+      cout << "Constructing GCPtr. ";   
+      if(isArray)    
+        cout << " Size is " << arraySize << endl;   
+      else   
+        cout << endl;   
+    #endif   
+  }   
+   
+  // Copy constructor.   
+  GCPtr(const GCPtr &ob) {   
+    list<GCInfo<T> >::iterator p; 
+ 
+    p = findPtrInfo(ob.addr);  
+    p->refcount++; // increment ref count 
+   
+    addr = ob.addr;   
+    arraySize = ob.arraySize;   
+    if(arraySize > 0) isArray = true;   
+    else isArray = false;   
+    #ifdef DISPLAY   
+      cout << "Constructing copy.";   
+      if(isArray)    
+        cout << " Size is " << arraySize << endl;   
+      else   
+        cout << endl;   
+    #endif   
+  }   
+   
+  // Destructor for GCPTr.  
+  ~GCPtr();   
+   
+  // Collect garbage.  Returns true if at least   
+  // one object was freed.   
+  static bool collect();  
+      
+  // Overload assignment of pointer to GCPtr.   
+  T *operator=(T *t);  
+  
+  // Overload assignment of GCPtr to GCPtr.   
+  GCPtr &operator=(GCPtr &rv);  
+  
+  // Return a reference to the object pointed   
+  // to by this GCPtr.   
+  T &operator*() {   
+    return *addr;   
+  }   
+   
+  // Return the address being pointed to.   
+  T *operator->() { return addr; }     
+   
+  // Return a reference to the object at the   
+  // index specified by i.   
+  T &operator[](int i) {   
+    return addr[i];   
+  }   
+   
+  // Conversion function to T *.   
+  operator T *() { return addr; }   
+   
+  // Return an Iter to the start of the allocated memory.   
+  Iter<T> begin() {   
+    int size;   
+   
+    if(isArray) size = arraySize;   
+    else size = 1;   
+   
+    return Iter<T>(addr, addr, addr + size);   
+  }       
+   
+  // Return an Iter to one past the end of an allocated array.   
+  Iter<T> end() {   
+    int size;   
+   
+    if(isArray) size = arraySize;   
+    else size = 1;   
+   
+    return Iter<T>(addr + size, addr, addr + size);   
+  }   
+   
+  // Return the size of gclist for this type   
+  // of GCPtr.   
+  static int gclistSize() { return gclist.size(); }   
+   
+  // A utility function that displays gclist.   
+  static void showlist();  
+ 
+  // Clear gclist when program exits.  
+  static void shutdown();  
+};   
+   
+// Creates storage for the static variables 
+template <class T, int size>    
+  list<GCInfo<T> > GCPtr<T, size>::gclist;  
+ 
+template <class T, int size>  
+  bool GCPtr<T, size>::first = true;  
+ 
+// Destructor for GCPtr.  
+template <class T, int size>  
+GCPtr<T, size>::~GCPtr() {   
+  list<GCInfo<T> >::iterator p;   
+   
+  p = findPtrInfo(addr); 
+  if(p->refcount) p->refcount--; // decrement ref count 
+ 
+  #ifdef DISPLAY   
+    cout << "GCPtr going out of scope.\n"; 
+  #endif   
+ 
+  // Collect garbage when a pointer goes out of scope. 
+  collect();   
+   
+  // For real use, you might want to collect   
+  // unused memory less frequently, such as after   
+  // gclist has reached a certain size, after a   
+  // certain number of GCPtrs have gone out of scope,   
+  // or when memory is low.   
+}   
+  
+// Collect garbage.  Returns true if at least   
+// one object was freed.   
+template <class T, int size>  
+bool GCPtr<T, size>::collect() {    
+  bool memfreed = false;   
+      
+  #ifdef DISPLAY   
+    cout << "Before garbage collection for ";   
+    showlist();   
+  #endif   
+ 
+  list<GCInfo<T> >::iterator p;   
+  do {   
+   
+    // Scan gclist looking for unreferenced pointers.   
+    for(p = gclist.begin(); p != gclist.end(); p++) {   
+      // If in-use, skip. 
+      if(p->refcount > 0) continue;   
+ 
+      memfreed = true;   
+ 
+      // Remove unused entry from gclist. 
+      gclist.remove(*p);   
+ 
+      // Free memory unless the GCPtr is null. 
+      if(p->memPtr) { 
+        if(p->isArray) {   
+          #ifdef DISPLAY   
+            cout << "Deleting array of size "   
+                 << p->arraySize << endl;   
+          #endif   
+          delete[] p->memPtr; // delete array   
+        }   
+        else {   
+          #ifdef DISPLAY   
+            cout << "Deleting: "   
+                 << *(T *) p->memPtr << "\n";   
+          #endif   
+          delete p->memPtr; // delete single element   
+        }   
+      } 
+ 
+      // Restart the search. 
+      break; 
+    } 
+ 
+  } while(p != gclist.end());   
+   
+  #ifdef DISPLAY   
+    cout << "After garbage collection for ";   
+    showlist();   
+  #endif   
+   
+  return memfreed;   
+}   
+  
+// Overload assignment of pointer to GCPtr.   
+template <class T, int size>  
+T * GCPtr<T, size>::operator=(T *t) {   
+  list<GCInfo<T> >::iterator p;   
+   
+  // First, decrement the reference count 
+  // for the memory currently being pointed to. 
+  p = findPtrInfo(addr); 
+  p->refcount--;  
+ 
+  // Next, if the new address is already 
+  // existent in the system, increment its 
+  // count.  Otherwise, create a new entry 
+  // for gclist. 
+  p = findPtrInfo(t); 
+  if(p != gclist.end())  
+    p->refcount++;  
+  else { 
+    // Create and store this entry.   
+    GCInfo<T> gcObj(t, size);   
+    gclist.push_front(gcObj);   
+  } 
+ 
+  addr = t; // store the address.   
+   
+  return t;   
+} 
+ 
+// Overload assignment of GCPtr to GCPtr.   
+template <class T, int size>  
+GCPtr<T, size> & GCPtr<T, size>::operator=(GCPtr &rv) {   
+  list<GCInfo<T> >::iterator p;   
+ 
+  // First, decrement the reference count 
+  // for the memory currently being pointed to. 
+  p = findPtrInfo(addr); 
+  p->refcount--; 
+ 
+  // Next, increment the reference count of 
+  // the new address. 
+  p = findPtrInfo(rv.addr); 
+  p->refcount++; // increment ref count 
+ 
+  addr = rv.addr;// store the address.   
+  
+  return rv;   
+}   
+  
+// A utility function that displays gclist.   
+template <class T, int size>  
+void GCPtr<T, size>::showlist() {   
+  list<GCInfo<T> >::iterator p;   
+   
+  cout << "gclist<" << typeid(T).name() << ", "   
+       << size << ">:\n";   
+  cout << "memPtr      refcount    value\n";   
+       
+  if(gclist.begin() == gclist.end()) {   
+    cout << "           -- Empty --\n\n";   
+    return;   
+  }   
+    
+  for(p = gclist.begin(); p != gclist.end(); p++) {   
+    cout <<  "[" << (void *)p->memPtr << "]" 
+         << "      " << p->refcount << "     ";   
+    if(p->memPtr) cout << "   " << *p->memPtr;   
+    else cout << "   ---";   
+    cout << endl;         
+  }   
+  cout << endl;   
+}  
+ 
+// Find a pointer in gclist. 
+template <class T, int size>  
+typename list<GCInfo<T> >::iterator  
+  GCPtr<T, size>::findPtrInfo(T *ptr) {   
+ 
+  list<GCInfo<T> >::iterator p;   
+   
+  // Find ptr in gclist.   
+  for(p = gclist.begin(); p != gclist.end(); p++)  
+    if(p->memPtr == ptr)  
+      return p; 
+ 
+  return p;   
+}   
+ 
+// Clear gclist when program exits.  
+template <class T, int size>   
+void GCPtr<T, size>::shutdown() {  
+ 
+  if(gclistSize() == 0) return; // list is empty 
+ 
+  list<GCInfo<T> >::iterator p;  
+ 
+  for(p = gclist.begin(); p != gclist.end(); p++) {  
+    // Set all reference counts to zero  
+    p->refcount = 0;  
+  } 
+  
+  #ifdef DISPLAY      
+    cout << "Before collecting for shutdown() for "  
+         << typeid(T).name() << "\n";    
+  #endif  
+ 
+  collect();  
+  
+  #ifdef DISPLAY      
+    cout << "After collecting for shutdown() for "  
+         << typeid(T).name() << "\n";    
+  #endif  
+}
+
+listing 2
+#include <iostream> 
+#include <new> 
+#include "gc.h" 
+ 
+using namespace std; 
+ 
+int main() { 
+  GCPtr<int> p; 
+ 
+  try { 
+    p = new int; 
+  } catch(bad_alloc exc) { 
+    cout << "Allocation failure!\n"; 
+    return 1; 
+  } 
+ 
+  *p = 88; 
+ 
+  cout << "Value at p is: " << *p << endl; 
+ 
+  int k = *p; 
+ 
+  cout << "k is " << k << endl; 
+   
+  return 0; 
+}
+
+listing 3
+// Show a GCPtr going out of scope prior to the end 
+// of the program. 
+#include <iostream> 
+#include <new> 
+#include "gc.h" 
+ 
+using namespace std; 
+ 
+int main() { 
+  GCPtr<int> p; 
+  GCPtr<int> q; 
+ 
+  try { 
+    p = new int(10); 
+    q = new int(11); 
+ 
+    cout << "Value at p is: " << *p << endl; 
+    cout << "Value at q is: " << *q << endl; 
+     
+    cout << "Before entering block.\n"; 
+ 
+    // Now, create a local object. 
+    { // start a block 
+      GCPtr<int> r = new int(12); 
+      cout << "Value at r is: " << *r << endl; 
+    } // end the block, causing r to go out of scope 
+ 
+    cout << "After exiting block.\n"; 
+ 
+  } catch(bad_alloc exc) { 
+    cout << "Allocation failure!\n"; 
+    return 1; 
+  } 
+ 
+  cout << "Done\n"; 
+ 
+  return 0; 
+}
+
+listing 4
+// Allocate and discard objects. 
+#include <iostream> 
+#include <new> 
+#include "gc.h" 
+ 
+using namespace std; 
+ 
+int main() { 
+  try { 
+    // Allocate and discard objects.     
+    GCPtr<int> p = new int(1); 
+    p = new int(2); 
+    p = new int(3); 
+    p = new int(4); 
+   
+    // Manually collect unused objects for 
+    // demonstration purposes. 
+    GCPtr<int>::collect(); 
+ 
+    cout << "*p: " << *p << endl; 
+  } catch(bad_alloc exc) { 
+    cout << "Allocation failure!\n"; 
+    return 1; 
+  } 
+ 
+ 
+  return 0; 
+}
+
+listing 5
+// Demonstrate indexing a TCPtr. 
+#include <iostream> 
+#include <new> 
+#include "gc.h" 
+ 
+using namespace std; 
+ 
+int main() { 
+ 
+  try { 
+    // Create a GCPtr to an allocted array of 10 ints. 
+    GCPtr<int, 10> ap = new int[10]; 
+ 
+    // Give the array some values using array indexing. 
+    for(int i=0; i < 10; i++) 
+      ap[i] = i; 
+ 
+    // Now, show the contents of the array. 
+    for(int i=0; i < 10; i++) 
+      cout << ap[i] << " "; 
+ 
+    cout << endl; 
+ 
+  } catch(bad_alloc exc) { 
+    cout << "Allocation failure!\n"; 
+    return 1; 
+  } 
+ 
+ 
+  return 0; 
+}
+
+listing 6
+// Demonstrate an iterator. 
+#include <iostream> 
+#include <new> 
+#include "gc.h" 
+ 
+using namespace std; 
+ 
+int main() { 
+ 
+  try { 
+    // Create a GCPtr to an allocted array of 10 ints. 
+    GCPtr<int, 10> ap = new int[10]; 
+ 
+    // Declare an int iterator. 
+    GCPtr<int>::GCiterator itr; 
+ 
+    // Assign itr a pointer to the start of the array. 
+    itr = ap.begin();     
+ 
+    // Give the array some values using array indexing. 
+    for(unsigned i=0; i < itr.size(); i++) 
+      itr[i] = i; 
+ 
+    // Now, cycle through array using the iterator. 
+    for(itr = ap.begin(); itr != ap.end(); itr++) 
+      cout << *itr << " "; 
+ 
+    cout << endl; 
+ 
+  } catch(bad_alloc exc) { 
+    cout << "Allocation failure!\n"; 
+    return 1; 
+  } catch(OutOfRangeExc exc) { 
+    cout << "Out of range access!\n"; 
+    return 1; 
+  } 
+ 
+ 
+  return 0; 
+}
+
+listing 7
+// Use GCPtr with a class type. 
+#include <iostream> 
+#include <new> 
+#include "gc.h" 
+ 
+using namespace std; 
+ 
+class MyClass { 
+  int a, b; 
+public: 
+  double val; 
+ 
+  MyClass() { a = b = 0; } 
+ 
+  MyClass(int x, int y) { 
+    a = x; 
+    b = y; 
+    val = 0.0; 
+  } 
+ 
+  ~MyClass() { 
+    cout << "Destructing MyClass(" << 
+         a << ", " << b << ")\n"; 
+  } 
+ 
+  int sum() { 
+    return a + b; 
+  } 
+ 
+  friend ostream &operator<<(ostream &strm, MyClass &obj); 
+}; 
+ 
+// An overloaded inserter to display MyClass. 
+ostream &operator<<(ostream &strm, MyClass &obj) { 
+  strm << "(" << obj.a << " " << obj.b << ")"; 
+  return strm; 
+} 
+ 
+int main() { 
+  try { 
+    GCPtr<MyClass> ob = new MyClass(10, 20); 
+ 
+    // Show value via overloaded insertor. 
+    cout << *ob << endl; 
+ 
+    // Change object pointed to by ob. 
+    ob = new MyClass(11, 21); 
+    cout << *ob << endl; 
+ 
+    // Call a member function through a GCPtr. 
+    cout << "Sum is : " << ob->sum() << endl; 
+ 
+    // Assign a value to a class member through a GCPtr. 
+    ob->val = 98.6; 
+    cout << "ob->val: " << ob->val << endl; 
+ 
+    cout << "ob is now " << *ob << endl; 
+  } catch(bad_alloc exc) { 
+    cout << "Allocatino error!\n"; 
+    return 1; 
+  } 
+ 
+  return 0; 
+}
+
+listing 8
+// Demonstrating GCPtr. 
+#include <iostream> 
+#include <new> 
+#include "gc.h" 
+ 
+using namespace std; 
+ 
+// A simple class for testing GCPtr with class types. 
+class MyClass { 
+  int a, b; 
+public: 
+  double val; 
+ 
+  MyClass() { a = b = 0; } 
+ 
+  MyClass(int x, int y) { 
+    a = x; 
+    b = y; 
+    val = 0.0; 
+  } 
+ 
+  ~MyClass() { 
+    cout << "Destructing MyClass(" << 
+         a << ", " << b << ")\n"; 
+  } 
+ 
+  int sum() { 
+    return a + b; 
+  } 
+ 
+  friend ostream &operator<<(ostream &strm, MyClass &obj); 
+}; 
+ 
+// Create an insertor for MyClass. 
+ostream &operator<<(ostream &strm, MyClass &obj) { 
+  strm << "(" << obj.a << " " << obj.b << ")"; 
+  return strm; 
+} 
+ 
+// Pass a normal pointer to a function. 
+void passPtr(int *p) { 
+  cout << "Inside passPtr(): " 
+       << *p << endl; 
+} 
+ 
+// Pass a GCPtr to a function. 
+void passGCPtr(GCPtr<int, 0> p) { 
+  cout << "Inside passGCPtr(): "  
+       << *p << endl; 
+} 
+ 
+int main() { 
+ 
+  try { 
+    // Delcare an int GCPtr. 
+    GCPtr<int> ip; 
+ 
+    // Allocate an int and assign its address to ip. 
+    ip = new int(22); 
+ 
+    // Display its value. 
+    cout << "Value at *ip: " << *ip << "\n\n"; 
+ 
+    // Pass ip to a function  
+    passGCPtr(ip); 
+ 
+    // ip2 is created and then goes out of scope 
+    { 
+      GCPtr<int> ip2 = ip; 
+    } 
+ 
+    int *p = ip; // convert to int * pointer' 
+   
+    passPtr(p); // pass int * to passPtr()  
+ 
+    *ip = 100; // Assign new value to ip 
+ 
+    // Now, use implicit conversion to int * 
+    passPtr(ip); 
+    cout << endl; 
+ 
+    // Create a GCPtr to an array of ints 
+    GCPtr<int, 5> iap = new int[5]; 
+ 
+    // Initialize dynamic array. 
+    for(int i=0; i < 5; i++) 
+      iap[i] = i; 
+ 
+    // Display contents of array. 
+    cout << "Contents of iap via array indexing.\n"; 
+    for(int i=0; i < 5; i++) 
+      cout << iap[i] << " "; 
+    cout << "\n\n"; 
+ 
+    // Create an int GCiterator. 
+    GCPtr<int>::GCiterator itr; 
+ 
+    // Now, use iterator to access dynamic array. 
+    cout << "Contents of iap via iterator.\n"; 
+    for(itr = iap.begin(); itr != iap.end(); itr++) 
+      cout << *itr << " "; 
+    cout << "\n\n"; 
+ 
+    // Generate and discard many objects 
+    for(int i=0; i < 10; i++) 
+      ip = new int(i+10); 
+ 
+    // Now, manually garbage collect GCPtr<int> list. 
+    // Keep in mind that GCPtr<int, 5> pointers 
+    // will not be collected by this call. 
+    cout << "Requesting collection on GCPtr<int> list.\n"; 
+    GCPtr<int>::collect(); 
+ 
+    // Now, use GCPtr with class type. 
+    GCPtr<MyClass> ob = new MyClass(10, 20); 
+ 
+    // Show value via overloaded insertor. 
+    cout << "ob points to " << *ob << endl; 
+ 
+    // Change object pointed to by ob. 
+    ob = new MyClass(11, 21); 
+    cout << "ob now points to " << *ob << endl; 
+ 
+    // Call a member function through a GCPtr. 
+    cout << "Sum is : " << ob->sum() << endl; 
+ 
+    // Assign a value to a class member through a GCPtr. 
+    ob->val = 19.21; 
+    cout << "ob->val: " << ob->val << "\n\n"; 
+ 
+    cout << "Now work with pointers to class objects.\n"; 
+ 
+    // Declare a GCPtr to a 5-element array 
+    // of MyClass objects. 
+    GCPtr<MyClass, 5> v; 
+ 
+    // Allocate the array. 
+    v = new MyClass[5];  
+ 
+    // Get a MyClass GCiterator. 
+    GCPtr<MyClass>::GCiterator mcItr; 
+ 
+    // Initialize the MyClass array. 
+    for(int i=0; i<5; i++) { 
+      v[i] = MyClass(i, 2*i); 
+    } 
+ 
+    // Display contents of MyClass array using indexing. 
+    cout << "Cycle through array via array indexing.\n"; 
+    for(int i=0; i<5; i++) { 
+      cout << v[i] << " "; 
+    } 
+    cout << "\n\n"; 
+ 
+    // Display contents of MyClass array using iterator. 
+    cout << "Cycle through array through an iterator.\n"; 
+    for(mcItr = v.begin(); mcItr != v.end(); mcItr++) { 
+      cout << *mcItr << " "; 
+    } 
+    cout << "\n\n"; 
+ 
+    // Here is another way write the preceding loop. 
+    cout << "Cycle through array using a while loop.\n"; 
+    mcItr = v.begin(); 
+    while(mcItr != v.end()) { 
+      cout << *mcItr << " "; 
+      mcItr++; 
+    } 
+    cout << "\n\n"; 
+ 
+    cout << "mcItr points to an array that is " 
+         <<  mcItr.size() << " objects long.\n"; 
+ 
+    // Find number of elements between two iterators. 
+    GCPtr<MyClass>::GCiterator mcItr2 = v.end()-2; 
+    mcItr = v.begin(); 
+    cout << "The difference between mcItr2 and mcItr is " 
+         << mcItr2 - mcItr; 
+    cout << "\n\n"; 
+ 
+    // Can also cycle through loop like this. 
+    cout << "Dynamically compute length of array.\n"; 
+    mcItr = v.begin(); 
+    mcItr2 = v.end(); 
+    for(int i=0; i < mcItr2 - mcItr; i++) { 
+      cout << v[i] << " "; 
+    } 
+    cout << "\n\n"; 
+ 
+  
+    // Now, display the array backwards. 
+    cout << "Cycle through array backwards.\n"; 
+    for(mcItr = v.end()-1; mcItr >= v.begin(); mcItr--) 
+      cout << *mcItr << " "; 
+    cout << "\n\n"; 
+ 
+    // Of course, can use "normal" pointer to 
+    // cycle through array. 
+    cout << "Cycle through array using 'normal' pointer\n"; 
+    MyClass *ptr = v; 
+    for(int i=0; i < 5; i++) 
+      cout << *ptr++ << " "; 
+    cout << "\n\n"; 
+ 
+    // Can access members through a GCiterator. 
+    cout << "Access class members through an iterator.\n"; 
+    for(mcItr = v.begin(); mcItr != v.end(); mcItr++) { 
+      cout << mcItr->sum() << " "; 
+    } 
+    cout << "\n\n"; 
+ 
+    // Can allocate and delete a pointer to a GCPtr 
+    // normally, just like any other pointer. 
+    cout << "Use a pointer to a GCPtr.\n"; 
+    GCPtr<int> *pp = new GCPtr<int>(); 
+    *pp = new int(100); 
+    cout << "Value at **pp is: " << **pp; 
+    cout << "\n\n"; 
+ 
+    // Because pp is not a garbage collected pointer, 
+    // it must be deleted manually. 
+    delete pp;  
+  } catch(bad_alloc exc) { 
+    // A real application could attempt to free 
+    // memory by collect() when an allocation 
+    // error occurs.  
+    cout << "Allocation error.\n"; 
+  } 
+ 
+  return 0; 
+}
+
+listing 9
+// Load test GCPtr by creating and discarding 
+// thousands of objects. 
+#include <iostream> 
+#include <new> 
+#include <limits> 
+#include "gc.h" 
+ 
+using namespace std; 
+ 
+// A simple class for load testing GCPtr. 
+class LoadTest { 
+  int a, b; 
+public: 
+  double n[100000]; // just to take up memory 
+  double val; 
+ 
+  LoadTest() { a = b = 0; } 
+ 
+  LoadTest(int x, int y) { 
+    a = x; 
+    b = y; 
+    val = 0.0; 
+  } 
+ 
+  friend ostream &operator<<(ostream &strm, LoadTest &obj); 
+}; 
+ 
+// Create an insertor for LoadTest. 
+ostream &operator<<(ostream &strm, LoadTest &obj) { 
+  strm << "(" << obj.a << " " << obj.b << ")"; 
+  return strm; 
+} 
+ 
+int main() { 
+  GCPtr<LoadTest> mp; 
+  int i; 
+ 
+  for(i = 1; i < 20000; i++) { 
+    try { 
+      mp = new LoadTest(i, i); 
+    } catch(bad_alloc xa) { 
+      // When an allocation error occurs, recycle 
+      // garbage by calling collect(). 
+      cout << "Last object: " << *mp << endl; 
+      cout << "Length of gclist before calling collect(): " 
+           << mp.gclistSize() << endl; 
+      GCPtr<LoadTest>::collect(); 
+      cout << "Length after calling collect(): " 
+           << mp.gclistSize() << endl; 
+    } 
+  } 
+   
+  return 0; 
+}
+

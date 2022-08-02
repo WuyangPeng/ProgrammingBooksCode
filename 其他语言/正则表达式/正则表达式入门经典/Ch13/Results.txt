@@ -1,0 +1,1 @@
+URL1.txt:I found interesting information at http://www.w3.org/ on the XQuery specification.URL2.txt:I wanted to find information about Microsoft SQL Server 2005 and the site at http://www.microsoft.com/sql/ was very useful.

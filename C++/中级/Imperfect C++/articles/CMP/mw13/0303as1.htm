@@ -1,0 +1,18 @@
+<html>
+<head>
+<title>Deriving User-Defined Iterator Types</title>
+</head>
+
+<body>
+
+
+<h4>Deriving User-Defined Iterator Types</h4>
+<p>Ideally, all user-defined iterator types should derive from std::iterator, since by doing so your iterator inherits a number of common typedefs that allow it to be optimally manipulated by other parts of the STL. For example, the iterator_category member typedef can be used to short-circuit iterator offset operations on Random Access Iterators, in order that they can be done in constant time (i.e., it += 4) rather than the default linear time (i.e., for(int i = 0; i &lt; 4; ++i, ++it);). However, theory and practice not always being happy bedfellows, there are some practical problems to consider. As of the time of writing, a number of compilers and libraries have serious problems in supporting standard conforming derivation from std::iterator, a fact well demonstrated by the per-processor contortions evident in most commercial STL implementations. In fact, the standard implementation &#151; iterator &lt;category, value type, difference type, pointer type, reference type&gt; &#151; is only available on one of the compilers I regularly use, Metrowerks CodeWarrior 7 &amp; 8. Other leading compilers (Visual C++ 5 &amp; 6, Borland C++ 5.5, Digital Mars 8.29, and GCC 2.95) all have problems with one or both of the sequence class iterators described in this article.</p>
+
+<p>There are a number of ways to get around this problem. First, we could only support Metrowerks. While Metrowerks is one of the few excellent compilers, it is not a good idea to bind one's code to any single compiler. Second, we could derive from the std::iterator class where available/applicable, and otherwise provide our own member typedefs. While this provides a workable solution, it leads to a cluttered implementation each and every time an iterator is to be specified. The third option, which is the preferred one, is to abstract the std::iterator's features into an idealized class (stlsoft::iterator_base, included in the archive) within which the gory details are at once hidden from your code, and centralized in one place, increasing the likelihood that all your individual sequence class iterators will remain up-to-date and maximally compatible with your supported compilers and libraries.</p>
+
+
+<p> &#151; M.W.</p>
+
+</body>
+</html>

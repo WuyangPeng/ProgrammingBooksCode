@@ -1,0 +1,29 @@
+/**
+ Per-Vertex Toon Shading
+ */
+attribute vec4 g3d_Vertex;
+attribute vec3 g3d_Normal;
+
+/** Camera origin in world space */
+uniform vec3 wsEyePosition;
+
+/** Unit world space direction to the (infinite, directional) light source */
+uniform vec3 wsLight;
+
+/** Non-unit vector to the eye from the vertex */
+varying vec3 wsInterpolatedEye;
+
+/** Non-unit surface normal in world space */
+varying vec3 wsInterpolatedNormal;
+
+varying float lambertFraction; // renamed; previously "intensity"
+
+
+void main(void) {
+    wsInterpolatedNormal = normalize(g3d_ObjectToWorldNormalMatrix * g3d_Normal);
+    wsInterpolatedEye    = wsEyePosition - (g3d_ObjectToWorldMatrix * g3d_Vertex).xyz;
+
+    gl_Position = g3d_ModelViewProjectionMatrix * g3d_Vertex;
+
+	lambertFraction = dot(wsInterpolatedNormal, wsLight);
+}

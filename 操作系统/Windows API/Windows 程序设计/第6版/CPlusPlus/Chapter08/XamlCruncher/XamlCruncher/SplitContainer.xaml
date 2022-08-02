@@ -1,0 +1,37 @@
+<UserControl
+    x:Class="XamlCruncher.SplitContainer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:XamlCruncher">
+
+    <Grid>
+        <!-- Default Orientation is Horizontal -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="coldef1" Width="*" MinWidth="100" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition x:Name="coldef2" Width="*" MinWidth="100" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Alternative Orientation is Vertical -->
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="rowdef1" Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition x:Name="rowdef2" Height="0" />
+        </Grid.RowDefinitions>
+
+        <Grid Name="grid1"
+              Grid.Row="0"
+              Grid.Column="0" />
+
+        <Thumb Name="thumb"
+               Grid.Row="0"
+               Grid.Column="1" 
+               Width="12"
+               DragStarted="OnThumbDragStarted"
+               DragDelta="OnThumbDragDelta" />
+
+        <Grid Name="grid2"
+              Grid.Row="0"
+              Grid.Column="2" />
+    </Grid>
+</UserControl>

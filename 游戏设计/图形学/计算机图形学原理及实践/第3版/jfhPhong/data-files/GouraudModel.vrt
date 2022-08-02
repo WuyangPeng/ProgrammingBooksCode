@@ -1,0 +1,36 @@
+#version 120 // -*- c++ -*-
+/**
+ Per-vertex Gouraud Shading
+
+ @file phong.vrt
+ @author jfh
+ */
+
+/** Camera origin in world space */
+uniform vec3 wsEyePosition;
+
+/** Diffuse/ambient surface color */
+uniform vec3 diffuseColor;
+
+
+/** Lambert lighting at each vertex */
+varying vec3 gouraudColor;
+
+/** Unit world space direction to the (infinite, directional) light source */
+uniform vec3 wsLight;
+
+/** Intensity of the diffuse term. */
+uniform float diffuse;
+/** Color of the light source */
+uniform vec3 lightColor;
+
+void main(void) {
+    gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
+    
+	/** Unit surface normal in world space */
+    vec3 wsNormal;
+    wsNormal = g3d_ObjectToWorldNormalMatrix * gl_Normal;
+	wsNormal /= sqrt(dot(wsNormal, wsNormal));
+
+	gouraudColor = lightColor * diffuse * diffuseColor * dot(wsNormal, wsLight);
+}

@@ -1,0 +1,371 @@
+<html>
+<head>
+<title> Code Co-op Manual: Commands and functions </title>
+</head>
+
+<body bgcolor="#99ccff" text="#000000" background="../images/grid.gif" TOPMARGIN=0 LEFTMARGIN=0>
+<font face="Verdana, Sans-Serif">
+
+<!-- Navigation Bar -->
+<table border="0" cellspacing="0" cellpadding="0">
+<tr><td align="LEFT" valign="TOP">
+	<map name=navbar>
+<area href="coop.html"		coords="1,1,50,24"	alt="Documentation entry page" shape="RECT">
+<area href="gstarted.html"	coords="48,2,144,24"	alt="Step by step guide to commonly used functions" shape="RECT">
+<area href="quickref.html"	coords="144,3,239,24"	alt="Descriptions of Co-op windows and views" shape="RECT">
+<area href="command.html"	coords="242,3,336,24"	alt="Functional description of features" shape="RECT">
+<area href="faq.html" 		coords="337,3,392,24"	alt="Frequently Asked Questions" shape="RECT">
+<area href="dispatch.html"	coords="395,3,488,24"	alt="Synchronization script exchange component" shape="RECT">
+<area alt="Detailed reference" coords="490,2,564,24" href="function.html" shape="RECT">
+</map>
+<img src="../images/map.gif" usemap="#navbar" border="0" align="top" width="565" height="26">
+</td></tr>
+</table>
+
+<table width="650" cellpadding="8">
+<tr><!-- Spacer and table structure definition -->
+	<td height=25 width=60>&nbsp;</td><!-- Left margin -->
+	<td width=600>&nbsp;</td><!-- Content -->
+	<td width=60>&nbsp;</td><!-- Right margin -->
+</tr>
+
+<tr><!--Home button and Documentation Title-->
+	<td colspan=3>
+	<center><font color="#0000a0" size=6>
+	<img src="../images/coop.gif" border=0 alt="Coop logo"> <b><font face="Courier New" color="Red">Code Co-op 3.0</font></b>
+	</font></center>
+	<center><font size=2><i>Server-less Version Control System</i></font></center>
+	</td>
+</tr>
+	
+<!-- Page Title -->
+<tr><td colspan=3><p><center><font face="haettenschweiler, impact" size=6 color="#336666">Working with Code Co-op</font></center></td></tr>
+
+<tr><td colspan=3 height=6></td></tr>
+<tr>
+	<td></td>
+	<td bgcolor="#ffccff"><font face="Arial">
+	<font size="4">
+	<b>Contents:</b>
+	</font>
+	<font size="2">
+	<ul>
+		<li><a href="#wprojects">Projects</a> (creating, joining, defecting, moving, licensing)
+		<li><a href="#wfiles">Files</a> (checking out, editing, checking in, adding files/folders, renaming, moving, command-line, SCC, un-checkout)
+		<li><a href="#wscripts">Scripts</a> (synchronizing, reviewing, conflicts and merges)
+		<li><a href="#whistory">History</a> (comparing, restoring old versions, exporting history)
+	</ul>
+	</font>
+	</font></td>
+	<td></td>
+</tr>
+<tr><td colspan=3 height=6></td></tr>
+
+<tr>
+	<td></td>
+	<td bgcolor="#ccccff">
+		<font size=2>
+		<hr><center>
+		<font face="haettenschweiler, impact" size=5><a name="wprojects">Working with Projects</a></font>
+		</center><hr>
+		<dl>
+
+		<dt><b><a name=beginner>Beginner mode</a></b>
+		<dd>When you start using Code Co-op, after almost every action you will see a <i>Beginner's tip</i>. It is usually a short description of what you have just done and what you may do next. Each tip has a "Don't show me again" checkbox. Additionally, you may turn off all tips by clicking <i>Beginner mode</i> in the <i>Help</i> menu. (Clicking it again, will turn the tips back on.)
+		<p>
+		<dt><b><a name=create>Creating</a> a brand new project.</b></dt>
+			<dd>
+			When you create a new project (Select <i>New</i> from the <i>Project</i> menu), Code Co-op creates a database where all project data will be kept. What you will be seeing, is a particular directory (the root of the project) and its subdirectories where you'll store your source files (all of them). You'll be able to access these files using your editor or a development environment. Code Co-op will make them read-only, in order to protect them from being edited without your first <a href="#out">checking them out</a>.
+			<br><img src="../images/transpix.gif" width=12 height=1>If you already have a source tree, you may create a Code Co-op project starting at the root of that tree. During the creation of the project you'll be asked which of the existing files are to be added to the project.
+<br><img src="../images/transpix.gif" width=12 height=1>In the <i>New Project</i> dialog you have to answer a few straightforward questions. You have to tell Code Co-op where to put project files on your machine. You may specify any <b>folder</b>--if the folder doesn't exist, Co-op will create it for you. Or, you may choose a folder already populated with files. You have to provide the <b>project name</b>--other members of the project will use this name to join your project. Finally, you enter your <b>personal data</b>--name, e-mail and phone number. Notice, the email is used by Code Co-op even in LAN-only configuration. In mixed, email/LAN configurations, the satellites should specify the hub's email address, rather than their own. Your personal information will be later available to every member of your project (under the <i>Members</i> item of the <i>Project</i> menu). 
+			<br>You can choose to use long file names for synch scripts instead of the default 8.3. It's a good idea if you're planning on copying them by hand. If you're planning on using email for script dispatching, short file names are better, since many email programs don't deal very well with long file names for attachments. 
+<br><img src="../images/transpix.gif" width=12 height=1>There is a <b>step-by-step <a href="../tutorial/tutorial.html">tutorial</a></b> that will lead you through the process of creating and joining projects.
+			<p>
+		<dt><b><a name=join>Joining</a> an existing project.</b>
+			<dd>
+			Once somebody has created a project, you may join it (<i>Join</i> in the <i>Project</i> menu). You'll have to pick a directory where the root of the project will be located on your machine. The immediate result of joining is that Code Co-op generates a special &quot;<i>join request</i>&quot; script that will be sent to the administrator of the project. The <b>administrator</b> is usually the person who created the project in the first place (if he or she defects, the first person to join becomes the administrator, etc.). Once the administrator <a href="#unpack">unpacks</a> (synchronizes) your &quot;<i>join request</i>,&quot; his Code Co-op generates a special &quot;<i>full-synch</i>&quot; script that he sends back to you. When you <a href="#unpack">synchronize</a> that script, your project tree will be populated with the exact copies of the files and folders that the administrator had in his project. You'll have a full copy of the whole project on your machine.
+			<p>In the <i>Join Project</i> dialog you have to answer a few straightforward questions. You have to tell Code Co-op where to put project files on your machine. You may specify any <b>folder</b>--if the folder doesn't exist, Co-op will create it for you. You have to provide the <b>project name</b>--the same name under which the project was created in the first place (if you misspell it, the Dispatcher will give you grief--delete the scipt, defect and re-join again). In order for your join script to find its way to the <b>administrator</b>, you have to specify the <b>email</b> of any member of the project you're joining (even if you don't use email for script distribution).
+
+			<br>Finally, enter your <b>personal data</b>--name, e-mail and phone number. This information will be later available to every member of your project (under the <i>Members</i> item of the <i>Project</i> menu). Your email address is mandatory (the Dispatcher needs it) even if you're not planning on using email to propagate scripts (in that case you can even make one up). Again, in mixed email/LAN configurations, satellites must specify the email address of the hub.
+			<br>There is an option to join a project as an <b>Observer</b> (a check-box in the <i>Join Project</i> dialog). Observers get all the synch script, but they are not allowed to modify the project, and they don't send any scripts (even the acknowledgments). Incidentally, you don't need to purchase an additional license seat to join a project as an observer--provided you already have one.
+
+<br><img src="../images/transpix.gif" width=12 height=1>There is a <b>step-by-step <a href="../tutorial/tutorial.html">tutorial</a></b> that will lead you through the process of creating and joining projects.
+
+			<p>
+		<dt><b><a name=defect>Defecting</a> from a project.</b>
+			<dd>
+			Sometimes a person leaves a project. He or she should do it in an orderly fashion by &quot;defecting&quot; (<i>Defect</i> in the <i>Project</i> menu). A special &quot;<i>defect script</i>&quot; is produced by Code Co-op and sent to all remaining members of the project.
+			<br>When defecting, you get the option of preserving or deleting the whole project tree. If you choose to delete the tree, it will be moved to your recycle bin.
+			<p>
+		<dt><b><a name=visit>Visiting</a> other projects.</b>
+			<dd>If you have several projects on your machine, you can switch between them by going to the Project tab and double-clicking on the project you want to visit. You might notice that the projects which have some unprocessed incoming scripts have a little wave added to their icon. If you select <i>Visit</i> item from the <i>Project</i> menu, you'll be simply transferred to the Project tab. 
+			<p>
+		<dt><b><a name=move>Moving</a> project tree.</b>
+			<dd>
+			If you change your mind and decide that you want a particular project moved to another directory, select <i>Move</i> from the <i>Project</i> menu. You will be asked to select a new directory for your project. All files will be moved to that new location.
+			<p>
+		<dt><b><a name=properties>Project Properties</a>.</b>
+			<dd>There are two settings for the current project that can be changed from the <i>Project</i> &gt; <i>Properties</i> menu. One let's you toggle between long and <b>short file names</b> for scripts, and the other turns on the <a href="#autosynch">Auto-Synch</a> feature. 
+			<p>
+		<dt><b><a name=members>Membership</a> changes.</b>
+			<dd>Every member of the project may change his or her membership data (name, e-mail, etc.) by editing their entry in the dialog displayed after selecting <i>Members</i> from the <i>Project</i> menu. This is also the place where you can change your status between <i>Observer</i> and <i>Voting</i> member. After any change, the appropriate <i>membership update</i> script is sent out.
+			<br>Only the <b>Administrator</b> has the option to edit anybody's membership data. The administrator may also <b>remove members</b> from the project (radio button <i>Remove from Project</i> in the same dialog).
+<br><font color="red">New: </font>The Administrator may make somebody else an administrator by selecting him or her from the Members dialog and clicking the <i>Administrator</i> radio button.
+
+   <br><img src="../images/transpix.gif" width=12 height=1>Sometimes an Administrator leaves the project without defecting, or goes on vacation without changing his or her status to <i>Observer</i> and somebody else wants to join the project. In that case, you'll have to elect a new administrator. There is a dialog accessible through the <i>Administrator</i> item in the <i>Project</i> menu, which displays the information about the current project administrator and lets any member of the project perform the <b>emergency administrator election</b>. Use this option with caution, after discussing it with other members of the project. The new administrator is selected automatically. He can later transfer the administratorship to any (non-observer) member of the project.
+		<p>
+		<dt><b><a name=repair>Repairing</a> a project</b>
+		<dd>Code Co-op is based on reliable transactional database technology. The program's only Achilles heel is user files. If you modify a file without checking it out, the consistency of the project will be compromised. You'll discover it next time you try to check out the corrupted file or when a script arrives that modifies this file. Don't despair, though. Code Co-op stores enough redundant information in its database to be able to recover the file. Just run <i>Repair</i> from the <i>Project</i> menu. In fact, you might run Repair from time to time, just to make sure none of your programming tools tries to modify read-only files. 
+<p>In most cases, when Code Co-op detects corrupted files, you should let it repair them. If the project has been joined using an older versions of Code Co-op, immediate repair might be impossible. In that case, you'll have to obtain specific versions of the corrupted files from other project members. Code Co-op will instruct you how to do it (see also <a href="#restore">recreating</a> old versions of files).
+		<p>
+		<dt><b><a name=license>Licensing</a></b>
+		<dd>After the trial period, if you want to continue using Code Co-op, you have to purchase a license. Enter the license information in the dialog displayed through <i>License</i> in the <i>Program</i> menu. You will need at least as many licenses as there are <b>Voting Members</b> in a given project (Observers don't need licenses). The same license can be used in any number of projects on a given workstation. If there aren't enough licensed seats in a project, Code Co-op will force the status change of some members to <i>Observer</i>. These members can recover their voting rights after purchasing and entering their licenses.
+
+			<br>
+		</dl>
+	</font>
+	</td>
+	<td></td>
+</tr>
+
+<tr><td colspan=3 height=6></td></tr>
+<tr>
+	<td></td>
+	<td bgcolor="#ccffcc">
+	<hr><center>
+	<font face="haettenschweiler, impact" size=5><a name="wfiles">Working with Files</a></font>
+	</center><hr>
+	<font size=2>
+	<dl>
+	<dt><b><a name=navi>Navigating</a> through your project.</b>
+		<dd>In the <a href="quickref.html#filea">File Area</a> you can navigate into a folder by double-clicking it. The name of the folder will appear in the toolbar. Going up a folder is done by clicking the <i>Folder-Up</i> button or by pressing <b>Ctrl-LeftArrow</b>. You can also go directly to the root of the project by selection <i>Goto Root</i> from the <i>Folder</i> menu.
+<br><img src="../images/transpix.gif" width=12 height=1>You can <b>sort</b> the display by clicking on the appropriate column and you can resize the columns by dragging the dividers (the sort order and column widths are remembered across sessions--as is the placement and the size of the main window). 
+		<p>
+		<dt><b><a name=edit>Viewing</a> and editing files</b>
+		<dd>You can view any file in the project by double-clicking it (Or <i>Open</i> from the <i>Selection</i> menu). If the file is checked out, you can edit it. Code Co-op has a built-in simple <a href="differ.html">editor/differ</a> for that purpose. This editor is not very sophisticated, it is recommended that you do most of your editing using your favorite editor/development environment outside of Code Co-op. If your editor or IDE is <a href="#integrate">SCC compliant</a>, you'll be able to perform source-control operations from within it (see next item). Double-clicking on a binary file will start the application that is associated (in your shell) with the particular extension. For instance Microsoft Word files with the extension .doc will be opened using Microsoft Word, etc.
+			<p>
+		<dt><b><a name=integrate>Integration</a> with SCC.</b>
+			<dd>Code Co-op integrates with any application that uses the <b>Microsoft SCC API</b>. In particular it integrates with Microsoft Developer Studio (C++, Java, VB)), CodeWright, VisualAge, Cold Fusion, HomeSite and many others. You'll be able to check files out, check them in, un-checkout, diff, etc., directly from the application (our SccDll.dll calls Code Co-op behind the scenes to perform these operations).
+			<p>
+			<p>
+		<dt><b><a name=cmdline>Command-line</a> interface.</b>
+			<dd>Your setup directory contains several small command-line programs:
+			<ul>
+			<li>addfile
+			<li>checkin
+			<li>checkout
+			<li>removefile (removes file from project without deleting)
+			<li>synch (equivalent to All &gt; Synch and Accept) 
+			<li>uncheckout
+			<li>status (display file status: in, out, not controlled)
+			<li>visitproject (starts Code Co-op in a given project)
+			<li>deliver (copies specified script(s) to Public Inbox)
+			</ul>
+Each program prints a short help message when executed from command line without any arguments (or with the switch -?). When specifying files, you can use absolute path or paths relative to current directory (in particular file names in current directory). In order to use these programs, you have to add your Co-op setup directory to the path environment variable, or copy all these files into one of the directories on your path. Command-line programs can be executed from batch files.
+			<p>		<p>
+	<dt><b><a name=add>Adding</a> an existing file or folder to the project.</b>
+		<dd>If a file (or a subfolder) has been created outside of Code Co-op, you can add it to the project by selecting it in the <a href="quickref.html#filea">Files</a> area and choosing <i>Add To Project</i> from the <i>Selection</i> menu. You can use multiple selections and you can use the &quot;<i>Add To Project</i>&quot; button on the toolbar. Other members of the team will learn about this addition after you make your next <a href="#in">check-in</a>.
+		<p>
+	<dt><b>Creating a <a name=new>new</a> file or folder in the project.</b>
+		<dd>When you want to create a new file or subfolder in your project, the best way to do it is to use the facilities of Code Co-op (<i>New File</i> or <i>New Folder</i> in the <i>Folder</i> menu or the <i>New File</i> button). The advantage of using Code Co-op to create new files is that you won't forget to check them in. They will automatically appear in your check-in area ready to be checked in.
+<p>Code Co-op keeps information about various types of files. When you create a new file, you may choose from the following types: header, source, other text or binary. The major distinction is between text and binary files. Binary files are diffed using our proprietary binary differ. However, the diffs cannot be displayed, nor is merge possible for binary files. For <b>headers</b> you have the option of creating a file initialized with the standard C (C++) preprocessor directives that prevent multiple inclusions. If you program in C or C++ we highly recommend using this feature. For both header and <b>source</b> files you may define your copyright notice in the form of a comment.  It will be added to the file you create. Here's an example of a header file <i>foo.h</i> created using these options:
+		<br>&nbsp;<center>
+		<table border=1 cellpadding=4><tr>
+			<td bgcolor=white>
+<pre>#if !defined (FOO_H)
+#define FOO_H
+//
+// Your Company (c) 1999
+//
+
+#endif</pre>
+			</td>
+		</tr></table></center>
+		<p>
+	<dt><b><a name=delete>Deleting</a> a file.</b>
+		<dd>You can delete a file or a whole folder either from the menu (<i>Delete</i> in the <i>Selection</i> menu) or by clicking on the <i>Delete</i> button in the toolbar, or by pressing the <b>Del</b> key. You will still see the deleted file in the check-in area and you'll even be able to restore it (the <i>Un-CheckOut</i> button or <i>Un-CheckOut</i> from the <i>Selection</i> menu), if you change your mind before checking it in.
+		<br><img src="../images/transpix.gif" width=12 height=1>You also have the option to <b>remove a file from project</b> without deleting it (<i>Remove from project</i> in the <i>Selection</i> menu). The file will be likewise removed from the projects of all the other members, after you've send them the check-in script. It won't be physically deleted, though. Any project member can add it back, if necessary.
+		<p>
+	<dt><b><a name=rename>Renaming</a> a file.</b>
+		<dd>Renaming is as easy as in-place editing the file name, in the File View Area. That's all! The file is automatically checked-out for you and you'll see it in the Check-in Area (besides renaming it, you can also edit its contents). When you check in the renamed file, the name change, along with any other changes, will be propagated to other project members. Remember however not to rename files using other tools, even when they are checked out--Code Co-op will not be able to guess what you have done outside of it.
+		<p>
+	<dt><b><a name=move>Moving</a> files.</b>
+		<dd>Moving files is as easy as renaming. Just select the files to be moved (in the File Area of Code Co-op) and click the <i>cut</i> button on the toolbar (or <b>Ctrl-X</b> from the keyboard). The files are now in the Co-op's own clipboard. Now browse into the target folder, still in the File Area, and press the <i>paste</i> button (or <b>Ctrl-V</b>). That's it, Code Co-op takes care of checking out the file and propagating the move to other project members after you check it in. And, by the way, you can combine moving, renaming and editing a file in a single check-in. Again, remember not to move files using other tools, even when they are checked out--Code Co-op will not be able to guess what you have done outside of it.
+			<p>
+		<dt><b><a name=chtype>Changing</a> file type.</b>
+			<dd>You can change file type at any moment by selecting <i>Change File Type</i> from the <i>Selection</i> menu. After you check in your change, it will be propagated to other members of the project.
+			<p>
+		<p>
+	<dt><b>Checking <a name=out>out</a> a file.</b>
+		<dd>If you want to edit a file that's already in the project, you have to first check it out (<i>Check-Out</i> from the <i>Selection</i> menu, the <i>Check-out</i> button or <b>Ctrl-O</b> from the keyboard). It makes the file in the project tree <b>writable</b>; it also creates a backup of the current state of the file in the Co-op's database. This backup is used for comparison (to view changes or to create the script). You can also <a href="#uncheck">Un-CheckOut</a> the file from this backup (the <i>Un-CheckOut</i> button), if you change your mind before checking it in.
+<br><img src="../images/transpix.gif" width=12 height=1>You can check out all files in the current directory by clicking the <i>Check Out All</i> button, or selecting <i>Check Out</i> from the <i>All</i> menu. Recursive check-out is also possible--<i>Deep Check-out</i> from the <i>All</i> menu will check out all files in the current directory and all its subdirectories. <i>Deep Check-out</i> from the <i>Selection</i> menu will check out the selected directory and all its children.
+<br><img src="../images/transpix.gif" width=12 height=1>After a massive check-out, you'll see a lot of files in the check-in area. Notice, however, that files that have been actually modified will have a letter <i>C</i> displayed in in the <i>Changed</i> column (you may have to hit the <i>Refresh</i> button to update this information). If you click on the header of this column, files will be re-sorted according to the <i>Changed</i> attribute. All the changed files will appear at the top of the list. After you're done reviewing changes, click the <i>Check-in All</i> button--the files that haven't been changed will be conveniently ignored in the change script. You can also perform a check-out from the Differ or from any application that uses <a href="#integrate">Microsoft SCC</a> API.
+		<p>
+	<dt><b>Checking <a name=in>in</a> files.</b>
+		<dd>All the new, deleted or checked-out files are visible in the <a href="quickref.html#checkina">check-in area</a>. By double clicking on a file there, you may <b>review the changes</b> you've made to it, with the help of a built-in <a href="differ.html">differ</a>. You'll see a two-pane display. The left pane is an editor. The right pane highlights the differences between the original version of the file and the current version.
+		<p>Once you are sure that you have completed a certain task, you can check-in all the files involved in this task. Code Co-op is a <b>task-based</b> version control system. It operates in units of <i>logical changes</i> to the project, rather than in units of file changes.
+		<br>&nbsp;
+		<table width="90%" border="1" cellpadding="5" align="CENTER">
+			<tr><td bgcolor="#ffffcc"><font size=2>
+			<img src="../images/transpix.gif" width=12 height=1>The idea behind a task-oriented version control system, like Code Co-op, is that you make all necessary changes to transform your project from one consistent state to another. When you check in your changes, they are supposed to produce a single <i>atomic</i> update to the project. It is highly advisable that this update lead to a project that <b>compiles and runs</b>.
+			</td></tr>
+		</table><br>
+		<img src="../images/transpix.gif" width=12 height=1>The check-in is done using the <i>Check-in</i> button or through the <i>Check-in</i> item in the <i>Selection</i> menu. In most cases, however, you'll be using the <i>Check-in All</i> button or <i>Check-in</i> in the <i>All</i> menu to check in the whole set of files visible in the check-in area at once. The keyboard shortcut for this action is <b>Ctrl+I</b>. When you check in files, you are prompted for a comment. This comment should describe the task in a sentence or two. It will also serve as a version name. You may use multi-line comments--they will be visible in the Mailbox or Synch as tooltips when you hover your mouse above the abbreviated comment.
+		<p><dt><b><a name=uncheck>Un-CheckOut</a></b>
+		<dd>At any point in time before the check-in, if you're not satisfied with your local changes, you may undo them. Select the files in question in the Check-In Area and press the <i>Un-CheckOut</i> button or select <i>Un-CheckOut</i> from the <i>Selection</i> menu. The relevant files will be restored to their pre-check-out state. Un-CheckOut works also with new and deleted files, you can undo file addition as well as file deletion. Since this operation involves only your local copy of the project, no scripts are propagated to other project members. Notice that you may also undo changes that have been checked in, but that requires working with <a href="#version">Versions</a> and propagating change scripts.
+<p>Un-CheckOut updates the <b>timestamps</b> on relevant files. This is done in order to force the rebuild of the project in your development environment. However, if there were no changes to a file, the timestamp won't be changed.
+
+
+	</dl>
+	</font>
+	</td>
+	<td></td>
+</tr>
+
+<tr><td colspan=3 height=6></td></tr>
+<tr>
+	<td></td>
+	<td bgcolor="#ffcccc">
+	<hr>
+	<font face="haettenschweiler, impact" size=5><a name="wscripts">Working with Scripts</a></font>
+	<hr>
+	<font size=2>
+	<dl>
+	<dt><b>Differential <a name=script>script</a>.</b>
+		<dd>The check-in produces a script. It contains the information about your change--enough to be able to recreate the new state of the project given the previous state. If the file is very large--multi-MB--the diffing may take a very long time. For binary files, Code Co-op uses a very efficient binary differ, to minimize the size of the script.
+		<p>
+	<dt><b>Distributing scripts through <a name=email>email</a>.</b>
+		<dd>The script is a regular file with the extension <i><b>.snc</b></i>. It is deposited in your <b>Outbox folder</b>. (You can find this folder under your co-op\Outbox directory, in one of the numbered subdirectories--numbers correspond to project ids.) You may even pick up a synch file from the outbox folder and pass it to all the other members of the project. Normally, however, you should let the automatic <a href="dispatch.html">Dispatcher</a> take care of propagating scripts.
+		<br><img src="../images/transpix.gif" width=12 height=1>The script is delivered by the Dispatcher to other members of the team. They will see it in their <a href="quickref.html#mailbox">Mailbox</a> areas. (One can also deposit the script directly in the <b>PublicInbox</b> folder, in the &quot;co-op&quot; directory).
+		<p>
+	<dt><b><a name=unpack>Synchronizing</a>, or <b>Unpacking</b> a script.</b>
+		<dd>The <a href="quickref.html#mailbox">Mailbox</a> area shows all the scripts that are in the Inbox and in the Outbox. The mailbox is intelligent enough to recognize which scripts should be read next. These scripts are marked using the &quot;<i>unpack</i>&quot; icon. Sometimes you'll see scripts marked "missing" or <a href="#reject">rejected</a>. If you have a <b>missing</b> script, you have to wait until you actually get it in your e-mail, or ask another project member to re-send it to you (there is a <a href="#resend">re-send</a> button in History area). 
+		<br>You unpack scripts using the <i>Synchronize</i> button (it is only active when there is something to unpack) or using the <i>Synch Script</i> entry in the <i>Selection</i> menu (although you don't need to select a script in order to unpack it). The keyboard shortcut is <b>Ctrl-S</b>. This process recreates all the files proposed by the script in your <a href="quickref.html#syncha">Synch Area</a> and copies them to the project. You may now look at the changes, try to compile and test them, or you can make your own adjustments by checking out the affected files and editing them. If <a href="#merge">merging</a> has to be verified, this is the time to do it.
+		<p>
+	<dt><b><a name=look>Reviewing</a> the changes.</b>
+		<dd>Once the script is unpacked, you may view the changes by double-clicking on any of the files in the <a href="quickref.html#syncha">Synch Area</a>. What you see is the comparison of the proposed file against the reference file (in most cases, reference file is either your current project file, or its backup versions from before you checked it out). It is a little more complicated when you have a <a href="#conflict">conflict</a>.
+		<br><img src="../images/diff.gif" width="510" height="227" border="1" alt="Differential display">
+		<br>Fig. The view of the changes. Press <b>F4</b> to go to the next change, or <b>Shift-F4</b> for the previous change. You can copy a selection to the Windows clipboard by pressing <b>Ctrl-C</b>. The left pane shows the resulting file.
+		<br>&nbsp;
+		<table width="90%" border="1" cellpadding="5" align="CENTER">
+			<tr><td bgcolor="#ffffcc"><font size=2>
+			<img src="../images/transpix.gif" width=12 height=1>We usually use this opportunity to make a <b>code review</b> of proposed changes.
+			</font></td></tr>
+		</table><br>
+	<dt><b><a name=synch>Accepting a synch</a>.</b>
+		<dd>Once you've reviewed the changes, you should accept the synchronization. While in the <a href="quickref.html#syncha">Synch Area</a>, click on the <i>Accept Synch</i> or <i>Accept Synch All</i> button (or use <i>Accept Synch</i> in the <i>Selection</i> or <i>All</i> menu). What the synch does is to accept the changes that you've seen in the synch area and clean up backup files.
+		<br><img src="../images/transpix.gif" width=12 height=1>As long as the synch is not accepted, you have the option of &quot;arguing with the synch.&quot; You may edit the files that are undergoing a merge or check out files and manually reject some of the changes brought in by the synch. Notice: you can't simply refuse to accept a synch, because it's already been sent to other members of the project. All you can do is to make your counter-changes and check them in after accepting the synch (or restore the project to its previous version).
+		<br><img src="../images/transpix.gif" width=12 height=1>The keyboard shortcut for <i>Accept All</i> is <b>Ctrl-Y</b>.
+			<p>
+		<dt><b><a name=autosynch>Auto-Synch</a>.</b>
+			<dd>When a project is in the Auto-Synch mode (use <i>Project</i> &gt; <i>Properties</i> to turn it on), Code Co-op running in this project on this machine will automatically unpack and accept all incoming scripts as soon as they arrive. This is especially useful when you create or join a project on a <b>server</b> and you want it to be always up-to-date (for instance, for testing your web documents on your local web server). For unattended operation you should write a batch file that starts Code Co-op in all the Auto-Synch projects using the <a href="#cmdline">command-line</a> program <i>visitproject</i>. Add this batch file to the startup group on the server. Now any time somebody does a check-in, the script will arrive at the server and will be automatically synchronized. (Auto-Synch will not accept a merge, so either you should never check out files in Auto-Synch projects on the server, or be prepared for manual intervention.)
+
+		<p>
+	<dt><b><a name=merge>Merging</a> changes.</b>
+		<dd>A merge has to be done whenever two developers make changes to the same file (including deleting it). Code Co-op makes merging changes simple and easy.
+		<p>Suppose that you have a file checked out and you make some edits in it. In the meanwhile, you receive a script that contains changes to the same file. When you unpack this script, Code Co-op will detect the possibility of a conflict and will <b>automatically merge</b> the changes. If, as in most cases, the changes don't overlap, it does a pretty good job of merging them. Your edits (including insertions and deletions) as well as the other user's edits will be incorporated in the resulting merged file. When changes do overlap, Co-op will try to figure something out.
+		<p>Whatever the case may be, you have the final say. And this is where Code Co-op really shines. Just open the file in the Synch Area or in the Check-in Area (e.g., double-click on it). Below is an example of what you might see.
+		<br><img src="../images/differ.gif" width="532" height="245" border="1" alt="Differ showing merge">
+		<br>Fig. File merge display.
+		<p>The right (diff) pane shows, in various shades of yellow and green, the edits done by you, up to the point when you unpacked the synch script. It also shows, in shades of purple, the edits proposed by the synch.
+		<p>The left (edit) pane displays the results of the merge. It also serves as a limited-purpose editor. It lets you insert and delete text, as well as cut and paste--just like a regular editor. This is where you may modify the results of automatic merge. You may delete lines inserted by the synch. You may copy lines (including the deleted ones) from the right pane and paste them in the left pane. You may do all kinds of arbitrary edits. Notice that the changes you make in the edit pane will never show in the diff pane. They will, however, remain highlighted in the left pane. You don't have to do all the edits in one sitting. You may, at any point in time, save your changes and exit. You may continue the editing the same file outside of Code Co-op. If you decide to re-open the file in the synch (or check-in) area at a later time, you will still see all the post-synch changes highlighted in the edit pane and the original merge in the right pane. Finally, when you accept the synch, you'll be left with a checked-out file that will contain all the changes accepted or inflicted by you. You may continue your editing, or you may check the file back in and propagate your changes.
+		<p>If you choose to <b>discard your changes</b> (in particular, if you haven't made any changes), do the following: Go to the check-in area, select the file in question and click on the <i>Un-CheckOut</i> button. You will discard your changes in preparation for the unconditional acceptance of the synch changes.
+		<p>
+	<dt><b>Dealing with a <a name=reject>rejected</a> script.</b>
+		<dd>In a distributed version control system that uses email, it is possible that two scripts miss each other on the way between two developers. Code Co-op deals with such situation by making one script win and the other lose. When the script that was sent to you loses, you'll see it in your mailbox marked as <b>Rejected</b>. That means, you're fine. Keep on working (you might want to delete the script from the Mailbox area). The person who has sent this script will resolve the conflict and re-send the script.
+		<p>
+	<dt><b>Resolving a <a name=conflict>conflict</a>.</b>
+		<dd>You learn that <i>your</i> script was rejected when you unpack the script that overrode it. During the unpacking of such a script, all the changes that you've made in your unfortunate script will be undone. But don't worry. It will be very easy to redo them and re-send the script.
+		<br><img src="../images/transpix.gif" width=12 height=1>First of all, the files that you've changed in the rejected script will be automatically checked out for you. They'll still have <b>all your changes</b>. If these files are distinct from the files that the synch script wanted to change, i.e., the two sets don't overlap, you're fine. Just accept the synch and then check in the files that were checked out for you. A new script will be generated, proposing the same old changes. Hopefully this time it will not be rejected (if it is, just keep repeating the same conflict resolution procedure). If, however, there is an overlap in the two file sets, you'll have to perform a regular <a href="#merge">merge</a>.
+		<br>&nbsp;
+		<table width="90%" border="1" cellpadding="5" align="CENTER">
+		<tr><td bgcolor="#ffffcc"><font size=2>
+		<img src="../images/transpix.gif" width=12 height=1>In order to avoid conflicts, it's a good idea to always check your e-mail for incoming scripts before you do a check-in. Conflicts may also occasionally happen in a LAN-based setup, especially when some computers are off-line.
+		</font></td></tr></table>
+
+		<p>
+		<dt><b><a name=resend>Re-sending</a> lost scripts</b>
+		<dd>Sometimes a script is lost on its way. Code Co-op is well prepared to deal with such situation. It will detect a gap in the sequence of scripts and it will display it in the Mailbox area. It will tell you exactly which script is missing--it will show you its script id. Ask any other project member to re-send this script to you. 
+<p>To re-send a script, select it in the History area and either select <i>Re-Send</i> from the context menu or from the <i>Selection</i> menu. You'll be given a list of potential recipients to choose from--select one or more and click OK. The script will be automatically dispatched.
+<p>There is no need to re-send <b>acknowledgment</b> scripts. Occasional loss of an acknowledgment doesn't influence the functioning of Code Co-op.
+		<br>
+
+
+	</dl>
+	</font>
+	</td>
+	<td></td>
+</tr>
+
+<tr><td colspan=3 height=6></td></tr>
+<tr>
+	<td></td>
+	<td bgcolor="#ccccff">
+	<hr>
+	<font face="haettenschweiler, impact" size=5><a name="whistory">Working with History</a></font>
+	<hr>
+	<font size=2>
+	<dl>
+	<dt> <b>Looking at project <a name=version>Versions</a>.</b>
+		<dd>In the <a href="quickref.html#historya">History</a> area you can look at the versions of your project. Each version corresponds to a script that created it, and is labeled with the comment from that script and a unique <b>script id</b>. You can double-click on any script to quickly view its changes. 
+
+<br><img src="../images/transpix.gif" width=12 height=1>If you need a more detailed view of the changes that happened since a particular version, select it, and choose <i>View/Save</i> from the <i>Version</i> menu. You'll see a list of files that have been changed since that version (excluding the script that defined that version). You can double-click on any of the files in the list to peruse the changes. The right pane will show the differences between the current version and the old version of the file. The left pane will show the file as it was before the script that defined the version was accepted. You can also <b>save</b> a version of a file under a new name by clicking the <i>Save As...</i> button.
+		<p>
+	<dt><b><a name=fileVersion>Looking at file Versions</a>.</b>
+		<dd>If you are only interested in the history of a specific file (or files), you can narrow the scope of History (you can set up a <i>file filter</i> in History). There are two ways to do it: 
+		<ul>
+			<li>You can type in a file name (may contain wildcards) into the edit field on the toolbar. Code Co-op will match all files with that name in the project. (Incidentally, in this way you can select files that have been <b>deleted</b> from the project.) An example of what you can type in is "common\*.cpp". This will match all files with the extension <i>cpp</i> in any of the folders named <i>common</i>. If you type in a name of a folder, the whole (recursive) content of this folder will be selected as well. You can then narrow your filter by selecting a particular file from the dropdown box (if there are several files of the same name, look at the global id displayed in parentheses).
+			<li>Or, you can go to the <a href="quickref.html#filea">Files Area</a>, select the file(s) there and choose <i>Show History</i> from the context menu (or <i>Show History</i> from the <i>Selection</i> menu). You'll be transferred to History area, primed with the appropriate filter.
+		</ul>
+<br>The list of versions in History window will only show scripts that modified the selected files. <i>View/Save</i> in the <i>Version</i> menu will now reconstruct only those of the selected files that have been changed since the selected version.
+		<p>
+	<dt><b><a name=restore>Recreating</a> old Versions of Files.</b>
+		<dd>In order to recreate a particular version of a particular file (or files), first select this file in history. You can either do it by selecting the file in <i>Files</i> view and choosing <i>Show History</i> from its context menu, or by directly typing in the name of the file in the combo box in <i>History</i> view (see <a href="#fileVersion">above</a>). You'll see the history of the file--all the scripts that carried changes to this file. Select the version (script id) you're interested in and select <i>View/Save</i> from the <i>Version</i> menu (or from the context menu). Press the <i>Save As...</i> button.
+			<p>
+		<dt><b><a name=compare>Comparing</a> versions.</b>
+			<dd>You can visually compare any two versions of the project. Go to History area and select the version of interest to you. Notice the icons on the left of the scripts preceding the selection. The scripts whose icons are enclosed in boxes will be temporarily undone if you choose <i>View/Save</i> or <i>Compare with Current</i> from the <i>Selection</i> menu. If, on the other hand, you select <i>Compare with Previous</i>, you'll see all the changes made by the selected script. Finally, if you want to compare two arbitrary versions, select one and then Ctrl-select the other and use the generic <i>Compare</i> from the <i>Selection</i> menu.
+			<p>
+<p>
+	<dt><b>Restoring <a name=oldVersion>old Versions</a> of the Project.</b>
+		<dd>You can send the whole project back in time to any of the previous versions stored in History. Select the version in <a href="quickref.html#historya">History</a> and choose <i>Selection &gt; Restore</i>. If History is filtered, only the selected files will be restored. Also, files that haven't been changed since the selected version are not restored. The result of restoring an old version is not immediately visible to other members of the project. Instead the restored files appear in your check-in area. You may still abandon the restoration by doing the Un-CheckOut. Otherwise, check in the files, and your restoration will be propagated to others. (Incidentally, if you change your mind later, you can still undo the restoration by restoring the version before your restoration.)
+		<p>
+
+	<dt><a name=branch><b>Branching</b></a>.
+		<dd>You can create a new project by branching from an existing project. Select the version in <a href="quickref.html#historya">History</a> off of which you want to branch and select <i>Branch</i> from the <i>Version</i> menu. Provide the location for the new copy of the project and give it a new distinct name. Ask the members of the old project to join the new project by sending you <i>join</i> requests. The <i>Branch</i> dialog is almost identical to the <i><a href="#create">New Project</a></i> dialog. You can also branch from the <i>Current Version</i> of the project.
+		<br><img src="../images/transpix.gif" width=12 height=1>Presently, there is no way to merge changes made in separate branches.
+		<p>
+
+	<dt><b><a name=exporting>Exporting</a> old Versions.</b>
+		<dd>Sometimes you want to restore the whole project to some previous version, but you don't want to affect your current state. For instance, you might want to build an old version of your product. To do that, select the version in <a href="quickref.html#historya">History</a> and choose <i>Export Version</i> from the <i>Selection</i> menu. The <b>whole project tree</b>, as it existed right after the script you have selected, will be copied to a new destination.
+		<p>
+
+	<dt><b>Creating <a name=labels>Labels</a>.</b>
+		<dd>Sometimes you just want to append a special label to history, to mark a milestone. choose <i>Add Label</i> from the <i>History</i> menu. A label will be propagated like any other script, so that other members can see it in their histories.
+		<p>
+	<dt><b><a name=archive>Archiving</a> History.</b>
+		<dd>When your history gets too long, Code Co-op might slow down. Select a relatively old version in <a href="quickref.html#historya">History</a> and choose <i>Archive</i> from the <i>Selection</i> menu. Co-op will stop displaying versions that are older than the one you've selected. You can un-archive your history at any time by selecting <i>UnArchive</i> from the <i>Selection</i> menu.
+			<p>
+		<dt><b><a name=hexport>Exporting</a> project history.</b>
+			<dd>You may export the whole history of your project to a file by selecting <i>Export History</i> from the <i>History</i> menu. This file may then be imported by another project member.
+			<p>
+		<dt><b><a name=himport>Importing</a> Project History.</b>
+			<dd>If you are given a history file (see above), you may incorporate it in your project by selecting <i>Import History</i> from the <i>History</i> menu (you will be prompted for the file name). This feature is particularly useful when a new project member joins an existing project which has a lot of history. After joining, the new member's history is blank, but he can transfer a history file from any project member. (The local history and the imported history must partially overlap for the Import to work.)
+		<p><dt><b><a name=report>Creating Reports</a></b>
+		<dd>Code Co-op has a rudimentary reporting capabilities. If you select <i>Report</i> from the <i>Selection</i> or <i>All</i> menu, you'll be able to save the data from the current view to a file. This is particularly useful in History view. The file contains tab-separated columns, best viewed by importing it into a spreadsheet.
+		<p>
+	<dt>Go to <a href="dispatch.html">next page</a> to learn about automatic dispatching.
+	</dl>
+	</font>
+	</td>
+	<td></td>
+</tr>
+<!-- Footer -->
+<tr>
+	<td></td>
+	<td><font size=1>Code Co-op User's manual. Copyright &copy; 1999, 2000 Reliable Software.</font></td>
+</tr>
+</table>
+<img src="../Images/transpix.gif" width=1 height=400 border=0>
+</font>
+</body>
+</html>

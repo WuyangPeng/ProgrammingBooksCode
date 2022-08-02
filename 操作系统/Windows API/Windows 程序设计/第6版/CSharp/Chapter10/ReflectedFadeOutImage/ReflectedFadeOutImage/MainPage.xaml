@@ -1,0 +1,38 @@
+<Page
+    x:Class="ReflectedFadeOutImage.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ReflectedFadeOutImage"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+    
+        <Image Source="http://www.charlespetzold.com/pw6/PetzoldJersey.jpg"
+               HorizontalAlignment="Center" />
+        
+        <Grid RenderTransformOrigin="0 1"
+              HorizontalAlignment="Center">
+            <Grid.RenderTransform>
+                <ScaleTransform ScaleY="-1" />
+            </Grid.RenderTransform>
+            <Image Source="http://www.charlespetzold.com/pw6/PetzoldJersey.jpg" />
+            <Rectangle>
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0 0" EndPoint="0 1" >
+                        <GradientStop Offset="0" 
+                            Color="{Binding 
+                                Source={StaticResource ApplicationPageBackgroundThemeBrush}, 
+                                Path=Color}" />
+                        <GradientStop Offset="1" Color="Transparent" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>                
+            </Rectangle>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,35 @@
+# Unix makefile. This version is compact and works fine with GNU make
+
+# Using pthreads via the FSF pth library with pthread interface enabled
+# http://www.fsf.org/software/pth/pth.html
+#   ./configure --enable-pthread
+
+
+CXX=c++
+DEBUG= -g
+OPTFLAG=-O2 -DHasPTHREADS -DNEEDS_UINTPTR_T -pthread
+WARNFLAG=-W
+INCLUDEDIRS= -I../../../framework/include
+LIBDIRS=-L.
+LIBS=-lm
+
+CXXFLAGS=$(OPTFLAG) $(WARNFLAG) $(DEBUG) $(INCLUDEDIRS) $(DEFINES)
+LIBFLAGS=$(LIBDIRS) $(LIBS)
+
+# VPATH points to other locations where source files can be found
+VPATH = ../../../framework/common:../../../framework/image:../../../framework/unix
+
+
+all: imageTypes
+
+clean:
+	rm imageTypes $(objects)
+
+
+%.o : %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+objects = main.o imageTypes.o geometry.o bstring.o timing.o unitTest.o
+
+imageTypes: $(objects)
+	$(CXX) $(CXXFLAGS) -o imageTypes $(objects) $(LIBFLAGS)

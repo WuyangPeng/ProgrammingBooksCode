@@ -1,0 +1,44 @@
+INSERT INTO Location 
+(
+  LocationId,
+  Street,
+  City,
+  State
+)
+VALUES
+ ( 
+  1,
+  'Main Steet',
+  'Big Apple City',
+  'New State'
+ ); 
+
+INSERT INTO Location 
+(
+  LocationId,
+  Street,
+  City,
+  State
+)
+VALUES
+ ( 
+  2,
+  'Winding Road',
+  'Windy Village',
+  'Golden State'
+ );
+
+INSERT INTO Location 
+(
+  LocationId,
+  Street,
+  City,
+  State
+)
+VALUES
+ ( 
+  3,
+  'Tiny Terrace',
+  'Big City',
+  'Small State'
+ );

@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>Processing an SSN</title>
+<script language="ecmascript" >
+myRegExp = /\d{3}-\d{2}-\d{4}/;
+var entry;
+
+function Validate(){
+entry = document.simpleForm.SSNBox.value;
+if (myRegExp.test(entry)) {
+alert("The value you entered, " + entry + "\n matches the regular expression, " + myRegExp + ". It is a valid SSN." );
+} // end of the if statement
+else
+{
+alert("The value you entered," + entry + ",\nis not a valid SSN. Please try again.");
+} // end of else clause
+} // end Validate() function
+
+function ClearBox(){
+document.simpleForm.SSNBox.value = "";
+// The above line clears the texbox when it receives focus
+} // end ClearBox() function
+</script>
+</head>
+<body>
+<form name="simpleForm" >
+<table>
+<tr>
+<td width="40%">Enter a valid SSN here:</td>
+<td><input name="SSNBox" onfocus="ClearBox()" type="text" value="Enter an SSN here"></input></td>
+</tr>
+<tr>
+<td><input name="Submit" type="submit" value="Check the SSN" onclick="Validate()" ></input></td>
+</tr>
+</table>
+</form>
+</body>
+</html>

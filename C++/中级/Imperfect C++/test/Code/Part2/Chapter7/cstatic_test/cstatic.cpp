@@ -1,0 +1,16 @@
+
+#include "cstatic.h"
+
+#include <stlsoft.h>
+
+/* ////////////////////////////////////////////////////////////////////////// */
+
+#ifdef __cplusplus
+extern "C"
+#endif /* __cplusplus */
+char const * const CSTATIC_CALLCONV cfunc()
+{
+    return __STLSOFT_COMPILER_VERSION_STRING;
+}
+
+/* ////////////////////////////////////////////////////////////////////////// */

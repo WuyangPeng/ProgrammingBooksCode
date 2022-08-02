@@ -1,0 +1,5 @@
+Openrj 
+★
+
+1. 版本：1.6.4。
+2. 官方网站：http://www.openrj.org/

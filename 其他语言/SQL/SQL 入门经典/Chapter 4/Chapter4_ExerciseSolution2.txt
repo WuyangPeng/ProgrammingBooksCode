@@ -1,0 +1,9 @@
+ALTER TABLE FavCategory
+ADD CONSTRAINT favcat_cat_fk 
+FOREIGN KEY (CategoryId) 
+REFERENCES Category(CategoryId);
+
+ALTER TABLE FavCategory
+ADD CONSTRAINT favcat_member_fk 
+FOREIGN KEY (MemberId) 
+REFERENCES MemberDetails(MemberId);

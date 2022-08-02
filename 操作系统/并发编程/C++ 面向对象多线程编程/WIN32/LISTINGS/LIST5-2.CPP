@@ -1,0 +1,33 @@
+// Listing 5-2
+// Demonstates the use of  execl
+// one of the family of exec( ) functions
+// used to spawn child processes
+// accepts a sequence of four integers that will be
+// passed to the program from list5-1
+
+#include <process.h>
+#include <iostream.h>
+#include <strstrea.h>
+#include <stdlib.h>
+#include <windows.h>
+
+
+void main(int argc, char *argv[])
+{
+
+
+	if(argc == 5){
+		char Argument[81] = "";
+		strstream Buffer;
+		Buffer << (atol(argv[1]) * 2) << " ";
+		Buffer << (atol(argv[2]) * 3) << " ";
+		Buffer << (atol(argv[3])+ atol(argv[1])) << " ";
+		Buffer << atol(argv[4]) << ends;
+		Buffer.getline(Argument,80,'\0');
+		cout << "Result " << Argument << endl;
+		execl("list5-1.exe","List5-1.exe",Argument,NULL);
+	}
+
+}
+
+

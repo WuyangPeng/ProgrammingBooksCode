@@ -1,0 +1,11 @@
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+abcdefghijklmnopqrstuvwxyz
+
+0123456789
+
+A10 B22 C33 D44
+
+_3 _A
+
+

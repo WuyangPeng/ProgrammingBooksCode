@@ -1,0 +1,9 @@
+; atl_bolt_in.def : Declares the module parameters.
+
+LIBRARY      "atl_bolt_in.DLL"
+
+EXPORTS
+	DllCanUnloadNow     @1 PRIVATE
+	DllGetClassObject   @2 PRIVATE
+	DllRegisterServer   @3 PRIVATE
+	DllUnregisterServer	@4 PRIVATE

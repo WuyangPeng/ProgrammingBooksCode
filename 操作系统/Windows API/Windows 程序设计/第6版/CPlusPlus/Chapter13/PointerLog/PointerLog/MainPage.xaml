@@ -1,0 +1,53 @@
+<Page
+    x:Class="PointerLog.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PointerLog"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Pointer Event Log" 
+                   Grid.Row="0"
+                   Style="{StaticResource HeaderTextStyle}"
+                   HorizontalAlignment="Center"
+                   Margin="12" />
+
+        <local:LoggerControl x:Name="logger" 
+                             Grid.Row="1"
+                             FontSize="{StaticResource ControlContentThemeFontSize}" />
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Content="Clear"
+                    Grid.Column="0"
+                    HorizontalAlignment="Center"
+                    Click="OnClearButtonClick" />
+
+            <ToggleButton Name="captureButton"
+                          Content="Capture on Press"
+                          Grid.Column="1"
+                          HorizontalAlignment="Center"
+                          Checked="OnCaptureToggleButtonChecked"
+                          Unchecked="OnCaptureToggleButtonChecked" />
+
+            <Button Content="Release Captures in 5 seconds"
+                    Grid.Column="2"
+                    IsEnabled="{Binding ElementName=captureButton, Path=IsChecked}"
+                    HorizontalAlignment="Center"
+                    Click="OnReleaseCapturesButtonClick" />
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,49 @@
+#version 120 // -*- c++ -*-
+/**
+ Per-pixel Gouraud Shading
+
+ @file phong.pix
+ @author jfh
+ */
+
+/** Diffuse/ambient surface color */
+uniform vec3 diffuseColor;
+
+/** Specular surface color.  Used for both glossy and perfect reflection. */
+uniform vec3 specularColor;
+
+/** Intensity of the diffuse term. */
+uniform float diffuse;
+
+/** Intensity of the specular term. */
+uniform float specular;
+
+/** Phong exponent; 100 = sharp highlight, 1 = broad highlight */
+uniform float shine;
+
+/** Intensity of perfect reflections */
+uniform float reflect;
+
+/** Unit world space direction to the (infinite, directional) light source */
+uniform vec3 wsLight;
+
+/** Color of the light source */
+uniform vec3 lightColor;
+
+/** Color of ambient light */
+uniform vec3 ambientLightColor;
+
+/** Environment cube map used for reflections */
+uniform samplerCube environmentMap;
+
+/** Modulates the environment map values to simulate darkness or increase
+   dynamic range when tone mapping*/
+uniform vec3 environmentMapColor;
+
+varying vec3 wsInterpolatedEye;
+/** Lambert lighting at each vertex */
+varying vec3 gouraudColor;
+void main() {
+	gl_FragColor.xyz = gouraudColor;
+	gl_FragColor.a = 1.0;
+}

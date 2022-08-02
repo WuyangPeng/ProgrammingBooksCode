@@ -1,0 +1,11 @@
+This line contains numbers, 1 2 3, and text ... Blah, blah.
+
+ABC
+
+DEF 890
+
+The next line has non-alphabetic characters.
+
+?!"£$%^&*()_
+
+1234567890

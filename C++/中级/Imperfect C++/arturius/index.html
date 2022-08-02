@@ -1,0 +1,326 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+ <title>Arturius - Imperfect C++: Practical Solutions for Real-Life Programming</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+ <link rel = "stylesheet" type = "text/css" href = "../icpp.css" />
+</head>
+<body style = "background-color: #330033;">
+
+<!--
+ Updated: 12th July 2004
+-->
+
+ <!-- Flowers and banner image -->
+ <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr>
+   <td bgcolor="#330033" width="25%" align="left">
+    <img src="../images/flower_changed.jpg" alt = "" />
+   </td>
+   <td bgcolor="#330033" align="center" width="50%">
+    <img src="../images/logo.jpg" alt = "" />
+   </td>
+   <td bgcolor="#330033" width="25%" align="right">
+    <img src="../images/flower_changed.jpg" alt = "" />
+   </td>
+  </tr>
+ </table>
+
+ <!-- Sub-title -->
+ <table width="100%" style="background-color: #666699;">
+  <tr>
+   <td bgcolor="#666699" align="center" >
+    <span class="subtitle">Practical Solutions for Real-Life Programming</span>
+   </td>
+  </tr>
+ </table>
+
+ <br />
+
+ <!-- Top-menu -->
+ <table width="98%" style="background-color: #330033;" align="center">
+  <tr align="center">
+   <td valign="top">
+    <a href = "../index.html"><font class = "menu-link">Home</font></a>
+   </td>
+   <td>
+    <img src="../images/flower_bullet.gif" alt = "" />
+   </td>
+   <td valign="top">
+    <font class = "menu-nolink">Arturius</font>
+   </td>
+   <td>
+    <img src="../images/flower_bullet.gif" alt = "" />
+   </td>
+   <td valign="top">
+    <a href="../errata.html"><font class = "menu-link">Errata</font></a>
+   </td>
+   <td>
+    <img src="../images/flower_bullet.gif" alt = "" />
+   </td>
+   <td valign="top">
+    <a href="../resources/index.html"><font class = "menu-link">Resources</font></a>
+   </td>
+   <td>
+    <img src="../images/flower_bullet.gif" alt = "" />
+   </td>
+   <td valign="top">
+    <a href="../test/index.html"><font class = "menu-link">Test Programs</font></a>
+   </td>
+   <td>
+    <img src="../images/flower_bullet.gif" alt = "" />
+   </td>
+  </tr>
+  <tr align="center">
+   <td>
+    <img src="../images/flower_bullet.gif" alt = "" />
+   </td>
+   <td valign="top">
+    <a href="../articles/index.html"><font class = "menu-link">Articles</font></a>
+   </td>
+   <td>
+    <img src="../images/flower_bullet.gif" alt = "" />
+   </td>
+   <td valign="top">
+    <a href="../compilers/index.html"><font class = "menu-link">Compilers</font></a>
+   </td>
+   <td>
+    <img src="../images/flower_bullet.gif" alt = "" />
+   </td>
+   <td valign="top">
+    <a href="../libraries/index.html"><font class = "menu-link">Libraries</font></a>
+   </td>
+   <td>
+    <img src="../images/flower_bullet.gif" alt = "" />
+   </td>
+   <td valign="top">
+    <a href="../sitemap.html"><font class = "menu-link">Site Map</font></a>
+   </td>
+   <td>
+    <img src="../images/flower_bullet.gif" alt = "" />
+   </td>
+   <td valign="top">
+    <a href="../tools/index.html"><font class = "menu-link">Tools</font></a>
+   </td>
+  </tr>
+ </table>
+
+ <!-- Site-Map -->
+ <table width="100%" style="background-color: #666699;">
+  <tr>
+   <td bgcolor="#666699" align="left" valign="middle">
+    <font class="menu-nolink">Site Map: /</font><a href="." style="font-size: 9pt;"><font class="menu-link">Arturius</font></a><font class="menu-nolink">/</font><a href = "./index.html"><font class="menu-link">index.html</font></a>
+   </td>
+   <td bgcolor="#666699" align="right" valign="middle">
+    <a href="http://www.imperfectcplusplus.com" target="_blank" style="font-size: 9pt;"><font class="menu-link-icpp">Visit The Imperfect C++ Website!</font></a>
+   </td>
+  </tr>
+ </table>
+
+ <!-- Main Content -->
+ <table width="100%" style="background-color: white;">
+  <tr>
+   <td bgcolor="white" class="pattern">
+   <!-- PAGE STARTS HERE -->
+
+    <br />
+
+    <h1>Arturius</h1>
+    <span class="sub-quote">"Merlin was nervous upon a duel with Arturius"</span>
+
+    <a name = "news"></a>
+    <h2>What is Arturius?</h2>
+    <p>
+     As I describe in Appendix C of Imperfect C++, the Arturius project came about as a requirement I had to subject sources
+     to compilation by a number of different compilers. (This is because keeping the 
+     <a href = "http://www.stlsoft.org/" target="_blank">STLSoft</a> libraries compatible with over 30 compilers would be an 
+     otherwise unmanageable task.) Thus was Arturius born.
+    </p>
+    <p>
+     But what is Arturius? Well, simply, it's a compiler multiplexer. You issue a command-line (as shown in the 
+     <a href = "#shot1">screenshot below</a>) to <b>arcc</b>, as you would to a given single compiler and the file actually gets 
+     compiled by a suite of compilers,
+     whichever ones you have configured Arturius to recognise. In the <a href = "#shot1">screenshot below</a>, it's compiling 
+     <b>arf.cpp</b>, the main implementation file for <b>arf</b>, one of the Arturius tools. As you can see, the command to 
+     <b>arcc</b> stipulates seven compilers to which to dispatch compilation. Not stipulating any compilers will result in all
+     registered compilers being used. <b>-x</b> is shorthand for the <b>arcc</b> option <b>--exception-handling=on</b>. 
+     <b>--announce-tools</b> causes the output lines to be interspersed with the <b>Tool: <i>&lt;tool-name&gt;</i></b> labels.
+     All the other parts of the command-line are recognised standard options for compile-only, preprocessor symbol definitions
+     and include directory specifications.
+    </p>
+    <p>
+    <a name = "shot1"></a><img src = "./shot1.png" alt = "Sample Arturius output" />
+    </p>
+    <p>
+     As you can likely guess from the output, I've developed the rewrite of Arturius in Intel and GCC, since they are compiling
+     cleanly. But this screenshot plainly demonstrates the power of Arturius: the Borland compiler has caught an unused variable;
+     Borland and Visual C++ have caught a reference conversion error on lines 380 and 381; and two of the Digital Mars 
+     configurations (8.40, beta + STLport) register different aspects of the same error.
+    </p>
+    <p>
+     This is exactly what Arturius is good for. It's been my experience that <i>all</i> compilers catch particular errors/warnings
+     that others miss, so getting your code compiled by a variety of compilers provides much better coverage.
+    </p>
+
+    <a name = "news"></a>
+    <h2>Good news and bad</h2>
+
+    <p>
+     Do you want the <a href = "#goodnews">good news</a> first, or the <a href = "#badnews">bad news</a>? I prefer to go for
+     bad first, in order to finish on a happy note, so that'll be our approach today. (Don't worry, there's <i>much</i> more 
+     good news than bad.)
+    </p>
+    <a name = "badnews"></a>
+    <h3>Bad News</h3>
+    <p>
+     Despite my having said in the book that this CD would contain the rewrite (version 2) of my Arturius compiler multiplexer tool,
+     it doesn't. The reason for this is pretty simple: it's not ready. Let me digress ...
+    </p>
+    <p>
+     I've been using what I now call Arturius Version 1 for some years, and it works very well. However, its utility to me (and 
+     the specifics of my development environment) did not mask its less appealing characteristics:
+    </p>
+    <ul>
+     <li>
+      It had evolved markedly from its original intentions, so was not what one might call "well-designed"
+     </li>
+     <li>
+      It was not very customisable, as a lot of assumptions regarding my operating environment had crept in
+     </li>
+     <li>
+      It was pretty brittle, and did not report failures adequately
+     </li>
+     <li>
+      Neither its interface nor its implementation were particularly discoverable.
+     </li>
+     <li>
+      It didn't have any "higher functionality", such as plugging into Integrated Development and Debugging Environments (IDDEs), impersonating other compilers, etc.
+     </li>
+     <li>
+      It had no documentation, neither user nor design.
+     </li>
+    </ul>
+    <p>
+     Furthermore, the code itself was a pretty appaling mess, especially in light of the (hopefully) good advice 
+     I've given in the book. In reviewing its implementation as of several months ago, there was just no way I was going to
+     show you version 1: a rewrite was necessary. I said in Appendix C that in the 2-3 months between the book being 
+     completed and the CD being ready I would be able to effect a worthy rewrite. Well, so much for the naivety of a first-time
+     author. Little did I realise the amount of work you have to do on your book - editing cycles, marketing, etc. - <i>after</i> its
+     been written, and by the time I started on the Arturius rewrite I had only three weeks. Although I've done the rewrite,
+     and have now got a working tool - as you can see from the <a href = "#shot1">screenshot above</a> - it's had less than 
+     a week of testing, is compilable/buildable only with Intel C++ compiler, and has not been ported to Linux.
+    </p>
+    <p>
+     I figure I might lose the interest of 10% of you for not having it on the CD as promised, but that I most 
+     certainly <i>would</i> lose 50% of you if it was present but of low quality. And those 10% who would not download would be 
+     lost anyway if it was low quality, so there was really nothing to gain saving face. Imperfect Practitioners don't 
+     care about saving face; just about quality work, and I intend to provide you with a high quality, well-tested and 
+     ported tool that should be available by the time you're reading this.
+    </p>
+    <p>
+     So fear not. You have not been duped. Arturius is not vapourware. As I write this - on the last day of the CD preparation - 
+     I've just built the unit-test programs for all STLSoft sub-projects with more than a dozen different compilers, and all 
+     it took was typing one command. So, to the <a href = "#goodnews">good news ...</a>
+    </p>
+    <a name = "goodnews"></a>
+    <h3>Good news:</h3>
+    <p>
+     The good news is this: It's eight weeks from now until Imperfect C++ hits the book stores. In this time I will be able
+     to complete the Win32 version and may also have the Linux version ready, all available via the Imperfect C++
+     website (<a href = "http://imperfectcplusplus.com/">http://imperfectcplusplus.com/</a>) and the 
+     Arturius website (<a href = "http://arturius.org/">http://arturius.org/</a>). On reading this, you should visit the
+     Arturius website, and download the latest version. But also keep up-to-date with the changes, as I expect Arturius to
+     mature, and increase its feature set, throughout 2004-2005.
+    </p>
+    <p>
+     The features/components that I intend Arturius to have are listed below. Those marked with <b>*</b> are already 
+     implemented in a pre-release form:
+    </p>
+    <ul>
+     <li>
+      <b>arcc</b><b>*</b>. A command-line tool that can compile source file(s) by a customisable suite of registered 
+      compilers, and present their collective output in a standard form
+     </li>
+     <li>
+      <b>Compiler Option Filters</b><b>*</b>. The architecture supports filters to translate the canonical 
+      <b>arcc</b> command-line into compiler-specific forms. Filters may be defined as internal rules, as dynamic library
+      plug-ins, as separate executable programs, or as <b>Perl</b>, <b>Python</b> or <b>Ruby</b> scripts.
+     </li>
+     <li>
+      <b>Output Filters</b><b>*</b>. The architecture supports filters to translate the compiler-specific output messages
+      - which vary <i>widely</i> between compilers - into a common-format. Filters may be defined as dynamic library
+      plug-ins, as separate executable programs, or as <b>Perl</b>, <b>Python</b> or <b>Ruby</b> scripts. The ones I've
+      written so far output in the Digital Mars/Intel/Visual C++ format 
+      <br /><br />&nbsp;&nbsp;<font class = "code">&lt;filename&gt;(&lt;line#&gt;): &lt;error message&gt;</font>
+      <br /><br />but you'll be able to write filters to produce any
+      output format you wish.
+     </li>
+     <li>
+      <b>Arturius Option Filters</b>. The architecture will support filters to translate compiler-specific command-line 
+      forms into the canonical <b>arcc</b> form. Filters will be able to be defined as internal rules, as dynamic library
+      plug-ins, as separate executable programs, or as <b>Perl</b>, <b>Python</b> or <b>Ruby</b> scripts. This functionality
+      will be combined with a command-line driver, such that you'll be able to replace a given compiler in your makefiles / 
+      build systems and get the benefit of compilation with a suite of different compilers.
+     </li>
+     <li>
+      <b>Plug-Ins</b>. I intend to provide plug-ins to Visual Studio (hopefully both Visual Studio 98 and .NET (200x)), 
+      such that one will be able to compile with a suite of compilers to catch all those bugs that Visual C++ - even the 
+      excellent v7.1 - misses. Once these plug-ins are developed, other people will be able to develop analogous plug-ins
+      for their IDDEs of choice.
+     </li>
+     <li>
+      <b>Linking</b>. The current version of Arturius only supports compilation. I plan to provide functionality such that
+      one can designate a primary compiler whose output will be used to build a target executable, and the rest will compile-only.
+     </li>
+     <li>
+      <b>More sophisticated environment handling</b>. The current version of Arturius reads environment for compilers from a 
+      single configuration file. I plan to allow an intelligent merging of environment information built up from the
+      project-specific configuration files, user/system environment, in addition to the current compiler environment configuration
+      files.
+     </li>
+     <li>
+      <b>Automatic installation/configuration tools</b>. I've created some simple Ruby scripts that can generate a default set
+      of configuration/filter files for a given compiler. I plan to do much more with this, such as a tool that will scan your
+      hard drive(s) to find all well-known compilers, and automatically build up compiler configurations for you to edit, saving
+      installation/configuration effort.
+     </li>
+    </ul>
+    <p>
+     So that's the state of play. By the time you read this the first 3-4 items on the list will be available, and perhaps some 
+     of the later items also.
+    </p>
+
+    <!-- Footnotes -->
+
+    <hr width="100%" />
+
+    <br /><br />
+
+   <!-- PAGE ENDS HERE -->
+   </td>
+  </tr>
+ </table>
+
+ <!-- Footer -->
+ <table width = "100%">
+  <tr>
+   <td align = "left">
+    <a href="http://validator.w3.org/check?uri=referer"><img src="../images/w3c-xhtml10.png" alt="Valid XHTML 1.0!" height="31" width="88" border="0" /></a>
+   </td>
+   <td align = "center">
+    <font color="white">
+    Imperfect C++ content copyright <a href = "http://www.awprofessional.com/" target="_blank"><font class = "smalllink">Addison-Wesley</font></a> |
+    Additional content copyright <a href = "http://www.synesis.com.au/" target="_blank"><font class = "smalllink">Synesis Software Pty Ltd</font></a> and <a href = "http://www.gregpeet.com" target="_blank"><font class = "smalllink">Greg Peet</font></a>
+    <br />
+    Website designed by <a href = "http://www.gregpeet.com" target="_blank"><font class = "smalllink">Greg Peet</font></a>. <i>Thanks Greg!</i>
+    </font>
+   </td>
+   <td align = "right">
+    &nbsp;
+   </td>
+  </tr>
+ </table>
+
+</body>
+</html>

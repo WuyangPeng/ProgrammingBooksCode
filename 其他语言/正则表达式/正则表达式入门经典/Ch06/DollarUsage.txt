@@ -1,0 +1,23 @@
+The pound, £, and US dollar, $, are major global currencies.
+
+$99.00
+
+99,00$
+
+$1,000,000
+
+$1000
+
+$1,000
+
+$1,000.00
+
+$0.50
+
+$2 # A Perl variable
+
+$ 0.99
+
+$myVariable
+
+$2.25

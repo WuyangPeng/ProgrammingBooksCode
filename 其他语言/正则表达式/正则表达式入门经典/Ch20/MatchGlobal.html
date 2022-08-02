@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>Carry out a non-global replace and a global replace.</title>
+<script language="vbscript" type="text/vbscript">
+Dim myRegExp, InputString, ChangedString
+
+Function MatchGlobal
+Set myRegExp = new RegExp
+myRegExp.Pattern = "A"
+DoReplaceDefault
+DoReplaceGlobal
+End Function
+
+Function DoReplaceDefault
+InputString = InputBox("Enter a string. It will be tested once to see if it contains" &VBCrLf & "any 'A' characters. Any 'A' will be replaced by 'B'")
+myRegExp.Global = False
+ChangedString = myRegExp.Replace(InputString, "B")
+If myRegExp.Test(InputString) = True Then
+  MsgBox "The test string '" & InputString & "' matches the pattern '" & myRegExp.Pattern & "'." & VBCrLf _
+  & "The changed string is " & ChangedString
+Else
+  MsgBox "There is no match. '" & InputString & "' does not match " &VBCrLf _
+  & "the pattern '" & myRegExp.Pattern & "'."
+End If
+End Function
+
+Function DoReplaceGlobal
+InputString = InputBox("Enter a string. It will be tested to see if it contains" &VBCrLf & "any 'A' characters. Any 'A' will be replaced by 'B'")
+myRegExp.Global = True
+ChangedString = myRegExp.Replace(InputString, "B")
+If myRegExp.Test(InputString) = True Then
+  MsgBox "The test string '" & InputString & "' matches the pattern '" & myRegExp.Pattern & "'." & VBCrLf _
+  & "The changed string is " & ChangedString
+Else
+  MsgBox "There is no match. '" & InputString & "' does not match " &VBCrLf _
+  & "the pattern '" & myRegExp.Pattern & "'."
+End If
+End Function
+
+</script>
+</head>
+<body onload="MatchGlobal">
+
+</body>
+</html>

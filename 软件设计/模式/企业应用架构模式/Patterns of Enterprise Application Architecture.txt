@@ -1,0 +1,6 @@
+企业应用架构模式 （Patterns of Enterprise Application Architecture）
+
+★
+作者：Martin Fowler   
+
+ 

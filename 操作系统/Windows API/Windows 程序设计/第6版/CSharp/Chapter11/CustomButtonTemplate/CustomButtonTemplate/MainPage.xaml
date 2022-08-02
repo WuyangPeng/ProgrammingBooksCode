@@ -1,0 +1,135 @@
+﻿<Page
+    x:Class="CustomButtonTemplate.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CustomButtonTemplate"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <ControlTemplate x:Key="buttonTemplate" TargetType="Button">
+            <Grid>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="PointerOver" />
+
+                        <VisualState x:Name="Pressed">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="border"
+                                                               Storyboard.TargetProperty="Background">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="LightGray" />
+                                </ObjectAnimationUsingKeyFrames>
+
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter"
+                                                               Storyboard.TargetProperty="Foreground">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="Black" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+
+                        <VisualState x:Name="Disabled">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="disabledRect"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="Visible" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+
+                    <VisualStateGroup x:Name="FocusedStates">
+                        <VisualState x:Name="Unfocused" />
+
+                        <VisualState x:Name="Focused">
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="focusRectangle"
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="1" Duration="0" />
+                            </Storyboard>
+                        </VisualState>
+
+                        <VisualState x:Name="PointerFocused" />
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+                <Border Name="border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="12">
+
+                    <Grid>
+                        <ContentPresenter Name="contentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          ContentTransitions="{TemplateBinding ContentTransitions}" />
+
+                        <Rectangle Name="focusRectangle"
+                                   Stroke="{TemplateBinding Foreground}"
+                                   Opacity="0"
+                                   StrokeThickness="1"
+                                   StrokeDashArray="2 2"
+                                   Margin="4"
+                                   RadiusX="12"
+                                   RadiusY="12" />
+                    </Grid>
+                </Border>
+
+                <Rectangle Name="disabledRect"
+                           Visibility="Collapsed"
+                           Fill="Black"
+                           Opacity="0.5" />
+            </Grid>
+        </ControlTemplate>
+
+        <Style x:Key="buttonStyle" TargetType="Button">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Foreground" Value="Blue" />
+            <Setter Property="BorderBrush" Value="Red" />
+            <Setter Property="BorderThickness" Value="3" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="Padding" Value="12" />
+            <Setter Property="Template" Value="{StaticResource buttonTemplate}" />
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <Button Content="Disable center button"
+                Grid.Column="0"
+                Style="{StaticResource buttonStyle}"
+                Click="OnButton1Click"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" />
+
+        <Button Name="centerButton"
+                Content="Center button"
+                Grid.Column="1"
+                Style="{StaticResource buttonStyle}"
+                FontSize="48"
+                Background="DarkGray"
+                Foreground="Red"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" />
+
+        <Button Content="Enable center button"
+                Grid.Column="2"
+                Style="{StaticResource buttonStyle}"
+                Click="OnButton3Click"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" />
+    </Grid>
+</Page>

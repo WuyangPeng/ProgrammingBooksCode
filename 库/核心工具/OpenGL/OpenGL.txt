@@ -1,0 +1,6 @@
+OpenGL
+★
+
+1. 版本：4.6。
+2. 官方网站：http://www.opengl.org/registry/。
+3. git地址：https://github.com/KhronosGroup/OpenGL-Registry.git。

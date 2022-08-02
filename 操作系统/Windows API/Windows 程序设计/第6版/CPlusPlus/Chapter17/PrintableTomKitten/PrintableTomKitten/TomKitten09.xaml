@@ -1,0 +1,21 @@
+﻿<UserControl
+    x:Class="PrintableTomKitten.TomKitten09"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Grid MaxWidth="640"
+          VerticalAlignment="Center">
+        <StackPanel>
+            <TextBlock Style="{StaticResource paragraphTextStyle}">
+                ONCE UPON A TIME there were three little kittens, and their 
+                names were Mittens, Tom Kitten, and Moppet.
+            </TextBlock>
+
+            <TextBlock Style="{StaticResource paragraphTextStyle}">
+                &#x2003;&#x2003;They had dear little fur coats of their 
+                own; and they tumbled about the doorstep and played in the 
+                dust.
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>

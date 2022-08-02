@@ -1,0 +1,218 @@
+<HTML>
+<HEAD>
+<TITLE>Open Source Software: What, How and Why</TITLE>
+</HEAD><body bgcolor="#FFFFFF" text="#000000">
+
+<h2>Open Source Software: What, How and Why</h2>
+<p>Courtesy of <i>BYTE</i> (November, 2003)</p>
+<H3>Matthew Wilson</H3>
+<I>Motivation for open-source activity.</I><P>
+
+
+<p>Activity in the open source movement is at an all-time high. The number of active projects reflects this: At the time of writing <a href="http://www.sourceforge.net" target="_blank">SourceForge</a> hosts more than 60,000 projects (and around 600,000 users). Despite this rapid flux, there are still reasons why open source software is still not attractive to many organizations and, therefore, why many projects never seem to get beyond the "nice idea, not finished" stage. In this article, I examine issues involved in participation in open source efforts, highlighting motivations, pitfalls, payoffs, and technical challenges, and offering some hard-won advice. I also focus on some issues that are particular to using C/C++ for your open source project.
+
+<p>The notion of open source is somewhat loosely defined. The Open Source Initiative (http://www.opensource.org/) provides a 10-point <a href="http://www.opensource.org/docs/definition.php" target="_blank">definition</a> that forms the basis for many of the licenses to which most open source projects abide. However, there is infinite potential variety in licenses, and most of the variation does not seem to matter much as far as I can see. (For a dissenting argument, see the <a href="http://www.fsf.org/philosophy/free-software-for-freedom.html" target="_blank">Free Software Foundation</a>.) For the purposes of this discussion, open source software is defined as that which is available for free, has no commercial restrictions to its use or redistribution, and comes in source-only or source plus binary form. That covers the essence of most open source efforts.
+
+<p>I'm currently engaged in two open source projects. <a href="http://stlsoft.org/" target="_blank">STLSoft</a> is a C++ template library project that applies STL concepts to a variety of technology areas, in a maximally robust, efficient and flexible manner. STLSoft is currently written entirely by me, having been spawned from some of my employer's proprietary software. The other project in which I'm involved, in partnership with Eugene Gershnik, is <a href="http://cruntiny.org/" target="_blank">CRunTiny</a>, a (very) small replacement for the Visual C++ C-runtime library. Where STLSoft aims for maximum portability across platforms, compilers, and libraries, and must make concessions to achieve those aims, CRunTiny targets the Win32 environment and (currently) the Visual C++ and Intel C/C++ compilers, allowing it to assume certain environmental facilities and to focus on a small target.
+
+<p>If you're thinking about contributing to an open source project, you'll probably have several questions.
+
+<h4>What?</h4>
+
+<p>What are your skills? Naturally, you will have to have something to contribute. Most likely you will have good technical skills in an area you have chosen, but this does not have to be the case. Your organizational skills might be very valuable, and sometimes it can be useful just to "tag along with the big dogs," especially if you can be a good teddy bear&#8212;someone against whom one can bounce ideas; teddy bears often don't even have to react.
+
+<p>What is your time like? Just as in the real world of software engineering, open source projects may take several multiples of your estimates, and you need to ensure that you can spare the time. In projects where there are many contributors this is not so important, but if it is a small group, or even just you, then you need to budget for quite an investment of your spare time. There has to be a perceived payoff for all this; otherwise you'll quickly become disheartened.
+
+<p>What is the project scope? Closely related to the issue of time, it is important to define the scope of the project, or your part within it. If this isn't done, the project will end up dying of "feature creep," and you're not getting paid for it! Eugene and I always react to the other's suggestion with "does MSVCRT have that?"; if not it doesn't go in. The cardinal rule for STLSoft is 100 percent header-only. A loosening of either of these rules would, I suspect, have both projects going off the rails in no time.
+
+<p>What type of project is it? An important distinction to draw, especially if you're starting your own project, is whether the project is a library or a product. If a product, then you can expeditiously focus your scope as narrowly as necessary to get the job done, not to mention that your code can be a little rough. Often people will use an application/utility(/operating-system!) and not care how ugly it is on the inside; it's a case of whether it works to the degree that they require. On the other hand, it is less likely that someone will adopt your library into their software&#8212;particularly commercial software&#8212;if it does not convey quality.
+
+<p>What support can you offer? You've successfully written a great library or product, but unless you can support it you'll not get many people interested in using it. Even fewer will persevere with it if they do not receive a timely response when reporting bugs.
+
+<p>What's your level of commitment? You obviously need to be able to finish the project, and this does not just include writing it or solving the problems. It also involves the quality of your implementation, the testing, the documentation and, last but certainly not least, the maintenance. This is not just a question of time; writing documentation is not a very enjoyable experience for almost any developer, but you must do it if you want people to adopt your project and stay interested in it.
+
+<p>What kind of feedback are you prepared for? Any time you stick your head above the parapet, you are going to get people shooting at it. This is a curious industry since everyone believes in the collaborative process, but everyone believes they can write better software than anyone else. You will attract critics from all levels and you must learn to see this as a positive thing. When they're right, you learn and improve. Even when you're right you've learned that you're probably not explaining yourself well enough.
+
+<h4>How?</h4>
+
+<p>The "How" questions could probably be infinite, so I'll largely speak from personal experience. They inform on how you will proceed, and whether you'll be able to succeed in achieving what you want to do.
+
+<p>How will you handle source code control? If you don't have access to a commercial package, there are plenty of CVS-based solutions (<a href="http://cvsgui.sourceforge.net" target="_blank">CVSGUI</a> provides GUI clients for Windows and Macintosh, while <a href="http://www.tortoisecvs.org/" target="_blank">TortoiseCVS</a> provides a Windows explorer shell extension interface), including those with GUIs. The important thing to remember with whatever source control system you use is to treat your project as you would a commercial equivalent. This means checking in good (compiled and tested) code, adding in your unit tests, and labelling. If you are working as part of an established project, these measures will most likely be already in place, in which case you should fit in and follow the existing processes.
+
+<p>How will you publicize your work? There's no good in doing all this great work if no one ever uses it. Fortunately there are a few good mechanisms to publicize your work. First, if you run it within SourceForge, your project will be categorized, and will appear on searches (when the SourceForge search engine is running!). Another great medium to publicise your work is an online magazine, of which there are an increasing number (such as <a href="http://www.codeproject.com/" target="_blank">CodeProject</a> or <a href="http://www.codeguru.com/" target="_blank">CodeGuru</a>). Newsgroups also are a reasonable forum, but one that you must not abuse: It's fine to suggest that your work may be the answer to someone's predicament if you're being honest, but shameless and inappropriate self-promotion is going to earn you no friends. Finally, industry journal articles can be a good medium by which to publicize, though they do, of course, set the bar a lot higher than the other media.
+
+<p>How will you manage your project team? Do you want to run your project as a single person, as a controlled group, or as a fully open effort? Naturally there are pros and cons to all the choices. If you keep the project to yourself you are certain to have your vision undiluted, but you are more likely to be swamped by workload, not to mention running the risk of being irrelevant. A fully-open project, such as are to be found on SourceForge, affords a much better opportunity to share work and learn, but you lose control; one man's pragmatism is another's butchery. A second part of this issue is where your project will live. If you use SourceForge, then you get a whole lot of resources provided for you&#8212;Web site, CVS, administration&#8212;which you otherwise must provide yourself. A downside is that they reserve the right to keep any of your embarrassing gaffs there in perpetuity (though I believe in practice they are usually reasonable in this regard); and there is also the simple matter that sometimes the SourceForge sites are swamped with traffic.
+
+<p>How will you choose the associated technology? Naturally your choice of project will inform on the technology you will use to some degree, but in many cases options still exist. Do I target Win32 only, or UNIX as well? Do I use COM or .NET, C++ or Java, Perl, or Python? Factors to consider are who you want to reach, what you know, and what you might like to learn. My advice is to go with the technology suited to the task, and relish any new skills you learn in the doing.
+
+<p>How do you make your project appeal to others? Products need to do something that nothing else does, or do it for free. But it's got to be of high quality. No one is going to use your free but buggy graphics package when they can pay for one that works. Libraries are a little trickier. One draw is to have done something unpleasantly complicated to implement, but very useful to use. <a href="http://xml.apache.org/" target="_blank">Xerces</a> is a good example, saving you from writing your own XML parser. Once someone is interested they will make the decision to pursue it based on flexibility, quality, and your responsiveness to bug reports and to criticism/enhancements. One thing you must not do is steal ideas from others without at least giving due attribution and following salient licensing stipulations.
+
+<p>How will you collaborate with others? You need to be collaborative on a couple of levels. Obviously if you're working together on a project you should adhere to the established practises (or offer cogent argument why they should change), or agree up front on the practices. With CRunTiny I was stamping all over Eugene's code with abandon until he called me on it. From a broader perspective you should respect the conventions of the community. Whether you think that calling an attribute method <tt>empty()</tt> is wrong is irrelevant; since it's part of the STL standard you should write your code in accordance to the convention (and grizzle in private).
+
+<p>How will you implement a framework? I've got one answer to this&#8212;don't write a framework. No one wants a framework these days, and if in the future somebody does, there are plenty available. Writing a framework will take you forever, and there are plenty of examples of ones that have never gotten past the ideas stage.
+
+<h4>Why?</h4>
+
+<p>So, why participate in an open source project at all? Well&#8230;
+
+<ul>
+<li>To learn new skills. Naturally you will learn a lot, whatever your initial level of skill. From the STLSoft efforts, I have learned much about compilers, arcane aspects of the C++ language and certain "features" in some STL implementations out there, along with deeper knowledge about the concepts of STL itself; I've learned much more than I expected to about all these subjects. I've also developed some useful contacts with various compiler vendors, who have proved helpful to me in my research in other activities. From CRunTiny I've realised that I know a lot less about the C++ language support mechanisms than I thought I did.
+<li>To spread knowledge. Contribution to an open source project is a good way to spread knowledge, both in the example of your work and in answering questions from users. The teaching instinct seems a natural expression of selflessness in most software engineers, as is evidenced by the number of helpful people on myriad newsgroups, so you'll get to feel good about yourself.
+<li>To get material for writing. Of course, if you've a bent for writing, then using material from your open source project is ideal. Publishers naturally want to avoid including proprietary material if at all possible. This is because they want to protect themselves&#8212;avoiding any copyright and royalties issues&#8212;and also because they want to allow their readers to make use of the published material with minimal restrictions. Thus open source software is the perfect match.
+<li>To increase your profile. Another possible motivation is to get your name out there, and perhaps increase your marketability on the job market. John Robbins comments in <i>Debugging Applications for .NET and Windows</i> (Microsoft Press, 2003; ISBN 0735615365) that working on software projects on your own time "put[s] you in the top 20 percent of engineers" and thus boosts your employability, an important consideration for all of us since the dot-bust. This makes a lot of sense, and you might reasonably assume that this level of commitment to your skills is very attractive. Regrettably, this is not always the case. Having taken a few months off (from what was a very flat market anyway) to pursue STLSoft and my writing, I was recently informed by a recruitment agent that open source activities are deeply frowned upon by most employers, and that writing articles marks you out as too high-brow to be able to perform practical work. Whether or not this is a peculiarly Australian phenomenon, it's a pretty sad state of affairs, and might give you pause when considering taking the open source path, or at least publicising your activities thereon.
+<li>As a loss-leader. A final reason could be to provide a simple version of a product to the open source community, but charge for the full version. This seems to me a rather dodgy thing to do given the canniness of the software development community, and the growing unwillingness to pay for software. Nonetheless, I think we can expect these efforts to continue, since commercialism abhors a vacuum.
+</ul>
+
+<h4>C/C++ Flexibility</h4>
+
+<p>There are a number of challenges you encounter when dealing with C and C++ that are absent, or inconsequential, with other languages. This is largely to do with the number of compilers and their differences, but is also due to the flexibility and complexity of the languages themselves. Essentially you need to achieve control of the environment, especially the compiler, in which your code will be used. This can be in the form of restricting the scope of the environment narrowly, or in controlling a known subset and providing mechanisms for compatibility with as-yet-unknown environments. The two main issues that have caused me headaches in the work for STLSoft have been compiler support for language features, and (in)compatibilities with STL implementations.
+
+<p>When in unrecognized conditions I think it's best to #error; it's going to look better to your users if the code refuses to compile in an informative fashion instead of simply failing to execute in some horrible way; for instance, what if the compiler doesn't support the empty-base optimization but your code hasn't noticed? Of course, once your user has seen a nice definitive statement that your code cannot be compiled under their environment they are likely to look elsewhere pretty quickly. For this reason, STLSoft provides the _STLSOFT_FORCE_CUSTOM_COMPILER and _STLSOFT_FORCE_ANY_COMPILER symbols which, respectively, use a compiler features file of a user-defined filename, and use the generic (optimistic) compiler features file stlsoft_cccap_unknown.h. Thus, compiling STLSoft under an unrecognised compiler fails to compile with the message shown in <a href="#list1">Listing 1</a>. The idea is that the library strictly enforces compatibility with compilers with which it has been tested, while providing a simple and explicit mechanism to allow wider compatibility. By using _STLSOFT_FORCE_ANY_COMPILER first, assessing the range of supported features, and then copying and modifying the compiler-features file, users can widen the libraries' compiler support in a safe way, and ease the incorporation of support for the given compiler back into the main distribution.
+
+<p>Some compilers actually masquerade as others, in order to be compatible with libraries. Specifically, I'm thinking of the definition of _MSC_VER, the identifier for Microsoft Visual C++, being defined by CodeWarrior, Digital Mars, Intel, and others. Naturally this can cause problems for the unwary, so the approach I favour is to discriminate the presence of compilers into custom symbols (for example, _STLSOFT_COMPILER_IS_BORLAND) and to do so in a suitable order (check for _MSC_VER last, for instance). You should also ensure you check for __COMO__ first when using the Comeau compiler, since it passes through the identity of its back end compilers.
+
+<p>An important environment characteristic is character encoding. With CRunTiny, we do not support the definition of _MBCS; given the amount of newsgroup heat on this issue, the fat lady's not going to be singing about a clear strategy for internationalization for a long time hence, so we wimped out and decided to support only ANSI and UTF-16 (or Unicode, as it's called in Windows circles). We're in good company here, though, as C++ itself explicitly support onlys the <tt>char</tt> and <tt>wchar_t</tt> character types.
+
+<p>Another area of challenge is the libraries with which your code must interact. STLSoft has had some troubles with different STL implementations. In order to deal with the huge mess in the definition of iterator types, STLSoft provides the templates iterator_base, const_reverse_bidirectional_iterator_base, and the like, which specific container/iterator types can use and be thus independent of compiler or library. That all worked very nicely until VC7's STL, which doesn't provide any discriminatable version information from which one could easily use the pre-processor to define the appropriate alternatives. This forced us to write <a href="#list2">Listing 2</a> to correctly define the pointer_iterator type.
+
+<p>The lesson here is twofold: isolate and centralize inconsistencies as much as you can within (albeit messy) header file(s), and make sure you include suitable levels of discriminatable version information in your library code; your users will thank you for both, since they can write just one version of their code in most cases, and where they need to step to the pre-processor they have a definitive umbrella under which they can work. (In so far is it is possible, without sacrificing efficiency, it is desirable to effect abstraction of compiler/library differences in C++ types, rather than macros. Macros do have their place, but should be used judiciously as it is all too easy to end up in macro-hell, a la ATL and MFC.)
+
+<p>When you've got control over what you need, it's nice to be as flexible as possible without sacrificing usability and efficiency. For example, the STL is all about models; it is not about prescribing concrete instantiations. Many otherwise superb projects are flawed by prescribing the use of <tt>std::basic_string</tt> or <tt>std::vector</tt>, or some other type that "everyone uses anyway, don't they?" It could often be easily avoided. Talented developers can forgive a lack of timely support, the occasional bug (which they can fix themselves) and are usually above not-invented-here hubris, but they can be strongly put off if your libraries have made hasty decisions about what they can and cannot use. Increase your project's attractiveness by reducing coupling, whether that means a prescribed container type, character encoding, threading-model, or even a C-runtime library. The more flexibility you can give, the more potential good uses can be made of your work. (Naturally, there are limits, but writing a fast string converter that is not re-entrant is way under the bar.)
+
+<h4>Conclusions</h4>
+
+<p>In a sense, open source projects have two main purposes: They serve as a practicing and proving ground&#8212;allowing you to develop or refine skills to aid in the many phases of a software project, not just the coding, in a professional manner&#8212;and they also allow engineers to disseminate their knowledge and contribute to the software development community as well as draw knowledge out from it. It's kind of like a community knowledge-bank, in the same way that some rural communities form their own savings banks.
+
+<p>In some ways open source software is harder to write than commercial software, because you have a far wider potential environment within which your code can be used. You need to take care of the way you control this potentiality to maximize usability without sacrificing robustness, efficiency and your reputation.
+
+<p>While commercial software will always be the most important part of the software engineering experience&#8212;as we've all got to eat&#8212;open source efforts will continue to grow, and provide a useful resource to engineers of all levels. By considering the costs and benefits involved, and applying your best skills and commitment, you benefit and so can everyone else.
+
+<h4><a name="list1">Listing 1</a>: Error report for unrecognized compiler</h4>
+
+<pre>
+Compiler is not recognised.
+Currently only Borland C++, Comeau C++, Digital Mars C/C++, GNU C/C++,
+ Intel C/C++, Metrowerks CodeWarrior, Visual C++ and Watcom C/C++
+ compilers are supported by the STLSoft libraries
+If you want to use the libraries with your compiler, you may specify the
+ _STLSOFT_FORCE_CUSTOM_COMPILER or _STLSOFT_FORCE_ANY_COMPILER pre-processor
+ symbols.
+_STLSOFT_FORCE_ANY_COMPILER assumes that your compiler can support all
+ modern C++ compiler features, and causes the inclusion of the compiler
+ features file stlsoft_cccap_unknown.h, which is provided by STLSoft.
+_STLSOFT_FORCE_CUSTOM_COMPILER requires that you specify the name of the
+ compiler features file in __STLSOFT_CF_CUSTOM_COMPILER_INCLUDE_NAME.
+The idea is to use _STLSOFT_FORCE_ANY_COMPILER, to determine what language
+ features your compiler can support, and then copy, edit and use that file
+ via _STLSOFT_FORCE_CUSTOM_COMPILER and __STLSOFT_CF_CUSTOM_COMPILER_INCLUDE_NAME.
+</pre>
+
+<h4><a name="list2">Listing 2</a>: Excerpt from stlsoft_iterator.h for handling pointer_iterator</h4>
+
+<pre>
+// type deduction
+// Random access iterator support
+
+// This is all some hideous kludge because Dinkumware's standard library fails
+// to leave behind any definitive discriminatable vestige of its presence.
+
+#if (   defined(__STLSOFT_COMPILER_IS_INTEL) || \
+        (   defined(__STLSOFT_COMPILER_IS_MSVC) && \
+            _MSC_VER &#62;= 1200 && \
+            _MSC_VER &#60; 1310)) && \
+    defined(_STD_BEGIN) && \
+    defined(_STD_END) && \
+    defined(_Mbstinit)
+# define __STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_PTRIT_PROBLEM
+#endif /* _MSC_VER && _MSC_VER == 1300 */
+
+#if defined(__STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_PTRIT_PROBLEM) && \
+    defined(_DEPRECATED) && \
+    defined(_HAS_TEMPLATE_PARTIAL_ORDERING) && \
+    defined(_CPPLIB_VER)
+# define __STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_PTRIT_PROBLEM_1300
+#endif /*  */
+
+#ifdef STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_PTRIT_PROBLEM
+
+template&#60; typename _Ty
+        , typename _Diff
+        , typename _Pointer
+        , typename _Reference
+        , typename _Pointer2
+        , typename _Reference2
+        &#62;
+class _Ptrit
+{
+public:
+  typedef _Pointer  iterator_type;
+
+private:
+  char  x[1024];
+};
+
+namespace std
+{
+  namespace test_dinkumware
+  {
+    template &#60;typename T1, typename T2, bool S&#62;
+    struct select_type
+    {
+      typedef T2  selected_type;
+    };
+
+    template &#60;typename T1, typename T2&#62;
+    struct select_type&#60;T1, T2, false&#62;
+    {
+      typedef T1  selected_type;
+    };
+
+    template&#60; class V
+            , class P
+            , class R
+            &#62;
+    class _Ptrit_tdkw
+    {
+      typedef _Ptrit&#60;V, ptrdiff_t, P, R, P, R>  _Ptrit_type;
+
+    public:
+      typedef select_type&#60;_Ptrit_type, P, (sizeof(_Ptrit_type) < 1024)>::selected_type  iterator_type;
+    };
+  }
+}
+
+#endif /* !STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_PTRIT_PROBLEM */
+
+template&#60; typename V
+        , typename P
+        , typename R
+        &#62;
+struct pointer_iterator
+{
+#if defined(__STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_PTRIT_PROBLEM) && \
+    !defined(__STLSOFT_CF_STL_IS_STLPORT)
+# if defined(__STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_PTRIT_PROBLEM_1300)
+  typedef std::test_dinkumware::
+                 _Ptrit_tdkw&#60;V, P, R&#62;::iterator_type   iterator_type;
+# else
+  typedef P                                            iterator_type;
+# endif /* __STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_PTRIT_PROBLEM_1300 */
+#elif defined(__STLSOFT_COMPILER_IS_MSVC) && \
+      !defined(__STLSOFT_CF_STL_IS_STLPORT) && \
+      defined(_XUTILITY_) && \
+      _MSC_VER == 1300
+  typedef std::_Ptrit&#60;V, ptrdiff_t, P, R, P, R&#62;        iterator_type;
+#else
+  typedef P                                            iterator_type;
+#endif /* !__STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_PTRIT_PROBLEM */
+};
+</pre>
+
+<p>
+<hr>
+<b><font size=-1><i>Matthew Wilson is a software development consultant and author of <i>Imperfect C++</i> (Addison-Wesley, 2004). He can be contacted via <a href="http://stlsoft.org/" target="_blank">http://stlsoft.org/</a>.</i>
+
+<p>Contact BYTE.com at <a
+href="http://www.byte.com/feedback/feedback.html" target="_blank">http://www.byte.com/feedback/feedback.html</a>.</b></font><p>
+</BODY>
+</HTML>

@@ -1,0 +1,17 @@
+This file contains the code and source files used in the book Beginning SQL Server 2008 Programming.
+
+Files here fall into a few categories:
+
+Code shown in the book (found in the "Final Code" subfolder)
+Scripts required to create base objects used in examples
+Data used in import examples
+
+The book also assumes you have installed the primary AdventureWorks2008 sample 
+database (in particular, the OLTP sample). Which can be found at
+http://www.wrox.com/go/SQLServer2008RTMDataSets
+
+For x86 users (those running 32bit Windows), you'll need the one labeled:
+SQL2008.AdventureWorks_OLTP_DB_v2008.x86.msi 
+
+For x64 users (those running 64bit Windows):
+SQL2008.AdventureWorks_OLTP_DB_v2008.x64.msi

@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{013E913C-1DAA-333A-9B87-6168ECC093A4}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <ClCompile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <ClCompile>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <ClCompile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <ClCompile>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <ClCompile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <ClCompile>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <ClCompile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <ClCompile>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="..\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="ZERO_CHECK.vcxproj">
+      <Project>{C786F22C-F109-382B-B00F-7AA6F99E4B1E}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="03_Patterns\adapter\adapter.vcxproj">
+      <Project>{69FF281D-895B-35B5-8CA6-3FE168FCCF22}</Project>
+      <Name>adapter</Name>
+    </ProjectReference>
+    <ProjectReference Include="05_Styles\stack_datadriven\arglist_test.vcxproj">
+      <Project>{1C5DB57E-5D95-39E1-8E6B-CE91AEB37E49}</Project>
+      <Name>arglist_test</Name>
+    </ProjectReference>
+    <ProjectReference Include="07_Performance\auto_timer\autotimer.vcxproj">
+      <Project>{FFAE3394-E5E7-325A-B8E7-6AC352D63ED2}</Project>
+      <Name>autotimer</Name>
+    </ProjectReference>
+    <ProjectReference Include="06_Cpp_Style\bad_friends\bad_friends.vcxproj">
+      <Project>{81EF17CC-4D51-3DD9-B8BE-1F1B7D37F1D4}</Project>
+      <Name>bad_friends</Name>
+    </ProjectReference>
+    <ProjectReference Include="02_Qualities\callback_instance\callback_instance.vcxproj">
+      <Project>{FA462733-F8A4-3291-93B8-D0A7794FAC74}</Project>
+      <Name>callback_instance</Name>
+    </ProjectReference>
+    <ProjectReference Include="02_Qualities\callback_static\callback_static.vcxproj">
+      <Project>{B48BEF3A-1F2E-32AD-AB0B-8C5B2B4ED70E}</Project>
+      <Name>callback_static</Name>
+    </ProjectReference>
+    <ProjectReference Include="07_Performance\const_reference\const_reference.vcxproj">
+      <Project>{742BF4D6-9521-31EF-A5B9-FAD6E66F2500}</Project>
+      <Name>const_reference</Name>
+    </ProjectReference>
+    <ProjectReference Include="06_Cpp_Style\constructors\constructors.vcxproj">
+      <Project>{293AEA32-35D9-39E1-BA21-571353553A92}</Project>
+      <Name>constructors</Name>
+    </ProjectReference>
+    <ProjectReference Include="02_Qualities\coord2d_template\coord2d_template.vcxproj">
+      <Project>{1B49CDC6-26DB-3F5E-A4A6-EA8AE87C7C4B}</Project>
+      <Name>coord2d_template</Name>
+    </ProjectReference>
+    <ProjectReference Include="07_Performance\copy_on_write\copy_on_write.vcxproj">
+      <Project>{26746375-26E0-391B-B13D-2FC8A8E2C363}</Project>
+      <Name>copy_on_write</Name>
+    </ProjectReference>
+    <ProjectReference Include="12_Extensibility\plugin_api\coreapi.vcxproj">
+      <Project>{68D00B2E-191E-3402-9FC1-FE8A86E0558C}</Project>
+      <Name>coreapi</Name>
+    </ProjectReference>
+    <ProjectReference Include="12_Extensibility\curious_templates\curious_templates.vcxproj">
+      <Project>{9509110C-FC5C-3CFD-B2CD-16B58046A83F}</Project>
+      <Name>curious_templates</Name>
+    </ProjectReference>
+    <ProjectReference Include="08_Versioning\deprecate_compiletime\deprecate_compiletime.vcxproj">
+      <Project>{CF5B1616-6210-3309-AE52-08D610D788D6}</Project>
+      <Name>deprecate_compiletime</Name>
+    </ProjectReference>
+    <ProjectReference Include="08_Versioning\deprecate_runtime\deprecate_runtime.vcxproj">
+      <Project>{B8C6D7C6-8409-3E98-AE03-A5C9C6398069}</Project>
+      <Name>deprecate_runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="06_Cpp_Style\extern_leakage\extern_leakage.vcxproj">
+      <Project>{B216C37D-04CC-3089-BA99-E6ABFFE8AC35}</Project>
+      <Name>extern_leakage</Name>
+    </ProjectReference>
+    <ProjectReference Include="03_Patterns\facade\facade.vcxproj">
+      <Project>{52BF4AD4-1CF5-3C22-89D1-D201D02B21F7}</Project>
+      <Name>facade</Name>
+    </ProjectReference>
+    <ProjectReference Include="03_Patterns\factory_extensible\factory_extensible.vcxproj">
+      <Project>{EA2336F9-A445-30B8-A6CB-3594A716122D}</Project>
+      <Name>factory_extensible</Name>
+    </ProjectReference>
+    <ProjectReference Include="03_Patterns\factory_simple\factory_simple.vcxproj">
+      <Project>{9A68B2DC-B069-3EA9-BE18-6976E8EE0298}</Project>
+      <Name>factory_simple</Name>
+    </ProjectReference>
+    <ProjectReference Include="07_Performance\getter_speed\getter_speed.vcxproj">
+      <Project>{8161A947-A46D-3A23-BAEF-50DB09D4A573}</Project>
+      <Name>getter_speed</Name>
+    </ProjectReference>
+    <ProjectReference Include="02_Qualities\hide_class\hide_class.vcxproj">
+      <Project>{BDBF99B7-8089-3609-96EB-9E5BA1EA0F69}</Project>
+      <Name>hide_class</Name>
+    </ProjectReference>
+    <ProjectReference Include="07_Performance\iterators\iterators.vcxproj">
+      <Project>{0D479660-7236-3251-948B-15130444EB1A}</Project>
+      <Name>iterators</Name>
+    </ProjectReference>
+    <ProjectReference Include="04_Design\named_parameters\named_parameters.vcxproj">
+      <Project>{6E783F88-2043-3E99-A6AC-D8CBA0D76432}</Project>
+      <Name>named_parameters</Name>
+    </ProjectReference>
+    <ProjectReference Include="03_Patterns\observer\observer.vcxproj">
+      <Project>{13601B30-9F7A-3D91-B664-5C25922F86AB}</Project>
+      <Name>observer</Name>
+    </ProjectReference>
+    <ProjectReference Include="03_Patterns\opaque_pointer\opaque_pointer.vcxproj">
+      <Project>{3C4F8904-6FD9-38C0-9032-C7A62A717794}</Project>
+      <Name>opaque_pointer</Name>
+    </ProjectReference>
+    <ProjectReference Include="06_Cpp_Style\operators\operators.vcxproj">
+      <Project>{08B759EE-E830-3E7B-AED6-52D75A511E17}</Project>
+      <Name>operators</Name>
+    </ProjectReference>
+    <ProjectReference Include="03_Patterns\pimpl_good\pimp_good.vcxproj">
+      <Project>{ECA5D904-8F4F-3FC3-B521-F57C8756D3A2}</Project>
+      <Name>pimp_good</Name>
+    </ProjectReference>
+    <ProjectReference Include="03_Patterns\pimpl_bad\pimpl_bad.vcxproj">
+      <Project>{7CA718D9-69B7-3A9C-88E3-4559BF49682C}</Project>
+      <Name>pimpl_bad</Name>
+    </ProjectReference>
+    <ProjectReference Include="03_Patterns\pimpl_boost\pimpl_boost.vcxproj">
+      <Project>{F9217121-9E97-3BA4-B403-BC2E79724BF1}</Project>
+      <Name>pimpl_boost</Name>
+    </ProjectReference>
+    <ProjectReference Include="12_Extensibility\plugin_api\plugin1.vcxproj">
+      <Project>{6E2E0B31-27EA-3102-AB39-79DC919A0DE6}</Project>
+      <Name>plugin1</Name>
+    </ProjectReference>
+    <ProjectReference Include="12_Extensibility\plugin_api\plugin2.vcxproj">
+      <Project>{B4E1BEE1-406F-3B74-991A-B062FE118BEC}</Project>
+      <Name>plugin2</Name>
+    </ProjectReference>
+    <ProjectReference Include="12_Extensibility\plugin_api\plugin_api.vcxproj">
+      <Project>{D6B0E92D-BA32-381F-A739-0307F4F885BA}</Project>
+      <Name>plugin_api</Name>
+    </ProjectReference>
+    <ProjectReference Include="03_Patterns\proxy_interface\proxy_interface.vcxproj">
+      <Project>{8763FA48-AA7B-3AEB-B336-D92AED18A51E}</Project>
+      <Name>proxy_interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="03_Patterns\proxy_simple\proxy_simple.vcxproj">
+      <Project>{DDAB1595-5845-3216-8A02-28DAF4C34A30}</Project>
+      <Name>proxy_simple</Name>
+    </ProjectReference>
+    <ProjectReference Include="10_Testing\self_test\self_test.vcxproj">
+      <Project>{0E8582DA-A31C-3D59-AF74-94F03CB76B0D}</Project>
+      <Name>self_test</Name>
+    </ProjectReference>
+    <ProjectReference Include="02_Qualities\shared_pointer\shared_pointer.vcxproj">
+      <Project>{C2D0799E-28FC-399A-BF70-DC4CBFB82D80}</Project>
+      <Name>shared_pointer</Name>
+    </ProjectReference>
+    <ProjectReference Include="03_Patterns\singleton\singleton.vcxproj">
+      <Project>{D013B8F5-8D5F-3415-9E50-9CDFACE35499}</Project>
+      <Name>singleton</Name>
+    </ProjectReference>
+    <ProjectReference Include="05_Styles\stack_c\stack_c.vcxproj">
+      <Project>{9578050D-9719-35FD-975F-C0A9C9928F15}</Project>
+      <Name>stack_c</Name>
+    </ProjectReference>
+    <ProjectReference Include="05_Styles\stack_cpp\stack_cpp.vcxproj">
+      <Project>{4744FC10-76CC-3394-8F1A-F00C3B736D60}</Project>
+      <Name>stack_cpp</Name>
+    </ProjectReference>
+    <ProjectReference Include="05_Styles\stack_datadriven\stack_datadriven.vcxproj">
+      <Project>{B1CE33C8-2EEE-32BA-BDFE-4CEB9E5EA534}</Project>
+      <Name>stack_datadriven</Name>
+    </ProjectReference>
+    <ProjectReference Include="05_Styles\stack_preprocessor\stack_preprocessor.vcxproj">
+      <Project>{096AA62D-7594-3732-AF2B-2D2DF06ABF79}</Project>
+      <Name>stack_preprocessor</Name>
+    </ProjectReference>
+    <ProjectReference Include="05_Styles\stack_template\stack_template.vcxproj">
+      <Project>{6F59CE38-4AFA-3529-8FDE-6908F843E682}</Project>
+      <Name>stack_template</Name>
+    </ProjectReference>
+    <ProjectReference Include="07_Performance\struct_size\struct_size.vcxproj">
+      <Project>{B89267A1-2FBC-3B77-B702-75D0317DFE1D}</Project>
+      <Name>struct_size</Name>
+    </ProjectReference>
+    <ProjectReference Include="06_Cpp_Style\template_explicit\template_explicit.vcxproj">
+      <Project>{58F33C3B-DD29-3BF0-8CC9-4728CDA2947B}</Project>
+      <Name>template_explicit</Name>
+    </ProjectReference>
+    <ProjectReference Include="06_Cpp_Style\template_polymorphism\template_polymorphism.vcxproj">
+      <Project>{CCDEFCC1-1CF7-37CD-A910-95DF46176A29}</Project>
+      <Name>template_polymorphism</Name>
+    </ProjectReference>
+    <ProjectReference Include="06_Cpp_Style\template_specialization\template_specialization.vcxproj">
+      <Project>{A54AFE63-2A38-32FD-8F85-76E51F4FC7F0}</Project>
+      <Name>template_specialization</Name>
+    </ProjectReference>
+    <ProjectReference Include="10_Testing\unit_test\unit_test.vcxproj">
+      <Project>{7ACE3B1A-EAA4-38B4-BB2D-A998EC29F93C}</Project>
+      <Name>unit_test</Name>
+    </ProjectReference>
+    <ProjectReference Include="08_Versioning\version_api\version_api.vcxproj">
+      <Project>{16A7B323-A34B-35DB-B2A2-75A4D47B9A55}</Project>
+      <Name>version_api</Name>
+    </ProjectReference>
+    <ProjectReference Include="07_Performance\virtual_speed\virtual_speed.vcxproj">
+      <Project>{12A14AC7-8694-3028-8A67-CAC18152A5CF}</Project>
+      <Name>virtual_speed</Name>
+    </ProjectReference>
+    <ProjectReference Include="12_Extensibility\visitor\visitor.vcxproj">
+      <Project>{DE15204C-87FE-35C2-BAE1-FB86EBF5F69E}</Project>
+      <Name>visitor</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>February 2003/Avoiding the Visual C++ Runtime Library</title>
+</head>
+
+<body>
+
+
+<h4>Listing 5  Synthesizing malloc(), realloc(), and free()</h4>
+
+<pre>
+
+/* /////////////////////////////////////////////////////////////
+ * ...
+ *
+ * Extract from malloc.c
+ *
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * (Licensed under the Synesis Software Standard Source License:
+ *  http://www.synesis.com.au/licenses/ssssl.html)
+ *
+ * ...
+ * ////////////////////////////////////////////////////////// */
+
+void *malloc(size_t si)
+{
+    return HeapAlloc(GetProcessHeap(), 0, si);
+}
+
+void free(void *pv)
+{
+    HeapFree(GetProcessHeap(), 0, pv);
+}
+
+void *realloc(void *pv, size_t si)
+{
+    void    *pvNew;
+
+    if(pv == NULL)
+    {
+        pvNew = malloc(si);
+    }
+    else
+    {
+        if(si == 0)
+        {
+            free(pv);
+
+            pvNew = NULL;
+        }
+        else
+        {
+            pvNew = HeapRealloc(GetProcessHeap(), 0, pv, si);
+        }
+    }
+
+    return pvNew;
+}
+
+</pre>
+</body>
+</html>

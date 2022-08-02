@@ -1,0 +1,47 @@
+﻿<Page
+    x:Class="DataPassingAndReturning.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DataPassingAndReturning"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Name="contentGrid"
+          Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel>
+            <TextBlock Text="Main Page"
+                       FontSize="48"
+                       HorizontalAlignment="Center"
+                       Margin="48" />
+
+            <StackPanel Name="radioStack"
+                        HorizontalAlignment="Center" 
+                        Margin="48">
+                <RadioButton Content="Red" Margin="12">
+                    <RadioButton.Tag>
+                        <Color>Red</Color>
+                    </RadioButton.Tag>
+                </RadioButton>
+
+                <RadioButton Content="Green" Margin="12"
+                             IsChecked="True">
+                    <RadioButton.Tag>
+                        <Color>Green</Color>
+                    </RadioButton.Tag>
+                </RadioButton>
+
+                <RadioButton Content="Blue" Margin="12">
+                    <RadioButton.Tag>
+                        <Color>Blue</Color>
+                    </RadioButton.Tag>
+                </RadioButton>
+            </StackPanel>
+
+            <Button Content="Get Color"
+                    HorizontalAlignment="Center"
+                    Margin="48"
+                    Click="OnGotoButtonClick" />
+        </StackPanel>
+    </Grid>
+</Page>

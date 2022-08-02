@@ -1,0 +1,114 @@
+<Page
+    x:Class="SimpleKeypad.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SimpleKeypad"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+
+        <Grid HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Width="288">
+
+            <Grid.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="ClickMode" Value="Press" />
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="Height" Value="72" />
+                    <Setter Property="FontSize" Value="36" />
+                </Style>
+            </Grid.Resources>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0"
+                        HorizontalAlignment="Left">
+
+                    <TextBlock x:Name="resultText"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Center"
+                               FontSize="24" />
+                </Border>
+
+                <Button Name="deleteButton"
+                        Content="&#x21E6;"
+                        Grid.Column="1"
+                        IsEnabled="False"
+                        FontFamily="Segoe Symbol"
+                        HorizontalAlignment="Left"
+                        Padding="0"
+                        BorderThickness="0"
+                        Click="OnDeleteButtonClick" />
+            </Grid>
+
+            <Button Content="1"
+                    Grid.Row="1" Grid.Column="0"
+                    Click="OnCharButtonClick" />
+
+            <Button Content="2"
+                    Grid.Row="1" Grid.Column="1"
+                    Click="OnCharButtonClick" />
+
+            <Button Content="3"
+                    Grid.Row="1" Grid.Column="2"
+                    Click="OnCharButtonClick" />
+
+            <Button Content="4"
+                    Grid.Row="2" Grid.Column="0"
+                    Click="OnCharButtonClick" />
+
+            <Button Content="5"
+                    Grid.Row="2" Grid.Column="1"
+                    Click="OnCharButtonClick" />
+
+            <Button Content="6"
+                    Grid.Row="2" Grid.Column="2"
+                    Click="OnCharButtonClick" />
+
+            <Button Content="7"
+                    Grid.Row="3" Grid.Column="0"
+                    Click="OnCharButtonClick" />
+
+            <Button Content="8"
+                    Grid.Row="3" Grid.Column="1"
+                    Click="OnCharButtonClick" />
+
+            <Button Content="9"
+                    Grid.Row="3" Grid.Column="2"
+                    Click="OnCharButtonClick" />
+
+            <Button Content="*"
+                    Grid.Row="4" Grid.Column="0"
+                    Click="OnCharButtonClick" />
+
+            <Button Content="0"
+                    Grid.Row="4" Grid.Column="1"
+                    Click="OnCharButtonClick" />
+
+            <Button Content="#"
+                    Grid.Row="4" Grid.Column="2"
+                    Click="OnCharButtonClick" />
+        </Grid>
+    </Grid>
+</Page>

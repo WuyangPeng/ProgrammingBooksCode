@@ -1,0 +1,24 @@
+// Example 6-4 task1 thread sets its cancelability state to be deferred 
+
+
+void *task1(void *X)
+{
+   int OldState,OldType;
+   
+   //not needed default settings for cancelability 
+   pthread_setcancelstate(PTHREAD_CANCEL_ENABLE,&OldState);
+   pthread_setcanceltype(PTHREAD_CANCEL_DEFERRED,&OldType);
+
+   pthread_testcancel();
+
+   ofstream Outfile("out1.txt");
+   for(int Count = 1;Count < 1000;Count++)
+   {
+      Outfile << "thread 1 is working: " << Count << endl;
+
+   }
+   Outfile.close();
+   pthread_testcancel();
+   return (NULL);
+}
+

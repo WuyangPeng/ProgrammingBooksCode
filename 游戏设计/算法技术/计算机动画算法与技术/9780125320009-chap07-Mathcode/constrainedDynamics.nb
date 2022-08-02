@@ -1,0 +1,160 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.2'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      5764,        125]*)
+(*NotebookOutlinePosition[      6402,        147]*)
+(*  CellTagsIndexPosition[      6358,        143]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+Cell[BoxData[
+    \(\(\(\[IndentingNewLine]\)\( (*\ 
+      constrained\ \(dynamics : \ 
+          animate\ the\ large\ sphere\ with\ simple\ physics\), \ 
+      then\ reposition\ small\ spheres\ to\ maintain\ relationship\ \
+constratins\ *) \)\(\[IndentingNewLine]\)\(\[IndentingNewLine]\)\( (*\ 
+      update\ positions\ according\ to\ distance\ constraints\ *) \)\(\
+\[IndentingNewLine]\)\(\(update[] := {\[IndentingNewLine] (*\ 
+            get\ center\ points\ of\ spheres\ *) \[IndentingNewLine]c = 
+            d[\([1]\)]; \[IndentingNewLine]c1 = 
+            d1[\([1]\)]; \[IndentingNewLine]c2 = 
+            d2[\([1]\)]; \[IndentingNewLine]c22 = 
+            d22[\([1]\)]; \[IndentingNewLine]\[IndentingNewLine] (*\ 
+            reposition\ child\ sphere\ toward\ parent\ sphere\ to\ satisfy\ \
+distance\ constraint\ *) \[IndentingNewLine]\[IndentingNewLine]dir = 
+            c1 - c; \[IndentingNewLine]dirlen\  = \ 
+            dir . dir; \[IndentingNewLine]dirlen = 
+            N[Sqrt[dirlen], 9]; \[IndentingNewLine]If[
+            dirlen > 
+              0.001, {\[IndentingNewLine]dir = 
+                dir/dirlen; \[IndentingNewLine]c1 = 
+                c + con1*dir; \[IndentingNewLine]d1 = {c1, 
+                  d1[\([2]\)]};\[IndentingNewLine]}]; \[IndentingNewLine]\
+\[IndentingNewLine]dir = c2 - c; \[IndentingNewLine]dirlen\  = \ 
+            dir . dir; \[IndentingNewLine]dirlen = 
+            N[Sqrt[dirlen], 9]; \[IndentingNewLine]If[
+            dirlen > 
+              0.001, {\[IndentingNewLine]dir = 
+                dir/dirlen; \[IndentingNewLine]c2 = 
+                c + con2*dir; \[IndentingNewLine]d2 = {c2, 
+                  d2[\([2]\)]};\[IndentingNewLine]}]; \[IndentingNewLine]\
+\[IndentingNewLine]dir = c22 - c2; \[IndentingNewLine]dirlen\  = \ 
+            dir . dir; \[IndentingNewLine]dirlen = 
+            N[Sqrt[dirlen], 9]; \[IndentingNewLine]If[
+            dirlen > 
+              0.0001, {\[IndentingNewLine]dir = 
+                dir/dirlen; \[IndentingNewLine]c22 = 
+                c2 + con22*dir; \[IndentingNewLine]d22 = {c22, 
+                  d22[\([2]\)]};\[IndentingNewLine]}];\[IndentingNewLine]};\)\
+\(\[IndentingNewLine]\)\(\[IndentingNewLine]\)\(\[IndentingNewLine]\)
+    \)\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(\( (*\ 
+      set\ hierarchy\ of\ \(spheres : \ 
+          center\ and\ radius\)\ *) \)\(\[IndentingNewLine]\)\(\(d = {{5, 5}, 
+          5};\)\[IndentingNewLine]
+    \(d1 = {{5, 15}, 3};\)\[IndentingNewLine]
+    \(d2 = {{5, \(-3\)}, 2};\)\[IndentingNewLine]
+    \(d22 = {{5, \(-11\)}, 2};\)\[IndentingNewLine] (*\ 
+      define\ lines\ between\ parent - child\ spheres\ *) \[IndentingNewLine]
+    \(l1\  = Line[{d[\([1]\)], d1[\([1]\)]}];\)\[IndentingNewLine]
+    \(l2 = Line[{d[\([1]\)], d2[\([1]\)]}];\)\[IndentingNewLine]
+    \(l22 = Line[{d2[\([1]\)], d22[\([1]\)]}];\)\[IndentingNewLine] (*\ 
+      not\ sure\ what\ this\ is\ *) \[IndentingNewLine]
+    \(con1 = 10;\)\[IndentingNewLine]
+    \(con2\  = \ 8;\)\[IndentingNewLine]
+    \(con22\  = \ 8;\)\[IndentingNewLine] (*\ for\ each\ frame, \ 
+      animate\ the\ main\ sphere, \ update\ others\ *) \[IndentingNewLine]
+    \(For[i = 1, 
+        i < 20, \(i++\), {\[IndentingNewLine] (*\ \(Print["\<start \>", 
+                i];\)\ *) \[IndentingNewLine]d = {{5 + 2*i, 5}, 
+              5}; \[IndentingNewLine]update[]; \[IndentingNewLine]l1\  = 
+            Line[{d[\([1]\)], d1[\([1]\)]}]; \[IndentingNewLine]l2 = 
+            Line[{d[\([1]\)], d2[\([1]\)]}]; \[IndentingNewLine]l22 = 
+            Line[{d2[\([1]\)], d22[\([1]\)]}]; \[IndentingNewLine]\ 
+          g = Graphics[{Circle[d[\([1]\)], d[\([2]\)]], l1, 
+                Circle[d1[\([1]\)], d1[\([2]\)]], l2, 
+                Circle[d2[\([1]\)], d2[\([2]\)]], l22, 
+                Circle[d22[\([1]\)], d22[\([2]\)]]}]; \[IndentingNewLine]Show[
+            g, AspectRatio \[Rule] Automatic, 
+            PlotRange -> {{0, 40}, {\(-20\), 
+                  20}}];\[IndentingNewLine]}];\)\)\)\)], "Input"]
+},
+FrontEndVersion->"5.2 for Macintosh",
+ScreenRectangle->{{4, 1440}, {0, 938}},
+WindowSize->{720, 746},
+WindowMargins->{{Automatic, 321}, {70, Automatic}}
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+Cell[1754, 51, 2256, 40, 731, "Input"],
+Cell[4013, 93, 1747, 30, 411, "Input"]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

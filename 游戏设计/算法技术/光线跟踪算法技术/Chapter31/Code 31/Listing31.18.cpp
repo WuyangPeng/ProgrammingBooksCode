@@ -1,0 +1,1 @@
+// I've added the statement that scales value.RGBColor														WrappedTwoColors::get_color(const ShadeRec& sr) const {	float noise = expansion_number * noise_ptr->value_fbm(sr.local_hit_point);	float value = noise - floor(noise);	value = min_value + (max_value - min_value) * value;					if (noise < 1.0)		return (value * color1);	else		return (value * color2);}

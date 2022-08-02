@@ -1,0 +1,376 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="GENERATOR" content="Microsoft FrontPage 12.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>第1章 通用编程技术</title>
+<link rel="stylesheet" type="text/css" href="../../../news.css">
+<meta name="Microsoft Theme" content="nature 011">
+<style type="text/css">
+.style1 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+}
+.style6 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+	color: #0000FF;
+}
+.style8 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+	color: #0000FF;
+	font-size: large;
+}
+.style9 {
+	font-family: FZKai-Z03;
+	text-indent: 0;
+	text-align: center;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style10 {
+	font-family: FZKai-Z03;
+	text-align: center;
+	font-size: medium;
+}
+.style12 {
+	font-family: FZKai-Z03;
+	text-indent: 0;
+	text-align: center;
+	margin-left: 12px;
+	margin-right: 12px;
+	color: #800080;
+}
+.style13 {
+	color: #800080;
+}
+.style14 {
+	font-family: FZKai-Z03;
+	text-indent: 36px;
+	text-align: left;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style15 {
+	font-family: FZKai-Z03;
+	text-indent: 36px;
+	text-align: left;
+	margin-left: 52px;
+	margin-right: 12px;
+}
+.style16 {
+	font-family: FZKai-Z03;
+	text-indent: 36px;
+	text-align: left;
+	margin-left: 92px;
+	margin-right: 12px;
+}
+</style>
+</head>
+
+<body background="../../../nabkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#993333" vlink="#333399" alink="#006633">
+
+<p align="center" class="style1"><font size="7" color="#0000FF">游戏编程精粹</font></p>
+<p align="center" class="style8">Game Programming Gems</p>
+
+<p align="center" class="style6">
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第1章 
+通用编程技术</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style9"><strong>1.0 神奇的数据驱动设计</strong></p>
+<p class="style12"><strong>Steve Rabin</strong></p>
+<p class="style9">其他书籍</p>
+<p class="style9"><span class="style13"><strong>《人工智能游戏编程真言》</strong></span></p>
+<p class="style9"><span class="style13"><strong>《游戏人工智能》</strong></span></p>
+<p class="style14">游戏由两部分组成，逻辑和数据。</p>
+<p class="style14">逻辑部分定义游戏引擎的核心原则和算法，数据部分则提供其内容和行为的具体细节。</p>
+<p class="style14">游戏数据应该从文件载入，而不应该内嵌在代码中。</p>
+<p class="style9"><strong>1.0.1 点子1——基础</strong></p>
+<p class="style14">创建一个能按需（而不是仅仅从系统启动的时候起）解析文本文件的系统。</p>
+<p class="style9"><strong>1.0.2 点子2——最低标准</strong></p>
+<p class="style14">不要硬编码常量：把常量放进文本文件中，这样进行改变时就不用重新编译代码了。</p>
+<p class="style9"><strong>1.0.3 点子3——杜绝硬编码</strong></p>
+<p class="style14">要假定任何东西都可能改变。</p>
+<p class="style9"><strong>1.0.4 点子4——将控制流写成脚本</strong></p>
+<p class="style14">脚本只是一种在代码外定义行为的方法。脚本对于定义游戏中的步骤顺序或需要触发的游戏事件非常有用。</p>
+<p class="style9"><strong>1.0.5 点子5——什么时候不适合使用脚本？</strong></p>
+<p class="style14">
+使用脚本编写数据驱动行为是使用数据驱动方法的自然后果。不过你需要记住数据驱动的核心思想：将逻辑和数据分开，复杂的逻辑在代码中运行，数据则保留在外面。</p>
+<p class="style14">如果逻辑太复杂，它应该放在代码中。脚本语言需要保持简洁，所以它们不会消耗你的游戏。</p>
+<p class="style9"><strong>1.0.6 点子6——避免重复数据</strong></p>
+<p class="style14">绝对不要复制代码，这是一条编程实践标准。</p>
+<p class="style9"><strong>1.0.7 点子7——开发工具来生成数据</strong></p>
+<p class="style14">实际的解决方法是采用一个工具来写这个文本文件。</p>
+<p class="style9"><strong>1.0.8 结论</strong></p>
+<p class="style14">当所有的东西都采用数据驱动的时候，你将拥有无限种发展的可能。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style9"><strong>1.1 面向对象的编程与设计技术</strong></p>
+<p class="style12"><strong>James Boer</strong></p>
+<p class="style9"><strong>1.1.1 代码风格</strong></p>
+<p class="style9"><strong>1.1.2 类设计</strong></p>
+<p class="style9"><strong>1.1.3 类层次结构设计</strong></p>
+<p class="style14">如果两个对象之间是“是”的关系，采用公有继承；如果是“有”的关系，则采用分层。</p>
+<p class="style9"><strong>1.1.4 设计模式</strong></p>
+<p class="style14">实现Facade类的首要原则是：尽量避免子系统内部类对外的暴露。</p>
+<p class="style9"><strong>1.1.5 总结</strong></p>
+<p class="style14">编写优秀的代码比过程代码更灵活、更具可维护性和可扩充性。&nbsp;</p>
+<p class="style9"><strong>1.1.6 参考文献</strong></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style9"><strong>1.2 使用模板元编程的快速数学方法</strong></p>
+<p class="style12"><strong>Pete Isensee</strong></p>
+<p class="style14">实际上任何算法能被模板化，算法的输入参数在编译期提供。只要有好的编译程序，中间代码可以完全优化掉，以达到极高的效率。&nbsp;</p>
+<p class="style9"><strong>1.2.1 斐波纳契数</strong></p>
+<p class="style9"><strong>1.2.2 阶乘</strong></p>
+<p class="style9"><strong>1.2.3 三角学</strong></p>
+<p class="style9"><strong>1.2.4 实际世界中的编译程序</strong></p>
+<p class="style14">所有的优化方法都需要经过实际的证明。应该检验编译程序生成的代码，并计算引入模板之前和之后的性能。</p>
+<p class="style9"><strong>1.2.5 重访三角学</strong></p>
+<p class="style9"><strong>1.2.6 模板和标准C++</strong></p>
+<p class="style9"><strong>1.2.7 矩阵</strong> </p>
+<p class="style9"><strong>1.2.8 总结</strong></p>
+<p class="style14">&nbsp;模板是以指令流方式直接生成算法的最有效途径。以通用方式减少和展开代码的能力是一项非常强大的编程技术。&nbsp;</p>
+<p class="style9"><strong>1.2.9 参考文献</strong></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style9"><strong>1.3 一种自动的Singleton工具</strong></p>
+<p class="style12"><strong>Scott Bilas</strong></p>
+<p class="style14">本文提出一种方便且安全的方法，提供到C++类singleton的访问，同时保留当其实例化和销毁时的完全控制。</p>
+<p class="style9"><strong>1.3.1 定义</strong></p>
+<p class="style14">signleton是一种对象，它在一个系统中的任何时候只有一个实例。</p>
+<p class="style9"><strong>1.3.2 优点</strong></p>
+<p class="style14">signleton提供了概念上的透明。</p>
+<p class="style14">signleton还提供了书写的便利性。</p>
+<p class="style9"><strong>1.3.3 问题</strong></p>
+<p class="style14">但我们真正需要的是既拥有把signleton当作全局对象来对特的方便性，又不会在它创建和销毁时失去对它的控制。</p>
+<p class="style9"><strong>1.3.4 传统的解决方法</strong></p>
+<p class="style14">TextureMgr&amp; GetTextureMgr( void )</p>
+<p class="style14">{</p>
+<p class="style15">static T s_Singleton;</p>
+<p class="style15">return { s_Singleton };</p>
+<p class="style14">}</p>
+<p class="style14">这种解决方法允许singleton按需实例化——在首次函数调用时。</p>
+<p class="style14">
+我们需要比这更为有力的控制。销毁次序在游戏中非常重要，因为有些子系统需要在其他子系统之前关闭和销毁。另外，如果我们需要在保持游戏运行的同时，关闭游戏的一部分呢？使用这个方法是办不到的。&nbsp;</p>
+<p class="style9"><strong>1.3.5 较好的方法</strong>&nbsp;</p>
+<p class="style9"><strong>1.3.6 更好的方法</strong>&nbsp;</p>
+<p class="style9"><strong>1.3.7 参考文献</strong></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style9"><strong>1.4 在游戏编程中使用STL</strong></p>
+<p class="style12"><strong>James Boer</strong></p>
+<p class="style9"><strong>1.4.1 STL的类型和术语</strong>&nbsp; </p>
+<p class="style14">STL容器表示经典的数据抽象和组织方案。</p>
+<p class="style14">迭代器可以看作指向容器内元素的指针。</p>
+<p class="style9"><strong>1.4.2 STL概念</strong></p>
+<p class="style14">STL容器按值，而不是按地址传送信息。</p>
+<p class="style9"><strong>1.4.3 向量（Vector）</strong></p>
+<p class="style14">STL向量在本质上就是变长数组。</p>
+<p class="style14">向量的行为与标准C数组几乎完全一致，只有一个主要的差别：它们是动态变长的。</p>
+<p class="style9"><strong>1.4.4 链表（List）</strong></p>
+<p class="style14">
+它用双向链表实现，因而任何插入和删除元素的操作都可以在真正的常数时间内完成。此能力的代价是损失了随机访问，而这是向量和双队列所允许的。</p>
+<p class="style9"><strong>1.4.5 双队列（Deque）</strong></p>
+<p class="style9"><strong>1.4.6 映射表（Map）</strong></p>
+<p class="style14">通过键查找值可以获得O(log n)的时间复杂度。</p>
+<p class="style9"><strong>1.4.7 堆栈（Stack），队列（Queue）和优先队列（Priority Queue）</strong></p>
+<p class="style14">// 使用双队列作为底层容器类型实现一个栈</p>
+<p class="style14">stack&lt;int&gt; c;</p>
+<p class="style14">// 使用向量作为底层容器类型实现一个栈</p>
+<p class="style14">stack&lt;int, vector&lt;int&gt; &gt; c;</p>
+<p class="style9"><strong>1.4.8 总结</strong></p>
+<p class="style9"><strong>1.4.9 参考文献</strong></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style9"><strong>1.5 一个通用的函数绑定接口</strong></p>
+<p class="style12"><strong>Scott Bilas</strong></p>
+<p class="style14">脚本引擎和网络消息传送有一个很重要的共同点，那就是它们都要求以类型安全、有效且便利的方式与游戏的功能接口。</p>
+
+<p class="style9"><strong>1.5.1 要求</strong></p>
+<p class="style14">对脚本引擎的基本要求是，可以调用函数并传递其参数。</p>
+<p class="style14">对网络RPC（远程过程调用）的基本要求是，可以从远程机器上调用函数并传递其参数。</p>
+
+<p class="style9"><strong>1.5.2 关于平台</strong></p>
+
+<p class="style9"><strong>1.5.3 第一次尝试</strong></p>
+
+<p class="style9"><strong>1.5.4 第二次尝试</strong></p>
+
+<p class="style9"><strong>1.5.5 部分解决方法</strong></p>
+<p class="style9"><strong>1.5.6 调用约定</strong></p>
+<p class="style9"><strong>1.5.7 调用函数</strong></p>
+<p class="style9"><strong>1.5.8 完备的解决方案</strong></p>
+<p class="style9"><strong>1.5.9 结论</strong></p>
+<p class="style9"><strong>1.5.10 参考文献</strong>&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style9"><strong>1.6 通用的基于句柄的资源管理器</strong></p>
+<p class="style12"><strong>Scott Bilas</strong></p>
+<p class="style14">所有的计算机应用都是数据库。它们大部分时间都在处理数据资源——创建、销毁、高速缓存、查询、保存以及恢复各种类型的对象。</p>
+
+<p class="style9"><strong>1.6.1 方法</strong></p>
+<p class="style14">资源管理器的工作是按需创建资源，将它们提供给需要使用的对象，并最终将其删除。</p>
+
+<p class="style9"><strong>1.6.2 Handle 类</strong></p>
+<p class="style14">用由两个比特域组成的无符号整数表示句柄是一种快速、安全的方式。</p>
+
+<p class="style9"><strong>1.6.3 HandleMgr 类</strong></p>
+
+<p class="style9"><strong>1.6.4 使用示例</strong></p>
+
+<p class="style9"><strong>1.6.5 注意</strong></p>
+<p class="style9"><strong>1.6.6 参考文献</strong></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style9"><strong>1.7 资源的内存管理</strong></p>
+<p class="style12"><strong>James Boer</strong></p>
+<p class="style14">
+我们的解决方案需要创建资源对象，这些对象能够自动加载、废除，并能基于其使用的模式重新加载数据。我们还将创建一个管理器来协调可用资源并控制对象资源对象的访问。这可以通过句柄来实现，句柄在本质上就是惟一标识符。</p>
+<p class="style9"><strong>1.7.1 资源类</strong></p>
+<p class="style9"><strong>1.7.2 资源管理类</strong></p>
+<p class="style14">管理资源问题的另一半是使用一个管理器，让它组织所有的存储资源，按需提供访问，并在内存预算范围内处理资源的动态配置与重分配 
+。</p>
+<p class="style9"><strong>1.7.3 句柄如何工作</strong></p>
+<p class="style14">SomeResource* pRes = (SomeResource*)resmgr.GetResource(hResHandle);</p>
+<p class="style14">if(!pRes)</p>
+<p class="style15">return Error;</p>
+<p class="style9"><strong>1.7.4 可能的扩展和改进</strong></p>
+<p class="style9"><strong>1.7.5 结论</strong> </p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style9"><strong>1.8 快速数据载入技巧</strong></p>
+<p class="style12"><strong>John Olsen</strong></p>
+<p class="style9"><strong>1.8.1 预处理你的数据</strong></p>
+<p class="style9"><strong>1.8.2 保存你的数据</strong></p>
+<p class="style9"><strong>1.8.3 使用简单方法载入你的数据</strong></p>
+<p class="style9"><strong>1.8.4 更安全地载入你的数据</strong></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style9"><strong>1.9 基于帧的内存分配</strong></p>
+<p class="style12"><strong>Steven Ranck</strong></p>
+<p class="style9"><strong>1.9.1 常规内存分配的挑战</strong></p>
+<p class="style9"><strong>1.9.2 介绍基于帧的内存</strong></p>
+<p class="style14">基于帧的内存可以消除内存碎片的问题并且使用起来非常快速。</p>
+<p class="style9"><strong>1.9.3 分配和释放内存</strong></p>
+<p class="style9"><strong>1.9.4 例子</strong></p>
+<p class="style9"><strong>1.9.5 结论</strong></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style9"><strong>1.10 简单快速的位数组</strong></p>
+<p class="style12"><strong>Andrew Kirmse</strong></p>
+<p class="style9">其他书籍</p>
+<p class="style12"><strong>《游戏编程精粹4》</strong></p>
+<p class="style9"><strong>1.10.1 概述</strong> </p>
+<p class="style9"><strong>1.10.2 位数组</strong></p>
+<p class="style14">BitArray bits(num_bits), other_bits(num_bits);</p>
+<p class="style14">bits.Clear();</p>
+<p class="style14">bits[10] = true;</p>
+<p class="style14">if((bits &amp; other_bits).AllBitsFalse()) {}</p>
+<p class="style9"><strong>1.10.3 其他数组</strong></p>
+<p class="style14">BitArray2D bits(10, 20);</p>
+<p class="style14">bits[5][4] = true;</p>
+<p class="style9"><strong>1.10.4 应用</strong></p>
+<p class="style9"><strong>1.10.5 参考文献</strong></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style9"><strong>1.11 在线游戏的网络协议</strong></p>
+<p class="style12"><strong>Andrew Kirmse</strong></p>
+<p class="style9">其他书籍</p>
+<p class="style12"><strong>《游戏编程精粹4》</strong></p>
+<p class="style14">大多数加密方案假定一个可信的发送者和一个可信的接收者要通过一个不可信的通道进行通信。</p>
+<p class="style9"><strong>1.11.1 定义</strong> </p>
+<p class="style14">协议设计主要针对于有一个或多个不可信客户端与一个可信中央服务器的客户/服务器类型在线游戏。</p>
+<p class="style9"><strong>1.11.2 篡改报文</strong> </p>
+<p class="style14">
+大多数针对协议的黑客攻击都是偶发的：他们尝试更改报文的字节看看会发生什么。针对此类攻击的第一线防御是一个简单的校验和。检验和是通过组合报文中每个字节得到的一个短数字。发送者计算报文的校验和并且将之与报文一起发送给接收者。接收者根据收到的报文重新计算校验和；如果计算得出的校验和发送者的校验和不匹配，则报文被破坏并且应该被丢弃。</p>
+<p class="style14">这种简单的校验和机制有两个弱点。首先，因为客户端程序包含校验和计算代码，攻击者可通过逆向工程获取校验和算法 
+，然后任何消息计算有效校验和。其次，攻击者可以捕获有效包并在稍后重发，这种攻击被称为报文重放攻击。</p>
+<p class="style9"><strong>1.11.3 报文重放</strong> </p>
+<p class="style9"><strong>1.11.4 其他技术</strong> </p>
+<p class="style14">要进一步干扰攻击者，每个报文可以包含一些可变长度的随机垃圾数据，其仅用来改变报文长度。</p>
+<p class="style9"><strong>1.11.5 逆向工程</strong> </p>
+<p class="style9"><strong>1.11.6 实现</strong> </p>
+<p class="style9"><strong>1.11.7 参考文献</strong></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style9"><strong>1.12 最大限度地利用Assert</strong></p>
+<p class="style12"><strong>Steve Rabin</strong></p>
+<p class="style9">其他书籍</p>
+<p class="style9"><span class="style13"><strong>《人工智能游戏编程真言》</strong></span></p>
+<p class="style9"><span class="style13"><strong>《游戏人工智能》</strong></span></p>
+<p class="style9"><strong>1.12.1 Assert基础</strong> </p>
+<p class="style9"><strong>1.12.2 Assert技巧 #1：嵌入更多信息</strong> </p>
+<p class="style9"><strong>1.12.3 Assert技巧 #2：嵌入更多更多信息</strong> </p>
+<p class="style9"><strong>1.12.4 Assert技巧 #3：使之更好用一些</strong></p>
+<p class="style9"><strong>1.12.5 Assert技巧 #4：编写自己的assert宏</strong></p>
+<p class="style9"><strong>1.12.6 Assert技巧 #5：无价之宝</strong></p>
+<p class="style9"><strong>1.12.7 Assert技巧 #6：给“超级铁杆”</strong></p>
+<p class="style9"><strong>1.12.8 Assert技巧 #7：让它更简单——复制和粘贴</strong></p>
+<p class="style9"><strong>1.12.9 参考文献</strong>&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style9"><strong>1.13 Stas：实时统计和游戏内调试</strong></p>
+<p class="style12"><strong>John Olsen</strong></p>
+<p class="style9"><strong>1.13.1 Why：需求驱动的技术</strong> </p>
+<p class="style9"><strong>1.13.2 How：一个进化过程</strong> </p>
+<p class="style9"><strong>1.13.3 What：一个基于C++类的系统</strong> </p>
+<p class="style9"><strong>1.13.4 What：可用性</strong> </p>
+<p class="style9"><strong>1.13.5 小结</strong></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style9"><strong>1.14 实时的游戏内建剖析</strong></p>
+<p class="style12"><strong>Steve Rabin</strong></p>
+<p class="style9">其他书籍</p>
+<p class="style9"><span class="style13"><strong>《人工智能游戏编程真言》</strong></span></p>
+<p class="style9"><span class="style13"><strong>《游戏人工智能》</strong></span></p>
+<p class="style9"><strong>1.14.1 开始考虑细节</strong> </p>
+<p class="style9"><strong>1.14.2 剖析器将告诉你什么？</strong> </p>
+<p class="style9"><strong>1.14.3 增加剖析器调用</strong> </p>
+<p class="style14">int main {</p>
+<p class="style15">// 在这里初始化代码</p>
+<p class="style14">&nbsp;</p>
+<p class="style15">ProfileInit(); // 你必须在主循环之前调用此函数</p>
+<p class="style14">&nbsp;</p>
+<p class="style15">while(!ExitGame) {</p>
+<p class="style16">ProfileBegin( &quot;Main Loop&quot; );</p>
+<p class="style14">&nbsp;</p>
+<p class="style16">ReadInput();</p>
+<p class="style16">UpdateGameLogic();</p>
+<p class="style14">&nbsp;</p>
+<p class="style16">ProfileBegin( &quot;Graphics Draw Routine&quot; );</p>
+<p class="style16">RenderScene();</p>
+<p class="style16">RenderProfileTextBuffer(); // 输出最后一帧的剖析信息文本</p>
+<p class="style16">ProfileEnd( &quot;Graphics Draw Routine&quot; );</p>
+<p class="style14">&nbsp;</p>
+<p class="style16">ProfileEnd( &quot;Main Loop&quot; );</p>
+<p class="style16">ProfileDumpOutputToBuffer(); // 将在下一帧中显示的缓冲区</p>
+<p class="style15">}</p>
+<p class="style14">}</p>
+<p class="style9"><strong>1.14.4 剖析器的实现</strong> </p>
+<p class="style9"><strong>1.14.5 ProfileBegin的细节</strong> </p>
+<p class="style9"><strong>1.14.6 ProfileEnd的细节</strong> </p>
+<p class="style9"><strong>1.14.7 处理剖析数据的细节</strong></p>
+<p class="style9"><strong>1.14.8 后期增强</strong></p>
+<p class="style14">{</p>
+<p class="style15">ProfileInstance profile_instance( &quot;Timing the For Loop&quot; );</p>
+<p class="style15">for( int i = 0; i &lt; 10000; i++ );</p>
+<p class="style14">}</p>
+<p class="style14">#define Profile(a) ProfileInstance profile_instance( a);</p>
+<p class="style14">{</p>
+<p class="style15">Profile( &quot;Timing the For Loop&quot; );</p>
+<p class="style15">for( int i = 0; i &lt; 10000; i++ );</p>
+<p class="style14">}</p>
+<p class="style9"><strong>1.14.9 将它们组合起来</strong></p>
+<p class="style9"><strong>1.14.10 参考文献</strong>&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="游戏编程精粹.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
+
+</body>
+
+</html>

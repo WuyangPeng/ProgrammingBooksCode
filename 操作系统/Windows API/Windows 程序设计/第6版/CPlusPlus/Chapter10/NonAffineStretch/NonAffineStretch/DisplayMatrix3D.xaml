@@ -1,0 +1,57 @@
+﻿<UserControl
+    x:Class="NonAffineStretch.DisplayMatrix3D"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NonAffineStretch"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Right" />
+            <Setter Property="Margin" Value="6 0" />
+        </Style>
+    </UserControl.Resources>
+
+    <Border BorderBrush="{StaticResource ApplicationForegroundThemeBrush}"
+            BorderThickness="1 0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Name="m11" Grid.Row="0" Grid.Column="0" />
+            <TextBlock Name="m12" Grid.Row="0" Grid.Column="1" />
+            <TextBlock Name="m13" Grid.Row="0" Grid.Column="2" />
+            <TextBlock Name="m14" Grid.Row="0" Grid.Column="3" />
+
+            <TextBlock Name="m21" Grid.Row="1" Grid.Column="0" />
+            <TextBlock Name="m22" Grid.Row="1" Grid.Column="1" />
+            <TextBlock Name="m23" Grid.Row="1" Grid.Column="2" />
+            <TextBlock Name="m24" Grid.Row="1" Grid.Column="3" />
+
+            <TextBlock Name="m31" Grid.Row="2" Grid.Column="0" />
+            <TextBlock Name="m32" Grid.Row="2" Grid.Column="1" />
+            <TextBlock Name="m33" Grid.Row="2" Grid.Column="2" />
+            <TextBlock Name="m34" Grid.Row="2" Grid.Column="3" />
+
+            <TextBlock Name="m41" Grid.Row="3" Grid.Column="0" />
+            <TextBlock Name="m42" Grid.Row="3" Grid.Column="1" />
+            <TextBlock Name="m43" Grid.Row="3" Grid.Column="2" />
+            <TextBlock Name="m44" Grid.Row="3" Grid.Column="3" />
+        </Grid>
+    </Border>
+</UserControl>

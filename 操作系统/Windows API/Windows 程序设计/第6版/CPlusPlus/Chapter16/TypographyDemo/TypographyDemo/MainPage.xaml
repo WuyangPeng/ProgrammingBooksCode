@@ -1,0 +1,61 @@
+﻿<Page
+    x:Class="TypographyDemo.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TypographyDemo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="48" />
+            <Setter Property="Margin" Value="6 6 6 0" />
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel>
+            <TextBlock Text="Small Caps are Nice for Titles"
+                       Typography.Capitals="SmallCaps" />
+            
+            <TextBlock Text="Some random contextual alternates make script look more natural"
+                       FontFamily="ms-appx:///Fonts/Linds.ttf#Lindsey"
+                       Typography.ContextualAlternates="True" />
+
+            <TextBlock Text="Stacked fractions: 1/2 1/4 1/8 1/3 2/3" 
+                       FontFamily="Palatino Linotype"
+                       Typography.Fraction="Stacked" />
+
+            <TextBlock Text="Historical forms: Four score and seven years ago"
+                       FontFamily="Palatino Linotype"
+                       Typography.HistoricalForms="True" />
+            
+            <TextBlock Text="Numeral alignment for tables: 0123456789"
+                       FontFamily="ms-appx:///Fonts/Miramo.ttf#Miramonte"
+                       Typography.NumeralAlignment="Tabular" />
+                
+            <TextBlock Text="Old-style numbers: 0123456789"
+                       FontFamily="Palatino Linotype"
+                       Typography.NumeralStyle="OldStyle" />
+
+            <TextBlock Text="Standard Swashes With The Pescadero Font"
+                       FontFamily="ms-appx:///Fonts/Pesca.ttf#Pescadero"
+                       Typography.StandardSwashes="1" />
+
+            <TextBlock Text="Slashed Zero: 0"
+                       FontFamily="ms-appx:///Fonts/Miramo.ttf#Miramonte"
+                       Typography.SlashedZero="True" />
+            
+            <TextBlock Text="STYLISTIC ALTERNATES WITH THE PERICLES FONT"
+                       FontFamily="ms-appx:///Fonts/Peric.ttf#Pericles"
+                       Typography.StylisticAlternates="1" />
+            
+            <TextBlock FontFamily="Palatino Linotype">
+                Sucrose is C<Run Typography.Variants="Inferior">12</Run
+                          >H<Run Typography.Variants="Inferior">22</Run
+                          >O<Run Typography.Variants="Inferior">11</Run>
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,5 @@
+C++ 多范型设计（Multi-Paradigm Design for C++）
+
+★
+作者：James O.Coplien
+其他书籍：《程序设计的模式语言》、《Advanced C++》。 

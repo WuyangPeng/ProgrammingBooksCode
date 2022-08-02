@@ -1,0 +1,14 @@
+C和C++安全编码（Secure Coding in C and C++）
+（第2版）
+
+华章网站：
+http://www.hzcourse.com/web/refbook/detail/5351/208
+官方网站：
+http://www.cert.org/books/secure-coding、 
+https://www.sei.cmu.edu/about/divisions/cert/index.cfm 、
+https://www.kb.cert.org/vuls/ 、
+http://oli.cmu.edu
+
+★
+作者：Robert C. Seacord
+其他书籍：《C安全编码标准》

@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<TITLE>Listing 3:	Allowing for supression per-project namespaces</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF" text="#000000"><B> Listing 3:</B>	Allowing for supression per-project namespaces<p>
+<pre>
+/* /////////////////////////////////////////////////////////////
+ * Extract from xmlstl.h
+ *
+ * www: http://www.xmlstl.org/
+ *
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * (Licensed under the Synesis Software Standard Source License:
+ *  http://www.synesis.com.au/licenses/ssssl.html)
+ * ////////////////////////////////////////////////////////// */
+
+#ifndef _XMLSTL_NO_NAMESPACE
+ #ifdef _STLSOFT_NO_NAMESPACE
+/* There is no stlsoft namespace, so must define ::xmlstl */
+namespace xmlstl
+{
+ #else
+/* Define stlsoft::xml_project */
+
+namespace stlsoft
+{
+
+namespace xml_project
+{
+
+ #endif /* _STLSOFT_NO_NAMESPACE */
+#endif /* !_XMLSTL_NO_NAMESPACE */
+</pre></BODY>
+
+</HTML>

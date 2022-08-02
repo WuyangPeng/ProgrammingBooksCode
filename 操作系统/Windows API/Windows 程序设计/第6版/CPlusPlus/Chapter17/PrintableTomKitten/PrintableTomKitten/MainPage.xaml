@@ -1,0 +1,89 @@
+<Page
+    x:Class="PrintableTomKitten.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PrintableTomKitten"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="White">
+        <ScrollViewer>
+            <StackPanel Name="bookPageStackPanel"
+                        MaxWidth="640"
+                        HorizontalAlignment="Center">
+
+                <local:TomKitten03 />
+                <local:TomKitten04 />
+                <local:TomKitten05 />
+                <local:TomKitten06 />
+                <local:TomKitten07 />
+                <local:TomKitten08 />
+                <local:TomKitten09 /> 
+                
+                <local:TomKitten10 />
+                <local:TomKitten11 />
+                <local:TomKitten13 />
+                <local:TomKitten12 />
+
+                <local:TomKitten14 />
+                <local:TomKitten15 />
+                <local:TomKitten17 />
+                <local:TomKitten16 />
+
+                <local:TomKitten18 />
+                <local:TomKitten19 />
+                <local:TomKitten21 />
+                <local:TomKitten20 />
+
+                <local:TomKitten22 />
+                <local:TomKitten23 />
+                <local:TomKitten25 />
+                <local:TomKitten24 />
+
+                <local:TomKitten26 />
+                <local:TomKitten27 />
+                <local:TomKitten29 />
+                <local:TomKitten28 />
+
+                <local:TomKitten30 />
+                <local:TomKitten31 />
+                <local:TomKitten33 />
+                <local:TomKitten32 />
+
+                <local:TomKitten34 />
+                <local:TomKitten35 />
+                <local:TomKitten37 />
+                <local:TomKitten36 />
+
+                <local:TomKitten38 />
+                <local:TomKitten39 />
+                <local:TomKitten41 />
+                <local:TomKitten40 />
+
+                <local:TomKitten42 />
+                <local:TomKitten43 />
+                <local:TomKitten45 />
+                <local:TomKitten44 />
+
+                <local:TomKitten46 />
+                <local:TomKitten47 />
+                <local:TomKitten49 />
+                <local:TomKitten48 />
+
+                <local:TomKitten50 />
+                <local:TomKitten51 />
+                <local:TomKitten53 />
+                <local:TomKitten52 />
+
+                <local:TomKitten54 />
+                <local:TomKitten55 />
+                <local:TomKitten56 />
+                <local:TomKitten57 />
+
+                <local:TomKitten59 />
+                <local:TomKitten58 />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

@@ -1,0 +1,15 @@
+C++ Primer
+
+官方网站 
+http://www.informit.com/store/product.aspx?isbn=0201721481 、
+http://www.informit.com/title/0321714113。
+
+第4版
+★★☆
+作者：Stanley B.Lippman、Josee Lajoie、Barbara E.Moo。
+其他书籍：Stanley B.Lippman《Essential C++》、《深度探索C++对象模型》，Barbara E.Moo《Accelerated C++》、《C++ 沉思录》。
+
+第5版
+★★★★
+作者：Stanley B.Lippman、Josee Lajoie、Barbara E.Moo。
+其他书籍：Stanley B.Lippman《Essential C++》、《深度探索C++对象模型》，Barbara E.Moo《Accelerated C++》、《C++ 沉思录》。

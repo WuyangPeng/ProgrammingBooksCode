@@ -1,0 +1,38 @@
+<Page
+    x:Class="SimpleKeyFrameAnimation.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SimpleKeyFrameAnimation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Path Fill="Blue">
+            <Path.Data>
+                <EllipseGeometry x:Name="ellipse"
+                                 RadiusX="24"
+                                 RadiusY="24" />
+            </Path.Data>
+        </Path>
+    </Grid>
+
+    <Page.Triggers>
+        <EventTrigger>
+            <BeginStoryboard>
+                <Storyboard>
+                    <PointAnimationUsingKeyFrames Storyboard.TargetName="ellipse"
+                                                  Storyboard.TargetProperty="Center"
+                                                  EnableDependentAnimation="True"
+                                                  RepeatBehavior="Forever">
+                        <DiscretePointKeyFrame KeyTime="0:0:0" Value="100 100" />
+                        <LinearPointKeyFrame KeyTime="0:0:2" Value="700 700" />
+                        <LinearPointKeyFrame KeyTime="0:0:2.1" Value="700 100" />
+                        <LinearPointKeyFrame KeyTime="0:0:4.1" Value="100 700" />
+                        <LinearPointKeyFrame KeyTime="0:0:4.2" Value="100 100" />
+                    </PointAnimationUsingKeyFrames>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Page.Triggers>
+</Page>

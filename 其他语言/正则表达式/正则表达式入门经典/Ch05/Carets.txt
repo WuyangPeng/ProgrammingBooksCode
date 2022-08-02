@@ -1,0 +1,9 @@
+14^2 expresses the idea of 14 to the power 2.
+
+The ^ character is called a caret.
+
+The _ character is called an underscore or underline character.
+
+3^2 = 9
+
+Eating ^s helps you see in the dark. At least that's what I think he said.

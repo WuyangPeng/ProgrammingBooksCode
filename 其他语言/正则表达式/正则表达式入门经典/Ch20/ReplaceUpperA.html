@@ -1,0 +1,19 @@
+<html>
+<head>
+<title>Replace Upper Case A</title>
+<script language="vbscript" type="text/vbscript">
+Function MatchTest
+Dim myRegExp, TestString, Match
+Set myRegExp = new RegExp
+myRegExp.Pattern = "A"
+TestString = "Andrew"
+Match = myRegexp.Replace(TestString, "B")
+MsgBox Match
+End Function
+
+</script>
+</head>
+<body onload="MatchTest">
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<Page
+    x:Class="TextOnCanvas.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TextOnCanvas"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"    FontSize="48">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Canvas>
+            <TextBlock Text="Text on Canvas at (0, 0)"
+                       Canvas.Left="0"
+                       Canvas.Top="0" />
+
+            <TextBlock Text="Text on Canvas at (200, 100)"
+                       Canvas.Left="200"
+                       Canvas.Top="100" />
+
+            <TextBlock Text="Text on Canvas at (400, 200)"
+                       Canvas.Left="400"
+                       Canvas.Top="200" />
+        </Canvas>
+    </Grid>
+</Page>

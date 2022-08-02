@@ -1,0 +1,9 @@
+数据库系统基础教程（A First Course in Database Systems）
+（第3版）
+
+官方网站：
+http://infolab.stanford.edu/~ullman/fcdb.html
+
+★
+作者：Jeffrey D.Ullman、Jennifer Widom 
+

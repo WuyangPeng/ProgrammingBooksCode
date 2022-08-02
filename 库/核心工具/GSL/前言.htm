@@ -1,0 +1,584 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="GENERATOR" content="Microsoft FrontPage 12.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>前言</title>
+<link rel="stylesheet" type="text/css" href="../../../news.css">
+<meta name="Microsoft Theme" content="nature 011">
+<style type="text/css">
+.style1 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+}
+.style6 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+	color: #0000FF;
+}
+.style9 {
+	font-family: FZKai-Z03;
+	text-indent: 0;
+	text-align: center;
+}
+.style10 {
+	font-family: FZKai-Z03;
+	text-align: center;
+	font-size: medium;
+}
+.style11 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+	font-size: large;
+	color: #0000FF;
+}
+.style12 {
+	font-family: FZKai-Z03;
+	text-indent: 32px;
+	text-align: left;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style14 {
+	border: 1px solid #000000;
+}
+.style15 {
+	text-align: center;
+	border: 1px solid #000000;
+}
+.style16 {
+	color: #FF00FF;
+}
+.style17 {
+	font-family: FZKai-Z03;
+	text-align: left;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style18 {
+	font-family: FZKai-Z03;
+	text-indent: 0;
+	text-align: left;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style19 {
+	font-family: FZKai-Z03;
+}
+.style20 {
+	line-height: 150%;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style22 {
+	font-family: FZKai-Z03;
+	font-size: smaller;
+}
+.style24 {
+	line-height: 150%;
+	margin-left: 12px;
+	margin-right: 12px;
+	font-family: FZKai-Z03;
+	font-size: 13px;
+	color: rgb(36, 41, 47);
+	letter-spacing: normal;
+}
+.style25 {
+	margin: 0px 12px;
+	padding: 16px;
+	line-height: 150%;
+	font-family: FZKai-Z03;
+	font-size: 13.6px;
+	color: rgb(36, 41, 47);
+	font-style: normal;
+	font-weight: 400;
+	letter-spacing: normal;
+	text-align: start;
+	text-indent: 0px;
+	text-transform: none;
+	word-spacing: 0px;
+	background-color: var(--color-canvas-subtle);
+}
+</style>
+</head>
+
+<body background="../../../nabkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#993333" vlink="#333399" alink="#006633">
+
+<p align="center" class="style1"><font size="7" color="#0000FF">GSL</font></p>
+<p align="center" class="style11">Guidelines Support Library</p>
+
+<p align="center" class="style6">
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>前言</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style9"><strong>GSL: 指南支持库</strong></p>
+<p class="style12">指南支持库（GSL）包含由<a href="https://isocpp.org">标准 C++ 基金会</a>维护的<a href="https://github.com/isocpp/CppCoreGuidelines">C++ 
+核心指南</a>建议使用的函数和类型。此存储库包含Microsoft的GSL实现。</p>
+<p class="style12">整个实现在gsl目录下的头文件中内联提供。该实现通常假设一个实现 C++14 支持的平台。</p>
+<p class="style12">虽然某些类型已分解为它们自己的头文件（例如 gsl/span），但最简单的方法是仅包含 gsl/gsl 
+并获得对整个库的访问权限。</p>
+<p class="style12">注意：我们鼓励改进或改进此库中的任何类型以及移植到其他平台的贡献。 
+有关贡献的更多信息，请参阅CONTRIBUTING.md。</p>
+<p class="style9"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style9"><strong>项目行为准则</strong></p>
+<p class="style12">本项目采用了<a href="https://opensource.microsoft.com/codeofconduct/">微软开源行为准则</a>。有关详细信息，请参阅行为准则常见<a href="https://opensource.microsoft.com/codeofconduct/faq/">问题解答</a>或联系<a href="mailto:opencode@microsoft.com">opencode@microsoft.com</a>提出任何其他问题或意见。</p>
+<p class="style9"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style9"><strong>第三方库的使用</strong></p>
+<p class="style12">该项目使用了<a href="https://github.com/google/googletest">Google 
+Test</a>测试库。有关Google Test许可的详细信息，请参阅ThirdPartyNotices.txt文件。</p>
+<p class="style9"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style9"><strong>支持的功能</strong></p>
+<p class="style9"><strong>Microsoft GSL实现了C++核心指南中的以下内容：</strong></p>
+<table style="width: 50%" class="style14" align="center">
+	<tr>
+		<td class="style15" style="width: 10%">特征</td>
+		<td class="style15" style="width: 10%">支持的？</td>
+		<td class="style15" style="width: 40%">描述</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%"><strong>
+		<a href="https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#gslview-views">
+		1. Views</a></strong></td>
+		<td class="style15" style="width: 10%">&nbsp;</td>
+		<td class="style14" style="width: 40%">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">owner </td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">原始指针的别名</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">not_null</td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">限制指针/智能指针以保存非空值</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">span </td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">一个连续的内存序列的视图。基于std::span 
+		的标准化版本，但是 gsl::span 强制执行边界检查。有关其他信息，请参阅 
+		<a href="https://github.com/microsoft/GSL/wiki/gsl::span-and-std::span">
+		wiki</a>。</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">span_p </td>
+		<td class="style15" style="width: 10%">X</td>
+		<td class="style14" style="width: 40%">跨越从指针到谓词为真的第一个位置的范围</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">basic_zstring </td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">指向具有模板化 char 类型的 C 
+		字符串（以零结尾的数组）的指针</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%; height: 22px">zstring </td>
+		<td class="style15" style="width: 10%; height: 22px">√</td>
+		<td class="style14" style="height: 22px; width: 40%">具有动态范围和 char 
+		类型为char的 basic_zstring的别名</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">czstring</td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">具有动态范围和 char 类型为const char的 
+		basic_zstring的别名</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">wzstring</td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">具有动态范围和 char 类型为wchar_t的 
+		basic_zstring的别名</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">cwzstring</td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">具有动态范围和 char 类型为const wchar_t的 
+		basic_zstring的别名</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">u16zstring </td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">具有动态范围和 char 类型为char16_t 的 
+		basic_zstring的别名</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">cu16zstring </td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">具有动态范围和 char 类型为const char16_t 的 
+		basic_zstring的别名</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">u32zstring </td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">具有动态范围和 char 类型为char32_t 的 
+		basic_zstring的别名</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">cu32zstring</td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">具有动态范围和 char 类型为const char32_t 的 
+		basic_zstring的别名</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%"><strong>
+		<a href="https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#gslowner-ownership-pointers">
+		2. Owners</a></strong></td>
+		<td class="style15" style="width: 10%">&nbsp;</td>
+		<td class="style14" style="width: 40%">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">unique_ptr</td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">std::unique_ptr 的别名</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">shared_ptr </td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">std::shared_ptr 的别名</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">stack_array</td>
+		<td class="style15" style="width: 10%">X</td>
+		<td class="style14" style="width: 40%">栈分配的数组</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">dyn_array </td>
+		<td class="style15" style="width: 10%">X</td>
+		<td class="style14" style="width: 40%">堆分配的数组</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%"><strong>
+		<a href="https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#gslassert-assertions">
+		3. Assertions</a></strong></td>
+		<td class="style15" style="width: 10%">&nbsp;</td>
+		<td class="style14" style="width: 40%">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">Expects</td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">前置条件断言；失败时终止</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">Ensures </td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">后置条件断言；失败时终止</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%"><strong>
+		<a href="https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#gslutil-utilities">
+		4. Utilities</a></strong></td>
+		<td class="style15" style="width: 10%">&nbsp;</td>
+		<td class="style14" style="width: 40%">&nbsp;</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">move_owner </td>
+		<td class="style15" style="width: 10%">X</td>
+		<td class="style14" style="width: 40%">将一个所有者移动到另一个所有者的辅助函数</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">byte</td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">std::byte 的别名或字节类型</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">final_action </td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">一个RAII样式类，在其销毁时调用仿函数</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">finally </td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">实例化 final_action 的辅助函数</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">GSL_SUPPRESS</td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">接受参数并将其转换为 [[gsl::suppress(x)]] 或 
+		[[gsl::suppress(&quot;x&quot;)]] 的宏</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">[[implicit]]</td>
+		<td class="style15" style="width: 10%">X</td>
+		<td class="style14" style="width: 40%">一个“标记”，用于放置单参数构造函数以显式地使其非显式</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">index</td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">用于所有容器和数组索引的类型（当前为 std::ptrdiff_t 
+		的别名）</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">joining_thread</td>
+		<td class="style15" style="width: 10%">X</td>
+		<td class="style14" style="width: 40%">joins的 std::thread 的 RAII 样式版本</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">narrow </td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">一个检查版本的narrow_cast；它可以抛出<span style="color: rgb(36, 41, 47); font-family: ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace; font-size: 13.6px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgba(175, 184, 193, 0.2); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">narrowing_error</span></td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">narrow_cast</td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">值的缩小转换和 static_cast 的同义词</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">narrowing_error </td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">narrow() 抛出的自定义异常类型</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%"><strong>
+		<a href="https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#gslconcept-concepts">
+		5. Concepts</a></strong></td>
+		<td class="style15" style="width: 10%">X</td>
+		<td class="style14" style="width: 40%">&nbsp;</td>
+	</tr>
+</table>
+<p class="style9"><strong>C++ 核心指南中不存在或已删除以下功能：</strong></p>
+<table style="width: 50%" class="style14" align="center">
+	<tr>
+		<td class="style15" style="width: 10%">特征</td>
+		<td class="style15" style="width: 10%">支持的？</td>
+		<td class="style15" style="width: 40%">描述</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">strict_not_null</td>
+		<td class="style15" style="width: 10%">√</td>
+		<td class="style14" style="width: 40%">具有显式构造函数的更严格的 not_null 版本</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">multi_span </td>
+		<td class="style15" style="width: 10%">X</td>
+		<td class="style14" style="width: 40%">已弃用。 多维跨度。</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">strided_span </td>
+		<td class="style15" style="width: 10%">X</td>
+		<td class="style14" style="width: 40%">已弃用。 已停止支持此类型。</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">basic_string_span </td>
+		<td class="style15" style="width: 10%">X</td>
+		<td class="style14" style="width: 40%">已弃用。 与 span 类似，但适用于具有模板化 char 
+		类型的字符串</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">string_span </td>
+		<td class="style15" style="width: 10%">X</td>
+		<td class="style14" style="width: 40%">已弃用。char 类型为char的basic_string_span的别名</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%; height: 22px">cstring_span </td>
+		<td class="style15" style="width: 10%; height: 22px">X</td>
+		<td class="style14" style="width: 40%; height: 22px">已弃用。char 类型为const 
+		char的basic_string_span的别名</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">wstring_span </td>
+		<td class="style15" style="width: 10%">X</td>
+		<td class="style14" style="width: 40%">已弃用。char 类型为wchar_t的basic_string_span的别名</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">cwstring_span </td>
+		<td class="style15" style="width: 10%">X</td>
+		<td class="style14" style="width: 40%">已弃用。char 类型为const wchar_t的basic_string_span的别名</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">u16string_span</td>
+		<td class="style15" style="width: 10%">X</td>
+		<td class="style14" style="width: 40%">已弃用。char 类型为char16_t的basic_string_span的别名</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">cu16string_span </td>
+		<td class="style15" style="width: 10%">X</td>
+		<td class="style14" style="width: 40%; height: 22px">已弃用。char 类型为const 
+		char16_t的basic_string_span的别名</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">u32string_span </td>
+		<td class="style15" style="width: 10%">X</td>
+		<td class="style14" style="width: 40%">已弃用。char 类型为char32_t的basic_string_span的别名</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 10%">cu32string_span</td>
+		<td class="style15" style="width: 10%">X</td>
+		<td class="style14" style="width: 40%; height: 22px">已弃用。char 类型为const 
+		char32_t的basic_string_span的别名</td>
+	</tr>
+</table>
+<p class="style12">这是基于 
+<a href="https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md#gsl-guidelines-support-library">
+CppCoreGuidelines 半规范</a>。</p>
+<p class="style9"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style9"><strong>快速开始</strong></p>
+<p class="style9"><strong>支持的编译器/工具集</strong></p>
+<p class="style12">GSL官方支持带有 MSVC 和 LLVM的 VS ，GCC，Clang 和带有 
+Apple-Clang 的 XCode的最新和以前的主要版本。&nbsp; 
+在这两个主要版本中，我们尝试针对最新的次要更新/修订（尽管这可能会受到工具链发布与广泛使用之间的延迟的影响）。 下表显示了当前正在测试的版本。</p>
+<table style="width: 50%" class="style14" align="center">
+	<tr>
+		<td class="style15" style="width: 15%">编译器</td>
+		<td class="style15" style="width: 40%">当前测试的工具集版本</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 15%">XCode</td>
+		<td class="style14" style="width: 40%">13.2.1 &amp; 12.5.1</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 15%">GCC</td>
+		<td class="style14" style="width: 40%">11<span class="style16"><sup>1</sup></span> 
+		&amp; 10<span class="style16"><sup>2</sup></span></td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 15%">Clang</td>
+		<td class="style14" style="width: 40%">12<span class="style16"><sup>2
+		</sup></span>&amp; 11<span class="style16"><sup>2</sup></span></td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 15%">Visual Studio with MSVC</td>
+		<td class="style14" style="width: 40%">VS2022<span class="style16"><sup>3</sup></span> 
+		&amp; VS2019<span class="style16"><sup>4</sup></span></td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 15%">Visual Studio with LLVM</td>
+		<td class="style14" style="width: 40%">VS2022<span class="style16"><sup>3</sup></span> 
+		&amp; VS2019<span class="style16"><sup>4</sup></span></td>
+	</tr>
+</table>
+<p class="style12">如果您成功地将 GSL 移植到另一个平台，我们很乐意收到您的来信！</p>
+<ul>
+	<li>
+	<p class="style18">提交指定平台和目标的问题。</p>
+	</li>
+	<li>
+	<p class="style18">考虑通过提交包含任何必要更改的拉取请求来贡献您的更改。</p>
+	</li>
+	<li>
+	<p class="style18">如果可能，添加 CI/CD 步骤并将按钮添加到下表中！</p>
+	</li>
+</ul>
+<table style="width: 50%" class="style14" align="center">
+	<tr>
+		<td class="style15" style="width: 15%">目标</td>
+		<td class="style15" style="width: 40%">CI/CD 状态</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 15%">iOS</td>
+		<td class="style14" style="width: 40%">CI_iOS passing</td>
+	</tr>
+	<tr>
+		<td class="style14" style="width: 15%">Android</td>
+		<td class="style14" style="width: 40%">CI_Android passing</td>
+	</tr>
+</table>
+<p class="style12">注意：这些 CI/CD 步骤随每个拉取请求运行，但其中的失败是非阻塞的。 </p>
+<p class="style9"><strong>构建测试</strong></p>
+<ul>
+	<li>
+	<p class="style18">要构建测试，您将需要以下内容：</p>
+	</li>
+</ul>
+<p class="style12">要 <a href="http://cmake.org">CMake</a> 版本 3.1.3（AppleClang 为 
+3.2.3）或更高版本并安装在您的 PATH 中。</p>
+<p class="style12">这些步骤假定此存储库的源代码已被克隆到名为 c:\GSL 的目录中。</p>
+<ol>
+	<li>
+	<p class="style18">创建一个目录以包含特定架构的构建输出（在本示例中我们将其命名为 
+	<a href="file:///c:/GSL/build-x86">c:\GSL\build-x86</a>）。</p>
+	</li>
+</ol>
+<pre class="style20" style="box-sizing: border-box; font-family: ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace; font-size: 13.6px; margin-top: 0px; margin-bottom: 16px; overflow-wrap: normal; padding: 16px; overflow: auto; background-color: var(--color-canvas-subtle); border-radius: 6px; color: rgb(36, 41, 47); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><code style="border-style: none; border-color: inherit; border-width: 0px; box-sizing: border-box; font-size: 13.6px; padding: 0px; margin: 0px; background: transparent; border-radius: 6px; word-break: normal; white-space: pre; display: inline; overflow: visible; line-height: inherit; overflow-wrap: normal;" class="style19"> cd GSL
+ md build-x86
+ cd build-x86</code></pre>
+<ol start="2">
+	<li>
+	<p class="style18">配置 CMake 以使用您选择的编译器（您可以通过运行 cmake --help 查看列表）。</p>
+	</li>
+</ol>
+<pre class="style20" style="box-sizing: border-box; font-family: ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace; font-size: 13.6px; margin-top: 0px; margin-bottom: 16px; overflow-wrap: normal; padding: 16px; overflow: auto; background-color: var(--color-canvas-subtle); border-radius: 6px; color: rgb(36, 41, 47); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><code style="border-style: none; border-color: inherit; border-width: 0px; box-sizing: border-box; font-size: 13.6px; padding: 0px; margin: 0px; background: transparent; border-radius: 6px; word-break: normal; white-space: pre; display: inline; overflow: visible; line-height: inherit; overflow-wrap: normal;" class="style19">cmake -G &quot;Visual Studio 15 2017&quot; c:\GSL</code></pre>
+<ol start="3">
+	<li>
+	<p class="style18">构建测试套件（在这种情况下，在 Debug 配置中，Release 是另一个不错的选择）。</p>
+	</li>
+</ol>
+<pre class="style20" style="box-sizing: border-box; font-family: ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace; font-size: 13.6px; margin-top: 0px; margin-bottom: 16px; overflow-wrap: normal; padding: 16px; overflow: auto; background-color: var(--color-canvas-subtle); border-radius: 6px; color: rgb(36, 41, 47); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><code style="border-style: none; border-color: inherit; border-width: 0px; box-sizing: border-box; font-size: 13.6px; padding: 0px; margin: 0px; background: transparent; border-radius: 6px; word-break: normal; white-space: pre; display: inline; overflow: visible; line-height: inherit; overflow-wrap: normal;" class="style19"> cmake --build . --config Debug</code></pre>
+<ol start="4">
+	<li>
+	<p class="style18">运行测试套件。</p>
+	</li>
+</ol>
+<pre class="style20" style="box-sizing: border-box; font-family: ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace; font-size: 13.6px; margin-top: 0px; margin-bottom: 16px; overflow-wrap: normal; padding: 16px; overflow: auto; background-color: var(--color-canvas-subtle); border-radius: 6px; color: rgb(36, 41, 47); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><code style="border-style: none; border-color: inherit; border-width: 0px; box-sizing: border-box; font-size: 13.6px; padding: 0px; margin: 0px; background: transparent; border-radius: 6px; word-break: normal; white-space: pre; display: inline; overflow: visible; line-height: inherit; overflow-wrap: normal;" class="style19">ctest -C Debug</code></pre>
+<p class="style12">所有测试都应该通过 - 表明您的平台完全受支持并且您已准备好使用 GSL 类型！</p>
+<p class="style9"><strong>构建 GSL - 使用 vcpkg</strong></p>
+<p class="style12">您可以使用<a href="https://github.com/Microsoft/vcpkg">vcpkg</a>依赖管理器下载并安装 
+GSL：</p>
+<pre class="style20" style="box-sizing: border-box; font-family: ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace; font-size: 13.6px; margin-top: 0px; margin-bottom: 16px; overflow-wrap: normal; padding: 16px; overflow: auto; background-color: var(--color-canvas-subtle); border-radius: 6px; color: rgb(36, 41, 47); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><code style="border-style: none; border-color: inherit; border-width: 0px; box-sizing: border-box; padding: 0px; margin: 0px; background: transparent; border-radius: 6px; word-break: normal; white-space: pre; display: inline; overflow: visible; line-height: inherit; overflow-wrap: normal;" class="style22">git clone https://github.com/Microsoft/vcpkg.git
+cd vcpkg
+./bootstrap-vcpkg.sh
+./vcpkg integrate install
+vcpkg install ms-gsl</code></pre>
+<p class="style12">vcpkg 中的 GSL 端口由 Microsoft 团队成员和社区贡献者保持最新。 如果版本过期，请在 vcpkg 
+存储库上<a href="https://github.com/Microsoft/vcpkg">创建问题或拉取请求</a>。</p>
+<p class="style9"><strong>使用库</strong></p>
+<p class="style12">由于这些类型完全在头文件中内联实现，因此没有链接要求。</p>
+<p class="style12">您可以将 gsl 目录复制到源代码树中，以便编译器可以使用它，然后在程序中包含适当的头文件。</p>
+<p class="style12">或者，将编译器的包含路径标志设置为指向 GSL 开发文件夹（在上面的示例中为 
+c:\GSL\include）或安装文件夹（在运行安装之后）。 例如。</p>
+<p class="style12">MSVC++</p>
+<pre class="style20" style="box-sizing: border-box; font-family: ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace; font-size: 13.6px; margin-top: 0px; margin-bottom: 16px; overflow-wrap: normal; padding: 16px; overflow: auto; background-color: var(--color-canvas-subtle); border-radius: 6px; color: rgb(36, 41, 47); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><code style="border-style: none; border-color: inherit; border-width: 0px; box-sizing: border-box; font-size: 13.6px; padding: 0px; margin: 0px; background: transparent; border-radius: 6px; word-break: normal; white-space: pre; display: inline; overflow: visible; line-height: inherit; overflow-wrap: normal;" class="style19">/I c:\GSL\include</code></pre>
+<p class="style12">GCC/clang</p>
+<pre class="style24" style="box-sizing: border-box; margin-top: 0px; margin-bottom: 16px; overflow-wrap: normal; padding: 16px; overflow: auto; background-color: var(--color-canvas-subtle); border-radius: 6px; font-variant-ligatures: normal; font-variant-caps: normal; orphans: 2; text-align: start; text-indent: 0px; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">-I$HOME/dev/GSL/include</pre>
+<p class="style12">使用以下方法包含库：</p>
+<pre class="style24" style="box-sizing: border-box; margin-top: 0px; margin-bottom: 16px; overflow-wrap: normal; padding: 16px; overflow: auto; background-color: var(--color-canvas-subtle); border-radius: 6px; font-variant-ligatures: normal; font-variant-caps: normal; orphans: 2; text-align: start; text-indent: 0px; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">#include &lt;gsl/gsl&gt;</pre>
+<p class="style9"><strong>在 CMake 中的使用</strong></p>
+<p class="style12">该库为 CMake 提供了一个配置文件，安装后可以通过</p>
+<pre class="style20" style="box-sizing: border-box; font-family: ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace; font-size: 13.6px; margin-top: 0px; margin-bottom: 16px; overflow-wrap: normal; padding: 16px; overflow: auto; background-color: var(--color-canvas-subtle); border-radius: 6px; color: rgb(36, 41, 47); font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><code style="border-style: none; border-color: inherit; border-width: 0px; box-sizing: border-box; font-size: 13.6px; padding: 0px; margin: 0px; background: transparent; border-radius: 6px; word-break: normal; white-space: pre; display: inline; overflow: visible; line-height: inherit; overflow-wrap: normal;" class="style19">find_package(Microsoft.GSL CONFIG)</code></pre>
+<p class="style12">如果成功，它将添加名为 Microsoft.GSL::GSL 的库目标，您可以通过通常的 
+target_link_libraries 机制使用它。</p>
+<p class="style19">&nbsp;</p>
+<p class="style9"><strong>获取内容</strong></p>
+<p class="style12">如果您使用的是 cmake 3.11+ 版，您可以使用官方的 FetchContent 模块。 这使您可以轻松地将 GSL 
+合并到您的项目中。</p>
+<pre style="box-sizing: border-box; overflow-wrap: normal; overflow: auto; border-radius: 6px; word-break: normal; font-variant-ligatures: normal; font-variant-caps: normal; orphans: 2; widows: 2; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;" class="style25"><span class="pl-c" style="box-sizing: border-box; color: var(--color-prettylights-syntax-comment);"># NOTE: This example uses cmake version 3.14 (FetchContent_MakeAvailable).</span>
+<span class="pl-c" style="box-sizing: border-box; color: var(--color-prettylights-syntax-comment);"># Since it streamlines the FetchContent process</span>
+<span class="pl-c1" style="box-sizing: border-box; color: var(--color-prettylights-syntax-constant);">cmake_minimum_required</span>(<span class="pl-k" style="box-sizing: border-box; color: var(--color-prettylights-syntax-keyword);">VERSION</span> 3.14)
+
+<span class="pl-c1" style="box-sizing: border-box; color: var(--color-prettylights-syntax-constant);">include</span>(FetchContent)
+
+<span class="pl-c" style="box-sizing: border-box; color: var(--color-prettylights-syntax-comment);"># In this example we are picking a specific tag.</span>
+<span class="pl-c" style="box-sizing: border-box; color: var(--color-prettylights-syntax-comment);"># You can also pick a specific commit, if you need to.</span>
+FetchContent_Declare(GSL
+    GIT_REPOSITORY <span class="pl-s" style="box-sizing: border-box; color: var(--color-prettylights-syntax-string);">&quot;https://github.com/microsoft/GSL&quot;</span>
+    GIT_TAG <span class="pl-s" style="box-sizing: border-box; color: var(--color-prettylights-syntax-string);">&quot;v3.1.0&quot;</span>
+)
+
+FetchContent_MakeAvailable(GSL)
+
+<span class="pl-c" style="box-sizing: border-box; color: var(--color-prettylights-syntax-comment);"># Now you can link against the GSL interface library</span>
+<span class="pl-c1" style="box-sizing: border-box; color: var(--color-prettylights-syntax-constant);">add_executable</span>(foobar)
+
+<span class="pl-c" style="box-sizing: border-box; color: var(--color-prettylights-syntax-comment);"># Link against the interface library (IE header only library)</span>
+<span class="pl-c1" style="box-sizing: border-box; color: var(--color-prettylights-syntax-constant);">target_link_libraries</span>(foobar <span class="pl-k" style="box-sizing: border-box; color: var(--color-prettylights-syntax-keyword);">PRIVATE</span> GSL)</pre>
+<p class="style9"><strong>调试可视化支持</strong></p>
+<p class="style12">对于 Visual Studio 用户，如果您希望 Visual Studio 调试器中 GSL 
+类型的可视化比默认提供的更有用，则可以将存储库根目录中的文件 GSL.natvis 添加到您的项目中。</p>
+<p class="style12">如果您使用的是 cmake，这将自动为您完成。 请参阅“GSL_VS_ADD_NATIVE_VISUALIZERS”。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style17"><span class="style16"><sup>1 </sup></span>精确版本可以在<a href="https://dev.azure.com/cppstat/GSL/_build?definitionId=1&amp;branchFilter=26">最新的 
+CI 结果</a>中找到。</p>
+<p class="style17"><span class="style16"><sup>2 </sup></span>精确版本可以在<a href="https://dev.azure.com/cppstat/GSL/_build?definitionId=1&amp;branchFilter=26">最新的 
+CI 结果</a>中找到。应该是<a href="https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-Readme.md#language-and-runtime">这里</a>指定的版本。</p>
+<p class="style17"><span class="style16"><sup>3 </sup></span>精确版本可以在<a href="https://dev.azure.com/cppstat/GSL/_build?definitionId=1&amp;branchFilter=26">最新的 
+CI 结果</a>中找到。应该是<a href="https://github.com/actions/virtual-environments/blob/main/images/win/Windows2022-Readme.md#visual-studio-enterprise-2022">这里</a>指定的版本。</p>
+<p class="style17"><span class="style16"><sup>4 </sup></span>精确版本可以在<a href="https://dev.azure.com/cppstat/GSL/_build?definitionId=1&amp;branchFilter=26">最新的 
+CI 结果</a>中找到。应该是<a href="https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md#visual-studio-enterprise-2019">这里</a>指定的版本。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="GSL.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
+
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+X:\test>Atomic_Test_bc56.exe
+Atomic_Test (Borland C++ 5.6)
+# processors: 	1
+# threads:	31
+Unguarded (++/--) 	1000000 	 983
+Synesis Atomic: 	1000000 	 988
+winstl atomic:	1000000 	 986
+interlocked:	1000000 	 2371
+spin_mutex: 	1000000 	 5498
+MUTEX:	1000000 	 57758
+
+X:\test>Atomic_Test_cw7.exe
+Atomic_Test (Metrowerks CodeWarrior C++ 2.4)
+# processors: 	1
+# threads:	31
+Unguarded (++/--) 	1000000 	 340
+Synesis Atomic: 	1000000 	 514
+winstl atomic:	1000000 	 513
+interlocked:	1000000 	 2359
+spin_mutex: 	1000000 	 4596
+MUTEX:	1000000 	 57252
+
+X:\test>Atomic_Test_cw8.exe
+Atomic_Test (Metrowerks CodeWarrior C++ 3.0)
+# processors: 	1
+# threads:	31
+Unguarded (++/--) 	1000000 	 365
+Synesis Atomic: 	1000000 	 477
+winstl atomic:	1000000 	 479
+interlocked:	1000000 	 2331
+spin_mutex: 	1000000 	 4778
+MUTEX:	1000000 	 56884
+
+X:\test>Atomic_Test_dmbeta.exe
+Atomic_Test (Digital Mars C/C++ 8.38.4)
+# processors: 	1
+# threads:	31
+Unguarded (++/--) 	1000000 	 986
+Synesis Atomic: 	1000000 	 964
+winstl atomic:	1000000 	 963
+interlocked:	1000000 	 2399
+spin_mutex: 	1000000 	 5596
+MUTEX:	1000000 	 57390
+
+X:\test>Atomic_Test_gcc32.exe
+Atomic_Test (GNU C/C++ 3.2)
+# processors: 	1
+# threads:	31
+Unguarded (++/--) 	1000000 	 579
+Synesis Atomic: 	1000000 	 2551
+winstl atomic:	1000000 	 2497
+interlocked:	1000000 	 2359
+spin_mutex: 	1000000 	 5597
+MUTEX:	1000000 	 57062
+
+X:\test>Atomic_Test_icl7.exe
+Atomic_Test (Intel C/C++ 7.0)
+# processors: 	1
+# threads:	31
+Unguarded (++/--) 	1000000 	 350
+Synesis Atomic: 	1000000 	 506
+winstl atomic:	1000000 	 506
+interlocked:	1000000 	 2326
+spin_mutex: 	1000000 	 5835
+MUTEX:	1000000 	 56945
+
+X:\test>Atomic_Test_vc71.exe
+Atomic_Test (Visual C++ .NET (7.1))
+# processors: 	1
+# threads:	31
+Unguarded (++/--) 	1000000 	 660
+Synesis Atomic: 	1000000 	 713
+winstl atomic:	1000000 	 712
+interlocked:	1000000 	 2406
+spin_mutex: 	1000000 	 6278
+MUTEX:	1000000 	 57354
+
+X:\test>Atomic_Test_wc12.exe
+Atomic_Test (Open Watcom C/C++ 1.0 (Watcom 12.0))
+# processors: 	1
+# threads:	31
+Unguarded (++/--) 	1000000 	 571
+Synesis Atomic: 	1000000 	 2342
+winstl atomic:	1000000 	 2342
+interlocked:	1000000 	 2373
+spin_mutex: 	1000000 	 4783
+MUTEX:	1000000 	 57749

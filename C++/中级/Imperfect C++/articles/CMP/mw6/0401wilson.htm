@@ -1,0 +1,275 @@
+<html>
+<head>
+<title>January 04: Introducing recls Mappings It's STL and C#'s turn</title>
+</head>
+
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#330066" ALINK="#ff0000" TEXT="#000000">
+<!--Copyright &#169; C/C++ Users Journal-->
+
+<h1>Introducing recls Mappings </h1>
+<p>Courtesy of <i>C/C++ Users Journal </i> (January 2004)</p>
+<h2>It's STL and C#'s turn</h2>
+<h3>Matthew Wilson</h3>
+
+
+<p>In the November column, I introduced you to recls, a platform-independent library that provides recursive filesystem searching. Hopefully, you've downloaded and used Version 1.0 (<a href="http://www.cuj.com/code/" target="_blank">http://www.cuj.com/code/</a> or <a href="http://recls.org/" target="_blank">http://recls.org/</a>). In addition to providing a single API for use from C/C++, the library also provides mappings to different languages and technologies. These mappings form the main focus of this column for the next few installments.</p>
+<p>This month, I introduce the first three mappings. The C++ wrapper classes mapping was included in the library's 1.0 release. The other two mappings are C++ STL and C#. Together, these make up Version 1.1 of the library. </p>
+
+
+
+<h3>Building recls</h3>
+
+
+<p>My intention is for recls to be as standalone as possible (except for system and mapping-related libraries), with the proviso that it relies on the STLSoft libraries. Specifically, the code requires Version 1.6.5 (or later) of the STLSoft libraries (<a href="http://stlsoft.org/downloads.html" target="_blank">http://stlsoft.org/downloads.html</a> and <a href="http://recls.org/" target="_blank">http://recls.org/</a>). The makefiles also require that you define an environment variable <b>STLSOFT_INCLUDE</b> to refer to the absolute path of the directory in which the STLSoft library files reside. As the author of both libraries, I assure you that they work together. And since the <i>raison d'etre </i>of the recls project (and this column) is to learn about language integration, it seems a reasonable shortcut to what would be a daunting coding task. The STLSoft code is almost entirely used within the recls implementation, and does not form part of the public interface. Other than that, it only appears in the C++ STL mapping.</p>
+
+
+<p>There are new STLSoft components that have not made it into a distribution but are used within the implementation of recls 1.1. (At this writing, the planned release of STLSoft 1.7.1 is months away, lurking behind too many commitments.) These files are, therefore, included in the recls 1.1 archive and in a patch available from the STLSoft and recls web sites. Once installed, you should have no problems. Let me know if you find any and I'll post updates to the recls web site.</p>
+
+<p>I'm providing makefiles for all of the supported compilers, and some IDDE project files (initially Visual Studio 98), but you have to handle your own static/dynamic-library builds and such. Naturally, I'll respond to bugs in the recls source and try to help where I can. However, the only IDDE I'm anything like expert in is Visual Studio 98, so you're largely on your own. But if you want to create project files and submit them, I'll happily post them on the web site for others.</p>
+
+
+
+<h3>recls Improvements</h3>
+
+
+<p>There are a few changes to the core library between Versions 1.0 and 1.1. The obvious difference is that there are two new functions: </p>
+
+
+<ul>
+
+  <li><b>Recls_GetDirectoryPathProperty()</b> provides both directory and, for operating systems that have them, drive. In other words, this can be thought of as the location of a given file entry. 
+
+  <li><b>Recls_GetSizeProperty()</b> is required for mappings that cannot use the raw structures, such as the C# mapping. 
+
+</ul>
+
+<p>I've also amended how return codes are defined. They were formerly defined as: </p>
+
+<pre>
+#define RECLS_RC_NO_MORE_DATA   
+             ((recls_rc_t)(-1 - 1003))
+
+</pre>but because the <b>recls_rc_t</b> type is defined within the <b>recls</b> namespace, C++ client code that might reference the return code but not have <i>used</i> the type (whether by nice <b>using</b> declarations, or naughty <b>using</b> directives) would not compile. I've fixed this by defining the return code via a macro, as in:</p>
+
+
+<pre>
+#if !defined(RECLS_NO_NAMESPACE)
+# define RECLS_QUAL(x)          ::recls::x
+#else
+# define RECLS_QUAL(x)          x
+#endif /* !RECLS_NO_NAMESPACE */
+ ...
+#define RECLS_RC_NO_MORE_DATA 
+      ((RECLS_QUAL(recls_rc_t))(-1 - 1003))
+</pre>
+
+<p>This works fine with both C and C++ compilation. (Of course, I should probably make it an <b>enum</b>, but it's worth pointing out this technique, which is useful for functions and types shared between C and C++.)</p>
+
+<p>Under the covers, the library has changed in a couple of ways. First, it now returns directories as search items as well as (or instead of) files. In other words, the <b>Recls_Search()</b> function pays attention to the <b>RECLS_F_FILES</b> and <b>RECLS_F_DIRECTORIES</b> flags, where it previously ignored the flags and always enumerated files. A corollary to this is the introduction of a return code <b>RECLS_RC_INVALID_SEARCH_TYPE</b>. This is returned (by the Win32 implementation) if the requested types are nonzero and do not include the files or directories flags. (If the flags are 0, files is always assumed.) Also defined are <b>RECLS_F_LINKS</b> and <b>RECLS_F_DEVICES</b>, which are currently ignored.</p>
+
+<p>The second behavioral change is that the <b>RECLS_F_RECURSIVE</b> and <b>RECLS_F_DIRECTORY_ PARTS</b> flags are acted upon. Hence, if you don't specify the former, you'll only receive matching entries in the search directory. If you don't specify the latter, the directory parts will not be evaluated, resulting in slightly faster searching.</p>
+
+<p>The last change is that <b>Recls_SearchProcess()</b> is now implemented. This function takes a pointer to a function (which takes a pointer to the entry <b>info</b> structure and a user-defined parameter) and conducts an entire (cancelable) search, applying the given function to each matching entry. </p>
+
+<pre>
+int RECLS_CALLCONV_DEFAULT 
+EntryFunc(recls_info_t info,
+         recls_process_fn_param_t /* param */)
+{
+  printf("%s\n", info-&gt;path.begin);
+  return 1; /* Continue search */
+}
+Recls_SearchProcess("h:\\recls", "*.h", 
+             RECLS_F_RECURSIVE, EntryFunc, 0);
+</pre>
+
+<p>This is useful when the operation you wish to apply to the items is simple because it reduces client code considerably, as shown in the new </b><b>SearchProcess_test</b> test program in the archive. </p>
+
+<p>Note that the API is still ANSI-only; there's no Unicode yet.</p>
+
+
+
+<h3>C++</h3>
+
+
+<p>The C++ class mapping is straightforward. There are three classes defined within the <b>recls::cpp</b> namespace (aliased to <b>reclspp</b> [1]). The <b>FileSearch</b> class (see the simplified public interface in <A HREF="0401wilsonl1.htm" target="_blank">Listing 1</A>) manages a search handle <b>hrecls_t</b> and provides enumeration via the <b>HasMoreElements()</b>, <b>GetNext()</b>, and <b>GetCurrentEntry()</b> methods. It presents file entry information in the form of the <b>FileEntry</b> class (<A HREF="0401wilsonl2.htm" target="_blank">Listing 2</A>), which wraps a <b>recls_info_t</b> instance. The <b>string_t</b> type is defined in the C++ mapping root header, reclspp.h, to be <b>std::string</b>, unless you stipulate otherwise via the preprocessor. Once the recls library supports Unicode, this will change to a traits-based approach.</p>
+
+
+<p>I've kept these classes as simple as possible to represent an efficient and convenient alternative to the raw API for C++ client code. There are no exceptions and no runtime error checking (other than assertions via recls_assert.h). Users of the <b>FileSearch</b> class must call <b>GetCurrentEntry()</b> when they know that an entry is available due to calling <b>HasMoreElements()</b>. A search is initiated in the constructor and cannot be restarted. Hence, a <b>FileSearch</b> instance is just that &#151; a (single) file search. The constructor does not throw an error; rather, you must use the usually crummy construct-and-test technique. In this case, it's reasonable because the <b>HasMoreElements()</b> method must be tested before retrieving elements.</p>
+
+<p>The only other notable part of this mapping is that the <b>FileEntry::GetDirectoryParts()</b> method returns an instance of the <b>DirectoryParts</b> class. This is a thin layer over the shared <b>recls_info_t</b> instance, copied (actually, just a reference-count increment) from the source <b>FileEntry</b> instance. The <b>DirectoryParts</b> class provides two methods to give access to the separate parts of the entry's directory:</p>
+
+<pre>
+size_t size() const
+string_t operator [](size_t index) const;
+</pre>
+
+<h3>STL</h3>
+
+
+<p>The C++ STL mapping consists of several cooperating templates, defined within the </b><b>recls::stl</b> namespace (aliased to <b>reclstl</b> [1]). One declares instances of <b>basic_search_sequence&lt;char </b>or<b> wchar_t&gt;</b>, then accesses and manipulates the asymmetric range defined by <b>[begin()</b>, <b>end())</b>.</p>
+
+
+<pre>
+typedef reclstl::basic_search_sequence&lt;char>
+                                  sequence_t;
+sequence_t search("/usr/include", "*h",
+            RECLS_F_FILES | RECLS_F_RECURSIVE);
+std::for_each(search.begin(), search.end(), . . . );
+
+</pre>
+
+<p>Rather than detail here how to implement STL sequences over other kinds of enumeration APIs, I opt for the technology evangelist and TV chef "here's one I prepared earlier" approach. Specifically, my article "Adapting Win32 Enumeration APIs to STL Iterator Concepts" (</b><i>Windows Developer Network</i>, March 2003; <a href="http://www.windevnet.com/documents/win0303a/" target="_blank">http://www.windevnet.com/documents/win0303a/</a>) covers this subject in detail. It also explains the implementation of the WinSTL <b>basic_findfile_sequence</b> template, which is used in the Win32 implementation of recls.</p>
+
+<p>In anticipation of the Unicode support, I've used a <b>traits</b> class, <b>recls_traits</b> (<A HREF="0401wilsonl3.htm" target="_blank">Listing 3</A>), to select the appropriate methods from the API. For example, the <b>recls_traits&lt;char&gt;::GetNextDetails</b> method is defined as:</p>
+
+<pre>
+template &lt;&gt;
+struct recls_traits&lt;char&gt;
+{
+  static recls_rc_t GetNextDetails
+         (hrecls_t hSrch, entry_type *pinfo)
+  {
+    return Recls_GetNextDetails(hSrch, pinfo);
+  }
+</pre>
+
+<p>This makes it easy to update the STL mapping to handle Unicode as well as ANSI because, when the C API changes to have <b>Recls_GetNextDetailsA()</b> and<b> Recls_GetNextDetailsW()</b>, this method will be changed to be implemented in terms of <b>Recls_GetNextDetailsA()</b>. Similarly, <b>recls_traits&lt;wchar_t&gt;::GetNextDetails</b> will be implemented in terms of<b> Recls_GetNextDetailsW()</b>. All the other <b>reclstl</b> classes will not need to be changed. <i>Voil&agrave;!</i></p>
+
+<p>Again, this mapping uses some STLSoft headers. stlsoft_iterator.h defines the template <b>iterator_base</b> with which the container implementation is blessedly insulated from the inconsistencies and incompatibilities to be found in the various Standard (!) Library implementations of the last half decade or so. The other header used is stlsoft_proxy_ sequence.h, which defines the <b>proxy_sequence</b> template. Let's take a closer look at the <b>reclstl</b> classes:</p>
+
+<ul>
+
+  <li><b>basic_search_sequence</b>. The constructor takes a search root, pattern, and flags, then stores them in member variables. It contains four methods: <b>begin()</b>, <b>end()</b>, <b>empty()</b>, and <b>size()</b>. The <b>end()</b> method returns an empty iterator, which marks the end of the iterable range. The <b>begin()</b> method creates an instance of the iterator class, <b>basic_search_sequence_const_iterator</b>, passing a search handle returned from a call to <b>Recls_Search()</b> with the root, pattern, and flags. Thus, an instance of the search sequence can support multiple enumerations, though the contents of each enumeration varies according to changes in the underlying filesystem. The <b>empty()</b> method simply reports whether <b>begin() == end()</b>, potentially incurring a high cost because <b>begin()</b> returns an iterator representing the first matching item or one equivalent to <b>end()</b>. Given an unsuccessful search criterion over an extensive directory structure, this could take time. This variation in time is one of the ways in which STL-like sequences implemented over operating system or technology-specific APIs fail to conform to the STL sequence-container concept (<a href="http://www.sgi.com/tech/stl/Container.html" target="_blank">http://www.sgi.com/tech/stl/Container.html</a>).
+
+  <li>	  The sequence class also contains the <b>size()</b> method, which works by conducting an enumeration over the entire range because the iterator model supported by the recls C API is Input and not Random-Access. Thus, <b>size()</b> is an expensive operation and it shouldn't really be in the class at all. Furthermore, its results can be misleading because the value returned by two successive calls to <b>size()</b> from within a process that, itself, does not change the contents of the OS can vary. It has probably served a purpose in precipitating this discussion, but it'll likely be deprecated in the next version, and gone in the one after that.
+
+  <li><b>basic_search_sequence_const_iterator</b>. The <b>iterator</b> class provides the expected operations of an <b>Input Iterator</b>: preincrement and postincrement, dereference, equality, and inequality tests. <A HREF="0401wilsonl4.htm" target="_blank">Listing 4</A> shows the implementation of two of these methods. The class owns the search handle passed to its nondefault constructor and releases it during the destructor or when enumeration has reached the end point.
+
+  <li>	  Dereferencing is implemented by calling <b>Recls_GetDetails()</b> to acquire the <b>recls_info_t</b> for the current point in the search, which is then returned in an instance of the value type. 
+
+  <li><b>basic_search_sequence_value_type</b>. The value type provides access to the attributes of a search entry, as well as managing the lifetime of the entry, including handling copy construction/assignment correctly by calling <b>Recls_CopyDetails()</b>. <A HREF="0401wilsonl5.htm" target="_blank">Listing 5</A> is an abridged listing of its public interface and the implementation of a couple of the methods. Most of the methods directly access the elements of structure for efficiency.
+
+  <p>	  An interesting feature of the class, representing the second STLSoft dependency, is the <b>get_directory_parts()</b> method, which returns an instance of<b> stlsoft::proxy_sequence&lt;recls::strptrs_t, string_t,...&gt;</b>. Briefly, the template provides an STL-like sequence face over an existing (usually POD) range, and provides translation to a value type (one of the template parameters) from the proxied range iterator's<b> operator *()</b>. In this case, the proxy acts over the directory parts' asymmetric range and returns instances of <b>string_t</b> from <b>operator *()</b>. Hence, it provides a user-friendly interface over a raw range, so that client code need not handle the asymmetric (character) ranges represented by the individual directory parts.
+
+</ul>
+
+<h3>C#</h3>
+
+
+<p>The first thing you need to do to support .NET Interop via C# is to have a DLL. Thus, I've created a DLL project that's included with Version 1.1. It is implemented by linking the static library with a C file containing a <b>DllMain</b> and a .DEF file containing the exports. The DLL was built with Visual C++ and statically linked to the C Runtime Library. As such, it weighs in at 48 KB. In the long run, I'd like to pare this down because there's lots of cruft in there; it doesn't have any static objects or use <b>stdio</b>. </p>
+
+
+<p>To use the exported symbols from any DLL in C#, in what is known as "Native Interop," you must use the <b>DllImport</b> attribute from the <b>System.Runtime.InteropServices</b> namespace. There's a lot to learn about Interop [2], but you should be able to glean a fair amount by looking through the implementation of the C# mapping. The essential step is to declare &#151; but not define &#151; your imported functions and decorate them with the <b>DllImport</b> attribute, as in:</p>
+
+<pre>
+ [DllImport( "recls_dll", EntryPoint="Recls_Search"
+          , CallingConvention=CallingConvention.StdCall
+          , CharSet=CharSet.Ansi, ExactSpelling=true)]
+private static extern
+  int Recls_Search( string searchRoot, string pattern
+                  , uint flags, out hrecls_t hSrch);
+</pre>
+<p>This declares a function </b><b>Recls_Search()</b>, taking two strings and a <b>uint</b>, and returns the search handle via an <b>out</b> parameter. It states that the function resides in recls_dll.dll (if not specified, the extension is assumed to be .DLL), is called <b>Recls_Search</b>, uses the <b>__stdcall </b>convention (callee cleans stack), and expects ANSI rather than Unicode character strings. The <b>ExactSpelling</b> attribute requires that the Interop layer use the exact name, rather than apply <b>A</b> or <b>W</b> postfixes, which it is able to do for you.</p>
+
+
+<p>One option would be to define the <b>recls_fileinfo_t</b> structure within C#, using the <b>StructLayout</b> attribute, which would arguably be more efficient. But I couldn't face all the mess of dealing with the pointer ranges from within C#. (If you want to do that, I'll be happy to post it on the site.) Also, it would be fragile and difficult to change, especially when expanding the C API to Unicode and ANSI versions.</p>
+
+<p>So the entries are treated as if they are opaque and are defined as <b>IntPtr</b>. One irritant is that, although it's possible to use C#'s alias mechanism to weakly <b>typedef</b> <b>hrecls_t</b> and <b>recls_info_t</b> from <b>IntPtr</b>, they are fundamentally the same type and can be mistakenly interchanged, so it's only a help in porting the code across from C (<A HREF="0401wilsonl6.htm" target="_blank">Listing 6</A>). It'd be better if C# provided a strong <b>typedef</b>, but it doesn't.</p>
+
+<p>One smart move [2] when dealing with Interop is to isolate all the external functions in another class, as I've done by defining a <b>recls_api</b> class within the <b>recls</b> namespace. Hence, the <b>FileSearch</b>, <b>FileEntry</b>, <b>DirectoryParts</b>, and <b>ReclsException</b> types are all implemented in terms of <b>recls_api</b> rather than having to mess around with imported functions. As well as insulating them from change, it also means that they can deal with .NET types only; <b>recls_api</b> handles all the translation from the C API types to .NET types; Win32 <b>FILETIME</b> values to .NET's <b>DateTime</b>; Win32 <b>ULARGE_INTEGER</b> values into C#'s <b>ulong</b> (64-bit integer); and C-strings into .NET's <b>String</b>. The strange conversion is when passing character buffers to the C API. This is done by instantiating a <b>StringBuilder</b> instance, ensuring it has sufficient capacity, and passing it to the API as an object reference, as in:</p>
+
+<pre>
+[DllImport("recls_dll", EntryPoint = "Recls_GetDirectoryPartProperty", . . .)]
+private static extern
+ uint Recls_GetDirectoryPartProperty(recls_info_t fileInfo, int part
+                        , StringBuilder buffer, uint cchBuffer);
+
+public static string GetEntryDirectoryPart(recls_info_t entry, int index)
+{
+  StringBuilder buffer    = new StringBuilder(261);
+  uint          capacity  = (uint)buffer.Capacity;
+  uint          cch       = Recls_GetDirectoryPartProperty(entry, index
+                                                      , buffer, capacity);
+  buffer.Length = (int)cch;
+  return buffer.ToString();
+}
+</pre>
+
+<p>In the first cut, I had the <b>FileEntry</b> instances copy the <b>IntPtr</b> for their entries from the <b>FileSearch</b> class. Thus, some <b>FileEntry</b> instances were holding the structure while others were releasing it back to the recls C API in their finalizers. Embarrassing, certainly, but easy to fix: except that the failure symptom reported a <b>NullReferenceException</b>. Naturally, this makes you think "C# object reference" rather than <b>EXCEPTION_ACCESS_VIOLATION</b>. However, once I'd stuck in more debugging code and hit myself over the head a couple of times, all was right with the world.</p>
+
+<p>There's an interesting design decision in the implementation of <b>FileSearch</b> (<A HREF="0401wilsonl7.htm" target="_blank">Listing 7</A>) that is made enumerable by the provision of a <b>GetEnumerator()</b> method, which returns an object implementing the <b>IEnumerator</b> interface. When creating a <b>FileSearch</b> instance, it is desirable to find out at that time whether the search parameters are going to lead to a valid search. Hence, we wish to start the search in the constructor. However, there are two reasons why this cannot be the case:</p>
+
+<ul>
+
+  <li>An enumerable type can be placed in multiple <b>foreach</b> statements. Would you create the initial search in the <b>FileSearch</b> constructor and subsequent enumerations in the enumerator objects? This is unbalanced.
+
+  <li>The enumerator object should implement <b>Reset()</b>, which means that the enumerator object, rather than the enumerable type, should initialize a search.
+
+
+</ul>
+
+<p>The consequence of deferring the search until it's used is that the exception is thrown from within the <b>foreach</b>, rather than from the object's construction &#151; which is unappealing from a common-sense point of view, but necessary. Note that an empty, but otherwise valid, search does not cause an exception to be thrown.<b></p>
+
+<p>FileSearch</b> instances can be used within a <b>foreach</b> loop, so it's trivial to enumerate through the matching entries:</p>
+
+<pre>
+FileSearch  fs = new FileSearch(searchRoot,
+                           pattern, flags);
+
+foreach(FileEntry fe in fs)
+{
+  // do something with fe
+  System.Console.WriteLine(fe.Path);
+</pre>
+
+<h3>The C# compiler evaluates whether a <b>foreach</b> enumerator is "disposable," i.e., implements the <b>IDisposable</b> interface. If it does, then the compiler guarantees that the <b>Dispose</b> method will be called no matter how the <b>foreach</b> loop terminates. Since our enumerators contain unmanaged resources (search handles and entry structures), it is a good idea to implement the <b>IDisposable</b> interface, as can be seen in the code.</h3>
+
+
+<p>Documentation</p>
+
+<p>From Version 1.0, I've created documentation (<a href="http://recls.org/help/" target="_blank">http://recls.org/help/</a>) for the library using Doxygen (http:// doxygen.org/). You can see some of the Doxygen tags in <A HREF="0401wilsonl1.htm" target="_blank">Listing 1</A>. Documentation is hard to write and it's probably not perfect. I'll gladly hear any comments for improvement.</p>
+
+
+<p>The exception to using Doxygen is the C# mapping, since the C# compiler can generate (via the <b>/doc</b> flag) XML documentation files directly from the source, assuming you've used the correct tags (<A HREF="0401wilsonl7.htm" target="_blank">Listing 7</A>). The resultant files, when installed alongside their assemblies, can provide Intellisense information to the Visual Studio.NET IDDE, which is nice. Also, the free documentation tool NDoc (available at <a href="http://ndoc.sourceforge.net/" target="_blank">http://ndoc.sourceforge.net/</a>) can be applied to the XML files to produce compiled HTML Help (.CHM) files that also link to all the requisite .NET SDK online documentation. It produces a professional-looking package, so this is what I'm using in the case of C#. (Alas, Visual C++ does not yet perform the same service for Managed C++, so that mapping will be done using Doxygen along with all the others.)</p>
+
+
+
+<h3>Next Steps</h3>
+
+
+<p>In the next installment, I will address:</p>
+
+
+<ul>
+
+  <li>Unicode and ANSI versions of the API.
+
+  <li>Renaming of some inappropriately named methods; providing backwards compatibility.
+
+  <li>UNIX version, initially Linux [3].
+
+  <li>COM mappings: <b>IEnumXxxx</b> enumerators, and Automation collections (<b>Count, Item, _NewEnum</b>).
+
+  <li>Maybe the D mapping, given time (and space).
+
+</ul>
+
+<h3>Notes </h3>
+
+
+<p>And References</p>
+
+<p>[1]	Wilson, Matthew. "Open-Source Flexibility via Namespace Aliasing," <i>C/C++ Users Journal</i>, July 2003.</p>
+
+<p>[2]	Clark, Jason. "Calling Win32 DLLs in C# with P/Invoke," <i>MSDN</i> magazine, July 2003.</p>
+
+<p>[3]	If someone wants to grant me a sandbox login (with a compiler, of course) to their architecture of choice &#151; Mac, VMS, whatever &#151; I'll be glad to port it. (I have to admit, I just get a big kick out of writing cross-platform code.) </p>
+
+<hr><I>
+<b>Matthew Wilson</b> is a software development consultant for Synesis Software, creator of the STLSoft libraries, and author of the upcoming <i>Imperfect C++ </i>(Addison-Wesley, 2004). He can be contacted at <a href="mailto:matthew@synesis.com.au">matthew@synesis.com.au</a> or <a href="http://stlsoft.org/" target="_blank">http://stlsoft.org/</a>.</I>
+
+<hr>
+
+</body>
+</html>

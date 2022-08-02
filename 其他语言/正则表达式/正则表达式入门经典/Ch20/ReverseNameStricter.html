@@ -1,0 +1,28 @@
+<html>
+<head>
+<title>Reverse Surname and First Name</title>
+<script language="vbscript" type="text/vbscript">
+Function ReverseName
+Dim myRegExp, TestName, Match
+Set myRegExp = new RegExp
+myRegExp.Pattern = "^([A-Za-z]+)(\s+)([A-Za-z]+)$"
+TestString = InputBox("Enter your name below, in the form" & VBCrLf & _
+ "first name, then a space then last name." & VBCrLf & "Don't enter an initial or middle name."_
+ & "Any extra information will result in an error.")
+Match = myRegexp.Replace(TestString, "$3,$2$1")
+If Match <> TestString Then
+  MsgBox "Your name in last name, first name format is:" & VBCrLf & Match
+Else
+  MsgBox "You didn't enter your name in the format requested." & VBCrLF _
+  & "You may have entered no data, omitted part of your name," & VBCrLf _
+  & "or entered extra data." & VBCrLf & VBCrLf _
+  & "Press OK then F5 to run the example again."
+End If
+End Function
+
+</script>
+</head>
+<body onload="ReverseName">
+
+</body>
+</html>

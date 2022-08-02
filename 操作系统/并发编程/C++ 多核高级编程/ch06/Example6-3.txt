@@ -1,0 +1,22 @@
+// Example 6-3 task3 thread sets its cancelability state to allow thread 
+// to be canceled immediately 
+
+void *task3(void *X)
+{
+   int OldState,OldType;
+
+   // enable immediate cancelability
+
+   pthread_setcancelstate(PTHREAD_CANCEL_ENABLE,&OldState);
+   pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS,&OldType);
+
+   ofstream Outfile("out3.txt");
+   for(int Count = 1;Count < 100;Count++)
+   {
+      Outfile << "thread C is working: " << Count << endl;
+
+   }
+   Outfile.close();
+   return (NULL);
+}
+

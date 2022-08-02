@@ -1,0 +1,8 @@
+Line 1
+
+Line 3 which follows a blank line
+
+Line 5 which follows a second blank line
+
+Line 7 which follows a third blank line
+

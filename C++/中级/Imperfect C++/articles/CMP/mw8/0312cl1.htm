@@ -1,0 +1,25 @@
+<html>
+<head>
+<title>Handling Multiple Win32 Operating Environments</title>
+</head>
+
+<body>
+
+
+<h4>Listing 1  Local definition of SetCurrentDirectoryW()</h4>
+
+<pre>
+
+BOOL WINAPI SetCurrentDirectoryW(LPCWSTR lpPathName)
+{
+  size_t  len       = lstrlenW(lpPathName);
+  char    *pathName = (char*)_alloca(1 + len);
+
+  WideCharToMultiByte(CP_ACP, 0, lpPathName, 1 + len, pathName, 1 + len, NULL, NULL);
+
+  return SetCurrentDirectoryA(pathName);
+}
+
+</pre>
+</body>
+</html>

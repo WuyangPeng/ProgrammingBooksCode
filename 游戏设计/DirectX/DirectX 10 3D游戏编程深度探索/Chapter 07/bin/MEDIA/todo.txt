@@ -1,0 +1,10 @@
+lights
+matreials - d3d9.h??
+fog
+add pos to model?
+
+zenecl31
+jatewd62
+
+mrzen@msn.com	
+a4dw

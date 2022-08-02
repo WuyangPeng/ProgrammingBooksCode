@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>Handling Multiple Win32 Operating Environments</title>
+</head>
+
+<body>
+
+
+<h4>Listing 3  Header file for Redefine model</h4>
+
+<pre>
+
+
+/* Out-of-line declarations */
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif /* __cplusplus */
+
+BOOL WINAPI GetFileSizeEx_impl(HANDLE, PLARGE_INTEGER);
+BOOL WINAPI SetCurrentDirectoryW_impl(LPCWSTR);
+BOOL WINAPI GetFileAttributesExA_impl(LPCSTR, GET_FILEEX_INFO_LEVELS, LPVOID);
+BOOL WINAPI GetFileAttributesExW_impl(LPCWSTR, GET_FILEEX_INFO_LEVELS, LPVOID);
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
+
+/* Inline definitions */
+
+# define GetFileSizeEx        GetFileSizeEx_impl
+# define SetCurrentDirectoryW SetCurrentDirectoryW_impl
+# define GetFileAttributesExA GetFileAttributesExA_impl
+# define GetFileAttributesExW GetFileAttributesExW_impl
+
+</pre>
+</body>
+</html>

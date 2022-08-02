@@ -1,0 +1,15 @@
+﻿<UserControl
+    x:Class="PrintableTomKitten.TomKitten29"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Grid VerticalAlignment="Center"
+          MaxWidth="640">
+        <TextBlock Style="{StaticResource paragraphTextStyle}">
+            &#x2003;&#x2003;Tom Kitten was quite unable to jump when 
+            walking upon his hind legs in trousers. He came up the 
+            rockery by degrees, breaking the ferns, and shedding 
+            buttons right and left.
+        </TextBlock>
+    </Grid>
+</UserControl>

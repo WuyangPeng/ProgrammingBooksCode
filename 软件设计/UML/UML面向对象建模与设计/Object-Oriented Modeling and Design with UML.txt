@@ -1,0 +1,8 @@
+UML面向对象建模与设计（Object-Oriented Modeling and Design with UML）
+（第2版）
+
+官方网站：
+http://www.modelsoftcorp.com （已失效）
+
+★
+作者：Michael Blaha、James Rumbaugh

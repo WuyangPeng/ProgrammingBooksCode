@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title>Code Co-op Tutorial</title>
+</head>
+<body bgcolor="White" background="../images/grid.gif">
+
+<table border="0" cellpadding="10">
+<tr><td width="20"></td>
+<td bgcolor="#99cccc" width="600"> 
+<font face="Arial" size=2>
+<center><h2>New Project</h2></center>
+
+<p>The first thing you might want to do with your Version Control System is to set up a project. The project could be brand new, or you might have an existing body of source code that you want to include in the project. In any case, the procedure is simple.
+<p>Start by selecting <i>New</i> from the Code Co-op's <i>Project</i> menu.
+
+<p><img src="../images/newmenu.gif" width="377" height="213" border="0" alt="Project/New menu item">
+
+<p>You will be presented with the following dialog:
+
+<p><img src="../images/newproj.gif" width="600" height="381" border="0" alt="New Project dialog">
+
+<p>In the first field, input the path where your <b>project tree</b> is (or will be) on your machine. If you already have a body of source code, point Code Co-op to the directory where this code resides (its subdirectories will be automatically included in the project). If you're creating a project from scratch, type in the name of the project's top-level directory, not necessarily existing (Code Co-op will create it).
+<p>It is possible to have the source tree residing on <b>another machine</b> (a network server). Just provide a network path.
+<p>Specify <b>project name</b>--others will be able to join this project using its name. 
+<p>Unless you are planning on distributing all scripts by hand, accept the default <b>short script names</b>. This way you'll avoid troubles with e-mail programs that don't know how to deal with long file names (surprisingly many don't).
+<p>Finally, input your personal data, <b>name</b>, <b>email</b> and (optionally) the <b>phone number</b>. Notice: even if you're not planning on using email for script distribution, you have to input something there (may be fake), because the Dispatcher is using it to identify project members. Notice also that on a satellite you should input the email address of the hub, if you're planning on using e-mail between hubs.
+<hr>
+<p>If the project you were creating was brand new, you're done. Otherwise, Code Co-op will selectively add existing files to the project. Since there may be a lot of files in the tree, Code Co-op will let you pick project files by extensions first and by name second. This is the dialog you'll see:
+
+
+<p><img src="../images/select.gif" width="626" height="447" border="0" alt="New project file selection">
+
+<p>Clicking on an extension adds it or removes it from the list. Once an extension is selected, files with that extension are shown in the right pane. You can then selectively remove them from (or add back to) the list. The example above is typical for a Visual C++ project.
+
+<p>After you've prepared the list of project files, Code Co-op starts adding them to its database. For each new extension it encounters, it will ask you the following question:
+<p><img src="../images/assoc.gif" width=278 height=201 border=0 alt="File extension association dialog">
+<p>There are four basic categories of files: header, source, other text and binary. The most important is the distinction between binary files and other types. Once you assign <b>binary type</b> to a file, you won't be able to see its diffs (which are meaningless, anyway, for non-text files).
+<hr>
+<p>This is what a project looks like in Code Co-op:
+<p><img src="../images/files.gif" width="358" height="410" border="0" alt="Project files">
+<p>You can see both project and non-project files. All project files are initially checked in (their state is <i>In</i>). You can start checking them out, editing and then checking back in (see Code Co-op Help).
+<p>
+<a href="tut2.html">Previous</a>, <a href="tut4.html">Next</a>
+
+</font>
+</td></tr></table>
+</body>
+</html>

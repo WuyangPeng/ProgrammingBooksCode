@@ -1,0 +1,114 @@
+﻿<Page
+    x:Class="YawPitchRoll.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:YawPitchRoll"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontSize="36">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <!-- Pitch -->
+        <Rectangle Fill="Blue"
+                   Width="3"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Stretch" />
+        
+        <Path Name="pitchPath"
+              Stroke="Blue">
+            <Path.Data>
+                <EllipseGeometry x:Name="pitchEllipse" RadiusX="20" RadiusY="20" />
+            </Path.Data>
+        </Path>
+        
+        <!-- Roll -->
+        <Rectangle Fill="Red"
+                   Height="3"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Center" />
+        
+        <Path Name="rollPath"
+              Stroke="Red"
+              Fill="Red">
+            <Path.Data>
+                <EllipseGeometry x:Name="rollEllipse" RadiusX="20" RadiusY="20" />
+            </Path.Data>
+        </Path>
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <!-- Pitch -->
+            <TextBlock Text="PITCH"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       Foreground="Blue"
+                       HorizontalAlignment="Right"
+                       Margin="0 0 24 0" />
+            
+            <TextBlock Name="pitchValue"
+                       Grid.Row="0"
+                       Grid.Column="1"
+                       Foreground="Blue"
+                       HorizontalAlignment="Left"
+                       Margin="24 0 0 0" />
+            
+            <!-- Roll -->
+            <TextBlock Text="ROLL"
+                       Grid.Row="1"
+                       Grid.Column="0"
+                       Foreground="Red"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Margin="0 108 0 0">
+                <TextBlock.RenderTransform>
+                    <RotateTransform Angle="-90" />
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            
+            <TextBlock Name="rollValue"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       Foreground="Red"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Bottom">
+                <TextBlock.RenderTransform>
+                    <RotateTransform Angle="-90" />
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            
+            <!-- Yaw -->
+            <Grid Grid.Row="0"
+                  Grid.Column="1"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Bottom"
+                  RenderTransformOrigin="0 1">
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <TextBlock Text="YAW = " Foreground="Green" />
+                    <TextBlock Name="yawValue" Foreground="Green" />
+                </StackPanel>
+                
+                <Rectangle Fill="Green"
+                           Height="3" 
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Bottom" />
+                
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="-90" />
+                        <RotateTransform x:Name="yawRotate" />
+                    </TransformGroup>
+                </Grid.RenderTransform>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,35 @@
+// Listing 5-7
+// This program demonstrates the
+// use of a global variable Count updated by
+// two threads
+
+#include <iostream.h>
+#include <pthread.h>
+
+int Count = 0; 
+
+void *threadA(void *X)
+{
+    
+    Count += 2;    
+    cout << Count << endl;
+}
+
+void *threadB(void *X)
+{
+   Count += 4;
+   cout << Count << endl;
+}
+
+
+void main(void)
+{
+    pthread_t ThreadA;
+    pthread_t ThreadB;
+    pthread_create(&ThreadA,NULL,threadA,NULL);
+    pthread_create(&ThreadB,NULL,threadB,NULL);
+    pthread_join(ThreadA,NULL);
+    pthread_join(ThreadB,NULL);
+}    
+    
+

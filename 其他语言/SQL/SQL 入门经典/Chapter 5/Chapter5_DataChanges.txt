@@ -1,0 +1,9 @@
+INSERT INTO FavCategory (CategoryId, MemberId)
+SELECT 9, MemberId FROM MemberDetails  MD1
+WHERE EXISTS 
+     (SELECT * from FavCategory FC1 
+      WHERE FC1.CategoryId = 1 AND FC1.MemberId = MD1.MemberId
+                     AND NOT EXISTS 
+                                 (SELECT * FROM FavCategory  FC2 
+                                  WHERE FC2.MemberId = FC1.MemberId AND                          
+                                  FC2.CategoryId = 9));

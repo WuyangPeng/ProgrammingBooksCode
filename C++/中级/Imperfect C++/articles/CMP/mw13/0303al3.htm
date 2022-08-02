@@ -1,0 +1,210 @@
+<html>
+<head>
+<title>Adapting Win32 Enumeration APIs to STL Iterator Concepts</title>
+</head>
+
+<body>
+
+
+<h4>Listing 3  reg_key_sequence</h4>
+
+<pre>
+
+// Extract from winstl_reg_key_sequence.h
+
+
+template&lt; ws_typename_param_k C
+        , ws_typename_param_k T = reg_traits&lt;C&gt;
+        , ws_typename_param_k A = processheap_allocator&lt;C&gt;
+        &gt;
+class basic_reg_key_sequence
+{
+public:
+  typedef C                                         char_type;
+  typedef T                                         traits_type;
+  typedef A                                         allocator_type;
+  typedef basic_reg_key_sequence&lt;C, T, A&gt;           class_type;
+  typedef basic_reg_key&lt;C, T, A&gt;                    key_type;
+  typedef const key_type                            value_type;
+  typedef ws_typename_type_k traits_type::size_type size_type;
+  typedef basic_reg_key&lt;C, T, A&gt;                    reg_key_type;
+  typedef basic_reg_key_sequence_const_iterator&lt;C, T, value_type, A&gt;
+                                                    const_iterator;
+  typedef key_type                                  &amp;reference;
+  typedef key_type const                            &amp;const_reference;
+  typedef ws_ptrdiff_t                              difference_type;
+
+  typedef stlsoft::const_reverse_bidirectional_iterator_base&lt; 
+                    const_iterator, value_type, 
+                    value_type, void*, 
+                    difference_type&gt;          const_reverse_iterator;
+
+// Construction
+public:
+  basic_reg_key_sequence(HKEY hkey, char_type const *sub_key_name);
+  basic_reg_key_sequence(reg_key_type const &amp;key);
+  ~basic_reg_key_sequence() winstl_throw_0();
+
+// Iteration
+public:
+  const_iterator          begin() const;
+  const_iterator          end() const;
+
+  const_reverse_iterator  rbegin() const;
+  const_reverse_iterator  rend() const;
+
+// State
+public:
+  size_type         size() const;
+  ws_bool_t         empty() const;
+  static size_type  max_size();
+
+// Members
+private:
+  HKEY  m_hkey;
+
+// Not to be implemented
+private:
+  basic_reg_key_sequence(class_type const &amp;);
+  basic_reg_key_sequence const &amp;operator =(class_type const &amp;);
+};
+
+
+template&lt; ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k A
+        &gt;
+inline basic_reg_key_sequence&lt;C, T, A&gt;::
+    basic_reg_key_sequence(HKEY hkey, char_type const *sub_key_name)
+  : m_hkey(NULL)
+{
+  if(0 != traits_type::reg_open_key(hkey, sub_key_name, &amp;m_hkey))
+  {
+    m_hkey = NULL;
+  }
+}
+
+template&lt; ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k A
+        &gt;
+inline basic_reg_key_sequence&lt;C, T, A&gt;::
+    basic_reg_key_sequence(reg_key_type const &amp;key)
+  : m_hkey(traits_type::key_dup(key.m_hkey))
+{
+}
+
+template&lt; ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k A
+        &gt;
+inline basic_reg_key_sequence&lt;C, T, A&gt;::
+    ~basic_reg_key_sequence() winstl_throw_0()
+{
+  if(m_hkey != NULL)
+  {
+    ::RegCloseKey(m_hkey);
+  }
+}
+
+template&lt; ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k A
+        &gt;
+inline ws_typename_type_k const_iterator 
+    basic_reg_key_sequence&lt;C, T, A&gt;::begin() const
+{
+  // Grab enough for the first item
+  size_type cch_key_name  = 0;
+  ws_long_t res     = traits_type::reg_query_info(m_hkey, 
+                        NULL, NULL, NULL, &amp;cch_key_name,
+                        NULL, NULL, NULL, NULL, NULL, NULL);
+
+  if(res == 0)
+  {
+    auto_buffer&lt;char_type, allocator_type&gt;  buffer(++cch_key_name);
+
+    res = traits_type::reg_enum_key(m_hkey, 0, buffer, 
+                          &amp;cch_key_name, NULL, NULL, NULL);
+
+    if(res == 0)
+    {
+      return const_iterator(m_hkey, 0, buffer);
+    }
+  }
+
+  return end();
+}
+
+template&lt; ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k A
+        &gt;
+inline ws_typename_type_k const_iterator 
+    basic_reg_key_sequence&lt;C, T, A&gt;::end() const
+{
+  return const_iterator(m_hkey);
+}
+
+template&lt; ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k A
+        &gt;
+inline ws_typename_type_k const_reverse_iterator 
+    basic_reg_key_sequence&lt;C, T, A&gt;::rbegin() const
+{
+  return const_reverse_iterator(end());
+}
+
+template&lt; ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k A
+        &gt;
+inline ws_typename_type_k const_reverse_iterator 
+    basic_reg_key_sequence&lt;C, T, A&gt;::rend() const
+{
+  return const_reverse_iterator(begin());
+}
+
+template&lt; ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k A
+        &gt;
+inline ws_typename_type_k size_type 
+    basic_reg_key_sequence&lt;C, T, A&gt;::size() const
+{
+  ws_uint_t c_sub_keys;
+  ws_long_t res = traits_type::reg_query_info(m_hkey, NULL, NULL, 
+                                  &amp;c_sub_keys, NULL, NULL, NULL,
+                                  NULL, NULL, NULL, NULL);
+
+  if(res != 0)
+  {
+    c_sub_keys = 0;
+  }
+
+  return static_cast&lt;size_type&gt;(c_sub_keys);
+}
+
+template&lt; ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k A
+        &gt;
+inline ws_bool_t basic_reg_key_sequence&lt;C, T, A&gt;::empty() const
+{
+  return size() == 0;
+}
+
+template&lt; ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k A
+        &gt;
+inline size_type 
+  basic_reg_key_sequence&lt;C, T, A&gt;::max_size()
+{
+  return static_cast&lt;size_type&gt;(-1);
+}
+
+</pre>
+</body>
+</html>

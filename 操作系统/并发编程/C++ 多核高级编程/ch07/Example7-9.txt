@@ -1,0 +1,48 @@
+// Example 7-9 Threads using read-write locks
+//...
+
+pthread_t ThreadA,ThreadB,ThreadC,ThreadD;
+pthread_rwlock_t RWLock;
+
+void producer1(void *X)
+{
+   pthread_rwlock_wrlock(&RWLock);
+   //critical section
+   pthread_rwlock_unlock(&RWLock);
+}
+
+void producer2(void *X)
+{
+   pthread_rwlock_wrlock(&RWLock);
+   //critical section
+   pthread_rwlock_unlock(&RWLock);
+}
+
+void consumer1(void *X)
+{
+   pthread_rwlock_rdlock(&RWLock);
+   //critical section
+   pthread_rwlock_unlock(&RWLock);
+}
+
+void consumer2(void *X)
+{
+   pthread_rwlock_rdlock(&RWLock);
+   //critical section
+   pthread_rwlock_unlock(&RWLock);
+}
+
+int main(void)
+{
+
+   pthread_rwlock_init(&RWLock,NULL);
+   //set mutex attributes
+   pthread_create(&ThreadA,NULL,producer1,NULL);
+   pthread_create(&ThreadB,NULL,consumer1,NULL);
+   pthread_create(&ThreadC,NULL,producer2,NULL);
+   pthread_create(&ThreadD,NULL,consumer2,NULL);
+   //... 
+   return(0);
+}
+
+

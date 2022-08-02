@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>RegExp exec() Method Example with global attribute set.</title>
+<script language="javascript" type="text/javascript">
+var myRegExp = /((A|B|C)(\d{3}))/ig;
+var entry;
+
+function PatternProcess(entry){
+var displayString = "";
+
+while ((result = myRegExp.exec(entry)) != null ){
+displayString += "Matched '" + result;
+displayString += "' at position " + result.index + "\n";
+displayString += "The next match attempt begins at position " + myRegExp.lastIndex + "\n";
+displayString += "The whole matching string is " + result[0] + "\n";
+displayString += "The content of the outer parentheses is " + result[1] + "\n";
+displayString += "The content of the first nested parentheses is " + result[2] + "\n";
+displayString += "The content of the second nested parentheses is " + result[3] + "\n";
+alert(displayString);
+displayString = "";
+} // end while loop
+} // end function Process(entry)
+
+function ShowPrompt(){
+entry = prompt("This script tests for matches for the regular expression pattern: " + myRegExp + ".\nType in a string and click on the OK button.", "Type your text here.");
+PatternProcess(entry);
+} // end function ShowPrompt()
+
+</script>
+</head>
+<body>
+<form name="myForm">
+<br />
+<button type="Button" onclick="ShowPrompt()">Click here to enter text.</button>
+</form>
+</body>
+</html>

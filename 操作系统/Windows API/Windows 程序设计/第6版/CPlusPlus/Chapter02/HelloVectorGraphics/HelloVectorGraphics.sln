@@ -1,0 +1,38 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows 8
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloVectorGraphics", "HelloVectorGraphics\HelloVectorGraphics.vcxproj", "{B16A1358-19E8-4D55-B1E3-58AC045A08AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|ARM = Release|ARM
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B16A1358-19E8-4D55-B1E3-58AC045A08AA}.Debug|ARM.ActiveCfg = Debug|ARM
+		{B16A1358-19E8-4D55-B1E3-58AC045A08AA}.Debug|ARM.Build.0 = Debug|ARM
+		{B16A1358-19E8-4D55-B1E3-58AC045A08AA}.Debug|ARM.Deploy.0 = Debug|ARM
+		{B16A1358-19E8-4D55-B1E3-58AC045A08AA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B16A1358-19E8-4D55-B1E3-58AC045A08AA}.Debug|Win32.Build.0 = Debug|Win32
+		{B16A1358-19E8-4D55-B1E3-58AC045A08AA}.Debug|Win32.Deploy.0 = Debug|Win32
+		{B16A1358-19E8-4D55-B1E3-58AC045A08AA}.Debug|x64.ActiveCfg = Debug|x64
+		{B16A1358-19E8-4D55-B1E3-58AC045A08AA}.Debug|x64.Build.0 = Debug|x64
+		{B16A1358-19E8-4D55-B1E3-58AC045A08AA}.Debug|x64.Deploy.0 = Debug|x64
+		{B16A1358-19E8-4D55-B1E3-58AC045A08AA}.Release|ARM.ActiveCfg = Release|ARM
+		{B16A1358-19E8-4D55-B1E3-58AC045A08AA}.Release|ARM.Build.0 = Release|ARM
+		{B16A1358-19E8-4D55-B1E3-58AC045A08AA}.Release|ARM.Deploy.0 = Release|ARM
+		{B16A1358-19E8-4D55-B1E3-58AC045A08AA}.Release|Win32.ActiveCfg = Release|Win32
+		{B16A1358-19E8-4D55-B1E3-58AC045A08AA}.Release|Win32.Build.0 = Release|Win32
+		{B16A1358-19E8-4D55-B1E3-58AC045A08AA}.Release|Win32.Deploy.0 = Release|Win32
+		{B16A1358-19E8-4D55-B1E3-58AC045A08AA}.Release|x64.ActiveCfg = Release|x64
+		{B16A1358-19E8-4D55-B1E3-58AC045A08AA}.Release|x64.Build.0 = Release|x64
+		{B16A1358-19E8-4D55-B1E3-58AC045A08AA}.Release|x64.Deploy.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

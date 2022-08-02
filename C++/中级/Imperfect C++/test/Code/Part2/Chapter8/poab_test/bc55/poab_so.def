@@ -1,0 +1,5 @@
+LIBRARY     POAB_SO.DLL
+
+EXPORTS
+    ___CPPdebugHook                @2   ; ___CPPdebugHook
+    _make_Object                   @1   ; _make_Object

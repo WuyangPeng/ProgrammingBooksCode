@@ -1,0 +1,5 @@
+Effective SQL
+ 
+★★
+作者：John L.Viescas、Douglas J.Steele、Ben G.Clothier 
+

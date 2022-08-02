@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>January 04: Introducing recls Mappings It's STL and C#'s turn</title>
+</head>
+
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#330066" ALINK="#ff0000" TEXT="#000000">
+<!--Copyright &#169; C/C++ Users Journal-->
+
+
+<h4>Listing 1:	FileSearch<i> public interface.</i></h4>
+
+<pre>
+/// This class provides . . .
+/// \ingroup group_recls_cppclass FileSearch
+{
+/// \name Construction
+/// @{
+public:
+  /// Creates a search for . . .
+  /// \param rootDir The starting directory for the search. If NULL . . .
+  /// \param pattern The search pattern, e.g. "*.h". If NULL . . .
+  /// \param flags Combination of enumerants from \c RECLS_FLAG enumeration
+  FileSearch(char const *rootDir, char const *pattern, recls_uint32_t flags);
+  ~FileSearch();
+/// @}
+/// \name Operations
+/// @{
+public:
+  /// Advances the search to the next position
+  recls_rc_t      GetNext();
+/// @}
+/// \name Attributes
+/// @{
+public:
+  /// Returns non-zero if there is more data available
+  recls_bool_t    HasMoreElements() const;
+  /// Returns the current entry
+  /// \note The behavior is undefined when \c HasMoreElements() returns zero
+  FileEntry       GetCurrentEntry() const;
+/// @}
+// Members
+private:
+  hrecls_t  m_hSrch;
+};
+</body>
+</html>

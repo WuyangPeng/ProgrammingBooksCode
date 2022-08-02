@@ -1,0 +1,153 @@
+<html>
+<head>
+<title> Code Co-op Manual: the dispatcher </title>
+</head>
+
+<body bgcolor="#99ccff" text="#000000" background="../images/grid.gif" TOPMARGIN=0 LEFTMARGIN=0>
+<font face="Verdana, Sans-Serif">
+
+<!-- Navigation Bar -->
+<table border="0" cellspacing="0" cellpadding="0">
+<tr><td align="LEFT" valign="TOP">
+	<map name=navbar>
+<area href="coop.html"		coords="1,1,50,24"	alt="Documentation entry page" shape="RECT">
+<area href="gstarted.html"	coords="48,2,144,24"	alt="Step by step guide to commonly used functions" shape="RECT">
+<area href="quickref.html"	coords="144,3,239,24"	alt="Descriptions of Co-op windows and views" shape="RECT">
+<area href="command.html"	coords="242,3,336,24"	alt="Functional description of features" shape="RECT">
+<area href="faq.html" 		coords="337,3,392,24"	alt="Frequently Asked Questions" shape="RECT">
+<area href="dispatch.html"	coords="395,3,488,24"	alt="Synchronization script exchange component" shape="RECT">
+<area alt="Detailed reference" coords="490,2,564,24" href="function.html" shape="RECT">
+</map>
+<img src="../images/map.gif" usemap="#navbar" border="0" align="top" width="565" height="26">
+</td></tr>
+</table>
+
+<table width=580 cellpadding=8>
+<tr><!-- Spacer and table structure definition -->
+	<td height=25 width=20>&nbsp;</td><!-- Left margin -->
+	<td width=500>&nbsp;</td><!-- Content -->
+	<td width=20>&nbsp;</td><!-- Right margin -->
+</tr>
+
+<tr><!--Home button and Documentation Title-->
+	<td colspan=3>
+	<center><font color="#0000a0" size=6>
+	<img src="../images/coop.gif" border=0 alt="Coop logo"> <b><font face="Courier New" color="Red">Code Co-op 3.0</font></b>
+	</font></center>
+	<center><font size=2><i>Server-less Version Control System</i></font></center>
+	</td>
+</tr>
+	
+<!-- Page Title -->
+<tr><td colspan=3><p><center><font face="haettenschweiler, impact" size=6 color="#336666">Script Dispatching</font></center></td></tr>
+
+<!-- Page content-->
+<tr>
+	<td></td>
+	<td bgcolor="#ccccff">
+	<font size=2>
+	Typical configurations for automatic script dispatching are the following, as illustrated in the image below:
+	<ul>
+	<li>Developers are separated geographically and communicate through email.
+	<li>Developers have access to a peer-to-peer local network (LAN).
+	<li>A developer shares the project between work and home and transports scripts using diskettes (or other portable storage devices).
+   	</ul>
+	<center><img src="../images/hubs.gif" border=0 alt="Hubs and satellites"></center><br>
+
+	There are many variations and combinations of the above scenarios. In general, it is useful to think of the topology of a project in terms of a set of <b>hubs</b> and their <b>satellites</b>. 
+	<br>A hub machine serves as a dispatching center for a local <b>cluster</b> of machines (a hub and its satellites form a local cluster). If there is more than one hub, it communicates with other hubs using <b>email</b>. Within a cluster, scripts are exchanged between the hub and the satellites using a <b>LAN</b> or <b>diskettes</b>. The two extremes are: 
+	<ul>
+	<li>A totally distributed system consisting of hubs exchanging email.
+	<li>A totally centralized system with no email, a single hub and multiple satellites connected through LAN.
+	</ul>
+	When installing Code Co-op, the Dispatcher will ask you a few questions. You'll have to decide whether you want to set up your computer as a hub or a satellite. 
+<p>If Code Co-op is working in a Local Area Network (LAN), one directory, called the Public Inbox, will be shared with full access rights to everybody (you can modify the sharing settings from your operating system).
+<p><img src="../Images/share.gif" width="497" height="213" border="0" alt="hub and satellite on a LAN">
+<p>If you have already set-up your computer and would like to view or edit the dispatcher preferences,
+	open the Dispatcher and select <i>Program/Preferences</i> where you can start a wizard that will lead you through the process, or you can edit some settings directly.
+	</font>
+	</td>
+	<td></td>
+</tr>
+<tr><td colspan=3 height=6></td></tr>
+<tr><td></td>
+	<td bgcolor="#ccffff">
+	<hr><center><font face="haettenschweiler, impact" size=5>Configuring a Hub</font></center><hr>
+	<font size=2>
+	<dl>
+	<dt><b>Email access.</b>
+		<dd>If you want your hubs to communicate over email, you have to make sure your email program supports the <b>Simple MAPI</b> interface. Most programs do, but sometimes you have to turn this support on. For instance:
+
+<ul>
+<li>In <b>Outlook Express 4.x</b>, go to the Tools/Options menu and select the option <i>Make OutLook Express my default Simple MAPI client</i>. You should turn off the Dispatcher while making this change.
+<li><b>Outlook Express 5.0</b>. You turn on Simple MAPI from the Internet Explorer. In its <i>Internet Options</i> dialog select the <i>Programs</i> tab and choose Outlook Express as your Mail application.
+<li><b>Outlook 97</b> doesn't work correctly with long file names--your best bet is to get a free upgrade to Outlook 98 from Microsoft.
+<li><b>Outlook 98</b>. Try the same approach as with Outlook Express 5.0. If it doesn't work, you will have to install <i>Corporate/Workgroup</i> support. It's a setup option, but you can also add it later using the <i>Add Components</i> function.
+<li><b>Netscape Communicator</b> doesn't have full support for Simple MAPI, so you might have problems retrieving scripts automatically. In any case, configure your projects to use short file names (the default), because Netscape's long-file-name handling is peculiar.
+		<li><b>Eudora</b>--you have to turn on full MAPI support. See <a href="http://eudora.qualcomm.com/developers/mapi.html">Eudora</a> MAPI FAQ.
+		</ul>
+		In general, for automatic receiving of scripts, your email program has to be serious about Simple MAPI--not all of them are. Some e-mail programs overwrite each other's implementations of MAPI (mapi.dll and mapi32.dll in the system32 directory). For instance, when you install Internet Explorer with Outlook Express, it will overwrite your Eudora MAPI dlls. To fix that, close all apps that use MAPI, uninstall Outlook, delete MAPI dlls from system32 and restart Eudora (it will restore its dlls on startup).
+<p>The Dispatcher offers a simple <b>test</b> that will determine whether your email program will collaborate with it. Select <i>Diagnostics</i> from the Dispatcher's context menu.
+
+		<p>You also have a choice between <b>automatic</b> and <b>manual</b> emailing (Dispatcher's <i>Program/Preferences</i>). When your Dispatcher is on <i>automatic</i>, it will email scripts immediately after they are generated. On <i>manual</i>, you have to select <i>Send mail</i> from the Dispatcher <a href="#context">context menu</a> every time you want to send email. The advantage of manual mode is that the Dispatcher will have more opportunity to combine multiple scripts into one email, whenever their recipient lists are identical.
+
+		<p><b>Receiving emailed scripts</b> can be triggered <i>manually</i> or you can set up the dispatcher to periodically check for new email. In manual mode, you have to select <i>Get mail</i> from Dispatcher's <a href="#context">context menu</a>. The Dispatcher will then talk to your email program (using Simple MAPI) and scan the Inbox for <b>unread</b> messages with the title "<i>Code Co-op Synch Scripts</i>." If you inadvertently "read" such a message in your Inbox, you can always mark it "unread" in your email program. In automatic mode, the dispatcher will do this automatically at intervals that you set up. Warning: some of the email clients have memory leaks (notably Outlook Express) which, in automatic mode, might eventually use up your memory and cause the dispatcher to stop working. Closing it and restarting the dispatcher every few days (if you don't turn off your computer for the night) will alleviate the problem.
+		<p>For advanced users, the Dispatcher has the option of <b>running a user program</b> (for instance pkzip or PGP for file compression or encryption) over the scripts before sending and after receiving them. In Dispatcher's <i>Program/Preferences</i> push the <i>Script Processing</i> button and follow the instructions. We tested this option with pkzip 2.5, and that's the example given in the Script Processing options. Pkzip is a shareware compressor, available from <a href="http://www.pkware.com/shareware">PKWARE</a> (select the command-line version). We also tested it with PGP.
+		<p>If the Dispatcher is not able to retrieve scripts from your email program, you are left with the option of saving attachments manually. In your email program, simply open the "Code Co-op Synch Scripts" message and <i>Save Attachments</i>. Save them directly to the Code Co-op's Public Inbox--the Dispatcher will then take over and dispatch them further.
+		<br><br>
+	<dt><b>Satellite Communications.</b>
+		<dd>The hub receives scripts from its satellites in its shared public inbox. It forwards them to other project members either directly or by email. For the Dispatcher to send scripts back to a Satellite, it has to know the <b>Forwarding Path</b> for each Satellite user and project (You can view and edit the list of <b>Satellite Members</b> on a hub from the context menu). If the satellite users configured their dispatchers correctly and the sharing of their their public inboxes was successful, the hub dispatcher will receive this information with every Join request, and it will know how to forward scripts to such users.
+
+<p>Otherwise, whenever a script arrives from an unknown cluster member, the Dispatcher will ask you for this user's forwarding path. There are three types of forwarding folders.
+		<ul>
+		<li>On a <b>LAN</b>, select the satellite's shared Public Inbox. Your network has to support peer-to-peer communications and file sharing (support for this is built into Windows, you might have to turn it on, though).
+		<li>You may also specify a <b>diskette drive</b> as your forwarding folder. Scripts will be copied to a diskette, which you will then manually carry to the satellite computer. Once at the satellite, copy the scripts into its public inbox folder and let the Dispatcher take over (you might want to create links to your public inbox on the desktop to simplify this process). You may specify different subdirectories on the diskette for different satellites, so that you don't confuse the scripts.
+		<li>Alternatively, you can specify any directory on your machine as the forwarding folder. At the end of the day you may copy the accumulated scripts from that directory onto a diskette or a zip drive and take them home to your satellite.
+		</ul>
+		<br><br>
+	</dl>
+	</font>
+	</td>
+	<td></td>
+</tr>
+<tr><td colspan=3 height=6></td></tr>
+<tr>
+	<td></td>
+	<td bgcolor="#ccffcc">
+	<font size=2>
+	<hr><center><font face="haettenschweiler, impact" size=5>Configuring a Satellite</font></center><hr>
+
+	On a satellite, you only specify one <b>Forwarding Folder</b>, either during setup, or from the Dispatcher's <i>Program/Preferences</i> menu. All outgoing scripts will be copied there. You have the following choices:
+	<ul>
+	<li>If you're on a network, specify the <b>Hub's shared Inbox Folder</b>, for instance \\MYHUB\CODECOOP. 
+	<li>Otherwise specify a diskette path, e.g., "a:\forward". You'll have to carry the diskette to the hub and copy the scripts to its Public Inbox folder. 
+	<li>Of course, it's also possible to specify a directory on your own hard disk as the forwarding folder and later manually copy the accumulated scripts from there to a diskette or a zip drive.
+	</ul>
+	</font>
+	</td>
+	<td></td>
+</tr>
+<tr><td colspan=3 height=6></td></tr>
+<tr>
+	<td></td>
+	<td bgcolor="#ffcccc">
+	<hr><center><font face="haettenschweiler, impact" size=5>Working with the Dispatcher</font></center><hr>
+	<font size=2>
+	Other than during the initial setup, the Dispatcher should be as unobtrusive as possible. You will see its <b>icon on your taskbar</b> <img src="../Images/taskico.gif" width=145 height=28 border=0 alt="Dispatcher icon">. When this icon turns red and with arrows, it means that there are some scripts waiting to be dealt with. If you double-click on the Dispatcher icon, a window will pop up (see the screenshot). It contains the list of your local projects and the count of incoming and outgoing scripts for each of them. The first item on the list corresponds to the Code Co-op's Public Inbox. You can further double-click on any of the items to see the list of waiting scripts for that project. Double-clicking on a script will show you the details for that script (such as project, sender, recipients, etc.).
+	<p><img src="../images/dispatch.gif" border="1" alt="Dispatcher" width="518" height="234">
+<p><img src="../Images/context.gif" width=240 height=178 border=1 alt="Dispatcher's context menu" align="right">
+	<p>When you see incoming scripts in any of the projects, fire up Code Co-op and visit that project to unpack the scripts. Outgoing scripts are usually automatically dispatched, unless you're on a hub with emailing set to <i>manual</i>. In that case, select <i>Send mail</i> from the <i>All</i> menu, or from the Dispatcher's <b><a name=context>context menu</a></b>, which pops up when you right-click on its icon. The context menu on a hub also contains the <i>Get mail</i> command that lets you retrieve scripts directly from your email program.
+	</font>
+	</td>
+	<td></td>
+</tr>
+<!-- Footer -->
+<tr>
+	<td></td>
+	<td><font size=1>Code Co-op User's manual. Copyright &copy; 1999, 2000 Reliable Software.</font></td>
+</tr>
+</table>
+
+</font>
+</body>
+</html>

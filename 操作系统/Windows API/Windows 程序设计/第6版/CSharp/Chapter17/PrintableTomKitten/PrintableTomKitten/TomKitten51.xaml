@@ -1,0 +1,7 @@
+﻿<UserControl
+    x:Class="PrintableTomKitten.TomKitten51"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Image Source="Images/tom51.jpg" Style="{StaticResource imageStyle}" />
+</UserControl>

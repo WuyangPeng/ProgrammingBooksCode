@@ -1,0 +1,15 @@
+﻿<UserControl
+    x:Class="PrintableTomKitten.TomKitten10"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Grid VerticalAlignment="Center"
+          MaxWidth="640">
+        <TextBlock Style="{StaticResource paragraphTextStyle}">
+            &#x2003;&#x2003;But one day their mother — Mrs. Tabitha 
+            Twitchit — expected friends to tea; so she fetched the 
+            kittens indoors, to wash and dress them, before the fine 
+            company arrived.
+        </TextBlock>
+    </Grid>
+</UserControl>

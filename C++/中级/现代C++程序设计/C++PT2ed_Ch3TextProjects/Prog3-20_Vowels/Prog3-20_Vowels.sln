@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Prog3-20_Vowels", "Prog3-20_Vowels\Prog3-20_Vowels.vcproj", "{0BE4E7B4-782D-4F99-84B6-63B8F43E236A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0BE4E7B4-782D-4F99-84B6-63B8F43E236A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0BE4E7B4-782D-4F99-84B6-63B8F43E236A}.Debug|Win32.Build.0 = Debug|Win32
+		{0BE4E7B4-782D-4F99-84B6-63B8F43E236A}.Release|Win32.ActiveCfg = Release|Win32
+		{0BE4E7B4-782D-4F99-84B6-63B8F43E236A}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

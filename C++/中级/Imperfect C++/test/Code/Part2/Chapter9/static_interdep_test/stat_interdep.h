@@ -1,0 +1,32 @@
+/* /////////////////////////////////////////////////////////////////////////////
+ * File:        stat_interdep.h
+ *
+ * Purpose:     
+ *
+ * Created      
+ * Updated:     9th December 2003
+ *
+ * Copyright:   Synesis Software Pty Ltd, (c) 2003. All rights reserved.
+ *
+ * Home:        www.synesis.com.au/software
+ *
+ * ////////////////////////////////////////////////////////////////////////// */
+
+
+/* ////////////////////////////////////////////////////////////////////////// */
+
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
+
+int func1(int level);
+int func2(int level);
+
+
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
+
+/* ////////////////////////////////////////////////////////////////////////// */

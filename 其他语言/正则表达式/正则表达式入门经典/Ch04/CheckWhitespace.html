@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>Check start tag for optional whitespace</title>
+<script language="javascript" type="text/javascript">
+var myRegExp = /<Person DateOfBirth=".*"\s*>/;
+
+function Validate(entry){
+return myRegExp.test(entry);
+} // end function Validate()
+
+function ShowPrompt(){
+var entry = prompt("This script tests for matches for the regular expression pattern:\n " + myRegExp + ".\nType in a string and click on the OK button.", "Type your text here.");
+if (Validate(entry)){
+alert("There is a match!\nThe regular expression pattern is: " + myRegExp + ".\n The string that you entered was: '" + entry + "'.");
+} // end if
+else{
+ alert("There is no match in the string you entered.\n" + "The regular expression pattern is " + myRegExp + "\n" + "You entered the string: '" + entry + "'." );
+} // end else
+
+} // end function ShowPrompt()
+
+</script>
+</head>
+<body>
+<form name="myForm">
+<br />
+<button type="Button" onclick="ShowPrompt()">Click here to enter text.</button>
+</form>
+</body>
+</html>

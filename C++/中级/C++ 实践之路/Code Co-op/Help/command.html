@@ -1,0 +1,288 @@
+<html>
+<head>
+<title> Code Co-op Manual: Commands and functions </title>
+</head>
+
+<body bgcolor="#99ccff" text="#000000" background="../images/grid.gif" TOPMARGIN=0 LEFTMARGIN=0>
+<font face="Verdana, Sans-Serif">
+
+<!-- Navigation Bar -->
+<table border="0" cellspacing="0" cellpadding="0">
+<tr><td align="LEFT" valign="TOP">
+	<map name=navbar>
+<area href="coop.html"		coords="1,1,50,24"	alt="Documentation entry page" shape="RECT">
+<area href="gstarted.html"	coords="48,2,144,24"	alt="Step by step guide to commonly used functions" shape="RECT">
+<area href="quickref.html"	coords="144,3,239,24"	alt="Descriptions of Co-op windows and views" shape="RECT">
+<area href="command.html"	coords="242,3,336,24"	alt="Functional description of features" shape="RECT">
+<area href="faq.html" 		coords="337,3,392,24"	alt="Frequently Asked Questions" shape="RECT">
+<area href="dispatch.html"	coords="395,3,488,24"	alt="Synchronization script exchange component" shape="RECT">
+<area alt="Detailed reference" coords="490,2,564,24" href="function.html" shape="RECT">
+</map>
+<img src="../images/map.gif" usemap="#navbar" border="0" align="top" width="565" height="26">
+</td></tr>
+</table>
+
+<table width="700" cellpadding="8">
+
+<tr><!-- Spacer and table structure definition -->
+	<td height=25 width=20>&nbsp;</td><!-- Left margin -->
+	<td width=660>&nbsp;</td><!-- Content -->
+	<td width=20>&nbsp;</td><!-- Right margin -->
+</tr>
+
+<tr><!--Home button and Documentation Title-->
+	<td colspan=3>
+	<center><font color="#0000a0" size=6>
+	<img src="../images/coop.gif" border=0 alt="Coop logo"> <b><font face="Courier New" color="Red">Code Co-op 3.0</font></b>
+	</font></center>
+	<center><font size=2><i>Server-less Version Control System</i></font></center>
+	</td>
+</tr>
+	
+<!-- Page Title -->
+<tr><td colspan=3><p><center><font face="haettenschweiler, impact" size=6 color="#336666">Commands: by Function</font></center></td></tr>
+
+<!-- Page content-->
+<tr>
+	<td></td>
+	<td bgcolor="#ffffcc">
+		<center>
+		<table width="100%" cellspacing=2 cellpadding=2>
+		<tr>
+		<td valign=top width="48%"><!-- Left column -->
+			<font size=2>
+			<dl><dt><a href="function.html#wprojects"><b>Projects</b></a></dt>
+				<dd><a href="function.html#create">Creating</a> a brand new project
+				<dd><a href="function.html#join">Joining</a> an existing project
+				<dd><a href="function.html#defect">Defecting</a> from a project
+				<dd><a href="function.html#visit">Visiting</a> other projects
+				<dd><a href="function.html#move">Moving</a> project tree <font color="Red">new!</font>
+				<dd><a href="function.html#members">Members</a>
+				<dd><a href="function.html#join">The administrator</a>
+				<dd><a href="function.html#repair">Repair</a>
+				<dd><a href="function.html#license">Licensing</a>
+
+			</dl>
+			<br>
+			<dl><dt><a href="function.html#wfiles"><b>Files</b></a></dt>
+				<dd><a href="function.html#navi">Navigating</a> through directories
+				<dd><a href="function.html#edit">Viewing</a> and editing files
+				<dd><a href="function.html#integrate">Integration</a> with SCC <font color="Red">new!</font>
+				<dd><a href="function.html#cmdline">Command-line</a> interface <font color="Red">new!</font>
+				<dd><a href="function.html#add">Adding</a> an existing file or folder
+				<dd>Creating a <a href="function.html#new">new</a> file or folder
+				<dd><a href="function.html#delete">Deleting</a> or removing a file
+				<dd><a href="function.html#rename">Renaming</a> a file
+				<dd>Changing file <a href="function.html#chtype">type</a> <font color="Red">new!</font>
+				<dd><a href="function.html#move">Moving</a> files
+				<dd>Checking <a href="function.html#out">out</a> a file
+				<dd>Checking <a href="function.html#in">in</a> a file
+				<dd><a href="function.html#uncheck">Un Check Out</a>
+			</dl>
+			</font>
+		</td>
+		<td valign=top width="4%">&nbsp;</td>
+		<td valign=top width="48%"><!-- Right column -->
+			<font size=2>
+			<dl><dt><a href="function.html#wsync"><b>Synch Scripts</b></a></dt>
+				<dd><a href="function.html#script">Differential script</a>
+				<dd><a href="dispatch.html">Automatic dispatching</a>
+				<dd>Distributing scripts through <a href="function.html#email">email</a>
+				<dd><a href="function.html#unpack">Synchronizing</a> (unpacking) a script
+				<dd><a href="function.html#look">Reviewing</a> the changes
+				<dd><a href="function.html#synch">Accepting a synch</a>
+				<dd><a href="function.html#autosynch">Auto-synch</a> <font color="Red">new!</font>
+				<dd><a href="function.html#merge">Merging</a> changes
+				<dd>Dealing with a <a href="function.html#reject">rejected</a> script
+				<dd>Resolving a <a href="function.html#conflict">conflict</a>
+
+
+				<dd><a href="function.html#resend">Re-sending</a> lost scripts
+			</dl>
+			<br>
+			<dl><dt><a href="function.html#whistory"><b>History</b></a></dt>
+				<dd>Looking at project <a href="function.html#version">Versions</a>
+				<dd><a href="function.html#oldVersion">Restoring</a> old Versions
+				<dd><a href="function.html#compare">Comparing</a> versions <font color="Red">new!</font>
+				<dd><a href="function.html#restore">Recreating</a> file versions
+				<dd><a href="function.html#branch">Branching</a>
+				<dd><a href="function.html#exporting">Exporting</a> old Versions
+				<dd>Creating <a href="function.html#labels">Labels</a>
+				<dd><a href="function.html#archive">Archiving</a> History
+				<dd>Creating <a href="function.html#report">reports</a>
+				<dd><a href="function.html#properties">Export/Import</a> Project History <font color="Red">new!</font>
+			</dl>
+			<br>
+			</font>
+		</td>
+		</tr>
+		</table></center>
+	</td>
+	<td></td>
+</tr>
+
+<tr><td colspan=3><p><center><font face="haettenschweiler, impact" size=6 color="#336666">Commands: by Menu Item</font></center></td></tr>
+
+
+
+	<tr>
+	<table width="750" border="1" bgcolor="#CCCCCC">
+	<tr><td colspan="8" bgcolor="#ffcccc">
+	<font size=2><b>Notice</b>: The <a href="#selmenu">Selection</a> menu changes depending on what area you are in. Various selection menus are listed in the second table below. They are also available as context menus (right mouse click).</font><br><img src="../Images/transpix.gif" width=1 height=6 border=0></td>
+	</tr>
+	<tr align="LEFT"> <!-- Menu Bar -->
+		<th><font size=2>Program&nbsp;</font></th>
+		<th><font size=2><a href="function.html#wprojects">Project</a></font></th>
+		<th><font size=2><a href="function.html#version">History</a>&nbsp;</font></th>
+		<th><font size=2>View</font></th>
+		<th><font size=2>Folder</font></th>
+		<th><font size=2>All</font></th>
+		<th bgcolor="#aaaaaa">&nbsp;</th>
+		<th><font size=2>Help</font></th>
+	</tr>
+	<tr>
+		<td valign="TOP"><font size=1> <!-- Program -->
+			<a href="function.html#license">License</a><br>
+		    About<hr>
+			Exit
+			</font></td>
+		<td valign="TOP"><font size=1> <!-- Project -->
+			<a href="function.html#visit">Visit</a><br>
+            <a href="function.html#repair">Repair</a><br>
+			<a href="function.html#move">Move</a><hr>
+			<a href="function.html#join">Join</a><br>
+			<a href="function.html#create">New</a><br>
+			<a href="function.html#defect">Defect</a><hr>
+			<a href="function.html#members">Members</a><br>
+			<a href="function.html#members">Administrator</a><hr>
+			<a href="function.html#properties">Properties</a>
+			</font></td>
+		<td valign="TOP"><font size=1> <!-- History -->
+			<a href="function.html#hexport">Export</a> History<br>
+			<a href="function.html#himport">Import</a> History<hr>
+			<a href="function.html#labels">Add Label</a>
+			</font></td>
+		<td valign="TOP"><font size=1> <!-- View -->
+			Refresh<hr>
+			<a href="quickref.html#filea">Files</a><br>
+			<a href="quickref.html#checkina">Check-in Area</a><br>
+			<a href="quickref.html#mailbox">Mailbox</a><br>
+			<a href="quickref.html#syncha">Synch Area</a><br>
+			<a href="quickref.html#historya">History</a><br>
+			<a href="quickref.html#projecta">Projects</a>
+			</font></td>
+		<td valign="TOP"><font size=1> <!-- Folder -->
+			<a href="function.html#navi">Go Up</a><br>
+			<a href="function.html#navi">Goto Root</a><hr>
+			<a href="function.html#new">New File</a><br>
+			<a href="function.html#new">New Folder</a><br>
+			</font></td>
+		<td valign="TOP"><font size=1> <!-- All -->
+			<a href="function.html#in">Check-In</a><br>
+			<a href="function.html#out">Check-Out</a><br>
+			<a href="function.html#out">Deep CheckOut</a><br>
+			<a href="function.html#uncheck">Un-CheckOut</a><hr>
+			<a href="function.html#unpack">Synch Script</a><br>
+			<a href="function.html#unpack">Synch</a> and Accept<hr>
+			<a href="function.html#synch">Accept Synch</a><hr>
+			<a href="function.html#report">Report</a>
+			</font></td>
+		<td align="center" valign="top" bgcolor="#AAAAAA"> <!-- Selection -->
+			<font size=1>S<br>e<br>l<br>e<br>c<br>t<br>i<br>o<br>n</font>
+			</td>
+		<td valign="TOP"><font size=1> <!-- Help -->
+			Contents<br>
+			Tutorial<br>
+			WEB Support<hr>
+			<a href="function.html#beginner">Beginner Mode</a>
+			</font></td>
+	</tr>
+	</table>
+</td>
+</tr>
+<tr><td colspan="8">&nbsp;</td></tr>
+<tr>
+<td colspan="3">
+	<table width="750" border="1" bgcolor="#CCCCCC">
+	<tr align="LEFT"> <!-- Menu Bar -->
+		<th><font size=2><a name="selmenu">Selection</a><br><i>(Files)</i></font></th>
+		<th><font size=2>Selection<br><i>(Check-in Area)</i></font></th>
+		<th><font size=2>Selection<br><i>(Mailbox)</i></font></th>
+		<th><font size=2>Selection<br><i>(Synch Area)</i></font></th>
+		<th><font size=2>Selection<br><i>(History)</i></font></th>
+		<th><font size=2>Selection<br><i>(Projects)</i></font></th>
+	</tr>
+	<tr>
+		<td valign="TOP"><font size=1> <!-- Files -->
+			<a href="function.html#out">Check-Out</a><br>
+			<a href="function.html#out">Deep CheckOut</a><br>
+			<a href="function.html#in">Check-In</a><br>
+			<a href="function.html#uncheck">Un-CheckOut</a><hr>
+			<a href="function.html#edit">Open</a><br>
+			<a href="function.html#report">Report</a><hr>
+			<a href="function.html#add">Add</a> To Project<br>
+			<a href="function.html#delete">Remove</a> From Project<br>
+			<a href="function.html#delete">Delete</a><br>
+			<a href="function.html#rename">Rename</a><br>
+			<a href="function.html#chtype">Change</a> File Type<hr>
+			<a href="function.html#move">Cut</a><br>
+			<a href="function.html#move">Paste</a><hr>
+			<a href="function.html#fileVersion">Show History</a>
+			</font></td>
+			
+		<td valign="TOP"><font size=1> <!-- Check In -->
+			<a href="function.html#in">Check-In</a><br>
+			<a href="function.html#uncheck">Un-CheckOut</a><hr>
+			<a href="function.html#edit">Open</a><br>
+			<a href="function.html#report">Report</a>
+		</td>
+		<td valign="TOP"><font size=1> <!-- Mailbox -->
+			<a href="function.html#edit">Open</a><br>
+			<a href="function.html#report">Report</a><hr>
+			<a href="function.html#delete">Delete</a><hr>
+			<a href="function.html#unpack">Synch Script</a><br>
+			<a href="function.html#unpack">Synch</a> and Accept
+		</td>
+		<td valign="TOP"><font size=1> <!-- Synch -->
+			<a href="function.html#out">Check-Out</a><hr>
+			<a href="function.html#edit">Open</a><br>
+			<a href="function.html#report">Report</a><hr>
+			<a href="function.html#synch">Accept Synch</a>
+
+		</td>
+		<td valign="TOP"><font size=1> <!-- History -->
+			<a href="function.html#edit">Open</a><br>
+			<a href="function.html#report">Report</a><hr>
+			<a href="function.html#fileVersion">View/Save</a><br>
+			<a href="function.html#compare">Compare</a><br>
+			<a href="function.html#compare">Compare</a> with Previous<br>
+			<a href="function.html#compare">Compare</a> with Current<hr>
+			<a href="function.html#oldVersion">Restore</a><br>
+			<a href="function.html#branch">Branch</a><br>
+			<a href="function.html#exporting">Export Version</a><br>
+			<a href="function.html#archive">Archive</a><br>
+			<a href="function.html#archive">UnArchive</a><hr>
+			<a href="function.html#resend">Re-send Script</a>		
+
+		</td>
+		<td valign="TOP"><font size=1> <!-- Project -->
+			<a href="function.html#visit">Open</a><br>
+			<a href="function.html#report">Report</a>
+		</td>
+	</tr>
+	</table>
+</td>
+</tr>
+
+
+<!-- Footer -->
+<tr>
+	<td></td>
+	<td><font size=1>Code Co-op User's manual. Copyright &copy; 1999, 2000 Reliable Software.</font></td>
+</tr>
+</table>
+
+</font>
+<img src="../Images/transpix.gif" width=1 height=500 border=0>
+</body>
+</html>

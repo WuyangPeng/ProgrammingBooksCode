@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>March 04: D and Java</title>
+</head>
+
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#330066" ALINK="#ff0000" TEXT="#000000">
+<!--Copyright &#169; C/C++ Users Journal-->
+
+<h3>Listing 7: <i>Test class.</i></h3>
+<pre>
+/* /////////////////////////////////////////////////////////////
+ * Extract from org/recls/Search.java
+ * www:    http://www.recls.org/
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * (Licensed under the Synesis Software Standard Source License:
+ *  http://www.synesis.com.au/licenses/ssssl.html)
+ * ////////////////////////////////////////////////////////// */
+
+import org.recls.Entry;
+import org.recls.ReclsException;
+import org.recls.Search;
+import java.util.Enumeration;
+public class recls_test
+{
+  public static void main(String[] args)
+  {
+    . . . // deduce dir, pattern and flags
+    try
+    {
+      Search  search  = Search.MakeSearch(rootDir, pattern, flags);
+      for(Enumeration en = search; en.hasMoreElements(); ++total)
+      {
+        Object  el  = en.nextElement();
+        System.out.println(el);
+        if(!bSuccinct)
+        {
+          Entry entry = (Entry)el;
+          System.out.println(" Path:           " + entry.getPath());
+          System.out.println(" Drive:          " + entry.getDrive());
+          System.out.println(" Directory:      " + entry.getDirectory());
+          System.out.println(" DirectoryPath:  " + entry.getDirectoryPath());
+          if((flags & Search.RECLS_F_DIRECTORY_PARTS) == 
+                                              Search.RECLS_F_DIRECTORY_PARTS)
+          {
+            String[]  dirParts  = entry.getDirectoryParts();
+            for(int j = 0; j < dirParts.length; ++j)
+            {
+              System.out.println("    " + dirParts[j]);
+            }
+          }
+          System.out.println(" File:             " + entry.getFile());
+          System.out.println(" ShortFile:        " + entry.getShortFile());
+          System.out.println(" FileName:         " + entry.getFileName());
+          System.out.println(" FileExtL          " + entry.getFileExt());
+          System.out.println(" Size:             " + entry.getSize());
+          System.out.println(" CreationTime:     " + entry.getCreationTime());
+          System.out.println(" ModificationTime: " + entry.getModificationTime());
+          System.out.println(" LastAccessTime:   " + entry.getLastAccessTime());
+          System.out.println(" LastStatusChangeTime: " + entry.getLastStatusChangeTime());
+          System.out.println(" isReadOnly:       " + entry.isReadOnly());
+          System.out.println(" isDirectory:      " + entry.isDirectory());
+          System.out.println(" isLink:           " + entry.isLink());
+        }
+      }
+      search.Close();
+      System.out.println("  Total matched: " + total);
+    }
+    catch(ReclsException x)
+    {
+      System.out.println(x);
+    }
+  }
+}
+</body>
+</html>

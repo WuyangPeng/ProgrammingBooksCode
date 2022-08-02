@@ -1,0 +1,45 @@
+// Example 6-10 Using the thread attribute object to set scheduling 
+// policy and priority of a thread.
+
+#include <pthread.h>
+#include <sched.h>
+
+//...
+
+pthread_t ThreadA;
+pthread_attr_t SchedAttr;
+sched_param SchedParam;
+int MidPriority,MaxPriority,MinPriority;
+
+int main(int argc, char *argv[])
+{
+   //...
+
+   // Step 1: initialize attribute object
+   pthread_attr_init(&SchedAttr);
+
+   // Step 2: retrieve min and max priority values for scheduling policy
+   MinPriority = sched_get_priority_max(SCHED_RR);
+   MaxPriority = sched_get_priority_min(SCHED_RR);
+
+   // Step 3: calculate priority value
+   MidPriority = (MaxPriority + MinPriority)/2;
+
+   // Step 4: assign priority value to sched_param structure
+   SchedParam.sched_priority = MidPriority;
+
+   // Step 5: set attribute object with scheduling parameter 
+   pthread_attr_setschedparam(&SchedAttr,&SchedParam);
+
+   // Step 6: set scheduling attributes to be determined by attribute object 
+   pthread_attr_setinheritsched(&SchedAttr,PTHREAD_EXPLICIT_SCHED);
+
+   // Step 7: set scheduling policy
+   pthread_attr_setschedpolicy(&SchedAttr,SCHED_RR);
+
+   // Step 8: create thread with scheduling attribute object
+   pthread_create(&ThreadA,&SchedAttr,task1,NULL);
+
+   //...
+}
+

@@ -1,0 +1,11 @@
+C++ 核心思想（Computing Concepts with C++ Essentials）
+（第3版）
+
+官方网站 
+http://www.horstmann.com/ 、 
+http://www.wiley.com/college/horstmann。
+
+○
+作者：Cay Horstmann
+
+其他书籍：《Java 核心技术》。

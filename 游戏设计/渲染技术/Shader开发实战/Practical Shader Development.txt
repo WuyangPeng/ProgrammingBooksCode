@@ -1,0 +1,5 @@
+Shader开发实战（Practical Shader Development）
+（第2版）
+
+★★ 
+作者：  Kyle Halladay

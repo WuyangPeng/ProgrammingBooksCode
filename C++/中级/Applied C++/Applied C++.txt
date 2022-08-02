@@ -1,0 +1,8 @@
+Applied C++
+Practical Techniques for Building Better Software（构建更佳软件的实用技术）
+
+官方网站：
+http://www.appliedcpp.com/appliedcpp_sw （已失效）。
+
+★★
+作者：Philip Romanik、Amy Muntz 

@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>Test For A Date</title>
+<script language="vbscript" type="text/vbscript">
+Function MatchDate
+Dim myRegExp, TestString, InputString
+Set myRegExp = new RegExp
+InputString = InputBox("Enter a Date in the format MM/DD/YYYY")
+myRegExp.Pattern = "(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.]\d{4}"
+TestString = InputString
+If myRegExp.Test(TestString) = True Then
+  MsgBox "The test string '" & TestString & "' matches the pattern '" & myRegExp.Pattern & "'."
+Else
+  MsgBox "There is no match. '" & InputString & "' does not match " &VBCrLf _
+  & "the pattern '" & myRegExp.Pattern & "'."
+End If
+End Function
+
+</script>
+</head>
+<body onload="MatchDate">
+
+</body>
+</html>

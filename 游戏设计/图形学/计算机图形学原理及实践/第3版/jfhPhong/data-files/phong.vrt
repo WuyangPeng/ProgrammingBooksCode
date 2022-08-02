@@ -1,0 +1,23 @@
+/**
+  Per-pixel Phong Shading. 
+
+ */
+
+attribute vec4 g3d_Vertex;
+attribute vec3 g3d_Normal;
+
+/** Camera origin in world space */
+uniform vec3 wsEyePosition;
+
+/** Non-unit vector to the eye from the vertex */
+varying vec3 wsInterpolatedEye;
+
+/** Surface normal in world space */
+varying vec3 wsInterpolatedNormal;
+
+void main(void) {
+    wsInterpolatedNormal = normalize(g3d_ObjectToWorldNormalMatrix * g3d_Normal);
+    wsInterpolatedEye    = wsEyePosition - (g3d_ObjectToWorldMatrix * g3d_Vertex).xyz;
+
+    gl_Position = g3d_ModelViewProjectionMatrix * g3d_Vertex;
+}

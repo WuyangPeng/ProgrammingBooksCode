@@ -1,0 +1,146 @@
+// An Overlay to display the score
+Score
+{
+   // set a high z-order, displays on top of anything with lower z-order
+   zorder 500
+
+   // create a PanelOverlayElement container to hold the text areas
+   container Panel(ScorePanel)
+   {
+      // use relative metrics mode to position this container at the
+      // top-left corner of the screen
+      metrics_mode relative
+      left 0.0
+      top 0.0
+
+      // make it 1/10 the height and the full width of the screen
+      width 1.0
+      height .1
+
+      // create a TextAreaOverlayElement to display player 1's score
+      element TextArea(left)
+      {
+         // position and size the element relative to the container
+         metrics_mode relative
+
+         // position it at the top of the container 5% from the left and
+         // make it the same height and half as long as the container
+         left 0.05
+         top 0.0
+         width 0.5
+         height 1.0
+
+         // set font use for caption and set the size and color
+         font_name BlueBold
+         char_height .05
+         colour 1.0 0 0
+         caption Player 1 Score: 0
+      }
+      // create a TextAreaOverlayElement to display player 2's score
+      element TextArea(right)
+      {
+         // position and size the element relative to the container
+         metrics_mode relative
+
+         // position it at the top of the container 69% from the left and
+         // make it the same height as the container, stretch to the end
+         left 0.69
+         top 0.0
+         width 0.5
+         height 1.0
+
+
+         // set font use for caption and set the size and color
+         font_name BlueBold
+         char_height 0.05
+         colour 1.0 0 0
+         caption Player 2 Score: 0
+      }
+   }
+}
+
+// An Overlay to display "Game Paused" when the player pauses the game
+PauseOverlay
+{
+   // set a high z-order, displays on top of anything with lower z-order
+   zorder 500
+
+   // create a PanelOverlayElement container to hold the text area
+   container Panel(Pause)
+   {
+      // use relative metrics mode to position and size this container
+      metrics_mode relative
+
+      // place the container at the top-left corner of the window
+      left 0.0
+      top 0.0
+
+      // make the container the same size as the window
+      width 1.0
+      height 1.0
+
+      // create a TextAreaOverlayElement to display the text
+      element TextArea(pauseText)
+      {
+         // position and size the element relative to its container
+         metrics_mode relative
+
+         // center it vertically in the container
+         vert_align center
+
+         // put the left corner 4/10 from the left of the container and
+         // make it 2/10 the width of the container and 1/10 the height
+         left 0.4
+         width 0.2
+         height 0.1
+
+         // set font use for caption and set the size and color
+         font_name BlueBold
+         char_height 0.05
+         colour 0 0 0
+         caption Game Paused
+      }
+   }
+}
+
+// An Overlay to display which player won the game
+WinnerOverlay
+{
+   // set a high z-order, displays on top of anything with lower z-order
+   zorder 500
+
+   // create a PanelOverlayElement container to hold the text area
+   container Panel(Winner)
+   {
+      // use relative metrics mode to position and size this container
+      metrics_mode relative
+
+      // place the container at the top-left corner of the window
+      left 0.0
+      top 0.0
+
+      // make the container the same size as the window
+      width 1.0
+      height 1.0
+
+      // create a TextAreaOverlayElement to display the text
+      element TextArea(winnerText)
+      {
+         // position and size the element relative to its container
+         metrics_mode relative
+
+         // put the left corner 4/10 from the left of the container and
+         // make it 2/10 the width of the container and 1/10 the height
+         left 0.4
+         top 0.3
+         width 0.2
+         height 0.1
+
+         // set font use for caption and set the size and color
+         font_name BlueBold
+         char_height 0.05
+         colour 0 0 0
+      }
+   }
+}
+

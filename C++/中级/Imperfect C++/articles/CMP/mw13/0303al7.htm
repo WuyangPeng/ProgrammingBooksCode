@@ -1,0 +1,253 @@
+<html>
+<head>
+<title>Adapting Win32 Enumeration APIs to STL Iterator Concepts</title>
+</head>
+
+<body>
+
+
+<h4>Listing 7   findfile_sequence_const_iterator</h4>
+
+<pre>
+// Extract from winstl_findfile_sequence.h
+
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        >
+class basic_findfile_sequence_const_iterator
+  : public stlsoft::iterator_base&lt;winstl::input_iterator_tag,
+                                  V, ws_ptrdiff_t, void, V>
+{
+public:
+  typedef C                                               char_type;
+  typedef T                                               traits_type;
+  typedef V                                               value_type;
+  typedef basic_findfile_sequence_const_iterator&lt;C, T, V> class_type;
+  typedef ws_typename_type_k traits_type::find_data_type  find_data_type;
+  typedef basic_findfile_sequence&lt;C, T>                   sequence_type;
+
+protected:
+  basic_findfile_sequence_const_iterator( sequence_type const &l
+                                        , HANDLE hSrch
+                                        , find_data_type const &data);
+  basic_findfile_sequence_const_iterator(sequence_type const &l);
+public:
+  basic_findfile_sequence_const_iterator();
+  basic_findfile_sequence_const_iterator(class_type &rhs);
+  ~basic_findfile_sequence_const_iterator() winstl_throw_0();
+
+public:
+  class_type &operator ++();
+  const class_type operator ++(int);
+  const value_type operator *() const;
+  ws_bool_t operator ==(class_type const &rhs) const;
+  ws_bool_t operator !=(class_type const &rhs) const;
+
+// Members
+protected:
+  friend class basic_findfile_sequence<C, T>;
+
+  sequence_type const * const                     m_list;
+  HANDLE                                          m_hSrch;
+  ws_typename_type_k traits_type::find_data_type  m_data;
+
+// Not to be implemented
+private:
+  basic_findfile_sequence_const_iterator &operator =(class_type const &rhs);
+};
+
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        >
+inline basic_findfile_sequence_const_iterator&lt;C, T, V>::
+    basic_findfile_sequence_const_iterator()
+  : m_list(NULL)
+  , m_hSrch(INVALID_HANDLE_VALUE)
+{
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        >
+inline basic_findfile_sequence_const_iterator&lt;C, T, V>::
+    basic_findfile_sequence_const_iterator(sequence_type const &l)
+  : m_list(&l)
+  , m_hSrch(INVALID_HANDLE_VALUE)
+{
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        >
+inline basic_findfile_sequence_const_iterator&lt;C, T, V>::
+    basic_findfile_sequence_const_iterator(class_type &rhs)
+  : m_list(rhs.m_list)
+  , m_hSrch(rhs.m_hSrch)
+  , m_data(rhs.m_data)
+{
+  rhs.m_hSrch = INVALID_HANDLE_VALUE;
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        >
+inline ws_typename_type_k class_type
+  &basic_findfile_sequence_const_iterator&lt;C, T, V>::
+    operator =(class_type const &rhs)
+{
+  // Should only be comparing iterators from same container
+  winstl_message_assert("Assigning iterators from separate sequences", m_list == rhs.m_list);
+
+  m_hSrch = rhs.m_hSrch;
+  m_data  = rhs.m_data;
+
+  return *this;
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        >
+inline basic_findfile_sequence_const_iterator&lt;C, T, V>::
+    ~basic_findfile_sequence_const_iterator() winstl_throw_0()
+{
+  if(m_hSrch != INVALID_HANDLE_VALUE)
+  {
+    ::FindClose(m_hSrch);
+  }
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        >
+inline ws_typename_type_k class_type
+    &basic_findfile_sequence_const_iterator&lt;C, T, V>::operator ++()
+{
+  ws_int_t  flags = m_list->m_flags;
+
+  for(; m_hSrch != INVALID_HANDLE_VALUE; )
+  {
+    if(!traits_type::find_next_file(m_hSrch, &m_data))
+    {
+      ::FindClose(m_hSrch);
+
+      m_hSrch = INVALID_HANDLE_VALUE;
+
+      break;
+    }
+    else
+    {
+      if((m_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
+      {
+        // A file, and files requested, so break
+        if(flags & sequence_type::files)
+        {
+          break;
+        }
+      }
+      else
+      {
+        if(traits_type::is_dots(m_data.cFileName))
+        {
+          if(flags & sequence_type::includeDots)
+          {
+            // A dots file, and dots are requested
+            break;
+          }
+        }
+        else if(flags & sequence_type::directories)
+        {
+          // A directory, and directories requested
+          break;
+        }
+      }
+    }
+  }
+
+  return *this;
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        >
+inline const ws_typename_type_k class_type 
+    basic_findfile_sequence_const_iterator&lt;C, T, V>::operator ++(int)
+{
+  // 
+  class_type  ret(*this);
+
+  operator ++();
+
+  return ret;
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        >
+inline const ws_typename_type_k value_type 
+    basic_findfile_sequence_const_iterator&lt;C, T, V>::operator *() const
+{
+  if(m_hSrch != INVALID_HANDLE_VALUE)
+  {
+    return value_type(m_data, m_list->m_subpath);
+  }
+  else
+  {
+    winstl_message_assert("Dereferencing end()-valued iterator", 0);
+
+    return value_type();
+  }
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        >
+inline ws_bool_t basic_findfile_sequence_const_iterator<C, T, V>::
+    operator ==(class_type const &rhs) const
+{
+  ws_bool_t  eq;
+
+  // Should only be comparing iterators from same container
+  winstl_message_assert("Comparing iterators from separate sequences", m_list == rhs.m_list);
+
+  // Not equal if one but not both handles is the INVALID_HANDLE_VALUE
+  // or if the data is not equal.
+  if( (m_hSrch == INVALID_HANDLE_VALUE) != 
+      (rhs.m_hSrch == INVALID_HANDLE_VALUE) ||
+    ( m_hSrch != INVALID_HANDLE_VALUE &&
+      traits_type::str_compare(m_data.cFileName, rhs.m_data.cFileName)))
+  {
+    eq = ws_false_v;
+  }
+  else
+  {
+    eq = ws_true_v;
+  }
+
+  return eq;
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        >
+inline ws_bool_t basic_findfile_sequence_const_iterator<C, T, V>::
+    operator !=(class_type const &rhs) const
+{
+  return ! operator ==(rhs);
+}
+
+</pre>
+</body>
+</html>

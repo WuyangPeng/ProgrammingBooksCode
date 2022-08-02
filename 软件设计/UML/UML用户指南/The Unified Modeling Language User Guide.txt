@@ -1,0 +1,9 @@
+﻿UML用户指南（The Unified Modeling Language User Guide）
+（第2版）
+
+官方网站：
+http://www.omg.org 
+
+★
+作者：Grady Booch、James Rumbaugh、Ivar Jacobson
+

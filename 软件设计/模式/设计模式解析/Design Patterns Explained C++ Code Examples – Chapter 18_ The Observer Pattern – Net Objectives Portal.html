@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en-US" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+		<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>
+<title>Design Patterns Explained C++ Code Examples &#8211; Chapter 18: The Observer Pattern &#8211; Net Objectives Portal</title>
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//secure.gravatar.com' />
+<link rel='dns-prefetch' href='//cdn.muut.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Net Objectives Portal &raquo; Feed" href="https://portal.netobjectives.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Net Objectives Portal &raquo; Comments Feed" href="https://portal.netobjectives.com/comments/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/portal.netobjectives.com\/wp-includes\/js\/wp-emoji-release.min.js"}};
+			!function(e,a,t){var r,n,o,i,p=a.createElement("canvas"),s=p.getContext&&p.getContext("2d");function c(e,t){var a=String.fromCharCode;s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,e),0,0);var r=p.toDataURL();return s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,t),0,0),r===p.toDataURL()}function l(e){if(!s||!s.fillText)return!1;switch(s.textBaseline="top",s.font="600 32px Arial",e){case"flag":return!c([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])&&(!c([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!c([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]));case"emoji":return!c([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340])}return!1}function d(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(i=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},o=0;o<i.length;o++)t.supports[i[o]]=l(i[o]),t.supports.everything=t.supports.everything&&t.supports[i[o]],"flag"!==i[o]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[i[o]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(r=t.source||{}).concatemoji?d(r.concatemoji):r.wpemoji&&r.twemoji&&(d(r.twemoji),d(r.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='https://portal.netobjectives.com/wp-includes/css/dist/block-library/style.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='bbp-default-css'  href='https://portal.netobjectives.com/wp-content/plugins/bbpress/templates/default/css/bbpress.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='direct-stripe-style-css'  href='https://portal.netobjectives.com/wp-content/plugins/direct-stripe/assets/public/dist/css/style.css' type='text/css' media='all' />
+<style id='direct-stripe-style-inline-css' type='text/css'>
+
+			.stripe-button-el {
+				visibility: hidden !important;
+				display: none !important;
+			}
+			.direct-stripe-button {
+				background-color: #;
+				border: 1px solid #;
+				-webkit-border-radius: 0px;
+				-moz-border-radius: 0px;
+				-o-border-radius: 0px;
+				border-radius: 0px;
+			}
+			.direct-stripe-button:hover {
+				color: #;
+				border-color: #;
+			}
+			#directStripe_answer {
+			    -webkit-border-radius: 0px;
+				-moz-border-radius: 0px;
+				-o-border-radius: 0px;
+				border-radius: 0px;
+			}
+			.loadingDS:before  {
+			    color: #;
+			}
+			.ds-element.in-form {
+				  background-color: #;	
+			}
+			.ds-element.in-form fieldset {
+				-webkit-border-radius: 0px;
+				-moz-border-radius: 0px;
+				-o-border-radius: 0px;
+				border-radius: 0px;
+			}
+			.ds-element.in-form fieldset legend {
+				background-color: #;
+			}
+			.ds-element.in-form button {
+				color: #;
+				-webkit-border-radius: 0px;
+				-moz-border-radius: 0px;
+				-o-border-radius: 0px;
+				border-radius: 0px;
+			}
+			.ds-element.in-form button:active,
+			.ds-element.in-form button:hover {
+				color: #fff;
+				background-color: #;
+			}
+			.ds-element.in-form option {
+				background-color: #;
+			  }
+		
+</style>
+<link rel='stylesheet' id='pc_google_analytics-frontend-css'  href='https://portal.netobjectives.com/wp-content/plugins/pc-google-analytics/assets/css/frontend.css' type='text/css' media='all' />
+<link rel='stylesheet' id='twentysixteen-fonts-css'  href='https://fonts.googleapis.com/css?family=Merriweather%3A400%2C700%2C900%2C400italic%2C700italic%2C900italic%7CMontserrat%3A400%2C700%7CInconsolata%3A400&#038;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<link rel='stylesheet' id='genericons-css'  href='https://portal.netobjectives.com/wp-content/plugins/jetpack/_inc/genericons/genericons/genericons.css' type='text/css' media='all' />
+<link rel='stylesheet' id='twentysixteen-style-css'  href='https://portal.netobjectives.com/wp-content/themes/NetObjectives-02_02_010/style.css' type='text/css' media='all' />
+<!--[if lt IE 10]>
+<link rel='stylesheet' id='twentysixteen-ie-css'  href='https://portal.netobjectives.com/wp-content/themes/NetObjectives-02_02_010/css/ie.css' type='text/css' media='all' />
+<![endif]-->
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='twentysixteen-ie8-css'  href='https://portal.netobjectives.com/wp-content/themes/NetObjectives-02_02_010/css/ie8.css' type='text/css' media='all' />
+<![endif]-->
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='twentysixteen-ie7-css'  href='https://portal.netobjectives.com/wp-content/themes/NetObjectives-02_02_010/css/ie7.css' type='text/css' media='all' />
+<![endif]-->
+<link rel='stylesheet' id='muut-forum-css-css'  href='//cdn.muut.com/latest/moot.css' type='text/css' media='all' />
+<link rel='stylesheet' id='muut-frontend-style-css'  href='https://portal.netobjectives.com/wp-content/plugins/muut/resources/frontend-style.css' type='text/css' media='all' />
+<link rel='stylesheet' id='__EPYT__style-css'  href='https://portal.netobjectives.com/wp-content/plugins/youtube-embed-plus-pro/styles/ytprefs.min.css' type='text/css' media='all' />
+<style id='__EPYT__style-inline-css' type='text/css'>
+
+                .epyt-gallery-thumb {
+                        width: 25%;
+                }
+                
+</style>
+<link rel='stylesheet' id='__disptype__-css'  href='https://portal.netobjectives.com/wp-content/plugins/youtube-embed-plus-pro/scripts/lity.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='https://portal.netobjectives.com/wp-content/plugins/jetpack/css/jetpack.css' type='text/css' media='all' />
+<script type="text/javascript">var muut_conf = {api:{"key":"Uw0aInxX0D","timestamp":1585062563,"signature":"0c49e77f8c3db30605a2b9c8ec26b82b5ab62b07","message":"eyJ1c2VyIjpbXX0="}, login_url: "https://portal.netobjectives.com/wp-login.php?redirect_to=https%3A%2F%2Fportal.netobjectives.com%2Fpages%2Fbooks%2Fdesign-patterns-explained-cpp-code-examples-chapter-18%2F"};</script><script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/jquery/jquery.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/jquery/jquery-migrate.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/vendor/lodash.min.js'></script>
+<script type='text/javascript'>
+window.lodash = _.noConflict();
+</script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/vendor/wp-polyfill.min.js'></script>
+<script type='text/javascript'>
+( 'fetch' in window ) || document.write( '<script src="https://portal.netobjectives.com/wp-includes/js/dist/vendor/wp-polyfill-fetch.min.js"></scr' + 'ipt>' );( document.contains ) || document.write( '<script src="https://portal.netobjectives.com/wp-includes/js/dist/vendor/wp-polyfill-node-contains.min.js"></scr' + 'ipt>' );( window.FormData && window.FormData.prototype.keys ) || document.write( '<script src="https://portal.netobjectives.com/wp-includes/js/dist/vendor/wp-polyfill-formdata.min.js"></scr' + 'ipt>' );( Element.prototype.matches && Element.prototype.closest ) || document.write( '<script src="https://portal.netobjectives.com/wp-includes/js/dist/vendor/wp-polyfill-element-closest.min.js"></scr' + 'ipt>' );
+</script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/autop.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/blob.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/block-serialization-default-parser.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/vendor/react.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/vendor/react-dom.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/escape-html.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/element.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/is-shallow-equal.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/compose.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/hooks.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/deprecated.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/priority-queue.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/redux-routine.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/data.min.js'></script>
+<script type='text/javascript'>
+( function() {
+	var userId = 0;
+	var storageKey = "WP_DATA_USER_" + userId;
+	wp.data
+		.use( wp.data.plugins.persistence, { storageKey: storageKey } );
+	wp.data.plugins.persistence.__unstableMigrate( { storageKey: storageKey } );
+} )();
+</script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/dom.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/html-entities.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/i18n.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/shortcode.min.js'></script>
+<script type='text/javascript'>
+( function( domain, translations ) {
+	var localeData = translations.locale_data[ domain ] || translations.locale_data.messages;
+	localeData[""].domain = domain;
+	wp.i18n.setLocaleData( localeData, domain );
+} )( "default", { "locale_data": { "messages": { "": {} } } } );
+</script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/blocks.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/vendor/moment.min.js'></script>
+<script type='text/javascript'>
+moment.locale( 'en_US', {"months":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthsShort":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"weekdaysShort":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"week":{"dow":1},"longDateFormat":{"LT":"g:i a","LTS":null,"L":null,"LL":"F j, Y","LLL":"F j, Y g:i a","LLLL":null}} );
+</script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/dom-ready.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/a11y.min.js'></script>
+<script type='text/javascript'>
+( function( domain, translations ) {
+	var localeData = translations.locale_data[ domain ] || translations.locale_data.messages;
+	localeData[""].domain = domain;
+	wp.i18n.setLocaleData( localeData, domain );
+} )( "default", { "locale_data": { "messages": { "": {} } } } );
+</script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/keycodes.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/rich-text.min.js'></script>
+<script type='text/javascript'>
+( function( domain, translations ) {
+	var localeData = translations.locale_data[ domain ] || translations.locale_data.messages;
+	localeData[""].domain = domain;
+	wp.i18n.setLocaleData( localeData, domain );
+} )( "default", { "locale_data": { "messages": { "": {} } } } );
+</script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/components.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/url.min.js'></script>
+<script type='text/javascript'>
+( function( domain, translations ) {
+	var localeData = translations.locale_data[ domain ] || translations.locale_data.messages;
+	localeData[""].domain = domain;
+	wp.i18n.setLocaleData( localeData, domain );
+} )( "default", { "locale_data": { "messages": { "": {} } } } );
+</script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/api-fetch.min.js'></script>
+<script type='text/javascript'>
+wp.apiFetch.use( wp.apiFetch.createRootURLMiddleware( "https://portal.netobjectives.com/wp-json/" ) );
+wp.apiFetch.nonceMiddleware = wp.apiFetch.createNonceMiddleware( "1e631d74c2" );
+wp.apiFetch.use( wp.apiFetch.nonceMiddleware );
+wp.apiFetch.use( wp.apiFetch.mediaUploadMiddleware );
+wp.apiFetch.nonceEndpoint = "https://portal.netobjectives.com/wp-admin/admin-ajax.php?action=rest-nonce";
+</script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/token-list.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/viewport.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/wordcount.min.js'></script>
+<script type='text/javascript'>
+( function( domain, translations ) {
+	var localeData = translations.locale_data[ domain ] || translations.locale_data.messages;
+	localeData[""].domain = domain;
+	wp.i18n.setLocaleData( localeData, domain );
+} )( "default", { "locale_data": { "messages": { "": {} } } } );
+</script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/block-editor.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/core-data.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/data-controls.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/date.min.js'></script>
+<script type='text/javascript'>
+wp.date.setSettings( {"l10n":{"locale":"en_US","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthsShort":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"weekdaysShort":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"meridiem":{"am":"am","pm":"pm","AM":"AM","PM":"PM"},"relative":{"future":"%s from now","past":"%s ago"}},"formats":{"time":"g:i a","date":"F j, Y","datetime":"F j, Y g:i a","datetimeAbbreviated":"M j, Y g:i a"},"timezone":{"offset":"0","string":""}} );
+</script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/media-utils.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/notices.min.js'></script>
+<script type='text/javascript'>
+( function( domain, translations ) {
+	var localeData = translations.locale_data[ domain ] || translations.locale_data.messages;
+	localeData[""].domain = domain;
+	wp.i18n.setLocaleData( localeData, domain );
+} )( "default", { "locale_data": { "messages": { "": {} } } } );
+</script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/nux.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/server-side-render.min.js'></script>
+<script type='text/javascript'>
+( function( domain, translations ) {
+	var localeData = translations.locale_data[ domain ] || translations.locale_data.messages;
+	localeData[""].domain = domain;
+	wp.i18n.setLocaleData( localeData, domain );
+} )( "default", { "locale_data": { "messages": { "": {} } } } );
+</script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/dist/editor.min.js'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var ds_admin_block_vars = {"strings":{"saved":"Settings Saved","error":"Error","title":"Direct Stripe button","contentDefault":"Button not set","loading":"Loading Buttons","noData":"No Buttons found","selectButton":"Select Button"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-content/plugins/direct-stripe/block/js/block.build.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-content/plugins/pc-google-analytics/assets/js/frontend.min.js'></script>
+<!--[if lt IE 9]>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-content/themes/NetObjectives-02_02_010/js/html5.js'></script>
+<![endif]-->
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-content/plugins/youtube-embed-plus-pro/scripts/lity.min.js'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var _EPYT_ = {"ajaxurl":"https:\/\/portal.netobjectives.com\/wp-admin\/admin-ajax.php","security":"218d167e12","gallery_scrolloffset":"20","eppathtoscripts":"https:\/\/portal.netobjectives.com\/wp-content\/plugins\/youtube-embed-plus-pro\/scripts\/","eppath":"https:\/\/portal.netobjectives.com\/wp-content\/plugins\/youtube-embed-plus-pro\/","epresponsiveselector":"[\"iframe.__youtube_prefs__\"]","epdovol":"1","version":"13.1.2.4","evselector":"iframe.__youtube_prefs__[src], iframe[src*=\"youtube.com\/embed\/\"], iframe[src*=\"youtube-nocookie.com\/embed\/\"]","ajax_compat":"","ytapi_load":"light","stopMobileBuffer":"1","vi_active":"","vi_js_posttypes":[]};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-content/plugins/youtube-embed-plus-pro/scripts/ytprefs.min.js'></script>
+<link rel='https://api.w.org/' href='https://portal.netobjectives.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://portal.netobjectives.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://portal.netobjectives.com/wp-includes/wlwmanifest.xml" /> 
+
+<link rel="canonical" href="https://portal.netobjectives.com/pages/books/design-patterns-explained-cpp-code-examples-chapter-18/" />
+<link rel='shortlink' href='https://wp.me/PaIUpf-bJK' />
+<link rel="alternate" type="application/json+oembed" href="https://portal.netobjectives.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fportal.netobjectives.com%2Fpages%2Fbooks%2Fdesign-patterns-explained-cpp-code-examples-chapter-18%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://portal.netobjectives.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fportal.netobjectives.com%2Fpages%2Fbooks%2Fdesign-patterns-explained-cpp-code-examples-chapter-18%2F&#038;format=xml" />
+
+ <!-- OneAll.com / Social Login for WordPress / v5.5.1 -->
+<script data-cfasync="false" type="text/javascript">
+ (function() {
+  var oa = document.createElement('script'); oa.type = 'text/javascript';
+  oa.async = true; oa.src = 'https://portalnetobjectivescom.api.oneall.com/socialize/library.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(oa, s);
+ })();
+</script>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		ga('create', 'UA-31158341-2', 'auto');
+		ga('send', 'pageview');
+		
+		</script>
+<meta name="generator" content="Piklist 1.0.5" />
+
+<link rel='dns-prefetch' href='//v0.wordpress.com'/>
+<style type='text/css'>img#wpstats{display:none}</style><meta name="fragment" content="!"><style type="text/css">.broken_link, a.broken_link {
+	text-decoration: line-through;
+}</style>
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Design Patterns Explained C++ Code Examples &#8211; Chapter 18: The Observer Pattern" />
+<meta property="og:url" content="https://portal.netobjectives.com/pages/books/design-patterns-explained-cpp-code-examples-chapter-18/" />
+<meta property="og:description" content="Visit the post for more." />
+<meta property="article:published_time" content="2019-01-16T19:28:24+00:00" />
+<meta property="article:modified_time" content="2019-01-24T18:10:47+00:00" />
+<meta property="og:site_name" content="Net Objectives Portal" />
+<meta property="og:image" content="https://portal.netobjectives.com/wp-content/uploads/2016/06/cropped-NetObjectivesPortal202x79.png" />
+<meta property="og:image:width" content="512" />
+<meta property="og:image:height" content="512" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:text:title" content="Design Patterns Explained C++ Code Examples &#8211; Chapter 18: The Observer Pattern" />
+<meta name="twitter:image" content="https://portal.netobjectives.com/wp-content/uploads/2016/06/cropped-NetObjectivesPortal202x79-270x270.png" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="Visit the post for more." />
+
+<!-- End Jetpack Open Graph Tags -->
+<link rel="icon" href="https://portal.netobjectives.com/wp-content/uploads/2016/06/cropped-NetObjectivesPortal202x79-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://portal.netobjectives.com/wp-content/uploads/2016/06/cropped-NetObjectivesPortal202x79-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://portal.netobjectives.com/wp-content/uploads/2016/06/cropped-NetObjectivesPortal202x79-180x180.png" />
+<meta name="msapplication-TileImage" content="https://portal.netobjectives.com/wp-content/uploads/2016/06/cropped-NetObjectivesPortal202x79-270x270.png" />
+</head>
+
+<body class="page-template-default page page-id-45120 page-child parent-pageid-42415 muut-enabled has-muut has-moot group-blog">
+<div id="page" class="site">
+	<div id="masthead-ribbon" class="site-inner">
+		<header id="masthead" class="site-header" role="banner">
+			<div class="site-header-main">
+				<div class="site-branding">
+                    <a href="/" rel="home"><img src="https://portal.netobjectives.com/wp-content/themes/NetObjectives-02_02_010/logo-net-objectives.png" alt="Net Objectives's logo"></img></a>
+                </div><!-- .site-branding -->
+
+									<button id="menu-toggle" class="menu-toggle">Menu</button>
+
+					<div id="site-header-menu" class="site-header-menu">
+													<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Menu">
+								<div class="menu-main-menu-container"><ul id="menu-main-menu" class="primary-menu"><li id="menu-item-39462" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-39462 menu-item-agile-at-scale first-menu-item"><a href="https://portal.netobjectives.com/articles-public/agile-at-scale/">Agile at Scale</a>
+<ul class="sub-menu">
+	<li id="menu-item-32600" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-32600 menu-item-flex "><a href="https://portal.netobjectives.com/pages/flex/">FLEX</a></li>
+	<li id="menu-item-39464" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-39464 menu-item-center-of-excellence "><a href="https://portal.netobjectives.com/articles-public/center-of-excellence/">Net Objectives Agile Essentials</a></li>
+	<li id="menu-item-39463" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-39463 menu-item-flex-and-safe "><a href="https://portal.netobjectives.com/pages/flex/flex-and-safe/">SAFe® and FLEX</a></li>
+	<li id="menu-item-41082" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-41082 menu-item-tools-for-lean-agile "><a href="https://portal.netobjectives.com/pages/tools-for-lean-agile/">Tools for Lean-Agile</a></li>
+	<li id="menu-item-43769" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-43769 menu-item-the-flex-online-book-series "><a href="https://portal.netobjectives.com/pages/books/the-flex-online-book-series/">Online Book Series: FLEX, SAFe, Team Agility</a></li>
+</ul>
+</li>
+<li id="menu-item-31186" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-31186 menu-item-roles "><a href="https://portal.netobjectives.com/pages/roles/">Explore Your Role</a>
+<ul class="sub-menu">
+	<li id="menu-item-35789" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-35789 menu-item-application-development-manager-role "><a href="https://portal.netobjectives.com/pages/roles/application-development-manager-role/">Explore the Application Development Manager Role</a></li>
+	<li id="menu-item-31187" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-31187 menu-item-developer-role "><a href="https://portal.netobjectives.com/pages/roles/developer-role/">Explore the Developer Role</a></li>
+	<li id="menu-item-31573" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-31573 menu-item-product-owner-role "><a href="https://portal.netobjectives.com/pages/roles/product-owner-role/">Explore the Product Owner Role</a></li>
+	<li id="menu-item-31301" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-31301 menu-item-team-agility-coach "><a href="https://portal.netobjectives.com/pages/roles/team-agility-coach/">Explore the Team Agility Coach Role</a></li>
+	<li id="menu-item-35788" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-35788 menu-item-technology-delivery-manager-role "><a href="https://portal.netobjectives.com/pages/roles/technology-delivery-manager-role/">Explore the Technology Delivery Manager Role</a></li>
+	<li id="menu-item-31234" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-31234 menu-item-tester-role "><a href="https://portal.netobjectives.com/pages/roles/tester-role/">Explore the Tester Role</a></li>
+</ul>
+</li>
+<li id="menu-item-19942" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-19942 menu-item-library "><a href="https://portal.netobjectives.com/pages/library/">Library &#038; Resources</a>
+<ul class="sub-menu">
+	<li id="menu-item-48148" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-48148 menu-item-our-books "><a href="https://portal.netobjectives.com/pages/library/our-books/">Books by Net Objectives</a></li>
+	<li id="menu-item-19321" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-19321 menu-item-disciplines-practices "><a href="https://portal.netobjectives.com/pages/library/disciplines-practices/">Disciplines and Practices Library</a></li>
+	<li id="menu-item-19900" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-19900 menu-item-learning "><a href="https://portal.netobjectives.com/pages/learning/">Learning Support</a>
+	<ul class="sub-menu">
+		<li id="menu-item-32206" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-32206 menu-item-course-support "><a href="https://portal.netobjectives.com/pages/learning/course-support/">Course Support</a></li>
+		<li id="menu-item-26460" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26460 menu-item-online-learning "><a href="https://portal.netobjectives.com/pages/learning/online-learning/">Online Learning</a></li>
+	</ul>
+</li>
+	<li id="menu-item-19323" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-19323 menu-item-reading-paths "><a href="https://portal.netobjectives.com/pages/learning/reading-paths/">Reading Paths</a></li>
+	<li id="menu-item-19322" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-19322 menu-item-books-papers-artifacts "><a href="https://portal.netobjectives.com/pages/library/books-papers-artifacts/">References, White Papers, Glossary</a>
+	<ul class="sub-menu">
+		<li id="menu-item-33234" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-33234 menu-item-glossary "><a href="https://portal.netobjectives.com/articles/glossary/">Glossary of Lean-Agile Terms</a></li>
+	</ul>
+</li>
+	<li id="menu-item-19320" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-19320 menu-item-roles "><a href="https://portal.netobjectives.com/pages/library/roles/">Roles Library</a></li>
+	<li id="menu-item-19324" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-19324 menu-item-technical-resources "><a href="https://portal.netobjectives.com/pages/library/technical-resources/">Technical Resources Library</a></li>
+	<li id="menu-item-36963" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-36963 menu-item-team-agility-templates "><a href="https://portal.netobjectives.com/articles-premium/team-agility-templates/">Templates for Team Agility (Premium Content)</a></li>
+	<li id="menu-item-20896" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20896 menu-item-transformation "><a href="https://portal.netobjectives.com/pages/library/transformation/">Transformation Library</a></li>
+	<li id="menu-item-26286" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26286 menu-item-value-stream-levels "><a href="https://portal.netobjectives.com/pages/library/value-stream-levels/">Value Stream Levels Library</a></li>
+	<li id="menu-item-40288" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-40288 menu-item-webinars-and-podcasts "><a href="https://portal.netobjectives.com/pages/learning/webinars-and-podcasts/">Webinars and Podcasts</a>
+	<ul class="sub-menu">
+		<li id="menu-item-40355" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-40355 menu-item-lightning-webinar "><a href="https://portal.netobjectives.com/pages/learning/webinars-and-podcasts/lightning-webinar/">Lightning Webinars</a></li>
+		<li id="menu-item-40356" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-40356 menu-item-webinars "><a href="https://portal.netobjectives.com/pages/learning/webinars-and-podcasts/webinars/">Webinars from Net Objectives</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-37009" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-37009 menu-item-premium-content "><a href="https://portal.netobjectives.com/admin/premium-content/">Premium</a></li>
+<li id="menu-item-36657" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-36657 menu-item-forum "><a href="https://portal.netobjectives.com/pages/forum/">Forum</a></li>
+<li id="menu-item-49061" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-49061 menu-item-blogs "><a href="https://www.netobjectivesthoughts.com">Blogs</a></li>
+<li id="menu-item-28976" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28976 menu-item-log-in last-menu-item"><a title="Log in" href="https://portal.netobjectives.com/log-in/">Log In</a></li>
+<li class="top-search-menu">
+<form role="search" method="get" class="search-form" action="https://portal.netobjectives.com/">
+	<label>
+		<span class="screen-reader-text">Search for:</span>
+		<input type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" title="Search for:" />
+	</label>
+	<button type="submit" class="search-submit"><span class="screen-reader-text">Search</span></button>
+</form>
+</li></ul></div>							</nav><!-- .main-navigation -->
+						
+											</div><!-- .site-header-menu -->
+							</div><!-- .site-header-main -->
+		</header><!-- .site-header -->
+    </div>
+        <div class="site-content-container">
+    <div class="site-inner">
+		<div id="content" class="site-content">
+
+<div id="primary" class="content-area">
+	<main id="main" class="site-main" role="main">
+		
+<article id="post-45120" class="post-45120 page type-page status-publish hentry category-our-books odd">
+	<header class="entry-header">
+		<h1 class="entry-title">Design Patterns Explained C++ Code Examples &#8211; Chapter 18: The Observer Pattern</h1>	</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<table class='tri-column'><tr><td class='tri-column-center'><div class='tri-column-right'><div class='tri-column-right-top'><img class="alignleft wp-image-31108 size-full" src="https://portal.netobjectives.com/wp-content/uploads/2016/11/coverDPE_bio-large.jpg" alt="" width="137" height="178" />
+<h1><a href="http://www.amazon.com/gp/product/0321247140/ref=as_li_qf_sp_asin_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0321247140&amp;linkCode=as2&amp;tag=netobje-20" target="_blank" rel="noopener">Design Patterns Explained
+A New Perspective on Object-Oriented Design
+(2<sup>nd</sup> Edition)</a><img style="border: none !important; margin: 0px !important;" src="http://www.assoc-amazon.com/e/ir?t=netobje-20&amp;l=as2&amp;o=1&amp;a=0321247140" alt="" width="1" height="1" border="0" /></h1>
+by Alan Shalloway and James R. Trott</div><div class='tri-column-right-bottom'><h1>Related resources</h1>
+<ul>
+ 	<li><a href="https://portal.netobjectives.com/pages/books/design-patterns-explained/">Design Patterns Explained Book Support</a></li>
+ 	<li><a href="https://portal.netobjectives.com/pages/library/our-books/">Net Objectives Books</a></li>
+</ul></div><a href='mailto:portal@netobjectives.com'>Provide Feedback</a></div><div class='tri-column-center-content'>
+<a name="top"></a><br />
+<a name="18-1"></a></p>
+<h3 style="display:inline;padding-right:20px;">Example 18-1: Observer Implemented</h3>
+<p><a href="https://portal.netobjectives.com/pages/books/design-patterns-explained-cpp-code-examples/ " style="font-size:80%">TOC</a></p>
+<ul>
+<li><a href="#Customer">Customer</a></li>
+<li><a href="#Observer">Observer</a></li>
+<li><a href="#AddrVerification">AddrVerification</a></li>
+<li><a href="#WelcomeLetter">WelcomeLetter</a></li>
+</ul>
+<blockquote><p>
+<a name="Customer" title="Customer" style="text-decoration:none;"></p>
+<h4 style="display:inline;padding-right:20px;">Customer</h4>
+<p></a><a href="#top" style="font-size:80%">TOP</a><br />
+<strong>Customer.h</strong></p>
+<pre>
+#pragma once
+#include <string>
+#include <vector>
+#include "Observer.h"
+using namespace std;
+
+class Customer
+{
+public:
+    Customer(void);
+    
+    void attach( Observer *myObserver);
+    void detach( Observer *myObserver);
+    string* getState();
+    void notifyObs();
+private:
+    vector<Observer*> myObs;
+public:
+    ~Customer(void);
+};
+</pre>
+<p><strong>Customer.cpp</strong></p>
+<pre>
+#include "Customer.h"
+
+Customer::Customer(void)
+{
+}
+
+Customer::~Customer(void)
+{
+}
+
+void Customer::attach( Observer *myObserver)
+{
+    myObs.push_back( myObserver);
+}
+
+void Customer::detach( Observer *myObserver)
+{
+    for (int i= 0; i< myObs.size(); i++)
+    {
+        if (myObs[i]== myObserver)
+        {
+            myObs.erase(myObs.begin()+i);
+            return;
+        }
+    }
+}
+
+void Customer::notifyObs()
+{
+    // set arg to something that helps
+    // tell the Observers what happened
+    for (int i= 0; i< myObs.size(); i++)
+    {
+        myObs[i]->update(this);
+    }
+}
+
+string* Customer::getState()
+{
+    string *state= new string;
+
+    // set state
+
+    return 0l;
+}
+</pre>
+</blockquote>
+<hr/>
+<blockquote><p>
+<a name="Observer" title="Observer" style="text-decoration:none;"></p>
+<h4 style="display:inline;padding-right:20px;">Observer</h4>
+<p></a><a href="#top" style="font-size:80%">TOP</a><br />
+<strong>Observer.h</strong></p>
+<pre>
+#pragma once
+class Customer;
+
+class Observer
+{
+public:
+    Observer(void);
+    virtual void update( Customer *myCust)= 0;
+public:
+    ~Observer(void);
+};
+</pre>
+<p><strong>Observer.cpp</strong></p>
+<pre>
+#include "Observer.h"
+
+Observer::Observer(void)
+{
+}
+
+Observer::~Observer(void)
+{
+}
+</pre>
+</blockquote>
+<hr/>
+<blockquote><p>
+<a name="AddrVerification" title="AddrVerification" style="text-decoration:none;"></p>
+<h4 style="display:inline;padding-right:20px;">AddrVerification</h4>
+<p></a><a href="#top" style="font-size:80%">TOP</a><br />
+<strong>AddrVerification.h</strong></p>
+<pre>
+#pragma once
+#include "Observer.h"
+#include "Customer.h"
+
+class AddrVerification : public Observer
+{
+public:
+    AddrVerification(void);
+    void update( Customer *myCust);
+public:
+    ~AddrVerification(void);
+};
+</pre>
+<p><strong>AddrVerification.cpp</strong></p>
+<pre>
+#include "AddrVerification.h"
+
+AddrVerification::AddrVerification(void)
+{
+}
+
+AddrVerification::~AddrVerification(void)
+{
+}
+
+void AddrVerification::update ( Customer *myCust) 
+{
+      // do Address verification stuff here
+      // can get more information about customer
+      // in question by using myCust
+}
+</pre>
+</blockquote>
+<hr/>
+<blockquote><p>
+<a name="top"></a><br />
+<a name="18-1"></a></p>
+<h3 style="display:inline;padding-right:20px;">Example 18-1: Observer Implemented</h3>
+<p><a href="https://portal.netobjectives.com/pages/books/design-patterns-explained-cpp-code-examples/ " style="font-size:80%">TOC</a></p>
+<ul>
+<li><a href="#Customer">Customer</a></li>
+<li><a href="#Observer">Observer</a></li>
+<li><a href="#AddrVerification">AddrVerification</a></li>
+<li><a href="#WelcomeLetter">WelcomeLetter</a></li>
+</ul>
+<p><a name="Customer" title="Customer" style="text-decoration:none;"></p>
+<h4 style="display:inline;padding-right:20px;">Customer</h4>
+<p></a><a href="#top" style="font-size:80%">TOP</a><br />
+<strong>Customer.h</strong></p>
+<pre>
+#pragma once
+#include <string>
+#include <vector>
+#include "Observer.h"
+using namespace std;
+
+class Customer
+{
+public:
+    Customer(void);
+    
+    void attach( Observer *myObserver);
+    void detach( Observer *myObserver);
+    string* getState();
+    void notifyObs();
+private:
+    vector<Observer*> myObs;
+public:
+    ~Customer(void);
+};
+</pre>
+<p><strong>Customer.cpp</strong></p>
+<pre>
+#include "Customer.h"
+
+Customer::Customer(void)
+{
+}
+
+Customer::~Customer(void)
+{
+}
+
+void Customer::attach( Observer *myObserver)
+{
+    myObs.push_back( myObserver);
+}
+
+void Customer::detach( Observer *myObserver)
+{
+    for (int i= 0; i< myObs.size(); i++)
+    {
+        if (myObs[i]== myObserver)
+        {
+            myObs.erase(myObs.begin()+i);
+            return;
+        }
+    }
+}
+
+void Customer::notifyObs()
+{
+    // set arg to something that helps
+    // tell the Observers what happened
+    for (int i= 0; i< myObs.size(); i++)
+    {
+        myObs[i]->update(this);
+    }
+}
+
+string* Customer::getState()
+{
+    string *state= new string;
+
+    // set state
+
+    return 0l;
+}
+</pre>
+</blockquote>
+<hr/>
+<blockquote><p>
+<a name="Observer" title="Observer" style="text-decoration:none;"></p>
+<h4 style="display:inline;padding-right:20px;">Observer</h4>
+<p></a><a href="#top" style="font-size:80%">TOP</a><br />
+<strong>Observer.h</strong></p>
+<pre>
+#pragma once
+class Customer;
+
+class Observer
+{
+public:
+    Observer(void);
+    virtual void update( Customer *myCust)= 0;
+public:
+    ~Observer(void);
+};
+</pre>
+<p><strong>Observer.cpp</strong></p>
+<pre>
+#include "Observer.h"
+
+Observer::Observer(void)
+{
+}
+
+Observer::~Observer(void)
+{
+}
+</pre>
+</blockquote>
+<hr/>
+<blockquote><p>
+<a name="AddrVerification" title="AddrVerification" style="text-decoration:none;"></p>
+<h4 style="display:inline;padding-right:20px;">AddrVerification</h4>
+<p></a><a href="#top" style="font-size:80%">TOP</a><br />
+<strong>AddrVerification.h</strong></p>
+<pre>
+#pragma once
+#include "Observer.h"
+#include "Customer.h"
+
+class AddrVerification : public Observer
+{
+public:
+    AddrVerification(void);
+    void update( Customer *myCust);
+public:
+    ~AddrVerification(void);
+};
+</pre>
+<p><strong>AddrVerification.cpp</strong></p>
+<pre>
+#include "AddrVerification.h"
+
+AddrVerification::AddrVerification(void)
+{
+}
+
+AddrVerification::~AddrVerification(void)
+{
+}
+
+void AddrVerification::update ( Customer *myCust) 
+{
+      // do Address verification stuff here
+      // can get more information about customer
+      // in question by using myCust
+}
+</pre>
+</blockquote>
+<hr/>
+<blockquote><p>
+<a name="WelcomeLetter" title="WelcomeLetter" style="text-decoration:none;"></p>
+<h4 style="display:inline;padding-right:20px;">WelcomeLetter</h4>
+<p></a><a href="#top" style="font-size:80%">TOP</a><br />
+<strong>WelcomeLetter.h</strong></p>
+<pre>
+#pragma once
+#include "Observer.h"
+#include "Customer.h"
+
+class WelcomeLetter : public Observer
+{
+public:
+    WelcomeLetter(void);
+    void update( Customer *myCust);
+public:
+    ~WelcomeLetter(void);
+};
+</pre>
+<p><strong>WelcomeLetter.cpp</strong></p>
+<pre>
+#include "WelcomeLetter.h"
+
+WelcomeLetter::WelcomeLetter(void)
+{
+}
+
+WelcomeLetter::~WelcomeLetter(void)
+{
+}
+
+void WelcomeLetter::update( Customer *myCust)
+{
+   // do Welcome Letter stuff 
+   // here can get more 
+   // information about customer 
+   // in question by using myCust
+}
+</pre>
+<p><
+<a name="WelcomeLetter" title="WelcomeLetter" style="text-decoration:none;"></p>
+<h4 style="display:inline;padding-right:20px;">WelcomeLetter</h4>
+<p></a><a href="#top" style="font-size:80%">TOP</a><br />
+<strong>WelcomeLetter.h</strong></p>
+<pre>
+#pragma once
+#include "Observer.h"
+#include "Customer.h"
+
+class WelcomeLetter : public Observer
+{
+public:
+    WelcomeLetter(void);
+    void update( Customer *myCust);
+public:
+    ~WelcomeLetter(void);
+};
+</pre>
+<p><strong>WelcomeLetter.cpp</strong></p>
+<pre>
+#include "WelcomeLetter.h"
+
+WelcomeLetter::WelcomeLetter(void)
+{
+}
+
+WelcomeLetter::~WelcomeLetter(void)
+{
+}
+
+void WelcomeLetter::update( Customer *myCust)
+{
+   // do Welcome Letter stuff 
+   // here can get more 
+   // information about customer 
+   // in question by using myCust
+}
+</pre>
+</blockquote>
+</div></td></tr></table>
+	</div><!-- .entry-content -->
+
+</article><!-- #post-## -->
+		
+	</main><!-- .site-main -->
+
+	
+</div><!-- .content-area -->
+
+
+		</div><!-- .site-content -->
+	</div><!-- .site-inner -->
+    </div><!-- .site-content-container -->
+    <div class="footer">
+        <div class="footer-inner">
+            <table>
+            <tr>
+                <td>
+                    <h1>Get in Touch</h1>
+                    <p>
+                        <a href='tel:888-LEAN-244'>888-LEAN-244</a> or <a href='tel:404-593-8375'>404-593-8375</a><br/>
+                        1037 NE 65th Street <br/>
+                        Suite #362<br/>
+                        Seattle, WA 98115-6655 <br/>
+                        <a href='http://www.netobjectives.com'>www.netobjectives.com</a>
+                    </p>
+                </td>
+                <td>
+                    <h1></h1>
+                    <p>
+                    </p>
+                </td>
+                <td>
+                    <h1></h1>
+                    <p>
+                    </p>
+                </td>
+            </tr>
+            </table>
+        <p>
+            Copyright © Net Objectives, Inc. All Rights Reserved.
+        </p>
+        </div>
+    </div>
+</div><!-- .site -->
+
+
+	<!--QUIZ_EMBEDER START-->
+		
+	<!--QUIZ_EMBEDER END-->
+	<div id="muut_hidden_embed_div" class="muut_sso " style="display: none;"><a class="muut-url" href="/i/netobjectives">Forum</a></div>	<div style="display:none">
+	</div>
+<script type='text/javascript' src='//cdn.muut.com/latest/moot.en.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-content/plugins/muut/resources/muut-sso.js'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js'></script>
+<script type='text/javascript' src='https://secure.gravatar.com/js/gprofiles.js'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-content/plugins/jetpack/modules/wpgroho.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-content/themes/NetObjectives-02_02_010/js/skip-link-focus-fix.js'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var screenReaderText = {"expand":"expand child menu","collapse":"collapse child menu"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-content/themes/NetObjectives-02_02_010/js/functions.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-content/plugins/wp-gallery-custom-links/wp-gallery-custom-links.js'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var muut_frontend_functions_localized = {"comments":"Comments","admin":"Admin","just_now":"just now","minutes_abbreviation":"m","hours_abbreviation":"h","days_abbreviation":"d","weeks_abbreviation":"w"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-content/plugins/muut/resources/frontend-functions.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-content/plugins/muut/resources/muut-widgets-initialize.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-content/plugins/muut/resources/muut-widget-trending-posts.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-content/plugins/youtube-embed-plus-pro/scripts/fitvids.min.js'></script>
+<script type='text/javascript' src='https://portal.netobjectives.com/wp-includes/js/wp-embed.min.js'></script>
+<script type='text/javascript' src='https://stats.wp.com/e-202013.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:8.0',blog:'158466621',post:'45120',tz:'0',srv:'portal.netobjectives.com'} ]);
+	_stq.push([ 'clickTrackerInit', '158466621', '45120' ]);
+</script>
+<script type="text/javascript">var muut_object = jQuery();if ( typeof ajaxurl == "undefined" ) { var ajaxurl = "https://portal.netobjectives.com/wp-admin/admin-ajax.php"; }function muutObj() { if( typeof muut_object.path == "undefined" ) { if ( typeof muut() != "undefined" ) { muut_object = muut(); } } return muut_object; }</script><script type="text/javascript"></script><script type="text/javascript">var muut_widget_conf = { url: "http://muut.com/i/netobjectives/", path: "/netobjectives", widget: true };var muut_force_load = true;var muut_forum_page_permalink = "https://portal.netobjectives.com/pages/forum/";</script>
+<!-- This website is powered by Piklist. Learn more at https://piklist.com/ -->
+</body>
+</html>

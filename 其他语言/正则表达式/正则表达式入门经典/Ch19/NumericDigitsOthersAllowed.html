@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>RegExp Object Properties</title>
+<script language="javascript" type="text/javascript">
+var myRegExp = /\d+/;
+
+function Validate(entry){
+return myRegExp.test(entry);
+} // end function Validate()
+
+function ShowPrompt(){
+var entry = prompt("This script tests for matches for the regular expression pattern: " + myRegExp + ".\nType in a string and click on the OK button.", "Type your text here.");
+if (Validate(entry)){
+displayString = "";
+displayString += "There is a match!\nThe regular expression pattern is: " + myRegExp + ".\nThe string that you entered was: '" + entry +"\n";
+displayString += "The global property contained: " + myRegExp.global + "\n";
+displayString += "The ignoreCase property contained: " + myRegExp.ignoreCase + "\n";
+displayString += "The multiline property contained: " + myRegExp.multiline + "\n";
+displayString += "The source property contained: " + myRegExp.source + "\n";
+displayString += "The lastIndex property contained: " + myRegExp.lastIndex;
+alert(displayString);
+} // end if
+else{
+ alert("There is no match in the string you entered.\n" + "The regular expression pattern is " + myRegExp + "\n" + "You entered the string: '" + entry + "'." );
+} // end else
+
+} // end function ShowPrompt()
+
+</script>
+</head>
+<body>
+<form name="myForm">
+<br />
+<button type="Button" onclick="ShowPrompt()">Click here to enter text.</button>
+</form>
+</body>
+</html>

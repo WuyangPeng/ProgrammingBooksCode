@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>Test For Upper Case A</title>
+<script language="vbscript" type="text/vbscript">
+Function MatchTest
+Dim myRegExp, TestString
+Set myRegExp = new RegExp
+myRegExp.Pattern = "A"
+TestString = "Andrew"
+If myRegExp.Test(TestString) = True Then
+  MsgBox "The test string '" & TestString & "' matches the pattern '" & myRegExp.Pattern & "'."
+Else
+  MsgBox "There is no match."
+End If
+End Function
+
+</script>
+</head>
+<body onload="MatchTest">
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+// Listing 1-1 
+// This a declaration of a user defined rational class
+
+    1   #include <iostream.h>
+    2   #include "eclasses.h"
+    3  
+    4   
+    5   class rational{
+    6   protected:
+    7         long Numerator;
+    8         long Denominator;
+    9         general_exception Exception;
+   10   public:
+   11   	 rational(long Num = 0,long Den = 1);
+   12   	 rational(const rational &X);
+   13   	 virtual void assign(long X, long Y);
+   14   	 rational operator*(const rational &X);
+   15   	 rational operator+(const rational &X);
+   16   	 rational &operator=(const rational &X);
+   17   	 rational operator-(const rational &X);
+   18   	 rational operator/(const rational &X);
+   19   	 int operator==(rational X);
+   20   	 long numerator(void) const;
+   21   	 long denominator(void) const;
+   22   	 friend ostream &operator<<(ostream &out, rational X);
+   23   	 void reduce(void);
+   24   };
+   
+

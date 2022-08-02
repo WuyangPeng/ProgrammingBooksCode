@@ -1,0 +1,46 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows 8
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoutedEvents7", "RoutedEvents7\RoutedEvents7.csproj", "{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Debug|ARM.ActiveCfg = Debug|ARM
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Debug|ARM.Build.0 = Debug|ARM
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Debug|ARM.Deploy.0 = Debug|ARM
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Debug|x64.ActiveCfg = Debug|x64
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Debug|x64.Build.0 = Debug|x64
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Debug|x64.Deploy.0 = Debug|x64
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Debug|x86.ActiveCfg = Debug|x86
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Debug|x86.Build.0 = Debug|x86
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Debug|x86.Deploy.0 = Debug|x86
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Release|ARM.ActiveCfg = Release|ARM
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Release|ARM.Build.0 = Release|ARM
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Release|ARM.Deploy.0 = Release|ARM
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Release|x64.ActiveCfg = Release|x64
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Release|x64.Build.0 = Release|x64
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Release|x64.Deploy.0 = Release|x64
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Release|x86.ActiveCfg = Release|x86
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Release|x86.Build.0 = Release|x86
+		{467A6A8F-B312-46F1-AEFC-EE48FA1E533F}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

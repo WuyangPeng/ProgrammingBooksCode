@@ -1,0 +1,48 @@
+<Page
+    x:Class="CommonMatrixTransforms.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CommonMatrixTransforms"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="RenderTransformOrigin" Value="0 0.5" />
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+
+        <!-- Move origin to center -->
+        <Canvas HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+            <TextBlock Text="  RenderTransform='1 0 0 1 0 0'" 
+                       RenderTransform="1 0 0 1 0 0" />
+
+            <TextBlock Text="  RenderTransform='.7 .7 -.7 .7 0 0'"
+                       RenderTransform=".7 .7 -.7 .7 0 0" />
+
+            <TextBlock Text="  RenderTransform='0 1 -1 0 0 0'"
+                       RenderTransform="0 1 -1 0 0 0" />
+
+            <TextBlock Text="  RenderTransform='-.7 .7 -.7 -.7 0 0"
+                       RenderTransform="-.7 .7 -.7 -.7 0 0" />
+
+            <TextBlock Text="  RenderTransform='-1 0 0 -1 0 0'" 
+                       RenderTransform="-1 0 0 -1 0 0" />
+
+            <TextBlock Text="  RenderTransform='-.7 -.7 .7 -.7 0 0'"
+                       RenderTransform="-.7 -.7 .7 -.7 0 0" />
+
+            <TextBlock Text="  RenderTransform='0 -1 1 0 0 0'"
+                       RenderTransform="0 -1 1 0 0 0" />
+
+            <TextBlock Text="  RenderTransform='.7 -.7 .7 .7 0 0"
+                       RenderTransform=".7 -.7 .7 .7 0 0" />
+        </Canvas>
+    </Grid>
+</Page>

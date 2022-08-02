@@ -1,0 +1,7 @@
+现代C++程序设计（C++ Programming Today）
+
+官方网站：
+http://www.prenhall.com/johnston。
+
+☆
+作者：Barbara Johnston 

@@ -1,0 +1,402 @@
+<html>
+<head>
+<title>February 2003/Avoiding the Visual C++ Runtime Library</title>
+</head>
+
+<body>
+
+<h2>Avoiding the Visual C++ Runtime Library</h2>
+<p>Courtesy of <i>Windows Developer Network</i> (February 2003)</p>
+<h3>By Matthew Wilson</h3>
+<hr>
+<p>By default, Visual C++ links C and C++ applications and DLLs to its C (and C++) Runtime Libraries. All of the C language and most of the basic C++ language infrastructure is provided in MSVCRT(D).dll. The STL components are provided in MSVCP50(D).dll for Visual C++ 5.0, and MSVCP60(D).dll for Visual C++ 6.0. I'll refer to these collectively as the CRT Library. Whether linked statically or dynamically, there are associated costs that are often worth avoiding where possible. Many developers want to keep the size of their executables and libraries at a minimum, especially so when such components are to be downloaded. Also, in the modern component-based, Internet-distributed computing world, reducing dependencies and potential dynamic incompatibilities is very important.</p>
+
+
+<p>Linking statically to the CRT Library always increases the size of the application/library, sometimes dramatically so, particularly when building small application/libraries. Also, where multiple dynamic modules form part of an application, there can be multiple statically linked copies of the same code throughout the working set of a process, which is not only costly in space terms, but can cause memory locality problems. In such circumstances, the memory allocated by one module's CRT Library will cause a crash if it is passed to another module's CRT Library for deallocation.</p>
+
+<p>Linking dynamically can cause dependency problems (including version incompatibilities and distribution problems) in addition to increases in load times. Because the CRT DLL is not part of the Win32 system libraries, it is even possible to encounter older systems in which it is not installed. (Windows 95 OSR1 does not ship with MSVCRT.dll as part of the operating system distribution.) Furthermore, Microsoft has encountered program-breaking incompatibilities between versions of MSVCRT.dll ("Bug++ of the Month," <i>WDJ</i>, May 1999), which is also something we developers are very keen to avoid. Finally, since the DLL version is only available in multithreaded form, it can also lead to subtle, but significant, performance costs.</p>
+
+<p>There are many ways in which an application/library may be dependent on the C Runtime Library. However, in most circumstances the vast majority of the contents of the library are not required by the application/library being built, and it can be beneficial to remove any dependencies. (Indeed, the Active Template Library wizard-generated components make some efforts in this direction via their discrimination of the _ATL_MIN_CRT preprocessor symbol.) Most of these dependencies can be eliminated with the use of a variety of mostly simple techniques.</p>
+
+<p>This article describes a number of such simple techniques, covering the issues of entry points, memory, intrinsic functions, strings, exceptions, implicit functions, large integers, floating-point types, global variables, C++ classes, virtual methods, and use of the C++ Standard Library.</p>
+
+<p>Additionally, the techniques described in this article may be informative, both in terms of how Win32 executable components are generated and used, and also in providing some insights into how the C++ language implementation is layered on top of that of the C Library.</p>
+
+
+
+<h4>Achieving Independence</h4>
+
+
+<p>The CRT provides the following to application developers:</p>
+
+
+
+<ul>
+  <li>It sets up the module entry point, such as preparing argc/argv for console applications.
+  <li>It initializes the stdio libraries, and other supporting libraries, global variables, and memory-management functions.
+
+  <li>For C++ components, it handles the C++ language infrastructure, such as the construction and destruction of static objects.
+
+  <li>It provides some of the implicit functions and constants used in floating point and large integer code.
+
+  <li>It provides a number of functions that may be explicitly used by application code, such as the stdio library functions and, for C++ programs, some parts of the STL.
+
+</ul>
+
+
+<p>There are four ways in which independence from the run-time libraries may be achieved:</p>
+
+<ul>
+
+  <li>Eliminate things we don't use &#151; the library functions not called in our module.
+
+  <li>Eliminate things we don't need &#151; such as the C and C++ Library initialization code.
+
+  <li>Replace some of the things we do need with other implementations &#151; substituting <b>strcpy()</b> with <b>lstrcpy()</b>.
+
+  <li>Replace some of the things we do need with our own implementations &#151; such as providing lightweight implementations of operators <b>new()</b> and <b>delete()</b>.
+
+</ul>
+
+<h4>Detaching the CRT</h4>
+
+
+<p>Before I describe some of the various coding techniques that can be used to avoid the CRT, I'd first like to explain the mechanism of unlinking the CRT Libraries. If you are working from the command line, or with makefiles, then add the /nodefaultlib linker switch. If you are working within the Visual Studio IDE, then check the "Ignore all default libraries" checkbox (as shown in <A HREF="0302cf1.htm" target="_BLANK">Figure 1</A>) in the Link tab on the Project Settings dialog, which sets this flag for the project's linker phase. This removes the default libraries from the list of libraries that the linker searches when linking the process/library.</p>
+
+
+<p>If you compile your project now, you will see one of the following errors, depending on whether you are developing a console application:</p>
+
+<pre>
+LINK : error LNK2001: 
+    unresolved external symbol 
+    _mainCRTStartup
+a GUI application 
+LINK : error LNK2001: 
+    unresolved external symbol 
+    _WinMainCRTStartup
+or a DLL
+LINK: error LNK2001: 
+    unresolved external symbol 
+    __DllMainCRTStartup@12
+</pre>
+
+<p>This is because the entry points for console applications, GUI applications, and DLLs that are built with the Visual C++ compiler are, by default, not the normal Win32 entry points of main, WinMain, and DllMain, but are, rather, mainCRTStartup WinMainCRTStartup and _DllMainCRTStartup, respectively. Applications built for Unicode have the wWinMainCRTStartup and wmainCRTStartup entry-point functions.These are functions that are automatically linked in by Visual C++ (unless you specify /nodefaultlib) and that perform additional startup and shutdown tasks outside the scope of your code, including parsing the command line, handling static object construction and destruction, and setting up C global constants. To specify that your entry point be used, you need to specify it to the linker via the /entry switch (i.e., /entry:"myWinMain"), or by setting the "Entry-point symbol" (shown in <A HREF="0302cf2.htm" target="_BLANK">Figure 2</A>) in the Link tab on the Project Settings dialog.</p>
+
+<p>The Visual C++ compiler and linker insert these so that you can write your normal entry points without concern for what they are doing, and the startup and shutdown code that these functions implement is hidden from your code.</p>
+
+<p>An important issue is whether to detach the CRT in release builds only, or in both debug and release builds. The reasons to do the former are usually practical. For example, you may wish to use stdio functions (i.e., vsprintf) for debug tracing that are not required in release mode. In addition, with Visual C++ 6.0, the /GZ flag brings in some CRT Library functions to debug mode only, which you may wish to avoid.</p>
+
+<p>Generally, the problem with having code exist in debug mode and not in release mode, or vice versa, is that you increase the chances for having errors only appear in release builds, which can be extremely difficult to fix, even assuming that you have detected them before your product ships! When detaching the CRT, the chances of this happening are greatly increased, so I would recommend doing so in both debug and release builds wherever possible.</p>
+
+
+
+<h4>Entry Points</h4>
+
+
+<p>As well as providing various aspects of the C++ run-time support, the entry points provided by the CRT Library also perform some processing in order to provide some information to your entry points. A little known fact is that the Win32 system does not pass the command line, the module instance handle (the previous instance handle is always NULL in Win32), or the window show state to the <b>WinMain()</b> entry point. This is only provided when linking to the CRT entry point <b>WinMainCRTStartup()</b> (or its Unicode analogue <b>wWinMainCRTStartup()</b>).</p>
+
+
+<p>These three parameters may be synthesized in the following ways. The module instance handle is available by simply calling <b>GetModuleHandle()</b> and passing NULL for the module name.</p>
+
+<pre>
+hinst = GetModuleHandle(NULL);
+</pre>
+
+<p>The window show state can also be simply obtained, as shown in <A HREF="0302cl1.htm" target="_BLANK">Listing 1</A>. Win32 makes the command line available via the <b>GetCommandLine()</b> function. However, there is a complication in that the CRT Library "helpfully" strips off the executable (argv[0]) from the command line, so that to write code that works correctly with and without CRT linking, the technique shown in <A HREF="0302cl2.htm" target="_BLANK">Listing 2</A> must be used in all circumstances. The code in <A HREF="0302cl2.htm" target="_BLANK">Listing 2</A> is an extract from the Visual C++ 6.0 CRT implementation, and you would need to include something similar in your application to ensure consistency.</p>
+
+<p>A far more useful approach is to always access the command line from <b>GetCommandLine()</b> and then parse it into an argc/argv form. Indeed, this is generally the approach I take in code, even when working with the CRT libraries, so that applications can be switched from console to GUI, or vice versa, which, whilst occurring rarely, is nevertheless often enough to make this worthwhile. In any case, having your arguments parsed by tried and tested code is always a benefit, saving both coding and debugging effort.</p>
+
+<p>It should be clear that writing these same three blocks of code for each and every GUI program would become tedious. It is much more useful to bind them into a common implementation to be compiled and linked into your program, in the form of an entry point that you would specify. An example is shown in <A HREF="0302cl3.htm" target="_BLANK">Listing 3</A>.</p>
+
+<p>For DLLs, the system does provide the correct values for module instance handle, reason, and implicit indicator parameters, so there is no need to provide additional facilities around your <b>DllMain()</b>. </p>
+
+
+
+<h4>memset, memcmp, and Other Intrinsics</h4>
+
+
+<p>The functions <b>memset()</b>, <b>memcmp()</b>, <b>memcpy()</b>, <b>strcat()</b>, <b>strcmp()</b>, <b>strcpy()</b>, and <b>strlen()</b> are among the CRT functions that are implemented as intrinsics. This means that when the compiler is directed to do so (by specification of the /Oi flag, or one of its overriding flags, notably the /O2 "maximize speed" flag), the compiler inserts the whole code for the function in place at its call point(s). (Intrinsics are thus equivalent to mandatory inlines.) When in debug mode, or when building for minimum size (which is generally the preferred option, since smaller programs are often faster due to caching issues; see "Guru of the Week  #33" www.gotw.ca/gotw/033.htm), the linker naturally reports that a symbol is missing when detached from the CRT Library. </p>
+
+
+<p>There are three options. First, you can provide your own implementation of the function(s). For example, <A HREF="0302cl4.htm" target="_BLANK">Listing 4</A> shows a fully compatible plug-in for <b>memcpy()</b>.</p>
+
+<p>The second option is to define the /Oi compiler flag on a per-project, or per-file, basis, which causes all the intrinsics used in the affected compilation units to be called in place.</p>
+
+<p>The third option is to use the #pragma intrinsic statement, which applies intrinsic on a function-by-function basis. The following statement:</p>
+
+<pre>
+#pragma intrinsic(memset, strlen)
+</pre>
+
+<p>would cause only memset() and strlen() to be called in place.</p>
+
+
+<h4>Memory</h4>
+
+
+<p>The C memory functions <b>malloc()</b>, <b>realloc()</b>, and <b>free()</b> are all found in the CRT Library. When using code that links to these functions they can simply be synthesized as shown in <A HREF="0302cl5.htm" target="_BLANK">Listing 5</A>. Note that <b>HeapRealloc()</b> does not support the semantics of <b>realloc()</b> in regards to being passed a Null memory block pointer, hence the conditional tests.</p>
+
+
+<p>It is also possible to implement them in terms of the <b>GlobalAlloc()</b> family of functions, or the <b>LocalAlloc()</b> family, but the MSDN documentation notes that they are slower than the <b>HeapAlloc()</b> family, which should be preferred.</p>
+
+
+<h4>Memory Leaks</h4>
+
+
+<p>One of the most useful services that the CRT Library provides, and one that developers least like to do without, is that of memory-leak detection. Nevertheless, it is also possible to implement a rudimentary form of memory-leak detection with only the Win32 Heap API, by making use of its <b>HeapWalk()</b> function.</p>
+
+
+<p>The code in <A HREF="0302cl6.htm" target="_BLANK">Listing 6</A> can be inserted into an outer scope of your <b>main</b>/<b>WinMain</b> function, and will perform basic leak detection. It will catch all leaks in your code, but the picture may be muddied since certain blocks will have been allocated by the system for infrastructure tasks, such as the application path name (as retrieved by the <b>GetCommandLine()</b> function). However, you can get around this by creating a new heap, via <b>HeapCreate()</b>, at program startup, and then allocating all memory (including in <b>malloc()</b>/<b>operator new()</b>) from that heap. In that case, only genuine leaks from your own code will be reported.</p>
+
+<p><A HREF="0302cl3.htm" target="_BLANK">Listing 3</A> demonstrates using the <b>trace_ leaks()</b> leak detector function outside the scope of your <b>WinMain()</b> function.</p>
+
+
+
+<h4>String Operations</h4>
+
+
+<p>All of the C Standard, and a number of other Microsoft proprietary, string manipulation functions are implemented in the CRT Library and are, therefore, off-limits when not linking to it.</p>
+
+
+<p>For the string functions <b>_strset()</b>, <b>strcat()</b>, <b>strcmp()</b>, <b>strcpy()</b>, and <b>strlen()</b> you can use the intrinsic technique just described for the memory functions. However, for all other operations you are left with three options.</p>
+
+<p>The first option is to write your own versions of the function. For example, the <b>strncat()</b> function could be implemented as shown in <A HREF="0302cl7.htm" target="_BLANK">Listing 7</A>.</p>
+
+<p>The second option, which is the preferred one where applicable (since the functions are well tested and already in linked DLLs so your module will be smaller), is to use the string functions available from the Win32 API (in the KERNEL32 and USER32 DLLs). KERNEL32 exports the following string functions, <b>lstrcat()</b>, <b>lstrcmp()</b>, <b>lstrcmpi()</b>, <b>lstrcpy()</b>, <b>lstrcpyn()</b>, and <b>lstrlen()</b>, in both ANSI (i.e., <b>lstrcatA()</b>) and Unicode (i.e., <b>lstrcatW()</b>) forms. All of these functions can replace their C Standard counterparts: <b>strcat()</b>/<b>wcscat()</b>, <b>strcmp()</b>/<b>wcscmp()</b>, <b>stricmp()</b>/<b>wcsicmp()</b>, <b>strcpy()</b>/<b>wcscpy()</b>, <b>strncpy()</b>/<b>wcsncpy()</b> and <b>strlen()</b>/<b>wcslen()</b>. However, <b>lstrcpynA/W()</b> has subtly different semantics to <b>strncpy()</b>/<b>wcsncpy()</b>, which can lead to some nasty bugs. <b>lstrcpynA/W()</b> always appends a NULL character in the given space, irrespective of whether all of the string to be copied can fit or not. Thus, it is not possible to construct a string from in-place assembled fragments with <b>lstrcpynA/W()</b>, since every fragment will contain a NULL. For this reason, and from bitter personal experience, I recommend that you steer clear of this function entirely. </p>
+
+<p>The third option is to provide replacement functionality using code that is not a direct replacement. For example, you can provide string concatenation via the <b>wsprintf()</b> function, in the following way.</p>
+
+<pre>
+   char   result[101];
+   wsprintf(result, "%s%s", str1, str2);
+   str1 = result;
+</pre>
+
+<p>Other operations may also be synthesized. For example, in C++ compilation units, <b>strchr()</b> can be replaced by a call to an STL Library <b>char_traits::find()</b>, if implemented as demonstrated in <A HREF="0302cl8.htm" target="_blank">Listing 8</A>. This is an extract of the stlsoft::char_traits class, available at <a href="http://stlsoft.org/" target="_blank">http://stlsoft.org/</a>.</p>
+
+<p>Of course, some char_traits specializations are implemented in terms of <b>strchr()</b>, so you need to watch out for this (though the linker will warn you if this is the case).</p>
+
+<p>Other replacements are useful for converting integers to strings. The STLSoft conversion library (<a href="http://stlsoft.org/libraries/conversion_library.html" _target = "blank">http://stlsoft.org/libraries/conversion_library.html</a>) contains the <b>integer_to_string()</b> suite of template functions that convert from any of the eight (8-, 16-, 32-, and 64-bit signed and unsigned) integers to strings via a highly efficient, inline implementation. These can be used instead of (<b>s</b>)<b>printf()</b> for such simple conversions.</p>
+
+<p>The USER32 functions <b>wsprintfA/W()</b> are useful for more than just concatenating strings. Indeed, they are intended as a (near complete) plug-in replacement for the C Standard <b>sprintf()</b> and <b>swprintf()</b> functions. However, it should be noted that they do not handle floating-point numbers of any kind. This is less of a hassle than it sounds for our purposes, since we will see that there is little point trying to avoid the CRT Library when using floating-point numbers. For all other types, <b>wsprintfA/W()</b> provides an excellent replacement for (<b>s</b>)<b>printf()</b>/<b>s</b>(<b>w</b>)<b>printf()</b>.</p>
+
+
+
+<h4>64-Bit Integers and Floating Points</h4>
+
+
+<p>If you are using floating points in all their glory, then there is no choice but to use the CRT Library, because the complex supporting infrastructure functions and variables reside within it. However, many uses of floating-point numbers are in the fractional intermediate calculations of integral numbers. In these circumstances, it is often possible to emulate the calculation by some clever use of the Win32 <b>MulDiv()</b> function, which multiplies two 32-bit parameters into a 64-bit intermediate and then divides that by the third 32-bit parameter. Consider the following code snippet, containing the alternate styles, from inside a function in the Synesis Software painting libraries:</p>
+
+
+<pre>
+#ifndef _SYB_MWPAINT_NO_CRT
+... ((double)lpGDS-&gt;nGradWidth * cx * i 
+    / (range * lpGDS-&gt;nGradGran));
+#else
+... MulDiv(MulDiv(lpGDS-&gt;nGradWidth, cx, 
+    range), i, lpGDS-&gt;nGradGran);
+#endif /* _SYB_MWPAINT_NO_CRT */
+</pre>
+
+<p>The 64-bit integer type, __int64, has been a built-in type in the Visual C++ compiler since Version 2.0. Simple operations on the type, including bitwise and logical (Boolean) operations, and addition and subtraction can induce the compiler to place inline bit/byte-wise manipulation. However, the arithmetic operations multiply, divide, and modulo, and the shift operators are all implemented as calls to CRT Library functions (<b>_allmul()</b>, <b>_alldiv()</b>, <b>_allrem()</b>, <b>_allshl()</b>, and <b>_allshr()</b>). If you are using any of those operations, and cannot convert those operations to their 32-bit equivalents without losing accuracy, then you must accept linking to the CRT Library.</p>
+
+
+
+<h4>Exceptions and SEH</h4>
+
+
+<p>Both C++ exceptions and the compiler-supplied structured exception handling (SEH) link in significant parts of the CRT Library, and it is not worth the effort to try and avoid it. It is just about possible to directly code exception handling without CRT (as described in "A Crash Course on the Depths of Win32 Structured Exception Handling," Matt Pietrek, <i>Microsoft Systems Journal</i>, January 1997), but it is certainly not worth the effort. The philosophy of not linking to the CRT is that for the benefits of skipping the CRT Library we expect a little discomfort, but not such levels of pain.</p>
+
+
+<p>Also, given the fact that most uses of the techniques described here are for supporting DLLs and small utility programs, the need/desire for exception is little, if any.</p>
+
+<p>As well as not writing your own try-catch or __try-__except/__try-__finally constructs, you should also remove the /GX compiler flag (the "Enable exception handling" checkbox in the C/C++ options tab), since many libraries (including the STL implementation that ships with Visual C++) discriminate their functionality via the preprocessor symbol _CPPUNWIND, inserting exception-handling code in its presence.</p>
+
+
+
+<h4>Stacking Verification  with _chkstk()</h4>
+
+
+<p>From Visual C++ 2.0 onwards, the Visual C++ compiler has, under certain conditions, inserted a function called <b>_chkstk()</b>. Briefly, this function touches contiguous stack pages in order to ensure that the virtual memory system doesn't leave any uncommitted blocks, since it commits blocks as they are first accessed.</p>
+
+
+<p>There is only one option here, if you wish to avoid the CRT. If you keep all your stack frames to less than the system page size, then the compiler will not insert the call and you have no worries. (This can be obtained by calling <b>GetSystemInfo()</b>. For most architectures, it is 4096, but this should not be assumed.)  In practice this can often be achieved, given good software engineering practices of modest-sized functions, and only declaring frame arrays of things that are genuinely of fixed size, dynamically allocating those that are not. (You have to be careful with fixed-size buffers. "Counting NULL Termination in Path Length Computations," ("Tech Tips," <i>WDM</i>, September 2002) illustrates the mistake in the development of Windows NT/2000 that can lead to Explorer crashes on maximally large paths.)</p>
+
+<p>It can be necessary on occasion to allocate even such fixed-sized blocks via the heap, since their total size exceeds the page size, but this generally brings into question the modularity (or lack of) of the code that is causing this. Such code can often be better structured to avoid this requirement.</p>
+
+<p>It is possible to link a program requiring <b>_chkstk()</b> by providing your own implementation, but since this will not perform the required stack touching, the program will always crash! The following code illustrates this.</p>
+
+<pre>
+extern "C" void _chkstk(void)
+{
+}
+
+int APIENTRY WinMain(HINSTANCE,
+    HINSTANCE,
+    LPSTR,
+    int)
+{
+   volatile char      sz[100000];
+   sz[99999] = 0;   // Crash!!
+
+   return 0;
+}
+</pre>
+
+
+<h4>Stacking Verification  with _chkesp</h4>
+
+
+<p>From Visual C++ 6.0 onwards, the Visual C++ compiler has provided the /GZ compiler option, which is intended to assist in finding release-build errors whilst in debug builds. It introduces auto-initialization of local variables and various call-stack validations. Part of its mechanism lies in the implicit calling of a CRT function called <b>_chkesp()</b>, which validates the ESP register as part of its stack checking on the entry and exit of (most) function calls. The signature of the function is as follows:</p>
+
+<pre>
+extern "C" void __declspec(naked) 
+    __cdecl _chkesp(void);
+</pre>
+
+<p>If you can write code without precipitating the insertion of <b>_chkesp()</b>, then you needn't worry. The calling of almost any functions within your code causes this call to be inserted, however, so in practice it is not possible to write any worthwhile program that does not cause the compiler to link it in.</p>
+
+<p>There are three options here. The first option is to still link to the CRT in debug mode, and to not do so in release mode. As discussed previously, however, this is fraught with danger and is generally a bad idea.</p>
+
+<p>The second option is simply to not use /GZ. This can be a valuable facility, however, especially when using <b>GetProcAddress()</b> (as this can easily lead to calling convention mistakes), so a useful compromise is to test a debug version built with /GZ and then without, so as to avoid debug/release differential problems.</p>
+
+<p>The third option is &#151; as with <b>_purecall()</b>, described later &#151; to provide your own implementation. As with that function, you can make it as simple or as complex as you like. The CRT-provided implementation pops a dialog warning that the value of ESP was improperly saved between function calls, and offers the standard Abort, Retry, and Ignore options. The simplest implementation that takes some action (in raising an int 3) is shown in <A HREF="0302cl9.htm" target="_blank">Listing 9</A>.</p>
+
+
+
+<h4>CRT Global Variables</h4>
+
+
+<p>The global variables, such as <b>errno</b>, <b>_osver</b>, <b>_winmajor</b>, <b>_winminor</b>, <b>_winver</b>, <b>_pgmptr</b>, <b>_wpgmmptr</b>, <b>_environ</b>, and so on, are all set up and manipulated by the CRT Library (see "Special Global Variables for Common Windows Programming Tasks," Eugene Gershnik, <i>WDM</i>, July 2002). If your code is heavily dependent on these variables, then there is no point trying to detach from the CRT Library since they will not be updated correctly (in addition to the fact that they will be missing symbols).</p>
+
+
+<p>However, some of these variables are constant, in particular the operating system version variables <b>_osver</b>, <b>_winmajor</b>, <b>_winminor</b>, and <b>_winver</b>. These variables can be declared in your code and initialized in your main function as it is in the CRT itself (an extract of which is shown in <A HREF="0302cl10.htm" target="_BLANK">Listing 10</A>).</p>
+
+
+
+<h4>C++ Classes</h4>
+
+
+<p>You are able to use many C++ features and not run aground on a lack of the CRT. Simple ADT (Abstract Data Type) classes &#151; those that primarily encapsulate and manipulate resources without using polymorphism &#151; can survive quite nicely, as their methods are simply compiled and linked as normal.</p>
+
+
+<p>Classes with a limited level of polymorphism can also be used without any additional effort. Where such classes have virtual members other than their destructors, the virtual mechanism can exist cleanly without the CRT Library. While it is usually a bad idea to declare virtual methods without declaring a virtual destructor, due to likely problems of incomplete destruction, there are cases where it is acceptable; for example, in the definition of COM interface implementing classes.</p>
+
+<p>Templates are also happily implemented by the compiler and, in and of themselves, do not rely on the CRT Library.</p>
+
+
+
+<h4>Virtual Destructors</h4>
+
+
+<p>If any of the classes you instantiate have virtual destructors, then the compiler will build in a hidden call to <b>::operator delete()</b>. Use of the Source Browser lends a clue as to why this is. If you build a project with one or more virtual destructors, and then browse for "operator delete," the browser tool will take you to the end of the class definition. </p>
+
+
+<p>What appears to be actually happening is the compiler is creating a per-class operator <b>delete()</b> (where you have not explicitly provided one) for each and every class that has a virtual destructor, and implementing it in terms of the global operator <b>delete()</b>. This is in accordance with the C++ Standard, which stipulates that "operator delete shall be looked up in the scope of the destructor's class" (ISO/IEC C++ Standard, 1998 (ISO/IEC 14882:1998(E)), section 12.4.11).</p>
+
+<p>If you do not allocate and, therefore, do not delete, instances of class types on the heap, then you can safely placate the linker by providing your own stub for operator delete, as in: </p>
+
+<pre>
+void operator delete (void *) throw()
+{
+}
+</pre>
+
+
+<h4>Operators new and delete</h4>
+
+
+<p>In circumstances where you do actually make use of heap-based class instances (or prefer to allocate from the C++ free-store than the C heap), you need to provide global and/or perclass implementations of operators <b>new()</b> and <b>delete()</b>.</p>
+
+
+<p>In either case, a serviceable solution is simply to define them in terms of the Win32 Heap API, using the default process heap. <A HREF="0302cl11.htm" target="_BLANK">Listing 11</A> illustrates how per-class allocation could be implemented. The global definitions could be identical.</p>
+
+
+
+<h4>Pure Virtual Members</h4>
+
+
+<p>The Visual C++ compiler/linker instantiates the vtable entries for pure virtual methods with a CRT Library function, <b>_purecall()</b>, which has the following signature:</p>
+
+<pre>
+extern "C" int _cdecl _purecall(void);
+</pre>
+
+<p>This function is called if a pure virtual <b>method()</b> is called within the constructor or destructor of an abstract class as part of the construction/destruction of a concrete derived class. (This is a big no-no in C++. Nonetheless, it is refreshing to see that the implementers of Visual SourceSafe are as human as the rest of us, since it regularly crashes with pure-call termination.) The CRT Library implementation pops a dialog informing the user that a pure call has occurred, and then terminates the application.</p>
+
+<p>To link projects containing one or more classes with pure virtual members without the CRT Library, you must supply your own definition of this function. If you are feeling confident (that it will never be called), then this can be as simple as:</p>
+
+<pre>
+extern "C" int _cdecl _purecall(void)
+{
+   return 0;
+}
+</pre>
+
+<p>or you can be more proactive, as in the implementation I use in the Synesis Software libraries (<A HREF="0302cl12.htm" target="_BLANK">Listing 12</A>), which informs the user of the problem and then closes the process.</p>
+
+
+<h4>Statics</h4>
+
+
+<p>The compilation of static class instances is composed of two parts: the allocation of space on the frame, and the calling of the constructor and destructors. </p>
+
+
+<p>Global static class instances are constructed and destroyed by the CRT Library infrastructure. Function scope static class instances are constructed at the point of their first use, and are destroyed by the CRT Library infrastructure along with their global counterparts. It should be obvious, then, that use of statics, particularly global statics, without the CRT Library is difficult: Your global static objects will not be constructed before you use them, and none of your static objects will be destroyed on program exit.</p>
+
+<p>Nevertheless, the compiler does allocate the space on the frame for the instances, so it is possible to still use the instances if we can either provide for their constructors and/or destructors to be called, or can live without them.</p>
+
+<p>With global static class instances, it is getting pretty close to being too much effort, not to mention introducing some dodgy techniques, for achieving this. The code in <A HREF="0302cl13.htm" target="_BLANK">Listing 13</A>  shows techniques for constructing and destroying static class instances, namely in place construction and explicit destruction, respectively, as well as, I hope, illustrating that the ensuing unsafe coding should dissuade any casual use of them. It is possible to use linker techniques to support global objects (as described in "C++ Runtime Support for the NT DDK," http://www.osr.com/ ntinsider/1999/global.htm), and this is something I intend to incorporate in the near future.</p>
+
+<p>With function scope static class instances, however, the disadvantages are much reduced, since the call to the constructor is made from within the function, and I have successfully made use of a number of them in programs detached from the CRT Library.</p>
+
+<p>A simple alternative technique for dealing with global variables is to refer to the global class instance via a pointer in all client code, and then setting that pointer to the address of a local (within <b>main()</b>/<b>WinMain()</b>) instance, effectively getting a static for free by virtue of its being the outermost local frame class instance.</p>
+
+
+
+<h4>STL</h4>
+
+
+<p>The implementation of some of the STL classes that ship with Visual C++ means that the CRT Library is required for some, but not all, parts of the STL Library. For example, if you declare a single string, with a literal string constructor argument, the linker reports that it cannot see the following symbols:</p>
+
+<pre>
+"void __cdecl std::_Xlen(void)" 
+    (?_Xlen@std@@YAXXZ)
+___CxxFrameHandler
+__except_list
+__EH_prolog
+</pre>
+
+<p>Also, virtually no parts of the iostreams are usable without the CRT Library. </p>
+
+<p>However, other parts of the library are eminently usable without the CRT Library, including auto_ptr, list, map, and vector, along with the algorithms and functionals.</p>
+
+
+
+<h4>Conclusion</h4>
+
+
+<p>There is clearly a trade off between the benefits that are gained when executables and DLLs are not linked to the CRT Library and the costs (in effort and inconvenience) involved. It is clear that one cannot, or should not, exclude the CRT when floating-point operations, certain parts of the C++ Standard Library, very large frame variables, RTTI, and stdio (i.e., <b>scanf()</b>) are involved. Furthermore, there is little point in expending considerable efforts in this pursuit for a module that is predominantly going to be linked to other DLLs and/or executables that themselves link to the CRT Library.</p>
+
+
+<p>Nevertheless, this leaves a large number of situations suitable for the application of these techniques. These include small executables such as windowless utilities, installation programs, and small GUI tools. The techniques find even more widespread utility in the creation of DLLs. (Indeed, of the 18 Synesis Software base libraries, all but two of employ these techniques to achieve independence from the CRT Library.)</p>
+
+<p>At first look, the list of techniques that must be applied to a project can seem way beyond the effort worth employing for the benefits gained. However, once the common boilerplate is formed into a mini-CRT Library, the generation of programs and/or DLLs that are CRT-free becomes simple, reliable, and effective, especially in conjunction with customized AppWizards. My own personal use of these techniques is found most often in the base (DLL) libraries for my company as well as for clients, and in a variety of small utility programs; see <a href="http://synesis.com.au/r_systools.html" _target = "blank">http://synesis.com.au/r_systools.html</a>.</p>
+
+
+
+<h4>Other Issues</h4>
+
+
+<p>For reasons of brevity, I have been unable to talk about the full gamut of issues that pertain to working without the CRT facilities or in providing alternative implementations of them. Other issues include file handling, sophisticated handling of singleton object lifetimes, reference-counting APIs, console applications, and command-line parsing to name a few.</p>
+
+
+<p>Eugene Gershnik (author of "Visual C++ Exception-Handling Instrumentation," <i>WDM</i>, December 2002) and I have decided to work together to develop a lightweight CRT replacement incorporating the ideas from both our articles and global object-linker techniques. The project, "CRunTiny," is available online at <a href="http://cruntiny.org/" _target = "blank">http://cruntiny.org/</a>. 
+
+<hr>
+<I>
+Matthew Wilson holds a degree in Information Technology and a Ph.D. in Electrical Engineering, and is a software development consultant for Synesis Software. Matthew's work interests are in writing bulletproof real-time, GUIs, and software-analysis software in C, C++, and Java. He has been working with C++ for over 10 years, and is currently bringing STLSoft.org and its offshoots into the public domain. Matthew can be contacted via <a href="mailto:matthew@synesis.com.au">matthew@synesis.com.au</a> or at <a href="http://stlsoft.org/" _target = "blank">http://stlsoft.org/</a>.</I>
+
+
+</body>
+</html>

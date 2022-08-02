@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>Introducing recls</title>
+</head>
+
+<body>
+
+
+<h4>Listing 1:	<i>The</i> Recls_GetNext(), Recls_GetDetails() <i>and</i> Recls_GetNextDetails() <i>functions</i>.</h4>
+
+<pre>
+// from recls.h
+struct recls_fileinfo_t;
+typedef struct recls_fileinfo_t const *recls_info_t;
+/* Search open/close */
+recls_rc_t Recls_Search( char const     *searchRoot
+                       , char const     *pattern
+                       , recls_uint32_t flags
+                       , hrecls_t       *phSrch);
+void Recls_SearchClose(hrecls_t hSrch);
+
+/* Enumeration */
+recls_rc_t Recls_GetNext(hrecls_t hSrch);
+
+recls_rc_t Recls_GetDetails( hrecls_t  hSrch, recls_info_t *pinfo);
+recls_rc_t Recls_GetNextDetails( hrecls_t  hSrch , recls_info_t *pinfo);
+void Recls_CloseDetails(recls_info_t fileInfo);
+
+/* File-system entries */
+recls_rc_t Recls_CopyDetails( recls_info_t fileInfo, recls_info_t *pinfo);
+recls_rc_t Recls_OutstandingDetails( hrecls_t   hSrch, recls_uint32_t *count);
+
+size_t Recls_GetPathProperty( recls_info_t fileInfo
+                                , char         *buffer
+                                , size_t       cchBuffer);
+void Recls_GetDriveProperty( recls_info_t fileInfo
+                                , char         *pchDrive);
+size_t Recls_GetDirectoryProperty( recls_info_t fileInfo
+                                , char         *buffer
+                                , size_t       cchBuffer);
+size_t Recls_GetFileProperty( recls_info_t fileInfo
+                                , char         *buffer
+                                , size_t       cchBuffer);
+size_t Recls_GetShortFileProperty( recls_info_t fileInfo
+                                , char         *buffer
+                                , size_t       cchBuffer);
+size_t Recls_GetFileNameProperty( recls_info_t fileInfo
+                                , char         *buffer
+                                , size_t       cchBuffer);
+size_t Recls_GetFileExtProperty( recls_info_t fileInfo
+                                , char         *buffer
+                                , size_t       cchBuffer);
+size_t Recls_GetDirectoryPartProperty( recls_info_t fileInfo
+                                , int          part
+                                , char         *buffer
+                                , size_t       cchBuffer);
+recls_bool_t Recls_IsFileReadOnly(recls_info_t fileInfo);
+recls_bool_t Recls_IsFileDirectory(recls_info_t fileInfo);
+recls_bool_t Recls_IsFileLink(recls_info_t fileInfo);
+</pre>
+</body>
+</html>

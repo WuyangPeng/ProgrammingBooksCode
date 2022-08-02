@@ -1,0 +1,8 @@
+数据库系统全书（Database Systems The Complets Book）
+
+★
+作者： Hector Garcia-Molina、Jeffrey D.Ullman、Jennifer Widom
+
+官方网站：
+http://infolab.stanford.edu/~ullman/dscb.html
+

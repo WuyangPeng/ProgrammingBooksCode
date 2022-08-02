@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>Demo of the Execute() Method</title>
+<script language="vbscript" type="text/vbscript">
+Function ExecuteDemo
+Dim myRegExp, TestName, Match, Matches, displayString
+displayString = ""
+Set myRegExp = new RegExp
+myRegExp.Pattern = "[A-Z]\d"
+myRegExp.IgnoreCase = True
+myRegExp.Global = False
+TestString = InputBox("Enter characters and numbers in the text box below.")
+Set Matches = myRegexp.Execute(TestString)
+  For Each Match in Matches
+    displayString = displayString & "Match found at position " & Match.FirstIndex & VBCrLf
+    displayString = displayString & "The match value is '" & Match.Value & "'."
+    MsgBox displayString
+    displayString = ""
+  Next
+End Function
+
+</script>
+</head>
+<body onload="ExecuteDemo">
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+<html>
+<head>
+<title>Win32 64-Bit Integers</title>
+</head>
+
+<body>
+
+
+<h1>Win32 64-Bit Integers</h1>
+<p>The structure layouts of LARGE_INTEGER and FILETIME are such that it is safe to cast them to and from a 64-bit integer &#151; ws_sint64_t (defined to be signed __int64 for Borland, Digital Mars, Visual C++ and Watcom compilers, and signed long long for Comeau, GCC, and Metrowerks compilers) &#151; so long as the platform is little-endian (i.e., Intel), since the LowPart/dwLowDateTime member preceeds the HighPart/dwHighDateTime member. I do not have access to the Win32 headers for any big-endian systems (i.e., PowerPC, ALPHA), so I cannot presume that the layout of the structure members would be reversed (although I hope they would be), which would maintain the compatibility with the 64-bit integers. If they are not, then the systemtime_counter, highperformance_counter, threadtimes_ counter, processtimes_counter, and highperformance_ counter classes are not valid for systems that are not little-endian.</p>
+
+<p> &#151; M.W.</p>
+
+</body>
+</html>

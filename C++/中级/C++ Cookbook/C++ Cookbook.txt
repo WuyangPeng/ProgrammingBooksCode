@@ -1,0 +1,11 @@
+C++ Cookbook
+
+官方网站：
+http://www.oreilly.com、 
+http://www.oreilly.com.cn
+
+boost：
+https://www.boost.org/
+
+○
+作者：D.Ryan Stepbens、Cbristopber Diggns、Jonatban Turkanis、Jeff Cogswell

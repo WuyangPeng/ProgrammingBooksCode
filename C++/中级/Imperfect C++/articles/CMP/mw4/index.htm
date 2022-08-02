@@ -1,0 +1,304 @@
+<html>
+<head>
+<title>Efficient Integer To String Conversions, part 3</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<h2>Efficient Integer To String Conversions, part 3</h2>
+<p>Courtesy of <i>C/C++ Users Journal</i> (November, 2003)</p>
+<h3>by Matthew Wilson</h3>
+<p>First of all, I'd like to apologize for a gaff on my part [1], in not making 
+  it clear that the first few instalments in this column are to feature several 
+  different methods for achieving efficient integer to string conversions, and 
+  that none of these would represent an absolute zenith of implementation correctness 
+  and efficiency. (See sidebar &quot;<a href="wilson_s1.htm">Flexible C++</a>&quot;.)</p>
+<p>In fact, there are five solutions (the latter four all build on my original 
+  solution described in [2]). Each of these solutions to the integer to string 
+  conversions are flawed in one way or another, and examination of these flaws 
+  will highlight issues within C++ that tend to bite the unwary (and sometimes 
+  the wary).</p>
+<p>Throughout the next couple of columns, I'll be describing the remaining three 
+  solutions, and highlighting the drawbacks of each along the way. I'll finally 
+  end with suggesting how an easy-to-implement new keyword added to the language 
+  would result in our being able to transform one of these into a &quot;perfect&quot; 
+  solution. Not that that's going to be controversial or anything &#133;</p>
+<h3>Solutions #1 &amp; #2</h3>
+<p>So let's briefly do a recap. Solution 1 [2], in the form of the STLSoft [3] 
+  <b>integer_to_string</b> template functions, carries out conversion by writing 
+  the least significant digit backwards into a caller-supplied buffer, dividing 
+  by the base (10) and repeating until all digits are written and the integer 
+  is fully converted to string form. Its advantages are that it is thread-safe, 
+  does not use any local static memory, works with arbitrary character encoding 
+  (e.g. both <b>char</b> and <b>wchar_t</b>), and that the compiler can deduce 
+  the types required to instantiate the template.</p>
+<pre>
+uint64_t      i = . . . 
+wchar_t       buff[21];
+wchar_t const *result = integer_to_string(buff, stlsoft_num_elements(buff), i);
+</pre>
+<p>The disadvantages are that it requires the caller to supply a character buffer 
+  within which the converted form is written, and that it also requires the caller 
+  to supply the buffer capacity, which obviously introduces the possibility for 
+  mismatch between the two.</p>
+<pre>
+uint64_t      i = . . . 
+wchar_t       buff[12]; // Typo! 12 will not handle the full-range of 64-bit integers!
+wchar_t const *result = integer_to_string(buff, 21, i); // Ouch! Underwrite
+</pre>
+<p>(A somewhat prosaic additional criticism is that it involves typing a lot of 
+  characters, making client code far from succinct.)</p>
+<p>Solution 2 [4] provides an alternative approach. Based on Solution 1, it uses 
+  thread-specific local static buffers such that a caller-supplied buffer is not 
+  required. It maintains practically all the efficiency of the Solution 1, but 
+  in a more easy to use package. (The details of the thread-specific buffers may 
+  feature in a future instalment.)</p>
+<p>The advantages of this approach are that it is thread-safe, works with any 
+  character type, and does not require a caller-supplied buffer. Naturally, it 
+  does not need a caller-supplied buffer length either, so there is no possibility 
+  for an insufficient buffer being passed through to <b>integer_to_string</b>. 
+  The minor disadvantage is that the compiler cannot deduce the character type, 
+  since that is expressed only in the return type, rather than the function arguments, 
+  requiring us to explicitly instantiate the function template, as in:</p>
+<pre>
+uint64_t      i = . . . 
+wchar_t const *result = int_to_string&lt;wchar_t>(i);
+</pre>
+<p>However there is another, more significant, drawback, which we're going to 
+  examine, and partially address, in Solution 3.</p>
+<h3>Solution #3</h3>
+<p>Consider the following example, in light of the implementation of solution 
+  #2:</p>
+<pre>
+printf("%s %s", int_to_string&lt;char>(5), int_to_string&lt;char>(10));</pre>
+<p>With our current <b>int_to_string()</b> function implemention, we may get &quot;5 
+  5&quot; or &quot;10 10&quot;, but there's no way we're going to get the intended 
+  &quot;5 10&quot;. This is because the value returned by the two calls to <b>int_to_string()</b> 
+  are the same, i.e. a pointer to the thread-specific buffer for the particular 
+  combination of character and integer type, in this case <b>char</b> and <b>int</b>.</p>
+<p>This is a problem of return value lifetime, which can also occur in somewhat 
+  subtler cases:</p>
+<pre>
+int some_func(int, char **);
+
+printf("%s %d\n", int_to_string&lt;char>(argc), some_func(argc, argv);
+</pre>
+<p>If <b>some_func()</b> calls <b>int_to_string&lt;char&gt;(int)</b>, whether 
+  directly or indirectly, then we're back to undefined behaviour in our output. 
+  We may get what is intended on one compiler, but whatever the last <b>int_to_string&lt;char&gt;(int)</b> 
+  call within <b>some_func()left</b> in the thread's conversion buffer on another. 
+  Nasty.</p>
+<p>Let's look again at the implementation of <b>int_to_string()</b> and one of 
+  the possible implementations of its supporting function <b>i2str_get_tss_buffer()</b> 
+  that was described in [4].</p>
+<pre>
+template< typename C
+        , typename I
+        >
+inline C const *int_to_string(I value)
+{
+  const size_t  CCH     = 21; // fits 64-bit + sign
+  C             *buffer = i2str_get_tss_buffer&lt;C, CCH>();
+
+  return stlsoft::integer_to_string(buffer, CCH, value);
+}
+
+template&lt; typename C
+        , size_t   CCH
+        >
+inline C *i2str_get_tss_buffer()
+{
+  __declspec(thread) static C s_buffer[CCH];
+
+  return s_buffer;
+}
+</pre>
+<p>For efficiency reasons the conversion functions return C-strings, rather than 
+  instances of <b>std::basic_string()</b> or similar. The problem is that a C-string 
+  is not a value type; it is a pointer type whose value is the address of the 
+  integer's string representation laid out in memory. This problem is not unique 
+  to <b>int_to_string()</b>: any function which returns a pointer to a structure 
+  can suffer from this, irrespective of whether or not they are, like <b>int_to_string()</b>, 
+  thread-safe. </p>
+<p>This is a classic problem in C++, and the conventional wisdom is, rightly, 
+  to avoid returning the addresses of, or references to, local static variables, 
+  whether they be of fundamental or class type, if they are subject to change.</p>
+<p>So what can we do about it? Let's assume that we are adamant that we want to 
+  return pointers to C-strings. Clearly we want to be able to return distinct 
+  buffers from a parameterisation of <b>i2str_get_tss_buffer()</b> when the corresponding 
+  parameterisation of <b>int_to_string()</b> is called multiple times within a 
+  single expression. Unfortunately, I think that that's pretty much impossible, 
+  or at least would have a heavy runtime cost. However, we don't actually need 
+  to know whether successive calls are from within a single expression; one option 
+  is simply to make sure that the likelihood is very low. Because of the nature 
+  of integer to string conversion - i.e. there are fixed maximum 
+  lengths to the converted string form &#151; we can approximate to impossible 
+  by changing the implementation of <b>i2str_get_tss_buffer()</b> to the following</p>
+<pre>
+template< typename C
+        , size_t   CCH
+        >
+inline C *i2str_get_tss_buffer()
+{
+  const size_t                     DEGREE  =   32;
+  __declspec(thread) static C       s_buffers[DEGREE][CCH];
+  __declspec(thread) static size_t  s_index;
+
+  s_index = (s_index + 1) % DEGREE;
+
+  return s_buffers[s_index];
+}
+</pre>
+<p>By picking a number that we believe is large enough, we reduce the likelihood 
+  of overwrites. 32 buffers of thread-specific storage, each of size CCH (the 
+  size adequate for a converted integer) are declared, along with a thread-specific 
+  indexing variable. Upon each call, the indexer is incremented, and is cycled 
+  back to 0 when it reaches 32. Thus each of the 32 buffers is used in turn, this 
+  cycling occurring on a thread-specific basis. Naturally 32 is a guess at the 
+  maximum number of integer to string conversions (remember that this is per-integer 
+  type, ie. there are 32 for <b>uint32_t</b>, 32 for <b>int32_t</b>, etc.), and 
+  represents a compromise between desired &quot;safety&quot; and stack-size. You 
+  would choose your own limit.</p>
+<p>Please note that this is only the implementation for the <b>__declspec(thread)</b> 
+  version. As described in the last article, <b>__declspec(thread)</b> is suitable 
+  only for a limited number of development scenarios. In other cases you would 
+  have to use a proprietary API, something like:</p>
+<pre>
+template< typename C
+        , size_t   CCH
+        >
+inline C *i2str_get_tss_buffer()
+{
+  const size_t  DEGREE  =  32;
+  struct TSS
+  {
+    C       buffers[DEGREE][CCH];
+    size_t  index;
+  } *tss;
+
+  tss = static_cast&lt;TSS*>(TssStore_GetThreadDatum(. . .));
+
+  if(tss == 0)
+  {
+    . . . // allocate & initialise TSS instance, and 
+          // place in slot
+  }
+
+  tss->index = (tss->index + 1) % DEGREE;
+
+  return tss->buffers[tss->index];
+}
+</pre>
+<p>As for performance, both the <b>__declspec(thread)</b> form and the proprietary 
+  form have performances that are indistinguishable from their single-buffer variants 
+  described in [4].</p>
+<p>So we've ameliorated the return-value lifetime problem. Sadly, we have <i>not</i> 
+  removed it, and I hope it is clear to you that it is theoretically impossible 
+  to do so. Of course we can practically remove it by selecting a sufficiently 
+  large degree of buffer array, but this is hackery gone nuts. Don't get me wrong; 
+  there are some circumstances where it's valid to go with practical, but not 
+  theoretical, correctness. I just don't think this is one of them. (Furthermore, 
+  there will be a non-trivial amount of memory used for large degrees, especially 
+  when multiple threads are using the functions.)</p>
+<p>I would suggest that this solution is actually less desirable than solution 
+  #2, since at least in that case there is no attempt to give users of the function 
+  a false sense of security; any multiple-use of the return value will result 
+  in erroneous results. That's preferable to using a library that promises: &quot;you're 
+  unlikely to encounter an error&quot;. In my opinion, therefore, this solution 
+  must be rejected completely [5].</p>
+<p>If we want to return a pointer to a buffer, it's looking like we're going to 
+  have to pass in the buffer ourselves.</p>
+<h3>Solution #4</h3>
+<p>By now you may be despairing that these incremental solutions all represent 
+  retrograde steps. Thankfully that's not the case, and I suggest that solution 
+  4 represents the optimal solution to the problem, given the current state of 
+  the language and the majority of its supporting compilers.</p>
+<p>Getting back to the original STLSoft <b>integer_to_string()</b> functions, 
+  the only aspect of them that drew any significant criticism is the ability for 
+  a caller to supply an invalid value for the buffer length. If the length is 
+  too small, then at least an assertion will fire in debug builds. If the length 
+  value stipulated is sufficient, but does not accurately represent the actual, 
+  undersized, buffer length (as shown in the example at beginning of this article), 
+  then underrun will occur, which will result in corruption of either the stack 
+  or the heap.</p>
+<p>A nice feature of modern compilers (including Borland C++ 5.6+, CodeWarrior 
+  7+, Comeau, Digital Mars 8.32+, Intel, GCC and Visual C++ 7.0+) is that they 
+  can statically (i.e. at compile-time) deduce the size of arrays. One can define 
+  a template function taking an array parameter, and the compiler can deduce the 
+  length of the array as a template parameter, which is then accessible within 
+  the body of the template function. This means that we can define overloads of 
+  the original <b>integer_to_string()</b> functions that take an array parameter 
+  instead of the pointer &amp; size parameters, as follows:</p>
+<pre>
+template< typename C
+        , size_t   N
+        >
+inline C const *integer_to_string(C (&buf)[N], int8_t i)
+{
+  return integer_to_string(buf, N, i);
+}
+</pre>
+<p>This eliminates the possibility of an erroneous buffer length being passed 
+  to the function. Even better, we can use compile-time checking (in the form 
+  of a static-assertion) to ensure that the buffer length is sufficient.</p>
+<pre>
+template< typename C
+        , size_t   N
+        >
+inline C const *integer_to_string(C (&buf)[N], int8_t i)
+{
+  stlsoft_static_assert(!(N < printf_traits&lt;int8_t>::min_value));
+
+  return integer_to_string(buf, N, i);
+}
+</pre>
+<p>Now there're no concerns about whether we'll run into a release-build bug that 
+  was not located via the assertion in debug-mode testing. If the given parameter 
+  is not sufficient the code will not compile. Pretty spiffy, no? ([6])</p>
+<p>This solution is thread-safe, has no problems with return value lifetime, is 
+  not susceptible to erroneous length specification, works with arbitrary character 
+  encodings, and does not require explicit instantiation. It is readily inlined 
+  into the function it is implemented in terms of, so it does not sacrifice efficiency. 
+  Furthermore, it is pleasingly simple and does not rely on any platform-specific 
+  functionality. And, finally, it leads to more succinct code:</p>
+<pre>
+uint64_t      i = . . . 
+wchar_t       buff[12];
+wchar_t const *result = integer_to_string(buff, i);
+</pre>
+<p>The only downside is that one must still supply a buffer. In the last part 
+  of this series I'll look at a different technique altogether, one that obviates 
+  the problems of solutions 2, 3 and 4. Of course, this being C++, it introduces 
+  another of its own.</p>
+<h3>Acknowledgements</h3>
+<p>Thanks to Chuck Allison and Walter Bright for some useful input. Also to Igor 
+  Tandetnik for his eagle eye and eager keystrokes, in letting me know about having 
+  failed to have got the &quot;Flexible C++&quot; message (<a href="wilson_s1.htm">see 
+  sidebar</a>) across in the first column. And thanks too to Eelis van der Weegen, 
+  for some interesting observations on Solution #2 and having the patience to 
+  wait for me to address his points; we're going to do that in solution #5, in 
+  the next column.</p>
+<h3>Notes and references</h3>
+<p>[1] Hopefully we can put this down to &quot;first-time columnist finding his 
+  feet&quot;!<br>
+  [2] &quot;<a href="http://www.cuj.com/documents/s=8006/cuj0212wilson/">Efficient Integer To String Conversions</a>&quot;, 
+  Matthew Wilson, C/C++ User's Journal, December 2002. <br>
+  [3] STLSoft is an open-source organisation whose focus is the development of 
+  robust, lightweight, cross-platform STL software, and is located at <a href="http://stlsoft.org" target="_blank">http://stlsoft.org</a>.<br>
+  [4] &quot;<a href="http://www.cuj.com/documents/s=8840/cujexp0309wilson/">Efficient Integer To String 
+  Conversions, part 2</a>&quot;, Matthew Wilson, C/C++ User's Journal experts 
+  Forum, September 2003./<br>
+  [5] Actually, an approach such as this might be appropriate when the (rare) 
+  repeated use of an object would result in loss of efficiency, rather than breaking 
+  correctness, so it's not entirely without its place.<br>
+  [6] The updated stlsoft_integer_to_string.h is included in the archive for this 
+  article, and will appear in the <a href="http://stlsoft.org/downloads.html">STLSoft 
+  libraries</a> from v1.7.1 onwards.</p>
+<h3>About the Author</h3>
+<p>Matthew Wilson is a software development consultant for Synesis Software, specializing 
+  in robustness and performance in C, C++, C# and Java. Matthew is the author 
+  of the STLSoft libraries, and the forthcoming book <i>Imperfect C++</i> (to 
+  be published by Addison-Wesley, 2004). He can be contacted via <a href="mailto:matthew@synesis.com.au">matthew@synesis.com.au</a> 
+  or at <a href="http://stlsoft.org/" target="_blank">http://stlsoft.org/</a>.</p>
+</body>
+</html>

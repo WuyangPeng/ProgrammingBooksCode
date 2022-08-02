@@ -1,0 +1,220 @@
+<html>
+<head>
+<title>March 04: D and Java</title>
+</head>
+
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#330066" ALINK="#ff0000" TEXT="#000000">
+<!--Copyright &#169; C/C++ Users Journal-->
+
+<h1>D and Java</h1>
+<p>Courtesy of <i>C/C++ Users Journal</i> (March 2004)</p>
+<h2>Two more languages are added to the map</h2>
+<h3>By Matthew Wilson</h3>
+
+<p>In previous columns, I introduced recls &#151; a platform-independent library that provides recursive filesystem searching. In the process, I demonstrated techniques for integrating C/C++ libraries with C++, STL, and C# by implementing mappings to those languages. (The source code for all the versions of the libraries and the mappings is available at <a href="http://www.cuj.com/code/" _target = "blank">http://www.cuj.com/code/</a> and <a href="http://recls.org/downloads.html" _target = "blank">http://recls.org/downloads.html</a>.) This month I focus on mappings to the D and Java programming languages. D is a C-like language from Walter Bright (<a href="http://www.digitalmars.com/d/" _target = "blank">http://www.digitalmars.com/d/</a>). Java is the silver bullet that will put an end to C++, fulfill the promise of "write once, run anywhere," and end all our cares for the computational environment. Well, that was the theory. We're still waiting.</p>
+<p>I've skipped the COM mappings this month for two reasons. First, I'm still undecided on how to handle Unicode. Second, it was important to include the D mapping this month.</p>
+
+
+
+<h3>recls Improvements</h3>
+
+
+<p>There's really only one significant improvement to the API in this version, which is that the UNIX port has finally happened, so recls now supports UNIX and Win32. </p>
+
+
+<p>One feature I previously promised was support for Unicode (and ANSI) character encoding. Time has not been my friend, and that's had to wait. Nonetheless, I have been able to centralize all references to character type to the new <b>recls_char_t</b> type, introduce the types <b>recls_char_a_t</b> and <b>recls_char_w_t</b>, and make all character handling use traits. <b>recls_char_t</b> is currently defined as <b>recls_char_a_t</b> (char), but it'll be a small step to allow selective definition as <b>recls_char_w_t </b>when required. The reason I'm hesitating is that I'll be doing the COM mappings next time, and I don't want to get into all the unmanageable ATL gunk that is Release MinDependency, Release MinSize, Unicode Release MinDependency, and so on. I only want one binary version, and for it to run optimally on both Windows 9x and NT.</p>
+
+<p>The other promised feature was that some of the badly named API functions would go. Once again, this will have to wait.</p>
+
+
+
+<h3>UNIX</h3>
+
+
+<p>The UNIX implementation uses the UNIXSTL <b>glob_sequence</b> class. This works slightly differently to the WinSTL <b>basic_findfile_sequence&lt;&gt;</b>, because of the different behavior of the Win32 <b>FindFirstFile()</b> and the UNIX <b>glob()</b> APIs. Since <b>FindFirstFile() </b>only ever enumerates the contents of a single directory, and only returns the filename plus extensions of the returned entries, it is a simple matter to "root" the entries returned by <b>winstl::basic_findfile_sequence&lt;&gt;</b> by recording the directory in which the search is conducted, such that the value type is able to give a full path. However, because of the power of <b>glob()</b>, it is possible to issue a search pattern such as "/usr/*/*h", which could result in the enumeration of entries from multiple directories. I chose, therefore, to not attempt any rooting of <b>unixstl::glob_sequence</b> and it simply returns the resultant entry. </p>
+
+
+<p>The ramifications of this difference for recls at first seemed daunting, and I had cause to wonder whether my copy-and-change approach to adapting the Win32 implementation files to UNIX was wise. However, it turned out that the resultant differences are slight, and if you're a keen user of diff, you'll see that the two main implementation files &#151; recls_api_unix.cpp and recls_api_win32.cpp &#151; have ended up being similar indeed. This was assisted by a couple of other abstractions, such as the definition of simple functions such as <b>is_dots()</b> and <b>file_exists()</b>. Hence, I may be able to coalesce the two main implementation files into one in the future. The only caution is that another operating system, such as Macintosh or VMS, would require a too-different implementation, so I'll probably leave it as is for a while.</p>
+
+<p>As you recall, the recls library is entirely reentrant, so there are virtually no threading concerns. The only area in which threading is even an issue is in the copying of entry handles, which used reference counting based on Win32 atomic integer operations. For UNIX, I've taken a conservative approach to the implementation, and based it on PTHREADS (see <i>Programming with POSIX Threads</i>, David Butenhof, Addison-Wesley, 1997), which is the most widely available threading library for UNIX. Hence, the reference counting is made threadsafe by scoping the lock/unlock of a mutex (an instance of the <b>unixstl::thread_mutex</b> class). However, since performance is always something you should be aware of, I've also allowed for the use of Linux kernel atomic operations, should you wish to do so. By defining the symbol <b>RECLS_UNIX_USE_ATOMIC_ OPERATIONS</b>, the &lt;asm/atomic.h&gt; file is included, and the reference counting is implemented in terms of the highly efficient <b>atomic_*</b> functions.</p>
+
+<p>The port to UNIX went surprisingly well. Since I'm most productive in Visual Studio 98, I tend to prefer to do my coding and initial testing on Win32. However, since the APIs of Win32 and UNIX differ substantially, this can sometimes be a challenge. I use two libraries to help me in this regard. The first is a simple UNIX emulation library (<a href="http://synesis.com.au/software/index.html#unixem" _target = "blank">http://synesis.com.au/software/index.html#unixem</a>) for the <b>readdir()</b>, <b>glob()</b>, and <b>gettimeofday()</b> APIs that I wrote to support some of the development of UNIXSTL. It's not production quality, but is certainly good enough for testing.</p>
+
+<p>The other, far better, library is the pthreads-win32 library (<a href="http://sources.redhat.com/pthreads-win32/" _target = "blank">http://sources.redhat.com/pthreads-win32/</a>). This is an almost complete implementation of PTHREADS for Win32, and is superb. Not only does it save the rest of us from this gargantuan task, but it is also the simplest thing imaginable to install, build, and use. You unzip to your directory of choice, type "nmake clean VC" (or whatever your preferred compiler), and it just builds without a problem. Simply include that directory in your include paths, and use the DLL and import library generated. If only all free software (my own included) was so straightforward!</p>
+
+<p>Anyway, the upshot of all this Win32-based testing was that when I moved over to the Linux box and ran the build, it just worked the first time &#151; no errors, no warnings. Just a nice lib and executable, and it ran like a dream.</p>
+
+<p>I've only tested on Linux, so it may be that there could be problems on other UNIX systems, but since it only uses <b>glob()</b>, <b>stat()</b>, and <b>PTHREADS</b>, I'm pretty confident it will be fine. (As before, if anyone wants me to port to another platform, just give me a sandboxed login with a compiler and I'm yours.)</p>
+
+
+
+<h3>D</h3>
+
+
+<p>There's recently been a lot of debate about D, since it's stuck its head above the programming language parapet (on comp.lang.c++ .moderated), and been shot at from all sides. I think the problem is that D has been touted as "an evolutionary successor" to C and C++. I don't think this marketing is appropriate or valid; I'm pretty sure neither of these languages has finished evolving, and I'll be surprised if anything is going to be up to the task of deposing C++ for a long time.</p>
+
+
+<p>I prefer to think of D as an easy-to-use, extremely powerful, non-VM alternative to Java and .NET. Importantly, it maintains the ability to link to C libraries, which is a significant advantage over these other languages. It supports full templates (not the half-hearted versions touted for Java and .NET) along with several advanced features such as built-in dynamic arrays, unit testing, versioning, integrated Unicode support, and strong typedefs. It also maintains low-level features, such as pointers and inline assembler, for when you simply have to get down and dirty.</p>
+
+<p>So while I don't see it replacing C++, it does provide an easier-to-use alternative for some requirements. It is certainly a more attractive option for C/C++ programmers than .NET and, especially, Java. Naturally, as with any new language, it is currently suffering from a lack of libraries, but the standard library is growing. </p>
+
+<p>The mapping of recls to D involves three stages. First, the recls API functions are declared. Although D provides link compatibility with C, it does not use the preprocessor, so you need to declare the library functions in D; see <A HREF="0403wilsonl1.htm" target="_blank">Listing 1</A>. Note the version statement that lets you define Win32 and Linux variants of the time and size types, to correspond to those defined in <b>recls_ platform_types.h</b>. Also note the difference between the uses of alias (like the C/C++ typedef) and typedef (a strong typedef; see my article "True-typedefs" <i>CUJ</i>, March 2003). You are able to define <b>hrecls_t</b>, <b>recls_info_t</b>, and so on as strong types, which means that they cannot be erroneously interchanged for variables of other types. This is a powerful aid to robustness that can be contrasted with the weak typedefs provided by C# (which I described last time).</p>
+
+<p>The next step is to provide D equivalents to the raw API (<A HREF="0403wilsonl2.htm" target="_BLANK">Listing 2</A>). In the main, this involves translating pointers to C strings into references into D strings (<b>char[]</b>). But it can also involve the translation of pointer arguments to <b>out</b> or <b>inout</b> reference parameters and the simplification of some of the functions.</p>
+
+<p>There is some equivocation on whether this step is necessary in the D community. As I described in the last column, it is a good idea to insulate the <b>P/Invoke</b> functions from the implementation of the external API classes in C#, and I think the same applies in D. Furthermore, unlike .NET and Java, D supports the definition of free functions, so the functions defined in this step are made public, and thus represent a D-ified equivalent to the raw recls C API. In this way, library users are presented with a choice as to how they wish to use it.</p>
+
+<p>The last step is to implement class wrappers (<A HREF="0403wilsonl3.htm" target="_BLANK">Listing 3</A>). The <b>Entry</b> class is pretty unremarkable, and similar to the other mappings. It wraps an entry handle and calls the API functions to retrieve particular attributes of the entry. The <b>Search</b> class is another matter, although it is still reasonably straightforward. Basically, it stores the search path, pattern, and flags as member variables, and provides a single method <b>opApply()</b>. This is one of the special methods recognized by D, and allows instances of such classes to be enumerated by the <b>foreach</b> loop construct. The body of a <b>foreach</b> statement is converted by the D compiler into a delegate &#151; a smart function that can include a reference to an enclosing stack frame if the function delegated is nested. That is then passed to the <b>opApply()</b> method. (The details of this mechanism are described in "Collection Enumeration: Loops, Iterators, and Nested Functions," by Matthew Wilson and Walter Bright, <i>DDJ</i>, March 2004.)</p>
+
+<p>The last section of <A HREF="0403wilsonl3.htm" target="_BLANK">Listing 3</A> shows how unit tests are implemented in D. The <b>unittest</b> sections, of which there can be any number in a source file, are compiled in and executed (prior to <b>main()</b>) when the <b>-unittest</b> flag is specified during compilation. This <b>unittest</b> block also provides an example of how you use the D recls classes, and hopefully demonstrates just how easy that is.</p>
+
+<p>There's one last thing. You may have noticed the module name std.recls. It's a great testament to the early success of recls that it has been accepted into the D Standard Library, and will form part of the core library from Version 0.77 onwards. It would be nice if we could replicate this success with other languages.</p>
+
+
+
+<h3>Java</h3>
+
+
+<p>Unlike several of the mapped languages, you cannot simply call free functions from within Java code, since Java does not support free functions. Furthermore, Java objects live in bytecode, so there is no possibility of making direct calls. Hence, for mapping native APIs to Java, you must use the Java Native Interface (JNI).</p>
+
+
+<p>The way JNI works is conceptually simple. You declare a method in Java as you would an abstract method; for example, without a method body, but use the <b>native</b> keyword rather than <b>abstract</b>. This tells the runtime that the implementation of this method is located in an external library, not in the .class file for the given class. <A HREF="0403wilsonl4.htm" target="_BLANK">Listing 4</A> shows the <b>org.recls.Search</b> class. It has four native methods: <b>Close()</b>, <b>Initialise()</b>, <b>hasMoreElements()</b>, and <b>nextElement()</b>. These four methods operate on the search handle, which is represented in the <b>Search</b> class as in <b>int</b>, since an <b>int</b> is the same size as a pointer to a <b>recls_fileinfo_t</b> structure on 32-bit systems. (Of course, this wouldn't hold for 64-bit systems, but if recls was ported to a 64-bit system, the native implementation could employ a simple hash lookup to match 32-bit handles to the actual structures.)</p>
+
+<p>Once you've compiled your Java classes, you need to run the javah tool to generate a C header for the native methods in the classes, which you then implement and export from a shared library (.so on UNIX; .dll on Win32). The commands used in this case are:</p>
+
+<pre>
+<b>javah -classpath ..\..\mappings\Java\recls_java.jar</p>
+
+<p>
+</b><b>     -o .\JNI\include\recls_Search.h org.recls.Search</b></p>
+</pre>
+
+<p>You specify the classpath &#151; in this case the <b>recls jar</b> &#151; along with the desired path of the output file and the class. This produces a file that looks something like:</p>
+
+<pre>
+<b>#include &lt;jni.h&gt;</p>
+
+<p>
+</b><b>#undef org_recls_Search_RECLS_F_FILES</p>
+
+<p>#define org_recls_Search_RECLS_F_FILES 1L</p>
+
+<p> ... </p>
+
+<p>#undef org_recls_Search_RECLS_F_DETAILS_LATER</p>
+
+<p>#define org_recls_Search_RECLS_F_DETAILS_LATER 524288L</p>
+
+<p>/* Class:     org_recls_Search</p>
+
+<p> * Method:    Close</p>
+
+<p> * Signature: ()V</p>
+
+<p> */</p>
+
+<p>JNIEXPORT void JNICALL Java_org_recls_Search_Close</p>
+
+<p>  (JNIEnv *, jobject);</p>
+
+<p>/* Class:     org_recls_Search</p>
+
+<p> * Method:    Initialise</p>
+
+<p> * Signature: (Ljava/lang/String;Ljava/lang/String;I)I</p>
+
+<p> */</p>
+
+<p>JNIEXPORT jint JNICALL Java_org_recls_Search_Initialise</p>
+
+<p>  (JNIEnv *, jobject, jstring, jstring, jint);</p>
+
+<p>
+</b><b> ...</b>
+</pre>
+
+<p>There's a caveat with respect to the generation of the native headers. In the original makefile I fell victim to the copy-paste monster, and the javah commands actually looked like:</p>
+
+<pre>
+</b><b>javah -classpath ..\..\mappings\Java\recls_java.jar</p>
+
+<p>
+</b><b>     -o .\JNI\include\recls_Search.h org\recls\Search</b>
+</pre>
+
+<p>Strangely, rather than telling me it did not know about a class "org\recls\Search" in the root package, javah managed to extract the necessary information to create the native headers, but replaced the "\" with its Unicode equivalent _0005c, as per the JNI naming standard, so the generated functions had names such as "Java_ org_0005crecls_0005cEntry_getDrive." Being valid C identifiers, the library compiled and built without a problem, but the VM would understandably fail to find the method at runtime. Although this same thing had caught me several years ago, it failed to click for quite some time. Naturally, this is a bug in javah, but you need to be aware of it to avoid the same problem.</p>
+
+<p>You may be asking how the implementation knows where to pick up the native method implementations? Well, if you look again at <A HREF="0403wilsonl4.htm" target="_BLANK">Listing 4</A> you can see that the </b><b>Search</b> class has a static initializer, within which <b>System.loadLibrary()</b> is called, passing the name of our dynamic library: recls_jni. For UNIX systems it must be called librecls_jni.so, and for Win32 systems recls_jni.dll. Since <b>Entry</b> also uses the native library, it's arguable that I should have added a similar static initializer to the <b>Entry</b> class, but since you cannot create an instance of <b>Entry </b>other than via an instance of <b>Search</b>, I think we're pretty safe. But to add it would be entirely benign, since the VM manages the loading of native libraries, and any necessary reference counting.</p>
+
+<p>Let's look now at the implementation of these methods. <A HREF="0403wilsonl5.htm" target="_BLANK">Listing 5</A> shows the implementation of the <b>Search.nextElement()</b> method. Essentially, most JNI method implementations work in the same way: Everything is retrieved or set by using the JNI environment handle (<b>JNIEnv*</b>) passed to each function. To access a field or method of a class, you first retrieve a reference to the class by calling <b>GetObjectClass()</b>, on the class reference passed to your (nonstatic) method implementation function. Then you look up the identifier for the field or method by <b>GetFieldID()</b> or <b>GetMethodID()</b>. Finally, you retrieve, set, or call the field or method. For example, to retrieve the recls search handle (as an <b>int</b>) from an instance of the <b>Search</b> class we need to execute the following:</p>
+
+<pre>
+<b>// (i) Get the object's class reference.</p>
+
+<p>
+</b><b>jclass    cls = henv-&gt;GetObjectClass(obj);</p>
+
+<p>// (ii) Lookup the m_hSearch field, which is an int (</b>"<b>I</b>"<b>)</p>
+
+<p>jfieldID  fid = henv-&gt;GetFieldID(cls, </b>"<b>m_hSearch</b>"<b>, </b>"<b>I</b>"<b>);</p>
+
+<p>// (iii) Retrieve the integer value of the field</p>
+
+<p>
+</b><b>int       val = henv-&gt;GetIntField(obj, fid);</b>
+</pre>
+
+<p>This kind of thing is very cumbersome, so one always uses helper functions. Thus, to get the </b><b>hrecls_t</b> from a <b>Search</b> instance we use <b>SearchFromJObject()</b>, as you can see in <A HREF="0403wilsonl5.htm" target="_BLANK">Listing 5</A>.</p>
+
+<p>When it comes to calling methods, we have a little bit more complexity to handle method descriptors. For example, to create an instance of the <b>Entry</b> class, from within the native implementation of <b>Search.nextElement()</b>, we need to execute the constructor for <b>Entry</b>. This requires the constructor method ID, which is retrieved from the <b>Entry</b> class reference via a call to <b>GetMethodID()</b> passing the special constructor name "<b>&lt;init&gt;</b>". Since constructors, along with other methods in Java, can be overloaded, <b>GetMethodID()</b> also requires a method descriptor: in this case it is "(ILjava/lang/String;[Ljava/lang/ String;)V", which means a function that takes an <b>int</b> and two <b>Strings;</b> and returns <b>void</b>. Fairly trips off the tongue, doesn't it?</p>
+
+<p>To be fair, you get used to the notation pretty quickly, but it is still easy to make a mistake. However, it's not that hard to write utility templates that construct specification strings on the fly based on the parameter types. I shall leave that as an exercise for the reader. A full description of method descriptors is available from the Java web site (<a href="http://java.sun.com/" target="_blank">http://java.sun.com/</a>).</p>
+
+<p>The other issues you need to be aware of to do basic JNI are how to create and populate arrays, and how to throw exceptions, which are also in <A HREF="0403wilsonl5.htm" target="_BLANK">Listing 5</A>. One thing you should remember is that you throw a Java exception in C or C++ by calling a method, but execution of the JNI function continues, and the exception is only thrown in the Java VM once the native method returns. Clearly, once you've thrown the exception, the only thing you should do before returning is local and/or native cleanup, since there's no point continuing to make changes that will affect the Java.</p>
+
+<p>One thing that really bugs me is that the strings that are passed to JNI from the native code must be null-terminated. I'm sure we've all come to appreciate the utility and efficiency that comes from considering strings (and other things) merely as iterator ranges, as a result of our inculcation into STL, praise be upon it. The solution to this inconvenience and, in many cases, inefficiency can be seen in the <b>StringFromRange()</b> helper, which uses <b>auto_buffer</b> (see my article "Efficient Variable Automatic Buffer," <i>CUJ</i>, December 2003) to efficiently handle the allocation of a local buffer within which to write a null-terminated equivalent from which the Java string is generated.</p>
+
+<p>Speaking of efficiency, I'm sure you're guessing from what you've seen already that JNI is not exactly an efficient mechanism; the translation from native to VM and back is very costly. Indeed, even the Sun textbooks (the best for JNI is <i>The Java Native Interface,</i> by Sheng Liang, Addison-Wesley, 1999) recommend that you make informed choices as to the level of granularity at which you make the VM/native interface. Because of this, I chose a somewhat mixed implementation strategy. I assumed that the full path of a given entry is more likely to be used than not, so instances of <b>Entry</b> are created within the JNI (in the <b>Search.nextElement()</b> method) by passing in the path <b>String</b>. This saves the additional cost of a JNI call when the path is retrieved. The same goes for the directory parts: Since they are optional, I assume that if you've asked for them then you will be using them. But all other attributes of an <b>Entry</b> are retrieved, via JNI calls, on demand. Naturally, this may not be the best balance between the construction and footprint of <b>Entry</b> instances and the costs of retrieving the various properties. Only experimentation would determine that. However, the current version demonstrates both approaches, and if you want to research the matter, I'll be glad to adjust the implementation accordingly. </p>
+
+<p>If you look closely at the definition of <b>Entry</b> (<A HREF="0403wilsonl6.htm" target="_BLANK">Listing 6</A>), you can see that I've used private methods &#151; <b>getCreationTime_()</b>, <b>getModificationTime_()</b>, and so on &#151; that return <b>long</b> for the implementation of the method that return <b>Date</b> instances. The reason is simple, albeit a bit shameful: I find working with JNI such a pain that rather than going through the rigmarole to construct an instance of <b>Date</b> from within JNI, I simply convert the operating-system-specific time returned by the recls API functions to a UNIX time, and return that as a <b>long</b>. The Java handles the conversion from <b>long</b> to <b>Date</b>, using a <b>Date</b> conversion constructor. In a production environment you may not get away with such things.</p>
+
+<p>Debugging JNI components is a lot easier than you might think. From within Visual Studio 98, you specify the name of the executable to be the fully qualified path of java.exe. (Take care to ensure you don't specify javac.exe as I did, or you may also waste several minutes trying to figure out why it's not working.) You will need to specify the name of your test class, for example, <b>recls_test</b> (<A HREF="0403wilsonl7.htm" target="_BLANK">Listing 7</A>), along with the classpath (either the recls_java.jar or the parent directory of org/recls/. You also need to make sure the native library is available to the runtime, either by placing it in the current directory, or a system directory, or modifying the requisite environment variable: <b>PATH</b> in Win32; <b>LD_LIBRARY_PATH</b> in UNIX. A simple method for use in debugging is to specify a system property, by passing <b>Djava.library.path=XXXX</b>, where <b>XXXX</b> is the location of the native library.</p>
+
+<p>The last thing I am is a one-language kind of guy (that's why I'm writing this column), and I do enjoy using a variety of languages, but I have to say that, outside certain domains, Java remains for me an unappealing thing: inefficient, overly restrictive, and generally painful to use. Sure, it might be my language of choice if I was writing an enterprise server, but I'll be looking elsewhere (D and .NET) when C/C++ and Perl/Python aren't the appropriate solutions.</p>
+
+<p>Notwithstanding my biased gripes, once you've correctly implemented your JNI components, they are as straightforward to use as any other Java classes, as in <A HREF="0403wilsonl7.htm" target="_BLANK">Listing 7</A>.</p>
+
+
+
+<h3>Documentation</h3>
+
+
+<p>The standard way to implement documentation in Java is to use JavaDoc. The JavaDoc comments are simply C-style comments with an extra *, as in "/** This is JavaDoc style */". Although they're not shown in the listings, the Java classes bear these tags. However, I've not actually built the JavaDoc for two reasons. First, the Doxygen project I'm using for most of recls incorporates the Java classes without an issue. Second, I ran out of time, and given that they're included in the main documentation I have let it slide for the moment.</p>
+
+
+<p>As far as the documentation for D goes, they also contain Doxygen tags, but again it is the case that time was not on my side. Although I've used Doxygen with D, it must use a custom <b>INPUT_FILTER</b> (my modified version of Burton Radon's dfilter.exe, which comes as part of DIG from <a href="http://www.opend.org/" target="_blank">http://www.opend.org/</a>), and I've not yet modified it to pass through the source of other languages untouched. Therefore, this version of recls does not contain help for the D mapping.</p>
+
+
+
+<h3>Next Steps</h3>
+
+
+<p>For the next installment, I plan on achieving (most of) the following:</p>
+
+
+
+<ul>
+  <li>Unicode and ANSI versions of the API.
+  <li>Renaming of some inappropriately named methods; providing backwards compatibility.
+
+  <li>COM mappings: <b>IEnumXxxx</b> enumerators, and Automation collections (<b>Count</b>, <b>Item</b>, <b>_NewEnum</b>). 
+</li>
+</ul>
+<hr>
+<I>
+<b>Matthew Wilson</b> is a software development consultant for Synesis Software, author of the STLSoft libraries, and author of <i>Imperfect C++</i> (Addison-Wesley, 2004). He can be contacted at <a href="mailto:matthew@synesis.com.au">matthew@synesis.com.au</a> or <a href="http://www.stlsoft.org/" target="_blank">http://www.stlsoft.org/</a></I>
+
+<hr>
+
+</body>
+</html>

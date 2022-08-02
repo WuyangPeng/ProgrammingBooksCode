@@ -1,0 +1,20 @@
+// Listing 1.3
+
+    1   template <class Container>
+    2   class stack {
+    3   friend bool operator==(const stack<Container>& x, const stack<Container>& y);
+    4   friend bool operator<(const stack<Container>& x, const stack<Container>& y);
+    5   public:
+    6       typedef Container::value_type value_type;
+    7       typedef Container::size_type size_type;
+    8   protected:
+    9       Container c;
+   10   public:
+   11       bool empty() const { return c.empty(); }
+   12       size_type size() const { return c.size(); }
+   13       value_type& top() { return c.back(); }
+   14       const value_type& top() const { return c.back(); }
+   15       void push(const value_type& x) { c.push_back(x); }
+   16       void pop() { c.pop_back(); }
+   17   };
+

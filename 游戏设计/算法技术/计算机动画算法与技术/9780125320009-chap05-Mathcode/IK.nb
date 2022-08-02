@@ -1,0 +1,444 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.2'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[     21647,        406]*)
+(*NotebookOutlinePosition[     22285,        428]*)
+(*  CellTagsIndexPosition[     22241,        424]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+Cell[BoxData[
+    RowBox[{\( (*\ IKcontrol : \ implements\ 6\ types\ of\ IK\ *) \), 
+      "\[IndentingNewLine]", \( (*\ globals : \ n, \ len, \ pose\ *) \), 
+      StyleBox["\[IndentingNewLine]",
+        "Text"]}]], "Input"],
+
+Cell[BoxData[
+    \(\(\( (*\ \(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(\
+--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(\
+--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(\
+--\(--\ BASIC\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\
+\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\ MATH\ *) \)\(\
+\[IndentingNewLine]\)\(\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \)\( (*crossproduct, \ 
+      defda, \ length, \ distance, \ 
+      angleBetweenVectors2\ *) \)\(\[IndentingNewLine]\)\( (*\ 
+      DOT\ PRODUCT\ *) \)\(\[IndentingNewLine]\)\(\(dotproduct2D[v1_, v2_] := 
+        v1[\([1]\)]*v2[\([1]\)] + 
+          v1[\([2]\)]*
+            v2[\([2]\)];\)\[IndentingNewLine]\[IndentingNewLine] (*\ 
+      CROSS\ PRODUCT\ *) \[IndentingNewLine]
+    \(crossproduct[v1_, 
+          v2_] := {\[IndentingNewLine]v1[\([2]\)]*v2[\([3]\)] - 
+            v1[\([3]\)]*v2[\([2]\)], \[IndentingNewLine]v1[\([3]\)]*
+              v2[\([1]\)] - 
+            v1[\([1]\)]*v2[\([3]\)], \[IndentingNewLine]v1[\([1]\)]*
+              v2[\([2]\)] - 
+            v1[\([2]\)]*
+              v2[\([1]\)]\[IndentingNewLine]};\)\[IndentingNewLine]\
+\[IndentingNewLine] (*\ 
+      DEFDA\ essentially\ cross\ product\ of\ vector\ to\ end\ effector\ and\ \
+\((0, 0, 1)\)\ *) \[IndentingNewLine] (*\ 
+      used\ to\ compute\ instantaneous\ change\ of\ end\ effector\ from\ \
+change\ in\ joint\ angle\ *) \[IndentingNewLine] (*\ 
+      d \((ef)\)/d \((angle)\)\ *) \[IndentingNewLine]
+    \(defda[v_] := {\(-v[\([2]\)]\), 
+          v[\([1]\)]};\)\[IndentingNewLine]\[IndentingNewLine] (*\ 
+      LENGTH\ *) \[IndentingNewLine]
+    \(length[v_] := \ 
+        Sqrt[v . v];\)\[IndentingNewLine]\[IndentingNewLine] (*\ 
+      DiSTANCE\ *) \[IndentingNewLine]
+    \(distance[v1_, v2_] = 
+        Sqrt[\((v1 - v2)\) . \((v1 - 
+                v2)\)];\)\[IndentingNewLine]\[IndentingNewLine] (*\ 
+      ANGLE\ BETWEEN\ VECTORS\ *) \[IndentingNewLine]
+    \(angleBetweenVectors2[v1_, 
+          v2_] := {\[IndentingNewLine]vA = 
+            v1/length[v1]; \[IndentingNewLine]vB = 
+            v2/length[v2]; \[IndentingNewLine]ang = 
+            ArcCos[vA . 
+                vB]; \[IndentingNewLine]If[\((vA[\([1]\)]*vB[\([2]\)] - 
+                  vA[\([2]\)]*vB[\([1]\)])\) < 0, 
+            ang, \(-ang\)]\[IndentingNewLine]};\)\[IndentingNewLine]\
+\[IndentingNewLine]\[IndentingNewLine] (*\ \(--\(--\(--\(--\(--\(--\(--\(--\(\
+--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(\
+--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(\
+--\(--\(--\(--\(--\(--\(--\(-\ 
+                                        FORWARD\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\
+\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\
+\ KINEMATICS\ *) \[IndentingNewLine] (*\ 
+      FORWARD\ \(KINEMATICS : \ number\ of\ lings\), \ vector\ of\ lengths, \ 
+      pose\ vector\ *) \[IndentingNewLine]
+    \(FK[n_, lens_, 
+          pose_] := {\[IndentingNewLine] (*\ vectors\ of\ joint\ position, \ 
+            local\ x - axis\ point\ in\ world\ space, \ 
+            local\ y - 
+              axis\ point\ in\ world\ space\ *) \[IndentingNewLine]jp = {}; 
+          jx = {}; 
+          jy = {}; \[IndentingNewLine]arms = {}; \ \  (*\ 
+            list\ of\ circle - and - 
+              line\ graphics\ of\ limb\ *) \[IndentingNewLine]\
+\[IndentingNewLine]m = {{1, 0, 0}, {0, 1, 0}, {0, 0, 
+                1}}; \[IndentingNewLine]For[i = 1, 
+            i <= n, \(i++\), {\[IndentingNewLine]ci\  = \ 
+                Cos[pose[\([i]\)]]; \ 
+              si = Sin[
+                  pose[\([i]\)]]; \[IndentingNewLine]mi\  = \ {\
+\[IndentingNewLine]{N[ci], \(-N[si]\), 0}, \[IndentingNewLine]{N[si], N[ci], 
+                    0}, \[IndentingNewLine]{0, 0, 
+                    1}\[IndentingNewLine]}; \[IndentingNewLine]ti\  = \ {\
+\[IndentingNewLine]{1, 0, len[\([i]\)]}, \[IndentingNewLine]{0, 1, 
+                    0}, \[IndentingNewLine]{0, 0, 
+                    1}\[IndentingNewLine]}; \[IndentingNewLine]mt\  = \ 
+                m; \[IndentingNewLine]m = 
+                mt . mi; \[IndentingNewLine]\[IndentingNewLine]j = 
+                m . {0, 0, 1}; \[IndentingNewLine]jp = 
+                Append[jp, \((m . {0, 0, 1})\)[\([{1, 
+                        2}]\)]]; \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  (*\ 
+                joint\ positions\ *) \[IndentingNewLine]jx = 
+                Append[jx, \((m . {len[\([i]\)], 0, 1})\)[\([{1, 
+                        2}]\)]]; \  (*\ 
+                joint\ x - axis\ in\ world\ *) \[IndentingNewLine]jy = 
+                Append[jy, \((m . {0, 1, 1})\)[\([{1, 
+                        2}]\)]]; \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  (*\ 
+                joint\ y - axis\ in\ world\ *) \[IndentingNewLine]arms = 
+                Append[arms, {\[IndentingNewLine]{RGBColor[0, 0, 1], 
+                      AbsoluteThickness[2], 
+                      Line[{jy[\([i]\)], jx[\([i]\)], 
+                          2  jp[\([i]\)] - 
+                            jy[\([i]\)]}\ ]}, \[IndentingNewLine]{RGBColor[0, 
+                        0, 0], AbsoluteThickness[2], 
+                      Circle[jp[\([i]\)], 
+                        1]}\[IndentingNewLine]}]; \[IndentingNewLine]mt = 
+                m; \[IndentingNewLine]m = 
+                mt . ti;\[IndentingNewLine]}]; \[IndentingNewLine]ef = 
+            jx[\([n]\)];\[IndentingNewLine]};\)\[IndentingNewLine]\
+\[IndentingNewLine] (*\ \
+\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(\
+--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(\
+--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(-\ 
+                                        POSE\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\
+\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\ \
+*) \[IndentingNewLine] (*\ RESET\ POSE\ *) \[IndentingNewLine]
+    resetPose[] := \ {\[IndentingNewLine]pose = 
+          restpose; \[IndentingNewLine]FK[n, len, 
+          pose]; \[IndentingNewLine]Show[
+          Graphics[arms, AspectRatio \[Rule] Automatic, 
+            PlotRange \[Rule] {{\(-30\), 30}, {\(-2\), 
+                  30}}, \[IndentingNewLine]Axes \[Rule] 
+              Automatic]]\[IndentingNewLine]}\[IndentingNewLine]\
+\[IndentingNewLine] (*\ SET\ POSE\ *) \[IndentingNewLine]
+    setPose[
+        Sp_] := \ {\[IndentingNewLine]pose = Sp; \[IndentingNewLine]FK[n, 
+          len, pose];\[IndentingNewLine]}\[IndentingNewLine]\
+\[IndentingNewLine] (*\ INTERPOLATE\ POSE\ *) \[IndentingNewLine]
+    interpolatePose[nf_, p1_, 
+        p2_]\  := \ {\[IndentingNewLine]dp\  = \ 
+          p2 - p1; \[IndentingNewLine]For[k = 0, 
+          k \[LessEqual] 
+            nf - 1, \(k++\), {\[IndentingNewLine]pose\  = \ 
+              p1\  + \ \((k/\((nf - 1)\))\)*dp; \[IndentingNewLine]FK[n, len, 
+              pose]; \[IndentingNewLine]Show[
+              Graphics[arms, AspectRatio \[Rule] Automatic, 
+                PlotRange \[Rule] {{\(-30\), 30}, {\(-2\), 
+                      30}}, \[IndentingNewLine]Axes \[Rule] 
+                  Automatic]]\[IndentingNewLine]}\[IndentingNewLine]]\
+\[IndentingNewLine]}\[IndentingNewLine]\[IndentingNewLine] (*\ \(--\(--\(--\(\
+--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(\
+--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(\
+--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(-\ 
+                                        ANIMATE\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\
+\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\
+\ *) \[IndentingNewLine]\[IndentingNewLine] (*\ 
+      ANIMATE\ using\ one\ of\ the\ IK\ methods\ *) \[IndentingNewLine] (*\ \
+\[IndentingNewLine]compute\ interim\ goals\ \(by : \ \
+\[IndentingNewLine]compute\ the\ vector\ from\ the\ end\ effector\ to\ the\ \
+goal\), \ \ \ divide\ by\ the\ number\ of\ frames\ to\ get\ a\ delta\ vector\ \
+\((dg)\)\[IndentingNewLine]initially\ set\ the\ goal\ variable\ to\ the\ end\ \
+effector\  + \ 
+        dg\[IndentingNewLine]use\ the\ IK\ method\ using\ the\ goal\ variable\
+\[IndentingNewLine]iteratively\ add\ dg\ to\ the\ goal\ variable\ for\ each\ \
+subsequent\ IK\[IndentingNewLine]*) \[IndentingNewLine]
+    \(Animate[Ap_, final_, nf_, 
+          type_] := {\[IndentingNewLine]setPose[Ap]; \[IndentingNewLine]If[
+            savetofile, \[IndentingNewLine]Export["\<frame0.eps\>", 
+              Graphics[arms, AspectRatio \[Rule] Automatic, 
+                PlotRange \[Rule] {{\(-30\), 30}, {\(-20\), 30}}, 
+                Axes \[Rule] Automatic], "\<EPS\>"]]; \[IndentingNewLine]If[
+            showGraphics, 
+            Show[Graphics[arms, AspectRatio \[Rule] Automatic, 
+                PlotRange \[Rule] {{\(-30\), 30}, {\(-20\), 30}}, 
+                Axes \[Rule] Automatic]]]; \[IndentingNewLine]dg = \((final - 
+                  jx[\([n]\)])\)/nf; \ 
+          goal = jx[\([n]\)] + dg; \[IndentingNewLine]For[Ak = 1, 
+            Ak <= nf, \(Ak++\), \[IndentingNewLine]{\[IndentingNewLine]If[\ \
+\((type\  \[Equal] \ 1)\)\ , IK1[], 
+                If[\((type \[Equal] 2)\), IK2[], 
+                  If[\((type \[Equal] 3)\), IK3[], 
+                    If[\((type \[Equal] 4)\), IK4[], 
+                      If[\((type \[Equal] 5)\), IK5[], 
+                        IK6[]]]]]]; \[IndentingNewLine]\[IndentingNewLine]If[
+                savetofile, {\[IndentingNewLine]fn = 
+                    StringJoin["\<frame\>", 
+                      ToString[Ak, 
+                        InputForm], "\<.eps\>"]; \[IndentingNewLine]Export[
+                    fn, Graphics[arms, AspectRatio \[Rule] Automatic, 
+                      PlotRange \[Rule] {{\(-30\), 30}, {\(-20\), 30}}, 
+                      Axes \[Rule] 
+                        Automatic], "\<EPS\>"];}]; \[IndentingNewLine]If[
+                showGraphics, 
+                Show[Graphics[arms, AspectRatio \[Rule] Automatic, 
+                    PlotRange \[Rule] {{\(-30\), 30}, {\(-20\), 30}}, 
+                    Axes \[Rule] Automatic]]]; \[IndentingNewLine]If[printEF, 
+                Print["\<goal:\>", goal, "\< ef:\>", ef, "\<; distance: \>", 
+                  distance[goal, 
+                    ef]]]; \[IndentingNewLine]\[IndentingNewLine]goal = 
+                goal + dg;\[IndentingNewLine]}\[IndentingNewLine]]\
+\[IndentingNewLine]};\)\[IndentingNewLine]\[IndentingNewLine] (*\ \(--\(--\(\
+--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(\
+--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(\
+--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(--\(-\ 
+                                        INVERSE\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\
+\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\)\
+\ KINEMATICS\ *) \[IndentingNewLine]\[IndentingNewLine] (*\ 
+      INVERSE\ KINEMATICS\ #1\  - \ 
+        solve\ linear\ system\ using\ the\ Jacobian\ \((transpose\ of\ list\ \
+of\ del \((ef - joint)\)/angle)\)\ *) \[IndentingNewLine]
+    IK1[] := {\[IndentingNewLine]JT = {}; \[IndentingNewLine]For[IKi = 1, 
+          IKi \[LessEqual] n, \(IKi++\), 
+          JT = Append[JT, 
+              defda[ef - jp[\([IKi]\)]]]]; \[IndentingNewLine]J\  = \ 
+          Transpose[JT]; \[IndentingNewLine]dpose = 
+          pose; \[IndentingNewLine]dpose\  = \ 
+          LinearSolve[J, goal - ef]; \[IndentingNewLine]pose\  = \ 
+          pose\  + \ dpose; \[IndentingNewLine]FK[n, len, 
+          pose];\[IndentingNewLine]}\[IndentingNewLine]\[IndentingNewLine] \
+(*\ INVERSE\ KINEMATICS\ #2\  - \ 
+        use\ the\ transpose\ of\ the\ jacobian\ \((transpose\ of\ matrix\ \
+above)\)\ as\ solution\ *) \[IndentingNewLine]
+    \(IK2[] := {\[IndentingNewLine]JT = {}; \[IndentingNewLine] (*\ 
+            form\ transpose\ of\ jacobian\ *) \[IndentingNewLine]For[IKi = 1, 
+            IKi \[LessEqual] n, \(IKi++\), 
+            JT = Append[JT, 
+                defda[ef - jp[\([IKi]\)]]]]; \[IndentingNewLine] (*\ 
+            project\ instantaneous\ movement\ vectors\ onto\ vector\ from\ \
+end\ effector\ to\ goal\ *) \[IndentingNewLine]dpose\  = \ pose; \ \  (*\ 
+            just\ to\ initialize\ the\ length\ of\ dpose\ \
+*) \[IndentingNewLine] (*\ 
+            IK : \ compute\ the\ deltas\ to\ the\ pose\ \
+*) \[IndentingNewLine]For[IKi = 1, \ IKi \[LessEqual] n, \(IKi++\), 
+            dpose[\([IKi]\)]\  = \ 
+              0.001*dotproduct2D[JT[\([IKi]\)], 
+                  goal - ef]]; \[IndentingNewLine]pose\  += \ dpose; \  (*\ 
+            add\ in\ the\ deltas\ *) \[IndentingNewLine]FK[n, len, 
+            pose];\[IndentingNewLine]};\)\[IndentingNewLine]\
+\[IndentingNewLine] (*\ 
+      INVERSE\ KINEMATICS\ #3\  - \ 
+        Cyclic\ Coordinate\ Descent\ *) \[IndentingNewLine]
+    IK3[]\  := \ {\[IndentingNewLine] (*\ \(Print["\<new step\>"];\)\ \
+*) \[IndentingNewLine]For[ii = n, \ 
+          ii > 0, \(ii--\), \
+\[IndentingNewLine]{\[IndentingNewLine]jointToGoal\  = \ 
+              goal - jp[\([ii]\)]; \[IndentingNewLine]jointToEf\  = \ 
+              ef - jp[\([ii]\)]; \[IndentingNewLine]dpose = \
+\(angleBetweenVectors2[jointToGoal, 
+                  jointToEf]\)[\([1]\)]; \[IndentingNewLine]pose[\([ii]\)] = 
+              pose[\([ii]\)] + dpose; \[IndentingNewLine]FK[n, len, 
+              pose];\[IndentingNewLine]}\[IndentingNewLine]]\
+\[IndentingNewLine]}\[IndentingNewLine]\[IndentingNewLine] (*\ 
+      INVERSE\ KINEMATICS\ #4\  - \ 
+        solve\ using\ the\ Jacobian\ of\ *
+          goal*\ \((transpose\ of\ list\ of\ del \((goal - joint)\)/
+                angle)\)\ *) \[IndentingNewLine]
+    IK4[] := {\[IndentingNewLine]JT = {}; \[IndentingNewLine]For[IKi = 1, 
+          IKi \[LessEqual] n, \(IKi++\), 
+          JT = Append[JT, defda[ef - jp[\([IKi]\)]]]]; \[IndentingNewLine]J = 
+          Transpose[JT]; \[IndentingNewLine]IKdir = 
+          goal - ef; \[IndentingNewLine]dpose = 
+          LinearSolve[J, IKdir]; \ \[IndentingNewLine]pose = 
+          pose + dpose; \[IndentingNewLine]FK[n, len, 
+          pose];\[IndentingNewLine]}\[IndentingNewLine]\[IndentingNewLine] \
+(*\ INVERSE\ KINEMATICS\ #5\  - \ 
+        solve\ using\ the\ Jacobian\ \((transpose\ of\ list\ of\ del \((ef - 
+                    joint)\)/
+                angle)\)\ with\ control\ term*) \[IndentingNewLine]
+    IK5[] := {\[IndentingNewLine]z = {}; 
+        For[i = 1, i \[LessEqual] n, \(i++\), 
+          z = Append[z, 
+              gains[\([i]\)]*\((pose[\([i]\)] - 
+                      bias[\([i]\)])\)^2]]; \[IndentingNewLine] (*\ 
+          form\ Jacobian\ and\ its\ transpose\ *) \[IndentingNewLine]JT = {}; \
+\[IndentingNewLine]For[IKi = 1, IKi \[LessEqual] n, \(IKi++\), 
+          JT = Append[JT, 
+              defda[ef - jp[\([IKi]\)]]]]; \[IndentingNewLine]J\  = \ 
+          Transpose[JT]; \[IndentingNewLine] (*\ form\ desired\ result, \ 
+          V; \ goal\ is\ set\ by\ ANIMATE \(()\); \ 
+          ef\ is\ set\ by\ FK \(()\)\ *) \[IndentingNewLine]V = 
+          goal - ef; \[IndentingNewLine] (*\ 
+          solve\ for\ IK\ without\ control\ term\  - \ 
+              using\ B = \((J . JT)\) - 1.  V, \ 
+          dTheta = JT . B\ *) \[IndentingNewLine]JJT = 
+          J . JT; \[IndentingNewLine]B = 
+          LinearSolve[JJT, V + J . z]; \ \[IndentingNewLine]dpose = 
+          JT . B - z; \[IndentingNewLine]pose\  = \ 
+          pose\  + \ dpose; \[IndentingNewLine]FK[n, len, 
+          pose];\[IndentingNewLine]}\[IndentingNewLine]\[IndentingNewLine] \
+(*\ INVERSE\ KINEMATICS\ #6\  - \ 
+        solve\ using\ the\ damped\ least\ squares\ Jacobian\ \ \
+*) \[IndentingNewLine]
+    IK6[] := {\[IndentingNewLine] (*\ 
+          form\ Jacobian\ and\ its\ transpose\ *) \[IndentingNewLine]JT = {}; \
+\[IndentingNewLine]For[IKi = 1, IKi \[LessEqual] n, \(IKi++\), 
+          JT = Append[JT, 
+              defda[ef - jp[\([IKi]\)]]]]; \[IndentingNewLine]J\  = \ 
+          Transpose[JT]; \[IndentingNewLine] (*\ form\ desired\ result, \ 
+          V; \ goal\ is\ set\ by\ ANIMATE \(()\); \ 
+          ef\ is\ set\ by\ FK \(()\)\ *) \[IndentingNewLine]V = 
+          goal - ef; \[IndentingNewLine] (*\ 
+          solve\ using\ dampled\ least\ squares\ *) \[IndentingNewLine]B = 
+          LinearSolve[J . JT + rho*rho*Identity[2], 
+            V]; \[IndentingNewLine]dpose = 
+          JT . B; \[IndentingNewLine]pose\  = \ 
+          pose\  + \ dpose; \[IndentingNewLine]FK[n, len, 
+          pose];\[IndentingNewLine]}\[IndentingNewLine]
+    \)\)\)], "Input"],
+
+Cell[BoxData[""], "Input"],
+
+Cell[BoxData[
+    \(\(\( (*\ 
+      initialize\ for\ the\ arm\ *) \)\(\[IndentingNewLine]\)\(\ \)\(\(\(\(n \
+= 4\) \); \(\(len = {15, 10, 5, 4}\) \); \ \(\(restpose\  = \ {N[Pi/8], 
+          N[Pi/4], N[Pi/4], N[Pi/4]}\) \);\)\(\[IndentingNewLine]\)\( (*\ 
+      n = 5; len = {15, 10, 5, 4, 3}; \ 
+      restpose\  = \ {N[Pi/8], N[Pi/4], N[Pi/4], N[Pi/4], 
+          N[Pi/4]};\ *) \)\(\[IndentingNewLine]\)\( (*\ n = 6; 
+      len = {15, 10, 5, 4, 3, 2}; \ 
+      restpose\  = \ {N[Pi/8], N[Pi/4], N[Pi/4], N[Pi/4], N[Pi/4], 
+          N[Pi/4]};\ *) \)\(\[IndentingNewLine]\)
+    \)\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(\( (*\ animate : \ intial\ pose\ vector, \ goal, \ 
+      number\ of\ frames\ type; \[IndentingNewLine]type\  = \ 
+        1 : \ pseudo\ inverse\ of\ the\ Jacobian; \[IndentingNewLine]type\  = \
+\ 2 : \ transpose\ of\ the\ Jacobian; \[IndentingNewLine]type\  = \ 
+        3 : \ cyclic\ coordinate\ descent; \[IndentingNewLine]type\  = \ 
+        4 : \ use\ target\ position\ instead\ of\ goal\ with\ forming\ \
+jacobian; \[IndentingNewLine]type\  = \ 
+        5 : \ pseudo\ inverse\ of\ Jacobain\ with\ control\ term; \
+\[IndentingNewLine]type\  = \ 
+        6 : \ pseudo\ inverse\ of\ the\ Jacobian\ with\ damping;\
+\[IndentingNewLine]*) \)\(\[IndentingNewLine]\)\(\(savetofile\  = \ 
+        False;\)\[IndentingNewLine]
+    \(showGraphics = True;\)\[IndentingNewLine]
+    \(printEF = False;\)\ \ \ \ \ \ \ \ \ \ \ \ \ \  (*\ 
+      print\ end\ effect\  - \ for\ debugging\ *) \[IndentingNewLine]
+    \(noFrames = 30;\)\ \ \ \ \  (*\ 
+      no\ of\ frames\ in\ addition\ to\ starting\ position\ \
+*) \[IndentingNewLine]
+    type = 6; \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \  (*\ 
+      type\ of\ IK\ *) \[IndentingNewLine]\[IndentingNewLine] (*\ 
+      DESTINATIONS\ *) \[IndentingNewLine]destination1 = {\(-20\), 5}; 
+    destination2 = {\(-10\), 5}; 
+    destination3 = {\(-35\), 5};\[IndentingNewLine]\[IndentingNewLine] (*\ 
+      BIAS\ and\ GAIN\ *) \[IndentingNewLine] (*\ 
+      NOTE\  - \ only\ set\ for\ n = 4\ *) \[IndentingNewLine] (*\ 
+      needed\ only\ for\ inverse\ w/\ control, \ 
+      IK = 5\ *) \[IndentingNewLine] (*\ 
+      compare\ gain3\ v . \ gain2\ animations\ *) \[IndentingNewLine]
+    bias0 = {0, 0, 0, 0}; bias1 = {0.0, Pi/4, Pi/4}; 
+    bias2 = {Pi/4, 0.0, Pi/4}; \ 
+    bias3 = {Pi/4, Pi/4, 0.0};\[IndentingNewLine]
+    \(bias = bias0;\)\[IndentingNewLine]
+    gain0 = {0, 0, 0, 0}; gain1 = {0.5, 0.1, 0.1}; gain2 = {0.1, 0.5, 0.1}; 
+    gain3 = {0.1, 0.1, 0.5}; gainTwo = {1, 5, 1};\[IndentingNewLine]
+    rho = 5; \  (*\ 
+      only\ used\ for\ IK = 
+        6\ *) \[IndentingNewLine]\[IndentingNewLine]gains = 
+      gain0;\[IndentingNewLine]
+    \(destination = destination1;\)\[IndentingNewLine]
+    \(Animate[restpose, destination, noFrames, type]\ ;\)\)\)\)], "Input"]
+},
+FrontEndVersion->"5.2 for Macintosh",
+ScreenRectangle->{{4, 1440}, {0, 938}},
+WindowSize->{1163, 806},
+WindowMargins->{{84, Automatic}, {Automatic, 10}}
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+Cell[1754, 51, 225, 4, 59, "Input"],
+Cell[1982, 57, 16805, 290, 3387, "Input"],
+Cell[18790, 349, 26, 0, 27, "Input"],
+Cell[18819, 351, 597, 11, 91, "Input"],
+Cell[19419, 364, 2224, 40, 475, "Input"]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

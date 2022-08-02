@@ -1,0 +1,42 @@
+<HTML>
+<HEAD>
+<TITLE>Listing 1:	Using a macro to typedef pointers to structures</TITLE>
+</HEAD><body bgcolor="#FFFFFF" text="#000000">
+
+<B> Listing 1:</b>	Using a macro to typedef pointers to structures<p>
+<pre>
+/* This macro generates an opaque, unique, type whose name is
+ * given by the _otype_ parameter.
+ */
+
+#define stlsoft_gen_opaque(_otype_) \
+ typedef const struct __stlsoft_otype_##_otype_{ int i;} *_otype_;
+
+stlsoft_gen_opaque(MyType1)
+stlsoft_gen_opaque(MyType2)
+
+MyType1 mt1 =   0x00000001; // Error
+MyType2 mt2 =   reinterpret_cast&lt;MyType2&gt;(0x00000001);
+
+///...
+
+void func(){
+
+if(mt2 &amp; 0x07070707)    // Error
+{
+//  ...
+}
+
+if(mt2 &amp; reinterpret_cast&lt;MyType2&gt;(0x07070707)) // Error
+{
+//  ...
+}
+
+if(reinterpret_cast&lt;unsigned long&gt;(mt2) &amp; 0x07070707)
+{
+//  ...
+}
+
+}</pre>
+</BODY>
+</HTML>

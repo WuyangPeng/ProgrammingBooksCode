@@ -1,0 +1,27 @@
+// Listing 5-4
+// This program is the child
+// process for the program in listing 5-3
+// standard in and standard out has been
+// redirected by the parent process
+
+#define INCL_DOSQUEUES
+#define INCL_DOSPROCESS
+#include <os2.h>
+#include <fstream.h>
+
+
+
+ULONG NumBytesRead;
+char Buffer1[2] ="";
+char Buffer2[2] = "";
+const int StIn = 0;
+
+void main(void)
+{
+
+    DosRead(StIn,Buffer1,1,&NumBytesRead);
+    DosRead(StIn,Buffer2,1,&NumBytesRead);
+    cout << Buffer1  << Buffer2;
+}
+
+

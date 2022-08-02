@@ -1,0 +1,17 @@
+// Example 7-7 The definition of the default constructor
+     
+ 4  posix_queue::posix_queue(void)
+ 5  {
+ 6   
+ 7   
+ 8     QueueFlags = O_RDWR | O_CREAT | O_EXCL;
+ 9     OMode = S_IRUSR | S_IWUSR;
+10     QueueName.assign("none");
+11     QueuePriority = 0;
+12     MaximumNoMessages = 10;
+13     MessageSize = 8192;
+14     ReceivedBytes = 0;
+15     setQueueAttr();
+16  
+17
+18  }

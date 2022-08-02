@@ -1,0 +1,7 @@
+// Example 5-3 Using the fork-exec system calls
+
+//...
+RtValue = fork();
+if(RtValue == 0){
+   execl("/home/user/direct","direct",".");
+}

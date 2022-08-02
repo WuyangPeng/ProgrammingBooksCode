@@ -1,0 +1,78 @@
+ALTER TABLE Location
+MODIFY LocationId  int NOT NULL;
+
+ALTER TABLE Location
+ADD CONSTRAINT locationid_pk PRIMARY KEY (LocationId);
+
+ALTER TABLE Attendance
+ADD CONSTRAINT locationid_fk 
+FOREIGN KEY (LocationId) 
+REFERENCES Location(LocationId);
+
+
+
+DELETE FROM Attendance
+WHERE MemberAttended = 'N';
+
+ALTER TABLE MemberDetails
+MODIFY MemberId int NOT NULL;
+
+ALTER TABLE MemberDetails
+ADD CONSTRAINT memberdetails_pk PRIMARY KEY (MemberId);
+
+ALTER TABLE Films
+MODIFY FilmId int NOT NULL;
+
+UPDATE Films
+SET FilmId = 13
+WHERE FilmId = 12 AND 
+FilmName = 'The Good, the Bad, and the Facially Challenged';
+
+UPDATE Films
+SET FilmId = 14
+WHERE FilmId = 2 AND 
+FilmName = '15th Late Afternoon';
+
+UPDATE Films
+SET FilmId = 15
+WHERE FilmId = 2 AND 
+FilmName = 'Soylent Yellow';
+
+ALTER TABLE Films
+ADD CONSTRAINT films_pk PRIMARY KEY (FilmId);
+
+ALTER TABLE Category
+MODIFY CategoryId int NOT NULL;
+
+ALTER TABLE Category
+ADD CONSTRAINT category_pk PRIMARY KEY (CategoryId);
+
+ALTER TABLE FavCategory
+MODIFY CategoryId int NOT NULL;
+
+ALTER TABLE FavCategory
+MODIFY MemberId int NOT NULL;
+
+ALTER TABLE FavCategory
+ADD CONSTRAINT favcategory_pk PRIMARY KEY (CategoryId, MemberId);
+
+ALTER TABLE MemberDetails
+MODIFY FirstName varchar(50) NOT NULL;
+
+ALTER TABLE MemberDetails
+MODIFY LastName varchar(50) NOT NULL;
+
+CREATE UNIQUE INDEX member_name_indx
+ON MemberDetails (LastName DESC, FirstName);
+
+ALTER TABLE Attendance
+ADD CONSTRAINT attend_loc_fk 
+FOREIGN KEY (LocationId) 
+REFERENCES Location(LocationId);
+
+ALTER TABLE Attendance
+ADD CONSTRAINT attend_memdet_fk 
+FOREIGN KEY (MemberId) 
+REFERENCES MemberDetails(MemberId);
+
+

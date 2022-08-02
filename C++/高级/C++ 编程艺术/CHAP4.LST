@@ -1,0 +1,1177 @@
+listing 1
+// Search for a route. 
+#include <iostream> 
+#include <stack> 
+#include <string> 
+#include <vector> 
+ 
+using namespace std; 
+  
+// Flight information.  
+struct FlightInfo {  
+  string from;  // departure city 
+  string to;    // destination city 
+  int distance; // distance between from and to 
+  bool skip;    // used in backtracking  
+  
+  FlightInfo() { 
+    from = ""; 
+    to = ""; 
+    distance = 0; 
+    skip = false; 
+  } 
+ 
+  FlightInfo(string f, string t, int d) {  
+    from = f;  
+    to = t;  
+    distance = d;  
+    skip = false;  
+  }  
+};  
+ 
+// Find connections using a depth-first search.  
+class Search {  
+  // This vector holds the flight information.  
+  vector<FlightInfo> flights; 
+ 
+  // This statck is used for backtracking.  
+  stack<FlightInfo> btStack;  
+ 
+  // If there is a flight between from and to,  
+  // store the distance of the flight in dist. 
+  // Return true if the flight exists and, 
+  // false otherwise. 
+  bool match(string from, string to, int &dist); 
+ 
+  // Given from, find any connection.  
+  // Return true if a connection is found, 
+  // and false otherwise. 
+  bool find(string from, FlightInfo &f); 
+ 
+public:  
+ 
+  // Put flights into the database.  
+  void addflight(string from, string to, int dist) {  
+    flights.push_back(FlightInfo(from, to, dist));  
+  }  
+ 
+  // Show the route and total distance.  
+  void route();  
+ 
+  // Determine if there is a route between from and to.   
+  void findroute(string from, string to); 
+ 
+  // Return true if a route has been found. 
+  bool routefound() { 
+    return !btStack.empty(); 
+  } 
+};  
+ 
+// Show the route and total distance.  
+void Search::route()  
+{  
+  stack<FlightInfo> rev;  
+  int dist = 0;  
+  FlightInfo f;  
+  
+  // Reverse the stack to display route.  
+  while(!btStack.empty()) { 
+    f = btStack.top(); 
+    rev.push(f); 
+    btStack.pop(); 
+  } 
+  
+  // Display the route. 
+  while(!rev.empty()) { 
+    f = rev.top(); 
+    rev.pop();  
+    cout << f.from << " to ";  
+    dist += f.distance;  
+  }  
+  
+  cout << f.to << endl;  
+  cout << "Distance is " << dist << endl;  
+}  
+  
+// If there is a flight between from and to,  
+// store the distance of the flight in dist. 
+// Return true if the flight exists and, 
+// false otherwise. 
+bool Search::match(string from, string to, int &dist)  
+{  
+  for(unsigned i=0; i < flights.size(); i++) {  
+    if(flights[i].from == from &&  
+       flights[i].to == to && !flights[i].skip)  
+    {  
+      flights[i].skip = true; // prevent reuse  
+      dist = flights[i].distance; 
+      return true; 
+    }  
+  }  
+  
+  return false; // not found   
+}  
+    
+// Given from, find any connection.  
+// Return true if a connection is found, 
+// and false otherwise. 
+bool Search::find(string from, FlightInfo &f)  
+{  
+  for(unsigned i=0; i < flights.size(); i++) {  
+    if(flights[i].from == from && !flights[i].skip) {  
+      f = flights[i]; 
+      flights[i].skip = true; // prevent reuse  
+  
+      return true;  
+    }  
+  }  
+  
+  return false;  
+}  
+  
+// Depth-first version. 
+// Determine if there is a route between from and to. 
+void Search::findroute(string from, string to)  
+{  
+  int dist;  
+  FlightInfo f;  
+  
+  // See if at destination.  
+  if(match(from, to, dist)) { 
+    btStack.push(FlightInfo(from, to, dist));  
+    return;  
+  }  
+  
+  // Try another connection.  
+  if(find(from, f)) { 
+    btStack.push(FlightInfo(from, to, f.distance));  
+    findroute(f.to, to);  
+  }  
+  else if(!btStack.empty()) {  
+    // Backtrack and try another connection.  
+    f = btStack.top(); 
+    btStack.pop();  
+    findroute(f.from, f.to);  
+  }  
+} 
+ 
+int main() {  
+  char to[40], from[40]; 
+  Search ob; 
+ 
+  // Add flight connections to database. 
+  ob.addflight("New York", "Chicago", 900);  
+  ob.addflight("Chicago", "Denver", 1000);  
+  ob.addflight("New York", "Toronto", 500);  
+  ob.addflight("New York", "Denver", 1800);  
+  ob.addflight("Toronto", "Calgary", 1700);  
+  ob.addflight("Toronto", "Los Angeles", 2500);  
+  ob.addflight("Toronto", "Chicago", 500);  
+  ob.addflight("Denver", "Urbana", 1000);  
+  ob.addflight("Denver", "Houston", 1000);  
+  ob.addflight("Houston", "Los Angeles", 1500);  
+  ob.addflight("Denver", "Los Angeles", 1000);  
+ 
+  // Get departure and destination cities.  
+  cout << "From? ";  
+ 
+  cin.getline(from, 40); 
+  cout << "To? ";  
+ 
+  cin.getline(to, 40); 
+ 
+  // See if there is a route between from and to. 
+  ob.findroute(from, to);  
+  
+  // If there is a route, show it. 
+  if(ob.routefound())  
+      ob.route();  
+ 
+  return 0; 
+}
+
+listing 2
+// Breadth-first version. 
+// Determine if there is a route between from and to. 
+void Search::findroute(string from, string to)  
+{  
+  int dist;  
+  FlightInfo f;  
+  
+  // This stack is needed by the breadth-first search.  
+  stack<FlightInfo> resetStck; 
+  
+  // See if at destination.  
+  if(match(from, to, dist)) {  
+    btStack.push(FlightInfo(from, to, dist));  
+    return;  
+  }  
+  
+  // Following is the first part of the breadth-first  
+  // modification.  It checks all connecting flights  
+  // from a specified node. 
+  while(find(from, f)) {  
+    resetStck.push(f);  
+    if(match(f.to, to, dist)) {  
+      resetStck.push(FlightInfo(f));  
+      btStack.push(FlightInfo(from, f.to, f.distance));  
+      btStack.push(FlightInfo(f.to, to, dist));  
+      return;  
+    }  
+  }  
+  
+  // The following code resets the skip fields set by  
+  // preceding while loop. This is also part of the  
+  // breadth-first modifiction. 
+  while(!resetStck.empty()) { 
+    resetSkip(resetStck.top()); 
+    resetStck.pop(); 
+  }  
+  
+  // Try another connection.  
+  if(find(from, f)) {  
+    btStack.push(FlightInfo(from, to, f.distance));  
+    findroute(f.to, to);  
+  }  
+  else if(!btStack.empty()) {  
+    // Backtrack and try another connection.  
+    f = btStack.top(); 
+    btStack.pop();  
+    findroute(f.from, f.to);  
+  }  
+}
+
+listing 3
+// Reset the skip fields in flights vector. 
+void Search::resetSkip(FlightInfo f) { 
+  for(unsigned i=0; i < flights.size(); i++)  
+    if(flights[i].from == f.from &&  
+       flights[i].to == f.to)  
+         flights[i].skip = false;  
+}
+
+listing 4
+// Search for a connection by hill climbing. 
+#include <iostream> 
+#include <stack> 
+#include <string> 
+#include <vector> 
+ 
+using namespace std; 
+  
+// Flight information.  
+struct FlightInfo {  
+  string from;  // departure city 
+  string to;    // destination city 
+  int distance; // distance between from and to 
+  bool skip;    // used in backtracking  
+  
+  FlightInfo() { 
+    from = ""; 
+    to = ""; 
+    distance = 0; 
+    skip = false; 
+  } 
+ 
+  FlightInfo(string f, string t, int d) {  
+    from = f;  
+    to = t;  
+    distance = d;  
+    skip = false;  
+  }  
+};  
+ 
+// This version of search finds connections 
+// through the heuristic of hill climbing. 
+class Search {  
+  // This vector holds the flight information.  
+  vector<FlightInfo> flights; 
+  
+  // This statck is used for backtracking.  
+  stack<FlightInfo> btStack; 
+ 
+  // If there is a flight between from and to,  
+  // store the distance of the flight in dist. 
+  // Return true if the flight exists and, 
+  // false otherwise. 
+  bool match(string from, string to, int &dist); 
+ 
+  // Hill-climbing version. 
+  // Given from, find the farthest away connection.  
+  // Return true if a connection is found, 
+  // and false otherwise. 
+  bool find(string from, FlightInfo &f); 
+ 
+public:  
+ 
+  // Put flights into the database.  
+  void addflight(string from, string to, int dist) {  
+    flights.push_back(FlightInfo(from, to, dist));  
+  }  
+ 
+  // Show the route and total distance.  
+  void route();  
+ 
+  // Determine if there is a route between from and to.   
+  void findroute(string from, string to); 
+ 
+  // Return true if a route has been found. 
+  bool routefound() { 
+    return btStack.size() != 0; 
+  } 
+};  
+ 
+// Show the route and total distance.  
+void Search::route()  
+{  
+  stack<FlightInfo> rev;  
+  int dist = 0;  
+  FlightInfo f;  
+  
+  // Reverse the stack to display route.  
+  while(!btStack.empty()) { 
+    f = btStack.top(); 
+    rev.push(f); 
+    btStack.pop(); 
+  } 
+  
+  // Display the route. 
+  while(!rev.empty()) { 
+    f = rev.top(); 
+    rev.pop();  
+    cout << f.from << " to ";  
+    dist += f.distance;  
+  }  
+  
+  cout << f.to << endl;  
+  cout << "Distance is " << dist << endl;  
+}  
+  
+// If there is a flight between from and to,  
+// store the distance of the flight in dist. 
+// Return true if the flight exists and, 
+// false otherwise. 
+bool Search::match(string from, string to, int &dist)  
+{  
+  for(unsigned i=0; i < flights.size(); i++) {  
+    if(flights[i].from == from &&  
+       flights[i].to == to && !flights[i].skip)  
+    {  
+      flights[i].skip = true; // prevent reuse  
+      dist = flights[i].distance; 
+      return true; 
+    }  
+  }  
+  
+  return false; // not found   
+}  
+    
+// Hill-climbing version. 
+// Given from, find the farthest away connection.  
+// Return true if a connection is found, 
+// and false otherwise. 
+bool Search::find(string from, FlightInfo &f)  
+{  
+  int pos = -1; 
+  int dist = 0; 
+ 
+  for(unsigned i=0; i < flights.size(); i++) {  
+    if(flights[i].from == from && !flights[i].skip) {  
+      // Use the longest flight. 
+      if(flights[i].distance > dist) { 
+        pos = i; 
+        dist = flights[i].distance; 
+      } 
+    } 
+  } 
+   
+  if(pos != -1) { 
+    f = flights[pos]; 
+    flights[pos].skip = true; // prevent reuse  
+  
+    return true;  
+  }  
+  
+  return false;  
+}  
+    
+// Determine if there is a route between from and to.   
+void Search::findroute(string from, string to)  
+{  
+  int dist;  
+  FlightInfo f;  
+  
+  // See if at destination.  
+  if(match(from, to, dist)) { 
+    btStack.push(FlightInfo(from, to, dist));  
+    return;  
+  }  
+  
+  // Try another connection.  
+  if(find(from, f)) { 
+    btStack.push(FlightInfo(from, to, f.distance));  
+    findroute(f.to, to);  
+  }  
+  else if(!btStack.empty()) {  
+    // Backtrack and try another connection.  
+    f = btStack.top(); 
+    btStack.pop();  
+    findroute(f.from, f.to);  
+  }  
+} 
+ 
+int main() {  
+  char to[40], from[40]; 
+  Search ob; 
+ 
+  // Add flight connections to database. 
+  ob.addflight("New York", "Chicago", 900);  
+  ob.addflight("Chicago", "Denver", 1000);  
+  ob.addflight("New York", "Toronto", 500);  
+  ob.addflight("New York", "Denver", 1800);  
+  ob.addflight("Toronto", "Calgary", 1700);  
+  ob.addflight("Toronto", "Los Angeles", 2500);  
+  ob.addflight("Toronto", "Chicago", 500);  
+  ob.addflight("Denver", "Urbana", 1000);  
+  ob.addflight("Denver", "Houston", 1000);  
+  ob.addflight("Houston", "Los Angeles", 1500);  
+  ob.addflight("Denver", "Los Angeles", 1000);  
+ 
+  // Get departure and destination cities.  
+  cout << "From? ";  
+ 
+  cin.getline(from, 40); 
+  cout << "To? ";  
+ 
+  cin.getline(to, 40); 
+ 
+  // See if there is a route between from and to. 
+  ob.findroute(from, to);  
+  
+  // If there is a route, show it. 
+  if(ob.routefound())  
+      ob.route();  
+ 
+  return 0; 
+} 
+
+listing 5
+const int MAXDIST = 100000; 
+ 
+// Least-cost version. 
+// Given from, find the closest connection.  
+// Return true if a connection is found, 
+// and false otherwise. 
+bool Search::find(string from, FlightInfo &f)  
+{  
+  int pos = -1; 
+  int dist = MAXDIST; // longer than longest flight 
+ 
+  for(unsigned i=0; i < flights.size(); i++) {  
+    if(flights[i].from == from && !flights[i].skip) {  
+      // Use the shortest flight. 
+      if(flights[i].distance < dist) { 
+        pos = i; 
+        dist = flights[i].distance; 
+      } 
+    } 
+  } 
+   
+  if(pos != -1) { 
+    f = flights[pos]; 
+    flights[pos].skip = true; // prevent reuse  
+  
+    return true;  
+  }  
+  
+  return false;  
+} 
+
+listing 6
+// Path removal version. 
+int main() {  
+  char to[40], from[40]; 
+  Search ob; 
+ 
+  // Add flight connections to database. 
+  ob.addflight("New York", "Chicago", 900);  
+  ob.addflight("Chicago", "Denver", 1000);  
+  ob.addflight("New York", "Toronto", 500);  
+  ob.addflight("New York", "Denver", 1800);  
+  ob.addflight("Toronto", "Calgary", 1700);  
+  ob.addflight("Toronto", "Los Angeles", 2500);  
+  ob.addflight("Toronto", "Chicago", 500);  
+  ob.addflight("Denver", "Urbana", 1000);  
+  ob.addflight("Denver", "Houston", 1000);  
+  ob.addflight("Houston", "Los Angeles", 1500);  
+  ob.addflight("Denver", "Los Angeles", 1000);  
+ 
+  // Get departure and destination cities.  
+  cout << "From? ";  
+ 
+  cin.getline(from, 40); 
+  cout << "To? ";  
+ 
+  cin.getline(to, 40); 
+ 
+  // Find multiple solutions. 
+  for(;;) { 
+    // See if there is a connection. 
+    ob.findroute(from, to);  
+  
+    // If no new route was found, then end. 
+    if(!ob.routefound()) break; 
+ 
+    ob.route();  
+  } 
+ 
+  return 0; 
+} 
+
+listing 7
+// Search for multiple routes by use of node removal. 
+#include <iostream> 
+#include <stack> 
+#include <string> 
+#include <vector> 
+ 
+using namespace std; 
+  
+// Flight information.  
+struct FlightInfo {  
+  string from;  // departure city 
+  string to;    // destination city 
+  int distance; // distance between from and to 
+  bool skip;    // used in backtracking  
+  
+  FlightInfo() { 
+    from = ""; 
+    to = ""; 
+    distance = 0; 
+    skip = false; 
+  } 
+ 
+  FlightInfo(string f, string t, int d) {  
+    from = f;  
+    to = t;  
+    distance = d;  
+    skip = false;  
+  }  
+};  
+ 
+// Find multiple solutions via node removel. 
+class Search {  
+  // This vector holds the flight information.  
+  vector<FlightInfo> flights; 
+ 
+  // This statck is used for backtracking.  
+  stack<FlightInfo> btStack; 
+ 
+  // If there is a flight between from and to,  
+  // store the distance of the flight in dist. 
+  // Return true if the flight exists and, 
+  // false otherwise. 
+  bool match(string from, string to, int &dist); 
+ 
+  // Given from, find any connection.  
+  // Return true if a connection is found, 
+  // and false otherwise. 
+  bool find(string from, FlightInfo &f); 
+ 
+public:  
+ 
+  // Put flights into the database.  
+  void addflight(string from, string to, int dist) {  
+    flights.push_back(FlightInfo(from, to, dist));  
+  }  
+ 
+  // Show the route and total distance.  
+  void route();  
+ 
+  // Determine if there is a route between from and to.   
+  void findroute(string from, string to); 
+ 
+  // Return true if a route has been found. 
+  bool routefound() { 
+    return btStack.size() != 0; 
+  } 
+ 
+  // Return flight on top of stack. 
+  FlightInfo getTOS() { 
+    return btStack.top(); 
+  } 
+ 
+  // Reset all skip fields.  
+  void resetAllSkip(); 
+ 
+  // Remove a connection.  
+  void remove(FlightInfo f); 
+};  
+ 
+// Show the route and total distance.  
+void Search::route()  
+{  
+  stack<FlightInfo> rev;  
+  int dist = 0;  
+  FlightInfo f;  
+  
+  // Reverse the stack to display route.  
+  while(!btStack.empty()) { 
+    f = btStack.top(); 
+    rev.push(f); 
+    btStack.pop(); 
+  } 
+  
+  // Display the route. 
+  while(!rev.empty()) { 
+    f = rev.top(); 
+    rev.pop();  
+    cout << f.from << " to ";  
+    dist += f.distance;  
+  }  
+  
+  cout << f.to << endl;  
+  cout << "Distance is " << dist << endl;  
+}  
+  
+// If there is a flight between from and to,  
+// store the distance of the flight in dist. 
+// Return true if the flight exists and, 
+// false otherwise. 
+bool Search::match(string from, string to, int &dist)  
+{  
+  for(unsigned i=0; i < flights.size(); i++) {  
+    if(flights[i].from == from &&  
+       flights[i].to == to && !flights[i].skip)  
+    {  
+      flights[i].skip = true; // prevent reuse  
+      dist = flights[i].distance; 
+      return true; 
+    }  
+  }  
+  
+  return false; // not found   
+}  
+    
+// Given from, find any connection.  
+// Return true if a connection is found, 
+// and false otherwise. 
+bool Search::find(string from, FlightInfo &f)  
+{  
+  for(unsigned i=0; i < flights.size(); i++) {  
+    if(flights[i].from == from && !flights[i].skip) {  
+      f = flights[i]; 
+      flights[i].skip = true; // prevent reuse  
+  
+      return true;  
+    }  
+  }  
+  
+  return false;  
+}  
+    
+// Determine if there is a route between from and to.   
+void Search::findroute(string from, string to)  
+{  
+  int dist;  
+  FlightInfo f;  
+  
+  // See if at destination.  
+  if(match(from, to, dist)) { 
+    btStack.push(FlightInfo(from, to, dist));  
+    return;  
+  }  
+  
+  // Try another connection.  
+  if(find(from, f)) { 
+    btStack.push(FlightInfo(from, to, f.distance));  
+    findroute(f.to, to);  
+  }  
+  else if(!btStack.empty()) {  
+    // Backtrack and try another connection.  
+    f = btStack.top(); 
+    btStack.pop();  
+    findroute(f.from, f.to);  
+  }  
+} 
+ 
+// Reset all skip fields.  
+void Search::resetAllSkip() {  
+  for(unsigned i=0; i< flights.size(); i++)  
+    flights[i].skip = false;  
+}  
+  
+// Remove a connection.  
+void Search::remove(FlightInfo f) {  
+  for(unsigned i=0; i< flights.size(); i++)  
+    if(flights[i].from == f.from &&  
+       flights[i].to == f.to)  
+         flights[i].from = "";  
+}  
+ 
+ 
+// Node removal version. 
+int main() {  
+  char to[40], from[40]; 
+  Search ob; 
+  FlightInfo f; 
+ 
+  // Add flight connections to database. 
+  ob.addflight("New York", "Chicago", 900);  
+  ob.addflight("Chicago", "Denver", 1000);  
+  ob.addflight("New York", "Toronto", 500);  
+  ob.addflight("New York", "Denver", 1800);  
+  ob.addflight("Toronto", "Calgary", 1700);  
+  ob.addflight("Toronto", "Los Angeles", 2500);  
+  ob.addflight("Toronto", "Chicago", 500);  
+  ob.addflight("Denver", "Urbana", 1000);  
+  ob.addflight("Denver", "Houston", 1000);  
+  ob.addflight("Houston", "Los Angeles", 1500);  
+  ob.addflight("Denver", "Los Angeles", 1000);  
+ 
+  // Get departure and destination cities.  
+  cout << "From? ";  
+ 
+  cin.getline(from, 40); 
+  cout << "To? ";  
+ 
+  cin.getline(to, 40); 
+ 
+  // Find multiple solutions. 
+  for(;;) { 
+    // See if there is a connection. 
+    ob.findroute(from, to);  
+  
+    // If no new route was found, then end. 
+    if(!ob.routefound()) break; 
+ 
+    // Save the flight on top-of-stack. 
+    f = ob.getTOS();  
+ 
+    ob.route(); // display the current route. 
+ 
+    ob.resetAllSkip(); // reset the skip fields 
+ 
+    // Remove last flight in previous solution 
+    // from the flight database. 
+    ob.remove(f); 
+  } 
+ 
+  return 0; 
+}  
+
+
+
+listing 8
+// Find an "optimal" solution using least-cost with path removal. 
+#include <iostream> 
+#include <stack> 
+#include <string> 
+#include <vector> 
+ 
+using namespace std; 
+  
+// Flight information.  
+struct FlightInfo {  
+  string from;  // departure city 
+  string to;    // destination city 
+  int distance; // distance between from and to 
+  bool skip;    // used in backtracking  
+  
+  FlightInfo() { 
+    from = ""; 
+    to = ""; 
+    distance = 0; 
+    skip = false; 
+  } 
+ 
+  FlightInfo(string f, string t, int d) {  
+    from = f;  
+    to = t;  
+    distance = d;  
+    skip = false;  
+  }  
+};  
+ 
+const int MAXDIST = 100000; 
+ 
+// Find connections using least cost. 
+class Optimal {  
+  // This vector holds the flight information.  
+  vector<FlightInfo> flights; 
+  
+  // This statck is used for backtracking.  
+  stack<FlightInfo> btStack;  
+ 
+  // This stack holds the optimal soltuion. 
+  stack<FlightInfo> optimal;  
+ 
+  int minDist; 
+ 
+  // If there is a flight between from and to,  
+  // store the distance of the flight in dist. 
+  // Return true if the flight exists and, 
+  // false otherwise. 
+  bool match(string from, string to, int &dist); 
+ 
+  // Least-cost version. 
+  // Given from, find the closest connection.  
+  // Return true if a connection is found, 
+  // and false otherwise. 
+  bool find(string from, FlightInfo &f); 
+ 
+public:  
+ 
+  // Constructor 
+  Optimal() { 
+    minDist = MAXDIST; 
+  } 
+ 
+  // Put flights into the database.  
+  void addflight(string from, string to, int dist) {  
+    flights.push_back(FlightInfo(from, to, dist));  
+  } 
+ 
+  // Show the route and total distance.  
+  void route();  
+ 
+  // Display the optimal route. 
+  void Optimal::showOpt(); 
+ 
+  // Determine if there is a route between from and to.   
+  void findroute(string from, string to); 
+ 
+  // Return true if a route has been found. 
+  bool routefound() { 
+    return btStack.size() != 0; 
+  } 
+};  
+ 
+// Show the route and total distance.  
+void Optimal::route()  
+{  
+  stack<FlightInfo> optTemp;  
+  int dist = 0;  
+  FlightInfo f;  
+  
+  // Reverse the stack to display route.  
+  while(!btStack.empty()) { 
+    f = btStack.top(); 
+    optTemp.push(f); 
+    btStack.pop(); 
+    dist += f.distance; 
+  } 
+  
+  // If shorter, keep this route. 
+  if(minDist > dist) { 
+    optimal = optTemp; 
+    minDist = dist; 
+  } 
+} 
+ 
+// Display the optimal route. 
+void Optimal::showOpt() 
+{ 
+  FlightInfo f; 
+  int dist = 0; 
+ 
+  cout <<"Optimal solution is:\n";  
+ 
+  // Display the optimal route. 
+  while(!optimal.empty()) { 
+    f = optimal.top(); 
+    optimal.pop();  
+    cout << f.from << " to ";  
+    dist += f.distance;  
+  }  
+  
+  cout << f.to << endl;  
+  cout << "Distance is " << dist << endl;  
+}  
+  
+// If there is a flight between from and to,  
+// store the distance of the flight in dist. 
+// Return true if the flight exists and, 
+// false otherwise. 
+bool Optimal::match(string from, string to, int &dist)  
+{  
+  for(unsigned i=0; i < flights.size(); i++) {  
+    if(flights[i].from == from &&  
+       flights[i].to == to && !flights[i].skip)  
+    {  
+      flights[i].skip = true; // prevent reuse  
+      dist = flights[i].distance; 
+      return true; 
+    }  
+  }  
+  
+  return false; // not found   
+}  
+    
+// Least-cost version. 
+// Given from, find the closest connection.  
+// Return true if a connection is found, 
+// and false otherwise. 
+bool Optimal::find(string from, FlightInfo &f)  
+{  
+  int pos = -1; 
+  int dist = MAXDIST; // longer than longest flight 
+ 
+  for(unsigned i=0; i < flights.size(); i++) {  
+    if(flights[i].from == from && !flights[i].skip)  
+    {  
+      // Use the shortest flight. 
+      if(flights[i].distance < dist) { 
+        pos = i; 
+        dist = flights[i].distance; 
+      } 
+    } 
+  } 
+   
+  if(pos != -1) { 
+    f = flights[pos]; 
+    flights[pos].skip = true; // prevent reuse  
+  
+    return true;  
+  }  
+  
+  return false;  
+}  
+    
+// Determine if there is a route between from and to.   
+void Optimal::findroute(string from, string to)  
+{  
+  int dist;  
+  FlightInfo f;  
+  
+  // See if at destination.  
+  if(match(from, to, dist)) { 
+    btStack.push(FlightInfo(from, to, dist));  
+    return;  
+  }  
+  
+  // Try another connection.  
+  if(find(from, f)) { 
+    btStack.push(FlightInfo(from, to, f.distance));  
+    findroute(f.to, to);  
+  }  
+  else if(!btStack.empty()) {  
+    // Backtrack and try another connection.  
+    f = btStack.top(); 
+    btStack.pop();  
+    findroute(f.from, f.to);  
+  }  
+} 
+ 
+// Find "optimal" solution by using least-cost with path removal. 
+int main() {  
+  char to[40], from[40]; 
+  Optimal ob; 
+ 
+  // Add flight connections to database. 
+  ob.addflight("New York", "Chicago", 900);  
+  ob.addflight("Chicago", "Denver", 1000);  
+  ob.addflight("New York", "Toronto", 500);  
+  ob.addflight("New York", "Denver", 1800);  
+  ob.addflight("Toronto", "Calgary", 1700);  
+  ob.addflight("Toronto", "Los Angeles", 2500);  
+  ob.addflight("Toronto", "Chicago", 500);  
+  ob.addflight("Denver", "Urbana", 1000);  
+  ob.addflight("Denver", "Houston", 1000);  
+  ob.addflight("Houston", "Los Angeles", 1500);  
+  ob.addflight("Denver", "Los Angeles", 1000);  
+ 
+  // Get departure and destination cities.  
+  cout << "From? ";  
+ 
+  cin.getline(from, 40); 
+  cout << "To? ";  
+ 
+  cin.getline(to, 40); 
+ 
+  // Find multiple solutions. 
+  for(;;) { 
+    // See if there is a connection. 
+    ob.findroute(from, to);  
+  
+    // If no route found, then end. 
+    if(!ob.routefound()) break; 
+ 
+    ob.route();  
+  } 
+ 
+  // Display optimal solution.  
+  ob.showOpt();  
+ 
+  return 0; 
+ 
+} 
+
+listing 9
+// Search for the lost keys. 
+#include <iostream> 
+#include <stack> 
+#include <string> 
+#include <vector> 
+ 
+using namespace std; 
+  
+// Room information.  
+struct RoomInfo {  
+  string from;  
+  string to; 
+  bool skip; 
+  
+  RoomInfo() { 
+    from = ""; 
+    to = ""; 
+    skip = false; 
+  } 
+ 
+  RoomInfo(string f, string t) {  
+    from = f;  
+    to = t;  
+    skip = false;  
+  }  
+};  
+ 
+// Find the keys using a depth-first search.  
+class Search {  
+  // This vector holds the room information.  
+  vector<RoomInfo> rooms; 
+ 
+  // This statck is used for backtracking.  
+  stack<RoomInfo> btStack;  
+ 
+  // Return true if a path exists between 
+  // from and to.  Return false otherwise. 
+  bool match(string from, string to); 
+ 
+  // Given from, find any path.  
+  // Return true if a path is found, 
+  // and false otherwise. 
+  bool find(string from, RoomInfo &f); 
+ 
+public:  
+ 
+  // Put rooms into the database.  
+  void addroom(string from, string to)  
+  {  
+    rooms.push_back(RoomInfo(from, to));  
+  }  
+ 
+  // Show the route taken.  
+  void route();  
+ 
+  // Determine if there is a path between from and to.   
+  void findkeys(string from, string to); 
+ 
+  // Return true if the keys have been found. 
+  bool keysfound() { 
+    return !btStack.empty(); 
+  } 
+};  
+ 
+// Show the route.  
+void Search::route()  
+{  
+  stack<RoomInfo> rev;  
+  RoomInfo f;  
+  
+  // Reverse the stack to display route.  
+  while(!btStack.empty()) { 
+    f = btStack.top(); 
+    rev.push(f); 
+    btStack.pop(); 
+  } 
+  
+  // Display the route. 
+  while(!rev.empty()) { 
+    f = rev.top(); 
+    rev.pop();  
+    cout << f.from << " to ";  
+  }  
+  
+  cout << f.to << endl;  
+}  
+  
+// Return true if a path exists between 
+// from and to.  Return false otherwise. 
+bool Search::match(string from, string to)  
+{  
+  for(unsigned i=0; i < rooms.size(); i++) {  
+    if(rooms[i].from == from &&  
+       rooms[i].to == to && !rooms[i].skip)  
+    {  
+      rooms[i].skip = true; // prevent reuse  
+      return true; 
+    }  
+  }  
+  
+  return false; // not found   
+}  
+    
+// Given from, find any path. 
+// Return true if a path is found, 
+// and false otherwise. 
+bool Search::find(string from, RoomInfo &f)  
+{  
+  for(unsigned i=0; i < rooms.size(); i++) {  
+    if(rooms[i].from == from && !rooms[i].skip) {  
+      f = rooms[i]; 
+      rooms[i].skip = true; // prevent reuse  
+  
+      return true;  
+    }  
+  }  
+  
+  return false;  
+}  
+    
+// Find the keys. 
+void Search::findkeys(string from, string to)  
+{  
+  RoomInfo f;  
+  
+  // See if keys are found. 
+  if(match(from, to)) { 
+    btStack.push(RoomInfo(from, to));  
+    return;  
+  }  
+  
+  // Try another room.  
+  if(find(from, f)) { 
+    btStack.push(RoomInfo(from, to));  
+    findkeys(f.to, to);  
+  }  
+  else if(!btStack.empty()) {  
+    // Backtrack and try another path. 
+    f = btStack.top(); 
+    btStack.pop();  
+    findkeys(f.from, f.to);  
+  }  
+} 
+ 
+int main() {  
+  Search ob; 
+ 
+  // Add rooms to database. 
+  ob.addroom("front_door", "lr");  
+  ob.addroom("lr", "bath");  
+  ob.addroom("lr", "hall");  
+  ob.addroom("hall", "bd1");  
+  ob.addroom("hall", "bd2");  
+  ob.addroom("hall", "mb");  
+  ob.addroom("lr", "kitchen");  
+  ob.addroom("kitchen", "keys");  
+ 
+  // Find the keys. 
+  ob.findkeys("front_door", "keys");  
+  
+  // If keys are found, show the path. 
+  if(ob.keysfound())  
+      ob.route();  
+ 
+  return 0; 
+} 
+

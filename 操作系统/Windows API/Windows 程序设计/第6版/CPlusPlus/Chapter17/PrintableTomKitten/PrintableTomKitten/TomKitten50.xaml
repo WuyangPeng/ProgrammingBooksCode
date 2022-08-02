@@ -1,0 +1,14 @@
+﻿<UserControl
+    x:Class="PrintableTomKitten.TomKitten50"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Grid VerticalAlignment="Center"
+          MaxWidth="640">
+        <TextBlock Style="{StaticResource paragraphTextStyle}">
+            &#x2003;&#x2003;She sent them upstairs; and I am sorry to 
+            say she told her friends that they were in bed with the 
+            measles; which was not true.
+        </TextBlock>
+    </Grid>
+</UserControl>

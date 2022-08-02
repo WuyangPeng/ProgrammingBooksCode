@@ -1,0 +1,42 @@
+<HTML>
+<HEAD>
+<TITLE>Listing 1:	Separate namespace implementation</TITLE>
+</HEAD>
+
+<body bgcolor="#FFFFFF" text="#000000"><B> Listing 1:</B>	Separate namespace implementation<p>
+<pre>
+// in stlsoft_frame_string.h
+namespace stlsoft
+{
+  template &lt;...&gt;
+  basic_frame_string
+  {
+    ...
+  };
+}
+
+// in unixstl_readdir_sequence.h
+namespace unixstl
+{
+  class readdir_sequence
+  {
+  public:
+    typedef stlsoft::basic_frame_string &lt; char
+                                        , NAME_MAX
+                                        &gt;   string_type;
+    ...
+  };
+}
+
+// implementation file
+int main(int argc, char **argv)
+{
+  unixstl::readdir_sequence   entries(argv[1]);  
+
+  std::for_each(entries.begin(), entries.end(), ...);
+
+  ...
+}
+</pre></BODY>
+
+</HTML>

@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>February 2003/Avoiding the Visual C++ Runtime Library</title>
+</head>
+
+<body>
+
+
+<h4>Listing 9  Raising an int 3</h4>
+
+<pre>
+
+void __declspec(naked) __cdecl _chkesp(void)
+{
+    _asm {    jz    esp_okay    };
+    _asm {    int    3    };
+esp_okay:
+    _asm {    ret    };
+}
+
+
+</pre>
+</body>
+</html>

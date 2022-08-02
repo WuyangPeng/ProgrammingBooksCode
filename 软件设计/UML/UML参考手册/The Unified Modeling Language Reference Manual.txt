@@ -1,0 +1,5 @@
+﻿UML参考手册（The Unified Modeling Language Reference Manual）
+（第2版）
+
+☆
+作者：James Rumbaugh、Ivar Jacobson、Grady Booch 

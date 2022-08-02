@@ -1,0 +1,8 @@
+Java 并发编程实战  （Java Concurrency in Practice）
+
+官方网站：
+http://www.javaconcurrencyinpractice.com
+
+★★
+作者：Brian Goetz、Tim Peierls、Joshua Bloch、Joseph bowbeer、David Holmes、Doug Lea 
+

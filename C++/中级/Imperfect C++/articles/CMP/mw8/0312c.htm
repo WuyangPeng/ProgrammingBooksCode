@@ -1,0 +1,288 @@
+<html>
+<head>
+<title>Handling Multiple Win32 Operating Environments</title>
+</head>
+
+<body>
+
+
+<A HREF="ftp://ftp.wdj.com/pub/2003/200312wdn.zip">Download the code for this issue</A>
+
+<h2>
+
+
+<p>Handling Multiple Win32 Operating Environments</h2>
+<p>Courtesy of <i>Windows Developer Network</i> (December 2003)</p>
+<h2>
+<p>Advice on targeting both Win9x and NT-based platforms from a single source </h2>
+<h3>
+<p>By Matthew Wilson</h3>
+<hr>
+<p>You don't develop for Win32 for very long before realizing that there are some significant differences between the different flavors of Win32 operating systems. There are missing functions, stubbed functions, differing behaviors; it's a bit of a mess. Well, to be fair, Windows has bent over backwards for backwards compatibility, which is why we even have the opportunity to be inconvenienced by the differences in versions. I must concede that it's pretty impressive to be able to run very old programs &#151; some as much as 10 years on the system on which I'm writing this article &#151; on the very latest versions, such as Windows XP. The consequence of this compatibility, of course, is that there is a huge potential user base for any code that you write. Hence, there are a lot of opportunities for your oh-so-modern code to break due to incompatibilities between your development/test system and the end-user's.</p>
+
+
+<p>There are three types of differences that usually stymie the application developer. (Actually, there are huge architectural differences between the Windows 9x and NT operating system families, but we're just talking about coding applications in this article.) There can be entirely missing subsystems/APIs: No Windows 9x systems have any support for the object-based NT security model; only Windows 2000 and later support the <b>FindFirstVolume()</b> API. In cases such as this, the answer is simple. Your users must upgrade to use your programs. However, there are two other types of differences that are less black-and-white, and that you may wish to support.</p>
+
+<p>The other two types of differences, that will be the subject of this article, are missing functionality and character encoding issues. The functions may be stubbed out where not supported, or they may actually not exist within the system libraries. This latter case is usually found with new additions to APIs. The inconsistencies can be intrafamily (i.e., Windows 98 contains things that Windows 95 does not) and interfamily(e.g., Windows NT contains overlapped IO and Windows 9x does not).</p>
+
+
+
+<h4>Single Source/Multiple Builds</h4>
+
+
+<p>A fundamental difference between the 9x and NT families is that Windows 9x systems use ANSI (i.e., the <b>char</b> type) natively, whereas Window NT (and CE) systems use Unicode (i.e., the <b>wchar_t</b> type). Underneath the covers, nearly all Win32 functions that deal with characters come in A and W flavors. For example, the function <b>SetCurrentDirectory(LPCTSTR)</b> is actually a macro that resolves to either <b>SetCurrentDirectoryA(LPCSTR)</b> for ANSI builds and to <b>SetCurrentDirectoryW(LPCWSTR)</b> for Unicode builds. (You compile for Unicode by defining the preprocessor symbols <b>UNICODE</b> for the Win32 API and <b>_UNICODE</b> for the Visual C++ Runtime library. Various system and CRT headers test for one and define the other, so it's unusual to get into a sticky situation where one is defined and the other is not.)</p>
+
+
+<p>The standard wisdom is that you write a single-source version of your application, and use conditional compilation and linking to build separate ANSI and Unicode binaries. You might see something like the following:</p>
+
+
+<pre>void TraceLine(LPCTSTR line)</pre>
+<pre>{</pre>
+<pre>  size_t  len   = lstrlen(line);</pre>
+<pre>  TCHAR   *text = (TCHAR*)_alloca(2 + len);</pre>
+<pre>  sprintf(text, "%s\n", line);</pre>
+<pre>  OutputDebugString(text);</pre>
+<pre>}</pre>
+<p>This will compile fine for ANSI builds, but there are a couple of problems 
+  when compiling under Unicode. First, the allocation (of stack memory, via <b>_alloca()</b>) 
+  is wrong. It will allocate <b>2 + len</b> bytes of memory, which is not going 
+  to be large enough to handle your Unicode string. If you're lucky, stack overwrites 
+  and program crashes will quickly ensue, but if such a function is in a code 
+  path that was skipped in testing, you're in for a taxing time in product support. 
+  This kind of thing simply requires diligence. (You can define a macro to help 
+  you out a little; remember an inline function won't cut it because <b>_alloca()</b> 
+  allocates from the stack.)</p>
+<p>The second problem will come out at compile time, since <b>sprintfW()</b> expects 
+  a format string of type <b>wchar_t const *</b> and the string literal is ANSI. 
+  Unicode literals are declared with a preceding <b>L</b>, as in <b>L"Unicode 
+  string"</b>. The file <b>tchar.h</b> contains the macro<b> _T()</b>, within 
+  which you can wrap a literal; it is defined either as of <b>char[]</b> or <b>wchar_t[]</b> 
+  form as appropriate.</p>
+
+
+<pre>void TraceLine(LPCTSTR line)</pre>
+<pre>{</pre>
+<pre>  size_t  len   = lstrlen(line);</pre>
+<pre>  TCHAR   *text = (TCHAR*)_alloca(</pre>
+<pre>         sizeof(TCHAR) * (2 + len));</pre>
+<pre>  sprintf(text, _T("%s\n"), line);</pre>
+<pre>  OutputDebugString(text);</pre>
+<pre>}</pre>
+<p>It's not always the case that the compiler can help you spot the character 
+  type mismatches. If you're passing a literal string as an argument to a <b>sprintf()</b>-family 
+  function &#151; e.g., <b>wsprintf (text, _T("String: %s"), bFlag ? "true" : 
+  "false");</b> &#151; then you're on your own. This code is only correct in ANSI 
+  builds, so if you do not do full testing in Unicode builds, you're in for trouble.</p>
+<p>Despite the caveats, both MFC and ATL make use of this technique in their implementations, 
+  and many programs have been written successfully with this technique.</p>
+
+
+
+<h4>Single Build: ANSI</h4>
+
+
+<p>Despite it being a common development strategy, writing, testing, installing, and supporting two versions of the same application is not an attractive concept. How much nicer it would be to write and ship a single version. One way to achieve this is to simply write an ANSI version. Since the NT family operating system supports ANSI versions of the Win32 API functions, you can write and build a single version, and run on both operating systems.</p>
+
+
+<p>However, there are several disadvantages to this. First, calling ANSI functions on NT family systems incurs a performance hit, as the string parameters have to be translated on the way into and/or out of the call to the Unicode version of the function.</p>
+
+<p>Second, the reason Unicode was invented in the first place was to allow for the expression of a wide spectrum of languages within a single character encoding. Sticking to ANSI will leave you back in the field of code-pages, and a limited set of supported languages. Finally, there are several technologies in Windows, most notably COM, that are Unicode only. If you write ANSI-only programs, you will have a lot of conversions to perform, which also impact on performance.</p>
+
+<p>Notwithstanding these objections, a lot of programs out there are implemented in just this way. They run slower than they need on NT machines and don't handle internationalization as well as they should (if at all). One advantage is that your code will probably run quicker on 9x family systems, simply because most string operations are performed more quickly on <b>char</b> than <b>wchar_t</b>. (Note that if your code is doing multibyte calculations, then it's likely that the processing will actually be significantly slower.)</p>
+
+<p>This model works fine for development and system tools because the dominance English speakers have had over software engineering over the last 60 years has resulted in an English-oriented global information technology community. This falls down when we're talking about general-purpose software, so producing software that will only support English language variants and a limited set of European languages will severely restrict your potential markets.</p>
+
+
+
+<h4>Single Build: Unicode</h4>
+
+
+<p>On NT family systems, using Unicode builds provides the advantages of speed, language handling, and the absence of a need to convert characters when dealing with COM and other Unicode-only APIs. In an ideal world, we'd all just do this and not worry about Windows 9x. However, most software developments do not have this luxury and must cater to Windows 9x, which has resulted in the tendency to multiple builds.</p>
+
+
+<p>We should note that sometimes a program or component is only appropriate for use on NT systems. In this case, one option is to do nothing and simply fail to load on incompatible systems. While this is arguably a sensible approach where the gap in required functionality is too great to be deemed worth the effort, or indeed is simply not feasible, it leaves a lot to be desired in terms of usability. In such cases, it is better to have a platform-neutral driver program to test out the operating system version first, and then load the main program (either as a separate process, or perhaps as a mainline DLL). In the case where the operating system is not supported, the user can be greeted with a friendly explanation, rather than the unfriendly load-failure message (see <A HREF="0312cf1.htm" target="_BLANK">Figure 1</A>). This mode is selected in the sample code by not defining any <b>WDN_</b> preprocessor symbol.</p>
+
+<p>One technique for doing Unicode-only while still supporting Windows 9x systems, which I've employed in various limited circumstances in the past, is to actually provide the required (unsupported) Unicode APIs, implemented as calls to the (supported) ANSI APIs when on 9x systems.</p>
+
+<p>For example, say your component makes a call to <b>SetCurrentDirectory()</b>, which will resolve to <b>SetCurrentDirectoryW()</b> in your Unicode build. On a 9x system, the <b>SetCurrentDirectoryW()</b> function exists, but is stubbed, so the call will simply fail. If you haven't anticipated this, your user may be left with a cryptic error message or, even worse, no error message at all &#151; just a nonfunctioning product. <i>I'd like a refund please!</i></p>
+
+<p>One way around this is to implement <b>SetCurrentDirectoryW()</b> yourself as shown in <A HREF="0312cl1.htm" target="_BLANK">Listing 1</A>. The Win32 headers define <b>SetCurrentDirectoryW()</b> in the following way:</p>
+
+
+<pre>__declspec(dllimport) </pre>
+<pre>    BOOL __stdcall </pre>
+<pre>    SetCurrentDirectoryW(wchar_t const *);</pre>
+<p>This means that when your client code is linked, the linker will look for the 
+  symbol <b>_imp__SetCurrentDirectoryW@4</b> (with Visual C++). This presents 
+  a problem because your implementation will have the symbol name <b>_SetCurrentDirectoryW@4</b>, 
+  and the linker will fail to link your function to calls in your code to <b>SetCurrentDirectoryW()</b>. 
+  You cannot simply define your function in a separate file and statically link, 
+  whether by linking the object file or placing in a static library, and you need 
+  to get a bit sneaky to get the required behavior. There are three techniques 
+  in which this can be made to work. </p>
+<p><b>SharedCU.</b> This is the simplest technique and just requires that you 
+  define the function within the same compilation unit as its caller(s). This 
+  can be done directly or by virtue of a #<b>include</b>. It causes the compiler 
+  to emit references to your function whenever it sees calls to <b>SetCurrentDirectoryW()</b>. 
+  (Note that this is the case irrespective of whether the inclusion is before 
+  or after the calls.) This is practical if only one file in your component makes 
+  calls; if there is more than one client code file calling the function, you 
+  cannot use this technique unless you are willing to override the "multiple definitions" 
+  linker error by specifying <b>/FORCE:MULTIPLE</b> (which I would not recommend). 
+  In the test program included in this month's archive, this mode is achieved 
+  by defining <b>WDN_SHAREDCU</b>, as shown in <A HREF="0312cl2.htm" target="_BLANK">Listing 
+  2</A>. (The <b>IsWinNT()</b> and <b>IsWinNT4Plus()</b> functions are defined 
+  in a common header also included in the archive.)</p>
+
+
+<p>Take careful note that putting your definition in a static library, or even another object file in your project, won't do it. It will compile and link without a murmur, but the client code calls will go to the definition in KERNEL32.DLL, not your version (except any calls that happen to be in the same compilation unit). You'll only find out at runtime, and if you're not employing 100 percent code coverage on all possible target operating systems, you can miss it. </p>
+
+<p>This technique is undesirable for large scale programs or components since you might end up having to do it for a vast array of functions &#151; and it would be vast because most parts of the Win32 API are not Unicode-enabled on Windows 9x. Also, if this technique is employed in several libraries that are loaded into the same process, it can result in significant code bloat.</p>
+
+
+<p><b>Redefine.</b> The second technique is to provide a separate definition of the required functionality under a different name (such as <b>SetCurrentDirectoryW_impl()</b>), and then redefine the desired function name to that of the implementing function (see <A HREF="0312cl3.htm" target="_BLANK">Listing 3</A>) in a shared header file. The definition can be in the same compilation unit, but it's more useful to define it in a separate file that can then be shared by any compilation units within your module. This is a bit of an unpleasant hack, but since there's a already such a huge amount of <b>#define</b>-ing going on in the Win32 headers, at least you'll have lots of company. (In the sample program included in this month's archive, this mode is achieved by defining the <b>WDN_REDEFINE</b> preprocessor symbol.)</p>
+
+
+<p>The disadvantages of this approach are that <b>#define</b>-ing things in the global namespace is a bad thing to do, so you're going to have lingering feelings of having done something bad. More concretely, it is possible that your <b>#define</b> will clash with another one, perhaps introduced in the next version of the operating system libraries.</p>
+
+<p>This technique also does substitution of the function at compile time. If you have not ensured that all source files are compiled with the appropriate redefining header, it's possible to have some calls go to the original functions, leading to the same testing/coverage problems as discussed with the SharedCU mode. It also suffers from the same code bloat problem.</p>
+
+<p>Nonetheless, this technique and, to a lesser extent, SharedCU can be ideal when developing small components, such as COM servers. As you may know, when using the ATL wizards, there are a host of project permutations generated &#151; Debug vs Release, ANSI vs Unicode, MinSize vs MinDependency. Sorting out which versions to deploy and support is a nightmare. I prefer, wherever feasible, to provide a single version, which uses Unicode, and to substitute whichever Unicode functions are required.</p>
+
+
+<p><b>DLL.</b> In order to provide your own definition of <b>GetCurrentDirectoryW()</b>, and have client code correctly link to it without any preprocessor hackery, you can package it in a DLL, taking care to declare it with <b>__declspec(dllexport)</b>, from which it will be exported as the expected symbol <b>_imp__SetCurrentDirectoryW@4</b> (for Visual C++, or the equivalent for your own compiler). You can avoid any compiler warnings about the redefinition of symbols marked <b>__declspec(dllimport)</b> by defining them with another name (e.g. <b>SetCurrent DirectoryW_impl()</b>) , and then renaming in the EXPORTS section of your DLL's .DEF file, as shown in <A HREF="0312cl4.htm" target="_BLANK">Listing 4</A>.</p>
+
+
+<p>This technique doesn't require messing around with the preprocessor, or lead to code bloat, since all substituted functions are shared by all components within your application. However, it does require discipline when linking the application and/or component DLLs. Because linkers operate on a left-to-right basis, you must ensure that the import library for your exporting DLL is listed in the linker's command line prior to that for the DLLs whose functions you are substituting, as in the link command for the version of the test program:</p>
+
+
+<pre>/nodefaultlib:"kernel32.lib" </pre>
+<pre>    ..\..\Bin/win32var_impl_dll.lib </pre>
+<pre>    kernel32.lib</pre>
+<p>This mode is selected for our test program by defining WDN_DLL, and linking 
+  to the DLL produced by a DLL subproject (also contained in this month's archive).</p>
+
+
+
+<h4>Microsoft Layer for Unicode</h4>
+
+
+<p>If all you're interested in is homogenizing for Unicode APIs, then the first (and probably the last) place to look is the Microsoft Layer for Unicode (MSLU; described in <i>MSDN Magazine,</i> October 2001; http://msdn.microsoft.com/msdnmag/issues/01/10/MSLU/). This API was introduced in 2001 and takes the DLL model to its logical limit, at least as far as providing full Unicode support for Windows 9x is concerned. (There is also a newsgroup news:msnews .microsoft.com/microsoft.public.platformsdk.mslayerforunicode, on which the original author of the library, Michael Kaplan, gives great service.)</p>
+
+
+<p>MSLU is the full extension of the DLL technique, and the trick to using MSLU successfully is also in the linking. The three-step plan described in the MSLU documentation requires the setting of <b>/nodefaultlib</b> being applied to all the Windows system export libraries, followed by specification of the MSLU export library <b>unicows.lib</b>, followed by explicit specification of the Windows system export libraries, as in:</p>
+
+
+<pre>link ... /nod:kernel32.lib </pre>
+<pre>    /nod:advapi32.lib /nod:user32.lib </pre>
+<pre>    ... unicows.lib ... kernel32.lib </pre>
+<pre>    advapi32.lib user32.lib ...</pre>
+<p>It can be pretty verbose, but is not too difficult to get correct. The advantage 
+  of MSLU is that it does a great deal more than the simple examples shown here 
+  to homogenize the operating system experience of your Unicode components. It 
+  has adopted various fixes in the APIs, and handles all the code pages and other 
+  stuff that any sane developer would never go near. The disadvantage is that 
+  mistakes in the linker specification are silent, and can lurk for a long time 
+  if your products do not get complete code coverage in testing. Thankfully, it 
+  is possible to check by running <b>DUMPBIN</b> or the Platform SDK's <b>depends.exe</b>, 
+  and verifying that no Unicode symbols are imported from the system libraries.</p>
+<p>I've only ever used MSLU with Visual C++, so I can't say for sure whether it 
+  works with other compilers. However, since both Intel and Metrowerks CodeWarrior 
+  employ binary compatibility with Visual C++, it seems likely that MSLU will 
+  work for them also.</p>
+
+
+
+<h4>Missing Functionality</h4>
+
+
+<p>The MSLU is great for homogenizing on Unicode, but there's a lot more to the differences between the operating systems than just string representation. In what is a laudable design decision (and perhaps notable, coming from Microsoft!), MSLU provides 9x systems with access to NT system Unicode APIs, but it does not address other differences; the only way to do that completely would be to implement NT, and that's already been done. </p>
+
+
+<p>NT systems provide a significant amount of functionality over that of the 9x systems including security, overlapped IO, and advanced file operations, to name a few. A small, but useful, proportion of these functions can be emulated in Windows 9x, in a similar manner to that described for the strings. These functions are usually not stubbed, rather they simply do not exist in the 9x system libraries.</p>
+
+<p>There are a few file functions that I like to use, but they are not provided on (all of the) 9x systems. For example, <b>GetFileSizeEx()</b> is not provided on any 9x system, whereas <b>GetFileAttributesEx()</b> is not available on Windows 95. Whereas stubbed API functions result in subtle, or no-so-subtle, behavioral failures, absent system functions cause process load failure via the unfriendly dialog shown in <A HREF="0312cf1.htm" target="_BLANK">Figure 1</A>. Failure to explicitly load DLLs with absent system functions must be catered for in application code by testing the return of <b>LoadLibrary(Ex)()</b>.</p>
+
+<p>We can apply the same technique to providing missing functions as with the stubbed functions, as shown in <A HREF="0312cl5.htm" target="_BLANK">Listing 5</A>.</p>
+
+<p>Sometimes, the system headers will not define certain APIs by default (e.g. when functions are provided with Windows 2000 onwards). This is the case for the <b>FindFirst Volume()</b>/<b>FindNextVolume()</b> functions, which require the definition of <b>_WIN32_WINNT</b> to at least <b>0x0500</b>. This is a big hint that your code will have portability problems. You should not simply define the symbol to get your code built and then forget to mention to your product manager about the new dependency you're just introduced.</p>
+
+<p>Unfortunately, there is no such distinction between the operating system families, which is a real shame. If there were, you could easily get a compatibility check by compiling with, say <b>_WIN32_WIN9x = 0x0400</b>. </p>
+
+
+
+<h4>An Extra Level of Indirection</h4>
+
+
+<p>There's another way to go at this problem, which involves much less hassle in the code and fragility with the linker. We can simply define our own APIs for certain operations. For example, I use a <b>File_GetAttributesA/W() </b>function that deals with all this gunk for me, and does not have any lurking linker issues. (See the code sample project to see how this is done.)</p>
+
+
+<p>Although not so with <b>File_GetAttributesA/W()</b>, in many cases such an approach can actually result in platform-independent APIs, which is always a nice thing. One such is a pair of functions <b>Atomic_Decrement()</b> and <b>Atomic_Increment()</b>, which I had to write because Windows 9x and NT 3.x do not have the same semantics for <b>InterlockedDecrement()</b>/<b>InterlockedIncrement()</b> as their younger brethren. Where later operating systems all return the value of the counter after it has been modified, the 9x/NT3.x version simply return a value that indicates whether the modified counter is zero, negative, or positive. It's kind of like calling ++i and having to deal with a return from <b>strcmp()</b>!</p>
+
+<p>These functions subsequently migrated to other platforms &#151; DEC, SunOS, VMS &#151; and precious little client code had to be changed because all the changes were internal to the API. It's classic port-prepared programming; not rocket science by any means, just good practice.</p>
+
+<p>(Note that sometimes you have to write less-portable code for performance reasons. This is eminently reasonable, but it's better to start with the platform-independent implementations and break that based on performance testing.)</p>
+
+<p>Another advantage is that you can reduce the need for recompilation of client code when things within the API change, which can be important on big systems with long compilation times. </p>
+
+<p>The downside to this approach is that great care must be taken to ensure that the cost of the function call is not prohibitive. Also, when porting to another platform, it is a very good idea to employ defensive testing of the compiler/platform &#151; using <b>#error</b> to break compilation &#151; in order to ensure that the port is done with the developer being fully mindful of what is going on. And test cases are a must!</p>
+
+<p>Just for the record, the Win32 Interlocked API has a number of weird little differences between platforms. As well as the different semantics for <b>InterlockedDecrement()</b>/<b>InterlockedIncrement()</b> for Win95/3.x, the three useful functions <b>InterlockedCompareExchange()</b>, <b>InterlockedCompareExchangePointer()</b>, and <b>InterlockedExchangeAdd()</b> are not even present in 95 and NT 3.x. You'll probably reach for the assembler to implement these yourself.</p>
+
+
+
+<h4>Windows Controls</h4>
+
+
+<p>Another interesting twist in the character encoding issue lurks in the handling of standard controls &#151; edit, listbox, combobox, and button. The operating system knows whether a particular window is Unicode or ANSI, and can inform you of this via <b>IsWindowUnicode()</b>. It also automatically translates messages carrying string data that are sent via <b>SendMessage()</b> (and its other <b>Send*()/Post*()</b> brothers and sisters) because you will actually be calling <b>SendMessageA()</b> or <b>SendMessageW()</b>. However, if you make a call to <b>SendMessage()</b> in your code and pass an ANSI string from a Unicode build, or vice versa, then the string will not be correctly passed through to the control's window procedure in the correct format.</p>
+
+
+<p>In a previous Tech Tip ("Inserter Function Objects for Windows Controls," <i>WDN</i>, November 2003), I described some WinSTL (http://winstl.org/) function object components that can be used to transfer from an STL-like controlled sequence to a control. Subsequent enhancements to those components have handled the issue of mismatched string types, such that client code can pass ANSI or Unicode strings to any standard control via the WinSTL components </p>
+
+<p>Note that rather than calling <b>SendMessageA()</b> in <b>insert(char const *)</b> and <b>SendMessageW()</b> in <b>insert(wchar_t const *)</b>, the conversions are carried out within the member functions. This is because it is possible to pass a Unicode string to an ANSI window on 9x, in which circumstances a call to <b>SendMessageW()</b> would fail. (The versions of the control functionals with this functionality are available as part of STLSoft v1.6.5, available from http://stlsoft.org/downloads.html.)</p>
+
+
+
+<h4>Test Client</h4>
+
+
+<p>I've included a sample Visual C++ project in the archive that demonstrates these various techniques. The project has five different configurations:</p>
+
+
+
+<p>1.	Standard &#151; nothing is done out of the ordinary. No symbol defined.</p>
+
+<p>2.	SharedCU &#151; the functions are included within the same compilation unit. <b>WDN_SHAREDCU</b> defined.</p>
+
+<p>3. Redefine &#151; the functions are defined externally under a different name, and then mapped inline (via <b>#define</b>) in the client code. <b>WDN_REDEFINE</b> defined.</p>
+
+<p>4.	DLL &#151; the functions are provided in a separate DLL. <b>WDN_DLL</b> defined. You'll need to build the DLL project also supplied in the archive.</p>
+
+<p>5.	MSLU &#151; the client uses the MSLU. <b>WDN_MSLU</b> defined. You'll need to have installed MSLU (available from Microsoft, via the Platform SDK) and ensure that <b>unicows.dll</b> is on your path.</p>
+
+<p></p>
+
+<p>I ran the test applications on Windows 98, Windows XP Professional, and Windows NT Server 3.51. <A HREF="0312ct1.htm" target="_BLANK">Table 1</A> shows the support (or lack of) for the three operating systems, and how our five strategies helped overcome any incompatibilities.</p>
+
+<p>On Windows XP, everything worked for all modes. As per the design, modes 2, 3, and 4 worked for every operating system. The default mode highlights the lack of Unicode support (and lack of <b>GetFileSizeEx()</b>) on Windows 98, and the lack of <b>GetFileSizeEx()</b> and <b>GetFileAttributesExA/W()</b> on NT 3.51. It's clear that MSLU does its job of providing full Unicode semantics for all ANSI functions on Windows 98. It does not supply <b>GetFileSizeEx()</b>, but then it's not designed to do so.</p>
+
+
+
+<h4>Summary</h4>
+
+
+<p>This article has examined some of the issues around writing code to execute on multiple Win32 operating systems. We've seen some different techniques for redefining system functions with pros and cons in applying them. It's eminently possible to provide missing functions for a whole range of operating systems, so long as there are available functions on which to base our implementations. </p>
+
+
+<p>I hope it's also clear that this is not something anyone should want to do on a large scale. One or two functions here and there to avoid having to deploy separate versions of your applications or components are all well and good, but doing many tens or hundreds of these things is not a good idea. The maintenance would be a nightmare. If you need to use Unicode on a large scale, then you really should be using the MSLU. If you also need to provide some missing functions, it's easy to combine the two, as long as you take care with the linker.<br><b>w::d</b></p>
+
+
+<A HREF="0312cl6.htm" target="_BLANK">Listing 6  WinSTL's listbox_front_inserter function object</A>
+
+<hr>
+<I>
+Matthew Wilson is a software development consultant for Synesis Software, specializing in robustness and performance in C, C++, Java, and .NET. Matthew is the author of the STLSoft libraries, and the forthcoming book Imperfect C++ (to be published by Addison-Wesley, 2004). He can be contacted via matthew@synesis.com.au or at http://stlsoft.org/.</I>
+
+
+</body>
+</html>

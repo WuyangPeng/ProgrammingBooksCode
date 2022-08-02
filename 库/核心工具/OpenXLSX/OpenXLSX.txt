@@ -1,0 +1,4 @@
+OpenXLSX （引擎通过宏CORE_TOOLS_USE_OPENXLSX关联）
+☆
+
+1. 官方网站：https://github.com/troldal/OpenXLSX。

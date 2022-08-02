@@ -1,0 +1,42 @@
+//Example 7-4 The definition of receive() 
+
+187  int posix_queue::receive(string &Msg)
+188  {
+189   
+190     int StatusCode = 0;
+191     char QueueBuffer[QueueAttr.mq_msgsize];
+192     ReceivedBytes = mq_receive(PosixQueue,QueueBuffer,
+                                   QueueAttr.mq_msgsize,NULL);    
+193     if(errno == EAGAIN){
+194        StatusCode = errno;
+195        cerr << "O_NONBLOCK not set and the queue is full " << endl;       
+196       
+197     }
+198     if(errno == EBADF){
+199        StatusCode = errno;
+200        cerr << "PosixQueue is not a valid descriptor open for writing" 
+                << endl;              
+201     } 
+202     if(errno == EINVAL){
+203        StatusCode = errno;
+204        cerr << "msgprio is out side of the priority range for the message 
+                    queue or " << endl;
+205        cerr << "Thread my block causing a timing conflict with time out" 
+                << endl;       
+206     }
+207     if(errno == EMSGSIZE){
+208        StatusCode = errno;
+209        cerr << "message size exceeds maximum size of message parameter on 
+                    message queue" << endl;      
+210     }    
+211     if (errno == ETIMEDOUT){
+212        StatusCode = errno;
+213        cerr << "The O_NONBlock flag was not set, but the time expired 
+                    before the message " << endl;
+214        cerr << "could be added to the queue " << endl;       
+215     }
+216     string XMessage(QueueBuffer,QueueAttr.mq_msgsize);
+217     Msg = XMessage;
+218     return(StatusCode);
+219
+220  }

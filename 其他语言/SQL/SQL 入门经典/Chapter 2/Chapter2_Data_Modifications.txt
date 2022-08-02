@@ -1,0 +1,40 @@
+UPDATE MemberDetails
+SET 
+Street = '45 Upper Road',
+City = 'New Town',
+State = 'New State',
+ZipCode = '99112'
+WHERE MemberId = 4;
+
+UPDATE MemberDetails
+SET City = 'Orange Town'
+WHERE City = 'Big Apple City';
+
+UPDATE MemberDetails SET LastName = 'Tell' WHERE MemberId = 3;
+
+UPDATE MemberDetails SET Street = 'Newish Lane' WHERE Street = 'New Lane' 
+                                   AND City = 'Orange Town';
+
+UPDATE Location SET City = 'Orange Town' WHERE City = 'Big Apple City';
+
+UPDATE MemberDetails 
+SET State = 'Mega State' 
+WHERE 
+State = 'Small State' 
+OR 
+State = 'Stateside';
+
+UPDATE Location 
+SET State = 'Mega State' 
+WHERE 
+State = 'Small State' 
+OR 
+State = 'Stateside';
+
+DELETE FROM Attendance WHERE MemberId = 3;
+
+DELETE FROM FavCategory WHERE MemberId = 3;
+
+DELETE FROM MemberDetails WHERE MemberId = 3;
+
+

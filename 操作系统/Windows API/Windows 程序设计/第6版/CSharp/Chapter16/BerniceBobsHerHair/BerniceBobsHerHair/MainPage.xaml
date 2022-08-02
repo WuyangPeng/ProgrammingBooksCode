@@ -1,0 +1,1934 @@
+﻿<Page
+    x:Class="BerniceBobsHerHair.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BerniceBobsHerHair"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+                        
+    <Page.Resources>
+        <Style TargetType="RichTextBlock">
+            <Setter Property="Width" Value="480" />
+            <Setter Property="Margin" Value="24 0 24 0" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="TextAlignment" Value="Justify" />
+        </Style>
+                        
+        <Style TargetType="RichTextBlockOverflow">
+            <Setter Property="Width" Value="480" />
+            <Setter Property="Margin" Value="24 0 24 0" />
+        </Style>
+    </Page.Resources>
+                        
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <ScrollViewer HorizontalScrollBarVisibility="Hidden"
+                      VerticalScrollBarVisibility="Disabled">
+            <StackPanel Name="stackPanel"
+                        Orientation="Horizontal">
+                <RichTextBlock SizeChanged="OnRichTextBlockSizeChanged">
+                    <Paragraph TextAlignment="Center" FontSize="36" Margin="0 0 0 12">
+                        “Bernice Bobs Her Hair”
+                        <LineBreak />
+                        by
+                        <LineBreak />
+                        F. Scott Fitzgerald
+                    </Paragraph>
+                        
+                    <Paragraph Margin="0 6">
+                        After dark on Saturday night one could stand on the first tee of
+                        the golf-course and see the country-club windows as a yellow
+                        expanse over a very black and wavy ocean. The waves of this
+                        ocean, so to speak, were the heads of many curious caddies, a few
+                        of the more ingenious chauffeurs, the golf professional's deaf
+                        sister&#x2014;and there were usually several stray, diffident waves who
+                        might have rolled inside had they so desired. This was the
+                        gallery.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        The balcony was inside. It consisted of the circle of wicker
+                        chairs that lined the wall of the combination clubroom and
+                        ballroom. At these Saturday-night dances it was largely feminine;
+                        a great babel of middle-aged ladies with sharp eyes and icy
+                        hearts behind lorgnettes and large bosoms. The main function of
+                        the balcony was critical, it occasionally showed grudging
+                        admiration, but never approval, for it is well known among ladies
+                        over thirty-five that when the younger set dance in the
+                        summer-time it is with the very worst intentions in the world,
+                        and if they are not bombarded with stony eyes stray couples will
+                        dance weird barbaric interludes in the corners, and the more
+                        popular, more dangerous, girls will sometimes be kissed in the
+                        parked limousines of unsuspecting dowagers.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        But, after all, this critical circle is not close enough to the
+                        stage to see the actors' faces and catch the subtler byplay. It
+                        can only frown and lean, ask questions and make satisfactory
+                        deductions from its set of postulates, such as the one which
+                        states that every young man with a large income leads the life of
+                        a hunted partridge. It never really appreciates the drama of the
+                        shifting, semi-cruel world of adolescence. No; boxes,
+                        orchestra-circle, principals, and chorus be represented by the
+                        medley of faces and voices that sway to the plaintive African
+                        rhythm of Dyer's dance orchestra.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        From sixteen-year-old Otis Ormonde, who has two more years at
+                        Hill School, to G. Reece Stoddard, over whose bureau at home
+                        hangs a Harvard law diploma; from little Madeleine Hogue, whose
+                        hair still feels strange and uncomfortable on top of her head, to
+                        Bessie MacRae, who has been the life of the party a little too
+                        long&#x2014;more than ten years&#x2014;the medley is not only the centre of
+                        the stage but contains the only people capable of getting an
+                        unobstructed view of it.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        With a flourish and a bang the music stops. The couples exchange
+                        artificial, effortless smiles, facetiously repeat 
+                        "<Italic>la</Italic>-de-<Italic>da</Italic>-<Italic>da</Italic>dum-<Italic>dum</Italic>," 
+                        and then the clatter of young feminine voices soars
+                        over the burst of clapping.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        A few disappointed stags caught in midfloor as they had been
+                        about to cut in subsided listlessly back to the walls, because
+                        this was not like the riotous Christmas dances&#x2014;these summer
+                        hops were considered just pleasantly warm and exciting, where
+                        even the younger marrieds rose and performed ancient waltzes and
+                        terrifying fox trots to the tolerant amusement of their younger
+                        brothers and sisters.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Warren McIntyre, who casually attended Yale, being one of the
+                        unfortunate stags, felt in his dinner-coat pocket for a cigarette
+                        and strolled out onto the wide, semidark veranda, where couples
+                        were scattered at tables, filling the lantern-hung night with
+                        vague words and hazy laughter. He nodded here and there at the
+                        less absorbed and as he passed each couple some half-forgotten
+                        fragment of a story played in his mind, for it was not a large
+                        city and every one was Who's Who to every one else's past. There,
+                        for example, were Jim Strain and Ethel Demorest, who had been
+                        privately engaged for three years. Every one knew that as soon as
+                        Jim managed to hold a job for more than two months she would
+                        marry him. Yet how bored they both looked, and how wearily Ethel
+                        regarded Jim sometimes, as if she wondered why she had trained
+                        the vines of her affection on such a wind-shaken poplar.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Warren was nineteen and rather pitying with those of his friends
+                        who hadn't gone East to college. But, like most boys, he bragged
+                        tremendously about the girls of his city when he was away from
+                        it. There was Genevieve Ormonde, who regularly made the rounds of
+                        dances, house-parties, and football games at Princeton, Yale,
+                        Williams, and Cornell; there was black-eyed Roberta Dillon, who
+                        was quite as famous to her own generation as Hiram Johnson or Ty
+                        Cobb; and, of course, there was Marjorie Harvey, who besides
+                        having a fairylike face and a dazzling, bewildering tongue was
+                        already justly celebrated for having turned five cart-wheels in
+                        succession during the last pump-and-slipper dance at New Haven.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Warren, who had grown up across the street from Marjorie, had
+                        long been "crazy about her." Sometimes she seemed to reciprocate
+                        his feeling with a faint gratitude, but she had tried him by her
+                        infallible test and informed him gravely that she did not love
+                        him. Her test was that when she was away from him she forgot him
+                        and had affairs with other boys. Warren found this discouraging,
+                        especially as Marjorie had been making little trips all summer,
+                        and for the first two or three days after each arrival home he
+                        saw great heaps of mail on the Harveys' hall table addressed to
+                        her in various masculine handwritings. To make matters worse, all
+                        during the month of August she had been visited by her cousin
+                        Bernice from Eau Claire, and it seemed impossible to see her
+                        alone. It was always necessary to hunt round and find some one to
+                        take care of Bernice. As August waned this was becoming more and
+                        more difficult.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Much as Warren worshipped Marjorie he had to admit that Cousin
+                        Bernice was sorta dopeless. She was pretty, with dark hair and
+                        high color, but she was no fun on a party. Every Saturday night
+                        he danced a long arduous duty dance with her to please Marjorie,
+                        but he had never been anything but bored in her company.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Warren"&#x2014;&#x2014;a soft voice at his elbow broke in upon his thoughts,
+                        and he turned to see Marjorie, flushed and radiant as usual. She
+                        laid a hand on his shoulder and a glow settled almost
+                        imperceptibly over him.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Warren," she whispered "do something for me&#x2014;dance with Bernice.
+                        She's been stuck with little Otis Ormonde for almost an
+                        hour."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Warren's glow faded.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Why&#x2014;sure," he answered half-heartedly.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "You don't mind, do you? I'll see that you don't get stuck."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "'Sall right."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Marjorie smiled&#x2014;that smile that was thanks enough.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "You're an angel, and I'm obliged loads."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        With a sigh the angel glanced round the veranda, but Bernice and
+                        Otis were not in sight. He wandered back inside, and there in
+                        front of the women's dressing-room he found Otis in the centre of
+                        a group of young men who were convulsed with laughter. Otis was
+                        brandishing a piece of timber he had picked up, and discoursing
+                        volubly.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "She's gone in to fix her hair," he announced wildly. "I'm
+                        waiting to dance another hour with her."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Their laughter was renewed.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Why don't some of you cut in?" cried Otis resentfully. "She
+                        likes more variety."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Why, Otis," suggested a friend "you've just barely got used to
+                        her."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Why the two-by-four, Otis?" inquired Warren, smiling.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "The two-by-four? Oh, this? This is a club. When she comes out
+                        I'll hit her on the head and knock her in again."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Warren collapsed on a settee and howled with glee.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Never mind, Otis," he articulated finally. "I'm relieving you
+                        this time."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Otis simulated a sudden fainting attack and handed the stick to
+                        Warren.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "If you need it, old man," he said hoarsely.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        No matter how beautiful or brilliant a girl may be, the
+                        reputation of not being frequently cut in on makes her position
+                        at a dance unfortunate. Perhaps boys prefer her company to that
+                        of the butterflies with whom they dance a dozen times an but,
+                        youth in this jazz-nourished generation is temperamentally
+                        restless, and the idea of fox-trotting more than one full fox
+                        trot with the same girl is distasteful, not to say odious. When
+                        it comes to several dances and the intermissions between she can
+                        be quite sure that a young man, once relieved, will never tread
+                        on her wayward toes again.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Warren danced the next full dance with Bernice, and finally,
+                        thankful for the intermission, he led her to a table on the
+                        veranda. There was a moment's silence while she did unimpressive
+                        things with her fan.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "It's hotter here than in Eau Claire," she said.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Warren stifled a sigh and nodded. It might be for all he knew or
+                        cared. He wondered idly whether she was a poor conversationalist
+                        because she got no attention or got no attention because she was
+                        a poor conversationalist.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "You going to be here much longer?" he asked and then turned
+                        rather red. She might suspect his reasons for asking.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Another week," she answered, and stared at him as if to lunge at
+                        his next remark when it left his lips.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Warren fidgeted. Then with a sudden charitable impulse he decided
+                        to try part of his line on her. He turned and looked at her
+                        eyes.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "You've got an awfully kissable mouth," he began quietly.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        This was a remark that he sometimes made to girls at college
+                        proms when they were talking in just such half dark as this.
+                        Bernice distinctly jumped. She turned an ungraceful red and
+                        became clumsy with her fan. No one had ever made such a remark to
+                        her before.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Fresh!"&#x2014;&#x2014;the word had slipped out before she realized it, and
+                        she bit her lip. Too late she decided to be amused, and offered
+                        him a flustered smile.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Warren was annoyed. Though not accustomed to have that remark
+                        taken seriously, still it usually provoked a laugh or a paragraph
+                        of sentimental banter. And he hated to be called fresh, except
+                        in a joking way. His charitable impulse died and he switched the
+                        topic.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Jim Strain and Ethel Demorest sitting out as usual," he
+                        commented.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        This was more in Bernice's line, but a faint regret mingled with
+                        her relief as the subject changed. Men did not talk to her about
+                        kissable mouths, but she knew that they talked in some such way
+                        to other girls.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Oh, yes," she said, and laughed. "I hear they've been mooning
+                        around for years without a red penny. Isn't it silly?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Warren's disgust increased. Jim Strain was a close friend of his
+                        brother's, and anyway he considered it bad form to sneer at
+                        people for not having money. But Bernice had had no intention of
+                        sneering. She was merely nervous.
+                    </Paragraph>
+                        
+                    <Paragraph TextAlignment="Center" FontSize="24" Margin="0 36 0 12">
+                        II
+                    </Paragraph>
+                        
+                    <Paragraph Margin="0 6">
+                        When Marjorie and Bernice reached home at half after midnight
+                        they said good night at the top of the stairs. Though cousins,
+                        they were not intimates. As a matter of fact Marjorie had no
+                        female intimates&#x2014;she considered girls stupid. Bernice on the
+                        contrary all through this parent-arranged visit had rather longed
+                        to exchange those confidences flavored with giggles and tears
+                        that she considered an indispensable factor in all feminine
+                        intercourse. But in this respect she found Marjorie rather cold;
+                        felt somehow the same difficulty in talking to her that she had
+                        in talking to men. Marjorie never giggled, was never frightened,
+                        seldom embarrassed, and in fact had very few of the qualities
+                        which Bernice considered appropriately and blessedly feminine.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        As Bernice busied herself with tooth-brush and paste this night
+                        she wondered for the hundredth time why she never had any
+                        attention when she was away from home. That her family were the
+                        wealthiest in Eau Claire; that her mother entertained
+                        tremendously, gave little diners for her daughter before all
+                        dances and bought her a car of her own to drive round in, never
+                        occurred to her as factors in her home-town social success. Like
+                        most girls she had been brought up on the warm milk prepared by
+                        Annie Fellows Johnston and on novels in which the female was
+                        beloved because of certain mysterious womanly qualities, always
+                        mentioned but never displayed.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Bernice felt a vague pain that she was not at present engaged in
+                        being popular. She did not know that had it not been for
+                        Marjorie's campaigning she would have danced the entire evening
+                        with one man; but she knew that even in Eau Claire other girls
+                        with less position and less pulchritude were given a much bigger
+                        rush. She attributed this to something subtly unscrupulous in
+                        those girls. It had never worried her, and if it had her mother
+                        would have assured her that the other girls cheapened themselves
+                        and that men really respected girls like Bernice.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        She turned out the light in her bathroom, and on an impulse
+                        decided to go in and chat for a moment with her aunt Josephine,
+                        whose light was still on. Her soft slippers bore her noiselessly
+                        down the carpeted hall, but hearing voices inside she stopped
+                        near the partly openers door. Then she caught her own name, and
+                        without any definite intention of eavesdropping lingered&#x2014;and the
+                        thread of the conversation going on inside pierced her
+                        consciousness sharply as if it had been drawn through with a
+                        needle.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "She's absolutely hopeless!" It was Marjorie's voice. "Oh, I know
+                        what you're going to say! So many people have told you how
+                        pretty and sweet she is, and how she can cook! What of it? She
+                        has a bum time. Men don't like her."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "What's a little cheap popularity?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Mrs. Harvey sounded annoyed.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "It's everything when you're eighteen," said Marjorie
+                        emphatically. "I've done my best. I've been polite and I've made
+                        men dance with her, but they just won't stand being bored. When I
+                        think of that gorgeous coloring wasted on such a ninny, and
+                        think what Martha Carey could do with it&#x2014;oh!"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "There's no courtesy these days."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Mrs. Harvey's voice implied that modern situations were too much
+                        for her. When she was a girl all young ladies who belonged to
+                        nice families had glorious times.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Well," said Marjorie, "no girl can permanently bolster up a
+                        lame-duck visitor, because these days it's every girl for
+                        herself. I've even tried to drop hints about clothes and things,
+                        and she's been furious&#x2014;given me the funniest looks. She's
+                        sensitive enough to know she's not getting away with much, but
+                        I'll bet she consoles herself by thinking that she's very
+                        virtuous and that I'm too gay and fickle and will come to a bad
+                        end. All unpopular girls think that way. Sour grapes! Sarah
+                        Hopkins refers to Genevieve and Roberta and me as gardenia girls!
+                        I'll bet she'd give ten years of her life and her European
+                        education to be a gardenia girl and have three or four men in
+                        love with her and be cut in on every few feet at dances."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "It seems to me," interrupted Mrs. Harvey rather wearily, "that
+                        you ought to be able to do something for Bernice. I know she's
+                        not very vivacious."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Marjorie groaned.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Vivacious! Good grief! I've never heard her say anything to a
+                        boy except that it's hot or the floor's crowded or that she's
+                        going to school in New York next year. Sometimes she asks them
+                        what kind of car they have and tells them the kind she has.
+                        Thrilling!"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        There was a short silence and then Mrs. Harvey took up her
+                        refrain:
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "All I know is that other girls not half so sweet and attractive
+                        get partners. Martha Carey, for instance, is stout and loud, and
+                        her mother is distinctly common. Roberta Dillon is so thin this
+                        year that she looks as though Arizona were the place for her.
+                        She's dancing herself to death."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "But, mother," objected Marjorie impatiently, "Martha is cheerful
+                        and awfully witty and an awfully slick girl, and Roberta's a
+                        marvellous dancer. She's been popular for ages!"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Mrs. Harvey yawned.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I think it's that crazy Indian blood in Bernice," continued
+                        Marjorie. "Maybe she's a reversion to type.  Indian women all
+                        just sat round and never said anything."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Go to bed, you silly child," laughed Mrs. Harvey. "I wouldn't
+                        have told you that if I'd thought you were going to remember it.
+                        And I think most of your ideas are perfectly idiotic," she
+                        finished sleepily.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        There was another silence, while Marjorie considered whether or
+                        not convincing her mother was worth the trouble. People over
+                        forty can seldom be permanently convinced of anything. At
+                        eighteen our convictions are hills from which we look; at
+                        forty-five they are caves in which we hide.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Having decided this, Marjorie said good night. When she came out
+                        into the hall it was quite empty.
+                    </Paragraph>
+                        
+                    <Paragraph  TextAlignment="Center" FontSize="24" Margin="0 36 0 12">
+                        III
+                    </Paragraph>
+                        
+                    <Paragraph Margin="0 6">
+                        While Marjorie was breakfasting late next day Bernice came into
+                        the room with a rather formal good morning, sat down opposite,
+                        stared intently over and slightly moistened her lips.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "What's on your mind?" inquired Marjorie, rather puzzled.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Bernice paused before she threw her hand-grenade.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I heard what you said about me to your mother last night."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Marjorie was startled, but she showed only a faintly heightened
+                        color and her voice was quite even when she spoke.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Where were you?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "In the hall. I didn't mean to listen&#x2014;at first."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        After an involuntary look of contempt Marjorie dropped her eyes
+                        and became very interested in balancing a stray corn-flake on her
+                        finger.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I guess I'd better go back to Eau Claire&#x2014;if I'm such a
+                        nuisance." Bernice's lower lip was trembling violently and she
+                        continued on a wavering note: "I've tried to be nice, and&#x2014;and
+                        I've been first neglected and then insulted. No one ever visited
+                        me and got such treatment."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Marjorie was silent.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "But I'm in the way, I see. I'm a drag on you. Your friends don't
+                        like me." She paused, and then remembered another one of her
+                        grievances. "Of course I was furious last week when you tried to
+                        hint to me that that dress was unbecoming. Don't you think I know
+                        how to dress myself?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "No," murmured less than half-aloud.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "What?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I didn't hint anything," said Marjorie succinctly. "I said, as I
+                        remember, that it was better to wear a becoming dress three
+                        times straight than to alternate it with two frights."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Do you think that was a very nice thing to say?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I wasn't trying to be nice." Then after a pause: "When do you
+                        want to go?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Bernice drew in her breath sharply.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Oh!" It was a little half-cry.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Marjorie looked up in surprise.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Didn't you say you were going?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Yes, but&#x2014;&#x2014;"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Oh, you were only bluffing!"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        They stared at each other across the breakfast-table for a
+                        moment. Misty waves were passing before Bernice's eyes, while
+                        Marjorie's face wore that rather hard expression that she used
+                        when slightly intoxicated undergraduate's were making love to
+                        her.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "So you were bluffing," she repeated as if it were what she might
+                        have expected.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Bernice admitted it by bursting into tears. Marjorie's eyes
+                        showed boredom.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "You're my cousin," sobbed Bernice. "I'm v-v-visiting you. I was
+                        to stay a month, and if I go home my mother will know and she'll
+                        wah-wonder&#x2014;&#x2014;"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Marjorie waited until the shower of broken words collapsed into
+                        little sniffles.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I'll give you my month's allowance," she said coldly, "and you
+                        can spend this last week anywhere you want. There's a very nice
+                        hotel&#x2014;&#x2014;"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Bernice's sobs rose to a flute note, and rising of a sudden she
+                        fled from the room.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        An hour later, while Marjorie was in the library absorbed in
+                        composing one of those non-committal marvelously elusive letters
+                        that only a young girl can write, Bernice reappeared, very
+                        red-eyed, and consciously calm. She cast no glance at Marjorie
+                        but took a book at random from the shelf and sat down as if to
+                        read. Marjorie seemed absorbed in her letter and continued
+                        writing. When the clock showed noon Bernice closed her book with
+                        a snap.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I suppose I'd better get my railroad ticket."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        This was not the beginning of the speech she had rehearsed
+                        up-stairs, but as Marjorie was not getting her cues&#x2014;wasn't
+                        urging her to be reasonable; it's an a mistake&#x2014;it was the best
+                        opening she could muster.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Just wait till I finish this letter," said Marjorie without
+                        looking round. "I want to get it off in the next mail."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        After another minute, during which her pen scratched busily, she
+                        turned round and relaxed with an air of "at your service." Again
+                        Bernice had to speak.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Do you want me to go home?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Well," said Marjorie, considering, "I suppose if you're not
+                        having a good time you'd better go. No use being miserable."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Don't you think common kindness&#x2014;&#x2014;"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Oh, please don't quote 'Little Women'!" cried Marjorie
+                        impatiently. "That's out of style."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "You think so?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Heavens, yes! What modern girl could live like those inane
+                        females?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "They were the models for our mothers."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Marjorie laughed.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Yes, they were&#x2014;not! Besides, our mothers were all very well in
+                        their way, but they know very little about their daughters'
+                        problems."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Bernice drew herself up.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Please don't talk about my mother."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Marjorie laughed.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I don't think I mentioned her."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Bernice felt that she was being led away from her subject.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Do you think you've treated me very well?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I've done my best. You're rather hard material to work with."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        The lids of Bernice's eyes reddened.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I think you're hard and selfish, and you haven't a feminine
+                        quality in you."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Oh, my Lord!" cried Marjorie in desperation "You little nut!
+                        Girls like you are responsible for all the tiresome colorless
+                        marriages; all those ghastly inefficiencies that pass as feminine
+                        qualities. What a blow it must be when a man with imagination
+                        marries the beautiful bundle of clothes that he's been building
+                        ideals round, and finds that she's just a weak, whining, cowardly
+                        mass of affectations!"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Bernice's mouth had slipped half open.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "The womanly woman!" continued Marjorie. "Her whole early life is
+                        occupied in whining criticisms of girls like me who really do
+                        have a good time."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Bernice's jaw descended farther as Marjorie's voice rose.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "There's some excuse for an ugly girl whining. If I'd been
+                        irretrievably ugly I'd never have forgiven my parents for
+                        bringing me into the world. But you're starting life without any
+                        handicap&#x2014;" Marjorie's little fist clinched, "If you expect me to
+                        weep with you you'll be disappointed. Go or stay, just as you
+                        like." And picking up her letters she left the room.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Bernice claimed a headache and failed to appear at luncheon. They
+                        had a matinée date for the afternoon, but the headache
+                        persisting, Marjorie made explanation to a not very downcast boy.
+                        But when she returned late in the afternoon she found Bernice
+                        with a strangely set face waiting for her in her bedroom.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I've decided," began Bernice without preliminaries, "that maybe
+                        you're right about things&#x2014;possibly not. But if you'll tell me
+                        why your friends aren't&#x2014;aren't interested in me I'll see if I
+                        can do what you want me to."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Marjorie was at the mirror shaking down her hair.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Do you mean it?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Yes."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Without reservations? Will you do exactly what I say?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Well, I&#x2014;&#x2014;"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Well nothing! Will you do exactly as I say?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "If they're sensible things."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "They're not! You're no case for sensible things."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Are you going to make&#x2014;to recommend&#x2014;&#x2014;"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Yes, everything. If I tell you to take boxing-lessons you'll
+                        have to do it. Write home and tell your mother you're going' to
+                        stay another two weeks.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "If you'll tell me&#x2014;&#x2014;"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "All right&#x2014;I'll just give you a few examples now. First you have
+                        no ease of manner. Why? Because you're never sure about your
+                        personal appearance. When a girl feels that she's perfectly
+                        groomed and dressed she can forget that part of her. That's
+                        charm. The more parts of yourself you can afford to forget the
+                        more charm you have."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Don't I look all right?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "No; for instance you never take care of your eyebrows. They're
+                        black and lustrous, but by leaving them straggly they're a
+                        blemish. They'd be beautiful if you'd take care of them in
+                        one-tenth the time you take doing nothing. You're going to brush
+                        them so that they'll grow straight."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Bernice raised the brows in question.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Do you mean to say that men notice eyebrows?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Yes&#x2014;subconsciously. And when you go home you ought to have your
+                        teeth straightened a little. It's almost imperceptible,
+                        still&#x2014;&#x2014;"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "But I thought," interrupted Bernice in bewilderment, "that you
+                        despised little dainty feminine things like that."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I hate dainty minds," answered Marjorie. "But a girl has to be
+                        dainty in person. If she looks like a million dollars she can
+                        talk about Russia, ping-pong, or the League of Nations and get
+                        away with it."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "What else?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Oh, I'm just beginning! There's your dancing."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Don't I dance all right?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "No, you don't&#x2014;you lean on a man; yes, you do&#x2014;ever so slightly.
+                        I noticed it when we were dancing together yesterday. And you
+                        dance standing up straight instead of bending over a little.
+                        Probably some old lady on the side-line once told you that you
+                        looked so dignified that way. But except with a very small girl
+                        it's much harder on the man, and he's the one that counts."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Go on." Bernice's brain was reeling.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Well, you've got to learn to be nice to men who are sad birds.
+                        You look as if you'd been insulted whenever you're thrown with
+                        any except the most popular boys. Why, Bernice, I'm cut in on
+                        every few feet&#x2014;and who does most of it? Why, those very sad
+                        birds. No girl can afford to neglect them. They're the big part
+                        of any crowd. Young boys too shy to talk are the very best
+                        conversational practice. Clumsy boys are the best dancing
+                        practice. If you can follow them and yet look graceful you can
+                        follow a baby tank across a barb-wire sky-scraper."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Bernice sighed profoundly, but Marjorie was not through.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "If you go to a dance and really amuse, say, three sad birds that
+                        dance with you; if you talk so well to them that they forget
+                        they're stuck with you, you've done something. They'll come back
+                        next time, and gradually so many sad birds will dance with you
+                        that the attractive boys will see there's no danger of being
+                        stuck&#x2014;then they'll dance with you."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Yes," agreed Bernice faintly. "I think I begin to see."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "And finally," concluded Marjorie, "poise and charm will just
+                        come. You'll wake up some morning knowing you've attained it and
+                        men will know it too."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Bernice rose.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "It's been awfully kind of you&#x2014;but nobody's ever talked to me
+                        like this before, and I feel sort of startled."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Marjorie made no answer but gazed pensively at her own image in
+                        the mirror.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "You're a peach to help me," continued Bernice.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Still Marjorie did not answer, and Bernice thought she had seemed
+                        too grateful.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I know you don't like sentiment," she said timidly.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Marjorie turned to her quickly.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Oh, I wasn't thinking about that. I was considering whether we
+                        hadn't better bob your hair."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Bernice collapsed backward upon the bed.
+                    </Paragraph>
+                        
+                    <Paragraph  TextAlignment="Center" FontSize="24" Margin="0 36 0 12">
+                        IV
+                    </Paragraph>
+                        
+                    <Paragraph Margin="0 6">
+                        On the following Wednesday evening there was a dinner-dance at
+                        the country club. When the guests strolled in Bernice found her
+                        place-card with a slight feeling of irritation. Though at her
+                        right sat G. Reece Stoddard, a most desirable and distinguished
+                        young bachelor, the all-important left held only Charley Paulson.
+                        Charley lacked height, beauty, and social shrewdness, and in her
+                        new enlightenment Bernice decided that his only qualification to
+                        be her partner was that he had never been stuck with her.  But
+                        this feeling of irritation left with the last of the soup-plates,
+                        and Marjorie's specific instruction came to her. Swallowing her
+                        pride she turned to Charley Paulson and plunged.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Do you think I ought to bob my hair, Mr. Charley Paulson?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Charley looked up in surprise.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Why?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Because I'm considering it. It's such a sure and easy way of
+                        attracting attention."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Charley smiled pleasantly. He could not know this had been
+                        rehearsed. He replied that he didn't know much about bobbed hair.
+                        But Bernice was there to tell him.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I want to be a society vampire, you see," she announced coolly,
+                        and went on to inform him that bobbed hair was the necessary
+                        prelude. She added that she wanted to ask his advice, because she
+                        had heard he was so critical about girls.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Charley, who knew as much about the psychology of women as he did
+                        of the mental states of Buddhist contemplatives, felt vaguely
+                        flattered.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "So I've decided," she continued, her voice rising slightly,
+                        "that early next week I'm going down to the Sevier Hotel
+                        barber-shop, sit in the first chair, and get my hair bobbed." She
+                        faltered noticing that the people near her had paused in their
+                        conversation and were listening; but after a confused second
+                        Marjorie's coaching told, and she finished her paragraph to the
+                        vicinity at large. "Of course I'm charging admission, but if
+                        you'll all come down and encourage me I'll issue passes for the
+                        inside seats."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        There was a ripple of appreciative laughter, and under cover of
+                        it G. Reece Stoddard leaned over quickly and said close to her
+                        ear: "I'll take a box right now."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        She met his eyes and smiled as if he had said something
+                        surprisingly brilliant.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Do you believe in bobbed hair?" asked G. Reece in the same
+                        undertone.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I think it's unmoral," affirmed Bernice gravely. "But, of
+                        course, you've either got to amuse people or feed 'em or shock
+                        'em." Marjorie had culled this from Oscar Wilde. It was greeted
+                        with a ripple of laughter from the men and a series of quick,
+                        intent looks from the girls. And then as though she had said
+                        nothing of wit or moment Bernice turned again to Charley and
+                        spoke confidentially in his ear.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I want to ask you your opinion of several people. I imagine
+                        you're a wonderful judge of character."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Charley thrilled faintly&#x2014;paid her a subtle compliment by
+                        overturning her water.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Two hours later, while Warren McIntyre was standing passively in
+                        the stag line abstractedly watching the dancers and wondering
+                        whither and with whom Marjorie had disappeared, an unrelated
+                        perception began to creep slowly upon him&#x2014;a perception that
+                        Bernice, cousin to Marjorie, had been cut in on several times in
+                        the past five minutes. He closed his eyes, opened them and looked
+                        again. Several minutes back she had been dancing with a visiting
+                        boy, a matter easily accounted for; a visiting boy would know no
+                        better. But now she was dancing with some one else, and there
+                        was Charley Paulson headed for her with enthusiastic
+                        determination in his eye. Funny&#x2014;Charley seldom danced with more
+                        than three girls an evening.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Warren was distinctly surprised when&#x2014;the exchange having been
+                        effected&#x2014;the man relieved proved to be none ether than G. Reece
+                        Stoddard himself. And G. Reece seemed not at all jubilant at
+                        being relieved. Next time Bernice danced near, Warren regarded
+                        her intently. Yes, she was pretty, distinctly pretty; and
+                        to-night her face seemed really vivacious. She had that look that
+                        no woman, however histrionically proficient, can successfully
+                        counterfeit&#x2014;she looked as if she were having a good time. He
+                        liked the way she had her hair arranged, wondered if it was
+                        brilliantine that made it glisten so. And that dress was
+                        becoming&#x2014;a dark red that set off her shadowy eyes and high
+                        coloring. He remembered that he had thought her pretty when she
+                        first came to town, before he had realized that she was dull. Too
+                        bad she was dull&#x2014;dull girls unbearable&#x2014;certainly pretty
+                        though.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        His thoughts zigzagged back to Marjorie. This disappearance would
+                        be like other disappearances. When she reappeared he would
+                        demand where she had been&#x2014;would be told emphatically that it was
+                        none of his business. What a pity she was so sure of him! She
+                        basked in the knowledge that no other girl in town interested
+                        him; she defied him to fall in love with Genevieve or
+                        Roberta.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Warren sighed. The way to Marjorie's affections was a labyrinth
+                        indeed. He looked up. Bernice was again dancing with the visiting
+                        boy. Half unconsciously he took a step out from the stag line in
+                        her direction, and hesitated. Then he said to himself that it
+                        was charity. He walked toward her&#x2014;collided suddenly with G.
+                        Reece Stoddard.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Pardon me," said Warren.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        But G. Reece had not stopped to apologize. He had again cut in on
+                        Bernice.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        That night at one o'clock Marjorie, with one hand on the
+                        electric-light switch in the hall, turned to take a last look at
+                        Bernice's sparkling eyes.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "So it worked?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Oh, Marjorie, yes!" cried Bernice.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I saw you were having a gay time."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I did! The only trouble was that about midnight I ran short of
+                        talk. I had to repeat myself&#x2014;with different men of course. I
+                        hope they won't compare notes."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Men don't," said Marjorie, yawning, "and it wouldn't matter if
+                        they did&#x2014;they'd think you were even trickier."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        She snapped out the light, and as they started up the stairs
+                        Bernice grasped the banister thankfully. For the first time in
+                        her life she had been danced tired.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "You see," said Marjorie it the top of the stairs, "one man sees
+                        another man cut in and he thinks there must be something there.
+                        Well, we'll fix up some new stuff to-morrow.  Good night."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Good night."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        As Bernice took down her hair she passed the evening before her
+                        in review.  She had followed instructions exactly.  Even when
+                        Charley Paulson cut in for the eighth time she had simulated
+                        delight and had apparently been both interested and flattered.
+                        She had not talked about the weather or Eau Claire or automobiles
+                        or her school, but had confined her conversation to me, you, and
+                        us.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        But a few minutes before she fell asleep a rebellious thought was
+                        churning drowsily in her brain&#x2014;after all, it was she who had
+                        done it.  Marjorie, to be sure, had given her her conversation,
+                        but then Marjorie got much of her conversation out of things she
+                        read.  Bernice had bought the red dress, though she had never
+                        valued it highly before Marjorie dug it out of her trunk&#x2014;and her
+                        own voice had said the words, her own lips had smiled, her own
+                        feet had danced.  Marjorie nice girl&#x2014;vain, though&#x2014;nice
+                        evening&#x2014;nice boys&#x2014;like Warren&#x2014;Warren&#x2014;Warren&#x2014;what's his
+                        name&#x2014;Warren&#x2014;&#x2014;
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        She fell asleep.
+                    </Paragraph>
+                        
+                    <Paragraph  TextAlignment="Center" FontSize="24" Margin="0 36 0 12">
+                        V
+                    </Paragraph>
+                        
+                    <Paragraph Margin="0 6">
+                        To Bernice the next week was a revelation.  With the feeling that
+                        people really enjoyed looking at her and listening to her came
+                        the foundation of self-confidence.  Of course there were numerous
+                        mistakes at first.  She did not know, for instance, that
+                        Draycott Deyo was studying for the ministry; she was unaware that
+                        he had cut in on her because he thought she was a quiet,
+                        reserved girl. Had she known these things she would not have
+                        treated him to the line which began "Hello, Shell Shock!" and
+                        continued with the bathtub story&#x2014;"It takes a frightful lot of
+                        energy to fix my hair in the summer&#x2014;there's so much of it&#x2014;so I
+                        always fix it first and powder my face and put on my hat; then I
+                        get into the bathtub, and dress afterward. Don't you think that's
+                        the best plan?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Though Draycott Deyo was in the throes of difficulties concerning
+                        baptism by immersion and might possibly have seen a connection,
+                        it must be admitted that he did not. He considered feminine
+                        bathing an immoral subject, and gave her some of his ideas on the
+                        depravity of modern society.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        But to offset that unfortunate occurrence Bernice had several
+                        signal successes to her credit. Little Otis Ormonde pleaded off
+                        from a trip East and elected instead to follow her with a
+                        puppylike devotion, to the amusement of his crowd and to the
+                        irritation of G. Reece Stoddard, several of whose afternoon calls
+                        Otis completely ruined by the disgusting tenderness of the
+                        glances he bent on Bernice. He even told her the story of the
+                        two-by-four and the dressing-room to show her how frightfully
+                        mistaken he and every one else had been in their first judgment
+                        of her. Bernice laughed off that incident with a slight sinking
+                        sensation.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Of all Bernice's conversation perhaps the best known and most
+                        universally approved was the line about the bobbing of her hair.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Oh, Bernice, when you goin' to get the hair bobbed?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Day after to-morrow maybe," she would reply, laughing. "Will you
+                        come and see me? Because I'm counting on you, you know."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Will we? You know! But you better hurry up."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Bernice, whose tonsorial intentions were strictly dishonorable,
+                        would laugh again.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Pretty soon now. You'd be surprised."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        But perhaps the most significant symbol of her success was the
+                        gray car of the hypercritical Warren McIntyre, parked daily in
+                        front of the Harvey house. At first the parlor-maid was
+                        distinctly startled when he asked for Bernice instead of
+                        Marjorie; after a week of it she told the cook that Miss Bernice
+                        had gotta holda Miss Marjorie's best fella.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        And Miss Bernice had. Perhaps it began with Warren's desire to
+                        rouse jealousy in Marjorie; perhaps it was the familiar though
+                        unrecognized strain of Marjorie in Bernice's conversation;
+                        perhaps it was both of these and something of sincere attraction
+                        besides. But somehow the collective mind of the younger set knew
+                        within a week that Marjorie's most reliable beau had made an
+                        amazing face-about and was giving an indisputable rush to
+                        Marjorie's guest. The question of the moment was how Marjorie
+                        would take it. Warren called Bernice on the 'phone twice a day,
+                        sent her notes, and they were frequently seen together in his
+                        roadster, obviously engrossed in one of those tense, significant
+                        conversations as to whether or not he was sincere.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Marjorie on being twitted only laughed. She said she was mighty
+                        glad that Warren had at last found some one who appreciated him.
+                        So the younger set laughed, too, and guessed that Marjorie didn't
+                        care and let it go at that.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        One afternoon when there were only three days left of her visit
+                        Bernice was waiting in the hall for Warren, with whom she was
+                        going to a bridge party. She was in rather a blissful mood, and
+                        when Marjorie&#x2014;also bound for the party&#x2014;appeared beside her and
+                        began casually to adjust her hat in the mirror, Bernice was
+                        utterly unprepared for anything in the nature of a clash.
+                        Marjorie did her work very coldly and succinctly in three
+                        sentences.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "You may as well get Warren out of your head," she said coldly.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "What?" Bernice was utterly astounded.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "You may as well stop making a fool of yourself over Warren
+                        McIntyre. He doesn't care a snap of his fingers about you."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        For a tense moment they regarded each other&#x2014;Marjorie scornful,
+                        aloof; Bernice astounded, half-angry, half-afraid. Then two cars
+                        drove up in front of the house and there was a riotous honking.
+                        Both of them gasped faintly, turned, and side by side hurried
+                        out.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        All through the bridge party Bernice strove in vain to master a
+                        rising uneasiness. She had offended Marjorie, the sphinx of
+                        sphinxes. With the most wholesome and innocent intentions in the
+                        world she had stolen Marjorie's property. She felt suddenly and
+                        horribly guilty. After the bridge game, when they sat in an
+                        informal circle and the conversation became general, the storm
+                        gradually broke. Little Otis Ormonde inadvertently precipitated
+                        it.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "When you going back to kindergarten, Otis?" some one had asked.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Me? Day Bernice gets her hair bobbed."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Then your education's over," said Marjorie quickly. "That's only
+                        a bluff of hers. I should think you'd have realized."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "That a fact?" demanded Otis, giving Bernice a reproachful
+                        glance.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Bernice's ears burned as she tried to think up an effectual
+                        come-back. In the face of this direct attack her imagination was
+                        paralyzed.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "There's a lot of bluffs in the world," continued Marjorie quite
+                        pleasantly. "I should think you'd be young enough to know that,
+                        Otis."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Well," said Otis, "maybe so. But gee!  With a line like
+                        Bernice's&#x2014;&#x2014;"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Really?" yawned Marjorie. "What's her latest bon mot?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        No one seemed to know. In fact, Bernice, having trifled with her
+                        muse's beau, had said nothing memorable of late.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Was that really all a line?" asked Roberta curiously.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Bernice hesitated. She felt that wit in some form was demanded of
+                        her, but under her cousin's suddenly frigid eyes she was
+                        completely incapacitated.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I don't know," she stalled.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Splush!" said Marjorie. "Admit it!"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Bernice saw that Warren's eyes had left a ukulele he had been
+                        tinkering with and were fixed on her questioningly.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Oh, I don't know!" she repeated steadily. Her cheeks were
+                        glowing.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Splush!" remarked Marjorie again.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Come through, Bernice," urged Otis. "Tell her where to get off."
+                        Bernice looked round again&#x2014;she seemed unable to get away from
+                        Warren's eyes.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I like bobbed hair," she said hurriedly, as if he had asked her
+                        a question, "and I intend to bob mine."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "When?" demanded Marjorie.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Any time."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "No time like the present," suggested Roberta.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Otis jumped to his feet.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Good stuff!" he cried. "We'll have a summer bobbing party.
+                        Sevier Hotel barber-shop, I think you said."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        In an instant all were on their feet. Bernice's heart throbbed
+                        violently.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "What?" she gasped.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Out of the group came Marjorie's voice, very clear and
+                        contemptuous.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Don't worry&#x2014;she'll back out!"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Come on, Bernice!" cried Otis, starting toward the door.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Four eyes&#x2014;Warren's and Marjorie's&#x2014;stared at her, challenged
+                        her, defied her. For another second she wavered wildly.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "All right," she said swiftly "I don't care if I do."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        An eternity of minutes later, riding down-town through the late
+                        afternoon beside Warren, the others following in Roberta's car
+                        close behind, Bernice had all the sensations of Marie Antoinette
+                        bound for the guillotine in a tumbrel. Vaguely she wondered why
+                        she did not cry out that it was all a mistake. It was all she
+                        could do to keep from clutching her hair with both bands to
+                        protect it from the suddenly hostile world. Yet she did neither.
+                        Even the thought of her mother was no deterrent now. This was the
+                        test supreme of her sportsmanship; her right to walk
+                        unchallenged in the starry heaven of popular girls.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Warren was moodily silent, and when they came to the hotel he
+                        drew up at the curb and nodded to Bernice to precede him out.
+                        Roberta's car emptied a laughing crowd into the shop, which
+                        presented two bold plate-glass windows to the street.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Bernice stood on the curb and looked at the sign, Sevier
+                        Barber-Shop. It was a guillotine indeed, and the hangman was the
+                        first barber, who, attired in a white coat and smoking a
+                        cigarette, leaned nonchalantly against the first chair. He must
+                        have heard of her; he must have been waiting all week, smoking
+                        eternal cigarettes beside that portentous, too-often-mentioned
+                        first chair. Would they blind-fold her? No, but they would tie a
+                        white cloth round her neck lest any of her blood&#x2014;nonsense&#x2014;hair&#x2014;should
+                        get on her clothes.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "All right, Bernice," said Warren quickly.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        With her chin in the air she crossed the sidewalk, pushed open
+                        the swinging screen-door, and giving not a glance to the
+                        uproarious, riotous row that occupied the waiting bench, went up
+                        to the fat barber.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I want you to bob my hair."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        The first barber's mouth slid somewhat open. His cigarette
+                        dropped to the floor.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Huh?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "My hair&#x2014;bob it!"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Refusing further preliminaries, Bernice took her seat on high. A
+                        man in the chair next to her turned on his side and gave her a
+                        glance, half lather, half amazement. One barber started and
+                        spoiled little Willy Schuneman's monthly haircut. Mr. O'Reilly in
+                        the last chair grunted and swore musically in ancient Gaelic as
+                        a razor bit into his cheek. Two bootblacks became wide-eyed and
+                        rushed for her feet. No, Bernice didn't care for a shine.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Outside a passer-by stopped and stared; a couple joined him; half
+                        a dozen small boys' nose sprang into life, flattened against the
+                        glass; and snatches of conversation borne on the summer breeze
+                        drifted in through the screen-door.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Lookada long hair on a kid!"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Where'd yuh get 'at stuff? 'At's a bearded lady he just finished
+                        shavin'."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        But Bernice saw nothing, heard nothing. Her only living sense
+                        told her that this man in the white coat had removed one
+                        tortoise-shell comb and then another; that his fingers were
+                        fumbling clumsily with unfamiliar hairpins; that this hair, this
+                        wonderful hair of hers, was going&#x2014;she would never again feel its
+                        long voluptuous pull as it hung in a dark-brown glory down her
+                        back. For a second she was near breaking down, and then the
+                        picture before her swam mechanically into her vision&#x2014;Marjorie's
+                        mouth curling in a faint ironic smile as if to say:
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Give up and get down! You tried to buck me and I called your
+                        bluff. You see you haven't got a prayer."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        And some last energy rose up in Bernice, for she clinched her
+                        hands under the white cloth, and there was a curious narrowing of
+                        her eyes that Marjorie remarked on to some one long afterward.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Twenty minutes later the barber swung her round to face the
+                        mirror, and she flinched at the full extent of the damage that
+                        had been wrought. Her hair was not curls and now it lay in lank
+                        lifeless blocks on both sides of her suddenly pale face. It was
+                        ugly as sin&#x2014;she had known it would be ugly as sin. Her face's
+                        chief charm had been a Madonna-like simplicity. Now that was gone
+                        and she was&#x2014;well frightfully mediocre&#x2014;not stagy; only
+                        ridiculous, like a Greenwich Villager who had left her spectacles
+                        at home.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        As she climbed down from the chair she tried to smile&#x2014;failed
+                        miserably. She saw two of the girls exchange glances; noticed
+                        Marjorie's mouth curved in attenuated mockery&#x2014;and that Warren's
+                        eyes were suddenly very cold.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "You see,"&#x2014;her words fell into an awkward pause&#x2014;"I've done it."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Yes, you've&#x2014;done it," admitted Warren.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Do you like it?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        There was a half-hearted "Sure" from two or three voices, another
+                        awkward pause, and then Marjorie turned swiftly and with
+                        serpentlike intensity to Warren.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Would you mind running me down to the cleaners?" she asked.
+                        "I've simply got to get a dress there before supper. Roberta's
+                        driving right home and she can take the others."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Warren stared abstractedly at some infinite speck out the window.
+                        Then for an instant his eyes rested coldly on Bernice before
+                        they turned to Marjorie.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Be glad to," he said slowly.
+                    </Paragraph>
+                        
+                    <Paragraph  TextAlignment="Center" FontSize="24" Margin="0 36 0 12">
+                        VI
+                    </Paragraph>
+                        
+                    <Paragraph Margin="0 6">
+                        Bernice did not fully realize the outrageous trap that had been
+                        set for her until she met her aunt's amazed glance just before
+                        dinner.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Why Bernice!"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I've bobbed it, Aunt Josephine."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Why, child!"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Do you like it?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Why Bernice!"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I suppose I've shocked you."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "No, but what'll Mrs. Deyo think tomorrow night? Bernice, you
+                        should have waited until after the Deyo's dance&#x2014;you should have
+                        waited if you wanted to do that."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "It was sudden, Aunt Josephine. Anyway, why does it matter to
+                        Mrs. Deyo particularly?"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Why child," cried Mrs. Harvey, "in her paper on 'The Foibles of
+                        the Younger Generation' that she read at the last meeting of the
+                        Thursday Club she devoted fifteen minutes to bobbed hair. It's
+                        her pet abomination. And the dance is for you and Marjorie!"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I'm sorry."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Oh, Bernice, what'll your mother say? She'll think I let you do
+                        it."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I'm sorry."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Dinner was an agony. She had made a hasty attempt with a
+                        curling-iron, and burned her finger and much hair. She could see
+                        that her aunt was both worried and grieved, and her uncle kept
+                        saying, "Well, I'll be darned!" over and over in a hurt and
+                        faintly hostile torte. And Marjorie sat very quietly, intrenched
+                        behind a faint smile, a faintly mocking smile.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Somehow she got through the evening. Three boy's called; Marjorie
+                        disappeared with one of them, and Bernice made a listless
+                        unsuccessful attempt to entertain the two others&#x2014;sighed
+                        thankfully as she climbed the stairs to her room at half past
+                        ten. What a day!
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        When she had undressed for the night the door opened and Marjorie
+                        came in.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Bernice," she said "I'm awfully sorry about the Deyo dance. I'll
+                        give you my word of honor I'd forgotten all about it."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "'Sall right," said Bernice shortly. Standing before the mirror
+                        she passed her comb slowly through her short hair.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I'll take you down-town to-morrow," continued Marjorie, "and the
+                        hairdresser'll fix it so you'll look slick. I didn't imagine
+                        you'd go through with it. I'm really mighty sorry."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Oh, 'sall right!"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Still it's your last night, so I suppose it won't matter much."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Then Bernice winced as Marjorie tossed her own hair over her
+                        shoulders and began to twist it slowly into two long blond braids
+                        until in her cream-colored negligée she looked like a delicate
+                        painting of some Saxon princess. Fascinated, Bernice watched the
+                        braids grow. Heavy and luxurious they were moving under the
+                        supple fingers like restive snakes&#x2014;and to Bernice remained this
+                        relic and the curling-iron and a to-morrow full of eyes. She
+                        could see G. Reece Stoddard, who liked her, assuming his Harvard
+                        manner and telling his dinner partner that Bernice shouldn't have
+                        been allowed to go to the movies so much; she could see Draycott
+                        Deyo exchanging glances with his mother and then being
+                        conscientiously charitable to her. But then perhaps by to-morrow
+                        Mrs. Deyo would have heard the news; would send round an icy
+                        little note requesting that she fail to appear&#x2014;and behind her
+                        back they would all laugh and know that Marjorie had made a fool
+                        of her; that her chance at beauty had been sacrificed to the
+                        jealous whim of a selfish girl. She sat down suddenly before the
+                        mirror, biting the inside of her cheek.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I like it," she said with an effort. "I think it'll be
+                        becoming."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Marjorie smiled.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "It looks all right. For heaven's sake, don't let it worry you!"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "I won't."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Good night Bernice."
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        But as the door closed something snapped within Bernice. She
+                        sprang dynamically to her feet, clinching her hands, then swiftly
+                        and noiseless crossed over to her bed and from underneath it
+                        dragged out her suitcase. Into it she tossed toilet articles and
+                        a change of clothing, Then she turned to her trunk and quickly
+                        dumped in two drawerfulls of lingerie and stammer dresses. She
+                        moved quietly, but deadly efficiency, and in three-quarters of an
+                        hour her trunk was locked and strapped and she was fully dressed
+                        in a becoming new travelling suit that Marjorie had helped her
+                        pick out.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Sitting down at her desk she wrote a short note to Mrs. Harvey,
+                        in which she briefly outlined her reasons for going. She sealed
+                        it, addressed it, and laid it on her pillow. She glanced at her
+                        watch. The train left at one, and she knew that if she walked
+                        down to the Marborough Hotel two blocks away she could easily get
+                        a taxicab.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Suddenly she drew in her breath sharply and an expression flashed
+                        into her eyes that a practiced character reader might have
+                        connected vaguely with the set look she had worn in the barber's
+                        chair&#x2014;somehow a development of it. It was quite a new look for
+                        Bernice&#x2014;and it carried consequences.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        She went stealthily to the bureau, picked up an article that lay
+                        there, and turning out all the lights stood quietly until her
+                        eyes became accustomed to the darkness. Softly she pushed open
+                        the door to Marjorie's room. She heard the quiet, even breathing
+                        of an untroubled conscience asleep.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        She was by the bedside now, very deliberate and calm. She acted
+                        swiftly. Bending over she found one of the braids of Marjorie's
+                        hair, followed it up with her hand to the point nearest the head,
+                        and then holding it a little slack so that the sleeper would
+                        feel no pull, she reached down with the shears and severed it.
+                        With the pigtail in her hand she held her breath. Marjorie had
+                        muttered something in her sleep. Bernice deftly amputated the
+                        other braid, paused for an instant, and then flitted swiftly and
+                        silently back to her own room.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Down-stairs she opened the big front door, closed it carefully
+                        behind her, and feeling oddly happy and exuberant stepped off the
+                        porch into the moonlight, swinging her heavy grip like a
+                        shopping-bag. After a minute's brisk walk she discovered that her
+                        left hand still held the two blond braids. She laughed
+                        unexpectedly&#x2014;had to shut her mouth hard to keep from emitting an
+                        absolute peal. She was passing Warren's house now, and on the
+                        impulse she set down her baggage, and swinging the braids like
+                        piece of rope flung them at the wooden porch, where they landed
+                        with a slight thud. She laughed again, no longer restraining
+                        herself.
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        "Huh," she giggled wildly. "Scalp the selfish thing!"
+                    </Paragraph>
+                        
+                    <Paragraph TextIndent="48" Margin="0 6">
+                        Then picking up her staircase she set off at a half-run down the
+                        moonlit street.
+                    </Paragraph>
+                </RichTextBlock>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>
+                

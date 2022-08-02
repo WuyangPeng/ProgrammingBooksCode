@@ -1,0 +1,8 @@
+Erlang编程指南 （Erlang Programming） 
+
+官方网站：
+https://www.erlangprogramming.org/
+
+○
+作者：Francesco Cesarini、Simon Tbompson
+其他书籍：Francesco Cesarini《高伸缩性系统:ErlangOTP大型分布式容错设计》

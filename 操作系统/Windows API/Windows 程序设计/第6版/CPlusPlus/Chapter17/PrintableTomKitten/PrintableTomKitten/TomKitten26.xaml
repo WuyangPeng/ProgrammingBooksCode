@@ -1,0 +1,21 @@
+﻿<UserControl
+    x:Class="PrintableTomKitten.TomKitten26"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Grid VerticalAlignment="Center"
+          MaxWidth="640">
+        <StackPanel>
+            <TextBlock Style="{StaticResource paragraphTextStyle}">
+                &#x2003;&#x2003;“Let us climb up the rockery, and sit on 
+                the garden wall,” said Moppet.
+            </TextBlock>
+
+            <TextBlock Style="{StaticResource paragraphTextStyle}">
+                &#x2003;&#x2003;They turned their pinafores back to front, 
+                and went up with a skip and a jump; Moppet's white tucker 
+                fell down into the road.
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>

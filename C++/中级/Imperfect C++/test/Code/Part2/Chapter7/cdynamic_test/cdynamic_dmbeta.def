@@ -1,0 +1,4 @@
+
+LIBRARY		"cdynamic.dll"
+EXPORTS
+	cfunc

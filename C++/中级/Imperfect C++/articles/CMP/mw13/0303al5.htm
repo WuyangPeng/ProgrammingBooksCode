@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>Adapting Win32 Enumeration APIs to STL Iterator Concepts</title>
+</head>
+
+<body>
+
+
+<h4>Listing 5   Using the FindFile API to list directories</h4>
+
+<pre>
+
+
+void list_sub_directories(char const *dir)
+{
+  WIN32_FIND_DATA findData;
+  TCHAR           szFind[_MAX_PATH];
+  HANDLE          hFind;
+
+  lstrcpy(szFind, dir);
+  lstrcat(szFind, "\\*.*");
+
+  hFind = FindFirstFile(szFind, &findData);
+
+  if(hFind != INVALID_HANDLE_VALUE)
+  {
+    do
+    {
+      if( lstrcmpi(findData.cFileName, ".") == 0 ||
+          lstrcmpi(findData.cFileName, "..") == 0)
+      {
+        // Ignore dots
+      }
+      else if(findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+      {
+        // Show subdirectories
+        printf( "%s\n", findData.cFileName);
+      }
+
+    } while(FindNextFile(hFind, &findData));
+
+    FindClose(hFind);
+  }
+}
+
+int main(int argc, char **argv)
+{
+  char szDir[_MAX_PATH];
+
+  GetCurrentDirectory(_MAX_PATH, szDir);
+
+  list_sub_directories(szDir);
+
+  return 0;
+}
+</pre>
+
+
+</pre>
+</body>
+</html>

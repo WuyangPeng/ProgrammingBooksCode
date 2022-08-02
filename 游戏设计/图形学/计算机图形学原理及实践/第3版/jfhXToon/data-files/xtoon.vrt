@@ -1,0 +1,31 @@
+#version 120 // -*- c++ -*-
+/**
+ Per-pixel Phong Shading
+
+ @file phong.vrt
+ @author Morgan McGuire, http://graphics.cs.williams.edu
+ */
+attribute vec4 g3d_Vertex;
+attribute vec3 g3d_Normal;
+
+/** Camera origin in world space */
+uniform vec3 wsEyePosition;
+
+uniform vec3 wsLight;
+
+/** Non-unit vector to the eye from the vertex */
+varying vec3 wsInterpolatedEye;
+
+/** Non-unit surface normal in world space */
+varying vec3 wsInterpolatedNormal;
+
+/** Distance from eye to surface point */
+varying float dist;
+
+void main(void) {
+    wsInterpolatedNormal = normalize(g3d_ObjectToWorldNormalMatrix * g3d_Normal);
+    wsInterpolatedEye    = wsEyePosition - (g3d_ObjectToWorldMatrix * g3d_Vertex).xyz;
+	gl_Position = g3d_ModelViewProjectionMatrix * g3d_Vertex;
+	
+	dist = sqrt(dot(wsInterpolatedEye, wsInterpolatedEye));
+}

@@ -1,0 +1,1092 @@
+listing 1
+// A thread control panel. 
+  
+#include <map> 
+#include <windows.h>  
+#include "panel.h"  
+using namespace std; 
+ 
+const int NUMPRIORITIES = 5; 
+const int OFFSET = 2;  
+ 
+// Array of strings for priority list box. 
+char priorities[NUMPRIORITIES][80] = {  
+  "Lowest",   
+  "Below Normal",   
+  "Normal",  
+  "Above Normal",  
+  "Highest"  
+};  
+ 
+// A Thread Control Panel Class. 
+class ThrdCtrlPanel { 
+  // Information about the thread under control.  
+  struct ThreadInfo { 
+    HANDLE hThread; // handle of thread 
+    int priority;   // current priority 
+    bool suspended; // true if suspended 
+    ThreadInfo(HANDLE ht, int p, bool s) { 
+      hThread = ht; 
+      priority = p; 
+      suspended = s; 
+    } 
+  }; 
+ 
+  // This map holds a ThreadInfo for each 
+  // active thread control panel.  
+  static map<HWND, ThreadInfo> dialogmap; 
+ 
+public:  
+ 
+  // Construct a control panel. 
+  ThrdCtrlPanel(HINSTANCE hInst, HANDLE hThrd); 
+ 
+  // The control panel's callback function.  
+  static LRESULT CALLBACK ThreadPanel(HWND hwnd, UINT message,  
+                         WPARAM wParam, LPARAM lParam); 
+}; 
+ 
+// Define static member dialogmap. 
+map<HWND, ThrdCtrlPanel::ThreadInfo> 
+  ThrdCtrlPanel::dialogmap; 
+ 
+// Create a thread control panel. 
+ThrdCtrlPanel::ThrdCtrlPanel(HINSTANCE hInst, 
+                             HANDLE hThrd) 
+{ 
+  ThreadInfo ti(hThrd,  
+                GetThreadPriority(hThrd)+OFFSET, 
+                false); 
+   
+  // Owner window is desktop. 
+  HWND hDialog = CreateDialog(hInst, "ThreadPanelDB", 
+                       NULL,  
+                       (DLGPROC) ThreadPanel);  
+   
+  // Put info about this dialog box in the map. 
+  dialogmap.insert(pair<HWND, ThreadInfo>(hDialog, ti)); 
+ 
+  // Set the control panel's title. 
+  char str[80] = "Control Panel for Thread "; 
+  char str2[4]; 
+  _itoa(dialogmap.size(), str2, 10); 
+  strcat(str, str2); 
+  SetWindowText(hDialog, str);  
+ 
+  // Offset each dialog box instance. 
+  MoveWindow(hDialog, 30*dialogmap.size(), 
+             30*dialogmap.size(), 
+             300, 250, 1); 
+ 
+  // Update priority setting in the list box. 
+  SendDlgItemMessage(hDialog, IDD_LB, LB_SETCURSEL,   
+                          (WPARAM) ti.priority, 0);  
+ 
+  // Increase priority to ensure control.  You can  
+  // change or remove this statement based on your 
+  // execution environment. 
+  SetThreadPriority(GetCurrentThread(), 
+                    THREAD_PRIORITY_ABOVE_NORMAL);  
+} 
+ 
+  
+// Thread control panel dialog box callback function. 
+LRESULT CALLBACK ThrdCtrlPanel::ThreadPanel(HWND hwnd, 
+                                      UINT message,  
+                                      WPARAM wParam, 
+                                      LPARAM lParam)  
+{  
+  int i;  
+  HWND hpbRes, hpbSus, hpbTerm;  
+ 
+  switch(message) {  
+    case WM_INITDIALOG:   
+      // Initialize priority list box. 
+      for(i=0; i<NUMPRIORITIES; i++) {  
+        SendDlgItemMessage(hwnd, IDD_LB,   
+            LB_ADDSTRING, 0, (LPARAM) priorities[i]);  
+        }  
+  
+       // Set suspend and resume buttons for thread. 
+       hpbSus = GetDlgItem(hwnd, IDD_SUSPEND);  
+       hpbRes = GetDlgItem(hwnd, IDD_RESUME);  
+       EnableWindow(hpbSus, true);  // enable Suspend  
+       EnableWindow(hpbRes, false); // disable Resume   
+       return 1;  
+    case WM_COMMAND:  
+      map<HWND, ThreadInfo>::iterator p = dialogmap.find(hwnd); 
+  
+      switch(LOWORD(wParam)) {  
+        case IDD_TERMINATE:  
+          TerminateThread(p->second.hThread, 0); 
+ 
+          // Disable Terminate button.  
+          hpbTerm = GetDlgItem(hwnd, IDD_TERMINATE);  
+          EnableWindow(hpbTerm, false); // disable  
+ 
+          // Disable Suspend and Resume buttons. 
+          hpbSus = GetDlgItem(hwnd, IDD_SUSPEND);  
+          hpbRes = GetDlgItem(hwnd, IDD_RESUME);  
+          EnableWindow(hpbSus, false); // disable Suspend  
+          EnableWindow(hpbRes, false); // disable Resume  
+ 
+          return 1;  
+        case IDD_SUSPEND:  
+          SuspendThread(p->second.hThread);  
+ 
+          // Set state of the Suspend and Resume buttons. 
+          hpbSus = GetDlgItem(hwnd, IDD_SUSPEND);  
+          hpbRes = GetDlgItem(hwnd, IDD_RESUME);  
+          EnableWindow(hpbSus, false); // disable Suspend  
+          EnableWindow(hpbRes, true);  // enable Resume  
+ 
+          p->second.suspended = true;  
+          return 1;  
+        case IDD_RESUME:  
+          ResumeThread(p->second.hThread);  
+ 
+          // Set state of the Suspend and Resume buttons. 
+          hpbSus = GetDlgItem(hwnd, IDD_SUSPEND);  
+          hpbRes = GetDlgItem(hwnd, IDD_RESUME);  
+          EnableWindow(hpbSus, true);  // enable Suspend  
+          EnableWindow(hpbRes, false); // disable Resume  
+ 
+          p->second.suspended = false;  
+          return 1;  
+        case IDD_LB:  
+          // If a list box entry was clicked, 
+          // then change the priority. 
+          if(HIWORD(wParam)==LBN_DBLCLK) { 
+            p->second.priority = SendDlgItemMessage(hwnd, 
+                                 IDD_LB, LB_GETCURSEL, 
+                                 0, 0);  
+            SetThreadPriority(p->second.hThread, 
+                              p->second.priority-OFFSET);  
+          } 
+          return 1;   
+        case IDCANCEL:   
+          // If thread is suspended when panel is closed, 
+          // then resume thread to prevent deadlock. 
+          if(p->second.suspended) { 
+            ResumeThread(p->second.hThread);  
+            p->second.suspended = false; 
+          } 
+ 
+          // Remove this thread from the list. 
+          dialogmap.erase(hwnd); 
+ 
+          // Close the panel. 
+          DestroyWindow(hwnd); 
+          return 1;  
+      }  
+   }  
+   return 0;  
+}
+
+listing 2
+#include <windows.h>  
+#include "panel.h"  
+ 
+ThreadPanelDB DIALOGEX 20, 20, 140, 110  
+CAPTION "Thread Control Panel"  
+STYLE WS_BORDER | WS_VISIBLE | WS_POPUP | WS_CAPTION | WS_SYSMENU  
+{  
+  DEFPUSHBUTTON "Done", IDCANCEL, 55, 80, 33, 14  
+  PUSHBUTTON "Terminate", IDD_TERMINATE, 10, 20, 42, 12  
+  PUSHBUTTON "Suspend", IDD_SUSPEND, 10, 35, 42, 12  
+  PUSHBUTTON "Resume", IDD_RESUME, 10, 50, 42, 12  
+  LISTBOX IDD_LB, 65, 20, 63, 42, LBS_NOTIFY | WS_VISIBLE |  
+          WS_BORDER | WS_VSCROLL | WS_TABSTOP  
+  CTEXT "Thread Priority", IDD_TEXT1, 65, 8, 64, 10  
+  CTEXT "Change State", IDD_TEXT2, 0, 8, 64, 10  
+} 
+
+listing 3
+#define IDD_LB         200  
+#define IDD_TERMINATE  202  
+#define IDD_SUSPEND    204  
+#define IDD_RESUME     206  
+#define IDD_TEXT1      208  
+#define IDD_TEXT2      209 
+
+listing 4
+// A header file for the ThrdCtrlPanel class. 
+ 
+class ThrdCtrlPanel { 
+public:  
+ 
+  // Construct a control panel. 
+  ThrdCtrlPanel(HINSTANCE hInst, HANDLE hThrd); 
+ 
+  // The control panel's callback function.  
+  static LRESULT CALLBACK ThreadPanel(HWND hwnd, UINT message,  
+                         WPARAM wParam, LPARAM lParam); 
+};
+
+listing 5
+// Demonstrate the thread control panel. 
+#include <windows.h>  
+#include <process.h> 
+#include "thrdapp.h"  
+#include "tcp.cpp" 
+ 
+const int MAX = 500000; 
+  
+LRESULT CALLBACK WindowFunc(HWND, UINT, WPARAM, LPARAM);  
+  
+unsigned __stdcall MyThread1(void * param);  
+unsigned __stdcall MyThread2(void * param);  
+  
+char str[255]; // holds output strings  
+  
+unsigned tid1, tid2; // thread IDs  
+HANDLE hThread1, hThread2; // thread handles  
+   
+HINSTANCE hInst; // instance handle 
+ 
+int WINAPI WinMain(HINSTANCE hThisInst, HINSTANCE hPrevInst,   
+                   LPSTR args, int winMode)  
+{  
+  HWND hwnd;  
+  MSG msg;  
+  WNDCLASSEX wcl;  
+  HACCEL hAccel;  
+  
+  // Define a window class.   
+  wcl.cbSize = sizeof(WNDCLASSEX);   
+  
+  wcl.hInstance = hThisInst;     // handle to this instance   
+  wcl.lpszClassName = "MyWin";   // window class name   
+  wcl.lpfnWndProc = WindowFunc;  // window function   
+  wcl.style = 0;                 // default style   
+  
+  wcl.hIcon = LoadIcon(NULL, IDI_APPLICATION); // large icon   
+  wcl.hIconSm = NULL; // use small version of large icon  
+  wcl.hCursor = LoadCursor(NULL, IDC_ARROW);  // cursor style  
+  
+  wcl.lpszMenuName = "ThreadAppMenu"; // main menu  
+  
+  wcl.cbClsExtra = 0; // no extra memory needed  
+  wcl.cbWndExtra = 0;   
+  
+  // Make the window background white.  
+  wcl.hbrBackground = (HBRUSH) GetStockObject(WHITE_BRUSH);   
+  
+  // Register the window class.   
+  if(!RegisterClassEx(&wcl)) return 0;  
+  
+  /* Now that a window class has been registered, a window  
+     can be created. */  
+  hwnd = CreateWindow(  
+    wcl.lpszClassName, // name of window class   
+    "Using a Thread Control Panel", // title  
+    WS_OVERLAPPEDWINDOW, // window style - normal   
+    CW_USEDEFAULT, // X coordinate - let Windows decide   
+    CW_USEDEFAULT, // Y coordinate - let Windows decide   
+    260,           // width 
+    200,           // height 
+    NULL,          // no parent window   
+    NULL,          // no override of class menu  
+    hThisInst,     // instance handle  
+    NULL           // no additional arguments   
+  );  
+  
+  hInst = hThisInst; // save instance handle  
+  
+  // Load the keyboard accelerators.  
+  hAccel = LoadAccelerators(hThisInst, "ThreadAppMenu");  
+  
+  // Display the window.   
+  ShowWindow(hwnd, winMode);  
+  UpdateWindow(hwnd);  
+  
+  // Create the message loop.   
+  while(GetMessage(&msg, NULL, 0, 0))  
+  {  
+    if(!TranslateAccelerator(hwnd, hAccel, &msg)) {  
+      TranslateMessage(&msg); // translate keyboard messages  
+      DispatchMessage(&msg); // return control to Windows 
+    }  
+  }  
+  
+  return msg.wParam;  
+}  
+  
+/* This function is called by Windows and is passed   
+   messages from the message queue.  
+*/  
+LRESULT CALLBACK WindowFunc(HWND hwnd, UINT message,  
+                            WPARAM wParam, LPARAM lParam)  
+{  
+  int response;  
+  
+  switch(message) {  
+    case WM_COMMAND:  
+      switch(LOWORD(wParam)) {  
+        case IDM_THREAD: // create the threads  
+          hThread1 = (HANDLE) _beginthreadex(NULL, 0,   
+                               MyThread1, (void *) hwnd, 
+                               0, &tid1);  
+          hThread2 = (HANDLE) _beginthreadex(NULL, 0,   
+                               MyThread2, (void *) hwnd, 
+                               0, &tid2);  
+          break;  
+        case IDM_PANEL: // activate control panel  
+          ThrdCtrlPanel(hInst, hThread1); 
+          ThrdCtrlPanel(hInst, hThread2); 
+          break;  
+        case IDM_EXIT:    
+          response = MessageBox(hwnd, "Quit the Program?",  
+                                "Exit", MB_YESNO);  
+          if(response == IDYES) PostQuitMessage(0);  
+          break;  
+        case IDM_HELP:   
+          MessageBox(hwnd,  
+                     "F1: Help\nF2: Start Threads\nF3: Panel",  
+                     "Help", MB_OK);  
+          break;  
+      }  
+      break;  
+    case WM_DESTROY: // terminate the program  
+      PostQuitMessage(0);  
+      break;  
+    default:   
+     return DefWindowProc(hwnd, message, wParam, lParam);  
+  }  
+  
+  return 0;  
+}  
+  
+// First thread. 
+unsigned __stdcall MyThread1(void * param)  
+{  
+  int i;    
+  HDC hdc;  
+  
+  for(i=0; i<MAX; i++) {  
+    wsprintf(str, "Thread 1: loop # %5d ", i);  
+    hdc = GetDC((HWND) param);  
+    TextOut(hdc, 1, 1, str, lstrlen(str));  
+    ReleaseDC((HWND) param, hdc);  
+  }  
+  
+  return 0;  
+}  
+  
+// Second thread. 
+unsigned __stdcall MyThread2(void * param)  
+{  
+  int i;  
+  HDC hdc;  
+  
+  for(i=0; i<MAX; i++) {  
+    wsprintf(str, "Thread 2: loop # %5d ", i);  
+    hdc = GetDC((HWND) param);  
+    TextOut(hdc, 1, 20, str, lstrlen(str));  
+    ReleaseDC((HWND) param, hdc);  
+  }  
+  
+  return 0;  
+} 
+
+listing 6
+#define IDM_THREAD     100  
+#define IDM_HELP       101  
+#define IDM_PANEL      102  
+#define IDM_EXIT       103 
+
+listing 7
+#include <windows.h>  
+#include "thrdapp.h"  
+#include "tcp.rc" 
+  
+ThreadAppMenu MENU  
+{  
+  POPUP "&Threads" {  
+    MENUITEM "&Start Threads\tF2", IDM_THREAD  
+    MENUITEM "&Control Panels\tF3", IDM_PANEL  
+    MENUITEM "E&xit\tCtrl+X", IDM_EXIT  
+  }  
+  MENUITEM "&Help", IDM_HELP  
+}  
+ 
+ThreadAppMenu ACCELERATORS  
+{  
+  VK_F1, IDM_HELP, VIRTKEY  
+  VK_F2, IDM_THREAD, VIRTKEY  
+  VK_F3, IDM_PANEL, VIRTKEY  
+  "^X", IDM_EXIT  
+}
+
+listing 8
+// A garbage collector that runs as a back ground task. 
+   
+#include <iostream>   
+#include <list>   
+#include <typeinfo>   
+#include <cstdlib> 
+#include <windows.h> 
+#include <process.h> 
+ 
+using namespace std;   
+   
+// To watch the action of the garbage collector, define DISPLAY. 
+// #define DISPLAY   
+   
+// Exception thrown when an attempt is made to    
+// use an Iter that exceeds the range of the    
+// underlying object.   
+//   
+class OutOfRangeExc {   
+  // Add functionality if needed by your application.   
+};   
+   
+// Exception thrown when a time-out occurs  
+// when waiting for access to hMutex.  
+//    
+class TimeOutExc {    
+  // Add functionality if needed by your application.    
+};    
+ 
+// An iterator-like class for cycling through arrays   
+// that are pointed to by GCPtrs. Iter pointers   
+// ** do not ** participate in or affect garbage   
+// collection.  Thus, an Iter pointing to   
+// some object does not prevent that object   
+// from being recycled.   
+//   
+template <class T> class Iter {   
+  T *ptr;   // current pointer value   
+  T *end;   // points to element one past end   
+  T *begin; // points to start of allocated array   
+  unsigned length; // length of sequence   
+public:   
+   
+  Iter() {    
+    ptr = end = begin = NULL;   
+    length = 0;   
+  }   
+   
+  Iter(T *p, T *first, T *last) {   
+    ptr =  p;   
+    end = last;   
+    begin = first;   
+    length = last - first;   
+  }   
+     
+  // Return length of sequence to which this   
+  // Iter points.   
+  unsigned size() { return length; }   
+   
+  // Return value pointed to by ptr.   
+  // Do not allow out-of-bounds access. 
+  T &operator*() {    
+    if( (ptr >= end) || (ptr < begin) )   
+      throw OutOfRangeExc();   
+    return *ptr;   
+  }   
+   
+  // Return address contained in ptr.   
+  // Do not allow out-of-bounds access. 
+  T *operator->() {    
+    if( (ptr >= end) || (ptr < begin) )   
+      throw OutOfRangeExc();   
+    return ptr;   
+  }     
+   
+  // Prefix ++.   
+  Iter operator++() {   
+    ptr++;   
+    return *this;   
+  }   
+   
+  // Prefix --.   
+  Iter operator--() {   
+    ptr--;   
+    return *this;   
+  }   
+   
+  // Postfix ++.   
+  Iter operator++(int notused) {   
+    T *tmp = ptr;   
+   
+    ptr++;   
+    return Iter<T>(tmp, begin, end);   
+  }   
+   
+  // Postfix --.   
+  Iter operator--(int notused) {   
+    T *tmp = ptr;   
+   
+    ptr--;   
+    return Iter<T>(tmp, begin, end);   
+  }   
+   
+  // Return a reference to the object at the   
+  // specified index. Do not allow out-of-bounds 
+  // access. 
+  T &operator[](int i) {   
+    if( (i < 0) || (i >= (end-begin)) )   
+      throw OutOfRangeExc();   
+    return ptr[i];   
+  }   
+   
+  // Define the relational operators.   
+  bool operator==(Iter op2) {   
+    return ptr == op2.ptr;   
+  }   
+   
+  bool operator!=(Iter op2) {   
+    return ptr != op2.ptr;   
+  }   
+   
+  bool operator<(Iter op2) {   
+    return ptr < op2.ptr;   
+  }   
+   
+  bool operator<=(Iter op2) {   
+    return ptr <= op2.ptr;   
+  }   
+   
+  bool operator>(Iter op2) {   
+    return ptr > op2.ptr;   
+  }   
+   
+  bool operator>=(Iter op2) {   
+    return ptr >= op2.ptr;   
+  }   
+   
+  // Subtract an integer from an Iter.   
+  Iter operator-(int n) {   
+    ptr -= n;   
+    return *this;   
+  }   
+   
+  // Add an integer to an Iter.   
+  Iter operator+(int n) {   
+    ptr += n;   
+    return *this;   
+  }   
+   
+  // Return number of elements between two Iters.   
+  int operator-(Iter<T> &itr2) {   
+    return ptr - itr2.ptr;   
+  }   
+};   
+   
+   
+// This class defines an element that is stored   
+// in the garbage collection information list.    
+//   
+template <class T> class GCInfo {   
+public:   
+  unsigned refcount; // current reference count 
+ 
+  T *memPtr; // pointer to allocated memory   
+   
+  /* isArray is true if memPtr points   
+     to an allocated array. It is false   
+     otherwise. */   
+  bool isArray; // true if pointing to array   
+   
+  /* If memPtr is pointing to an allocated   
+     array, then arraySize contains its size */   
+  unsigned arraySize; // size of array   
+   
+  // Here, mPtr points to the allocated memory. 
+  // If this is an array, then size specifies 
+  // the size of the array.   
+  GCInfo(T *mPtr, unsigned size=0) {   
+    refcount = 1; 
+    memPtr = mPtr;   
+    if(size != 0)   
+      isArray = true;   
+    else   
+      isArray = false;   
+   
+    arraySize = size;   
+  }   
+};   
+   
+// Overloading operator== allows GCInfos to be compared.   
+// This is needed by the STL list class.    
+template <class T> bool operator==(const GCInfo<T> &ob1,   
+                const GCInfo<T> &ob2) {   
+  return (ob1.memPtr == ob2.memPtr);   
+}   
+   
+   
+// GCPtr implements a pointer type that uses   
+// garbage collection to release unused memory.   
+// A GCPtr must only be used to point to memory   
+// that was dynamically allocated using new.    
+// When used to refer to an allocated array,   
+// specify the array size.   
+//   
+template <class T, int size=0> class GCPtr {   
+ 
+  // gclist maintains the garbage collection list.   
+  static list<GCInfo<T> > gclist;   
+ 
+  // addr points to the allocated memory to which   
+  // this GCPtr pointer currently points.   
+  T *addr;   
+   
+  /* isArray is true if this GCPtr points   
+     to an allocated array. It is false   
+     otherwise. */   
+  bool isArray; // true if pointing to array   
+   
+  // If this GCPtr is pointing to an allocated   
+  // array, then arraySize contains its size.   
+  unsigned arraySize; // size of the array   
+ 
+  // These support multithreading.  
+  unsigned tid; // thread id  
+  static HANDLE hThrd;  // thread handle  
+  static HANDLE hMutex; // handle of mutex  
+ 
+  static int instCount; // counter of GCPtr objects  
+ 
+  // Return an interator to pointer info in gclist.   
+  typename list<GCInfo<T> >::iterator findPtrInfo(T *ptr); 
+ 
+public:   
+   
+  // Define an iterator type for GCPtr<T>.   
+  typedef Iter<T> GCiterator;   
+   
+  // Construct both initialized and uninitialized objects.   
+  GCPtr(T *t=NULL) { 
+ 
+    // When first object is created, create the mutex  
+    // and register shutdown().  
+    if(hMutex==0) {  
+      hMutex = CreateMutex(NULL, 0, NULL);   
+      atexit(shutdown);  
+    }  
+  
+    if(WaitForSingleObject(hMutex, 10000)==WAIT_TIMEOUT)  
+      throw TimeOutExc();  
+ 
+    list<GCInfo<T> >::iterator p; 
+ 
+    p = findPtrInfo(t); 
+ 
+    // If t is already in gclist, then 
+    // increment its reference count.  
+    // Otherwise, add it to the list. 
+    if(p != gclist.end())  
+      p->refcount++; // increment ref count 
+    else { 
+      // Create and store this entry.   
+      GCInfo<T> gcObj(t, size);   
+      gclist.push_front(gcObj);   
+    } 
+ 
+    addr = t;   
+    arraySize = size;   
+    if(size > 0) isArray = true;   
+    else isArray = false;   
+ 
+    // Increment instance counter for each new object.    
+    instCount++;  
+ 
+    // If the garbage collection thread is not 
+    // currently running, start it running. 
+    if(hThrd==0) {  
+      hThrd = (HANDLE) _beginthreadex(NULL, 0, gc,  
+              (void *) 0, 0, (unsigned *) &tid);  
+  
+      // For some applications, it will be better  
+      // to lower the priority of the garbage collector  
+      // as shown here:  
+      //  
+      // SetThreadPriority(hThrd,  
+      //                   THREAD_PRIORITY_BELOW_NORMAL);  
+    }  
+  
+    ReleaseMutex(hMutex);  
+  } 
+   
+  // Copy constructor.   
+  GCPtr(const GCPtr &ob) {   
+    if(WaitForSingleObject(hMutex, 10000)==WAIT_TIMEOUT)  
+      throw TimeOutExc();  
+ 
+    list<GCInfo<T> >::iterator p; 
+ 
+    p = findPtrInfo(ob.addr);  
+    p->refcount++; // increment ref count 
+   
+    addr = ob.addr;   
+    arraySize = ob.arraySize;   
+    if(arraySize > 0) isArray = true;   
+    else isArray = false;   
+ 
+    instCount++; // increase instance count for copy 
+ 
+    ReleaseMutex(hMutex); 
+  }   
+   
+  // Destructor for GCPTr. 
+  ~GCPtr();   
+   
+  // Collect garbage.  Returns true if at least   
+  // one object was freed.   
+  static bool collect();  
+      
+  // Overload assignment of pointer to GCPtr.   
+  T *operator=(T *t);  
+  
+  // Overload assignment of GCPtr to GCPtr.   
+  GCPtr &operator=(GCPtr &rv);  
+  
+  // Return a reference to the object pointed   
+  // to by this GCPtr.   
+  T &operator*() {   
+    return *addr;   
+  }   
+   
+  // Return the address being pointed to.   
+  T *operator->() { return addr; }     
+   
+  // Return a reference to the object at the   
+  // index specified by i.   
+  T &operator[](int i) {   
+    return addr[i];   
+  }   
+   
+  // Conversion function to T *.   
+  operator T *() { return addr; }   
+   
+  // Return an Iter to the start of the allocated memory.   
+  Iter<T> begin() {   
+    int size;   
+   
+    if(isArray) size = arraySize;   
+    else size = 1;   
+   
+    return Iter<T>(addr, addr, addr + size);   
+  }       
+   
+  // Return an Iter to one past the end of an allocated array. 
+  Iter<T> end() {   
+    int size;   
+   
+    if(isArray) size = arraySize;   
+    else size = 1;   
+   
+    return Iter<T>(addr + size, addr, addr + size);   
+  }   
+ 
+  // Return the size of gclist for this type   
+  // of GCPtr.   
+  static int gclistSize() {  
+    if(WaitForSingleObject(hMutex, 10000)==WAIT_TIMEOUT)  
+      throw TimeOutExc();  
+  
+    unsigned sz = gclist.size();  
+  
+    ReleaseMutex(hMutex);  
+    return sz;  
+  }    
+   
+  // A utility function that displays gclist.   
+  static void showlist();  
+ 
+  // The following functions support multithreading.  
+  //  
+  // Returns true if the collector is still in use.  
+  static bool isRunning() { return instCount > 0; }  
+  
+  // Clear gclist when program exits.  
+  static void shutdown();  
+  
+  // Entry point for gabarge collector thread.  
+  static unsigned __stdcall gc(void * param);  
+};   
+   
+// Create storage for the static variables.  
+template <class T, int size>     
+  list<GCInfo<T> > GCPtr<T, size>::gclist;   
+   
+template <class T, int size>  
+  int GCPtr<T, size>::instCount = 0;  
+  
+template <class T, int size>  
+  HANDLE GCPtr<T, size>::hMutex = 0;  
+  
+template <class T, int size>  
+  HANDLE GCPtr<T, size>::hThrd = 0;  
+ 
+// Destructor for GCPtr. 
+template <class T, int size>  
+GCPtr<T, size>::~GCPtr() {   
+  if(WaitForSingleObject(hMutex, 10000)==WAIT_TIMEOUT)  
+    throw TimeOutExc();  
+ 
+  list<GCInfo<T> >::iterator p;   
+   
+  p = findPtrInfo(addr); 
+  if(p->refcount) p->refcount--; // decrement ref count 
+ 
+  // Decrement instance counter for each object  
+  // that is destroyed.  
+  instCount--; 
+   
+  ReleaseMutex(hMutex); 
+}   
+  
+// Collect garbage.  Returns true if at least   
+// one object was freed.   
+template <class T, int size>  
+bool GCPtr<T, size>::collect() {    
+  if(WaitForSingleObject(hMutex, 10000)==WAIT_TIMEOUT)  
+    throw TimeOutExc();  
+ 
+  bool memfreed = false;   
+ 
+  list<GCInfo<T> >::iterator p;   
+  do {   
+   
+    // Scan gclist looking for unreferenced pointers.   
+    for(p = gclist.begin(); p != gclist.end(); p++) {   
+      // If in-use, skip. 
+      if(p->refcount > 0) continue;   
+ 
+      memfreed = true;   
+ 
+      // Remove unused entry from gclist. 
+      gclist.remove(*p);   
+ 
+      // Free memory unless the GCPtr is null. 
+      if(p->memPtr) { 
+        if(p->isArray) {   
+          delete[] p->memPtr; // delete array   
+        }   
+        else {   
+          delete p->memPtr; // delete single element   
+        }   
+      } 
+ 
+      // Restart the search. 
+      break; 
+    } 
+ 
+  } while(p != gclist.end());   
+   
+  ReleaseMutex(hMutex); 
+ 
+  return memfreed;   
+}   
+  
+// Overload assignment of pointer to GCPtr.   
+template <class T, int size>  
+T * GCPtr<T, size>::operator=(T *t) {   
+  if(WaitForSingleObject(hMutex, 10000)==WAIT_TIMEOUT)  
+    throw TimeOutExc();  
+ 
+  list<GCInfo<T> >::iterator p;   
+   
+  // First, decrement the reference count 
+  // for the memory currently being pointed to. 
+  p = findPtrInfo(addr); 
+  p->refcount--;  
+ 
+  // Next, if the new address is already 
+  // existent in the system, increment its 
+  // count.  Otherwise, create a new entry 
+  // for gclist. 
+  p = findPtrInfo(t); 
+  if(p != gclist.end())  
+    p->refcount++;  
+  else { 
+    // Create and store this entry.   
+    GCInfo<T> gcObj(t, size);   
+    gclist.push_front(gcObj);   
+  } 
+ 
+  addr = t; // store the address.   
+   
+  ReleaseMutex(hMutex); 
+ 
+  return t;   
+}   
+   
+// Overload assignment of GCPtr to GCPtr.   
+template <class T, int size>  
+GCPtr<T, size> & GCPtr<T, size>::operator=(GCPtr &rv) {   
+  if(WaitForSingleObject(hMutex, 10000)==WAIT_TIMEOUT)  
+    throw TimeOutExc();  
+ 
+  list<GCInfo<T> >::iterator p;   
+ 
+  // First, decrement the reference count 
+  // for the memory currently being pointed to. 
+  p = findPtrInfo(addr); 
+  p->refcount--; 
+ 
+  // Next, increment the reference count of 
+  // of the new object. 
+  p = findPtrInfo(rv.addr); 
+  p->refcount++; // increment ref count 
+ 
+  addr = rv.addr;// store the address.   
+ 
+  ReleaseMutex(hMutex); 
+  
+  return rv;   
+}   
+  
+// A utility function that displays gclist.   
+template <class T, int size>  
+void GCPtr<T, size>::showlist() {   
+  if(WaitForSingleObject(hMutex, 10000)==WAIT_TIMEOUT)  
+    throw TimeOutExc();  
+ 
+  list<GCInfo<T> >::iterator p;   
+   
+  cout << "gclist<" << typeid(T).name() << ", "   
+       << size << ">:\n";   
+  cout << "memPtr      refcount    value\n";   
+       
+  if(gclist.begin() == gclist.end()) {   
+    cout << "           -- Empty --\n\n";   
+    return;   
+  }   
+    
+  for(p = gclist.begin(); p != gclist.end(); p++) {   
+    cout <<  "[" << (void *)p->memPtr << "]" 
+         << "      " << p->refcount << "     ";   
+    if(p->memPtr) cout << "   " << *p->memPtr;   
+    else cout << "   ---";   
+    cout << endl;         
+  }   
+  cout << endl;   
+ 
+  ReleaseMutex(hMutex); 
+}  
+ 
+// Find a pointer in gclist. 
+template <class T, int size>  
+typename list<GCInfo<T> >::iterator  
+  GCPtr<T, size>::findPtrInfo(T *ptr) {   
+ 
+  list<GCInfo<T> >::iterator p;   
+   
+  // Find ptr in gclist.   
+  for(p = gclist.begin(); p != gclist.end(); p++)  
+    if(p->memPtr == ptr)  
+      return p; 
+ 
+  return p;   
+}   
+ 
+// Entry point for gabarge collector thread.  
+template <class T, int size>   
+unsigned __stdcall GCPtr<T, size>::gc(void * param) {  
+  #ifdef DISPLAY  
+    cout << "Garbage collection started.\n";  
+  #endif  
+  
+  while(isRunning()) {  
+      collect();  
+  }  
+ 
+  collect(); // collect garbage on way out 
+ 
+  // Release and reset the thread handle so 
+  // that the garbage collection thread can 
+  // be restarted if necessary. 
+  CloseHandle(hThrd); 
+  hThrd = 0;  
+ 
+  #ifdef DISPLAY  
+    cout << "Garbage collection terminated for "  
+         << typeid(T).name() << "\n";    
+  #endif  
+  
+  return 0;  
+}   
+  
+// Clear gclist when program exits.  
+template <class T, int size>   
+void GCPtr<T, size>::shutdown() {  
+ 
+  if(gclistSize() == 0) return; // list is empty 
+  
+  list<GCInfo<T> >::iterator p;  
+  
+  #ifdef DISPLAY      
+    cout << "Before collecting for shutdown() for "  
+         << typeid(T).name() << "\n";    
+  #endif  
+ 
+  for(p = gclist.begin(); p != gclist.end(); p++) {  
+    // Set all remaining reference counts to zero. 
+    p->refcount = 0;  
+  }  
+  
+  collect();  
+  
+  #ifdef DISPLAY      
+    cout << "After collecting for shutdown() for "  
+         << typeid(T).name() << "\n";    
+  #endif  
+}
+
+listing 9
+// Demonstrate the multithreaded garbage collector. 
+#include <iostream> 
+#include <new> 
+#include "gcthrd.h" 
+ 
+using namespace std; 
+ 
+// A simple class for load testing GCPtr. 
+class LoadTest { 
+  int a, b; 
+public: 
+  double n[100000]; // just to take-up memory 
+  double val; 
+ 
+  LoadTest() { a = b = 0; } 
+ 
+  LoadTest(int x, int y) { 
+    a = x; 
+    b = y; 
+    val = 0.0; 
+  } 
+ 
+  friend ostream &operator<<(ostream &strm, LoadTest &obj); 
+}; 
+ 
+// Create an insertor for LoadTest. 
+ostream &operator<<(ostream &strm, LoadTest &obj) { 
+  strm << "(" << obj.a << " " << obj.b << ")"; 
+  return strm; 
+} 
+ 
+int main() { 
+  GCPtr<LoadTest> mp; 
+  int i; 
+ 
+  for(i = 1; i < 2000; i++) { 
+    try { 
+      mp = new LoadTest(i, i); 
+      if(!(i%100)) 
+        cout << "gclist contains " << mp.gclistSize() 
+             << " entries.\n"; 
+    } catch(bad_alloc xa) { 
+      // For most users, this exception won't 
+      // ever occur. 
+      cout << "Last object: " << *mp << endl; 
+      cout << "Length of gclist: " 
+           << mp.gclistSize() << endl; 
+    } 
+  } 
+ 
+  return 0; 
+}
+

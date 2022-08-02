@@ -1,0 +1,2 @@
+mwcc -DITERATIONS=175000 -DNDEBUG -DxUSE_STRINGS -I- -IH:\STLSoft\Identities\STLSoft\stlsoft -Ip:\sdks\boost\boost_1_30_0 -opt full -proc Pentium4 -o static_array_test_cw.exe   ..\static_array_test.cpp 
+mwcc -DITERATIONS=100000  -DNDEBUG -DUSE_STRINGS  -I- -IH:\STLSoft\Identities\STLSoft\stlsoft -Ip:\sdks\boost\boost_1_30_0 -opt full -proc Pentium4 -o static_array_test_cw_s.exe ..\static_array_test.cpp 

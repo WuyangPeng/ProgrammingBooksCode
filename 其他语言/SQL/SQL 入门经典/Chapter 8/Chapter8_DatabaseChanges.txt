@@ -1,0 +1,43 @@
+ALTER TABLE Films
+ADD DVDPrice DECIMAL(12,1);
+
+UPDATE Films
+SET DVDPrice = 12.99
+WHERE FilmId = 2;
+
+UPDATE Films
+SET DVDPrice = 9.99
+WHERE FilmId = 4;
+
+UPDATE Films
+SET DVDPrice = 15.99
+WHERE FilmId = 6;
+
+UPDATE Films
+SET DVDPrice = 12.99
+WHERE FilmId = 7;
+
+UPDATE Films
+SET DVDPrice = 2.99
+WHERE FilmId = 8;
+
+UPDATE Films
+SET DVDPrice = 8.95
+WHERE FilmId = 9;
+
+UPDATE Films
+SET DVDPrice = 12.99
+WHERE FilmId = 11;
+
+UPDATE Films
+SET DVDPrice = 9.99
+WHERE FilmId = 12;
+
+UPDATE Films
+SET DVDPrice = 12.99
+WHERE FilmId = 15;
+
+UPDATE Films
+SET DVDPrice = 8.95
+WHERE FilmId = 13;
+

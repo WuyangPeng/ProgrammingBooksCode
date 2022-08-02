@@ -1,0 +1,93 @@
+<html>
+<head>
+<title>Handling Multiple Win32 Operating Environments</title>
+</head>
+
+<body>
+
+
+<h4>Listing 2  Implementing SetCurrentDirectoryW() for SharedCU, Redefine and DLL models</h4>
+
+<pre>
+
+#ifdef WDN_SHAREDCU
+
+# define SetCurrentDirectoryW_impl  SetCurrentDirectoryW	
+
+. . .
+
+#endif /* WDN_SHAREDCU */
+
+. . .
+
+/* Loads KERNEL32.DLL and returns its instance handle. There's no
+ * release, but that's ok with KERNEL32.DLL, since every process
+ * must be statically linked to it in order to be able to call
+ * LoadLibrary() in the first place! Hacky, but valid.
+ */
+static HINSTANCE GetInstance_Kernel32();
+
+
+static BOOL WINAPI SetCurrentDirectoryW_impl_9x(LPCWSTR lpPathName)
+{
+  size_t  len       = lstrlenW(lpPathName);
+  char    *pathName = (char*)_alloca(1 + len);
+
+  WideCharToMultiByte(CP_ACP, 0, lpPathName, 1 + len, pathName, 1 + len, NULL, 		NULL);
+
+  return SetCurrentDirectoryA(pathName);
+}
+
+static BOOL WINAPI SetCurrentDirectoryW_impl_NT(LPCWSTR lpPathName)
+{
+#ifdef WDN_SHAREDCU
+  /* In this mode, SetCurrentDirectoryW_impl is #defined to be SetCurrentDirectoryW, 
+   * so linking to SetCurrentDirectoryW would just result in infinite recursion 
+   * and stack exhaustion. It's unlikely that that process would result in the 
+   * desired directory change.
+   *
+   * Hence, we need to load SetCurrentDirectoryW from KERNEL32.DLL, and call it
+   * in that way.
+   */
+
+  typedef BOOL (WINAPI *PFnSetCurrentDirectoryW)(LPCWSTR lpFileName);
+
+  PFnSetCurrentDirectoryW pfn = 						(PFnSetCurrentDirectoryW)GetProcAddress(GetInstance_Kernel32(), 		"SetCurrentDirectoryW");
+
+  return (NULL == pfn) ? FALSE : pfn(lpPathName);
+#else
+  /* Otherwise just link to the function directly. */
+  return SetCurrentDirectoryW(lpPathName);
+#endif /* WDN_SHAREDCU */
+}
+
+#ifdef WDN_SHAREDCU
+# pragma warning(disable : 4273)
+#endif /* WDN_SHAREDCU */
+
+#ifdef WDN_DLL
+extern __declspec(dllexport)
+#endif /* WDN_DLL */
+BOOL WINAPI SetCurrentDirectoryW_impl(LPCWSTR lpPathName)
+{
+  if(IsWinNT())
+  {
+    debug_printf("SetCurrentDirectoryW_impl(): calling NT's 			SetCurrentDirectoryW()\n");
+
+    return SetCurrentDirectoryW_impl_NT(lpPathName);
+  }
+  else
+  {
+    debug_printf("SetCurrentDirectoryW_impl(): calling 				SetCurrentDirectoryW_impl_9x()\n");
+
+    return SetCurrentDirectoryW_impl_9x(lpPathName);
+  }
+}
+
+#ifdef WDN_SHAREDCU
+# pragma warning(default : 4273)
+#endif /* WDN_SHAREDCU */
+
+</pre>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<HTML>
+<HEAD>
+<TITLE>Open-Source Flexibility via Namespace Aliasing</TITLE>
+</HEAD><body bgcolor="#FFFFFF" text="#000000">
+
+<h2>Open-Source Flexibility via Namespace Aliasing</h2>
+<p>Courtesy of <i>C/C++ Users Journal</i> (July, 2003)</p>
+<H3>Matthew Wilson</H3>
+<I>Getting real mileage from namespace aliases.</I><P>
+In [1], Bjarne Stroustrup describes the technique of namespace aliasing, which he describes as a tool for mapping verbose namespaces [2] to usable, succinct local names, as in<P>
+<pre>
+// In unfeasibly_long.h
+namespace this_is_an_unfeasibly_long_namespace
+{
+  void some_function(...)
+  {
+  }
+}
+
+// in client code
+namespace uflns =
+  this_is_an_unfeasibly_long_namespace;
+
+int main(int argc, char **argv)
+{
+  uflns::some_function(...);
+
+  return 0;
+}
+</pre>
+This seemed a neat but unremarkable thing, and beyond using it once or twice, I'd never given it that much thought. However, I recently had occasion to use it in a context in which it proved to be very important, and it saved me from a host of unpleasant choices. Let me explain.<P>
+I was working on the STLSoft [3] libraries, which were initially created as independent projects. This independence was complete, in terms of both files and namespaces, and came about due to the separate evolution of the first two projects: WinSTL and COMSTL [4]. And I did like the separation for a while due to a loathing for (both logical and physical) coupling [5]. However, as soon as there were actual classes being shared between components in different projects, the advantages of separation started to evaporate, and a better solution needed to be found.
+<P> <a href="cuj0307wilson_l1.htm">Listing 1</a> illustrates this situation. The 
+  client code uses UNIXSTL's <B>readdir_sequence</B>, and so qualifies its reference 
+  with <B>unixstl::</B>. The definition of <B>readdir_sequence</B> in the <B>unixstl</B>   namespace makes use of STLSoft's <B>basic_frame_string</B> and must qualify 
+  it with <B>stlsoft:</B>:. All pretty standard stuff.
+<P>
+The problem I had stemmed from the fact that I reached a point where I wanted to move the subprojects' namespaces (e.g., <B>comstl</B>, <B>unixstl</B>, and <B>winstl</B>) to be within the <B>stlsoft</B> namespace in order that I could:<P>
+1.  Cut down on the amount of qualification of <B>stlsoft</B> constructs in the other namespaces.<P>
+2.  Introduce a code structure (in the form of namespaces) that represents the conceptual hierarchy that exists between STLSoft and its subprojects.<P>
+3.  Use the mechanics of namespace hiding to allow for implicit overloading of construct via namespace. <P>
+For example, UNIXSTL could define its own <B>basic_frame_string</B> in the future, which would be better suited to UNIX, and would be "inherited" by definitions within the <B>unixstl</B> namespace for which it was visible (i.e., included into their compilation units).<P>
+Furthermore, I wanted to do this while wreaking minimum (preferably no) havoc to users of the libraries--after all, with open-source software one is always aware that users are much less tolerant of inconvenience, and much more likely to move elsewhere, than with software in which they've had to make an investment of their cold hard cash. I was left with a set of unattractive options:<P>
+1.  Use <B>#defines</B> to define the tokens for the old namespaces to the new ones.<P>
+2.  Perform some really dodgy preprocessor acrobatics, to define constructs as existing in both namespaces at once.<P>
+3.  Provide per-project preprocessor options (e.g., <B>_WINSTL_USE_</B><B>OLD_NAMESPACE</B>) to allow older client code to keep their original namespaces if they chose.<P>
+4.  Force users of the libraries to change their client code when upgrading to a newer version of the libraries.<P>
+5.  Move everything to the new namespace and use <B>using</B> declarations [1] to add them to the old namespace. Using <B>using</B> directives (something I'm pathologically opposed to in any case) would not work, since they only make names <I>accessible</I> in a namespace; they do not <I>add</I> names to that namespace (for access from, and qualification by, that namespace externally).<P>
+The last option is the most C++-ish but not attractive, as it has a couple of problems. First, having to write using declarations for every construct is a repetitively dull and error-prone activity. Second and (regrettably) most important, one of the STLSoft supported compilers, Visual C++, chokes on this all the way up to (and including) its latest version (Visual C++ .NET 2002) when the constructs being "used" in the old namespace are templates. These two problems render this option unworkable. Furthermore, the technique of overloading via namespace visibility (the third requirement described) only became applicable, and seemed desirable, after I realized the implications of the solution were not supported by this option.
+<P> Despite the fact that it does not provide the solution, option 5 did serve 
+  to spark the idea sometime later [6] that lead to the solution described here. 
+  The concept is extremely simple [7], as can be seen in <a href="cuj0307wilson_l2.htm">Listing 
+  2</a>.
+<P>
+The <B>readdir_sequence</B> is no longer defined within the <B>unixstl</B> namespace. It is now in <B>stlsoft::unix_project</B>. Indeed, there is no longer a <B>unixstl</B> namespace at all. In the UNIXSTL root header file <B>unixstl.h</B>, <B>unixstl</B> is defined as an alias for namespace <B>stlsoft::unix_project</B>. (Note this is done only once in a central place, since some older compilers get upset when presented with repeated, albeit identical, namespace alias definitions.)<P>
+The implementation of <B>readdir_sequence</B> is simplified, since it now no longer needs to qualify anything from within the <B>stlsoft</B> namespace (so long as there are no identically named constructs in the <B>stlsoft::unix_project</B> namespace, which would "hide" them). This is largely irrelevant to extant classes, but future additions to the libraries of all subprojects will benefit in this way.<P>
+But best of all, because <B>unixstl</B> is a full-power alias for <B>stlsoft::unix_project</B>, the client code is completely unchanged; polite but indecisive open-source authors can breath a sign of relief. This technique applies not only to this precise scenario, but also to any other scenario in which namespaces need to be moved around while being courteous of users' desires to not have to rewrite their code.
+<P> As always, there is an additional complication, though this is just in respect 
+  of the STLSoft libraries (and perhaps not best emulated in your own project's 
+  libraries!). Because all libraries were formerly independent, there is a small 
+  subset of client code that chose to define <B>_STLSOFT_NO_NAMESPACES</B> [8] 
+  and not, say, <B>_XMLSTL_NO_NAMESPACES</B>, which means that the STLSoft project 
+  constructs were in the global namespace but the XMLSTL constructs were within 
+  the <B>xmlstl</B> namespace. In order to support this, an extra bit of per-processor 
+  hackery is necessary, as shown in the extract from <B>xmlstl.h</B> shown in 
+  <a href="cuj0307wilson_l3.htm">Listing 3</a>. In this circumstance, XMLSTL constructs 
+  are actually in the <B>xmlstl</B> namespace, otherwise, they are in <B>stlsoft::xml_project</B>   or in the global namespace.
+<P>
+<h3>Notes and References</h3>
+[1]  <I>The C++ Programming Language</I>. Bjarne Stroustrup, Addison-Wesley, 1997. The section on namespace aliases is 8.2.7. <P>
+[2]  Verbose namespace names are a very good idea, so as to avoid namespace name clashes; that would be a sticky mess!<P>
+[3]  STLSoft is an open-source organization whose focus is the development of robust, lightweight, and cross-platform STL software; it is located at http://stlsoft.org. It started out as a project to move certain software of my company into the public domain, but is rapidly evolving into a substantial self-contained organization.<P>
+[4]  STLSoft has a number of subprojects, including ATLSTL, COMSTL, MFCSTL, UNIXSTL, WinSTL, and XMLSTL that provide STL-compliant software for their particular technology. They are located at http://atlstl.org, http://comstl.org, etc.<P>
+[5]  <I>Large Scale C++ Software Design</I>. John Lakos, Addison-Wesley, 1996.<P>
+[6]  My family and anyone else with an interest in seeing me portrayed as a normal human being, might be horrified at my admitting that this one came, &agrave; la Kekule's benzene snake, in the wee small hours.<P>
+[7]  Like many good ideas, it seems so obvious after the fact, and one is almost embarrassed for not having thought of it immediately. It is only the fact that a number of people to whom I have illustrated it have also had a "Doh!" moment that I am inclined to write it up as something noteworthy. If the ramifications of namespace aliasing in this context are already obvious to you, I can only apologize for having wasted your time.<P>
+[8]  These issues are explained at http://stlsoft.org/faq.html.<P>
+<h3>About the Author</h3>
+Matthew Wilson holds a degree in Information Technology and a PhD in Electrical Engineering. He is a software development consultant for Synesis Software. Matthew's work interests are in writing bullet-proof real-time, GUI and software-analysis software in C, C++, and Java. He has been working with C++ for over 10 years and is currently bringing STLSoft.org and its offshoots into the public domain. Matthew can be contacted via <B>matthew@synesis.com.au</B> or at &lt;http://stlsoft.org&gt;.<p>
+</BODY>
+</HTML>

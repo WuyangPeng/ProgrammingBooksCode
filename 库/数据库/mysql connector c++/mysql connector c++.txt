@@ -1,0 +1,5 @@
+mysql connector c++
+★★★★
+
+1. 版本：8.0.23。
+2. 官方网站：https://www.mysql.com/。

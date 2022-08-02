@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>January 04: Introducing recls Mappings It's STL and C#'s turn</title>
+</head>
+
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#330066" ALINK="#ff0000" TEXT="#000000">
+<!--Copyright &#169; C/C++ Users Journal-->
+
+
+<h4>Listing 2:	FileEntry <i>class.</i></h4>
+
+<pre>
+class FileEntry
+{
+// Construction
+public:
+  FileEntry();
+  FileEntry(FileEntry const &amp;rhs);
+  ~FileEntry();
+  FileEntry &amp;operator =(FileEntry const &amp;rhs);
+/// Attributes
+public:
+  string_t          GetPath() const;
+#ifdef RECLS_PLATFORM_API_WIN32
+  char              GetDrive() const;
+#endif /* RECLS_PLATFORM_API_WIN32 */
+  string_t          GetDirectory() const;
+  string_t          GetDirectoryPath() const;
+  DirectoryParts    GetDirectoryParts() const;
+  string_t          GetFile() const;
+  string_t          GetShortFile() const;
+  string_t          GetFileName() const;
+  string_t          GetFileExt() const;
+  recls_time_t      GetCreationTime() const;
+  recls_time_t      GetModificationTime() const;
+  recls_time_t      GetLastAccessTime() const;
+  recls_time_t      GetLastStatusChangeTime() const;
+  recls_filesize_t  GetSize() const;
+  recls_bool_t      IsReadOnly() const;
+  recls_bool_t      IsDirectory() const;
+  recls_bool_t      IsLink() const;
+// Members
+private:
+  recls_info_t    m_info;
+};
+</body>
+</html>

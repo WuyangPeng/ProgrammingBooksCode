@@ -1,0 +1,319 @@
+<html>
+<head>
+<title>Adapting Win32 Enumeration APIs to STL Iterator Concepts</title>
+</head>
+
+<body>
+
+
+<h4>Listing 8   reg_key_sequence_const_iterator</h4>
+
+<pre>
+// Extract from winstl_reg_key_sequence.h
+
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        , ws_typename_param_k A
+        >
+class basic_reg_key_sequence_const_iterator
+  : public stlsoft::iterator_base&lt;winstl::bidirectional_iterator_tag, 
+                                  V, ws_ptrdiff_t, void *, V>
+{
+public:
+  typedef C                                                 char_type;
+  typedef T                                                 traits_type;
+  typedef V                                                 value_type;
+  typedef A                                                 allocator_type;
+  typedef basic_reg_key_sequence_const_iterator<C, T, V, A> class_type;
+  typedef ws_typename_type_k traits_type::size_type         size_type;
+  typedef ws_typename_type_k traits_type::difference_type   difference_type;
+  typedef ws_typename_type_k traits_type::string_type       string_type;
+  typedef ws_sint32_t                                       index_type;
+  typedef ws_typename_type_k traits_type::hkey_type         hkey_type;
+
+// Construction
+protected:
+  basic_reg_key_sequence_const_iterator( hkey_type          hkey
+                                       , index_type         index
+                                       , string_type const  &sub_key_name);
+  basic_reg_key_sequence_const_iterator(hkey_type hkey);
+public:
+  basic_reg_key_sequence_const_iterator();
+  basic_reg_key_sequence_const_iterator(class_type const &rhs);
+  ~basic_reg_key_sequence_const_iterator() winstl_throw_0();
+
+  basic_reg_key_sequence_const_iterator &operator =(class_type const &rhs);
+
+// Operators
+public:
+  class_type &operator ++();
+  class_type &operator --();
+  const class_type operator ++(int);
+  const class_type operator --(int);
+  const value_type operator *() const;
+  ws_bool_t operator ==(class_type const &rhs) const;
+  ws_bool_t operator !=(class_type const &rhs) const;
+
+// Implementation
+protected:
+  static index_type _sentinel();
+
+// Members
+protected:
+  friend class basic_reg_key_sequence&lt;C, T, A>;
+
+  hkey_type   m_hkey;   // Registry key
+  index_type  m_index;  // Iteration index
+  string_type m_name;   // The value name
+};
+
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        , ws_typename_param_k A
+        >
+inline ws_typename_type_k index_type 
+    basic_reg_key_sequence_const_iterator&lt;C, T, V, A>::_sentinel()
+{
+  return 0x7fffffff;
+}
+
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        , ws_typename_param_k A
+        >
+inline basic_reg_key_sequence_const_iterator&lt;C, T, V, A>::
+    basic_reg_key_sequence_const_iterator()
+  : m_hkey(NULL)
+  , m_index(_sentinel())
+{
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        , ws_typename_param_k A
+        >
+inline basic_reg_key_sequence_const_iterator&lt;C, T, V, A>::
+    basic_reg_key_sequence_const_iterator(hkey_type hkey,
+                        index_type index, 
+                        string_type const &sub_key_name)
+  : m_hkey(&l)
+  , m_index(index)
+  , m_name(sub_key_name)
+{
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        , ws_typename_param_k A
+        >
+inline basic_reg_key_sequence_const_iterator&lt;C, T, V, A>::
+    basic_reg_key_sequence_const_iterator(hkey_type hkey)
+  : m_hkey(hkey)
+  , m_index(_sentinel())
+{
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        , ws_typename_param_k A
+        >
+inline basic_reg_key_sequence_const_iterator&lt;C, T, V, A>::
+    basic_reg_key_sequence_const_iterator(class_type const &rhs)
+  : m_hkey(rhs.m_hkey)
+  , m_index(rhs.m_index)  // This is valid, since the index is
+                          // transferrable  between iterators
+  , m_name(rhs.m_name)
+{
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        , ws_typename_param_k A
+        >
+inline ws_typename_type_k class_type 
+    &basic_reg_key_sequence_const_iterator&lt;C, T, V, A>::
+      operator =(class_type const &rhs)
+{
+  // For efficiency, we don't do self-assignment test, and
+  // assume (reasonably) that m_name will be self-protecting
+
+  m_hkey  = rhs.m_hkey;
+  m_index = rhs.m_index;
+  m_name  = rhs.m_name;
+
+  return *this;
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        , ws_typename_param_k A
+        >
+inline basic_reg_key_sequence_const_iterator&lt;C, T, V, A>::
+    ~basic_reg_key_sequence_const_iterator() winstl_throw_0()
+{
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        , ws_typename_param_k A
+        >
+inline ws_typename_type_k class_type 
+  &basic_reg_key_sequence_const_iterator&lt;C, T, V, A>::operator ++()
+{
+  // Grab enough for the first item
+  size_type cch_key_name  = 0;
+  ws_long_t res = traits_type::reg_query_info(m_hkey, NULL,
+                              NULL, NULL, &cch_key_name, NULL,
+                              NULL, NULL, NULL, NULL, NULL);
+
+  if(res == 0)
+  {
+    auto_buffer&lt;char_type, allocator_type>  buffer(++cch_key_name);
+
+    res = traits_type::reg_enum_key(m_hkey, ++m_index, buffer, 
+                                    &cch_key_name, NULL, NULL, NULL);
+
+    if(res == 0)
+    {
+      m_name = static_cast&lt;char_type const *>(buffer);
+    }
+    else
+    {
+      m_index = _sentinel();
+    }
+  }
+  else
+  {
+    m_index = _sentinel();
+  }
+
+  return *this;
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        , ws_typename_param_k A
+        >
+inline ws_typename_type_k class_type 
+    &basic_reg_key_sequence_const_iterator&lt;C, T, V, A>::operator --()
+{
+  // Grab enough for the first item
+  size_type cch_key_name  = 0;
+  ws_uint_t c_sub_keys;
+  ws_long_t res     = traits_type::reg_query_info(m_hkey, NULL, NULL,
+                                    &c_sub_keys, &cch_key_name, NULL,
+                                    NULL, NULL, NULL, NULL, NULL);
+
+  if(res == 0)
+  {
+    auto_buffer&lt;char_type, allocator_type>  buffer(++cch_key_name);
+
+    // If the iterator is currently at the "end()", ...
+    if(m_index == _sentinel())
+    {
+      // ... then set the index to be one past the end
+      m_index = c_sub_keys;
+    }
+
+    // Move back one position, and get the key name
+    res = traits_type::reg_enum_key(m_hkey, --m_index, buffer,
+                                &cch_key_name, NULL, NULL, NULL);
+
+    if(res == 0)
+    {
+      m_name = static_cast&lt;char_type const *>(buffer);
+    }
+    else
+    {
+      m_index = _sentinel();
+    }
+  }
+  else
+  {
+    m_index = _sentinel();
+  }
+
+  return *this;
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        , ws_typename_param_k A
+        >
+inline const ws_typename_type_k class_type 
+    basic_reg_key_sequence_const_iterator&lt;C, T, V, A>::operator ++(int)
+{
+  class_type  ret(*this);
+
+  operator ++();
+
+  return ret;
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        , ws_typename_param_k A
+        >
+inline const ws_typename_type_k class_type 
+    basic_reg_key_sequence_const_iterator&lt;C, T, V, A>::operator --(int)
+{
+  class_type  ret(*this);
+
+  operator --();
+
+  return ret;
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        , ws_typename_param_k A
+        >
+inline const ws_typename_type_k value_type 
+    basic_reg_key_sequence_const_iterator&lt;C, T, V, A>::operator *() const
+{
+  return value_type(m_hkey, m_name);
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        , ws_typename_param_k A
+        >
+inline ws_bool_t basic_reg_key_sequence_const_iterator&lt;C, T, V, A>::
+    operator ==(class_type const &rhs) const
+{
+  winstl_message_assert("Comparing reg_key_sequence iterators from different sequences!", m_hkey == rhs.m_hkey);
+
+  return m_index == rhs.m_index;
+}
+
+template< ws_typename_param_k C
+        , ws_typename_param_k T
+        , ws_typename_param_k V
+        , ws_typename_param_k A
+        >
+inline ws_bool_t basic_reg_key_sequence_const_iterator&lt;C, T, V, A>::
+    operator !=(class_type const &rhs) const
+{
+  return ! operator ==(rhs);
+}
+
+</pre>
+</body>
+</html>

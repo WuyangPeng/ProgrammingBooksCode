@@ -1,0 +1,1 @@
+// floor is in math.hRGBColor 														WrappedFBmTexture::get_color(const ShadeRec& sr) const {	float noise = expansion_number * noise_ptr ->value_fbm(sr.local_hit_point);	float value = noise - floor(noise);	value = min_value + (max_value - min_value) * value;		return (value * color);}	

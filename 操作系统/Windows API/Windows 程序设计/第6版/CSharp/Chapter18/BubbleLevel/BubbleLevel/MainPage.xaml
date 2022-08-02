@@ -1,0 +1,35 @@
+﻿<Page
+    x:Class="BubbleLevel.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BubbleLevel"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid Name="centeredGrid"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center">
+            <Ellipse Name="outerCircle"
+                     Stroke="{StaticResource ApplicationForegroundThemeBrush}" />
+            
+            <Ellipse Name="halfCircle"
+                     Stroke="{StaticResource ApplicationForegroundThemeBrush}" />
+            
+            <Ellipse Width="24"
+                     Height="24"
+                     Stroke="{StaticResource ApplicationForegroundThemeBrush}" />
+            
+            <Ellipse Fill="Red"
+                     Width="24"
+                     Height="24"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center">
+                <Ellipse.RenderTransform>
+                    <TranslateTransform x:Name="bubbleTranslate" />
+                </Ellipse.RenderTransform>
+            </Ellipse>
+        </Grid>
+    </Grid>
+</Page>

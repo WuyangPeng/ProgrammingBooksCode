@@ -1,0 +1,54 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Vectors - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x409 /fo"Debug/Vectors.res" /d "_DEBUG" "C:\Vectors\Vectors.rc"" 
+Creating temporary file "c:\windows\TEMP\RSP1103.TMP" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Debug/Vectors.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\Vectors\MainFrm.cpp"
+"C:\Vectors\Vectors.cpp"
+"C:\Vectors\VectorsDoc.cpp"
+"C:\Vectors\VectorsView.cpp"
+]
+Creating command line "cl.exe @c:\windows\TEMP\RSP1103.TMP" 
+Creating temporary file "c:\windows\TEMP\RSP1104.TMP" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Debug/Vectors.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\Vectors\StdAfx.cpp"
+]
+Creating command line "cl.exe @c:\windows\TEMP\RSP1104.TMP" 
+Creating temporary file "c:\windows\TEMP\RSP1105.TMP" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/Vectors.pdb" /debug /machine:I386 /out:"Debug/Vectors.exe" /pdbtype:sept 
+.\Debug\MainFrm.obj
+.\Debug\StdAfx.obj
+.\Debug\Vectors.obj
+.\Debug\VectorsDoc.obj
+.\Debug\VectorsView.obj
+.\Debug\Vectors.res
+]
+Creating command line "link.exe @c:\windows\TEMP\RSP1105.TMP"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+MainFrm.cpp
+Vectors.cpp
+VectorsDoc.cpp
+VectorsView.cpp
+Generating Code...
+Linking...
+
+
+
+<h3>Results</h3>
+Vectors.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

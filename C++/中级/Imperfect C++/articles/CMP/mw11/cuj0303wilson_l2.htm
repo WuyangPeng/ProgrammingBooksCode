@@ -1,0 +1,81 @@
+<HTML>
+<HEAD>
+<TITLE>Listing 2:	The true_typedef class implementation</TITLE>
+</HEAD><body bgcolor="#FFFFFF" text="#000000">
+
+<B> Listing 2:</b>	The true_typedef class implementation<p>
+<pre>
+/* /////////////////////////////////////////////////////////////
+ *
+ * ...
+ *
+ * Extract from stlsoft_true_typedef.h
+ *
+ * www:        http://www.synesis.com.au/stlsoft
+ *             http://www.stlsoft.org/
+ *
+ * Copyright (C) 2002, Synesis Software Pty Ltd.
+ * (Licensed under the Synesis Software Standard Source License:
+ *  http://www.synesis.com.au/licenses/ssssl.html)
+ *
+ * ...
+ *
+ * ////////////////////////////////////////////////////////// */
+
+...
+
+
+template &lt;ss_typename_param_k T, ss_typename_param_k U&gt;
+class true_typedef
+{
+public:
+    typedef T                   value_type;
+    typedef U                   unique_type;
+    typedef true_typedef&lt;T, U&gt;  class_type;
+
+// Construction
+public:
+    true_typedef()
+        : m_value(value_type())
+    {
+    }
+    ss_explicit_k true_typedef(const T &amp;value)
+        : m_value(value)
+    {
+    }
+    true_typedef(const class_type &amp;rhs)
+        : m_value(rhs.m_value)
+    {
+    }
+
+    const class_type &amp;operator =(const class_type &amp;rhs)
+    {
+        m_value = rhs.m_value;
+
+        return *this;
+    }
+
+// Accessors
+public:
+    const value_type &amp;base_type_value() const
+    {
+        return m_value;
+    }
+    value_type &amp;base_type_value()
+    {
+        return m_value;
+    }
+
+// Members
+protected:
+    value_type  m_value;
+
+// Implementation
+private:
+    // Not provided, as the syntax is less ambiguous when
+    // assignment from an explicit temporary is required
+    const class_type &amp;operator =(const T &amp;value);
+};
+</pre>
+</BODY>
+</HTML>

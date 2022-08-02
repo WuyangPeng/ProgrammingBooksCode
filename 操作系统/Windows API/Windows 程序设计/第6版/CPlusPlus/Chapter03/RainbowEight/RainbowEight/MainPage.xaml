@@ -1,0 +1,37 @@
+<Page
+    x:Class="RainbowEight.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RainbowEight"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock Name="txtblk"
+                   Text="8"
+                   FontFamily="CooperBlack"
+                   FontSize="1"
+                   HorizontalAlignment="Center">
+            <TextBlock.Foreground>
+                <LinearGradientBrush x:Name="gradientBrush">
+                    <GradientStop Offset="0.00" Color="Red" />
+                    <GradientStop Offset="0.14" Color="Orange" />
+                    <GradientStop Offset="0.28" Color="Yellow" />
+                    <GradientStop Offset="0.43" Color="Green" />
+                    <GradientStop Offset="0.57" Color="Blue" />
+                    <GradientStop Offset="0.71" Color="Indigo" />
+                    <GradientStop Offset="0.86" Color="Violet" />
+                    <GradientStop Offset="1.00" Color="Red" />
+                    <GradientStop Offset="1.14" Color="Orange" />
+                    <GradientStop Offset="1.28" Color="Yellow" />
+                    <GradientStop Offset="1.43" Color="Green" />
+                    <GradientStop Offset="1.57" Color="Blue" />
+                    <GradientStop Offset="1.71" Color="Indigo" />
+                    <GradientStop Offset="1.86" Color="Violet" />
+                    <GradientStop Offset="2.00" Color="Red" />
+                </LinearGradientBrush>
+            </TextBlock.Foreground>
+        </TextBlock>
+    </Grid>
+</Page>

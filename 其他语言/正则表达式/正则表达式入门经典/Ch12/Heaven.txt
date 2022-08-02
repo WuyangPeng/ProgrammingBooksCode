@@ -1,0 +1,3 @@
+This sentence contains both the words Heaven and Hell.
+
+This sentence does not contain those two words and therefore is not matched.

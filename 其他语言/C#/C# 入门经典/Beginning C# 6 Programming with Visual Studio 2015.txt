@@ -1,0 +1,10 @@
+ C# 入门经典  （Beginning C# 6 Programming with Visual Studio 2015）
+ （第7版）
+
+官方网站： 
+http://blog.johnmueller.books.com （已失效）、
+http://www.wrox.com/misc-pages/booklist.shtml、 
+http://p2p.wrox.com
+
+○
+作者：Benjamin Perkins、Jacob Vibe Hammer、Jon D.Reid

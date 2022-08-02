@@ -1,0 +1,30 @@
+<html>
+<head>
+	<title>Code Co-op Tutorial</title>
+</head>
+<body bgcolor="White" background="../images/grid.gif">
+
+<table border="0" cellpadding="10">
+<tr><td width="20"></td>
+<td bgcolor="#99cccc" width="600"> 
+<font face="Arial" size=2>
+<center><h2>LAN Configuration</h2></center>
+
+<p>Each transport choice leads to a different set of configuration options. Let's start with <b>LAN-only</b>. 
+<p><img src="../Images/wiz2.gif" width="580" height="278" border="0" alt="hub/satellite choice">
+<p>On a network, one and only one machine must be designated as a <b>hub</b>, the others will be <b>satellites</b>. You should start by selecting your hub and configuring it, then you can move to satellites.
+
+<p>The major criterion in selecting the hub is the <i>availability</i>. Choose the machine that will be accessible on the LAN most of the time. When the hub is down, satellites cannot communicate. Notice: you don't even have to have any projects on the hub machine, all that's needed is that its Dispatcher is available to distribute scripts.
+
+<p>The configuration of the hub is very simple. There are no more questions to answer. However, before you start configuring the satellites, you have to realize one thing: each Code Co-op machine on a LAN <b>shares</b> one of its directories, which we call its <i>public inbox</i> (it's the <i>PublicInbox</i> directory under the root of the co-op database). 
+<p>The default share name is CODECOOP, so if your hub machine is called HAL, its public inbox will be visible on the network as \\HAL\CODECOOP. You have to remember that when configuring the satellites, because you will be asked to provide the network path to your hub's public inbox.
+
+<p><img src="../Images/wiz3.gif" width="576" height="228" border="0" alt="Satellite configuration">
+<p>By the way, using the same configuration options you can configure a satellite which has no access to a LAN. You'll have to transport scripts on a diskette, or some such, but it will work. The trick is to use a path like a:\ instead of a network path.
+
+<p><a href="tutorial.html">Previous</a>, <a href="tut2.html">Next</a>
+
+</font>
+</td></tr></table>
+</body>
+</html>
