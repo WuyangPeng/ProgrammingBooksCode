@@ -1,0 +1,177 @@
+head	1.4;
+access;
+symbols;
+locks
+	dls:1.4; strict;
+comment	@ * @;
+
+
+1.4
+date	97.09.21.19.30.23;	author dls;	state Dist;
+branches;
+next	1.3;
+
+1.3
+date	94.08.21.04.29.51;	author dls;	state Fix;
+branches;
+next	1.2;
+
+1.2
+date	94.08.12.01.30.26;	author dls;	state Works;
+branches;
+next	1.1;
+
+1.1
+date	94.05.08.06.01.42;	author dls;	state Old;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.4
+log
+@pre-3e code
+@
+text
+@/* ttycntl.c - ttycntl */
+
+#include <conf.h>
+#include <kernel.h>
+#include <tty.h>
+
+/*------------------------------------------------------------------------
+ * ttycntl - control function for TTY pseudo devices
+ *------------------------------------------------------------------------
+ */
+int
+ttycntl(pdev, func, arg1, arg2)
+struct devsw	*pdev;
+int		func;
+char		*arg1, *arg2;
+{
+	struct tty	*ptty = (struct tty *)pdev->dvioblk;
+	unsigned char	ch;
+	STATWORD	PS;
+
+	switch (func) {
+	case TTC_CPID:	ptty->tty_cpid = (int) arg1;
+			return OK;
+	case TTC_SYNC:	if (arg1)
+				ptty->tty_oflags |= TOF_SYNC;
+			else
+				ptty->tty_oflags &= ~TOF_SYNC;
+			return OK;
+	case TTC_GIF:	return ptty->tty_iflags;
+	case TTC_GOF:	return ptty->tty_oflags;
+	case TTC_NEXTC:
+			disable(PS);
+			wait(ptty->tty_isema);
+			ch = ptty->tty_in[ptty->tty_istart];
+			signal(ptty->tty_isema);
+			restore(PS);
+			return ch;
+	case TTC_SUSER:
+			ptty->tty_uid = (int) arg1;
+			gettime(&ptty->tty_ltime);
+			ptty->tty_ctime = ptty->tty_ltime;
+			return OK;
+	case TTC_CUSER:
+			ptty->tty_uid = -1;
+			return OK;
+	}
+	return SYSERR;
+}
+@
+
+
+1.3
+log
+@added TTC_NEXTC
+@
+text
+@d38 8
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d18 2
+d31 7
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@a5 2
+#include <io.h>
+#include <slu.h>
+d8 1
+a8 1
+ *  ttycntl  -  control a tty device by setting modes
+d11 5
+a15 3
+ttycntl(devptr, func)
+struct	devsw	*devptr;
+int func;
+d17 12
+a28 47
+	STATWORD ps;    
+	register struct	tty *ttyp;
+	char	ch;
+	
+	ttyp = &tty[devptr->dvminor];
+	switch ( func )	{
+	case TCSETBRK:
+	        return(SYSERR);
+		/* ORIG: ttyp->ioaddr->ctstat |= SLUTBREAK; */
+		break;
+	case TCRSTBRK:
+		return(SYSERR);
+		/* ORIG: ttyp->ioaddr->ctstat &= ~SLUTBREAK; */
+		break;
+	case TCNEXTC:
+		disable(ps);
+		wait(ttyp->isem);
+		ch = ttyp->ibuff[ttyp->itail];
+		restore(ps);
+		signal(ttyp->isem);
+		return(ch);
+	case TCMODER:
+		ttyp->imode = IMRAW;
+		break;
+	case TCMODEC:
+		ttyp->imode = IMCOOKED;
+		break;
+	case TCMODEK:
+		ttyp->imode = IMCBREAK;
+		break;
+	case TCECHO:
+		ttyp->iecho = TRUE;
+		break;
+	case TCNOECHO:
+		ttyp->iecho = FALSE;
+		break;
+	case TCICHARS:
+		return(ttyp->icnt);
+	case TCINT:
+		ttyp->iintr = TRUE;
+		ttyp->iintpid = getpid();
+		break;
+	case TCNOINT:
+		ttyp->iintr = FALSE;
+		break;
+	default:
+		return(SYSERR);
+d30 1
+a30 1
+	return(OK);
+@

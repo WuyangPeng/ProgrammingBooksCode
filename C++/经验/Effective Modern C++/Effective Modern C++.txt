@@ -1,0 +1,21 @@
+Effective Modern C++
+
+oreilly网站：
+http://www.oreilly.com、
+http://facebook.com/oreilly （无法访问）、
+http://twitter.com/oreillymedia （无法访问）、
+http://www.youtube.com/oreillymedia （无法访问）。
+
+官方网站：
+http://www.aristeia.com/BookErrata/emc++-errata.html。
+
+★★★★★
+作者：Scott Meyers
+其他书籍：《Effective C++》、《More Effective C++》、《Effective STL》
+
+联系作者：
+emc++@aristeia.com
+
+引用网站：
+http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0154r1.html （多核CPU流水线尺寸的细节）、 
+http://www.cpp-summit.org （C++ Summit 大会官网）。 

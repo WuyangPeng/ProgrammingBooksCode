@@ -1,0 +1,189 @@
+<html>
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>Fly3D Tutorials 7 - Adding Fly3D plug-ins</title>
+<style type="text/css">
+<!--
+-->
+</style>
+</head>
+
+<body>
+<h1>Fly3D SDK</h1>
+<h2><a href="tutorials.htm">Tutorials</a></h2>
+<h3 align="right"><a href="../fly3d.htm">Home</a></h3>
+<h3>Tutorial 7</h3>
+<p> Adding Fly3D plug-ins</p>
+<p>&middot; Introduction</p>
+<p>At this point a level has been created and preprocessed but there are no dynamic 
+  objects included in the level and thus no game to execute. This tutorial enables 
+  experimentation with the supplied plug-ins to give a introduction to the nature 
+  of game development using plug-in architecture as a development tool.</p>
+<p>After completing this tutorial you will have a executable game.</p>
+<p> &middot; flyEditor operations</p>
+<p>1) open the script file from tutorial 4 with the flyEditor</p>
+<p> 2) right click the plug-ins tree item and select insert from the popup menu</p>
+<p> 3) an open dialogue will show up, and you should select the walk.dll.</p>
+<p> 4) now we need to create a new person object from the walk.dll. This will 
+  be the player. Right click the <i>person</i> tree item and select insert from 
+  the popup menu. A new person object will be created and you can set its name 
+  to a chosen name like 'myplayer'.</p>
+<p> 5) fill in the following person object properties for your new player:</p>
+<p>complex behavior can only be achieved using a large number of parameters, you 
+  can start using default values for this and experiment with different settings 
+  for parameters of your choice. </p>
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr> 
+    <th>Parameter</th>
+    <th>Value</th>
+    <th>Description</th>
+  </tr>
+  <tr> 
+    <td>colflag</td>
+    <td>1</td>
+    <td>sets collision on/off</td>
+  </tr>
+  <tr> 
+    <td>mass</td>
+    <td>1</td>
+    <td>sets player mass (in this case &gt;0)</td>
+  </tr>
+  <tr> 
+    <td>radius</td>
+    <td>1</td>
+    <td>sets player collision radius (player collides as a sphere)</td>
+  </tr>
+  <tr> 
+    <td>bump</td>
+    <td>1</td>
+    <td>bouncing factor (0.0 to 1.0)</td>
+  </tr>
+  <tr> 
+    <td>friction</td>
+    <td>1</td>
+    <td>sliding factor (0.0 to 1.0)</td>
+  </tr>
+  <tr> 
+    <td>active</td>
+    <td>1</td>
+    <td>activate on startup</td>
+  </tr>
+  <tr> 
+    <td>height</td>
+    <td>18.5</td>
+    <td>player height (1.85m)</td>
+  </tr>
+  <tr> 
+    <td>jumpforce</td>
+    <td>0.006</td>
+    <td>jump force (use space key to jump)</td>
+  </tr>
+  <tr> 
+    <td>jumpforcetime</td>
+    <td>100</td>
+    <td>jump time</td>
+  </tr>
+  <tr> 
+    <td>gravity</td>
+    <td>0.002</td>
+    <td>gravity applied to player</td>
+  </tr>
+  <tr> 
+    <td>walkvel</td>
+    <td>0.2</td>
+    <td> walk velocity (use s,x,q,e keys to move)</td>
+  </tr>
+  <tr> 
+    <td>rotvel</td>
+    <td>0.1</td>
+    <td> keyboard rotation factor (use arrows to rotate view)</td>
+  </tr>
+  <tr> 
+    <td>mousespeed</td>
+    <td>0.2</td>
+    <td>mouse rotation factor (use mouse to rotate view)</td>
+  </tr>
+  <tr> 
+    <td>zoomtime</td>
+    <td>300</td>
+    <td>zoom time in ms (use right mouse click to zoom)</td>
+  </tr>
+  <tr> 
+    <td>zoomangle1</td>
+    <td>60</td>
+    <td>standard view angle</td>
+  </tr>
+  <tr> 
+    <td>zoomangle2</td>
+    <td>20</td>
+    <td>zoom view angle</td>
+  </tr>
+  <tr> 
+    <td>shield</td>
+    <td>1</td>
+    <td>player shield </td>
+  </tr>
+</table>
+<h3></h3>
+<p>6) Press the Save and Restart button on the tool bar or select the Flile/Restart 
+  menu option to restart the scene (this will activate all objects set to activate 
+  on startup)</p>
+<p>7) Select the global tree view item and change the following global parameters:</p>
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr> 
+    <th>Parameter</th>
+    <th>Value</th>
+    <th>Description</th>
+  </tr>
+  <tr> 
+    <td> viewmindist</td>
+    <td>1</td>
+    <td>near plane distance</td>
+  </tr>
+  <tr> 
+    <td>viewmaxdist</td>
+    <td>1500</td>
+    <td>far plane distance</td>
+  </tr>
+  <tr> 
+    <td>player</td>
+    <td>myplayer</td>
+    <td>sets the player object</td>
+  </tr>
+  <tr> 
+    <td>camera</td>
+    <td>myplayer</td>
+    <td>sets the camera object</td>
+  </tr>
+  <tr> 
+    <td>camangle</td>
+    <td>60</td>
+    <td>player camera angle</td>
+  </tr>
+  <tr> 
+    <td>mapmode</td>
+    <td>1-15</td>
+    <td> selects mapping layers (bit flag):<br>
+      <br>
+      bit 1 for texture map<br>
+      bit 2 for detail map<br>
+      bit 3 for light map<br>
+      bit 4 for fog map <br>
+      <br>
+      use 1 for texture only<br>
+      use 5 for texture and lightmap<br>
+      use 15 for all maping layers</td>
+  </tr>
+</table>
+<p>8) Now you are ready to walk around. Turn the render on by selecting OpenGL 
+  on the tool bar or using the menu render option. Start simmulatig clicking the 
+  Simmulate tool bar button or using the F4 key. You should see the level from 
+  the players point of view in the render window (notice that as no birth pads 
+  have been created yet, the player will start up at co-ordinates 0,0,0 that must 
+  be inside the level).</p>
+<p>9) Select the render window by clicking on it (or use the TAB key) and you 
+  should be able to move around.</p>
+<p>&nbsp;</p>
+</body>
+
+</html>

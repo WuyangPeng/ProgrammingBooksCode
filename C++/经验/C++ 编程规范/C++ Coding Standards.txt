@@ -1,0 +1,5 @@
+C++ 编程规范（C++ Coding Standards）
+
+★★
+作者：Herb Sutter、Andrei Alexandrescu
+其他书籍：Herb Sutter 《Exceptional C++》、《More Exceptional C++》、《C++ 编程剖析》，Andrei Alexandrescu 《C++ 设计新思维》 

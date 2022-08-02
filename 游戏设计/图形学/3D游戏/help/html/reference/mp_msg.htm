@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>class mp_msg</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2>class mp_msg</h2>
+<h3>Definition</h3>
+<p class="code">class mp_msg<br>
+  {<br>
+  &nbsp;
+  public:<br>
+  &nbsp;
+  DWORD type;<br>
+  &nbsp;
+  DWORD from;<br>
+  &nbsp;
+  char data[500];<br>
+  };</p>
+<h3>Data Members</h3>
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr> 
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr> 
+    <td>type</td>
+    <td>DWORD</td>
+    <td>message type</td>
+  </tr>
+  <tr> 
+    <td>from</td>
+    <td>DWORD</td>
+    <td>directplay player id of the message sender</td>
+  </tr>
+  <tr> 
+    <td>data</td>
+    <td>char[]</td>
+    <td>the message data (up to 500 bytes)</td>
+  </tr>
+</table>
+<h3>Methods</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This class implements a multiplayer message. All messages must begin with <i>type</i> 
+  and <i>from</i> fields. The data field can be of any size up to 500 bytes.</p>
+<h3>See Also</h3>
+<p><a href="directx.htm">directX</a>, <a href="mp_games.htm">mp_games</a></p>
+</body>
+</html>

@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sketcher", "Sketcher\Sketcher.vcxproj", "{15508C2A-A4A3-4B5E-A928-E3FF3F2F6767}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15508C2A-A4A3-4B5E-A928-E3FF3F2F6767}.Debug|Win32.ActiveCfg = Debug|Win32
+		{15508C2A-A4A3-4B5E-A928-E3FF3F2F6767}.Debug|Win32.Build.0 = Debug|Win32
+		{15508C2A-A4A3-4B5E-A928-E3FF3F2F6767}.Release|Win32.ActiveCfg = Release|Win32
+		{15508C2A-A4A3-4B5E-A928-E3FF3F2F6767}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

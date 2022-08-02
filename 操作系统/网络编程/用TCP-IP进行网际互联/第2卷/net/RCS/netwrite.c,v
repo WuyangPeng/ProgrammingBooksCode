@@ -1,0 +1,108 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.59;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* netwrite.c - netwrite */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+#include <q.h>
+
+#include <ospf.h>
+
+struct	arpentry	*arpalloc(), *arpfind();
+
+/*#define	DEBUG */
+
+/*------------------------------------------------------------------------
+ * netwrite - write a packet on an interface, using ARP if needed
+ *------------------------------------------------------------------------
+ */
+int netwrite(pni, pep, len)
+struct	netif	*pni;
+struct	ep	*pep;
+int		len;
+{
+	struct	arpentry 	*pae;
+	STATWORD		ps;
+
+	if (pni->ni_state != NIS_UP) {
+		freebuf(pep);
+		return SYSERR;
+	}
+	pep->ep_len = len;
+#ifdef	DEBUG
+if (pni != &nif[NI_LOCAL])
+{
+struct ip *pip = (struct ip *)pep->ep_data;
+	if (pip->ip_proto == IPT_OSPF) {
+		struct ospf *po = (struct ospf *)pip->ip_data;
+/*		if (po->ospf_type != T_HELLO) { */
+{
+			kprintf("netwrite(pep %X, len %d)\n", pep, len);
+			pdump(pep);
+		}
+	}
+}
+#endif	/* DEBUG */
+	if (pni == &nif[NI_LOCAL])
+		return local_out(pep);
+	else if (isbrc(pep->ep_nexthop)) {
+		blkcopy(pep->ep_dst, pni->ni_hwb.ha_addr, EP_ALEN);
+		write(pni->ni_dev, pep, len);
+		return OK;
+	}
+	/* else, look up the protocol address... */
+
+	disable(ps);
+	pae = arpfind(&pep->ep_nexthop, pep->ep_type, pni);
+	if (pae && pae->ae_state == AS_RESOLVED) {
+		blkcopy(pep->ep_dst, pae->ae_hwa, pae->ae_hwlen);
+		restore(ps);
+		return write(pni->ni_dev, pep, len);
+	}
+	if (IP_CLASSD(pep->ep_nexthop)) {
+		restore(ps);
+		return SYSERR;
+	}
+	if (pae == 0) {
+		pae = arpalloc();
+		pae->ae_hwtype = AR_HARDWARE;
+		pae->ae_prtype = EPT_IP;
+		pae->ae_hwlen = EP_ALEN;
+		pae->ae_prlen = IP_ALEN;
+		pae->ae_pni = pni;
+		pae->ae_queue = EMPTY;
+		blkcopy(pae->ae_pra, &pep->ep_nexthop, pae->ae_prlen);
+		pae->ae_attempts = 0;
+		pae->ae_ttl = ARP_RESEND;
+		arpsend(pae);
+	}
+	if (pae->ae_queue == EMPTY)
+		pae->ae_queue = newq(ARP_QSIZE, QF_NOWAIT);
+	if (enq(pae->ae_queue, pep, 0) < 0)
+		freebuf(pep);
+	restore(ps);
+	return OK;
+}
+@

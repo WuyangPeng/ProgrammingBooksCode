@@ -1,0 +1,9 @@
+ CLR via C# 
+ （第4版） 
+
+官方网站： 
+http://wintellect.com/books、 
+http://Wintellect.com/Resource-CLR-Via-SCharp-Fourth-Edition （已失效）
+
+○
+作者：Jeffrey Richter 

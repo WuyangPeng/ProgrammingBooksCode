@@ -1,0 +1,67 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	1.1;
+
+1.1
+date	94.05.06.03.12.23;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@pre-3e code
+@
+text
+@/* insert.c  -  insert */
+
+#include <conf.h>
+#include <kernel.h>
+#include <q.h>
+
+/*------------------------------------------------------------------------
+ * insert.c  --  insert an process into a q list in key order
+ *------------------------------------------------------------------------
+ */
+int	insert(proc, head, key)
+	int	proc;			/* process to insert		*/
+	int	head;			/* q index of head of list	*/
+	int	key;			/* key to use for this process	*/
+{
+	int	next;			/* runs through list		*/
+	int	prev;
+
+	next = q[head].qnext;
+	while (q[next].qkey < key)	/* tail has maxint as key	*/
+		next = q[next].qnext;
+	q[proc].qnext = next;
+	q[proc].qprev = prev = q[next].qprev;
+	q[proc].qkey  = key;
+	q[prev].qnext = proc;
+	q[next].qprev = proc;
+	return(OK);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@a18 1
+kprintf("in insert\n");
+@

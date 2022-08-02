@@ -1,0 +1,58 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.09;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* ipgetp.c - ipgetp */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+static	int	ifnext = NI_LOCAL;
+
+/*------------------------------------------------------------------------
+ * ipgetp  --  choose next IP input queue and extract a packet
+ *------------------------------------------------------------------------
+ */
+struct ep *ipgetp(pifnum)
+int	*pifnum;
+{
+	struct	ep	*pep;
+	int		i;
+
+	recvclr();	/* make sure no old messages are waiting */
+	while (TRUE) {
+		for (i=0; i < Net.nif; ++i, ++ifnext) {
+			if (ifnext >= Net.nif)
+				ifnext = 0;
+			if (nif[ifnext].ni_state == NIS_DOWN)
+				continue;
+			if (pep = NIGET(ifnext)) {
+				*pifnum = ifnext;
+				return pep;
+			}
+		}
+		ifnext = receive();
+	}
+	/* can't reach here */
+}
+@

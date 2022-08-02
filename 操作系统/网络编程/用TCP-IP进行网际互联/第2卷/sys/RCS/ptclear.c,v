@@ -1,0 +1,62 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* ptclear.c - _ptclear */
+
+#include <conf.h>
+#include <kernel.h>
+#include <mark.h>
+#include <ports.h>
+
+/*------------------------------------------------------------------------
+ *  _ptclear  --  used by pdelete and preset to clear a port
+ *------------------------------------------------------------------------
+ */
+_ptclear(ptptr, newstate, dispose)
+	struct	pt	*ptptr;
+	int	newstate;
+	int	(*dispose)();
+{
+	struct	ptnode	*p;
+
+	/* put port in limbo until done freeing processes */
+	ptptr->ptstate = PTLIMBO;
+	ptptr->ptseq++;
+	if ( (p=ptptr->pthead) != (struct ptnode *)NULL ) {
+		if (dispose != PTNODISP)
+			for(; p != (struct ptnode *) NULL ; p=p->ptnext)
+				(*dispose)( p->ptmsg );
+		(ptptr->pttail)->ptnext = ptfree;
+		ptfree = ptptr->pthead;
+	}
+	if (newstate == PTALLOC) {
+		ptptr->pttail = ptptr->pthead = (struct ptnode *) NULL;
+		sreset(ptptr->ptssem, ptptr->ptmaxcnt);
+		sreset(ptptr->ptrsem, 0);
+	} else {
+		sdelete(ptptr->ptssem);
+		sdelete(ptptr->ptrsem);
+	}
+	ptptr->ptstate = newstate;
+}
+@

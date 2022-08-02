@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>particle::step</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="particle.htm">particle</a>::step</h2>
+<h3>Prototype</h3>
+<p class="code">int step(int dt)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>dt</td>
+	 <td>int</td>
+	 <td>elapsed time in ms</td>
+  </tr>
+  
+  
+</table>
+<h3>Return Value</h3>
+<p>Returns TRUE is particle moved, FALSE if particle did not move.</p>
+<h3>Remarks</h3>
+<p>This function updates the particle for an specified elapsed time. The particle 
+  will be moved based according to its current velocity and the velocity will 
+  be updated using the current force and mass. If the collision flag is turned 
+  on, collision will be tested and the position and velocity will be changed based 
+  on collsion point, normal, bump, and friction factors.</p>
+</body>
+</html>

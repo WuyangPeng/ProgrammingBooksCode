@@ -1,0 +1,46 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.26.05;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* ethint.c - AMD 7990 Lance Ethernet chip interrupt handle  */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+
+/*------------------------------------------------------------------------
+ *  ethint  --  handle ethernet interrupt
+ *		We assume 1 lance ethernet chip. Consequently we
+ *		don't do the demux'ing a real drive would do
+ *------------------------------------------------------------------------
+ */
+INTPROC	ethint()
+{
+    STATWORD ps;
+    struct	etblk	*ethblk;
+    
+    disable(ps);
+    ethinter( &(eth[0]) );		/* assume eth[0] - kinda bogus */
+    restore(ps);			/* restore status register	*/
+}
+@

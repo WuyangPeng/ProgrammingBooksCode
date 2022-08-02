@@ -1,0 +1,63 @@
+<!doctype html public "-//IETF//DTD.HTM//EN">
+<HTML><HEAD>
+<TITLE>Learning Rendering: Study 3</TITLE>
+</HEAD>
+<BODY>
+<A HREF="../STUDY2/STUDY2.HTM">&lt;&lt;</A>
+<A HREF="../STUDY4/STUDY4.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>
+<HR><H1>STUDY 3  'MATERIAL REALISM'</H1>
+
+One of the early enhancements to basic local reflection models was to try to make materials less plastic like and more like, for example, metal if that is what is required. Phong parameters can only control colour of the material (and also colour of the specular highlight). The look of a polished material depends on such subtleties like the way in which the colour and intensity of a reflected highlight change as a function of the incident angle of the light and the material. Metals like gold, for example have distinct yellow highlights for incident white light. This is modelled by using  Fresnel's law for the behaviour of light at a polished surface.
+
+<P><A HREF="MTCD_F.TIF"><IMG SRC="MTCD_F.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd_f.gif"></A><BR>montage of objects shaded to simulate various materials as follows</P>
+
+<table border=2>
+<tr><th>Image name</th><th>Material type<th></tr>
+<tr><td>mtcd1</td><td>iron</td><td><A HREF="MTCD1.TIF"><IMG SRC="MTCD1.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd1.gif"></A></td></tr>
+<tr><td>mtcd2</td><td>	steel</td><td><A HREF="MTCD2.TIF"><IMG SRC="MTCD2.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd2.gif"></A></td></tr>
+<tr><td>mtcd3	</td><td>stainless steel</td><td><A HREF="MTCD3.TIF"><IMG SRC="MTCD3.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd3.gif"></A></td></tr>
+<tr><td>mtcd4	</td><td>machine steel</td><td><A HREF="MTCD4.TIF"><IMG SRC="MTCD4.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd4.gif"></A></td></tr>
+<tr><td>mtcd5	</td><td>antique brass</td><td><A HREF="MTCD5.TIF"><IMG SRC="MTCD5.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd5.gif"></A></td></tr>
+<tr><td>mtcd6	</td><td>polished brass</td><td><A HREF="MTCD6.TIF"><IMG SRC="MTCD6.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd6.gif"></A></td></tr>
+<tr><td>mtcd7	</td><td>copper</td><td><A HREF="MTCD7.TIF"><IMG SRC="MTCD7.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd7.gif"></A></td></tr>
+<tr><td>mtcd8	</td><td>bronze</td><td><A HREF="MTCD8.TIF"><IMG SRC="MTCD8.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd8.gif"></A></td></tr>
+<tr><td>mtcd9	</td><td>nickel</td><td><A HREF="MTCD9.TIF"><IMG SRC="MTCD9.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd9.gif"></A></td></tr>
+<tr><td>mtcd10	</td><td>zinc</td><td><A HREF="MTCD10.TIF"><IMG SRC="MTCD10.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd10.gif"></A></td></tr>
+<tr><td>mtcd11	</td><td>lead</td><td><A HREF="MTCD11.TIF"><IMG SRC="MTCD11.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd11.gif"></A></td></tr>
+<tr><td>mtcd12	</td><td>cast aluminium</td><td><A HREF="MTCD12.TIF"><IMG SRC="MTCD12.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd12.gif"></A></td></tr>
+<tr><td>mtcd13	</td><td>machined aluminium</td><td><A HREF="MTCD13.TIF"><IMG SRC="MTCD13.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd13.gif"></A></td></tr>
+<tr><td>mtcd14	</td><td>magnesium</td><td><A HREF="MTCD14.TIF"><IMG SRC="MTCD14.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd14.gif"></A></td></tr>
+<tr><td>mtcd15	</td><td>gold</td><td><A HREF="MTCD15.TIF"><IMG SRC="MTCD15.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd15.gif"></A></td></tr>
+<tr><td>mtcd16	</td><td>burnished gold</td><td><A HREF="MTCD16.TIF"><IMG SRC="MTCD16.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd16.gif"></A></td></tr>
+<tr><td>mtcd17	</td><td>polished gold</td><td><A HREF="MTCD17.TIF"><IMG SRC="MTCD17.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd17.gif"></A></td></tr>
+<tr><td>mtcd18	</td><td>silver</td><td><A HREF="MTCD18.TIF"><IMG SRC="MTCD18.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd18.gif"></A></td></tr>
+<tr><td>mtcd19	</td><td>silver plate</td><td><A HREF="MTCD19.TIF"><IMG SRC="MTCD19.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd19.gif"></A></td></tr>
+<tr><td>mtcd20	</td><td>tungsten</td><td><A HREF="MTCD20.TIF"><IMG SRC="MTCD20.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd20.gif"></A></td></tr>
+<tr><td>mtcd21	</td><td>platinum</td><td><A HREF="MTCD21.TIF"><IMG SRC="MTCD21.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd21.gif"></A></td></tr>
+<tr><td>mtcd22	</td><td>chromium</td><td><A HREF="MTCD22.TIF"><IMG SRC="MTCD22.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd22.gif"></A></td></tr>
+<tr><td>mtcd23	</td><td>chromium plate</td><td><A HREF="MTCD23.TIF"><IMG SRC="MTCD23.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd23.gif"></A></td></tr>
+<tr><td>mtcd24	</td><td>graphite</td><td><A HREF="MTCD24.TIF"><IMG SRC="MTCD24.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd24.gif"></A></td></tr>
+<tr><td>mtcd25	</td><td>mercury</td><td><A HREF="MTCD25.TIF"><IMG SRC="MTCD25.GIF" WIDTH=100 HEIGHT=75 ALT="mtcd25.gif"></A></td></tr>
+</table>
+
+<P>For example, compare images mtcd6 (polished brass) and mtcd17 (polished gold) the precise differences between these would be difficult to obtain by fine tuning Phong parameters.</P>
+
+<P>The images are in fact ray traced to further add to the realism, but the model can be used exclusively as a local reflection model. One of the difficulties here is that the shading equations are only evaluated at 3 wavelengths and 'colour aliasing' occurs disrupting the carefully tuned material parameters (see Colour Study below)</P>
+
+
+<UL>
+<LI><A HREF="PHNG.AVI">phng.avi</A>
+<LI><A HREF="CDTR.AVI">cdtr.avi</A>
+<LI><A HREF="DIEL.AVI">diel.avi</A>
+
+</UL>
+<P>are three animations showing a light source rotating in a circle around, in each case, the same object. The object has been rendered using Phong and a metallic shader in the first and second animation. In the third case the object is rendered as glass using a ray tracer.</P>
+
+
+<HR>
+<A HREF="../STUDY2/STUDY2.HTM">&lt;&lt;</A>
+<A HREF="../STUDY4/STUDY4.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>

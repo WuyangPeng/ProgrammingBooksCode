@@ -1,0 +1,4 @@
+depth	nfaces	side
+6	12	0
+
+Total: 12 12

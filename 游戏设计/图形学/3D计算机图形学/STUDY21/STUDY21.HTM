@@ -1,0 +1,51 @@
+<!doctype html public "-//IETF//DTD.HTM//EN">
+<HTML><HEAD>
+<TITLE>Learning Rendering: Study 21</TITLE>
+</HEAD>
+<BODY>
+<A HREF="../STUDY20/STUDY20.HTM">&lt;&lt;</A>
+
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>
+<HR>
+<H1>STUDY 21 NON-PHOTO REALISTIC RENDERING</H1>
+
+The following images are simple  examples of so-called non-photorealistic rendering. They were produced by post processing the output from a conventional renderer together with Z-buffer information
+
+<table border=0 width="100%">
+<tr><td><A HREF="CORRA.TIF"><IMG SRC="CORRA.GIF" WIDTH=100 HEIGHT=75 ALT="corra"></A></td><td>
+is a radiosity simulation of a corridor scene.</td></tr>
+<tr><td><A HREF="CORRB.TIF"><IMG SRC="CORRB.GIF" WIDTH=100 HEIGHT=75 ALT="corrb"></A></td><td>
+is an image produced by passing the original image through an edge extraction filter.</td></tr>
+<tr><td><A HREF="CORRC.TIF"><IMG SRC="CORRC.GIF" WIDTH=100 HEIGHT=75 ALT="corrc"></A></td><td>
+image showing brush strokes/</td></tr>
+<tr><td><A HREF="CORRD.TIF"><IMG SRC="CORRD.GIF" WIDTH=100 HEIGHT=75 ALT="corrd"></A></td><td>
+image combining edge image (corrb) and brush stroke image (corrc).</td></tr>
+<tr><td><A HREF="SUNARA.TIF"><IMG SRC="SUNARA.GIF" WIDTH=100 HEIGHT=75 ALT="sunara"></A></td><td>
+same as above for a different scene - radiosity simulation.</td></tr>
+<tr><td><A HREF="SUNARB.TIF"><IMG SRC="SUNARB.GIF" WIDTH=100 HEIGHT=75 ALT="sunarb"></A></td><td>
+same as above for a different scene - edge extraction.</td></tr>	
+<tr><td><A HREF="SUNARC.TIF"><IMG SRC="SUNARC.GIF" WIDTH=100 HEIGHT=75 ALT="sunarc"></A></td><td>
+same as above for a different scene - brush strokes.</td></tr>
+<tr><td><A HREF="SUNARD.TIF"><IMG SRC="SUNARD.GIF" WIDTH=100 HEIGHT=75 ALT="sunard"></A></td><td>
+same as above for a different scene - combining edge and brush stroke image.</td></tr>
+<tr><td><A HREF="WIDA.TIF"><IMG SRC="WIDA.GIF" WIDTH=100 HEIGHT=75 ALT="wida"></A></td><td>
+This is a conventional rendered representation, using stylised colours and shadows</td></tr>
+<tr><td><A HREF="WIDB.TIF"><IMG SRC="WIDB.GIF" WIDTH=100 HEIGHT=75 ALT="widb"></A></td><td>
+This is a simple allusion to cross-hatching. The intensity of the final rendered image 	is coarsely quantized and used to modulate the horizontal lines.</td></tr>
+<tr><td><A HREF="WIDC.TIF"><IMG SRC="WIDC.GIF" WIDTH=100 HEIGHT=75 ALT="widc"></A></td><td>
+This 'brush stroke' image was produced by point sampling the rendered image  	to obtain basic brush stroke attributes. These are then sorted in depth using the 	Z-buffer information at each sample point before being drawn. </td></tr>
+<tr><td><A HREF="WIDD.TIF"><IMG SRC="WIDD.GIF" WIDTH=100 HEIGHT=75 ALT="widd"></A></td><td>
+line drawing combined with original image (<A HREF="WIDA.TIF">wida</A>+<A HREF="WIDB.TIF">widb</A>)</td></tr>
+<tr><td><A HREF="URN.TIF"><IMG SRC="URN.GIF" WIDTH=100 HEIGHT=75 ALT="urn"></A></td><td>NPR urn</td></tr>
+<tr><td><A HREF="TEA.TIF"><IMG SRC="TEA.GIF" WIDTH=100 HEIGHT=75 ALT="tea"></A></td><td>NPR teapot</td></tr>
+</table>
+	
+
+
+       
+
+<HR>
+<A HREF="../STUDY20/STUDY20.HTM">&lt;&lt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>

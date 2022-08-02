@@ -1,0 +1,64 @@
+<html>
+
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>bezier_patch::evaluate</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2><a href="bezier_patch.htm">bezier_patch</a>::evaluate</h2>
+
+<h3>Prototype</h3>
+
+<p class="code">void evaluate(int evaltype,float u,float v,vector *dest)</p>
+
+<h3>Parameters</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>evaltype</td>
+    <td>int</td>
+    <td>bit field specifying what to evaluate:<br>
+      bit 1 (1) - point (PATCH_EVAL_POINT)<br>
+      bit 2 (2) - texture co-ordinates (PATCH_EVAL_TEXTCOORD)<br>
+      bit 3 (4) - normal (PATCH_EVAL_NORMAL)</td>
+  </tr>
+  <tr>
+    <td>u</td>
+    <td>float</td>
+    <td>u co-ordinate</td>
+  </tr>
+  <tr>
+    <td>v</td>
+    <td>float</td>
+    <td>v co-ordinate</td>
+  </tr>
+  <tr>
+    <td>dest</td>
+    <td><a href="vector.htm">vector</a> *</td>
+    <td>buffer where to write evaluated data</td>
+  </tr>
+</table>
+
+<h3>Return Value</h3>
+
+<p>None</p>
+
+<h3>Remarks</h3>
+
+<p>This function evaluates the Bezier patch.<br>
+The u
+and v parameters must be in the range 0.0 to 1.0.<br>
+Use the evaltype modifier to specify what should be evaluated.<br>
+The <i>dest</i> pointer must point to at least the number of selected values to
+be evaluated by <i>evaltype</i>.</p>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<html>
+
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>bezier_curve</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class bezier_curve : public <a href="base_object.htm">base_object</a></h2>
+
+<h3>Definition</h3>
+
+<p class="code">class bezier_curve : public base_object<br>
+  {<br>
+  &nbsp; public:<br>
+  &nbsp; float *p;<br>
+  &nbsp; int np,ns,dim;<br>
+  &nbsp; vector pivot;<br>
+  <br>
+  &nbsp;&nbsp;bezier_curve()<br>
+  &nbsp; { p=0; reset(); };<br>
+  &nbsp; virtual ~bezier_curve()<br>
+  &nbsp; { reset(); };<br>
+  <br>
+  &nbsp; void reset();<br>
+  &nbsp; void set_dim(int ndim);<br>
+  &nbsp; void add_point(float *f);<br>
+  &nbsp; void evaluate(float u,float *f);<br>
+  &nbsp; void evaluate_tangent(float u,float *f);<br>
+  &nbsp; int adaptative_subdiv(float maxerror,float *points,int maxpoints);<br>
+  &nbsp; int load_bez(char *file);<br>
+  &nbsp; float length();<br>
+  &nbsp;};</p>
+
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>p</td>
+    <td>float *</td>
+    <td>array of points (np*dim floats)</td>
+  </tr>
+  <tr>
+    <td>np</td>
+    <td>int</td>
+    <td>number of points in array</td>
+  </tr>
+  <tr>
+    <td>ns</td>
+    <td>int</td>
+    <td>number of curve segments</td>
+  </tr>
+  <tr>
+    <td>dim</td>
+    <td>int</td>
+    <td>dimension for each point</td>
+  </tr>
+  <tr>
+    <td>pivot</td>
+    <td><a href="vector.htm">vector</a></td>
+    <td>position in 3D space for the center of the curve</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p> <a href="bezier_curve_reset.htm">reset</a>, <a
+href="bezier_curve_set_dim.htm">set_dim</a>, <a href="bezier_curve_add_point.htm">add_point</a>, 
+  <a href="bezier_curve_evaluate.htm">evaluate</a>, <a
+href="bezier_curve_evaluate_tangent.htm">evaluate_tangent</a>, <a href="bezier_curve_adaptative_subdiv.htm">adaptative_subdiv</a>, 
+  <a
+href="bezier_curve_load_bez.htm">load_bez</a>, <a href="bezier_curve_length.htm">length</a></p>
+
+<h3>Remarks</h3>
+
+<p>This class implements a Bezier curve of any dimension (1D, 2D, 3D, etc...). </p>
+
+<p>The curve and tangent can be evaluated at any point, and the curve can be adaptively 
+  subdivided until the curve error is less then a maximum error factor. </p>
+
+<h3>See Also</h3>
+
+<p><a href="vector.htm">vector</a>, <a href="bezier_patch.htm">bezier_patch</a></p>
+</body>
+</html>

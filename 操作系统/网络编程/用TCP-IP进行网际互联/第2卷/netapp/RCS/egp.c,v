@@ -1,0 +1,38 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.28.14;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* egp.c - egp */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ * egp  --  Do the Exterior Gateway Protocol
+ *------------------------------------------------------------------------
+ */
+PROCESS egp()
+{
+	return OK;
+}
+@

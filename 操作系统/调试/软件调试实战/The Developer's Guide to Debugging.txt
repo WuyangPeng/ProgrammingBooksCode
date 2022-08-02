@@ -1,0 +1,7 @@
+软件调试实战 （The Developer's Guide to Debugging）
+
+官方网站：    
+http://www.debugging-guide.com/
+
+★
+作者：Thorsten Grotker、Ulrich Holtmann、Holger Keding、Markus Wloka

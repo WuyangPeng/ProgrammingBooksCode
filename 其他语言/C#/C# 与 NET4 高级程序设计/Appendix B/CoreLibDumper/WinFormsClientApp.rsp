@@ -1,0 +1,6 @@
+/target:winexe
+/out:WinFormsClientApp.exe
+/r:CorLibDumper.dll
+/r:System.Windows.Forms.dll
+/r:System.Drawing.dll
+WinFormsClientApp.cs

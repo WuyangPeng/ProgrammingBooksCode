@@ -1,0 +1,12 @@
+线性代数及其应用（Linear Algebra and Its Applications）
+（第5版）
+
+官方网站：
+https://media.pearsoncmg.com/bc/abp/lay/ 、
+https://www.wolfram.com/player/、 
+https://mlm.pearson.com/northamerica/mymathlab/、
+https://www.pearson.com/en-us.html 、
+http://www.laylinalgebra.com （已失效）
+
+☆
+作者：David C.Lay、Steven R.Lay、Judi J.McDonald

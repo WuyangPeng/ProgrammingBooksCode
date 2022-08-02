@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>bsp_object::get_param_desc</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="bsp_object.htm">bsp_object</a>::get_param_desc</h2>
+<h3>Prototype</h3>
+<p class="code">int get_param_desc(int i,param_desc *pd)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>i</td>
+	 <td>int</td>
+	 <td>parameter index</td>
+  </tr>
+  <tr>
+	 <td>pd</td>
+	 <td><a href="param_desc.htm">param_desc</a> *</td>
+	 
+    <td>parameter desc to be filled</td>
+  </tr>
+  
+</table>
+<h3>Return Value</h3>
+<p>If <i>pd</i>=0, the number of custom parameters.</p>
+<h3>Remarks</h3>
+<p>This function implements the object standard parameters. All sub-classes must 
+  have these 12 parameters:</p>
+<p><i>pos</i>, <i>vel</i>, <i>force</i>, <i>rot</i>, <i>life</i>, <i>colflag</i>,
+<i>mass</i>, <i>radius</i>, <i>bump</i>, <i>friction</i>, <i>active</i>, <i>latedraw</i></p>
+</body>
+</html>

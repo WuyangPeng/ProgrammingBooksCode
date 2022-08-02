@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>class flydll</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2>class flydll</h2>
+<h3>Definition</h3>
+<p class="code">class flydll<br>
+  {<br>
+  &nbsp; public:<br>
+  &nbsp; HINSTANCE hdll;<br>
+  &nbsp; char dll_filename[256];<br>
+  &nbsp; int nclasses;<br>
+  &nbsp; int (* num_classes)();<br>
+  &nbsp;&nbsp;class_desc *(* get_class_desc)(int i);<br>
+  &nbsp;&nbsp;int (* fly_message)(int msg,int param,void *data);<br>
+  };</p>
+<h3>Data Members</h3>
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr> 
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr> 
+    <td>hdll</td>
+    <td>HINSTANCE</td>
+    <td>instance handle of the plug-in dll</td>
+  </tr>
+  <tr> 
+    <td>dll_filename</td>
+    <td>char *</td>
+    <td>file name of the plug-in dll</td>
+  </tr>
+  <tr> 
+    <td>nclasses</td>
+    <td>int</td>
+    <td>number of classes implemented in the plug-in</td>
+  </tr>
+  <tr> 
+    <td>numclasses</td>
+    <td>int (*)()</td>
+    <td>pointer to numclasses() function of the plug-in dll</td>
+  </tr>
+  <tr> 
+    <td>get_class_desc</td>
+    <td>class_desc *(*)(int i)</td>
+    <td>pointer to get_class_desc() function of the plug-in dll</td>
+  </tr>
+  <tr> 
+    <td>fly_message</td>
+    <td> int (*)(int msg, int param, void *data)</td>
+    <td>pointer to fly_message() function of the plug-in dll</td>
+  </tr>
+</table>
+<h3>Methods</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This class holds information for each Fly3D plug-in dll, including the number 
+  of classes implemented in the dll, and the pointers to the dll exported functions.</p>
+<h3>See Also</h3>
+<p><a href="class_desc.htm">class_desc</a>, <a href="param_desc.htm">param_desc</a>,
+<a href="flydllgroup.htm">flydllgroup</a></p>
+</body>
+</html>

@@ -1,0 +1,20 @@
+#include "npipe2.cpp"
+
+
+
+void main(void)
+{
+
+
+   int Size;
+   int N;
+   int Value;
+   npstream<int> Client("\\pipe\\mypipe");
+   Client >> Size;
+   for(N = 0; N < Size; N++)
+   {
+       Client >> Value;
+       cout << "From Server " << Value << endl;
+   }
+
+}

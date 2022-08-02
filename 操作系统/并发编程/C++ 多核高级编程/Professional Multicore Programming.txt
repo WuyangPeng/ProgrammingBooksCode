@@ -1,0 +1,8 @@
+C++ 多核高级编程 （Professional Multicore Programming）
+
+官方网站：    
+http://www.wrox.com
+ 
+★
+作者：Cameron Hughes、Tracey Hughes
+其他书籍：《C++ 并行与分布式编程》、《C++ 面向对象多线程编程》 

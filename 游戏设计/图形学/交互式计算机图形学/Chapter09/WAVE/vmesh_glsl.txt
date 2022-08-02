@@ -1,0 +1,10 @@
+uniform float time; /* in milliseconds */
+
+void main()
+{
+    float s;
+    vec4 t = gl_Vertex;
+    t.y = 0.1*sin(0.001*time+5.0*gl_Vertex.x)*sin(0.001*time+5.0*gl_Vertex.z);
+    gl_Position = gl_ModelViewProjectionMatrix * t;
+    gl_FrontColor = gl_Color;
+}

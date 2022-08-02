@@ -1,0 +1,60 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.59;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* slowtimer.c - slowtimer */
+
+#include <conf.h>
+#include <kernel.h>
+#include <proc.h>
+#include <network.h>
+
+#define	STGRAN	1		/* Timer granularity (delay) in seconds	*/
+
+/*------------------------------------------------------------------------
+ * slowtimer - handle long-term periodic maintenance of network tables
+ *------------------------------------------------------------------------
+ */
+PROCESS	slowtimer()
+{
+	long	lasttime, now;	/* previous and current times in seconds*/
+	int	delay;		/* actual delay in seconds		*/
+
+	signal(Net.sema);
+
+	gettime(&lasttime);
+	while (1) {
+		sleep(STGRAN);
+		gettime(&now);
+		delay = now - lasttime;
+		if (delay <= 0 || delay > 4*STGRAN)
+			delay = STGRAN;	/* likely clock reset */
+		lasttime = now;
+		arptimer(delay);
+		ipftimer(delay);
+		rttimer(delay);
+#ifdef OSPF
+		ospftimer(delay);
+#endif /* OSPF */
+	}
+}
+@

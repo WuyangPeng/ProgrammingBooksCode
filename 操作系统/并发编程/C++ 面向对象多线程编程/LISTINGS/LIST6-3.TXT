@@ -1,0 +1,127 @@
+// Listing 6.3
+// This program uses two threads.  The first
+// thread finds any file name that contains
+// the string 'txt'.  The second thread searches
+// that those files for a specific list of keywods.
+// The program uses mutexes to protect the critical
+// sections and a event mutex to signal when
+// the TextFiles queue has at least one element.
+
+    1   #include <dirent.h>
+    2   #include <set.h>
+    3   #include <cstring.h>
+    4   #include <fstream.h>
+    5   #include <algo.h>
+    6   #include <string.h>
+    7   #include <list.h>
+    8   #include <stack.h>
+    9   #include <stddef.h>
+   10   #include <process.h>
+   11   #define INCL_DOSPROCESS
+   12   #define INCL_DOSSEMAPHORES
+   13   #include <os2.h>
+   14   
+   15   queue< list<string> > TextFiles;
+   16   set<string,less<string> > KeyWords;
+   17   set<string,less<string> > SearchWords;
+   18   void threadA(void *X);
+   19   HMTX SemHandle;
+   20   HEV SemEventHandle;
+   21   string InFile;
+   22   string OutFile;
+   23   
+   24   
+   25   
+   26   void threadA(void *X)
+   27   {
+   28      string Temp;
+   29      string FileName;
+   30      less<string> Comp;
+   31      ifstream In;
+   32      ofstream Out;
+   33      In.open(InFile.c_str());
+   34      Out.open(OutFile.c_str());
+   35      while(!In.eof())
+   36      {
+   37         In >> Temp;
+   38         if(!In.eof()){
+   39   	  KeyWords.insert(Temp);
+   40         }
+   41      }
+   42      In.close();
+   43      DosWaitEventSem(SemEventHandle,SEM_INDEFINITE_WAIT);
+   44      while(!TextFiles.empty())
+   45      {
+   46          DosRequestMutexSem(SemHandle,5000);
+   47          FileName = TextFiles.front();
+   48          TextFiles.pop();
+   49          DosReleaseMutexSem(SemHandle);
+   50          In.open(FileName.c_str());
+   51          SearchWords.erase(SearchWords.begin(),SearchWords.end());
+   52          while(!In.eof() && In.good())
+   53          {
+   54   	   In >> Temp;
+   55   	   SearchWords.insert(Temp);
+   56          }
+   57          In.close();
+   58          if(includes(SearchWords.begin(),SearchWords.end(),
+   59   	       KeyWords.begin(),KeyWords.end(),Comp)){
+   60   	  DosRequestMutexSem(SemHandle,5000);
+   61   	  cout << "Thread A match found in " << FileName << endl;
+   62   	  Out << FileName << endl;
+   63   	  DosReleaseMutexSem(SemHandle);
+   64          }
+   65      }
+   66   
+   67      Out.close();
+   68   }
+   69   
+   70   
+   71   void main(int argc, char *argv[])
+   72   {
+   73   
+   74     DIR *DirP;
+   75     unsigned long Result = 0;
+   76     struct dirent *EntryP;
+   77     DirP = opendir(argv[1]);
+   78     InFile = argv[2];
+   79     OutFile = argv[3];
+   80     if(argc == 4){
+   81        string Temp;
+   82        DosCreateMutexSem(NULL,&SemHandle,0,0);
+   83        DosCreateEventSem(NULL,&SemEventHandle,0,0);
+   84        Result =  _beginthread(threadA,8192,NULL);
+   85        if(DirP == NULL){
+   86   	cerr << " Could Not Open " << argv[1] << endl;
+   87   	exit(1);
+   88        }
+   89        do{
+   90   	  EntryP = readdir(DirP);
+   91   	  if(EntryP){
+   92   	     Temp = EntryP->d_name;
+   93   	     if(Temp.contains(".TXT")){
+   94   		DosRequestMutexSem(SemHandle,5000);
+   95   		cout << "Found " << EntryP->d_name << " in Main Thread " << endl;
+   96   		TextFiles.push(EntryP->d_name);
+   97   		DosReleaseMutexSem(SemHandle);
+   98   		DosPostEventSem(SemEventHandle);
+   99   	     }
+  100   	  }
+  101        }while(EntryP);
+  102        closedir(DirP);
+  103        DosWaitThread(&Result,DCWW_WAIT);
+  104        DosCloseMutexSem(SemHandle);
+  105     }
+  106   
+  107   }
+  108   
+  109   
+  110   
+
+
+
+
+
+
+
+

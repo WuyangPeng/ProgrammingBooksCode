@@ -1,0 +1,23 @@
+﻿<UserControl
+    x:Class="PrintableTomKitten.TomKitten22"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Grid VerticalAlignment="Center"
+          MaxWidth="640">
+        <StackPanel>
+            <TextBlock Style="{StaticResource paragraphTextStyle}">
+                &#x2003;&#x2003;When the three kittens were ready, Mrs. 
+                Tabitha unwisely turned them out into the garden, to be 
+                out of the way while she made hot buttered toast.
+            </TextBlock>
+
+            <TextBlock Style="{StaticResource paragraphTextStyle}">
+                &#x2003;&#x2003;“Now keep your frocks clean, children! You 
+                must walk on your hind legs. Keep away from the dirty 
+                ash-pit, and from Sally Henny Penny, and from the 
+                pig-stye and the Puddle-Ducks.”
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>

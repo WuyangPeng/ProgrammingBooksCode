@@ -1,0 +1,54 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.25.42;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* dgclose.c - dgclose */
+
+#include <conf.h>
+#include <kernel.h>
+#include <proc.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  dgclose  -  close a datagram pseudo device, making it available again
+ *------------------------------------------------------------------------
+ */
+int dgclose(pdev)
+struct	devsw	*pdev;
+{
+	struct	dgblk	*pdg;
+	struct	upq	*pup;
+	int		freebuf();
+
+	pdg = (struct dgblk *) pdev->dvioblk;
+	pup = &upqs[pdg->dg_upq];
+	wait(udpmutex);
+	pup->up_port = -1;
+	if (pup->up_xport >= 0)
+		pdelete(pup->up_xport, freebuf);
+	pup->up_valid = FALSE;
+	signal(udpmutex);
+	pdg->dg_state = DGS_FREE;
+	return OK;
+}
+
+@

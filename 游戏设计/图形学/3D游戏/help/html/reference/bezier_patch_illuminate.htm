@@ -1,0 +1,63 @@
+<html>
+
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>bezier_patch::illuminate</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2><a href="bezier_patch.htm">bezier_patch</a>::illuminate</h2>
+
+<h3>Prototype</h3>
+
+<p class="code">void illuminate(vector&amp; p,float rad,vector&amp; color,int shadows);</p>
+
+<h3>Parameters</h3>
+
+<table BORDER="1" WIDTH="90%" CELLSPACING="0" CELLPADDING="3">
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>p</td>
+    <td>vector&amp;</td>
+    <td>light point</td>
+  </tr>
+  <tr>
+    <td>rad</td>
+    <td>float</td>
+    <td>light radius</td>
+  </tr>
+  <tr>
+    <td>color</td>
+    <td>vector&amp;</td>
+    <td>light color</td>
+  </tr>
+  <tr>
+    <td>shadows</td>
+    <td>int</td>
+    <td>shadows flag:<br>
+      0 - no shadows<br>
+      1 - shadows from specific object (shadow_obj)<br>
+      2 - shadows from any object</td>
+  </tr>
+</table>
+
+<h3>Return Value</h3>
+
+<p>None</p>
+
+<h3>Remarks</h3>
+
+<p>This function illuminates the patch light_map pixles based on the light
+position, radius and color.<br>
+Shadows can be computed for a specific object or all objects using the <i>shadows</i>
+flag.</p>
+
+</body>
+</html>

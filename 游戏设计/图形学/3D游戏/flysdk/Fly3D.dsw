@@ -1,0 +1,284 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "Fly3D"=.\LIB\Fly3D.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "bezobj"=.\plugin\bezobj\bezobj.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "car"=.\plugin\car\car.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "flyEditor"=.\frontend\flyEditor\flyEditor.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name Fly3D
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "flyFrontend"=.\frontend\flyFrontend\flyFrontend.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name Fly3D
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name bezobj
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name car
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name gamelib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name lights
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name menu
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name panorama
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name ship
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name viewport
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name volfog
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name walk
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name weapon
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name observer
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "flyLight"=.\frontend\flyLight\flyLight.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name Fly3D
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "flyPVS"=.\frontend\flyPVS\flyPVS.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name Fly3D
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "flyServer"=.\frontend\flyserver\flyserver.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name Fly3D
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "gamelib"=.\plugin\gamelib\gamelib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "lights"=.\plugin\lights\lights.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "menu"=.\plugin\menu\menu.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "observer"=.\plugin\observer\observer.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "panorama"=.\plugin\panorama\panorama.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ship"=.\plugin\ship\ship.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "viewport"=.\plugin\viewport\viewport.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "volfog"=.\plugin\volfog\volfog.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "walk"=.\plugin\walk\walk.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "weapon"=.\plugin\weapon\weapon.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

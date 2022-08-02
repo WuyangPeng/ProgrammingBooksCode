@@ -1,0 +1,134 @@
+<html>
+
+<head>
+<title>class bsp_object</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class bsp_object : public <a href="base_object.htm">base_object, </a><a href="particle.htm">particle</a>, 
+  <a href="local_system.htm">local_system</a></h2>
+
+<h3>Definition</h3>
+
+<p class="code">class bsp_object : public base_object, particle, local_system<br>
+{<br>
+&nbsp; public:<br>
+&nbsp; int type;<br>
+&nbsp; int active;<br>
+&nbsp; vector rot;<br>
+&nbsp; bsp_object *next_elem;<br>
+&nbsp; bsp_object *source;<br>
+&nbsp; bsp_node *node;<br>
+<br>
+&nbsp; bsp_object()<br>
+&nbsp; { node=0; col_flag=0; source=0; next_elem=0; type=0; };<br>
+<br>
+&nbsp; void add_to_bsp();<br>
+&nbsp; void remove_from_bsp();<br>
+&nbsp; virtual int step(int dt)<br>
+&nbsp; { return particle::step(dt); };<br>
+<br>
+&nbsp; virtual bsp_object *clone()<br>
+&nbsp; { return 0; };<br>
+<br>
+&nbsp; virtual mesh *get_mesh()<br>
+&nbsp; { return 0; };<br>
+<br>
+&nbsp; virtual void init()<br>
+&nbsp; { ; };<br>
+<br>
+&nbsp; int get_param_desc(int i,param_desc *pd);<br>
+<br>
+&nbsp; virtual int get_custom_param_desc(int i,param_desc *pd)<br>
+&nbsp; { return 0; };<br>
+<br>
+&nbsp; virtual mesh *ray_intersect(vector&amp; ro,vector&amp; rd,vector&amp; ip,float&amp;
+dist,int &amp;facenum,float rad=0.0f);<br>
+<br>
+&nbsp; virtual int message(vector&amp; p,float rad,int msg,int param,void *data)<br>
+&nbsp; { return 0; };<br>
+<br>
+&nbsp; virtual void draw();<br>
+&nbsp; void load_default_params(fly_pak *file,char *sec);<br>
+&nbsp; void load_params(fly_pak *file,char *sec);<br>
+<br>
+&nbsp; virtual ~bsp_object()<br>
+&nbsp; { if (node) remove_from_bsp(); };<br>
+};</p>
+
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>type</td>
+    <td>int</td>
+    <td>the object type (Fly3D plug-in type)</td>
+  </tr>
+  <tr>
+    <td>active</td>
+    <td>int</td>
+    <td>active flag (FALSE for inactive, TRUE activate on startup)</td>
+  </tr>
+  <tr>
+    <td>latedraw</td>
+    <td>int</td>
+    <td>last frame the object was draw</td>
+  </tr>
+  <tr>
+    <td>rot</td>
+    <td><a href="vector.htm">vector</a></td>
+    <td>object rotation</td>
+  </tr>
+  <tr>
+    <td>next_elem</td>
+    <td>bsp_object *</td>
+    <td>next element in objects node linked list</td>
+  </tr>
+  <tr>
+    <td>source</td>
+    <td>bsp_object *</td>
+    <td>the object this one was cloned from (NULL if original object)</td>
+  </tr>
+  <tr>
+    <td>node</td>
+    <td><a href="bsp_node.htm">bsp_node</a> *</td>
+    <td>the bsp_node the object is in</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p> <a href="bsp_object_add_to_bsp.htm">add_to_bsp</a>,
+<a href="bsp_object_remove_from_bsp.htm">remove_from_bsp</a>, <a
+href="bsp_object_setp.htm">step</a>, <a href="bsp_object_clone.htm">clone</a>, <a
+href="bsp_object_get_mesh.htm">get_mesh</a>, <a href="bsp_object_init.htm">init</a>, <a
+href="bsp_object_get_param_desc.htm">get_param_desc</a>, <a
+href="bsp_object_get_custom_param_desc.htm">get_custom_param_desc</a>, <a
+href="bsp_object_ray_intersect.htm">ray_intersect</a>, <a
+href="bsp_object_ray_intersect_test.htm">ray_intersect_test</a>, <a
+href="bsp_object_message.htm">message</a>, <a href="bsp_object_draw.htm">draw</a>, <a
+href="bsp_object_load_default_params.htm">load_default_params</a>, <a
+href="bsp_object_load_params.htm">load_params</a></p>
+
+<h3>Remarks</h3>
+
+<p>This class implements a bsp_object. All objects created in Fly3D plug-ins must
+derive from this class. It is the base class for all objects that will be
+included in the bsp. New object behavior is implemented by sub-classing the class
+and implementing its virtual functions.&nbsp;</p>
+
+<h3>See Also</h3>
+
+<p><a href="vector.htm">vector</a>, <a href="bsp_node.htm">bsp_node</a></p>
+
+</body>
+</html>

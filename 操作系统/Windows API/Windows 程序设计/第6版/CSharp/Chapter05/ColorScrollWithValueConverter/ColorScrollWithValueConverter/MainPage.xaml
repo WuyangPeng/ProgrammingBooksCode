@@ -1,0 +1,112 @@
+<Page
+    x:Class="ColorScrollWithValueConverter.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ColorScrollWithValueConverter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <local:DoubleToStringHexByteConverter x:Key="hexConverter" />
+        
+        <Style TargetType="TextBlock">
+            <Setter Property="Text" Value="00" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0 12" />
+        </Style>
+
+        <Style TargetType="Slider">
+            <Setter Property="Orientation" Value="Vertical" />
+            <Setter Property="IsDirectionReversed" Value="True" />
+            <Setter Property="Maximum" Value="255" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Red -->
+        <TextBlock Text="Red"
+                   Grid.Column="0"
+                   Grid.Row="0"
+                   Foreground="Red" />
+
+        <Slider Name="redSlider"
+                Grid.Column="0"
+                Grid.Row="1"
+                ThumbToolTipValueConverter="{StaticResource hexConverter}"
+                Foreground="Red"
+                ValueChanged="OnSliderValueChanged" />
+
+        <TextBlock Text="{Binding ElementName=redSlider, 
+                                  Path=Value,
+                                  Converter={StaticResource hexConverter}}"
+                   Grid.Column="0"
+                   Grid.Row="2"
+                   Foreground="Red" />
+
+        <!-- Green -->
+        <TextBlock Text="Green"
+                   Grid.Column="1"
+                   Grid.Row="0"
+                   Foreground="Green" />
+
+        <Slider Name="greenSlider"
+                Grid.Column="1"
+                Grid.Row="1"
+                ThumbToolTipValueConverter="{StaticResource hexConverter}"
+                Foreground="Green"
+                ValueChanged="OnSliderValueChanged" />
+
+        <TextBlock Text="{Binding ElementName=greenSlider, 
+                                  Path=Value,
+                                  Converter={StaticResource hexConverter}}"
+                   Grid.Column="1"
+                   Grid.Row="2"
+                   Foreground="Green" />
+
+        <!-- Blue -->
+        <TextBlock Text="Blue"
+                   Grid.Column="2"
+                   Grid.Row="0"
+                   Foreground="Blue" />
+
+        <Slider Name="blueSlider"
+                Grid.Column="2"
+                Grid.Row="1"
+                ThumbToolTipValueConverter="{StaticResource hexConverter}"
+                Foreground="Blue"
+                ValueChanged="OnSliderValueChanged" />
+
+        <TextBlock Text="{Binding ElementName=blueSlider, 
+                                  Path=Value,
+                                  Converter={StaticResource hexConverter}}"
+                   Grid.Column="2"
+                   Grid.Row="2"
+                   Foreground="Blue" />
+
+        <!-- Result -->
+        <Rectangle Grid.Column="3"
+                   Grid.Row="0"
+                   Grid.RowSpan="3">
+            <Rectangle.Fill>
+                <SolidColorBrush x:Name="brushResult"
+                                 Color="Black" />
+            </Rectangle.Fill>
+        </Rectangle>
+    </Grid>
+</Page>

@@ -1,0 +1,66 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.26.58;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* hgarpadd.c - hgarpadd */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+#include <igmp.h>
+
+/*------------------------------------------------------------------------
+ *  hgarpadd  -  add an ARP table entry for a multicast address
+ *------------------------------------------------------------------------
+ */
+int hgarpadd(ifnum, ipa)
+int	ifnum;
+IPaddr	ipa;
+{
+	struct netif	*pni = &nif[ifnum];
+	struct arpentry	*pae, *arpalloc();
+	int		ifdev = nif[ifnum].ni_dev;
+	STATWORD	ps;
+
+	disable(ps);
+	pae = arpalloc();
+	if (pae == 0) {
+		restore(ps);
+		return SYSERR;
+	}
+	pae->ae_hwtype = pni->ni_hwtype;
+	pae->ae_prtype = EPT_IP;
+	pae->ae_pni = pni;
+	pae->ae_hwlen = pni->ni_hwa.ha_len;
+	pae->ae_prlen = IP_ALEN;
+	pae->ae_queue = EMPTY;
+	blkcopy(pae->ae_pra, &ipa, IP_ALEN);
+	if (pni->ni_mcast)
+		(pni->ni_mcast)(NI_MADD, ifdev, pae->ae_hwa, ipa);
+	else
+		blkcopy(pae->ae_hwa, pni->ni_hwb.ha_addr, pae->ae_hwlen);
+	pae->ae_ttl = ARP_INF;
+	pae->ae_state = AS_RESOLVED;
+	restore(ps);
+	return OK;
+}
+@

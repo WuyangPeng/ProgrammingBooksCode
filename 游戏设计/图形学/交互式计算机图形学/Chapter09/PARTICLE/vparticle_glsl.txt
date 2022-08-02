@@ -1,0 +1,12 @@
+uniform float time;
+attribute  float vx, vy;
+
+void main()
+{
+    float a = -0.00000001;
+    vec4 t = gl_Vertex; 
+    t.y = gl_Vertex.y + 0.0001*vy*time + 0.5*a*time*time;
+    t.x = gl_Vertex.x + 0.0001*vx*time;
+    gl_Position = gl_ModelViewProjectionMatrix*t;
+    gl_FrontColor =  gl_Color;
+}

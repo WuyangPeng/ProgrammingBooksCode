@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="c:\temp\WebApp" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True" useFpForLocalhost="0">
+    <file relUrl="Web.config" publishTime="01/07/2010 22:29:12" />
+    <file relUrl="UpdatePanelWithTrigger.aspx" publishTime="01/01/2010 16:20:52" />
+    <file relUrl="EventList.aspx" publishTime="01/05/2010 17:44:18" />
+    <file relUrl="Styles/Site.css" publishTime="01/06/2010 22:13:38" />
+    <file relUrl="Intro/RegisterUser.aspx" publishTime="01/05/2010 17:57:19" />
+    <file relUrl="ResultsPage.aspx" publishTime="01/01/2010 15:14:36" />
+    <file relUrl="Styles.css" publishTime="01/02/2010 09:47:21" />
+    <file relUrl="StylesDemo.aspx" publishTime="01/06/2010 22:13:37" />
+    <file relUrl="LinksDemo.aspx" publishTime="01/03/2010 11:48:01" />
+    <file relUrl="bin/EventRegistrationWeb.dll" publishTime="01/07/2010 22:33:52" />
+    <file relUrl="Login.aspx" publishTime="01/04/2010 23:32:55" />
+    <file relUrl="Registration.aspx" publishTime="01/06/2010 17:50:26" />
+    <file relUrl="Admin/EventsManagement.aspx" publishTime="01/07/2010 21:26:25" />
+    <file relUrl="Web.sitemap" publishTime="01/07/2010 01:02:43" />
+    <file relUrl="Global.asax" publishTime="01/01/2010 19:36:42" />
+    <file relUrl="Events.Master" publishTime="01/07/2010 01:02:43" />
+    <file relUrl="UpdatePanelDemo.aspx" publishTime="01/01/2010 15:33:04" />
+    <file relUrl="Default.aspx" publishTime="01/07/2010 01:02:43" />
+    <file relUrl="bin/EventRegistrationWeb.pdb" publishTime="01/07/2010 22:33:52" />
+  </publishProfile>
+</publishData>

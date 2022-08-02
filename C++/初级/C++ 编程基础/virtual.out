@@ -1,0 +1,21 @@
+StockItem::Reorder says:
+Reorder 68 units of soup
+
+DatedStockItem::Reorder says:
+Return 10 units of milk
+StockItem::Reorder says:
+Reorder 15 units of milk
+
+StockItem::Reorder says:
+Reorder 70 units of beans
+
+DatedStockItem::Reorder says:
+Return 22 units of ham
+StockItem::Reorder says:
+Reorder 30 units of ham
+
+DatedStockItem::Reorder says:
+Return 90 units of steak
+StockItem::Reorder says:
+Reorder 95 units of steak
+

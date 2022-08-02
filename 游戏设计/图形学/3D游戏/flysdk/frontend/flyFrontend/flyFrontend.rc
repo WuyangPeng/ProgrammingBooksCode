@@ -1,0 +1,224 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+#include "resource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_FLY                 ICON    DISCARDABLE     "fly.ICO"
+IDR_PARALELO            ICON    DISCARDABLE     "idr_main.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDM_FLY MENU DISCARDABLE 
+BEGIN
+    POPUP "File"
+    BEGIN
+        MENUITEM "Open...\tCtrl+O",             ID_FILE_OPEN
+        MENUITEM "Join...\tCtrl+J",             ID_MULTIPLAYER, HELP
+        MENUITEM "Close",                       ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "About...",                    ID_ABOUT
+        MENUITEM SEPARATOR
+        MENUITEM "Exit",                        ID_EXIT
+    END
+    POPUP "View"
+    BEGIN
+        MENUITEM "Toggle Full-Screen\tAlt+Enter", ID_FULLSCREEN
+        MENUITEM SEPARATOR
+        MENUITEM "Menu\tF1",                    ID_MENU
+        MENUITEM "Save Screen\tF2",             ID_SAVESCR
+        MENUITEM "Mute\tF3",                    ID_MUTE
+        MENUITEM "Wireframe\tF4",               ID_WIREFRAME
+        MENUITEM SEPARATOR
+        MENUITEM "Fog\tF5",                     ID_FOG
+        MENUITEM "Node only\tF6",               ID_NODEONLY
+        MENUITEM "PVS\tF7",                     ID_PVS
+        MENUITEM "Filtering\tF8",               ID_TEXTUREINTERPOLATION
+        MENUITEM SEPARATOR
+        MENUITEM "Multitexture\tF9",            ID_MULTITEXTURE
+        MENUITEM "Texture mode\tF10",           ID_MAPMODE
+        MENUITEM "Mipmap\tF11",                 ID_MIPMAP
+        MENUITEM "Clear bkgnd\tF12",            ID_CLEARBKGND
+        MENUITEM SEPARATOR
+        MENUITEM "Status\tTAB",                 ID_STATUS
+    END
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resource.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 252, 55
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "About Fly3D"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_PARALELO,IDC_STATIC,13,7,20,20
+    LTEXT           "Fly3D Game Engine",IDC_STATIC,45,8,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 1999, Paralelo Computação Ltda.",
+                    IDC_STATIC,45,23,165,8
+    DEFPUSHBUTTON   "OK",IDOK,211,5,32,14,WS_GROUP
+    LTEXT           "http://www.paralelo.com.br",IDC_STATIC,45,34,88,8
+END
+
+IDD_MULTIPLAYER DIALOG DISCARDABLE  0, 0, 152, 116
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Fly3D Multiplayer"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "&Player name:",IDC_STATIC,7,8,42,8,NOT WS_GROUP
+    EDITTEXT        IDC_PLAYERNAME,60,5,85,14,ES_UPPERCASE | ES_AUTOHSCROLL
+    LTEXT           "&IP Address:",IDC_STATIC,7,27,37,8
+    EDITTEXT        IDC_IP,60,25,85,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Search...",IDC_SEARCH,7,45,45,14
+    LISTBOX         IDC_GAMES,59,45,86,44,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "&Join",IDOK,59,95,38,14
+    PUSHBUTTON      "Cancel",IDCANCEL,107,95,38,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 245
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_FLY_ACCEL ACCELERATORS DISCARDABLE 
+BEGIN
+    "J",            ID_MULTIPLAYER,         VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    VK_ESCAPE,      ID_FILE_CONSOLE,        VIRTKEY, NOINVERT
+    VK_F1,          ID_MENU,                VIRTKEY, NOINVERT
+    VK_F10,         ID_MAPMODE,             VIRTKEY, NOINVERT
+    VK_F11,         ID_MIPMAP,              VIRTKEY, NOINVERT
+    VK_F12,         ID_CLEARBKGND,          VIRTKEY, NOINVERT
+    VK_F2,          ID_SAVESCR,             VIRTKEY, NOINVERT
+    VK_F3,          ID_MUTE,                VIRTKEY, NOINVERT
+    VK_F4,          ID_WIREFRAME,           VIRTKEY, NOINVERT
+    VK_F5,          ID_FOG,                 VIRTKEY, NOINVERT
+    VK_F6,          ID_NODEONLY,            VIRTKEY, NOINVERT
+    VK_F7,          ID_PVS,                 VIRTKEY, NOINVERT
+    VK_F8,          ID_TEXTUREINTERPOLATION, VIRTKEY, NOINVERT
+    VK_F9,          ID_MULTITEXTURE,        VIRTKEY, NOINVERT
+    VK_RETURN,      ID_FULLSCREEN,          VIRTKEY, ALT, NOINVERT
+    VK_TAB,         ID_STATUS,              VIRTKEY, NOINVERT
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Portuguese (Brazil) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTB)
+#ifdef _WIN32
+LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Portuguese (Brazil) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

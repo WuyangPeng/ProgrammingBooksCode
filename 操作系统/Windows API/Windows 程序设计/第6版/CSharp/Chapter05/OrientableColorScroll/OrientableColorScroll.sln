@@ -1,0 +1,46 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows 8
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrientableColorScroll", "OrientableColorScroll\OrientableColorScroll.csproj", "{01758383-418E-48F9-8FE4-D8DB2ED4F447}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Debug|ARM.ActiveCfg = Debug|ARM
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Debug|ARM.Build.0 = Debug|ARM
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Debug|ARM.Deploy.0 = Debug|ARM
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Debug|x64.ActiveCfg = Debug|x64
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Debug|x64.Build.0 = Debug|x64
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Debug|x64.Deploy.0 = Debug|x64
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Debug|x86.ActiveCfg = Debug|x86
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Debug|x86.Build.0 = Debug|x86
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Debug|x86.Deploy.0 = Debug|x86
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Release|ARM.ActiveCfg = Release|ARM
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Release|ARM.Build.0 = Release|ARM
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Release|ARM.Deploy.0 = Release|ARM
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Release|x64.ActiveCfg = Release|x64
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Release|x64.Build.0 = Release|x64
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Release|x64.Deploy.0 = Release|x64
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Release|x86.ActiveCfg = Release|x86
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Release|x86.Build.0 = Release|x86
+		{01758383-418E-48F9-8FE4-D8DB2ED4F447}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

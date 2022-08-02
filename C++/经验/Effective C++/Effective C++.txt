@@ -1,0 +1,10 @@
+Effective C++
+（第3版）
+
+官方网站：
+http://aristeia.com/BookErrata/ec++3e-errata.html、 
+http://aristeia.com/MailingList。
+
+★★★★
+作者：Scott Meyers
+其他书籍：《More Effective C++》、《Effective STL》、《Effective Modern C++》。

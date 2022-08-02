@@ -1,0 +1,62 @@
+<html>
+
+<head>
+<title>static_mesh::message</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2><a href="static_mesh.htm">static_mesh</a>::message</h2>
+
+<h3>Prototype</h3>
+
+<p class="code">int message(vector&amp; p,float rad,int msg,int param,void *data)</p>
+
+<h3>Parameters</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>p</td>
+    <td><a href="vector.htm">vector</a>&amp;</td>
+    <td>position</td>
+  </tr>
+  <tr>
+    <td>rad</td>
+    <td>float</td>
+    <td>radius</td>
+  </tr>
+  <tr>
+    <td>msg</td>
+    <td>int</td>
+    <td>type</td>
+  </tr>
+  <tr>
+    <td>param</td>
+    <td>int</td>
+    <td>parameter</td>
+  </tr>
+  <tr>
+    <td>data</td>
+    <td>void *</td>
+    <td>general pointer parameter</td>
+  </tr>
+</table>
+
+<h3>Return Value</h3>
+
+<p>Returns 0 continue the message chain.</p>
+
+<h3>Remarks</h3>
+
+<p>This function processes the messages sent to the bsp leaf faces. It handles static and
+dynamic lighting messages.</p>
+</body>
+</html>

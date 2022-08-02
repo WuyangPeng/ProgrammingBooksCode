@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDI Editor", "MDI Editor.csproj", "{B35FEF5A-C5B2-441C-AB74-C42E68414AAF}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MDIEditorSetup", "..\MDIEditorSetup\MDIEditorSetup.vdproj", "{EEF68987-F97C-49A1-A6B0-A0E6B851FA94}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B35FEF5A-C5B2-441C-AB74-C42E68414AAF}.Debug|x86.ActiveCfg = Debug|x86
+		{B35FEF5A-C5B2-441C-AB74-C42E68414AAF}.Debug|x86.Build.0 = Debug|x86
+		{B35FEF5A-C5B2-441C-AB74-C42E68414AAF}.Release|x86.ActiveCfg = Release|x86
+		{B35FEF5A-C5B2-441C-AB74-C42E68414AAF}.Release|x86.Build.0 = Release|x86
+		{EEF68987-F97C-49A1-A6B0-A0E6B851FA94}.Debug|x86.ActiveCfg = Debug
+		{EEF68987-F97C-49A1-A6B0-A0E6B851FA94}.Release|x86.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

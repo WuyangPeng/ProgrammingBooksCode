@@ -1,0 +1,75 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	94.08.10.18.33.02;	author dls;	state Fix;
+branches;
+next	1.1;
+
+1.1
+date	94.01.07.03.10.11;	author dls;	state Old;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@made cksum handle bytes instead of words
+@
+text
+@/* cksum.c - cksum */
+
+/*------------------------------------------------------------------------
+ *  cksum  -  Return 16-bit ones complement of 16-bit ones complement sum 
+ *------------------------------------------------------------------------
+ */
+unsigned short
+cksum(buf, nbytes)
+unsigned short	*buf;
+int		nbytes;
+{
+	unsigned long	sum;
+	unsigned short	tmp;
+	int		nwords;
+
+	nwords = nbytes / 2;
+	for (sum=0; nwords>0; nwords--)
+		sum += *buf++;
+	if (nbytes & 1) {
+		tmp = *(unsigned char *)buf;
+		sum += tmp;
+	}
+	sum = (sum >> 16) + (sum & 0xffff);	/* add in carry   */
+	sum += (sum >> 16);			/* maybe one more */
+	return (unsigned short)~sum;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d7 2
+a8 1
+short cksum(buf, nwords)
+d10 1
+a10 1
+int		nwords;
+d13 2
+d16 1
+d19 4
+d25 1
+a25 1
+	return ~sum;
+@

@@ -1,0 +1,3 @@
+$$ENUM$$
+$$CLASSES_H$$
+$$CLSSESDESC_H$$

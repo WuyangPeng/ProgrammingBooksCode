@@ -1,0 +1,57 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.09;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* ipdstopts.c - ipdstopts */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  ipdstopts - do host handling of IP options
+ *------------------------------------------------------------------------
+ */
+int ipdstopts(pni, pep)
+struct	netif	*pni;
+struct	ep	*pep;
+{
+	struct	ip	*pip = (struct ip *)pep->ep_data;
+	u_char		*popt, *popend;
+	int		len;
+
+	if (IP_HLEN(pip) == IPMHLEN)
+		return OK;
+	popt = pip->ip_data;
+	popend = (u_char *)&pep->ep_data[IP_HLEN(pip)];
+
+	/* NOTE: options not implemented yet */
+
+	/* delete the options */
+	len = pip->ip_len-IP_HLEN(pip);	/* data length	*/
+	if (len)
+		blkcopy(pip->ip_data, &pep->ep_data[IP_HLEN(pip)], len);
+	pip->ip_len = IPMHLEN + len;
+	pip->ip_verlen = (pip->ip_verlen&0xf0) | IP_MINHLEN;
+	return OK;
+}
+@

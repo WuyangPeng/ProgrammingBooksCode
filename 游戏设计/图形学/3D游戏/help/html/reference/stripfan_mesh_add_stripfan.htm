@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>stripfan_mesh::add_stripfan</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="stripfan_mesh.htm">stripfan_mesh</a>::add_stripfan</h2>
+<h3>Prototype</h3>
+<p class="code">vertex *add_stripfan(int nvert,int texpic,int lmpic)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>nvert</td>
+	 <td>int</td>
+	 <td>number of vertices to add</td>
+  </tr>
+  <tr>
+	 <td>texpic</td>
+	 <td>int</td>
+	 <td>texture picture for this strip/fan</td>
+  </tr>
+  <tr>
+	 <td>lmpic</td>
+	 <td>int</td>
+	 
+    <td>light map for this strip/fan</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>Return the pointer to the actual vertices added for the strip/fan.</p>
+<h3>Remarks</h3>
+<p>This function adds a new strip or fan to the mesh. If <i>nvert</i> is
+positive, it means a strip, if negative, means a fan.<br>
+Each strip/fan can have its own texture and light map. If strip has no texture or
+no light map, use -1 for the texture or light map parameter.<br>
+You must fill the strip vertices (position, color, texture co-ordinate and
+light map co-ordinate) using the returned pointer. It points to an array of
+vertices of size abs(<i>nvert</i>).</p>
+</body>
+</html>

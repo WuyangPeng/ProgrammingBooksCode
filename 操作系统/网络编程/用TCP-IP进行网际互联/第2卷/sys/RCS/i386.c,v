@@ -1,0 +1,377 @@
+head	1.7;
+access;
+symbols;
+locks
+	dls:1.7; strict;
+comment	@ * @;
+
+
+1.7
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	1.6;
+
+1.6
+date	94.05.07.19.26.36;	author dls;	state Works;
+branches;
+next	1.5;
+
+1.5
+date	94.05.06.03.12.23;	author dls;	state Works;
+branches;
+next	1.4;
+
+1.4
+date	94.05.01.16.07.01;	author dls;	state Works;
+branches;
+next	1.3;
+
+1.3
+date	94.05.01.03.28.12;	author dls;	state Works;
+branches;
+next	1.2;
+
+1.2
+date	94.04.30.04.04.37;	author dls;	state Works;
+branches;
+next	1.1;
+
+1.1
+date	94.04.26.15.15.20;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.7
+log
+@pre-3e code
+@
+text
+@/* i386.c - setsegs */
+
+#include <icu.h>
+#include <i386.h>
+#include <kernel.h>
+
+
+#define	KCODE	1
+#define	KSTACK	2
+#define	KDATA	3
+
+struct sd gdt_copy[NGD] = {
+		/* 0th entry NULL */
+	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
+		/* 1st, Kernel Code Segment */
+	{ 0xffff, 0, 0, 6, 1, 1, 0, 1, 0xf, 0, 0, 1, 1, 0 },
+		/* 2nd, Kernel Data Segment */
+	{ 0xffff, 0, 0, 2, 0, 1, 0, 1, 0xf, 0, 0, 1, 1, 0 },
+		/* 3rd, Kernel Stack Segment */
+	{ 0xffff, 0, 0, 2, 0, 1, 0, 1, 0xf, 0, 0, 1, 1, 0 },
+};
+
+extern struct sd gdt[];
+extern struct segtr gdtr;
+
+#define	HOLESIZE	((1024-640)/4)
+
+long	initsp;		/* initial SP for nulluser() */
+
+extern	char	*maxaddr;
+
+/*------------------------------------------------------------------------
+ * setsegs - initialize the 386 processor
+ *------------------------------------------------------------------------
+ */
+setsegs()
+{
+	extern int	start, etext;
+	struct sd	*psd;
+	unsigned int	np, npages;
+
+	npages = sizmem();
+	maxaddr = (char *)(npages * NBPG - 1);
+
+	psd = &gdt_copy[1];	/* kernel code segment */
+	np = ((int)&etext + NBPG-1) / NBPG;	/* # code pages */
+	psd->sd_lolimit = np;
+	psd->sd_hilimit = np >> 16;
+
+	psd = &gdt_copy[2];	/* kernel data segment */
+	psd->sd_lolimit = npages;
+	psd->sd_hilimit = npages >> 16;
+
+	psd = &gdt_copy[3];	/* kernel stack segment */
+	psd->sd_lolimit = npages;
+	psd->sd_hilimit = npages >> 16;
+
+	blkcopy(gdt, gdt_copy, sizeof(gdt_copy));
+	initsp = npages*NBPG  - 4;
+}
+
+/*------------------------------------------------------------------------
+ * init8259 - initialize the 8259A interrupt controllers
+ *------------------------------------------------------------------------
+ */
+init8259()
+{
+	STATWORD	PS;
+
+	/* Master device */
+	outb(ICU1, 0x11);	/* ICW1: icw4 needed		*/
+	outb(ICU1+1, 0x20);	/* ICW2: base ivec 32		*/
+	outb(ICU1+1, 0x4);	/* ICW3: cascade on irq2	*/
+	outb(ICU1+1, 0x1);	/* ICW4: buf. master, 808x mode */
+	outb(ICU1, 0xb);	/* OCW3: set ISR on read	*/
+
+	/* Slave device */
+	outb(ICU2, 0x11);	/* ICW1: icw4 needed		*/
+	outb(ICU2+1, 0x28);	/* ICW2: base ivec 40		*/
+	outb(ICU2+1, 0x2);	/* ICW3: slave on irq2		*/
+	outb(ICU2+1, 0xb);	/* ICW4: buf. slave, 808x mode	*/
+	outb(ICU2, 0xb);	/* OCW3: set ISR on read	*/
+
+	disable(PS);
+}
+
+pseg(psd)
+struct sd	*psd;
+{
+	int		i;
+	unsigned char	*pb = (unsigned char *)psd;
+	unsigned int	base;
+	unsigned int	limit;
+
+	kprintf("pseg (%X)\n", pb);
+	kprintf("hex:   %02x", (unsigned int)*pb++);
+	for(i=1; i<8; ++i) {
+		kprintf(" (%X)", pb);
+		kprintf(" %02x", (unsigned int)*pb++);
+	}
+	limit = ((int)psd->sd_hilimit) << 16;
+	limit |= psd->sd_lolimit;
+	base = ((int)psd->sd_hibase) << 24;
+	base |= ((int)psd->sd_midbase)<< 16;
+	base |= psd->sd_lobase;
+	
+	kprintf("\nby field: base %X limit %d perm %d\n", base, limit,
+		psd->sd_perm);
+	kprintf("iscode %d isapp %d dpl %d present %d avl %d\n",
+		psd->sd_iscode, psd->sd_isapp, psd->sd_dpl, psd->sd_present,
+		psd->sd_avl);
+	kprintf("mbz %d 32b %d gran %d\n", psd->sd_mbz, psd->sd_32b,
+		psd->sd_gran);
+}
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@d40 1
+a40 1
+	unsigned int	np, npages, lostk, limit;
+a42 1
+	kprintf("setsegs, npages %d (%d bytes)\n", npages, npages * NBPG);
+d58 1
+a58 1
+	bcopy(gdt_copy, gdt, sizeof(gdt_copy));
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@a60 1
+kprintf("initsp %X\n", initsp);
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d16 1
+a16 1
+	{ 0xffff, 0, 0, 7, 1, 1, 0, 1, 0xf, 0, 0, 1, 1, 0 },
+d18 1
+a18 1
+	{ 0xffff, 0, 0, 3, 0, 1, 0, 1, 0xf, 0, 0, 1, 1, 0 },
+d20 1
+a20 1
+	{ 0xffff, 0, 0, 3, 0, 1, 0, 1, 0xf, 0, 0, 1, 1, 0 },
+d23 1
+a23 1
+extern struct sd gdt[NGD];
+d40 1
+a40 1
+	int		np, npages, lostk, limit;
+d43 2
+a44 2
+	kprintf("setsegs, npages %d (%d bytes)\n", npages, npages * 4096);
+	maxaddr = (char *)((npages + HOLESIZE) * NBPG - 1);
+d52 2
+a53 3
+	np = npages + HOLESIZE;
+	psd->sd_lolimit = np;
+	psd->sd_hilimit = np >> 16;
+d56 2
+a57 3
+	np = npages + HOLESIZE;
+	psd->sd_lolimit = np;
+	psd->sd_hilimit = np >> 16;
+d59 1
+a59 1
+	bcopy(gdt_copy, gdt, sizeof(gdt));
+d61 1
+a61 3
+kprintf("initsp %d\n", initsp);
+kprintf("new stack seg\n");
+pseg(psd);
+d70 2
+d86 1
+a86 1
+	disable();
+d97 6
+a102 3
+	kprintf("pseg\nhex:   %02x", *pb++);
+	for(i=1; i<8; ++i)
+		kprintf(" %02x", *pb++);
+a115 8
+}
+
+pstuff(count, newsp, oldsp, newspbase, oldspbase)
+int	oldsp, newsp, count;
+{
+	kprintf("oldspbase %d newspbase %d\n", oldspbase, newspbase);
+	kprintf("oldsp %d newsp %d count %d\n", oldsp, newsp, count);
+	while(1);
+@
+
+
+1.3
+log
+@sort of works; delete SS segment stuff and it works.
+@
+text
+@d57 3
+a59 8
+	limit = NULLSTK + 4;
+	psd->sd_lolimit = limit;
+	psd->sd_hilimit = limit >> 16;
+	lostk = maxaddr + 1 - limit;
+	psd->sd_lobase = (unsigned short) lostk;
+	psd->sd_midbase = (unsigned char) (lostk >> 16);
+	psd->sd_hibase = (unsigned char) (lostk >> 24);
+	psd->sd_gran = 0;
+d62 4
+a65 1
+	initsp = limit  - 4;
+@
+
+
+1.2
+log
+@,
+@
+text
+@d1 1
+a1 1
+/* i386.c - init386 */
+d5 1
+d17 1
+a17 1
+		/* 2nd, Kernel Stack Segment */
+d19 1
+a19 1
+		/* 3rd, Kernel Data Segment */
+d24 1
+a24 4
+extern struct {
+	unsigned int	len : 16;
+	unsigned int	addr : 32;
+} gdtr;
+d33 1
+a33 1
+ * init386 - initialize the 386 processor
+d36 1
+a36 1
+init386()
+d38 1
+a38 1
+	extern int	start, end;
+d40 1
+a40 1
+	int		np, npages, lostk;
+d43 2
+a44 2
+	kprintf("init386, npages %d (%d bytes)\n", npages, npages * 4096);
+	kprintf("_end = %d\n", &end);
+a45 1
+#ifdef notyet
+d47 1
+a47 1
+	np = ((int)&end + NBPG-1) / NBPG;	/* # code pages */
+a49 3
+	psd->sd_lobase = (unsigned short) &start;
+	psd->sd_midbase = (unsigned char) ((int)&start >> 16);
+	psd->sd_hibase = (unsigned char) ((int)&start >> 24);
+d51 2
+a52 2
+	psd = &gdt_copy[2];	/* kernel stack segment */
+	np = (NULLSTK + NBPG-1) / NBPG;
+d55 6
+a60 1
+	lostk = npages * NBPG - NULLSTK;
+d64 1
+a64 1
+#endif /* notyet */
+d67 1
+a67 20
+	initsp = (npages + HOLESIZE) * NBPG - 4;
+	kprintf("initsp %d\n", initsp);
+	lgdt();		/* also sets SP */
+	kprintf("after gdtr loaded\n");
+{ int i, j;
+	unsigned char *p = &gdt[0];
+	for (i=0; i<NGD; ++i) {
+		kprintf("%d  %02x", i, *p++);
+		kprintf(" %02x", *p++);
+		kprintf(" %02x", *p++);
+		kprintf(" %02x", *p++);
+		kprintf(" %02x", *p++);
+		kprintf(" %02x", *p++);
+		kprintf(" %02x", *p++);
+		kprintf(" %02x\n", *p++);
+	}
+}
+	maxaddr = (char *)((npages + HOLESIZE) * NBPG - 1);
+	/* initial stack at end of memory */
+	kprintf("after stack moved\n");
+d91 34
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d3 1
+d40 3
+a42 2
+	extern int	end;
+	int		npages;
+d47 20
+d88 23
+a110 1
+	/* set up idt */
+@

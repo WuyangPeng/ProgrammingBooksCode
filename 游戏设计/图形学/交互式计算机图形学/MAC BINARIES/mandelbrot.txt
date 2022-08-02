@@ -1,0 +1,32 @@
+Ξϊνώ d…8__PAGEZEROH__TEXT__text__TEXT\a\€__literal8__TEXTΐ 
+ΐ__literal4__TEXTΰΰ__cstring__TEXTτ τ__DATA ΰ__data__DATA 
+0__dyld__DATA0 0__common__DATA` Πΐ__IMPORT __pointers__IMPORT 
+__jump_table__IMPORT@_@ 8__LINKEDIT0(0+T2Τ P2 
+/usr/lib/dyldP\ 
+X/System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL 
+T/System/Library/Frameworks/GLUT.framework/Versions/A/GLUT 
+4/usr/lib/libgcc_s.1.dylib 
+4o/usr/lib/libSystem.B.dylibj‰εƒδπƒμ‹]‰\$M‰L$ƒΓΑγΛ‰\$‹ƒΓ…ΐuχ‰\$ 
+θ¦‰D$θ¥ητθXÿ°o‹€ÿΰθX‹€ÿΰU‰εƒμ‹Eσ‹E σσXΑ‹Eσ‹Eƒΐσ‹E 
+ƒΐσσXΑ‹EƒΐσΙΓU‰εƒμ‹Eσ‹E σ(ΡσYΠ‹Eƒΐσ‹E 
+ƒΐσσYΑ(Κσ\Θ(Α‹Eσ‹Eσ‹E ƒΐσ(ΡσYΠ‹Eƒΐσ‹E 
+σσYΑσXΒ‹EƒΐσΙΓU‰εƒμ‹Eσ‹Eσ(ΡσYΠ‹Eƒΐσ‹EƒΐσσYΑσXΒσEτΩEτΙΓU‰εƒμ‹U‹E‰‹UƒΒ‹E 
+‰ΙΓU‰εSƒμ$θ[Η$@θNζƒB‹ƒ>‹ƒζ‹‰D$ΗD$ ΗD$‰T$‰ $θ ζθ 
+ζƒΔ$[ΙΓU‰εSƒμ$θ[‹E ‰D$ ‹E‰D$ΗD$Η$θÿεΗ$θιεθίε‹E;E jƒζ‹σ*Θσ*E 
+σYΘσ*E(Ρσ^Π(ΒσZΘƒβ‹σ*ΐσZΐςL$ςD$ƒzςςD$ƒzςς$θƒελhƒζ‹σ*ΐσZΠƒβ‹σ*Θσ*EσYΘσ*E 
+(Ωσ^Ψ(ΓσZΐςT$ςD$ƒzςςD$ƒzςς$θεΗ$θώδƒΔ$[ΙΓU‰εWVSμ\ 
+θ[ƒi‹‰D$ 
+ƒi‹‰D$ƒi‹‰D$ƒi‹‰$θδƒµ‹σ*ΐσZΘƒ±‹σ*ΐσZΐςL$ςD$ƒIςςD$ƒIςς$θqδΗEδιΎ‹Uδς*MδƒQςf(Ρς^Πf(ΒςZΐσ„•δϋÿÿ‹uδθ_δ‰ΑΗ…Δσÿÿ€€€‹…Δσÿÿχι 
+‰ΒΑϊ‰ΘΑψ‰Χ)Η‰½Τσÿÿ‹…ΤσÿÿΑΰ+…Τσÿÿ‰Κ)Β‰•Τσÿÿσ*…Τσÿÿσ„µδχÿÿ‹Uδς*MδƒYςς^ΘƒaςςXΑςZΐσ„•δσÿÿEδÿ}δÿ5ÿÿÿ…δϋÿÿ‰D$ΗD$Η$r 
+θrγ…δχÿÿ‰D$ΗD$Η$s θTγ…δσÿÿ‰D$ΗD$Η$t θ6γΔ\ 
+[^_ΙΓU‰εWVSƒμLθ[ΗEΠιλΗEΤιΙσ*UΠƒÒσƒβ‹Hσ*ΐ(Ωσ^Ψ(Γ(ΚσYΘƒΦσ(ΡσXΠƒÒσƒσ(Ωσ^Ψ(ΓσXΒσEάσ*UΤƒΞσƒζ‹Hσ*ΐ(Ωσ^Ψ(Γ(ΚσYΘƒΪσ(ΡσXΠƒΞσƒσ(Ωσ^Ψ(ΓσXΒσEΰEΐ‰D$ƒΆ‹‰D$ƒΆ‹‰$θwϋÿÿEΘ‰D$‹Eΰ‰D$‹Eά‰$θ^ϋÿÿΗEΨλUEΈ‰D$Eΐ‰D$Eΐ‰$θzϊÿÿEΐ‰D$EΘ‰D$EΈ‰$θϊÿÿEΐ‰$θΧϊÿÿΩ]δσEδƒ¦.wEΨÿƒή‹9EΨ|ƒσσEδ.Αwλ 
+ƒ‹‰Eδ‹uΠ‹}ΤσMδƒªσσYΑσ,ΐ‰Α“Ίβ‹iΖτΠ 
+8EΤÿƒζ‹9EΤ&ώÿÿEΠÿƒβ‹9EΠώÿÿ‹E ‰D$E‰$θ αΗ$θαΗD$τΗ$τθ 
+αƒ®‰$θγΰθÒϋÿÿƒτόÿÿ‰$θσΰƒόÿÿ‰$θΗΰθΫΰƒΔL[^_ΙΓΰo@ΰoΐπ?€?ΐ€@Cmandlebrot??Ώ?dττΰΰ 
+  ` 
+τττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττ°. 
+@ H P \pΎu y }ή† Γ• ` ¤, §‚­8³$ 
+ΈΎ:ΙfΡ( Τ Ϋ\αηπώ 
+%3AMYk|†›―½Ξ€ 
+!"#$@%&'()* 
+dyld_stub_binding_helper__dyld_func_lookupdyld__mach_header_NXArgc_NXArgv___progname__mh_execute_header_add_cx_cy_display_environ_form_height_image_m_mag2_main_max_mult_myReshape_myinit_n_widthstart_exit_glClear_glClearColor_glDrawPixels_glFlush_glLoadIdentity_glMatrixMode_glPixelMapfv_glViewport_gluOrtho2D_glutCreateWindow_glutDisplayFunc_glutInit_glutInitDisplayMode_glutInitWindowSize_glutMainLoop_glutReshapeFunc_rand

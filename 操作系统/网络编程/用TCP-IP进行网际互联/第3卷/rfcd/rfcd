@@ -1,0 +1,1 @@
+awk -f /userb/abv/rfcd.awk | sh

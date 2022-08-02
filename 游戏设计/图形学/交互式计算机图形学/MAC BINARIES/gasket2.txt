@@ -1,0 +1,26 @@
+Ξϊνώ d…8__PAGEZEROH__TEXT__text__TEXTπΩπ €__literal4__TEXTΜ 
+Μ__literal8__TEXTΨΨ__cstring__TEXTθθ__DATA __data__DATA 
+,__dyld__DATA, ,__common__DATAH ΐ__IMPORT0 __pointers__IMPORT0 
+__jump_table__IMPORT@0_@ 8__LINKEDIT@0„0"θ1 P 1 
+/usr/lib/dyldPπ 
+X/System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL 
+T/System/Library/Frameworks/GLUT.framework/Versions/A/GLUT 
+4/usr/lib/libgcc_s.1.dylib 
+4o/usr/lib/libSystem.B.dylibj‰εƒδπƒμ‹]‰\$M‰L$ƒΓΑγΛ‰\$‹ƒΓ…ΐuχ‰\$ 
+θ‰D$θτθXÿ°Ϋ‹€χÿΰθX‹€ηÿΰU‰εƒμ‹E‰$θ‹E 
+‰$θ‹E‰$θωΙΓU‰εSƒμ4θ[ƒ}RΗEτλ@‹Uτ‹EτΑΰEσ‹EτΑΰE 
+σσXΘƒEσ(Ρσ^Π(ΒσD•μEτÿƒ}τ~ΊΗEτλ@‹Uτ‹EτΑΰEσ‹EτΑΰEσσXΘƒEσ(Ρσ^Π(ΒσD•δEτÿƒ}τ~ΊΗEτλ@‹Uτ‹EτΑΰE 
+σ‹EτΑΰEσσXΘƒEσ(Ρσ^Π(ΒσD•άEτÿƒ}τ~Ί‹EH‰D$ 
+Eδ‰D$Eμ‰D$‹E‰$θΫώÿÿ‹EH‰D$ Eά‰D$Eδ‰D$‹E‰$θΊώÿÿ‹EH‰D$ 
+Eμ‰D$Eά‰D$‹E ‰$θ™ώÿÿλ‹E‰D$‹E 
+‰D$‹E‰$θUώÿÿƒΔ4[ΙΓU‰εVSƒμθ[Η$@θ2Η$θ!ƒπ‹‹ƒ@‰Ζƒ@“‰L$ 
+‰t$‰D$‰$θώÿÿθψθψƒΔ[^ΙΓU‰εSƒμ$θ[Η$θβθΨƒZςςD$ƒbςςD$ƒZςςD$ƒbςς$θ£Η$θƒR‹‰D$ 
+ƒR‹‰D$ƒR‹‰D$ƒR‹‰$θ@ƒV‹‰D$ƒV‹‰D$ƒV‹‰$θƒΔ$[ΙΓU‰εSƒμθ[‹E 
+ƒΐ‹‰$θα‰Βƒ²‹‰‹E 
+‰D$E‰$θΗ$θΗD$τΗ$τθψƒ‰$θΦƒµώÿÿ‰$θΝθ΄ώÿÿθΧƒΔ[ΙΓ@€?@ΐSierpinski 
+Gasket€ΏαzΏ€?αzΏ33“?ΰΰ   H 
+τττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττ0D. 
+@ H P \py{ “B™r΅H ¤R® 
+±π·½ΓΜΥγξυώ)5GXbw‹€@ 
+! 
+dyld_stub_binding_helper__dyld_func_lookupdyld__mach_header_NXArgc_NXArgv___progname__mh_execute_header_display_divide_triangle_environ_main_myinit_n_triangle_vstart_atoi_exit_glBegin_glClear_glClearColor_glColor3f_glEnd_glFlush_glLoadIdentity_glMatrixMode_glVertex2fv_gluOrtho2D_glutCreateWindow_glutDisplayFunc_glutInit_glutInitDisplayMode_glutInitWindowSize_glutMainLoop

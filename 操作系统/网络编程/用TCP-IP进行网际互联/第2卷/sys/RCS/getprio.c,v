@@ -1,0 +1,48 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* getprio.c - getprio */
+
+#include <conf.h>
+#include <kernel.h>
+#include <proc.h>
+
+/*------------------------------------------------------------------------
+ * getprio -- return the scheduling priority of a given process
+ *------------------------------------------------------------------------
+ */
+SYSCALL getprio(pid)
+	int	pid;
+{
+	STATWORD ps;    
+	struct	pentry	*pptr;
+
+	disable(ps);
+	if (isbadpid(pid) || (pptr = &proctab[pid])->pstate == PRFREE) {
+		restore(ps);
+		return(SYSERR);
+	}
+	restore(ps);
+	return(pptr->pprio);
+}
+@

@@ -1,0 +1,59 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.40;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* sprintf.c - sprintf */
+
+static sprntf();
+
+/*------------------------------------------------------------------------
+ *  sprintf  --  format arguments and place output in a string
+ *------------------------------------------------------------------------
+ */
+sprintf(str, fmt, args)
+        char *str;
+        char *fmt;
+{
+        int     sprntf();
+        char    *s;
+	
+        s = str;
+        _doprnt(fmt, &args, sprntf, &s);
+        *s++ = '\0';
+
+        return((int)str);
+}
+
+/*------------------------------------------------------------------------
+ *  sprntf  --  routine called by doprnt to handle each character
+ *------------------------------------------------------------------------
+ */
+
+static	sprntf(cpp, c)
+        char    **cpp;
+        char    c;
+{
+        return(*(*cpp)++ = c);
+}
+
+
+@

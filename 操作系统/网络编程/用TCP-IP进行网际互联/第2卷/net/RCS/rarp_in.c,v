@@ -1,0 +1,104 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	97.09.21.19.27.59;	author dls;	state Dist;
+branches;
+next	1.1;
+
+1.1
+date	94.06.01.16.00.56;	author dls;	state Old;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@pre-3e code
+@
+text
+@/* rarp_in.c - rarp_in */
+
+#include <conf.h>
+#include <kernel.h>
+#include <proc.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  rarp_in  -  handle RARP packet coming in from Ethernet network
+ *------------------------------------------------------------------------
+ */
+int rarp_in(pni, packet)
+struct	netif	*pni;
+struct	ep	*packet;
+{
+	STATWORD	ps;
+	int		pid, ret;
+	int		device = pni->ni_dev;
+	struct	arp	*parp;
+	struct	utdev	*pud;
+
+	parp = (struct arp *) packet->ep_data;
+	parp->ar_op = net2hs(parp->ar_op);
+	parp->ar_hwtype = net2hs(parp->ar_hwtype);
+	parp->ar_prtype = net2hs(parp->ar_prtype);
+
+	if (parp->ar_op == RA_REPLY) {
+		pud = (struct utdev *)devtab[device].dvioblk;
+		if (blkequ(THA(parp), pud->ud_paddr, EP_ALEN)) {
+			IPaddr mask;
+
+			blkcopy(&pni->ni_ip, TPA(parp), IP_ALEN);
+			pni->ni_net = netnum(pni->ni_ip);
+			pni->ni_ivalid = TRUE;
+			mask = netmask(pni->ni_ip);
+			setmask(pud->ud_ifnum, mask);
+			disable(ps);
+			pid = rarppid;
+			if (!isbadpid(pid)) {
+				rarppid = BADPID;
+				send(pid, OK);
+			}
+			restore(ps);
+		}
+		ret = OK;
+	} else
+		ret = SYSERR;
+	freebuf(packet);
+	return ret;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d20 1
+a20 1
+	struct	etblk	*etptr;
+d28 2
+a29 2
+		etptr = (struct etblk *)devtab[device].dvioblk;
+		if (blkequ(THA(parp), etptr->etpaddr, EP_ALEN)) {
+a30 1
+			int i;
+d32 2
+a33 2
+			blkcopy(pni->ni_ip, TPA(parp), IP_ALEN);
+			netnum(pni->ni_net, pni->ni_ip);
+d35 2
+a36 2
+			netmask(mask, pni->ni_ip);
+			setmask(etptr->etintf, mask);
+@

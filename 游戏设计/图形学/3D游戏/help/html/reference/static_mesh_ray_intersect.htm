@@ -1,0 +1,70 @@
+<html>
+
+<head>
+<title>static_mesh::ray_intersect</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2><a href="static_mesh.htm">static_mesh</a>::ray_intersect</h2>
+
+<h3>Prototype</h3>
+
+<p class="code">mesh *ray_intersect(vector&amp; ro,vector&amp; rd,vector&amp;
+ip,float&amp; dist,int &amp;facenum,float rad=0.0f);</p>
+
+<h3>Parameters</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>ro</td>
+    <td><a href="vector.htm">vector</a>&amp;</td>
+    <td>ray origin</td>
+  </tr>
+  <tr>
+    <td>rd</td>
+    <td><a href="vector.htm">vector</a>&amp;</td>
+    <td>ray direction</td>
+  </tr>
+  <tr>
+    <td>ip</td>
+    <td><a href="vector.htm">vector</a>&amp;</td>
+    <td>intersection point</td>
+  </tr>
+  <tr>
+    <td>dist</td>
+    <td>float&amp;</td>
+    <td>intersection distance</td>
+  </tr>
+  <tr>
+    <td>facenum</td>
+    <td>int&amp;</td>
+    <td>intersected face index into returned mesh</td>
+  </tr>
+  <tr>
+    <td>rad</td>
+    <td>float</td>
+    <td>collision radius</td>
+  </tr>
+</table>
+
+<h3>Return Value</h3>
+
+<p>Returns the mesh object if a collision is detected, NULL on no collision.</p>
+
+<h3>Remarks</h3>
+
+<p>This function implements the ray intersection virtual <em>bsp_obect</em> function for
+the bsp faces included in a leaf node.<br>
+  It passes the ray_intersect call to the same function from its <em>objmesh</em> 
+  member variable.</p>
+</body>
+</html>

@@ -1,0 +1,57 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.30.32;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* upalloc.c - upalloc */
+
+#include <conf.h>
+#include <kernel.h>
+#include <proc.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  upalloc  -  allocate a UDP port demultiplexing queue
+ *------------------------------------------------------------------------
+ */
+int upalloc()
+{
+	struct	upq	*pup;
+	int		i;
+
+	wait(udpmutex);
+	for (i=0 ; i<UPPS ; i++) {
+		pup = &upqs[i];
+		if (!pup->up_valid) {
+			pup->up_valid = TRUE;
+			pup->up_port = -1;
+			pup->up_pid = BADPID;
+			pup->up_xport = pcreate(UPPLEN);
+			signal(udpmutex);
+			return i;
+		}
+	}
+	signal(udpmutex);
+	return SYSERR;
+}
+
+struct	upq	upqs[UPPS];
+@

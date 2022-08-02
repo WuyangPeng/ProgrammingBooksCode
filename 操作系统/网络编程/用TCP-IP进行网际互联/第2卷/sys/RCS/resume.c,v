@@ -1,0 +1,83 @@
+head	1.3;
+access;
+symbols;
+locks
+	dls:1.3; strict;
+comment	@ * @;
+
+
+1.3
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	1.2;
+
+1.2
+date	94.05.07.19.26.36;	author dls;	state Works;
+branches;
+next	1.1;
+
+1.1
+date	94.05.06.03.12.23;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.3
+log
+@pre-3e code
+@
+text
+@/* resume.c - resume */
+
+#include <conf.h>
+#include <kernel.h>
+#include <proc.h>
+
+/*------------------------------------------------------------------------
+ * resume  --  unsuspend a process, making it ready; return the priority
+ *------------------------------------------------------------------------
+ */
+SYSCALL resume(pid)
+	int	pid;
+{
+	STATWORD ps;    
+	struct	pentry	*pptr;		/* pointer to proc. tab. entry	*/
+	int	prio;			/* priority to return		*/
+
+	disable(ps);
+	if (isbadpid(pid) || (pptr= &proctab[pid])->pstate!=PRSUSP) {
+		restore(ps);
+		return(SYSERR);
+	}
+	prio = pptr->pprio;
+	ready(pid, RESCHYES);
+	restore(ps);
+	return(prio);
+}
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@a18 1
+kprintf("resume: (pid %d) ps %x\n", pid, ps[0]);
+a24 1
+kprintf("resume: (pid %d) restore ps %x\n", pid, ps[0]);
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d19 1
+d26 1
+@

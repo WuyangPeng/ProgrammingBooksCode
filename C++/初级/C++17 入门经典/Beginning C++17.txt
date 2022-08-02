@@ -1,0 +1,6 @@
+C++17 入门经典（Beginning C++17）
+（第5版）
+
+★☆
+作者：Ivor Horton、Peter Van Weert
+其他书籍：Ivor Horton《Visual C++ 2013入门经典》、 《C++ 标准模板库编程实战》。

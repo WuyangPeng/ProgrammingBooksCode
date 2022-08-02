@@ -1,0 +1,62 @@
+<html>
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>Fly3D Tutorial 3 - Creating the level .BSP file</title>
+<style type="text/css">
+<!--
+-->
+</style>
+</head>
+
+<body>
+<h1>Fly3D SDK</h1>
+<h2><a href="tutorials.htm">Tutorials</a></h2>
+<h3 align="right"><a href="../fly3d.htm">Home</a></h3>
+<h3> Tutorial 3</h3>
+<p>Creating the level .BSP file</p>
+<p>&middot; Introduction</p>
+<p>This tutorial explains how to export any 3D Studio Max scene into a Fly3D bsp 
+  file.</p>
+<p>At the end of this tutorial you will have constructed a bsp tree to partition 
+  the space of the model, constructed a text file with information on the bsp 
+  statistics and a text file containing the list of images used as texture maps 
+  in the model faces. Each of these will be stored in files with extensions .bsp, 
+  .log.txt and .map</p>
+<p></p>
+<p> &middot; Fly3D export plug-in operations</p>
+<p>Export the scene to a bsp file using the supplied export plug-in expflybsp.dle. 
+  Do this using the File/Export menu command and selecting the Fly3D BSP file 
+  type. This causes the bsp tree to be built.</p>
+<p>Make sure to save the bsp inside the flysdk\data directory. Create a sub-directory 
+  in flysdk\data named tutorial. This where all level data from the tutorials 
+  should be be stored.</p>
+<p>{ To install the export plug-in, just copy the expflybsp.dle file to the 3dsmax\plugins 
+  directory before opening 3D Studio Max }</p>
+<p> At this stage, we set the options for the export file:</p>
+<p> - Light Radius (meters): this parameter is multiplied by the self illumination 
+  parameter value from the materials giving the final light radius for the object. 
+  For example, specifying a light radius of 20 meters, a material with 50 % self 
+  illumination gives a real light radius of 10 meters.</p>
+<p> - Save # objects: this option saves all objects with names starting with the 
+  '#' character as .3ds files in the objects subdir from where the bsp files is 
+  being saved. Name all objects that will not make part of the bsp with this starting 
+  character as they will be used as dynamic objects (doors, player, guns projectiles, 
+  powerups, etc...).</p>
+<p> </p>
+<p>- Save bsp log: this option saves a .txt file with the same name as the bsp 
+  file, including information on the bsp construction, nodes and faces. This facility 
+  records the statistics of the bsp tree, which can then be examined for effectiveness.</p>
+<p> - BSP planes:</p>
+<p>face aligned: used for closed enviroments only, the level must present a single 
+  in/out volume. With this option, all bsp planes will be aligned with level faces, 
+  making a bsp plane for each plane defined by the level faces.<br>
+  <br>
+  axis aligned: used for landscapes and freespaces. The bsp planes are aligned 
+  only with X,Y and Z aixis. A maximum tree depth can be specified and will stop 
+  subdivision if that depth is reached. Landscapes are 2D bsp files that are good 
+  for race and strategy games. Freespaces are 3D bsp files used in space simulator 
+  and space strategy games.</p>
+<p>&nbsp;</p>
+</body>
+
+</html>

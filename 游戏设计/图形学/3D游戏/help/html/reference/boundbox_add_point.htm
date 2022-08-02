@@ -1,0 +1,61 @@
+<html>
+
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>boundbox::add_point</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2><a href="boundbox.htm">boundbox</a>::add_point</h2>
+
+<h3>Prototype</h3>
+
+<p class="code">void add_point(vector &amp;p)<br>
+void add_point(float x,float y,float z)</p>
+
+<h3>Parameters</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>p</td>
+    <td><a href="vector.htm">vector</a>&amp;</td>
+    <td>point to add</td>
+  </tr>
+  <tr>
+    <td>x</td>
+    <td>float</td>
+    <td>x coord. of point to add</td>
+  </tr>
+  <tr>
+    <td>y</td>
+    <td>float</td>
+    <td>y coord. of point to add</td>
+  </tr>
+  <tr>
+    <td>z</td>
+    <td>float</td>
+    <td>z coord. of point to add</td>
+  </tr>
+</table>
+
+<h3>Return Value</h3>
+
+<p>None</p>
+
+<h3>Remarks</h3>
+
+<p>This method enlarges the bounding box in order for it to contain the specified 
+  point.<br>
+  When creating a bounbox for a mesh, call the <em>reset</em> method and loop 
+  calling this function with all mesh vertices.</p>
+
+</body>
+</html>

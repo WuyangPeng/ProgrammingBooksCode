@@ -1,0 +1,74 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: BrainyAliens - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x809 /fo"Release/Script1.res" /d "NDEBUG" "C:\CODE\BOOK CHAPTERS\AI Techniques -Chapter10 - realtime code\Brainy Aliens\Script1.rc"" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP2CE.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /FR"Release/" /Fp"Release/BrainyAliens.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\CODE\BOOK CHAPTERS\AI Techniques -Chapter10 - realtime code\Brainy Aliens\C2DMatrix.cpp"
+"C:\CODE\BOOK CHAPTERS\AI Techniques -Chapter10 - realtime code\Brainy Aliens\CAlien.cpp"
+"C:\CODE\BOOK CHAPTERS\AI Techniques -Chapter10 - realtime code\Brainy Aliens\CBullet.cpp"
+"C:\CODE\BOOK CHAPTERS\AI Techniques -Chapter10 - realtime code\Brainy Aliens\CController.cpp"
+"C:\CODE\BOOK CHAPTERS\AI Techniques -Chapter10 - realtime code\Brainy Aliens\CGun.cpp"
+"C:\CODE\BOOK CHAPTERS\AI Techniques -Chapter10 - realtime code\Brainy Aliens\CNeuralNet.cpp"
+"C:\CODE\BOOK CHAPTERS\AI Techniques -Chapter10 - realtime code\Brainy Aliens\CParams.cpp"
+"C:\CODE\BOOK CHAPTERS\AI Techniques -Chapter10 - realtime code\Brainy Aliens\CTimer.cpp"
+"C:\CODE\BOOK CHAPTERS\AI Techniques -Chapter10 - realtime code\Brainy Aliens\main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP2CE.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP2CF.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:no /pdb:"Release/BrainyAliens.pdb" /machine:I386 /out:"Release/BrainyAliens.exe" 
+".\Release\C2DMatrix.obj"
+".\Release\CAlien.obj"
+".\Release\CBullet.obj"
+".\Release\CController.obj"
+".\Release\CGun.obj"
+".\Release\CNeuralNet.obj"
+".\Release\CParams.obj"
+".\Release\CTimer.obj"
+".\Release\main.obj"
+".\Release\Script1.res"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP2CF.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+C2DMatrix.cpp
+CAlien.cpp
+CBullet.cpp
+CController.cpp
+CGun.cpp
+CNeuralNet.cpp
+CParams.cpp
+CTimer.cpp
+main.cpp
+Linking...
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP2D2.tmp" with contents
+[
+/nologo /o"Release/BrainyAliens.bsc" 
+".\Release\C2DMatrix.sbr"
+".\Release\CAlien.sbr"
+".\Release\CBullet.sbr"
+".\Release\CController.sbr"
+".\Release\CGun.sbr"
+".\Release\CNeuralNet.sbr"
+".\Release\CParams.sbr"
+".\Release\CTimer.sbr"
+".\Release\main.sbr"]
+Creating command line "bscmake.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP2D2.tmp"
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+BrainyAliens.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

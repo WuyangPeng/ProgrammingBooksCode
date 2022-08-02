@@ -1,0 +1,48 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.59;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* netmatch.c - netmatch */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  netmatch  -  Is "dst" on "net"?
+ *------------------------------------------------------------------------
+ */
+Bool netmatch(dst, net, mask, islocal)
+IPaddr	dst, net, mask;
+Bool	islocal;
+{
+	if ((dst & mask) != (net & mask))
+		return FALSE;
+	/*
+	 * local srcs should only match unicast addresses (host routes)
+	 */
+	if (islocal)
+		if (isbrc(dst) || IP_CLASSD(dst))
+			return mask != ip_maskall;
+	return TRUE;
+}
+@

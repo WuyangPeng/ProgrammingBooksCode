@@ -1,0 +1,42 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: GameClient - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP45C.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Release/GameClient.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\Documents and Settings\Administrator\Desktop\Adv3D 9\DX8 Book CD\Book Code\Game\GameClient\Game.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP45C.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP45D.tmp" with contents
+[
+ws2_32.lib winmm.lib dsound.lib dinput8.lib d3d9.lib d3dx9.lib dxguid.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:no /pdb:"Release/GameClient.pdb" /machine:I386 /out:"../bin/GameClient.exe" 
+".\Release\Drawing.obj"
+".\Release\Game.obj"
+".\Release\StdAfx.obj"
+".\Release\EntNM.obj"
+".\Release\LoginNM.obj"
+".\Release\MiscNM.obj"
+".\Release\NetMessages.obj"
+"\Documents and Settings\Administrator\Desktop\Adv3D 9\DX8 Book CD\Book Code\Game\GameCommon\Release\GameCommon.lib"
+"\Documents and Settings\Administrator\Desktop\Adv3D 9\DX8 Book CD\Book Code\Game\lib\GameLib.lib"
+"\Documents and Settings\Administrator\Desktop\Adv3D 9\DX8 Book CD\Book Code\Game\math3D\Release\math3D.lib"
+"\Documents and Settings\Administrator\Desktop\Adv3D 9\DX8 Book CD\Book Code\Game\lib\NetLib.lib"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP45D.tmp"
+<h3>Output Window</h3>
+Compiling...
+Game.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+GameClient.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

@@ -1,0 +1,257 @@
+head	1.3;
+access;
+symbols;
+locks
+	dls:1.3; strict;
+comment	@ * @;
+
+
+1.3
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	1.2;
+
+1.2
+date	94.04.30.04.04.37;	author dls;	state Works;
+branches;
+next	1.1;
+
+1.1
+date	94.04.26.15.15.20;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.3
+log
+@pre-3e code
+@
+text
+@/* clkinit.c - clkinit, updateleds, dog_timeout */
+
+#include <conf.h>
+#include <kernel.h>
+#include <sleep.h>
+#include <cpu.addrs.h>    
+#include <i386.h>
+
+/* Intel 8254-2 clock chip constants */
+
+#define	CLOCKBASE	0x40		/* I/O base port of clock chip	*/
+#define	CLOCK0		CLOCKBASE
+#define	CLKCNTL		(CLOCKBASE+3)	/* chip CSW I/O port		*/
+
+#define	CLKHZ		1190		/* kHz 				*/
+#define	DIVIDER		(CLKHZ * 10)	/* 10ms interrupt rate		*/
+    
+/* real-time clock variables and sleeping process queue pointers	*/
+    
+#ifdef	RTCLOCK
+int	count6;			/* counts in 60ths of a second 6-0	*/
+int	count10;		/* counts in 10ths of second 10-0	*/
+unsigned	long	ctr100;	/* counts in 100ths of second 0-INF	*/
+extern long	cnt100;		/* counts in 100ths of second 10-0	*/
+int	clmutex;		/* mutual exclusion for time-of-day	*/
+long	clktime;		/* current time in seconds since 1/1/70	*/
+int     defclk;			/* non-zero, then deferring clock count */
+int     clkdiff;		/* deferred clock ticks			*/
+int     slnempty;		/* FALSE if the sleep queue is empty	*/
+int     *sltop;			/* address of key part of top entry in	*/
+				/* the sleep queue if slnonempty==TRUE	*/
+int     clockq;			/* head of queue of sleeping processes  */
+int	preempt;		/* preemption counter.	Current process */
+				/* is preempted when it reaches zero;	*/
+#ifdef	RTCLOCK
+				/* set in resched; counts in ticks	*/
+int	clkruns;		/* set TRUE iff clock exists by setclkr	*/
+#else
+int	clkruns = FALSE;	/* no clock configured; be sure sleep	*/
+#endif				/*   doesn't wait forever		*/
+
+/*
+ *------------------------------------------------------------------------
+ * clkinit - initialize the clock and sleep queue (called at startup)
+ *------------------------------------------------------------------------
+ */
+int
+clkinit()
+{
+	int clkint();
+
+	set_evec(IRQBASE, clkint);
+
+	clkruns = 1;
+	clockq = newqueue();
+	preempt = QUANTUM;		/* initial time quantum		*/
+	
+	compute_delay();
+
+	/*  set to: timer 0, 16-bit counter, rate generator mode,
+		counter is binary */
+	outb(CLKCNTL, 0x34);
+	/* must write LSB first, then MSB */
+	outb(CLOCK0, (char)DIVIDER);
+	outb(CLOCK0, DIVIDER>>8);
+
+	return OK;
+}
+#endif
+
+compute_delay()
+{
+	extern unsigned int	cpudelay;
+	unsigned int		tcount;
+	unsigned int		dlow, dhigh;
+
+	cpudelay = dlow = 1;
+	tcount = 0;
+
+	/* find high bound for cpudelay */
+
+	while (tcount < 1190) {
+		dlow = cpudelay;
+		dhigh = cpudelay = 2 * cpudelay;
+
+		/* set counter to max */
+		outb(CLKCNTL, 0x34);
+		outb(CLOCK0, 0xff);	/* LSB */
+		outb(CLOCK0, 0xff);	/* MSB */
+
+		delay(100);	/* 1 ms */
+
+		outb(CLKCNTL, 0x0);	/* latch timer 0 */
+		tcount = inb(CLOCK0);
+		tcount = (inb(CLOCK0) << 8) | tcount;
+		tcount = ((unsigned int)0xffff) - tcount;
+		
+	}
+
+	while (dlow < dhigh) {
+
+		cpudelay = (dlow + dhigh) / 2;
+
+		/* set counter to max */
+		outb(CLKCNTL, 0x34);
+		outb(CLOCK0, 0xff);	/* LSB */
+		outb(CLOCK0, 0xff);	/* MSB */
+
+		delay(100);	/* 1 ms */
+
+		outb(CLKCNTL, 0x0);	/* latch timer 0 */
+		tcount = inb(CLOCK0);
+		tcount = (inb(CLOCK0) << 8) | tcount;
+		tcount = ((unsigned int)0xffff) - tcount;
+
+		if (tcount == CLKHZ)
+			break;		/* exact match */
+		if (tcount < CLKHZ)	/* too small */
+			cpudelay = dlow = cpudelay + 1;
+		else	/* too big */
+			dhigh = cpudelay - 1;
+
+	}
+}
+
+
+#ifdef notyet
+/*
+ * dog_timeout -- called when the watchdog timer determines that
+ * interrupts have been disabled for too long
+ */
+dog_timeout()
+{
+    STATWORD ps;
+
+    disable(ps);
+    kprintf("\n\nWatchdog timeout!! -- interrupts disabled too long.\n");
+    ret_mon();
+    restore(ps);
+    return;
+}
+#endif /* not yet */
+
+int
+clktest()
+{
+	kprintf("from clkint, ctr100 %d\n", ctr100);
+}
+@
+
+
+1.2
+log
+@,
+@
+text
+@d14 3
+d47 1
+a49 2
+	unsigned char	tmp;
+	unsigned short	intv;
+d52 1
+a52 4
+	set_idt(IRQBASE, clkint);
+
+	/* clock rate is 1.190 Mhz; this is 1ms interrupt rate */
+	intv = 11900;
+d58 2
+d64 4
+a67 2
+	outb(CLOCK0, (char)intv);
+	outb(CLOCK0, intv>>8);
+d70 55
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@a6 1
+#include <clock.h>
+d8 6
+d21 1
+a21 1
+int	cnt100;			/* counts in 100ths of second 10-0	*/
+d46 3
+a48 3
+#ifdef notdef
+	int junk;
+	WORD *vector;
+d50 1
+a50 1
+	int Asm_clkint();
+d52 2
+a53 2
+	set_evec((int) C5VECTOR, Asm_clkint);
+	set_evec((int) C7VECTOR, Asm_clkint);
+a54 1
+	/* setclkr(); */
+d59 6
+a64 15
+	/*
+	 * This hardware is sufficiently delicate that we need to follow
+	 * this order:
+	 *	Reset interrupt-catching flops
+	 *	Clear and disable TOD chip interrupts
+	 *	Enable interrupt-catching flop(s)
+	 *	Enable TOD chip interrupts
+	 */
+	CLOCK_BASE->clk_cmd = CLK_CMD_NORMAL; 
+	*INTERRUPT_BASE &= ~(IR_ENA_CLK7 | IR_ENA_CLK5);  /* Unhang flops */
+        CLOCK_BASE->clk_intrreg = 0;			 /* Disable TOD ints */
+	junk = CLOCK_BASE->clk_intrreg;			/* Maybe clr pending int */
+        *INTERRUPT_BASE |=  IR_ENA_CLK7;		/* Prime the flops */
+	CLOCK_BASE->clk_intrreg = CLK_INT_HSEC;		/* allow TOD ints every 1/100 sec*/
+#endif	/* notyet */
+d69 1
+d80 1
+a80 1
+/*    ret_mon(); */
+d83 7
+@

@@ -1,0 +1,300 @@
+head	1.6;
+access;
+symbols;
+locks
+	dls:1.6; strict;
+comment	@# @;
+
+
+1.6
+date	97.09.21.19.27.59;	author dls;	state Dist;
+branches;
+next	1.5;
+
+1.5
+date	94.08.12.05.36.46;	author dls;	state Works;
+branches;
+next	1.4;
+
+1.4
+date	94.08.11.06.09.52;	author dls;	state Works;
+branches;
+next	1.3;
+
+1.3
+date	94.08.11.00.16.29;	author dls;	state Works;
+branches;
+next	1.2;
+
+1.2
+date	94.08.11.00.07.19;	author dls;	state New;
+branches;
+next	1.1;
+
+1.1
+date	94.08.10.19.29.32;	author dls;	state DLS;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.6
+log
+@pre-3e code
+@
+text
+@	.text
+	.align 2
+	.globl	_cksum
+_cksum:
+	pushl	%ebp
+	movl	%esp,%ebp
+
+	movl	8(%ebp),%edx
+	movl	12(%ebp),%ecx
+	xorl	%eax,%eax		/* clear sum	*/
+	testl	%ecx,%ecx		
+	jle	L4
+	sarl	$6,%ecx
+	je	L5
+L7:
+	clc
+	addl	(%edx),%eax
+	adcl	4(%edx),%eax
+	adcl	8(%edx),%eax
+	adcl	12(%edx),%eax
+	adcl	16(%edx),%eax
+	adcl	20(%edx),%eax
+	adcl	24(%edx),%eax
+	adcl	28(%edx),%eax
+	adcl	32(%edx),%eax
+	adcl	36(%edx),%eax
+	adcl	40(%edx),%eax
+	adcl	44(%edx),%eax
+	adcl	48(%edx),%eax
+	adcl	52(%edx),%eax
+	adcl	56(%edx),%eax
+	adcl	60(%edx),%eax
+	adcl	$0,%eax
+	addl	$64,%edx
+	decl	%ecx
+	ja	L7
+L5:
+	movl	12(%ebp),%ecx
+	andl	$0x3f,%ecx
+	sarl	$2,%ecx	
+	jle	L4
+L3:
+	clc
+	addl	(%edx),%eax
+	adcl	$0,%eax
+	addl	$4,%edx
+	decl	%ecx
+	ja	L3
+L4:
+
+	movl	12(%ebp),%ecx
+	andl	$2,%ecx
+	jz	L1
+	movzwl	(%edx),%ecx
+	addl	%ecx,%eax
+	addl	$2,%edx
+L1:
+	movl	12(%ebp),%ecx
+	andl	$1,%ecx
+	jz	L2
+	xorl	%ecx,%ecx
+	movb	(%edx),%cl
+	addl	%ecx,%eax
+L2:
+	movl	%eax,%ecx
+	shrl	$16,%eax
+	andl	$0xffff,%eax
+	andl	$0xffff,%ecx
+	addl	%ecx,%eax
+	movl	%eax,%ecx
+	shrl	$16,%eax
+	addl	%ecx,%eax
+
+	notw	%ax
+	movzwl	%ax,%eax
+	leave
+	ret
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d10 30
+a40 2
+	xorl	%eax,%eax
+	testl	%ecx,%ecx
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 3
+#NO_APP
+gcc_compiled.:
+.text
+d3 1
+a3 1
+.globl _cksum
+d5 9
+a13 12
+	pushl %ebp
+	movl %esp,%ebp
+	subl $12,%esp
+	movl 12(%ebp),%eax
+	movl 12(%ebp),%edx
+	testl %eax,%eax
+	jge L2
+	incl %eax
+L2:
+	sarl $1,%eax
+	movl %eax,%edx
+	movl $0,-4(%ebp)
+d15 6
+a20 9
+	cmpl $0,%edx
+	jle L4
+	movl 8(%ebp),%eax
+	movzwl (%eax),%eax
+	addl %eax,-4(%ebp)
+	addl $2,8(%ebp)
+L5:
+	decl %edx
+	jmp L3
+d22 7
+a28 24
+	movl 12(%ebp),%eax
+	andl $1,%eax
+	testl %eax,%eax
+	je L6
+	movl 8(%ebp),%eax
+	movzbw (%eax),%cx
+	movw %cx,-8(%ebp)
+	movzwl -8(%ebp),%eax
+	addl %eax,-4(%ebp)
+L6:
+	movl -4(%ebp),%eax
+	shrl $16,%eax
+	movl -4(%ebp),%edx
+	andl $65535,%edx
+	movl %eax,%ecx
+	addl %edx,%ecx
+	movl %ecx,-4(%ebp)
+	movl %ecx,%eax
+	shrl $16,%eax
+	addl %eax,-4(%ebp)
+	movw -4(%ebp),%ax
+	notw %ax
+	movzwl %ax,%eax
+	jmp L1
+d30 18
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d17 1
+a17 1
+	movl %eax,-12(%ebp)
+d20 1
+a20 1
+	cmpl $0,-12(%ebp)
+d27 1
+a27 1
+	decl -12(%ebp)
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 3
+a3 3
+/* cksum.s - cksum */
+
+	.text
+d5 1
+a5 7
+	.globl	_cksum
+
+/*------------------------------------------------------------------------
+ * cksum - a fast internet checksummer
+ *	cksum(buf, nbytes)
+ *------------------------------------------------------------------------
+ */
+d7 12
+a18 9
+	pushl	%ebp
+	movl	%esp,%ebp
+
+	movl	8(%ebp),%ebx
+	movl	12(%ebp),%ecx
+	sarl	$2,%ecx			/* count in longs	*/
+	xorl	%eax,%eax		/* sum = 0		*/
+	testl	%ecx,%ecx
+	jle	L4
+d20 9
+a28 6
+	clc
+	addl	(%ebx),%eax
+	adcl	$0,%eax
+	addl	$4,%ebx
+	decl	%ecx
+	ja	L3
+d30 24
+a53 7
+
+	movl	12(%ebp),%ecx
+	andl	$2,%ecx
+	jz	L1
+	movzwl	(%ebx),%edx
+	addl	%edx,%eax
+	addl	$2,%ebx
+a54 18
+	movl	12(%ebp),%ecx
+	andl	$1,%ecx
+	jz	L2
+	xorl	%ecx,%ecx
+	movb	(%ebx),%cl
+	addl	%ecx,%eax
+L2:
+	movl	%eax,%ecx
+	shrl	$16,%eax
+	andl	$0xffff,%eax
+	andl	$0xffff,%ecx
+	addl	%ecx,%eax
+	movl	%eax,%ecx
+	shrl	$16,%eax
+	addl	%ecx,%eax
+
+	notw	%ax
+	movzwl	%ax,%eax
+@

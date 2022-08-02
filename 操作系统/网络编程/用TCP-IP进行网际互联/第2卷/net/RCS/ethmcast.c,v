@@ -1,0 +1,87 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	97.09.21.19.27.59;	author dls;	state Dist;
+branches;
+next	1.1;
+
+1.1
+date	94.01.07.03.10.26;	author dls;	state Old;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@pre-3e code
+@
+text
+@/* ethmcast.c - ethmcast */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+Eaddr	template = { 0x01, 0x00, 0x5E, 0x00, 0x00, 0x00 };
+
+/*------------------------------------------------------------------------
+ *  ethmcast -  generate & set an IP multicast Ethernet address
+ *------------------------------------------------------------------------
+ */
+int ethmcast(op, dev, hwa, ipa)
+int		op;
+int		dev;
+Eaddr		hwa;
+IPaddr		ipa;
+{
+	ipa = net2hl(ipa);
+	blkcopy(hwa, template, EP_ALEN);
+
+	/* add in low-order 23 bits of IP multicast address */
+	hwa[3] = (ipa >> 16) & 0x7;
+	hwa[4] = (ipa >> 8);
+	hwa[5] = ipa;
+
+	switch (op) {
+	case NI_MADD:
+		return control(dev, EPC_MADD, hwa);
+		break;
+	case NI_MDEL:
+		return control(dev, EPC_MDEL, hwa);
+		break;
+	}
+	return OK;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d10 1
+a10 1
+ *  ethmcast -  generate & set an IP multicast hardware address
+d19 1
+d21 1
+d23 3
+a25 3
+	hwa[3] = ipa[1] & 0x7;
+	hwa[4] = ipa[2];
+	hwa[5] = ipa[3];
+d29 1
+a29 1
+		return control(dev, EPC_MULTICAST, hwa);
+d32 1
+@

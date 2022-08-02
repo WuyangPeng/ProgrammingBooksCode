@@ -1,0 +1,60 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.29.17;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* sae_getf.c - sae_getf */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+#ifdef	SNMP
+
+#include <snmp.h>
+#include <mib.h>
+#include <asn1.h>
+
+/*------------------------------------------------------------------------
+ * sae_getf - perform a getfirst on a variable in the IPAddr Entry Table
+ *------------------------------------------------------------------------
+ */
+sae_getf(bindl, mip, numifaces)
+struct snbentry	*bindl;
+struct mib_info	*mip;
+int		numifaces;
+{
+	int 	iface, oidi;
+
+	iface = sae_findnext(-1, numifaces);
+
+	/* write the objid into the bindings list and call get func */
+	blkcopy(bindl->sb_oid.id, mip->mi_objid.id, mip->mi_objid.len*2);
+	oidi = mip->mi_objid.len;
+
+	bindl->sb_oid.id[oidi++] = (u_short) 1;	/* field */
+	sip2ocpy(&bindl->sb_oid.id[oidi], nif[iface].ni_ip);
+	bindl->sb_oid.len = oidi + IP_ALEN;
+	
+	return sae_get(bindl, numifaces);
+}
+#endif	/* SNMP */
+@

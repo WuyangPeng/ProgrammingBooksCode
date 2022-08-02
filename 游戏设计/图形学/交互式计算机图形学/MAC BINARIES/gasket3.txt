@@ -1,0 +1,38 @@
+Ξϊνώ 
+d…8__PAGEZEROH__TEXT__text__TEXT΄΄€__literal4__TEXTΘΘ__literal8__TEXTΠ 
+Π__cstring__TEXTπ π__DATA __data__DATA __dyld__DATA 
+__common__DATA¬ ΐ__IMPORT0 __pointers__IMPORT0 
+__jump_table__IMPORT@0s@ 8__LINKEDIT@0 0(@2ΰ Pΰ1 
+/usr/lib/dyldP΄ 
+X/System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL 
+T/System/Library/Frameworks/GLUT.framework/Versions/A/GLUT 
+4/usr/lib/libgcc_s.1.dylib 
+4o/usr/lib/libSystem.B.dylibj‰εƒδπƒμ‹]‰\$M‰L$ƒΓΑγΛ‰\$‹ƒΓ…ΐuχ‰\$ θ 
+‰D$θRτθXÿ°‹€—ÿΰθX‹€‡ÿΰU‰εƒμ‹E‰$θZ‹E 
+‰$θO‹E‰$θDΙΓU‰εSƒμθ[ƒ‰$θÿ‹E‰D$‹E ‰D$‹E‰$θ£ÿÿÿƒ@ 
+‰$θΥ‹E‰D$‹E‰D$‹E‰$θyÿÿÿƒ@‰$θ«‹E 
+‰D$‹E‰D$‹E‰$θOÿÿÿƒ@$‰$θ‹E‰D$‹E‰D$‹E 
+‰$θ%ÿÿÿƒΔ[ΙΓU‰εWVSƒμ|θ[ƒ}ªΗEδλ@‹Uδ‹EδΑΰEσ‹EδΑΰE 
+σσXΘƒΓσ(Ρσ^Π(ΒσD•Eδÿƒ}δ~ΊΗEδλ@‹Uδ‹EδΑΰEσ‹EδΑΰEσσXΘƒΓσ(Ρσ^Π(ΒσD•¨Eδÿƒ}δ~ΊΗEδλ@‹Uδ‹EδΑΰEσ‹EδΑΰEσσXΘƒΓσ(Ρσ^Π(ΒσD•΄Eδÿƒ}δ~ΊΗEδλ@‹Uδ‹EδΑΰE 
+σ‹EδΑΰEσσXΘƒΓσ(Ρσ^Π(ΒσD•ΐEδÿƒ}δ~ΊΗEδλ@‹Uδ‹EδΑΰEσ‹EδΑΰEσσXΘƒΓσ(Ρσ^Π(ΒσD•ΜEδÿƒ}δ~ΊΗEδλ@‹Uδ‹EδΑΰE 
+σ‹EδΑΰEσσXΘƒΓσ(Ρσ^Π(ΒσD•ΨEδÿƒ}δ~Ί‹MIEƒΐ‰ΖEƒΐ 
+U‰L$‰t$ ‰D$‰T$‹E‰$θέύÿÿ‹UJEƒΐ<‰ΑEƒΐ$u‰T$‰L$ ‰D$‹E 
+‰D$‰4$θ­ύÿÿ‹UJEƒΐ0‰ΑEƒΐ$‰ΖEƒΐ ‰Η‰T$‰L$ 
+‹E‰D$‰t$‰<$θvύÿÿ‹UJEƒΐ<‰ΑEƒΐ0‰ΖEƒΐ‰Η‰T$‰L$ ‹E‰D$‰t$‰<$θ?ύÿÿλ 
+‹E‰D$ ‹E‰D$‹E 
+‰D$‹E‰$θeόÿÿƒΔ|[^_ΙΓU‰εWVSƒμ,θ[Η$AθRΗ$θAƒ‹‹8ƒ0@$‰Αƒ0@‰Ζƒ0@ 
+“0‰|$‰L$ ‰t$‰D$‰$θ§όÿÿθθƒΔ,[^_ΙΓU‰εSƒμ4θ[‹E ‰D$ 
+‹E‰D$ΗD$Η$θυΗ$θΥθΛ‹E;E ›σ*E σZΐf(ΘςXΘσ*EσZΐf(Ρς^Πσ*E 
+σZΘƒbςςYΘσ*EσZΐς^ΘƒjςςD$(ƒrςςD$ 
+ςT$ςL$ƒzςςD$ƒbςς$θ3ι–σ*EσZΐf(ΘςXΘσ*E 
+σZΐf(Ρς^Πσ*EσZΘƒbςςYΘσ*E σZΐς^ΘƒjςςD$(ƒrςςD$ 
+ƒzςςD$ƒbςςD$ςT$ς $θΗ$θ‡θΉƒΔ4[ΙΓU‰εSƒμθ[‹E 
+ƒΐ‹‰$θ-‰Βƒώ‹‰‹E 
+‰D$E‰$θdΗ$θ]ΗD$τΗ$τθNƒξ‰$θ,ƒ`ώÿÿ‰$θAƒΰύÿÿ‰$θΗ$q 
+θΧƒΚ‹‰D$ ƒΚ‹‰D$ƒΚ‹‰D$ƒΚ‹‰$θ™θδƒΔ[ΙΓ@€?ΐ$@$ΐ@3D 
+Gasket€?ξ[q?;ªªΎσQΏÿ[ρΎªªΎσQ?ÿ[ρΎªªΎ€?€?€?ΰΰ   ¬ 
+ττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττ. 
+@ H P \p` xβχ φb©¬ ¬?³½ 
+ΐ΄ΖΜÒΫδςώ(6?LXj{…®ΌΟ€@ 
+!"#$%&' 
+dyld_stub_binding_helper__dyld_func_lookupdyld__mach_header_NXArgc_NXArgv___progname__mh_execute_header_colors_display_divide_tetra_environ_main_myReshape_n_tetra_triangle_vstart_atoi_exit_glBegin_glClear_glClearColor_glColor3fv_glEnable_glEnd_glFlush_glLoadIdentity_glMatrixMode_glOrtho_glVertex3fv_glViewport_glutCreateWindow_glutDisplayFunc_glutInit_glutInitDisplayMode_glutInitWindowSize_glutMainLoop_glutPostRedisplay_glutReshapeFunc

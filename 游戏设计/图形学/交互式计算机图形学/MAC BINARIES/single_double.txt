@@ -1,0 +1,27 @@
+Ξϊνώ μ…8__PAGEZERO__TEXT__text__TEXTtt 
+€__const__TEXT__literal4__TEXT  
+__literal8__TEXT°0°__cstring__TEXTΰ ΰH__DATA __data__DATA 
+__dyld__DATA __bss__DATA0 __common__DATA4 ΐ__IMPORT0 
+__pointers__IMPORT0 __jump_table__IMPORT@0‘@ 
+8__LINKEDIT@001Π2H PL2! /usr/lib/dyldPt 
+X/System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL 
+T/System/Library/Frameworks/GLUT.framework/Versions/A/GLUT 
+4/usr/lib/libgcc_s.1.dylib 
+4o/usr/lib/libSystem.B.dylibj‰εƒδπƒμ‹]‰\$M‰L$ƒΓΑγΛ‰\$‹ƒΓ…ΐuχ‰\$ 
+θα‰D$θ’τθXÿ°W‹€[ÿΰθX‹€KÿΰU‰εSƒμθ[Η$θ[ƒ&‹‹ƒ"‹‹‰T$‰$θrƒ"‹‹ƒ&‹σƒ®(WΑ‰T$σ$θBƒ&‹σƒ®((ΡWΠƒ"‹σƒ®(WΑσT$σ$θÿƒ"‹σƒ®(WΑƒ&‹‹σD$‰$θΟθ§ƒΔ[ΙΓU‰εƒμΗ$@θ€θÿÿÿθξΙΓU‰εƒμΗ$@θbθδώÿÿθlΙΓU‰εSƒμ$θ[ƒ+σƒ›σσXΑƒ+σƒ+σƒ.wλ(ƒ+σƒσ(Ρσ\Π(Βƒ+σƒ+σσZΘƒ«ςςYΑς$θ³έ]θƒ³ςςYEθςZΐƒÿ‹σƒ+σσZΘƒ«ςςYΑς$θχέ]πƒ³ςςYEπςZΐƒ‹σƒϋ‹‹‰$θΉθ¥ƒ‹‹‰$θΆθƒΔ$[ΙΓU‰εSƒμθ[ƒq‹‰D$ 
+ƒu‹‰D$ƒu‹‰D$ƒu‹‰$θθƒq‹‰D$ƒq‹‰D$ƒq‹‰$θΕΗ$θΧƒΔ[ΙΓU‰εSƒμθ[ƒ}uƒ} 
+uƒGώÿÿ‰$θΘƒ}uƒ} u Η$θ°ƒΔ[ΙΓU‰εSƒμ4θ[‹E ‰D$ 
+‹E‰D$ΗD$Η$θlΗ$θGθ=‹E;E ΅σ*E σZΘƒΙςςYΘσ*EσZΐf(Ρς^Πσ*E 
+σZΘƒΡςςYΘσ*EσZΐς^ΘƒΩςςD$(ƒαςςD$ 
+ςT$ςL$ƒΙςςD$ƒΡςς$θισ*EσZΘƒΙςςYΘσ*E 
+σZΐf(Ρς^Πσ*EσZΘƒΡςςYΘσ*E σZΐς^ΘƒΩςςD$(ƒαςςD$ 
+ƒΙςςD$ƒΡςςD$ςT$ς $θώΗ$θνθγƒΔ4[ΙΓU‰εSƒμθ[‹E 
+‰D$E‰$θπΗ$θιƒI‰$θΗ‰Βƒi‹‰θVύÿÿƒDόÿÿ‰$θ­ƒTώÿÿ‰$θΗƒbόÿÿ‰$θ–ƒώÿÿ‰$θ΅Η$θ†ΗD$Η$τθwƒY‰$θP‰Βƒu‹‰θίόÿÿƒ&όÿÿ‰$θ6ƒTώÿÿ‰$θPƒbόÿÿ‰$θƒώÿÿ‰$θ*θ 
+ƒΔ[ΙΓ€@΄C€?pβ ¥Eί‘?9@I@Iΐπ?πΏsingle buffereddouble bufferedΰΰ   8 < @ 
+4 
+τττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττ΄Θ. 
+@0 F N V bv½€Ϋ 4 “ ‹Ά¦©λ΄+Ό 8 ΕωÒΦΪ 
+< έ @ 
+ΰtζλρϊ#,<JSamy‹ª΄Ιαοώ"1B€€€€ 
+!@"#$%&'()*+,-@./0 
+dyld_stub_binding_helper__dyld_func_lookupdyld__mach_header_spin_NXArgc_NXArgv___progname__mh_execute_header_displayd_displays_doubleb_environ_main_mouse_myReshape_myinit_singleb_spinDisplay_square_x_ystart_cos_exit_glBegin_glClear_glClearColor_glColor3f_glEnd_glFlush_glLoadIdentity_glMatrixMode_glOrtho_glShadeModel_glVertex2f_glViewport_glutCreateWindow_glutDisplayFunc_glutIdleFunc_glutInit_glutInitDisplayMode_glutInitWindowPosition_glutMainLoop_glutMouseFunc_glutPostRedisplay_glutReshapeFunc_glutSetWindow_glutSwapBuffers_sin

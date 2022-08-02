@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ch26Ex03", "Ch26Ex03\Ch26Ex03.csproj", "{BE0BB6DF-6882-465E-A64A-44FD48F34F65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ch26Ex03Client", "Ch26Ex03Client\Ch26Ex03Client.csproj", "{C0458342-9655-4322-A75B-3C51FC1D3216}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE0BB6DF-6882-465E-A64A-44FD48F34F65}.Debug|x86.ActiveCfg = Debug|x86
+		{BE0BB6DF-6882-465E-A64A-44FD48F34F65}.Debug|x86.Build.0 = Debug|x86
+		{BE0BB6DF-6882-465E-A64A-44FD48F34F65}.Release|x86.ActiveCfg = Release|x86
+		{BE0BB6DF-6882-465E-A64A-44FD48F34F65}.Release|x86.Build.0 = Release|x86
+		{C0458342-9655-4322-A75B-3C51FC1D3216}.Debug|x86.ActiveCfg = Debug|x86
+		{C0458342-9655-4322-A75B-3C51FC1D3216}.Debug|x86.Build.0 = Debug|x86
+		{C0458342-9655-4322-A75B-3C51FC1D3216}.Release|x86.ActiveCfg = Release|x86
+		{C0458342-9655-4322-A75B-3C51FC1D3216}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

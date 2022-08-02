@@ -1,0 +1,129 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	97.09.21.19.28.38;	author dls;	state Dist;
+branches;
+next	1.1;
+
+1.1
+date	94.02.06.18.20.47;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@pre-3e code
+@
+text
+@/* ospf_hsend.c - ospf_hsend */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+#include <ospf.h>
+
+/*------------------------------------------------------------------------
+ * ospf_hsend - send OSPF hello packet for an interface
+ *------------------------------------------------------------------------
+ */
+int ospf_hsend(ifn)
+int	ifn;
+{
+	struct ospf_if		*pif = &ospf_if[ifn];
+	struct ep		*pep, *ospfhtmpl();
+	struct ip		*pip;
+	struct ospf		*po;
+	struct ospf_hello	*poh;
+	struct ospf_nb		*pnb;
+	int			i, nn, len;
+
+	pep = ospfhtmpl(pif);
+	wait(pif->if_nbmutex);
+	pip = (struct ip *) pep->ep_data;
+	po = (struct ospf *) pip->ip_data;
+	poh = (struct ospf_hello *) po->ospf_data;
+	pnb = &pif->if_nbtab[1];
+	for (i=0, nn=0; i<MAXNBR; ++i, ++pnb)
+		if (pnb->nb_state >= NBS_INIT) {
+			poh->oh_neighbor[nn++] = pnb->nb_rid;
+			po->ospf_len += sizeof(poh->oh_neighbor[0]);
+		}
+	signal(pif->if_nbmutex);
+	poh->oh_netmask = nif[ifn].ni_mask;
+	po->ospf_authtype = net2hs(pif->if_area->ar_authtype);
+	len = po->ospf_len;
+	po->ospf_len = net2hs(po->ospf_len);
+	pep->ep_order &= ~EPO_OSPF;	/* all in net order now */
+	bzero(po->ospf_auth, AUTHLEN);
+	po->ospf_cksum = 0;
+	po->ospf_cksum = cksum(po, len);
+	blkcopy(po->ospf_auth, pif->if_area->ar_auth, AUTHLEN);
+	pip->ip_src = nif[ifn].ni_ip;
+	if (ifn == NI_PRIMARY)
+		ipsend(AllSPFRouters, pep, len, IPT_OSPF,
+			IPP_INCTL, 1);
+	else
+		ipsend(nif[ifn].ni_brc, pep, len, IPT_OSPF,
+			IPP_INCTL, 1);
+}
+
+#if	BYTE_ORDER == LITTLE_ENDIAN
+IPaddr AllSPFRouters	= 0x050000E0;	/* 224.0.0.5 */
+IPaddr AllDRouters	= 0x060000E0;	/* 224.0.0.6 */
+#else	/* BYTE_ORDER == LITTLE_ENDIAN */
+IPaddr AllSPFRouters	= 0xE0000005;	/* 224.0.0.5 */
+IPaddr AllDRouters	= 0xE0000006;	/* 224.0.0.6 */
+#endif	/* BYTE_ORDER == LITTLE_ENDIAN */
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d16 1
+a16 1
+	struct ep		*pep;
+d21 1
+a21 1
+	int			i, nn;
+d23 1
+a23 3
+	pep = (struct ep *)getbuf(Net.netpool);
+	if ((int)pep == SYSERR)
+		return SYSERR;
+a27 1
+	ospfhtmpl(pif, pep);
+d35 5
+a39 2
+	blkcopy(&poh->oh_netmask, nif[ifn].ni_mask, IP_ALEN);
+	po->ospf_authtype = pif->if_area->ar_authtype;
+d42 1
+a42 1
+	po->ospf_cksum = cksum(po, po->ospf_len>>1);
+d44 1
+a44 1
+	blkcopy(pip->ip_src, nif[ifn].ni_ip, IP_ALEN);
+d46 1
+a46 1
+		ipsend(AllSPFRouters, pep, po->ospf_len, IPT_OSPF,
+d49 1
+a49 1
+		ipsend(nif[ifn].ni_brc, pep, po->ospf_len, IPT_OSPF,
+d53 7
+a59 2
+IPaddr AllSPFRouters = { 224, 0, 0, 5 };
+IPaddr AllDRouters = { 224, 0, 0, 6 };
+@

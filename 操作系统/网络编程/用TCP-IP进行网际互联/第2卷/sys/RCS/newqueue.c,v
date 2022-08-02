@@ -1,0 +1,64 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	1.1;
+
+1.1
+date	94.04.30.04.04.37;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@
+@
+
+
+1.2
+log
+@pre-3e code
+@
+text
+@/* newqueue.c  -  newqueue */
+
+#include <conf.h>
+#include <kernel.h>
+#include <q.h>
+
+/*------------------------------------------------------------------------
+ * newqueue  --  initialize a new list in the q structure
+ *------------------------------------------------------------------------
+ */
+int	newqueue()
+{
+	struct	qent	*hptr;
+	struct	qent	*tptr;
+	int	hindex, tindex;
+
+	hptr = &q[ hindex=nextqueue++]; /* assign and rememeber queue	*/
+	tptr = &q[ tindex=nextqueue++]; /* index values for head&tail	*/
+	hptr->qnext = tindex;
+	hptr->qprev = EMPTY;
+	hptr->qkey  = MININT;
+	tptr->qnext = EMPTY;
+	tptr->qprev = hindex;
+	tptr->qkey  = MAXINT;
+	return(hindex);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@

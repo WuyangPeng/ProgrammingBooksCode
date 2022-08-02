@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>flyEngine::get_obj_param</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="flyengine.htm">flyEngine</a>::get_obj_param</h2>
+<h3>Prototype</h3>
+<p class="code">int get_obj_param(char *objname,char *param,char *value)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>objname</td>
+	 <td>char *</td>
+	 <td>object name</td>
+  </tr>
+  <tr>
+	 <td>param</td>
+	 <td>char *</td>
+	 <td>parameter name</td>
+  </tr>
+  <tr>
+	 <td>value</td>
+	 <td>char *</td>
+	 <td>string to receive the parameter value</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>Returns 0 if parameter was found and value is set, 1 if object not found and
+2 if parameter not found.</p>
+<h3>Remarks</h3>
+<p>This function is used to get a string representation of an object's
+parameter.</p>
+</body>
+</html>

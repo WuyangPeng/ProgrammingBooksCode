@@ -1,0 +1,50 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.28.54;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* rfalloc.c - rfalloc */
+
+#include <conf.h>
+#include <kernel.h>
+#include <fserver.h>
+#include <rfile.h>
+
+/*------------------------------------------------------------------------
+ *  rfalloc  --  allocate pseudo device for a remote file; return id
+ *------------------------------------------------------------------------
+ */
+rfalloc()
+{
+	STATWORD ps;    
+	int	i;
+
+	disable(ps);
+	for (i=0 ; i<Nrf ; i++)
+		if (Rf.rftab[i].rf_state == RFREE) {
+			Rf.rftab[i].rf_state = RUSED;
+			restore(ps);
+			return(i);
+		}
+	restore(ps);
+	return(SYSERR);
+}
+@

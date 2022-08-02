@@ -1,0 +1,38 @@
+/* bump map vertex shader */
+
+varying vec3 L; /* light vector in texture-space coordinates */
+varying vec3 V; /* view vector in texture-space coordinates */
+attribute vec3 objTangent; /* tangent vector in object coordinates */
+
+
+void main()
+{
+    gl_Position = gl_ModelViewProjectionMatrix*gl_Vertex;
+
+
+    gl_TexCoord[0] = gl_MultiTexCoord0;
+    vec3 eyePosition = vec3(gl_ModelViewMatrix*gl_Vertex);
+    vec3 eyeLightPos = vec3(gl_LightSource[0].position);
+
+   /* normal, tangent and binormal in eye coordinates */
+
+    vec3 N = normalize(gl_NormalMatrix*gl_Normal);
+    vec3 T  = normalize(gl_NormalMatrix*objTangent);
+    vec3 B = cross(N, T);
+
+    /* light vector in texture space */
+
+    L.x = dot(T, eyeLightPos-eyePosition);
+    L.y = dot(B, eyeLightPos-eyePosition);
+    L.z = dot(N, eyeLightPos-eyePosition);
+
+    L = normalize(L);
+
+    /* view vector in texture space */
+
+    V.x = dot(T, -eyePosition.xyz);
+    V.y = dot(B, -eyePosition.xyz);
+    V.z = dot(N, -eyePosition.xyz);
+
+    V = normalize(V);
+}

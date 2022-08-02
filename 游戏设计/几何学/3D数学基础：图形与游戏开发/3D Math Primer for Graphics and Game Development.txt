@@ -1,0 +1,8 @@
+﻿3D数学基础：图形与游戏开发（3D Math Primer for Graphics and Game Development）
+（第2版）
+
+官方网站：
+https://gamemath.com/
+
+★★★
+作者： Fletcher Dunn、Ian Parberry

@@ -1,0 +1,21 @@
+﻿<UserControl
+    x:Class="YellowPad.YellowPadPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:YellowPad">
+    
+    <Grid>
+        <Viewbox>
+            <Grid Name="sheetPanel"
+                  Width="816" Height="1056"
+                  Background="#FFFF80">
+
+                <Line Stroke="Red" X1="132" Y1="0" X2="132" Y2="1056" />
+                <Line Stroke="Red" X1="138" Y1="0" X2="138" Y2="1056" />
+
+                <Grid Name="contentGrid" />
+                <Grid Name="newLineGrid" />
+            </Grid>
+        </Viewbox>
+    </Grid>
+</UserControl>

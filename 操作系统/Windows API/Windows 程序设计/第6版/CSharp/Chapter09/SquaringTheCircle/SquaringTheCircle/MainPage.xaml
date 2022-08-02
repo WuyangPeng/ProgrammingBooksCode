@@ -1,0 +1,115 @@
+<Page
+    x:Class="SquaringTheCircle.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SquaringTheCircle"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Canvas HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+            <Path Fill="{StaticResource ApplicationPressedForegroundThemeBrush}"
+                  Stroke="{StaticResource ApplicationForegroundThemeBrush}" 
+                  StrokeThickness="3" >
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure x:Name="bezier1" IsClosed="True">
+                            <BezierSegment x:Name="bezier2" />
+                            <BezierSegment x:Name="bezier3" />
+                            <BezierSegment x:Name="bezier4" />
+                            <BezierSegment x:Name="bezier5" />
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+
+                <Path.Triggers>
+                    <EventTrigger>
+                        <BeginStoryboard>
+                            <Storyboard RepeatBehavior="Forever">
+                                <PointAnimation Storyboard.TargetName="bezier1"
+                                                Storyboard.TargetProperty="StartPoint"
+                                                EnableDependentAnimation="True"
+                                                From="0 200" To="0 250"
+                                                AutoReverse="True" />
+
+                                <PointAnimation Storyboard.TargetName="bezier2"
+                                                Storyboard.TargetProperty="Point1"
+                                                EnableDependentAnimation="True"
+                                                From="110 200" To="125 125"
+                                                AutoReverse="True" />
+
+                                <PointAnimation Storyboard.TargetName="bezier2"
+                                                Storyboard.TargetProperty="Point2"
+                                                EnableDependentAnimation="True"
+                                                From="200 110" To="125 125"
+                                                AutoReverse="True" />
+
+                                <PointAnimation Storyboard.TargetName="bezier2"
+                                                Storyboard.TargetProperty="Point3"
+                                                EnableDependentAnimation="True"
+                                                From="200 0" To="250 0"
+                                                AutoReverse="True" />
+
+                                <PointAnimation Storyboard.TargetName="bezier3"
+                                                Storyboard.TargetProperty="Point1"
+                                                EnableDependentAnimation="True"
+                                                From="200 -110" To="125 -125"
+                                                AutoReverse="True" />
+
+                                <PointAnimation Storyboard.TargetName="bezier3"
+                                                Storyboard.TargetProperty="Point2"
+                                                EnableDependentAnimation="True"
+                                                From="110 -200" To="125 -125"
+                                                AutoReverse="True" />
+
+                                <PointAnimation Storyboard.TargetName="bezier3"
+                                                Storyboard.TargetProperty="Point3"
+                                                EnableDependentAnimation="True"
+                                                From="0 -200" To="0 -250"
+                                                AutoReverse="True" />
+
+                                <PointAnimation Storyboard.TargetName="bezier4"
+                                                Storyboard.TargetProperty="Point1"
+                                                EnableDependentAnimation="True"
+                                                From="-110 -200" To="-125 -125"
+                                                AutoReverse="True" />
+
+                                <PointAnimation Storyboard.TargetName="bezier4"
+                                                Storyboard.TargetProperty="Point2"
+                                                EnableDependentAnimation="True"
+                                                From="-200 -110" To="-125 -125"
+                                                AutoReverse="True" />
+
+                                <PointAnimation Storyboard.TargetName="bezier4"
+                                                Storyboard.TargetProperty="Point3"
+                                                EnableDependentAnimation="True"
+                                                From="-200 0" To="-250 0"
+                                                AutoReverse="True" />
+
+                                <PointAnimation Storyboard.TargetName="bezier5"
+                                                Storyboard.TargetProperty="Point1"
+                                                EnableDependentAnimation="True"
+                                                From="-200 110" To="-125 125"
+                                                AutoReverse="True" />
+
+                                <PointAnimation Storyboard.TargetName="bezier5"
+                                                Storyboard.TargetProperty="Point2"
+                                                EnableDependentAnimation="True"
+                                                From="-110 200" To="-125 125"
+                                                AutoReverse="True" />
+
+                                <PointAnimation Storyboard.TargetName="bezier5"
+                                                Storyboard.TargetProperty="Point3"
+                                                EnableDependentAnimation="True"
+                                                From="0 200" To="0 250"
+                                                AutoReverse="True" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Path.Triggers>
+            </Path>
+        </Canvas>            
+    </Grid>
+</Page>

@@ -1,0 +1,65 @@
+<html>
+
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>class boundbox</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>boundbox</h2>
+
+<h3>Definition</h3>
+
+<p class="code">class boundbox<br>
+{<br>
+&nbsp; public:<br>
+&nbsp; vector min,max;<br>
+<br>
+&nbsp; void reset()<br>
+&nbsp; {<br>
+&nbsp;&nbsp;&nbsp; min.vec(BIG,BIG,BIG);<br>
+&nbsp;&nbsp;&nbsp; max.vec(-BIG,-BIG,-BIG);<br>
+&nbsp; };<br>
+&nbsp; void add_point(vector &amp;p);<br>
+&nbsp; void add_point(float x,float y,float z);<br>
+&nbsp; int ray_intersect(vector&amp; ro,vector&amp; rd,float&amp; tnear,float&amp; tfar);<br>
+};</p>
+
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>min</td>
+    <td><a href="index.htm">vector</a></td>
+    <td>minimum corner of bounding box</td>
+  </tr>
+  <tr>
+    <td>max</td>
+    <td><a href="index.htm">vector</a></td>
+    <td>maximum corner of bounding box</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p><a href="boundbox_reset.htm">reset</a>, <a href="boundbox_add_point.htm">add_point</a>,
+<a href="boundbox_ray_intersect.htm">ray_intersect</a></p>
+
+<h3>Remarks</h3>
+
+<p>This class impements a axis aligned bounding box (AABB). The <em>min</em> vector specifies
+the minimum co-ordinates for the AABB and <em>max</em> the maximum co-ordinates.</p>
+
+<h3>See Also</h3>
+
+<p><a href="vector.htm">vector</a></p>
+</body>
+</html>

@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryApp", "DirectoryApp.csproj", "{65B0EC1E-80D9-4076-A4E4-C8F4655638CB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65B0EC1E-80D9-4076-A4E4-C8F4655638CB}.Debug|x86.ActiveCfg = Debug|x86
+		{65B0EC1E-80D9-4076-A4E4-C8F4655638CB}.Debug|x86.Build.0 = Debug|x86
+		{65B0EC1E-80D9-4076-A4E4-C8F4655638CB}.Release|x86.ActiveCfg = Release|x86
+		{65B0EC1E-80D9-4076-A4E4-C8F4655638CB}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

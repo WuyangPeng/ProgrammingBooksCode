@@ -1,0 +1,49 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.40;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@long
+atol(p)
+register char *p;
+{
+	long n;
+	register int f;
+
+	n = 0;
+	f = 0;
+	for(;;p++) {
+		switch(*p) {
+		case ' ':
+		case '\t':
+			continue;
+		case '-':
+			f++;
+		case '+':
+			p++;
+		}
+		break;
+	}
+	while(*p >= '0' && *p <= '9')
+		n = n*10 + *p++ - '0';
+	return(f? -n: n);
+}
+@

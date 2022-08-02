@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>bsp_object::draw</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2>bsp_object::draw</h2>
+<h3>Prototype</h3>
+<p class="code">virtual void draw()</p>
+<h3>Parameters</h3>
+<p>None</p>
+	
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This virtual function is used for drawing the object and derived classes
+should implement it when needed.&nbsp;</p>
+<p> Its default behavior is to call the <i>get_mesh</i> function and if a mesh 
+  is returned it calls the mesh draw function. So, if neither this function nor 
+  <i>get_mesh</i> is implemented the object will not be drawn.</p>
+</body>
+</html>

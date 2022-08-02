@@ -1,0 +1,92 @@
+<Page
+    x:Class="LineCapsAndJoinsWithCustomClass.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LineCapsAndJoinsWithCustomClass"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Name="startLineCapPanel"
+                    Grid.Row="0" Grid.Column="0"
+                    Margin="24">
+
+            <local:LineCapRadioButton Content="Flat start"
+                                      LineCapTag="Flat"
+                                      Checked="OnStartLineCapRadioButtonChecked" />
+
+            <local:LineCapRadioButton Content="Round start"
+                                      LineCapTag="Round"
+                                      Checked="OnStartLineCapRadioButtonChecked" />
+
+            <local:LineCapRadioButton Content="Square start"
+                                      LineCapTag="Square"
+                                      Checked="OnStartLineCapRadioButtonChecked" />
+
+            <local:LineCapRadioButton Content="Triangle start"
+                                      LineCapTag="Triangle"
+                                      Checked="OnStartLineCapRadioButtonChecked" />
+        </StackPanel>
+
+        <StackPanel Name="endLineCapPanel"
+                    Grid.Row="0" Grid.Column="2"
+                    Margin="24">
+
+            <local:LineCapRadioButton Content="Flat end"
+                                      LineCapTag="Flat"
+                                      Checked="OnEndLineCapRadioButtonChecked" />
+
+            <local:LineCapRadioButton Content="Round end"
+                                      LineCapTag="Round"
+                                      Checked="OnEndLineCapRadioButtonChecked" />
+
+            <local:LineCapRadioButton Content="Square end"
+                                      LineCapTag="Square"
+                                      Checked="OnEndLineCapRadioButtonChecked" />
+
+            <local:LineCapRadioButton Content="Triangle End"
+                                      LineCapTag="Triangle"
+                                      Checked="OnEndLineCapRadioButtonChecked" />
+
+        </StackPanel>
+
+        <StackPanel Name="lineJoinPanel"
+                    Grid.Row="1" Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    Margin="24">
+
+            <local:LineJoinRadioButton Content="Bevel join"
+                                       LineJoinTag="Bevel"
+                                       Checked="OnLineJoinRadioButtonChecked" />
+
+            <local:LineJoinRadioButton Content="Miter join"
+                                       LineJoinTag="Miter"
+                                       Checked="OnLineJoinRadioButtonChecked" />
+
+            <local:LineJoinRadioButton Content="Round join"
+                                       LineJoinTag="Round"
+                                       Checked="OnLineJoinRadioButtonChecked" />
+        </StackPanel>
+
+        <Polyline Name="polyline"
+                  Grid.Row="0"
+                  Grid.Column="1"
+                  Points="0 0, 500 1000, 1000 0"
+                  Stroke="{StaticResource ApplicationForegroundThemeBrush}"
+                  StrokeThickness="100"
+                  Stretch="Fill"
+                  Margin="24" />
+    </Grid>
+</Page>

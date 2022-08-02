@@ -1,0 +1,47 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* setdev.c - setdev */
+
+#include <conf.h>
+#include <kernel.h>
+#include <proc.h>
+
+/*------------------------------------------------------------------------
+ *  setdev  -  set the two device entries in the process table entry
+ *------------------------------------------------------------------------
+ */
+SYSCALL	setdev(pid, dev1, dev2)
+int	pid;				/* process to change		*/
+int	dev1, dev2;			/* device descriptors to set	*/
+{
+	short	*nxtdev;
+
+	if (isbadpid(pid))
+		return(SYSERR);
+	nxtdev = (short *) proctab[pid].pdevs;
+	*nxtdev++ = dev1;
+	*nxtdev = dev2;
+	return(OK);
+}
+@

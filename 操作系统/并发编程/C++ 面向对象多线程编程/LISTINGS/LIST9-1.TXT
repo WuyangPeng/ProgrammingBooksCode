@@ -1,0 +1,41 @@
+/ Listing 9.1 
+// A simple mutex interface class
+
+class mutex{
+protected:
+    pthread_mutex_t Mutex;
+    general_exception SemException;
+public:
+    mutex(void);
+    ~mutex(void);
+    void lock(void);
+    void unlock(void);
+};
+
+mutex::mutex(void)
+{
+    if(pthread_mutex_init(&Mutex,NULL)){
+       SemException.message("Could Not Create Mutex");
+       throw SemException;
+    }
+}
+
+mutex::~mutex(void)
+{
+    if(pthread_mutex_destroy(&Mutex)){
+       SemException.message("Could Not Destroy Mutex");
+       throw SemException;
+    }
+}
+
+void mutex::lock(void)
+{
+      pthread_mutex_lock(&Mutex);
+}
+
+void mutex::unlock(void)
+{
+    pthread_mutex_unlock(&Mutex);
+}
+
+

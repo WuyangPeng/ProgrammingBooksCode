@@ -1,0 +1,550 @@
+head	1.7;
+access;
+symbols;
+locks
+	dls:1.7; strict;
+comment	@ * @;
+
+
+1.7
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	1.6;
+
+1.6
+date	94.05.07.19.26.36;	author dls;	state Works;
+branches;
+next	1.5;
+
+1.5
+date	94.05.06.03.12.23;	author dls;	state Works;
+branches;
+next	1.4;
+
+1.4
+date	94.05.01.16.07.01;	author dls;	state Works;
+branches;
+next	1.3;
+
+1.3
+date	94.04.30.04.04.37;	author dls;	state Works;
+branches;
+next	1.2;
+
+1.2
+date	94.04.26.15.15.20;	author dls;	state Works;
+branches;
+next	1.1;
+
+1.1
+date	94.03.28.18.07.53;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.7
+log
+@pre-3e code
+@
+text
+@/* initialize.c - nulluser, sizmem, sysinit */
+
+#include <conf.h>
+#include <i386.h>
+#include <kernel.h>
+#include <proc.h>
+#include <sem.h>
+#include <sleep.h>
+#include <mem.h>
+#include <tty.h>
+#include <q.h>
+#include <io.h>
+#include <network.h>
+
+/* #define DETAIL */
+
+#define	HOLESTART	(640 * 1024)
+#define	HOLEEND		(1024 * 1024)
+
+extern	int	main();			/* address of user's main prog	*/
+
+extern	int	start();
+
+LOCAL		sysinit();
+
+/* Declarations of major kernel variables */
+
+struct	pentry	proctab[NPROC]; /* process table			*/
+int	nextproc;		/* next process slot to use in create	*/
+struct	sentry	semaph[NSEM];	/* semaphore table			*/
+int	nextsem;		/* next sempahore slot to use in screate*/
+struct	qent	q[NQENT];	/* q table (see queue.c)		*/
+int	nextqueue;		/* next slot in q structure to use	*/
+char	*maxaddr;		/* max memory address (set by sizmem)	*/
+#ifdef	NDEVS
+struct	intmap	intmap[NDEVS];	/* interrupt dispatch table		*/
+#endif
+struct	mblock	memlist;	/* list of free memory blocks		*/
+#ifdef	Ntty
+struct  tty     tty[Ntty];	/* SLU buffers and mode control		*/
+#endif
+
+/* active system status */
+
+int	numproc;		/* number of live user processes	*/
+int	currpid;		/* id of currently running process	*/
+int	lastpid;		/* id of last running process		*/
+int	reboot = 0;		/* non-zero after first boot		*/
+
+int	rdyhead,rdytail;	/* head/tail of ready list (q indicies)	*/
+char	vers[100];		/* Xinu version printed at startup	*/
+int	revision = REVISION;	/* the revision level			*/
+
+/* These variables were defined in usrmain. */
+
+int	sem;
+int	pid1, pid2;
+int	ptid;
+
+
+/************************************************************************/
+/***				NOTE:				      ***/
+/***								      ***/
+/***   This is where the system begins after the C environment has    ***/
+/***   been established.  Interrupts are initially DISABLED, and      ***/
+/***   must eventually be enabled explicitly.  This routine turns     ***/
+/***   itself into the null process after initialization.  Because    ***/
+/***   the null process must always remain ready to run, it cannot    ***/
+/***   execute code that might cause it to be suspended, wait for a   ***/
+/***   semaphore, or put to sleep, or exit.  In particular, it must   ***/
+/***   not do I/O unless it uses kprintf for polled output.           ***/
+/***								      ***/
+/************************************************************************/
+
+static int esp;
+/*------------------------------------------------------------------------
+ *  nulluser  -- initialize system and become the null process (id==0)
+ *------------------------------------------------------------------------
+ */
+nulluser()				/* babysit CPU when no one home */
+{
+        int userpid;
+
+	initevec();
+
+	sysinit();
+
+	/* associate CONSOLE with a tty */
+	open(CONSOLE, KBMON);
+/*	open(CONSOLE, SERIAL0); */
+
+	sprintf(vers, "Xinu Version %s", VERSION);
+	kprintf("\n\n%s\n", vers);
+	if (reboot++ < 1)
+		kprintf("\n");
+	else
+		kprintf("   (reboot %d)\n", reboot);
+
+
+	kprintf("%d bytes real mem\n",
+		(unsigned long) maxaddr+1);
+#ifdef DETAIL	
+	kprintf("    %d", (unsigned long) 0);
+	kprintf(" to %d\n", (unsigned long) (maxaddr) );
+#endif	
+
+	kprintf("%d bytes Xinu code\n",
+		(unsigned long) ((unsigned long) &end - (unsigned long) start));
+#ifdef DETAIL	
+	kprintf("    %d", (unsigned long) start);
+	kprintf(" to %d\n", (unsigned long) &end );
+#endif
+
+#ifdef DETAIL	
+	kprintf("%d bytes user stack/heap space\n",
+		(unsigned long) ((unsigned long) maxaddr - (unsigned long) &end));
+	kprintf("    %d", (unsigned long) &end);
+	kprintf(" to %d\n", (unsigned long) maxaddr);
+#endif	
+	
+	kprintf("clock %sabled\n", clkruns == 1?"en":"dis");
+
+	enable();		/* enable interrupts */
+
+	/* create a process to execute the user's main program */
+	userpid = create(main,INITSTK,INITPRIO,INITNAME,INITARGS);
+
+	/* start the network */
+	resume(create(netstart,NETSTK,NETPRI,NETNAM,NETARGC,userpid));
+	while (TRUE)
+		/* empty */;
+}
+
+/*------------------------------------------------------------------------
+ *  sysinit  --  initialize all Xinu data structeres and devices
+ *------------------------------------------------------------------------
+ */
+LOCAL
+sysinit()
+{
+	static	long	currsp;
+	int	i,j;
+	struct	pentry	*pptr;
+	struct	sentry	*sptr;
+	struct	mblock	*mptr;
+
+	numproc = 0;			/* initialize system variables */
+	nextproc = NPROC-1;
+	nextsem = NSEM-1;
+	nextqueue = NPROC;		/* q[0..NPROC-1] are processes */
+
+	/* initialize free memory list */
+	/* PC version has to pre-allocate 640K-1024K "hole" */
+	if (maxaddr+1 > HOLESTART) {
+		memlist.mnext = mptr = (struct mblock *) roundmb(&end);
+		mptr->mnext = (struct mblock *)HOLEEND;
+		mptr->mlen = (int) truncew((unsigned) HOLESTART -
+	     		 (unsigned)&end - 4);
+
+		mptr = (struct mblock *) HOLEEND;
+		mptr->mnext = 0;
+		mptr->mlen = (int) truncew((unsigned)maxaddr - HOLEEND -
+	      		NULLSTK);
+	} else {
+		/* initialize free memory list */
+		memlist.mnext = mptr = (struct mblock *) roundmb(&end);
+		mptr->mnext = 0;
+		mptr->mlen = (int) truncew((unsigned)maxaddr - (int)&end -
+			NULLSTK);
+	}
+	
+
+	for (i=0 ; i<NPROC ; i++)	/* initialize process table */
+		proctab[i].pstate = PRFREE;
+
+	pptr = &proctab[NULLPROC];	/* initialize null process entry */
+	pptr->pstate = PRCURR;
+	for (j=0; j<7; j++)
+		pptr->pname[j] = "prnull"[j];
+	pptr->plimit = (WORD)(maxaddr + 1) - NULLSTK;
+	pptr->pbase = (WORD) maxaddr - 3;
+	pptr->pesp = pptr->pbase-4;	/* for stkchk; rewritten before used */
+	*( (int *)pptr->pbase ) = MAGIC;
+	pptr->paddr = (WORD) nulluser;
+	pptr->pargs = 0;
+	pptr->pprio = 0;
+	currpid = NULLPROC;
+
+	for (i=0 ; i<NSEM ; i++) {	/* initialize semaphores */
+		(sptr = &semaph[i])->sstate = SFREE;
+		sptr->sqtail = 1 + (sptr->sqhead = newqueue());
+	}
+
+	rdytail = 1 + (rdyhead=newqueue());/* initialize ready list */
+
+	
+#ifdef	MEMMARK
+	_mkinit();			/* initialize memory marking */
+#endif
+
+#ifdef	RTCLOCK
+	clkinit();			/* initialize r.t.clock	*/
+#endif
+
+#ifdef NDEVS
+	for ( i=0 ; i<NDEVS ; i++ ) {
+	    init(i);
+	}
+#endif
+
+#ifdef	NNETS
+	netinit();
+#endif
+
+	return(OK);
+}
+
+_stop(s)
+char	*s;
+{
+	kprintf("%s\n", s);
+	kprintf("looping... press reset\n");
+	while(1)
+		/* empty */;
+}
+
+
+#define	NBPG	4096
+
+/*------------------------------------------------------------------------
+ * sizmem - return memory size (in pages)
+ *------------------------------------------------------------------------
+ */
+long sizmem()
+{
+	unsigned char	*ptr, *start, stmp, tmp;
+	int		npages;
+
+return 512;
+	start = ptr = 0;
+	npages = 0;
+	stmp = *start;
+	while (1) {
+		tmp = *ptr;
+		*ptr = 0xA5;
+		if (*ptr != 0xA5)
+			break;
+		*ptr = tmp;
+		++npages;
+		ptr += NBPG;
+		if ((int)ptr == HOLESTART) {	/* skip I/O pages */
+			npages += (1024-640)/4;
+			ptr = (unsigned char *)HOLEEND;
+		}
+	}
+	return npages;
+}
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@a13 1
+#include <slu.h>
+d15 1
+a15 1
+/*#define DETAIL */
+a19 3
+int	intrdone = 0;
+
+
+d47 1
+a81 1
+STATWORD	PS;
+d84 8
+a98 4
+	kprintf("intrdone %d\n", intrdone);
+	initevec();
+
+	sysinit();
+a122 8
+getirmask(PS);
+kprintf("nulluser before enable(), PS %x\n", PS[0]);
+
+PS[0] = 2;
+restore(PS);
+getirmask(PS);
+kprintf("nulluser, PS %x\n", PS[0]);
+#ifdef notdef
+a123 1
+#endif
+d128 4
+a131 22
+resume(userpid);
+
+#ifdef notyet
+#ifdef	NETDAEMON
+	/* start the network input daemon process */
+	resume(
+	  create(netstart, NETSTK, NETPRI, NETNAM, NETARGC, userpid)
+	);
+#else
+	resume( userpid );
+#endif
+#endif /* notyet */
+	return;
+}
+
+hose()
+{
+	extern int ctr100;
+	int		count;
+
+	while(1)
+		pause();
+d160 2
+a161 2
+		mptr = HOLEEND;
+		mptr->mnext = (struct mbock *)NULL;
+d167 1
+a167 1
+		mptr->mnext = (struct mblock *)NULL;
+d181 1
+a181 1
+	pptr->pbase = (WORD) maxaddr;
+a196 1
+#ifdef notyet
+a199 2
+#endif /* notyet */
+
+a204 1
+#ifdef notyet
+a213 1
+#endif /* notyet */
+a226 6
+delay(n)
+int	n;
+{
+	DELAY(n);
+}
+
+d239 1
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@a87 1
+kprintf("VERSION %X vers %X\n", VERSION, vers);
+d123 2
+d126 1
+a126 1
+PS[0] = 3;
+d128 5
+a132 1
+/*	enable();		/* enable interrupts */
+a185 3
+kprintf("free block 1 start %d (%X) next %d (%X) len %d (end addr %d (%X))\n",
+mptr, mptr, mptr->mnext, mptr->mnext, mptr->mlen, ((int)mptr) + mptr->mlen,
+((int)mptr) + mptr->mlen);
+a190 3
+kprintf("free block 2 start %d (%X) next %d (%X) len %d (end addr %d (%X))\n",
+mptr, mptr, mptr->mnext, mptr->mnext, mptr->mlen, ((int)mptr) + mptr->mlen,
+((int)mptr) + mptr->mlen);
+a191 2
+kprintf("in wrong mem section-- maxaddr+1 %d, HOLESTAR %d\n", maxaddr+1,
+HOLESTART);
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d16 1
+a16 1
+#define DETAIL
+d78 1
+d85 1
+a123 1
+	enable();		/* enable interrupts */
+d125 3
+d132 1
+d163 1
+a163 1
+
+d180 5
+a184 1
+	     		 (unsigned)&end);
+d187 5
+a191 2
+		mptr->mlen = (int) truncew((unsigned)maxaddr
+	      		-NULLSTK-HOLEEND);
+d193 2
+d198 2
+a199 2
+		mptr->mlen = (int) truncew((unsigned)maxaddr
+	      		-NULLSTK-(unsigned)&end);
+d212 1
+d291 2
+a292 1
+		if ((int)ptr == HOLESTART)	/* skip I/O pages */
+d294 1
+@
+
+
+1.3
+log
+@,
+@
+text
+@d4 1
+d18 3
+d86 1
+a122 2
+kprintf("after enable\n");
+#ifdef notyet
+d129 1
+d138 1
+a139 1
+#endif /* notyet */
+d155 2
+a156 1
+LOCAL	sysinit()
+d169 18
+a186 5
+	memlist.mnext = mptr =		/* initialize free memory list */
+	  (struct mblock *) roundmb(&end);
+	mptr->mnext = (struct mblock *)NULL;
+	mptr->mlen = (int) truncew((unsigned)maxaddr
+	      -NULLSTK-(unsigned)&end);
+d276 2
+a277 2
+		if ((int)ptr == 640*1024)	/* skip I/O page */
+			ptr = (unsigned char *)(1024*1024);
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d91 1
+a91 1
+#ifdef	NOTYET
+a92 1
+#endif /* NOTYET */
+d117 2
+a119 1
+	enable();		/* enable interrupts */
+d134 1
+a135 5
+	return;
+	
+	while (TRUE) {		/* run forever without actually */
+	    pause();		/* executing instructions */
+	}
+d140 3
+a185 1
+#ifdef notyet
+d194 1
+d198 2
+d205 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+d3 11
+a13 1
+#include "slu.h"
+d15 128
+a142 1
+nulluser()
+d144 2
+a145 1
+	kprintf("hello world\n");
+d148 5
+a152 1
+hello()
+d154 62
+a215 1
+	kprintf("hello world\n");
+d231 29
+@

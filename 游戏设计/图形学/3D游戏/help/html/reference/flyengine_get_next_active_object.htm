@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>flyEngine::get_next_active_object</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="flyengine.htm">flyEngine</a>::get_next_active_object</h2>
+<h3>Prototype</h3>
+<p class="code">bsp_object *get_next_active_object(bsp_object *o,int type=0)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>o</td>
+	 <td><a href="bsp_object.htm">bsp_object</a> *</td>
+	 <td>object pointer</td>
+  </tr>
+  <tr>
+	 <td>type</td>
+	 <td>int</td>
+	 <td>object type modifier</td>
+  </tr>
+  
+</table>
+<h3>Return Value</h3>
+<p>Returns the object next to the specified one or NULL if at end of list.</p>
+<h3>Remarks</h3>
+<p>This function is used to walk through the active object linked list. When called 
+  with o=NULL it will return the first object in the active objects linked list. 
+  When called with <i>o</i>&lt;&gt;NULL it will return the object following the 
+  object <i>o</i> in the active objects linked list. If the type parameter is 
+  &lt;&gt;0, only objects with that type id are returned.</p>
+<p>Usually used like this:</p>
+<p class="code">bsp_object *obj=0; <br>
+while( obj=flyengine-&gt;get_next_active_object(obj) )<br>
+{<br>
+&nbsp; // do somethig with object obj<br>
+}</p>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<html>
+
+<head>
+<title>class flydllgroup</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class flydllgroup</h2>
+
+<h3>Definition</h3>
+
+<p class="code">class flydllgroup<br>
+{<br>
+&nbsp; public:<br>
+&nbsp; int ndll;<br>
+&nbsp; flydll **dll;<br>
+&nbsp; int ncd;<br>
+&nbsp; class_desc **cd;<br>
+<br>
+&nbsp; flydllgroup();<br>
+<br>
+&nbsp; void reset();<br>
+&nbsp; int add_dll(char *filename);<br>
+&nbsp; int delete_dll(char *filename);<br>
+&nbsp; void move_dll(char *filename,int newrelpos);<br>
+&nbsp; int send_message(int msg,int param,void *data);<br>
+&nbsp; void load_all_classes(fly_pak *file);<br>
+&nbsp; void load_classes(int d,fly_pak *file);<br>
+&nbsp; void load_default_param(bsp_object *o,char *sec,fly_pak *file);<br>
+&nbsp; void delete_class(bsp_object *o);<br>
+&nbsp; void delete_references(bsp_object *o);<br>
+&nbsp; bsp_object *add_class(char *name);<br>
+<br>
+&nbsp; virtual ~flydllgroup();<br>
+};</p>
+
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>ndll</td>
+    <td>int</td>
+    <td>number of Fly3D plug-in dlls in <i>dll</i> array</td>
+  </tr>
+  <tr>
+    <td>dll</td>
+    <td><a href="flydll.htm">flydll</a> *</td>
+    <td>array of plug-in dll description classes</td>
+  </tr>
+  <tr>
+    <td>ncd</td>
+    <td>int</td>
+    <td>total number of classes implemented by the plug-ins in <i>cd</i> array</td>
+  </tr>
+  <tr>
+    <td>cd</td>
+    <td><a href="class_desc.htm">class_desc</a> *</td>
+    <td>array of class description classes</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p> <a href="flydllgroup_reset.htm">reset</a>,
+<a href="flydllgroup_add_dll.htm">add_dll</a>, <a href="flydllgroup_delete_dll.htm">delete_dll</a>,
+<a href="flydllgroup_move_dll.htm">move_dll</a>, <a href="flydllgroup_send_message.htm">send_message</a>,
+<a href="flydllgroup_load_all_classes.htm">load_all_classes</a>, <a
+href="flydllgroup_load_classes.htm">load_classes</a>, <a
+href="flydllgroup_load_default_param.htm">load_default_param</a>, <a
+href="flydllgroup_delete_class.htm">delete_class</a>, <a
+href="flydllgroup_delete_references.htm">delete_references</a>, <a
+href="flydllgroup_add_class.htm">add_class</a>
+</p>
+
+<h3>Remarks</h3>
+
+<p>This class implements a group of Fly3D plug-in dlls. Each Fly3D plug-in dll can 
+  enumerate any number of <i>bsp_object</i> derived classes.&nbsp;<br>
+  The plug-in dlls are stored in the <i>dll</i> member variable and the classes 
+  implemented by theem are stored in the <i>cd</i> member variable.</p>
+
+<h3>See Also</h3>
+
+<p><a href="flydll.htm">flydll</a>, <a href="class_desc.htm">class_desc</a>, <a href="param_desc.htm">param_desc</a></p>
+
+</body>
+</html>

@@ -1,0 +1,5 @@
+计算机图形学的算法基础（Procedural Elements for Computer Graphics）
+（第2版）
+
+☆
+作者： David F.Rogers 

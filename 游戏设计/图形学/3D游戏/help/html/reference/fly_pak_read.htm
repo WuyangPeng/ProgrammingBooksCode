@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>flay_pak::read</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="fly_pak.htm">flay_pak</a>::read</h2>
+<h3>Prototype</h3>
+<p class="code">int read(void *dest, int size)</p>
+<h3>Parameters</h3>
+	
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr> 
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr> 
+    <td>dest</td>
+    <td>void *</td>
+    <td>destination memory pointer</td>
+  </tr>
+  <tr> 
+    <td>size</td>
+    <td>int</td>
+    <td>number of bytes to read</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>Returns the actual number of bytes copied to the destination buffer.</p>
+<h3>Remarks</h3>
+<p>This function reads an specified number of bytes from the opened file into 
+  the <i>dest</i> memory buffer. If the number of bytes requested is more than 
+  the bytes available in the file, only the available bytes are copied and the 
+  number of bytes actually copied are returned.</p>
+</body>
+</html>

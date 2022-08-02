@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventRegistrationWeb", "EventRegistrationWeb\EventRegistrationWeb.csproj", "{BC5DF7D4-E2E2-466A-A7A3-130822A5E42E}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "EventRegistrationWebSetup", "EventRegistrationWebSetup\EventRegistrationWebSetup.vdproj", "{E12841F6-876A-4FC6-A344-CCD85B82C727}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC5DF7D4-E2E2-466A-A7A3-130822A5E42E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC5DF7D4-E2E2-466A-A7A3-130822A5E42E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC5DF7D4-E2E2-466A-A7A3-130822A5E42E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC5DF7D4-E2E2-466A-A7A3-130822A5E42E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E12841F6-876A-4FC6-A344-CCD85B82C727}.Debug|Any CPU.ActiveCfg = Debug
+		{E12841F6-876A-4FC6-A344-CCD85B82C727}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

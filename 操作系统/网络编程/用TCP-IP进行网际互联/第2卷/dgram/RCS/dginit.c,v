@@ -1,0 +1,50 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.25.42;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* dginit.c - dginit */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  dginit  -  initialize datagram protocol pseudo device marking it free
+ *------------------------------------------------------------------------
+ */
+int dginit(pdev)
+struct	devsw	*pdev;
+{
+	struct	dgblk	*pdg;
+
+	pdev->dvioblk = (char *) (pdg = &dgtab[pdev->dvminor]);
+	pdg->dg_dnum = pdev->dvnum;
+	pdg->dg_state = DGS_FREE;
+	dgmutex = screate(1);
+	return OK;
+}
+
+#ifdef	Ndg
+struct	dgblk	dgtab[Ndg];		/* dg device control blocks	*/
+#endif
+int	dgmutex;
+@

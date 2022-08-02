@@ -1,0 +1,62 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.19;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* kbminit.c -- kbminit */
+
+#include <conf.h>
+#include <kernel.h>
+#include <tty.h>
+#include <io.h>
+#include <kbm.h>
+
+struct tty	kbmtty;
+
+
+/*------------------------------------------------------------------------
+ *  kbminit -- initialize the PC keyboard
+ *------------------------------------------------------------------------
+ */
+kbminit(pdev)
+struct	devsw	*pdev;
+{
+	int		kbmint();
+
+	set_evec(pdev->dvivec, kbmint);
+
+	while (inb(KB_CSR) & KBS_NRDY);	/* wait for input buffer empty */
+	outb(KB_CSR, 0x60);		/* next write is a command */
+	while (inb(KB_CSR) & KBS_NRDY);
+	outb(KB_DAT, 0x69);
+	while (inb(KB_CSR) & KBS_NRDY);
+	outb(KB_DAT, 0xff);		/* reset */
+	while ((inb(KB_CSR) & KBS_HASDAT) == 0);
+	pdev->dvioblk = 0;
+{
+unsigned char c = inb(KB_DAT);
+/*
+	if (inb(KB_DAT) != 0xAA)
+		panic("keyboard initialization error\n");
+*/
+}
+}
+@

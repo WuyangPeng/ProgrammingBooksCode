@@ -1,0 +1,20 @@
+Îúíþ Ü…8__PAGEZEROH__TEXT__text__TEXT¾ 
+€__literal4__TEXTÐÐ__literal8__TEXTØØ__cstring__TEXTèèÀ__DATA 
+__data__DATA __dyld__DATA |__IMPORT0 __jump_table__IMPORT0d 
+8__LINKEDIT@0„0!Ü1¨ P Œ1 /usr/lib/dyldP 
+X/System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL 
+T/System/Library/Frameworks/GLUT.framework/Versions/A/GLUT 
+4/usr/lib/libgcc_s.1.dylib 
+4o/usr/lib/libSystem.B.dylibj‰åƒäðƒì‹]‰\$M‰L$ƒÃÁãË‰\$‹ƒÃ…Àu÷‰\$ è 
+‰D$è±ôèXÿ°»‹€¿ÿàèX‹€¯ÿàU‰åƒìÇ$è‹E ‰D$‹E‰$èœè~ÉÃU‰åƒìH‹U‹E)Ð‰EÐ‹U 
+‹E)Ð‰EÔƒ}ÐyEÐ÷ƒ}ÔyEÔ÷ÇEà‹E;E}ÇEàÿÿÿÿÇEä‹E;E }ÇEäÿÿÿÿ‹E‰Eð‹E 
+‰Eô‹EÐ;EÔŽ—ÇD$‹Eô‰D$‹Eð‰$èEÿÿÿ‹EÔÀ+EÐ‰EÜ‹UÐ‹EÔ)ÐÀ‰Eè‹EÔÀ‰EìÇEØëGƒ}Üx‹UäEô‹UèEÜë‹UìEÜ‹UàEðÇD$‹Eô‰D$‹Eð‰$èÚþÿÿEØÿ‹EØ;EÐ|±é’ÇD$‹Eô‰D$‹Eð‰$è®þÿÿ‹EÐÀ+EÔ‰EÜ‹UÔ‹EÐ)ÐÀ‰Eè‹EÐÀ‰EìÇEØëGƒ}Üx‹UàEð‹UèEÜë‹UìEÜ‹UäEôÇD$‹Eô‰D$‹Eð‰$èCþÿÿEØÿ‹EØ;EÔ|±ÉÃU‰åƒìÇ$@èºÇD$ 
+2ÇD$dÇD$ÈÇ$Èè)þÿÿè¥ÉÃU‰åSƒì$è[ƒI‹‰D$ 
+ƒI‹‰D$ƒI‹‰D$ƒI‹‰$èSƒM‹‰D$ƒM‹‰D$ƒI‹‰$è0ƒI‹‰$è9Ç$è(èƒQòòD$ƒYòòD$ƒQòòD$ƒYòò$èîƒÄ$[ÉÃU‰åSƒìè[‹E 
+‰D$E‰$èÝÇ$èÖÇD$ôÇ$ôèÌÇD$Ç$è³ƒ‰$è‘ƒãþÿÿ‰$èˆè¸þÿÿè—ƒÄ[ÉÃ€?0@Bresenham's 
+Algorithmàà   
+ôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôPd. 
+@ H P \pv>r‹ 
+”Oš{¢¨®·ÀÎÙàéù 
+,>OYn†š@ 
+dyld_stub_binding_helper__dyld_func_lookupdyld__mach_header_NXArgc_NXArgv___progname__mh_execute_header_bres_display_draw_pixel_environ_main_myinitstart_exit_glBegin_glClear_glClearColor_glColor3f_glEnd_glFlush_glLoadIdentity_glMatrixMode_glPointSize_glVertex2i_gluOrtho2D_glutCreateWindow_glutDisplayFunc_glutInit_glutInitDisplayMode_glutInitWindowPosition_glutInitWindowSize_glutMainLoop

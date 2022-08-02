@@ -1,0 +1,44 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.23.38;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@pre-3e code
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* cominput.c - cominput */
+
+#include <conf.h>
+#include <kernel.h>
+#include <tty.h>
+#include <io.h>
+
+extern struct tty contty;
+
+/*------------------------------------------------------------------------
+ * cominput - handle an input character from a serial line device
+ *------------------------------------------------------------------------
+ */
+INTPROC cominput(ch)
+unsigned int	ch;
+{
+kprintf("cominput\n");
+	return SYSERR;
+}
+@

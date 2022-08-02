@@ -1,0 +1,7 @@
+LIBRARY ship
+EXPORTS
+	num_classes			@1
+	get_class_desc		@2
+	fly_message			@3
+SECTIONS
+	.data READ WRITE

@@ -1,0 +1,97 @@
+<html>
+
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>class light_map_pic</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class light_map_pic</h2>
+
+<h3>Definition</h3>
+
+<p class="code">class light_map_pic<br>
+{<br>
+&nbsp; public:<br>
+&nbsp; unsigned char *bmp;<br>
+&nbsp; int sizex,sizey;<br>
+&nbsp; int bytesx,bytesxy;<br>
+&nbsp; int bytespixel;<br>
+<br>
+&nbsp; light_map_pic(int sx,int sy,int bp=3)<br>
+&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp; bytespixel=bp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp; sizex=sx; <br>
+&nbsp;&nbsp;&nbsp;&nbsp; sizey=sy; <br>
+&nbsp;&nbsp;&nbsp;&nbsp; bytesx=sx*bytespixel;<br>
+&nbsp;&nbsp;&nbsp;&nbsp; if (bytesx&amp;3) bytesx+=4-(bytesx&amp;3);<br>
+&nbsp;&nbsp;&nbsp;&nbsp; bytesxy=bytesx*sizey;<br>
+&nbsp;&nbsp;&nbsp;&nbsp; bmp=new unsigned char [bytesxy];<br>
+&nbsp; };<br>
+&nbsp; virtual ~light_map_pic()<br>
+&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp; if(bmp) delete bmp;<br>
+&nbsp; };<br>
+};</p>
+
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>bmp</td>
+    <td>char *</td>
+    <td>light_map_pic pixels&nbsp;</td>
+  </tr>
+  <tr>
+    <td>sizex</td>
+    <td>int</td>
+    <td>size in x (power of 2)</td>
+  </tr>
+  <tr>
+    <td>sizey</td>
+    <td>int</td>
+    <td>size in y (power of 2)</td>
+  </tr>
+  <tr>
+    <td>bytesx</td>
+    <td>int</td>
+    <td>number of bytes per line (sizex*bytespixel)</td>
+  </tr>
+  <tr>
+    <td>bytesxy</td>
+    <td>int</td>
+    <td> total bytes of the light_map_pic bmp (bytesx*sizey)</td>
+  </tr>
+  <tr>
+    <td>bytespixel</td>
+    <td>int</td>
+    <td>the light map bytes per pixel:<br>
+      3 - RGB<br>
+      4 - RGBA</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p><a href="light_map_pic_constructor.htm">constructor</a></p>
+
+<h3>Remarks</h3>
+
+<p>This class implements the light_map picture used when drawing. This picture
+can have several light_map pictures in it and many light_map classes will use a
+single light_map_pic.</p>
+
+<h3>See Also</h3>
+
+<p><a href="light_map.htm">light_map</a>, <a href="flyengine.htm">flyEngine</a></p>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	97.09.21.19.26.19;	author dls;	state Dist;
+branches;
+next	1.1;
+
+1.1
+date	94.05.10.20.48.46;	author dls;	state Old;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@pre-3e code
+@
+text
+@/* mark.h - unmarked */
+
+#ifndef	MAXMARK
+#define	MAXMARK	20		/* maximum number of marked locations	*/
+#endif
+#ifdef	MEMMARK
+extern	int	*(marks[]);
+extern	int	nmarks;
+extern	int	mkmutex;
+typedef	int	MARKER[1];	/* by declaring it to be an array, the	*/
+				/* name provides an address so forgotten*/
+				/* &'s don't become a problem		*/
+
+#define	unmarked(L)		(L[0]<0 || L[0]>=nmarks || marks[L[0]]!=L)
+#define marked(L)               !unmarked(L)
+    
+#endif
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@

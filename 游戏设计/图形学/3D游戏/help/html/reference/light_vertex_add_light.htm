@@ -1,0 +1,53 @@
+<html>
+
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>light_vertex::add_light</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2><a href="light_vertex.htm">light_vertex</a>::add_light</h2>
+
+<h3>Prototype</h3>
+
+<p class="code">void add_light(vector&amp; p,vector&amp; c,float r)</p>
+
+<h3>Parameters</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>p</td>
+    <td><a href="vector.htm">vector</a>&amp;</td>
+    <td>light position</td>
+  </tr>
+  <tr>
+    <td>c</td>
+    <td><a href="vector.htm">vector</a>&amp;</td>
+    <td>light color</td>
+  </tr>
+  <tr>
+    <td>r</td>
+    <td>float</td>
+    <td>light radius</td>
+  </tr>
+</table>
+
+<h3>Return Value</h3>
+
+<p>None</p>
+
+<h3>Remarks</h3>
+
+<p>This function adds a new light to the light_vertex array of lights. If the 
+  maximum number of hardware lights is exceeded, the light is not added. </p>
+
+</body>
+</html>

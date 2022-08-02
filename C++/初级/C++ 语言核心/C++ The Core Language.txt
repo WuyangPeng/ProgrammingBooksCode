@@ -1,0 +1,11 @@
+C++ 语言核心（C++:The Core Language）
+
+官方网站 
+https://www.oreilly.com/、 
+https://www.oreilly.com.cn/。
+
+○
+作者：Gregory Satir、Doug Brown
+
+联系作者：
+ftpmail@online.ora.com

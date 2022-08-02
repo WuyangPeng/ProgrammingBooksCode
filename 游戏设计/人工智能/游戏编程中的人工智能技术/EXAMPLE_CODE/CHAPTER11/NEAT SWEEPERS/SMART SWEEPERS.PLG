@@ -1,0 +1,50 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: smart sweepers - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPCFF.tmp" with contents
+[
+/nologo /ML /w /W0 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /FR"Release/" /Fp"Release/smart sweepers.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\CODE\BOOK CHAPTERS\REVIEW\SOURCE\Chapter11\NEAT Sweepers\CController.cpp"
+"C:\CODE\BOOK CHAPTERS\REVIEW\SOURCE\Chapter11\NEAT Sweepers\Cga.cpp"
+"C:\CODE\BOOK CHAPTERS\REVIEW\SOURCE\Chapter11\NEAT Sweepers\CSpecies.cpp"
+"C:\CODE\BOOK CHAPTERS\REVIEW\SOURCE\Chapter11\NEAT Sweepers\main.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPCFF.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPD00.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /profile /machine:I386 /out:"Release/NEAT sweepers.exe" 
+".\Release\C2DMatrix.obj"
+".\Release\CController.obj"
+".\Release\Cga.obj"
+".\Release\CInnovation.obj"
+".\Release\CMapper.obj"
+".\Release\CMinesweeper.obj"
+".\Release\CParams.obj"
+".\Release\CSpecies.obj"
+".\Release\CTimer.obj"
+".\Release\genotype.obj"
+".\Release\main.obj"
+".\Release\phenotype.obj"
+".\Release\Script1.res"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPD00.tmp"
+<h3>Output Window</h3>
+Compiling...
+CController.cpp
+Cga.cpp
+CSpecies.cpp
+main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+NEAT sweepers.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

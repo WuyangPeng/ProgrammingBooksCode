@@ -1,0 +1,147 @@
+head	1.3;
+access;
+symbols;
+locks
+	dls:1.3; strict;
+comment	@ * @;
+
+
+1.3
+date	97.09.21.19.30.44;	author dls;	state Dist;
+branches;
+next	1.2;
+
+1.2
+date	94.05.08.03.36.22;	author dls;	state Works;
+branches;
+next	1.1;
+
+1.1
+date	94.05.06.03.36.37;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.3
+log
+@pre-3e code
+@
+text
+@/* user.c - main */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+#include <user.h>
+
+#include <proc.h>
+
+struct user utab[] = {
+	{ 0, "root", "Xinu Root", 0 },
+	{ 3954, "dls", "David L Stevens", 0 },
+	{ -1, 0, 0, 0 }
+};
+
+
+static long flags;
+
+
+user1()
+{
+	if (open(TTY0, SERIAL0) == SYSERR)
+		kprintf("open(tty0, serial0) failed\n");
+
+	while(TRUE) {
+		login(TTY0);
+		shell(TTY0);
+	}
+}
+
+/*------------------------------------------------------------------------
+ *  main  --  user main program
+ *------------------------------------------------------------------------
+ */
+main()
+{
+extern int *sltop, slnempty;
+	STATWORD	ps;
+	struct pentry	*pptr;
+	long		*saddr;
+	IPaddr myaddr;
+	char myname[32];
+	int	now;
+	int i;
+
+	getutim(&now);
+
+/*	resume(create(user1, 8192, INITPRIO, "tty1", 0)); */
+
+	while(TRUE) {
+		login(CONSOLE);
+		shell(CONSOLE);
+	}
+}
+
+#if __GNUC__ >= 2
+void __main() {}
+#endif
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d6 1
+d10 6
+d19 2
+a20 1
+test(num)
+d22 6
+a27 6
+extern int ctr100;
+extern short girmask;
+STATWORD	ps;
+	while (1) {
+		kprintf("in test %d\n", num);
+		sleep(10);
+a40 8
+
+resume(create(test,4096,30,"test1",1,1));
+resume(create(test,4096,30,"test2",1,2));
+while(1) {
+	kprintf("in main slnempty %d sltop (%X) %d\n", slnempty, sltop, *sltop);
+delay(1000000);
+}
+#ifdef notdef
+d48 2
+d54 4
+a58 1
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d9 14
+a22 1
+static long esp, ebp;
+d29 2
+d34 6
+a39 7
+	asm("movl %esp,_esp");
+	asm("movl %ebp,_ebp");
+	kprintf("in main... ebp %X esp %X\n", ebp, esp);
+	kprintf("stack:\n");
+	pptr = &proctab[currpid];
+	for (saddr = pptr->pbase; saddr >= esp; saddr--)
+		kprintf("%X) %X\n", saddr, *saddr);
+@

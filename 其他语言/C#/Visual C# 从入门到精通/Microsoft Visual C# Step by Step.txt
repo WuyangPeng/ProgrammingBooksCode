@@ -1,0 +1,8 @@
+Visual C# 从入门到精通（Microsoft Visual C# Step by Step） 
+
+官方网站： 
+http://www.microsoft.com/learning/books/online/developer （已失效）
+
+○
+作者：John Sharp
+

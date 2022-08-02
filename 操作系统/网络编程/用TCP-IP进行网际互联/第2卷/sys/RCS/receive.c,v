@@ -1,0 +1,51 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* receive.c - receive */
+
+#include <conf.h>
+#include <kernel.h>
+#include <proc.h>
+
+/*------------------------------------------------------------------------
+ *  receive  -  wait for a message and return it
+ *------------------------------------------------------------------------
+ */
+SYSCALL	receive()
+{
+	STATWORD ps;    
+	struct	pentry	*pptr;
+	WORD	msg;
+
+	disable(ps);
+	pptr = &proctab[currpid];
+	if ( !pptr->phasmsg ) {		/* if no message, wait for one	*/
+		pptr->pstate = PRRECV;
+		resched();
+	}
+	msg = pptr->pmsg;		/* retrieve message		*/
+	pptr->phasmsg = FALSE;
+	restore(ps);
+	return(msg);
+}
+@

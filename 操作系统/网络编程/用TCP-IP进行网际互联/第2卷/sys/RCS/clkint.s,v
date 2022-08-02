@@ -1,0 +1,163 @@
+head	1.5;
+access;
+symbols;
+locks
+	dls:1.5; strict;
+comment	@# @;
+
+
+1.5
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	1.4;
+
+1.4
+date	94.05.07.19.26.36;	author dls;	state Works;
+branches;
+next	1.3;
+
+1.3
+date	94.05.06.03.51.05;	author dls;	state New;
+branches;
+next	1.2;
+
+1.2
+date	94.05.06.03.12.23;	author dls;	state Works;
+branches;
+next	1.1;
+
+1.1
+date	94.04.30.04.04.37;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.5
+log
+@pre-3e code
+@
+text
+@/* clkint.s - _clkint */
+
+#include <icu.s>
+
+		.data
+count100:	.long	100
+		.text
+		.globl	_clkint
+_clkint:
+		cli
+		pushal
+		movb	$EOI,%al
+		outb	%al,$OCW1_2
+
+		incl	_ctr100
+		subl	$1,count100
+		ja	cl1
+		incl	_clktime
+		movl	$100,count100
+cl1:
+		cmpl	$0,_slnempty
+		je	clpreem
+		movl	_sltop,%eax
+		decl	(%eax)
+		ja	clpreem
+		call	_wakeup
+clpreem:	decl	_preempt
+		ja	clret
+		call	_resched
+clret:
+		popal
+		sti
+		iret
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d6 1
+a6 1
+_cnt100:	.long	100
+d9 3
+a11 1
+_clkint:	pushal
+d14 1
+a14 4
+		decl	_cnt100
+		jz	L1
+		jmp	clret
+L1:
+d16 7
+a22 3
+		movl	$100,_cnt100
+		testl	$0,_slnempty
+		jz	clpreem
+d32 1
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d10 2
+a11 2
+		movw	$OCW1_2,%al
+		outb	%al,$EOI
+d15 2
+a16 1
+L1:		incl	_ctr100
+a18 1
+call _clktest
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d6 1
+a6 1
+_cnt100:	.long	1000
+d9 3
+a11 1
+_clkint:	pushl	%eax
+d16 1
+a16 3
+		movl	$1000,_cnt100
+	call _clktest
+
+d18 1
+d27 2
+a28 3
+clret:		movw	$OCW1_2,%al
+		outb	%al,$EOI
+		popl	%eax
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d9 1
+a9 1
+_clkint:
+d22 1
+a22 1
+/*		call	_wakeup */
+d25 1
+a25 1
+/*		call	_resched */
+d28 1
+@

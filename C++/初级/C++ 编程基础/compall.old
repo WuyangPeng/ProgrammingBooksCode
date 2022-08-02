@@ -1,0 +1,674 @@
+
+E:\dialog\code>call ch3 
+
+E:\dialog\code>call compile basic00  
+
+E:\dialog\code>bcc32 -v basic00       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+basic00.cpp:
+Warning W8004 basic00.cpp 18: 'c2' is assigned a value that is never used in function main()
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile basic01  
+
+E:\dialog\code>bcc32 -v basic01       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+basic01.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile basic02  
+
+E:\dialog\code>bcc32 -v basic02       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+BASIC02.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile basic03  
+
+E:\dialog\code>bcc32 -v basic03       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+BASIC03.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile basic04  
+
+E:\dialog\code>bcc32 -v basic04       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+BASIC04.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile pump1  
+
+E:\dialog\code>bcc32 -v pump1       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+PUMP1.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile basic05  
+
+E:\dialog\code>bcc32 -v basic05       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+BASIC05.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile basic06  
+
+E:\dialog\code>bcc32 -v basic06       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+BASIC06.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile basic07  
+
+E:\dialog\code>bcc32 -v basic07       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+BASIC07.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile basic08  
+
+E:\dialog\code>bcc32 -v basic08       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+BASIC08.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile basic09  
+
+E:\dialog\code>bcc32 -v basic09       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+BASIC09.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call ch4 
+
+E:\dialog\code>call compile pump1a  
+
+E:\dialog\code>bcc32 -v pump1a       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+pump1a.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile pump2  
+
+E:\dialog\code>bcc32 -v pump2       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+PUMP2.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile vect1  
+
+E:\dialog\code>bcc32 -v vect1       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+VECT1.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile vect2  
+
+E:\dialog\code>bcc32 -v vect2       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+VECT2.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile morbas00  
+
+E:\dialog\code>bcc32 -v morbas00       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+MORBAS00.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile morbas01  
+
+E:\dialog\code>bcc32 -v morbas01       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+MORBAS01.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile morbas02  
+
+E:\dialog\code>bcc32 -v morbas02       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+MORBAS02.cpp:
+Error E2206 MORBAS02.cpp 8: Illegal character '\' (0x5c) in function main()
+Error E2379 MORBAS02.cpp 8: Statement missing ; in function main()
+Error E2379 MORBAS02.cpp 12: Statement missing ; in function main()
+*** 3 errors in Compile ***
+
+E:\dialog\code>call compile morbas03  
+
+E:\dialog\code>bcc32 -v morbas03       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+MORBAS03.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile morbas04  
+
+E:\dialog\code>bcc32 -v morbas04       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+MORBAS04.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call ch5 
+
+E:\dialog\code>call compile nofunc  
+
+E:\dialog\code>bcc32 -v nofunc       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+NOFUNC.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile func1  
+
+E:\dialog\code>bcc32 -v func1       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+FUNC1.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile birthday  
+
+E:\dialog\code>bcc32 -v birthday       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+BIRTHDAY.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile count1  
+
+E:\dialog\code>bcc32 -v count1       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+COUNT1.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile count2  
+
+E:\dialog\code>bcc32 -v count2       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+COUNT2.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile count3  
+
+E:\dialog\code>bcc32 -v count3       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+COUNT3.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile count4  
+
+E:\dialog\code>bcc32 -v count4       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+COUNT4.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile count5  
+
+E:\dialog\code>bcc32 -v count5       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+COUNT5.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile count6  
+
+E:\dialog\code>bcc32 -v count6       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+COUNT6.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile scopclas  
+
+E:\dialog\code>bcc32 -v scopclas       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+SCOPCLAS.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile calc1  
+
+E:\dialog\code>bcc32 -v calc1       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+CALC1.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call ch6 
+
+E:\dialog\code>call compile itemtst1 item1  
+
+E:\dialog\code>bcc32 -v itemtst1 item1      
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+itemtst1.cpp:
+ITEM1.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile itemtst2 item2  
+
+E:\dialog\code>bcc32 -v itemtst2 item2      
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+ITEMTST2.cpp:
+ITEM2.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile itemtst3 
+
+E:\dialog\code>bcc32 -v itemtst3       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+ITEMTST3.cpp:
+Error E2247 ITEMTST3.cpp 35: 'StockItem::m_UPC' is not accessible in function main()
+Error E2247 ITEMTST3.cpp 44: 'StockItem::m_InStock' is not accessible in function main()
+*** 2 errors in Compile ***
+
+E:\dialog\code>call compile itemtst4 item4  
+
+E:\dialog\code>bcc32 -v itemtst4 item4      
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+ITEMTST4.cpp:
+ITEM4.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile itemtst5 item5 invent1  
+
+E:\dialog\code>bcc32 -v itemtst5 item5 invent1     
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+ITEMTST5.cpp:
+ITEM5.cpp:
+INVENT1.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile itemtst6 item6 invent2  
+
+E:\dialog\code>bcc32 -v itemtst6 item6 invent2     
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+ITEMTST6.cpp:
+ITEM6.cpp:
+INVENT2.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call ch7 
+
+E:\dialog\code>call compile strtst1 string1  
+
+E:\dialog\code>bcc32 -v strtst1 string1      
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+STRTST1.cpp:
+STRING1.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile strex1  
+
+E:\dialog\code>bcc32 -v strex1       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+STREX1.cpp:
+Error E2247 STREX1.cpp 21: 'string::m_Length' is not accessible in function main()
+Warning W8004 STREX1.cpp 28: 'Length' is assigned a value that is never used in function main()
+*** 1 errors in Compile ***
+
+E:\dialog\code>call compile strex2 
+
+E:\dialog\code>bcc32 -v strex2       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+STREX2.cpp:
+Error E2247 STREX2.cpp 17: 'string::string()' is not accessible in function main()
+*** 1 errors in Compile ***
+
+E:\dialog\code>call compile strex3 
+
+E:\dialog\code>bcc32 -v strex3       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+STREX3.cpp:
+Error E2166 STREX3.cpp 16: Destructor for 'string' is not accessible in function main()
+*** 1 errors in Compile ***
+
+E:\dialog\code>call ch8 
+
+E:\dialog\code>call compile strtst1 string1 
+
+E:\dialog\code>bcc32 -v strtst1 string1      
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+STRTST1.cpp:
+STRING1.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile strtst3 string3  
+
+E:\dialog\code>bcc32 -v strtst3 string3      
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+STRTST3.cpp:
+STRING3.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile dangchar 
+
+E:\dialog\code>bcc32 -v dangchar       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+DANGCHAR.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile strtst3a 
+
+E:\dialog\code>bcc32 -v strtst3a       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+STRTST3A.cpp:
+Error E2247 STRTST3A.cpp 8: 'string::m_Length' is not accessible in function main()
+*** 1 errors in Compile ***
+
+E:\dialog\code>call compile strtst4 string4  
+
+E:\dialog\code>bcc32 -v strtst4 string4      
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+STRTST4.cpp:
+STRING4.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile strsort1 string5 
+
+E:\dialog\code>bcc32 -v strsort1 string5      
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+STRSORT1.cpp:
+STRING5.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile strtst5x string5 
+
+E:\dialog\code>bcc32 -v strtst5x string5      
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+STRTST5X.cpp:
+STRING5.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile string5a 
+
+E:\dialog\code>bcc32 -v string5a       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+STRING5A.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+Error: Unresolved external '_main' referenced from X:\BORLAND\BCC55\LIB\C0X32.OBJ
+
+E:\dialog\code>call compile cout1 
+
+E:\dialog\code>bcc32 -v cout1       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+COUT1.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile string5y 
+
+E:\dialog\code>bcc32 -v string5y       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+STRING5Y.cpp:
+Error E2313 STRING5Y.cpp 6: Constant expression required in function main()
+Warning W8004 STRING5Y.cpp 9: 'ch' is assigned a value that is never used in function main()
+Warning W8004 STRING5Y.cpp 9: 'BUFLEN' is assigned a value that is never used in function main()
+*** 1 errors in Compile ***
+
+E:\dialog\code>call compile strex5 string5 
+
+E:\dialog\code>bcc32 -v strex5 string5      
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+STREX5.cpp:
+STRING5.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile strex6 
+
+E:\dialog\code>bcc32 -v strex6       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+STREX6.cpp:
+Error E2247 STREX6.cpp 16: 'string::string(char *)' is not accessible in function main()
+*** 1 errors in Compile ***
+
+E:\dialog\code>call compile strcmp string6 
+
+E:\dialog\code>bcc32 -v strcmp string6      
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+STRCMP.cpp:
+STRING6.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call ch9 
+
+E:\dialog\code>call compile itmtst20 item20 invent20  
+
+E:\dialog\code>bcc32 -v itmtst20 item20 invent20     
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+itmtst20.cpp:
+item20.cpp:
+invent20.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile itmtst21 item21 invent21  
+
+E:\dialog\code>bcc32 -v itmtst21 item21 invent21     
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+itmtst21.cpp:
+item21.cpp:
+invent21.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile stream1 
+
+E:\dialog\code>bcc32 -v stream1       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+stream1.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile stream2 
+
+E:\dialog\code>bcc32 -v stream2       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+stream2.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile coutdef1  
+
+E:\dialog\code>bcc32 -v coutdef1       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+coutdef1.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile coutdef2 
+
+E:\dialog\code>bcc32 -v coutdef2       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+coutdef2.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile nvirtual itema  
+
+E:\dialog\code>bcc32 -v nvirtual itema      
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+nvirtual.cpp:
+itema.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call ch10 
+
+E:\dialog\code>call compile virtual itemb  
+
+E:\dialog\code>bcc32 -v virtual itemb      
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+virtual.cpp:
+itemb.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile polyioa itemc  
+
+E:\dialog\code>bcc32 -v polyioa itemc      
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+polyioa.cpp:
+itemc.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile polyiob itemc  
+
+E:\dialog\code>bcc32 -v polyiob itemc      
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+polyiob.cpp:
+itemc.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile polyioc itemp  
+
+E:\dialog\code>bcc32 -v polyioc itemp      
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+polyioc.cpp:
+ITEMP.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile refcnt1 itemp  
+
+E:\dialog\code>bcc32 -v refcnt1 itemp      
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+refcnt1.cpp:
+ITEMP.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call ch11 
+
+E:\dialog\code>call compile hmtst1 hmit1  
+
+E:\dialog\code>bcc32 -v hmtst1 hmit1      
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+hmtst1.cpp:
+hmit1.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile fortest 
+
+E:\dialog\code>bcc32 -v fortest       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+fortest.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile hmtst2 hmit2 hmin2  
+
+E:\dialog\code>bcc32 -v hmtst2 hmit2 hmin2     
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+hmtst2.cpp:
+hmit2.cpp:
+hmin2.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile hmin2a 
+
+E:\dialog\code>bcc32 -v hmin2a       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+hmin2a.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+Error: Unresolved external '_main' referenced from X:\BORLAND\BCC55\LIB\C0X32.OBJ
+
+E:\dialog\code>call compile hmin3 
+
+E:\dialog\code>bcc32 -v hmin3       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+hmin3.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+Error: Unresolved external '_main' referenced from X:\BORLAND\BCC55\LIB\C0X32.OBJ
+
+E:\dialog\code>call compile hmtst4 hmit4 hmin4  
+
+E:\dialog\code>bcc32 -v hmtst4 hmit4 hmin4     
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+hmtst4.cpp:
+hmit4.cpp:
+hmin4.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile hmtst5 hmit5 hmin5  
+
+E:\dialog\code>bcc32 -v hmtst5 hmit5 hmin5     
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+hmtst5.cpp:
+hmit5.cpp:
+hmin5.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call ch12 
+
+E:\dialog\code>call compile xstrtstc 
+
+E:\dialog\code>bcc32 -v xstrtstc       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+xstrtstc.cpp:
+Error E2034 xstrtstc.cpp 10: Cannot convert 'string' to 'xstring' in function main()
+*** 1 errors in Compile ***
+
+E:\dialog\code>call compile xstrtstd xstring 
+
+E:\dialog\code>bcc32 -v xstrtstd xstring      
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+xstrtstd.cpp:
+xstring.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile strzero 
+
+E:\dialog\code>bcc32 -v strzero       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+strzero.cpp:
+Error E2015 strzero.cpp 7: Ambiguity between 'xstring::xstring(char *)' and 'xstring::xstring(unsigned int)' in function main()
+*** 1 errors in Compile ***
+
+E:\dialog\code>call compile strone xstring 
+
+E:\dialog\code>bcc32 -v strone xstring      
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+strone.cpp:
+xstring.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile strfix 
+
+E:\dialog\code>bcc32 -v strfix       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+strfix.cpp:
+Error E2285 strfix.cpp 10: Could not find a match for 'xstring::operator =(int)' in function main()
+*** 1 errors in Compile ***
+
+E:\dialog\code>call compile xstrtstb xstring 
+
+E:\dialog\code>bcc32 -v xstrtstb xstring      
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+xstrtstb.cpp:
+xstring.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile hmtst6 hmit6 hmin6 hmutil1 xstring windos\windos 
+
+E:\dialog\code>bcc32 -v hmtst6 hmit6 hmin6 hmutil1 xstring windos\windos  
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+hmtst6.cpp:
+hmit6.cpp:
+HMIN6.cpp:
+hmutil1.cpp:
+xstring.cpp:
+windos\windos.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile hmtst7 hmit7 hmin7 hmutil1 xstring windos\windos 
+
+E:\dialog\code>bcc32 -v hmtst7 hmit7 hmin7 hmutil1 xstring windos\windos  
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+hmtst7.cpp:
+hmit7.cpp:
+HMIN7.cpp:
+hmutil1.cpp:
+xstring.cpp:
+windos\windos.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call compile hmtst8 hmit8 hmin8 hmutil1 xstring windos\windos 
+
+E:\dialog\code>bcc32 -v hmtst8 hmit8 hmin8 hmutil1 xstring windos\windos  
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+hmtst8.cpp:
+hmit8.cpp:
+hmin8.cpp:
+hmutil1.cpp:
+xstring.cpp:
+windos\windos.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland
+
+E:\dialog\code>call ch13 
+
+E:\dialog\code>call compile nodef 
+
+E:\dialog\code>bcc32 -v nodef       
+Borland C++ 5.5.1 for Win32 Copyright (c) 1993, 2000 Borland
+nodef.cpp:
+Turbo Incremental Link 5.00 Copyright (c) 1997, 2000 Borland

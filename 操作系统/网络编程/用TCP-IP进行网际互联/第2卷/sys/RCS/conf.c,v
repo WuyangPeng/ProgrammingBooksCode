@@ -1,0 +1,419 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	94.04.26.15.15.20;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* conf.c (GENERATED FILE; DO NOT EDIT) */
+
+#include <conf.h>
+
+/* device independent I/O switch */
+
+struct	devsw	devtab[NDEVS] = {
+
+/*  Format of entries is:
+device-number, device-name,
+init, open, close,
+read, write, seek,
+getc, putc, cntl,
+device-csr-address, input-vector, output-vector,
+iint-handler, oint-handler, control-block, minor-device,
+*/
+
+/*  CONSOLE  is tty  */
+
+0, "CONSOLE",
+ttyinit, ionull, ionull,
+ttyread, ttywrite, ioerr,
+ttygetc, ttyputc, ttycntl,
+01770017720, 0110, 0110,
+ioerr, ioerr, NULLPTR, 0,
+
+/*  ETHER  is eth  */
+
+1, "ETHER",
+ethinit, ioerr, ioerr,
+ioerr, ethwrite, ioerr,
+ioerr, ioerr, ethcntl,
+01770177720, 0070, 0070,
+ethinter, ethinter, NULLPTR, 0,
+
+/*  UDP  is dgm  */
+
+2, "UDP",
+ionull, dgmopen, ioerr,
+ioerr, ioerr, ioerr,
+ioerr, ioerr, dgmcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 0,
+
+/*  DGRAM0  is dg  */
+
+3, "DGRAM0",
+dginit, ioerr, dgclose,
+dgread, dgwrite, ioerr,
+ioerr, ioerr, dgcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 0,
+
+/*  DGRAM1  is dg  */
+
+4, "DGRAM1",
+dginit, ioerr, dgclose,
+dgread, dgwrite, ioerr,
+ioerr, ioerr, dgcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 1,
+
+/*  DGRAM2  is dg  */
+
+5, "DGRAM2",
+dginit, ioerr, dgclose,
+dgread, dgwrite, ioerr,
+ioerr, ioerr, dgcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 2,
+
+/*  DGRAM3  is dg  */
+
+6, "DGRAM3",
+dginit, ioerr, dgclose,
+dgread, dgwrite, ioerr,
+ioerr, ioerr, dgcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 3,
+
+/*  DGRAM4  is dg  */
+
+7, "DGRAM4",
+dginit, ioerr, dgclose,
+dgread, dgwrite, ioerr,
+ioerr, ioerr, dgcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 4,
+
+/*  DGRAM5  is dg  */
+
+8, "DGRAM5",
+dginit, ioerr, dgclose,
+dgread, dgwrite, ioerr,
+ioerr, ioerr, dgcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 5,
+
+/*  DGRAM6  is dg  */
+
+9, "DGRAM6",
+dginit, ioerr, dgclose,
+dgread, dgwrite, ioerr,
+ioerr, ioerr, dgcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 6,
+
+/*  DGRAM7  is dg  */
+
+10, "DGRAM7",
+dginit, ioerr, dgclose,
+dgread, dgwrite, ioerr,
+ioerr, ioerr, dgcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 7,
+
+/*  DGRAM8  is dg  */
+
+11, "DGRAM8",
+dginit, ioerr, dgclose,
+dgread, dgwrite, ioerr,
+ioerr, ioerr, dgcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 8,
+
+/*  DGRAM9  is dg  */
+
+12, "DGRAM9",
+dginit, ioerr, dgclose,
+dgread, dgwrite, ioerr,
+ioerr, ioerr, dgcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 9,
+
+/*  DGRAMA  is dg  */
+
+13, "DGRAMA",
+dginit, ioerr, dgclose,
+dgread, dgwrite, ioerr,
+ioerr, ioerr, dgcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 10,
+
+/*  DGRAMB  is dg  */
+
+14, "DGRAMB",
+dginit, ioerr, dgclose,
+dgread, dgwrite, ioerr,
+ioerr, ioerr, dgcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 11,
+
+/*  DGRAMC  is dg  */
+
+15, "DGRAMC",
+dginit, ioerr, dgclose,
+dgread, dgwrite, ioerr,
+ioerr, ioerr, dgcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 12,
+
+/*  DGRAMD  is dg  */
+
+16, "DGRAMD",
+dginit, ioerr, dgclose,
+dgread, dgwrite, ioerr,
+ioerr, ioerr, dgcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 13,
+
+/*  DGRAME  is dg  */
+
+17, "DGRAME",
+dginit, ioerr, dgclose,
+dgread, dgwrite, ioerr,
+ioerr, ioerr, dgcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 14,
+
+/*  DGRAMF  is dg  */
+
+18, "DGRAMF",
+dginit, ioerr, dgclose,
+dgread, dgwrite, ioerr,
+ioerr, ioerr, dgcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 15,
+
+/*  TCP  is tcpm  */
+
+19, "TCP",
+ionull, tcpmopen, ioerr,
+ioerr, ioerr, ioerr,
+ioerr, ioerr, tcpmcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 0,
+
+/*  TCP0  is tcp  */
+
+20, "TCP0",
+tcpinit, ioerr, tcpclose,
+tcpread, tcpwrite, ioerr,
+tcpgetc, tcpputc, tcpcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 0,
+
+/*  TCP1  is tcp  */
+
+21, "TCP1",
+tcpinit, ioerr, tcpclose,
+tcpread, tcpwrite, ioerr,
+tcpgetc, tcpputc, tcpcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 1,
+
+/*  TCP2  is tcp  */
+
+22, "TCP2",
+tcpinit, ioerr, tcpclose,
+tcpread, tcpwrite, ioerr,
+tcpgetc, tcpputc, tcpcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 2,
+
+/*  TCP3  is tcp  */
+
+23, "TCP3",
+tcpinit, ioerr, tcpclose,
+tcpread, tcpwrite, ioerr,
+tcpgetc, tcpputc, tcpcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 3,
+
+/*  TCP4  is tcp  */
+
+24, "TCP4",
+tcpinit, ioerr, tcpclose,
+tcpread, tcpwrite, ioerr,
+tcpgetc, tcpputc, tcpcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 4,
+
+/*  TCP5  is tcp  */
+
+25, "TCP5",
+tcpinit, ioerr, tcpclose,
+tcpread, tcpwrite, ioerr,
+tcpgetc, tcpputc, tcpcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 5,
+
+/*  TCP6  is tcp  */
+
+26, "TCP6",
+tcpinit, ioerr, tcpclose,
+tcpread, tcpwrite, ioerr,
+tcpgetc, tcpputc, tcpcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 6,
+
+/*  TCP7  is tcp  */
+
+27, "TCP7",
+tcpinit, ioerr, tcpclose,
+tcpread, tcpwrite, ioerr,
+tcpgetc, tcpputc, tcpcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 7,
+
+/*  TCP8  is tcp  */
+
+28, "TCP8",
+tcpinit, ioerr, tcpclose,
+tcpread, tcpwrite, ioerr,
+tcpgetc, tcpputc, tcpcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 8,
+
+/*  TCP9  is tcp  */
+
+29, "TCP9",
+tcpinit, ioerr, tcpclose,
+tcpread, tcpwrite, ioerr,
+tcpgetc, tcpputc, tcpcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 9,
+
+/*  TCPA  is tcp  */
+
+30, "TCPA",
+tcpinit, ioerr, tcpclose,
+tcpread, tcpwrite, ioerr,
+tcpgetc, tcpputc, tcpcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 10,
+
+/*  TCPB  is tcp  */
+
+31, "TCPB",
+tcpinit, ioerr, tcpclose,
+tcpread, tcpwrite, ioerr,
+tcpgetc, tcpputc, tcpcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 11,
+
+/*  TCPC  is tcp  */
+
+32, "TCPC",
+tcpinit, ioerr, tcpclose,
+tcpread, tcpwrite, ioerr,
+tcpgetc, tcpputc, tcpcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 12,
+
+/*  TCPD  is tcp  */
+
+33, "TCPD",
+tcpinit, ioerr, tcpclose,
+tcpread, tcpwrite, ioerr,
+tcpgetc, tcpputc, tcpcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 13,
+
+/*  TCPE  is tcp  */
+
+34, "TCPE",
+tcpinit, ioerr, tcpclose,
+tcpread, tcpwrite, ioerr,
+tcpgetc, tcpputc, tcpcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 14,
+
+/*  TCPF  is tcp  */
+
+35, "TCPF",
+tcpinit, ioerr, tcpclose,
+tcpread, tcpwrite, ioerr,
+tcpgetc, tcpputc, tcpcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 15,
+
+/*  RFILSYS  is rfm  */
+
+36, "RFILSYS",
+ioerr, rfopen, ioerr,
+ioerr, ioerr, ioerr,
+ioerr, ioerr, rfcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 0,
+
+/*  RFILE1  is rf  */
+
+37, "RFILE1",
+rfinit, ioerr, rfclose,
+rfread, rfwrite, rfseek,
+rfgetc, rfputc, rfcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 0,
+
+/*  RFILE2  is rf  */
+
+38, "RFILE2",
+rfinit, ioerr, rfclose,
+rfread, rfwrite, rfseek,
+rfgetc, rfputc, rfcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 1,
+
+/*  RFILE3  is rf  */
+
+39, "RFILE3",
+rfinit, ioerr, rfclose,
+rfread, rfwrite, rfseek,
+rfgetc, rfputc, rfcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 2,
+
+/*  RFILE4  is rf  */
+
+40, "RFILE4",
+rfinit, ioerr, rfclose,
+rfread, rfwrite, rfseek,
+rfgetc, rfputc, rfcntl,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 3,
+
+/*  NAMESPACE  is nam  */
+
+41, "NAMESPACE",
+naminit, namopen, ioerr,
+ioerr, ioerr, ioerr,
+ioerr, ioerr, ioerr,
+037777777720, 037777777720, 037777777720,
+ioerr, ioerr, NULLPTR, 0
+	};
+@

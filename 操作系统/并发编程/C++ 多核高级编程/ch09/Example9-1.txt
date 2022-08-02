@@ -1,0 +1,20 @@
+//Example 9-1  Using the stack class as an interface class.
+
+template < class Container >
+class stack{
+//...
+public:
+   typedef Container::value_type value_type;
+   typedef Container::size_type size_type;
+protected:
+   Container c;
+public:
+   bool empty(void) const {return c.empty();}
+   size_type size(void) const {return c.size(); }
+   value_type& top(void) {return c.back(); }
+   const value_type& top const {return c.back(); }
+   void push(const value_type& x) {c.push.back(x); }
+   void pop(void) {c.pop.back(); }
+};
+
+

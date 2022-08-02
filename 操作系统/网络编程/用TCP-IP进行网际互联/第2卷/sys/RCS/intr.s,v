@@ -1,0 +1,499 @@
+head	1.10;
+access;
+symbols;
+locks
+	dls:1.10; strict;
+comment	@# @;
+
+
+1.10
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	1.9;
+
+1.9
+date	94.05.29.01.02.12;	author dls;	state Fix;
+branches;
+next	1.8;
+
+1.8
+date	94.05.07.19.26.36;	author dls;	state Works;
+branches;
+next	1.7;
+
+1.7
+date	94.05.07.17.36.21;	author dls;	state Works;
+branches;
+next	1.6;
+
+1.6
+date	94.05.07.17.09.22;	author dls;	state Old;
+branches;
+next	1.5;
+
+1.5
+date	94.05.06.03.12.23;	author dls;	state Works;
+branches;
+next	1.4;
+
+1.4
+date	94.05.05.05.15.49;	author dls;	state Broken;
+branches;
+next	1.3;
+
+1.3
+date	94.04.30.04.04.37;	author dls;	state Works;
+branches;
+next	1.2;
+
+1.2
+date	94.04.26.15.15.20;	author dls;	state Works;
+branches;
+next	1.1;
+
+1.1
+date	94.03.28.18.07.53;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.10
+log
+@pre-3e code
+@
+text
+@/* intr.s - disable(), restore(), enable(), pause(), halt() */
+
+
+#include <icu.s>
+
+	.text
+	.globl	_enable
+	.globl	_disable
+	.globl	_restore
+	.globl	_pause
+	.globl	_halt
+	.globl	_getirmask
+
+/*------------------------------------------------------------------------
+ * Xtrap - trap entry
+ *------------------------------------------------------------------------
+ */
+Xtrap:
+	call	_trap
+	movw	$OCW1_2,%al
+	outb	%al,$EOI
+	popl	%eax		/* exception # */
+	testl	$35,%eax
+	jb	3f
+	shrl	$5,%eax		/* convert to IRQ # */
+
+	/* issue global rearm to cards */
+	testl	$7,%eax
+	ja	1f
+	orl	$0x2f0,%eax	/* 0x2fX for IRQ 3-7 */
+	movb	%bl,(%eax)
+	jmp	3f
+1:	testl	$9,%eax
+	jz	2f
+	testl	$15,%eax
+	ja	3f
+	orl	$0x6f0,%eax	/* 0x2f(X-8) for IRQ 10-15 */
+	movb	%bl,(%eax)
+	jmp	3f
+2:	movb	%al,0x2f2	/* 0x2f2 for IRQ 9 */
+3:
+	popal
+	leave
+	iret
+
+#define	INT(I) \
+.globl	_Xint/**/I ;			\
+_Xint/**/I:	pushl	%ebp ;		\
+		movl	%esp,%ebp;	\
+		pushal ;		\
+		pushl	$I ;		\
+		jmp	Xtrap
+
+/*------------------------------------------------------------------------
+ * _Xint? - default exception and interrupt entry points
+ *	NB: These must be contiguous
+ *------------------------------------------------------------------------
+ */
+INT(0);   INT(1);   INT(2);   INT(3);   INT(4);   INT(5);   INT(6);   INT(7);
+INT(8);   INT(9);   INT(10);  INT(11);  INT(12);  INT(13);  INT(14);  INT(15);
+INT(16);  INT(17);  INT(18);  INT(19);  INT(20);  INT(21);  INT(22);  INT(23);
+INT(24);  INT(25);  INT(26);  INT(27);  INT(28);  INT(29);  INT(30);  INT(31);
+INT(32);  INT(33);  INT(34);  INT(35);  INT(36);  INT(37);  INT(38);  INT(39);
+INT(40);  INT(41);  INT(42);  INT(43);  INT(44);  INT(45);  INT(46);  INT(47);
+
+		.globl	_defevec
+_defevec:	.word	_Xint0
+		.word	_Xint1
+		.word	_Xint2
+		.word	_Xint3
+		.word	_Xint4
+		.word	_Xint5
+		.word	_Xint6
+		.word	_Xint7
+		.word	_Xint8
+		.word	_Xint9
+		.word	_Xint10
+		.word	_Xint11
+		.word	_Xint12
+		.word	_Xint13
+		.word	_Xint14
+		.word	_Xint15
+		.word	_Xint16
+		.word	_Xint17
+		.word	_Xint18
+		.word	_Xint19
+		.word	_Xint20
+		.word	_Xint21
+		.word	_Xint22
+		.word	_Xint23
+		.word	_Xint24
+		.word	_Xint25
+		.word	_Xint26
+		.word	_Xint27
+		.word	_Xint28
+		.word	_Xint29
+		.word	_Xint30
+		.word	_Xint31
+		.word	_Xint32
+		.word	_Xint33
+		.word	_Xint34
+		.word	_Xint35
+		.word	_Xint36
+		.word	_Xint37
+		.word	_Xint38
+		.word	_Xint39
+		.word	_Xint40
+		.word	_Xint41
+		.word	_Xint42
+		.word	_Xint43
+		.word	_Xint44
+		.word	_Xint45
+		.word	_Xint46
+		.word	_Xint47
+
+/*---------------------------------------------------------
+ * pause: halt the processor until an interrupt occurs
+ *---------------------------------------------------------
+ */
+_pause:
+	call _enable
+	hlt
+	ret
+
+
+/*---------------------------------------------------------
+ * halt: do nothing forever
+ *---------------------------------------------------------
+ */
+_halt:
+	jmp _halt
+	ret
+
+/*---------------------------------------------------------
+ * enable all interrupts
+ *---------------------------------------------------------
+ */
+_enable:
+	cli
+	movw	_girmask,%ax
+	outb	%al,$IMR1
+	shrw	$8,%ax
+	outb	%al,$IMR2
+	sti
+	ret
+
+
+/*---------------------------------------------------------
+ * disable(ps)    - disable interrupts, save old state in ps
+ * STATWORD ps  (short *ps)
+ *---------------------------------------------------------
+ */
+_disable:
+	pushfl
+	cli
+	inb	$IMR2,%al
+	shlw	$8,%ax
+	inb	$IMR1,%al	
+	notw	%ax		/* clear _girmask bits for user */
+	orw	_girmask,%ax
+	notw	%ax
+	movl	8(%esp),%edx	/* get PS pointer	*/
+	movw	%ax,(%edx)	/* save old IR mask	*/
+	movb	$0xff,%al
+	outb	%al,$IMR2
+	movb	$0xff,%al
+	outb	%al,$IMR1
+	popfl
+	ret
+
+
+/*---------------------------------------------------------
+ * restore(ps)    - restore interrupts to value in ps
+ * STATWORD ps    (short *ps)
+ *---------------------------------------------------------
+ */
+_restore: 
+	pushfl
+	cli
+	movl	8(%esp),%edx
+	movw	(%edx),%ax
+	orw	_girmask,%ax
+	outb	%al,$IMR1
+	shrw	$8,%ax
+	outb	%al,$IMR2
+	popfl
+	ret
+
+/*------------------------------------------------------------------------
+ * getirmask(ps)  - return current interrupt mask in ps
+ *------------------------------------------------------------------------
+ */
+_getirmask:
+	inb	$IMR2,%al
+	shlw	$8,%ax
+	inb	$IMR1,%al	
+	movl	4(%esp),%edx
+	movw	%ax,(%edx)
+	ret
+@
+
+
+1.9
+log
+@*** empty log message ***
+@
+text
+@d154 1
+d162 1
+a162 1
+	movl	4(%esp),%edx	/* get PS pointer	*/
+d168 1
+a168 1
+	sti
+d178 1
+d180 1
+a180 1
+	movl	4(%esp),%edx
+d186 1
+a186 1
+	sti
+@
+
+
+1.8
+log
+@*** empty log message ***
+@
+text
+@d141 2
+a143 2
+	shrw	$8,%ax
+	outb	%al,$IMR1
+d195 1
+a195 1
+	movw	4(%esp),%edx
+@
+
+
+1.7
+log
+@*** empty log message ***
+@
+text
+@d158 3
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@a133 2
+irmask:	.word	0xffff
+
+d139 5
+a144 9
+#ifdef notyet
+	movb	$0,%al
+#else
+	movb	$2,%al
+#endif
+	outb	%al,$IMR1
+	movb	$0,%al
+	outb	%al,$IMR2
+	movw	$0,irmask
+d155 3
+a157 2
+	xorl	%eax,%eax
+	movw	irmask,%ax
+d164 1
+a164 1
+	movw	$0xffff,irmask
+d177 1
+a177 1
+	movw	%ax,irmask
+a180 2
+	testl	$0xffff,irmask
+	je	1f
+a181 1
+1:
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d12 1
+d142 1
+d144 3
+d190 12
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d48 1
+a48 1
+		movl	%esp,%ebp ;	\
+d51 1
+a51 1
+		jmp	Xtrap ;		\
+a119 2
+	pushl	%ebp
+	movl	%esp,%ebp
+a121 1
+	leave
+a139 2
+	pushl	%ebp
+	movl	%esp,%ebp
+d141 4
+a144 4
+	movw	$IMR1,%al
+	outb	%al,$0
+	movw	$IMR2,%al
+	outb	%al,$0
+a145 1
+	leave
+a154 2
+	pushl	%ebp
+	movl	%esp,%ebp
+d158 6
+a163 6
+	movl	8(%ebp),%edx	/* get PS pointer	*/
+	movl	%eax,(%edx)	/* save old IR mask	*/
+	movw	$IMR2,%al
+	outb	%al,$0xff
+	movw	$IMR1,%al
+	outb	%al,$0xff	/* mask all bits in new	*/
+a164 1
+	leave
+a173 2
+	pushl	%ebp
+	movl	%esp,%ebp
+d175 4
+a178 5
+	movl	8(%ebp),%ebx
+	movl	(%ebx),%eax
+	movw	%eax,irmask
+	movl	$IMR1,%edx
+	outb	%al,%dx
+d180 1
+a180 2
+	movw	$IMR2,%dx
+	outb	%al,%dx
+a184 1
+	leave
+@
+
+
+1.3
+log
+@,
+@
+text
+@d41 1
+d47 3
+a49 1
+_Xint/**/I:	enter $4,$1 ;		\
+d51 1
+a51 1
+		jmp	Xtrap
+d120 2
+d124 1
+d136 1
+d143 2
+d150 2
+d161 7
+d170 4
+a173 3
+	movw	$IMR2,%al
+	outb	%al,$0xff
+	cli
+d182 14
+a195 1
+_restore:
+d197 2
+a198 4
+/*
+	movl	sp@@(0x4),a0
+	movw	a0@@, sr
+*/
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d4 2
+d12 99
+a110 1
+	.globl  _Xtrap
+d137 4
+a140 1
+/*	movw #0x2000, sr */
+d150 4
+a154 5
+/*
+	movl	sp@@(0x4), a0
+	movw	sr,a0@@
+	movw	#0x2700, sr
+*/
+a169 9
+
+/*------------------------------------------------------------------------
+ * Xtrap - trap entry
+ *------------------------------------------------------------------------
+ */
+_Xtrap:
+	call _trap
+	iret
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d10 1
+d68 9
+@

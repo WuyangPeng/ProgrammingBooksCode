@@ -1,0 +1,52 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.26.58;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* hgarpdel.c - hgarpdel */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+#include <igmp.h>
+
+/*------------------------------------------------------------------------
+ *  hgarpdel  -  remove an ARP table entry for a multicast address
+ *------------------------------------------------------------------------
+ */
+int hgarpdel(ifnum, ipa)
+int	ifnum;
+IPaddr	ipa;
+{
+	struct netif	*pni = &nif[ifnum];
+	struct arpentry	*pae, *arpfind();
+	int		ifdev = nif[ifnum].ni_dev;
+	STATWORD	ps;
+
+	disable(ps);
+	if (pae = arpfind(&ipa, EPT_IP, pni))
+		pae->ae_state = AS_FREE;
+	if (pni->ni_mcast)
+		(pni->ni_mcast)(NI_MDEL, ifdev, pae->ae_hwa, ipa);
+	restore(ps);
+	return OK;
+}
+@

@@ -1,0 +1,64 @@
+    1   // Listing 8-1
+    2   // This program demonstrates the improper use
+    3   // use of a global mutex to protect a object
+    4   // two threads
+    5   
+    6   #include <iostream.h>
+    7   #include <pthread.h>
+    8   #include <mtration.h>
+    9   #include <math.h>
+   10   
+   11   rational Number;
+   12   pthread_mutex_t Mutex = PTHREAD_MUTEX_INITIALIZER;
+   13   
+   14   void *threadA(void *X)
+   15   {
+   16       long int Q;
+   17       try{
+   18            for(Q =2; Q < 500;Q += 4)
+   19            {   
+   20                pthread_mutex_lock(&Mutex);
+   21                Number.assign((Q/2),Q);
+   22                cout << pthread_self() << " Thread A: " << Number << endl;
+   23                pthread_mutex_unlock(&Mutex);
+   24            }
+   25       }
+   26       catch(general_exception &M)
+   27       {
+   28         cout << pthread_self() << M.message() << endl;
+   29       }                 
+   30   }
+   31   
+   32   //Thread B is not cooperating with the proper
+   33   // use of Mutex protection for the rational object 'Number'.
+   34   
+   35   void *threadB(void *X)
+   36   {
+   37      long int Y;
+   38      try{
+   39          for(Y = 5;Y < 500;Y += 5){
+   40              Number.assign((Y/5),Y);
+   41              cout << pthread_self() << " Thread B " << Number << endl;          
+   42          }  
+   43      }
+   44      catch(general_exception &M)
+   45      {
+   46          cout << pthread_self() << M.message() << endl;
+   47      }
+   48   }
+   49   
+   50   
+   51   void main(void)
+   52   {
+   53       pthread_t ThreadA;
+   54       pthread_t ThreadB;  
+   55       pthread_create(&ThreadA,NULL,threadA,NULL);
+   56       pthread_create(&ThreadB,NULL,threadB,NULL);       
+   57       pthread_join(ThreadA,NULL);
+   58       pthread_join(ThreadB,NULL);
+   59       pthread_mutex_destroy(&Mutex);   
+   60   }     
+   61       
+   62   
+   63   
+

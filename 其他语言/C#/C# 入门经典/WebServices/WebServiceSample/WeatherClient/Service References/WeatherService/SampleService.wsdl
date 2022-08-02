@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.wrox.com/BeginningCSharp/2010" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.wrox.com/BeginningCSharp/2010" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.wrox.com/BeginningCSharp/2010">
+      <s:element name="ReverseString">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="message" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReverseStringResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReverseStringResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWeather">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="req" type="tns:GetWeatherRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetWeatherRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TemperatureType" type="tns:TemperatureType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TemperatureType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Fahrenheit" />
+          <s:enumeration value="Celsius" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetWeatherResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWeatherResult" type="tns:GetWeatherResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetWeatherResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Condition" type="tns:TemparatureCondition" />
+          <s:element minOccurs="1" maxOccurs="1" name="Temperature" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TemparatureCondition">
+        <s:restriction base="s:string">
+          <s:enumeration value="Rainy" />
+          <s:enumeration value="Sunny" />
+          <s:enumeration value="Cloudy" />
+          <s:enumeration value="Thunderstorm" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ReverseStringSoapIn">
+    <wsdl:part name="parameters" element="tns:ReverseString" />
+  </wsdl:message>
+  <wsdl:message name="ReverseStringSoapOut">
+    <wsdl:part name="parameters" element="tns:ReverseStringResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetWeatherSoapIn">
+    <wsdl:part name="parameters" element="tns:GetWeather" />
+  </wsdl:message>
+  <wsdl:message name="GetWeatherSoapOut">
+    <wsdl:part name="parameters" element="tns:GetWeatherResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SampleServiceSoap">
+    <wsdl:operation name="ReverseString">
+      <wsdl:input message="tns:ReverseStringSoapIn" />
+      <wsdl:output message="tns:ReverseStringSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWeather">
+      <wsdl:input message="tns:GetWeatherSoapIn" />
+      <wsdl:output message="tns:GetWeatherSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SampleServiceSoap" type="tns:SampleServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ReverseString">
+      <soap:operation soapAction="http://www.wrox.com/BeginningCSharp/2010/ReverseString" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWeather">
+      <soap:operation soapAction="http://www.wrox.com/BeginningCSharp/2010/GetWeather" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SampleServiceSoap12" type="tns:SampleServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ReverseString">
+      <soap12:operation soapAction="http://www.wrox.com/BeginningCSharp/2010/ReverseString" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWeather">
+      <soap12:operation soapAction="http://www.wrox.com/BeginningCSharp/2010/GetWeather" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SampleService">
+    <wsdl:port name="SampleServiceSoap" binding="tns:SampleServiceSoap">
+      <soap:address location="http://localhost:50300/SampleService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SampleServiceSoap12" binding="tns:SampleServiceSoap12">
+      <soap12:address location="http://localhost:50300/SampleService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

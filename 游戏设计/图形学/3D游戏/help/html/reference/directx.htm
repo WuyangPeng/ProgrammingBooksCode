@@ -1,0 +1,114 @@
+<html>
+
+<head>
+<title>class directX</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class directX</h2>
+
+<h3>Definition</h3>
+
+<p class="code">class directX<br>
+{<br>
+&nbsp; public:<br>
+&nbsp; int mpmode;<br>
+&nbsp; int nplayers;<br>
+&nbsp; player_data players[FLYMP_MAXPLAYERS];<br>
+&nbsp; unsigned char diks[256];<br>
+&nbsp; DIMOUSESTATE dims;<br>
+<br>
+&nbsp; directX(HWND hWnd,HINSTANCE hInst)<br>
+&nbsp; { memset(this,0,sizeof(directX)); Init(hWnd,hInst); };<br>
+<br>
+&nbsp; void get_input();<br>
+&nbsp; int load_wav_file(LONG cchBuffer,HPSTR pchBuffer,LPDIRECTSOUNDBUFFER *buf,LPDIRECTSOUND3DBUFFER *buf3d);<br>
+&nbsp; void set_listener(float *pos,float *vel,float *Y,float *Z);<br>
+&nbsp; LPDIRECTSOUNDBUFFER clone_sound(LPDIRECTSOUNDBUFFER buf);<br>
+&nbsp; void set_master_volume(int volume);<br>
+&nbsp; int init_multiplayer(char *netaddress=0);<br>
+&nbsp; void free_multiplayer();<br>
+&nbsp; mp_games *enum_games(LPGUID app_guid);<br>
+&nbsp; int join_game(LPGUID game_guid,char *player_name);<br>
+&nbsp; int create_game(LPGUID app_guid,char *game_name);<br>
+&nbsp; char *get_player_address(DWORD dpid);<br>
+&nbsp; void send_message(mp_msg *msg,int len,DWORD dpid=0);<br>
+&nbsp; int get_num_messages();<br>
+&nbsp; mp_msg *get_message(DWORD *size);<br>
+&nbsp; int add_player(char *name,DWORD dpid,void *data);<br>
+&nbsp; void *remove_player(int i);<br>
+<br>
+&nbsp; ~directX()<br>
+&nbsp; { Release(); };<br>
+};</p>
+
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>mpmode</td>
+    <td>int</td>
+    <td>current multiplayer mode. one of the following enumerated types:<br>
+      FLYMP_NOMP - no multiplayer<br>
+      FLYMP_CLIENT - running as client<br>
+      FLYMP_SERVER - running as server</td>
+  </tr>
+  <tr>
+    <td>nplayers</td>
+    <td>int</td>
+    <td>number of players in a multiplayer game</td>
+  </tr>
+  <tr>
+    <td>players</td>
+    <td><a href="player_data.htm">player_data</a>[]</td>
+    <td>player data array</td>
+  </tr>
+  <tr>
+    <td>diks</td>
+    <td>unsigned char[]</td>
+    <td>direct input keys array</td>
+  </tr>
+  <tr>
+    <td>dims</td>
+    <td>DIMOUSESTATE</td>
+    <td>direct input mouse state</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p> <a href="directx_get_input.htm">get_input</a>,<a
+href="directx_load_wav_file.htm"> load_wav_file</a>, <a href="directx_set_listener.htm">set_listener</a>,
+<a href="directx_clone_sound.htm">clone_sound</a>, <a href="directx_set_master_volume.htm">set_master_volume</a>,
+<a href="directx_init_multiplayer.htm">init_multiplayer</a>, <a
+href="directx_free_multiplayer.htm">free_multiplayer</a>, <a href="directx_enum_games.htm">enum_games</a>,
+<a href="directx_join_game.htm">join_game</a>, <a href="directx_create_game.htm">create_game</a>,
+<a href="directx_get_player_address.htm">get_player_address</a>, <a
+href="directx_send_message.htm">send_message</a>, <a href="directx_get_num_messages.htm">get_num_messages</a>,
+<a href="directx_get_message.htm">get_message</a>, <a href="directx_add_player.htm">add_player</a>,
+<a href="directx_remove_player.htm">remove_player</a></p>
+
+<h3>Remarks</h3>
+
+<p>This class implements an interface with DirectX for input, sound and
+multiplayer.&nbsp;<br>
+ A global variable named <i>directx</i> is the main interface with
+this class and must be initialized/freed with the <i>init_directx</i> and <i>close_directx</i>
+global functions.</p>
+
+<h3>See Also</h3>
+
+<p><a href="variables.htm">Global Variables</a>, <a href="functions.htm">Global Functions</a>,
+<a href="mp_games.htm">mp_games</a>, <a href="mp_msg.htm">mp_msg</a></p>
+
+</body>
+</html>

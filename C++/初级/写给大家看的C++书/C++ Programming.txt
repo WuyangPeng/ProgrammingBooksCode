@@ -1,0 +1,14 @@
+写给大家看的C++书（C++ Programming）
+
+官方网站 
+http://www.DMCInsight.com/cppvqs。
+
+参考网站：
+http://www.catb.org/~esr/faqs/smart-questions.html。
+
+○
+作者：Larry Ullman、Andreas Signer
+
+联系作者：
+cppvqs@DMCInsights.com。
+ 

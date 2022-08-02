@@ -1,0 +1,8 @@
+﻿计算机图形学几何工具算法详解（Geometric Tools for Computer Graphics）
+
+官方网站： 
+http://www.mkp.com/gtcg、
+http://www.magic-software.com
+
+★☆
+作者： Philip J.Schneider、David H.Eberly 

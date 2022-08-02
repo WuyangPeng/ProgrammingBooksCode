@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>class mat4x4</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2>class mat4x4</h2>
+<h3>Definition</h3>
+<p class="code">class mat4x4<br>
+  {<br>
+  &nbsp;
+  public:<br>
+  &nbsp;
+  float m[4][4];<br>
+  <br>
+  &nbsp;
+  inline void null(void)<br>
+  &nbsp;
+  {
+		memset(&m,0,sizeof(m));
+	}<br>
+  <br>
+  &nbsp;
+  inline void load_identity(void)<br>
+  &nbsp;
+  {<br>
+  &nbsp;&nbsp;&nbsp;
+  memset(m,0,sizeof(m));<br>
+  &nbsp;&nbsp;&nbsp;
+  m[0][0]=m[1][1]=m[2][2]=m[3][3]=1.0;<br>
+  &nbsp;
+  }<br>
+  <br>
+  &nbsp;
+  void set_rotation( float ang, vector& dir );<br>
+  &nbsp; mat4x4 operator*(mat4x4& m1)<br>
+  };</p>
+<h3>Data Members</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Member</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>m</td>
+	 <td>float[][]</td>
+	 
+    <td>matrix elements</td>
+  </tr>
+  
+  
+</table>
+<h3>Methods</h3>
+<p><a href="mat4x4_null.htm">null</a>, <a href="mat4x4_load_identity.htm">load_identity</a>, <a href="mat4x4_set_rotation.htm">set_rotation</a>, <a href="mat4x4_operators.htm">operators</a></p>
+<h3>Remarks</h3>
+<p>This class implements a 4x4 matrix. The matrix can represent any linear
+transformation and is used for rotation, translation, scaling, etc...</p>
+<h3>See Also</h3>
+<p><a href="vector.htm">vector</a></p>
+<h3>Example</h3>
+<p class="code">mat4x4 m1,m2,m3;<br>
+m2.load_identity();<br>
+m3.load_identity();<br>
+m2.set_rotation(45,vector(0,0,1));<br>
+m3.set_rotation(30,vector(0,1,0));<br>
+m1=m2*m3;</p>
+</body>
+</html>

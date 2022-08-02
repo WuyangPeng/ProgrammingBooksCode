@@ -1,0 +1,35 @@
+Ξϊνώ ¨…8__PAGEZEROH__TEXT__text__TEXT|F| €__literal4__TEXTΔ 
+Δ__literal8__TEXTΠ Π__cstring__TEXTπ πH__DATA __data__DATA 
+P__dyld__DATAP P__bss__DATAl __common__DATAx ΐ__IMPORT0 
+__pointers__IMPORT0 __jump_table__IMPORT@0s@ 
+8__LINKEDIT@000(@2π Pΰ1 /usr/lib/dyldP| 
+X/System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL 
+T/System/Library/Frameworks/GLUT.framework/Versions/A/GLUT 
+4/usr/lib/libgcc_s.1.dylib 
+4o/usr/lib/libSystem.B.dylibj‰εƒδπƒμ‹]‰\$M‰L$ƒΓΑγΛ‰\$‹ƒΓ…ΐuχ‰\$ 
+θN‰D$θ…τθXÿ°O‹€ÿΰθX‹€ÿΰU‰εƒμΗ$ θU‹E‰$θw‹E‰$θ{‹E 
+‰$θp‹E‰$θeθ=ΙΓU‰εSƒμDθ[ƒ}RΗEτλ@‹Uτ‹EτΑΰEσ‹EτΑΰE 
+σσXΘƒ•σ(Ρσ^Π(ΒσD•θEτÿƒ}τ~ΊΗEτλ@‹Uτ‹EτΑΰEσ‹EτΑΰEσσXΘƒ•σ(Ρσ^Π(ΒσD•άEτÿƒ}τ~ΊΗEτλ@‹Uτ‹EτΑΰE 
+σ‹EτΑΰEσσXΘƒ•σ(Ρσ^Π(ΒσD•ΠEτÿƒ}τ~Ί‹EH‰D$ 
+Eά‰D$Eθ‰D$‹E‰$θΫώÿÿ‹EH‰D$ EΠ‰D$Eά‰D$‹E‰$θΊώÿÿ‹EH‰D$ 
+Eθ‰D$EΠ‰D$‹E ‰$θ™ώÿÿλ‹E‰D$‹E 
+‰D$‹E‰$θ9ώÿÿƒΔD[ΙΓU‰εVSƒμθ[ƒ‹‰D$ƒ‹‰D$ƒ‹‰$θsƒh@‰Ζƒh@ 
+‰Β‹h‹E‰D$ ‰t$‰T$‰ $θώÿÿƒ‹‰D$ƒ‹‰D$ƒ‹‰$θƒh@ 
+‰Αƒh@‰Ζƒh@$‰Β‹E‰D$ ‰L$‰t$‰$θ―ύÿÿƒ‹‰D$ƒ‹‰D$ƒ‹‰$θΈƒh@ 
+‰Ζƒh@$‰Β‹h‹E‰D$ ‰t$‰T$‰ 
+$θTύÿÿƒ‹‰D$ƒ‹‰D$ƒ‹‰$θ]ƒh@$‰Ζƒh@‰Β‹h‹E‰D$ ‰t$‰T$‰ 
+$θωόÿÿƒΔ[^ΙΓU‰εSƒμθ[Η$AθθƒΓ‹‹‰$θJώÿÿθύƒΔ[ΙΓU‰εSƒμ4θ[‹E ‰D$ 
+‹E‰D$ΗD$Η$θλΗ$θΖθΌ‹E;E ›σ*E σZΐf(ΘςXΘσ*EσZΐf(Ρς^Πσ*E 
+σZΘƒXςςYΘσ*EσZΐς^Θƒ`ςςD$(ƒhςςD$ 
+ςT$ςL$ƒpςςD$ƒXςς$θ)ι–σ*EσZΐf(ΘςXΘσ*E 
+σZΐf(Ρς^Πσ*EσZΘƒXςςYΘσ*E σZΐς^Θƒ`ςςD$(ƒhςςD$ 
+ƒpςςD$ƒXςςD$ςT$ς $θΗ$θxθ―ƒΔ4[ΙΓU‰εSƒμθ[ƒτ‹Η‹E 
+‰D$E‰$θhΗ$θaΗD$τΗ$τθRƒδ‰$θ0ƒ`ώÿÿ‰$θEƒ%ώÿÿ‰$θΗ$q 
+θΦƒΐ‹‰D$ ƒΐ‹‰D$ƒΐ‹‰D$ƒΐ‹‰$θθθƒΔ[ΙΓ@€?ΐ$@$ΐ@3D 
+Gasket€?ξ[q?;ªªΎσQΏÿ[ρΎªªΎσQ?ÿ[ρΎªªΎΰΰ   x 
+τττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττΌΠ. 
+@l G O W cw1€#‘  l«x ®«»ήΕ 
+Θ|ΞΤέζτÿ 
+)7DMZfx‰“¨ΌΚέ€@ 
+!"#$%&' 
+dyld_stub_binding_helper__dyld_func_lookupdyld__mach_header_theta_NXArgc_NXArgv___progname__mh_execute_header_display_divide_triangle_environ_main_myReshape_n_tetrahedron_triangle_vstart_exit_glBegin_glClear_glClearColor_glColor3f_glEnable_glEnd_glFlush_glLoadIdentity_glMatrixMode_glNormal3fv_glOrtho_glVertex3fv_glViewport_glutCreateWindow_glutDisplayFunc_glutInit_glutInitDisplayMode_glutInitWindowSize_glutMainLoop_glutPostRedisplay_glutReshapeFunc

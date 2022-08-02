@@ -1,0 +1,104 @@
+%!PS-Adobe-2.0
+%%Title: forward.eps
+%%Creator: flow2ps
+%%CreationDate: Thu Mar  3 13:37:06 2005
+%%For: William B Thompson
+%%BoundingBox:    0    0  432  432
+%%Pages: 1
+%%EndComments
+%% forward motion flow 60 10 10
+%% flow2ps: margin = 0.000000
+%% flow2ps: min_magnitude = 0.000000
+%% flow2ps: scale = 1.000000
+%%EndProlog
+32 dict begin	% temporary dictionary
+/tw 2.25 def
+/tl 4.5 def
+/tb 1 def
+/arrow {gsave translate neg rotate sarrow grestore} def
+/sarrow {dup 2 div neg 0 moveto 0 rlineto currentpoint al stroke
+	moveto triangle} def
+/triangle {tl neg tw rlineto 0 tw tw add neg rlineto closepath
+	gsave fill grestore stroke} def
+/pointer {gsave translate neg rotate spointer grestore} def
+/spointer {dup 2 div neg 0 moveto 0 rlineto currentpoint al stroke
+	pointerhead} def
+/pointerhead {2 copy moveto tl neg tw rlineto stroke moveto
+	tl neg tw neg rlineto stroke } def
+/dot_radius 2.0 def
+/dot {dot_radius 0 360 arc fill} def
+/dot_radius_s 1.0 def
+/smalldot {dot_radius_s 0 360 arc fill} def
+/dotline {gsave translate neg rotate 0 0 dot line grestore} def
+/line {0 0 moveto 0 rlineto al stroke} def
+/al {tb setlinewidth} def
+1 setlinecap
+gsave newpath		% save, clear graphics state
+   0    0 moveto  432    0 lineto	% set up clipping region
+	 432  432 lineto    0  432 lineto closepath clip newpath
+1 setlinejoin
+82.3029 135 48 48 pointer
+71.5184 144.462 48 96 pointer
+63.3164 156.801 48 144 pointer
+58.7878 171.87 48 192 pointer
+58.7878 -171.87 48 240 pointer
+63.3164 -156.801 48 288 pointer
+71.5184 -144.462 48 336 pointer
+82.3029 -135 48 384 pointer
+71.5184 125.538 96 48 pointer
+58.7878 135 96 96 pointer
+48.4776 149.036 96 144 pointer
+42.3924 168.69 96 192 pointer
+42.3924 -168.69 96 240 pointer
+48.4776 -149.036 96 288 pointer
+58.7878 -135 96 336 pointer
+71.5184 -125.538 96 384 pointer
+63.3164 113.199 144 48 pointer
+48.4776 120.964 144 96 pointer
+35.2727 135 144 144 pointer
+26.2907 161.565 144 192 pointer
+26.2907 -161.565 144 240 pointer
+35.2727 -135 144 288 pointer
+48.4776 -120.964 144 336 pointer
+63.3164 -113.199 144 384 pointer
+58.7878 98.1301 192 48 pointer
+42.3924 101.31 192 96 pointer
+26.2907 108.435 192 144 pointer
+11.7576 135 192 192 pointer
+11.7576 -135 192 240 pointer
+26.2907 -108.435 192 288 pointer
+42.3924 -101.31 192 336 pointer
+58.7878 -98.1301 192 384 pointer
+58.7878 81.8699 240 48 pointer
+42.3924 78.6901 240 96 pointer
+26.2907 71.565 240 144 pointer
+11.7576 45 240 192 pointer
+11.7576 -45 240 240 pointer
+26.2907 -71.565 240 288 pointer
+42.3924 -78.6901 240 336 pointer
+58.7878 -81.8699 240 384 pointer
+63.3164 66.8014 288 48 pointer
+48.4776 59.0362 288 96 pointer
+35.2727 45 288 144 pointer
+26.2907 18.4349 288 192 pointer
+26.2907 -18.4349 288 240 pointer
+35.2727 -45 288 288 pointer
+48.4776 -59.0362 288 336 pointer
+63.3164 -66.8014 288 384 pointer
+71.5184 54.4623 336 48 pointer
+58.7878 45 336 96 pointer
+48.4776 30.9638 336 144 pointer
+42.3924 11.3099 336 192 pointer
+42.3924 -11.3099 336 240 pointer
+48.4776 -30.9638 336 288 pointer
+58.7878 -45 336 336 pointer
+71.5184 -54.4623 336 384 pointer
+82.3029 45 384 48 pointer
+71.5184 35.5377 384 96 pointer
+63.3164 23.1986 384 144 pointer
+58.7878 8.1301 384 192 pointer
+58.7878 -8.1301 384 240 pointer
+63.3164 -23.1986 384 288 pointer
+71.5184 -35.5377 384 336 pointer
+82.3029 -45 384 384 pointer
+grestore end

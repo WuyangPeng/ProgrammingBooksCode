@@ -1,0 +1,3 @@
+Log file for Client
+===============================
+Enter cGameApp::SceneInit()

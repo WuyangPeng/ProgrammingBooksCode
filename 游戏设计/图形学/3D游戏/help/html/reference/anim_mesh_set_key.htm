@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>anim_mesh::set_key</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="anim_mesh.htm">anim_mesh</a>::set_key</h2>
+<h3>Prototype</h3>
+<p class="code">void set_key(int key)<br>
+void set_key(float key)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>key</td>
+	 <td>int</td>
+	 <td>integer key frame (0 - numframes)</td>
+  </tr>
+  <tr>
+	 <td>key</td>
+	 <td>float</td>
+	 <td>float key frame (0 - 1.0)</td>
+  </tr>
+  
+  
+</table>
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>These functions are used to set the current animation key. The integer version 
+  of the function is faster, but can only set the mesh to one of the predefined 
+  keyframes. The float version, linearly interpolates the two closest key frames 
+  to generate a smooth animation between keyframes.</p>
+</body>
+</html>

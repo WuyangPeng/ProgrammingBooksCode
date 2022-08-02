@@ -1,0 +1,28 @@
+Ξϊνώ ά…8__PAGEZEROH__TEXT__text__TEXTp9p 
+€__literal4__TEXT¬¬__cstring__TEXTΐ(ΐ__literal8__TEXTθθΐ__DATA 
+__data__DATA __dyld__DATA |__IMPORT0 __jump_table__IMPORT0― 
+8__LINKEDIT@0p02δ2 P!X2# /usr/lib/dyldPp 
+X/System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL 
+T/System/Library/Frameworks/GLUT.framework/Versions/A/GLUT 
+4/usr/lib/libgcc_s.1.dylib 
+4o/usr/lib/libSystem.B.dylibj‰εƒδπƒμ‹]‰\$M‰L$ƒΓΑγΛ‰\$‹ƒΓ…ΐuχ‰\$ 
+θV‰D$θQτθXÿ°[‹€_ÿΰθX‹€OÿΰU‰εSƒμθ[ƒΞ‹‰D$ 
+ƒΞ‹‰D$ƒΞ‹‰D$ƒΞ‹‰$θχƒΔ[ΙΓU‰εSƒμθ[}u 
+Η$θνƒ‡‹‰D$ƒ‡‹‰D$ƒ‹‹‰$θ¬ƒ‹‹‰D$ ƒ‹‹‰D$ƒ‹‰D$ƒ‹‰$θ―}u 
+Η$θ|ƒ‹‹‰D$ƒ‡‹‰D$ƒ‡‹‰$θ;ƒ“‹‰D$ 
+ƒ“‹‰D$ƒ—‹‰D$ƒ—‹‰$θ>ƒΔ[ΙΓU‰εƒμΗ$@θεΗ$θνώÿÿθγΙΓU‰εSƒμ$θ[‹E‰D$ƒ‰$θK‹E 
+‰EτΗEθλc‹Eτ‹‰EπEτƒ ΗEμλ3‹Eτ‹ƒψuƒ‰$θλƒ‰$θEτƒEμÿ‹Eμ;EπrΕΗ$ 
+θγEθÿ‹E;Eθw•ƒΔ$[ΙΓU‰εSμTθ[ƒ}…Dƒ} …:…δχÿÿ‰D$Η$Ά θ 
+…τχÿÿ‰D$Η$θ+Η$θθθΗ$θÿΗ$θίθδθΛ‹…πχÿÿ+Eς*Θς*U…δχÿÿ‰D$ 
+ƒςςD$ƒςςD$ςL$ς$θ»ƒ ςςD$ƒςςD$ƒ 
+ςςD$ƒςς$θrΗ$θ%ύÿÿΗ$θ-θ-θ 
+Η$θ5‰Eτ…τχÿÿ‰D$‹Eτ‰$θώÿÿθcΔT[ΙΓU‰εSƒμ$θ[‹E ‰D$ 
+‹E‰D$ΗD$Η$θκΗ$θ¶θ§ƒ¨ςςD$ƒ°ςςD$ƒ¨ςςD$ƒ°ςς$θΗ$θaθRƒΔ$[ΙΓU‰εƒμ(‹EEτ¶Eτƒψtλ 
+Η$θΙΓU‰εSƒμθ[‹E ‰D$E‰$θSΗ$θLΗD$τΗ$τθGΗD$dΗ$dθ)‹E 
+‹‰$θθqϋÿÿƒ4ÿÿÿ‰$θ,ƒύÿÿ‰$θμƒΝύÿÿ‰$θƒΟÿÿÿ‰$θξθξΈƒΔ[ΙΓ€?Ώ?€Ώhits 
+= %d red rectangleblue rectangle@@ΐΰΰ   
+τττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττ°Δ. 
+@ H P \py† 
+Ò•Χό¥Υ¬3Ή<ΒpΘΞΧεπω%1?LZfo}™¥΄ΖΧαφ"4BQdu}†@ 
+!"#$%&'(@)*+,-./01 
+dyld_stub_binding_helper__dyld_func_lookupdyld__mach_header_NXArgc_NXArgv___progname__mh_execute_header_display_drawObjects_environ_init_keyboard_main_mouse_processHits_reshapestart_exit_glClear_glClearColor_glColor3f_glFlush_glGetIntegerv_glInitNames_glLoadIdentity_glLoadName_glMatrixMode_glPopMatrix_glPushMatrix_glPushName_glRectf_glRenderMode_glSelectBuffer_glViewport_gluOrtho2D_gluPickMatrix_glutCreateWindow_glutDisplayFunc_glutInit_glutInitDisplayMode_glutInitWindowPosition_glutInitWindowSize_glutKeyboardFunc_glutMainLoop_glutMouseFunc_glutPostRedisplay_glutReshapeFunc_printf_putchar_puts

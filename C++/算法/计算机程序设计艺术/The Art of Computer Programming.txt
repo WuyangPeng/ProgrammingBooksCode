@@ -1,0 +1,18 @@
+计算机程序设计的艺术（The Art of Computer Programming）
+
+官方网站：
+http://www.ndip.com.cn/computer （已失效）、
+https://www-cs-faculty.stanford.edu/~knuth/taocp.html
+
+第1卷（第3版）
+★
+作者：Donald E.Knuth
+其他书籍：《具体数学》。 
+
+第2卷（第3版）
+★
+作者：Donald E.Knuth 
+
+第3卷（第2版）
+★
+作者：Donald E.Knuth 

@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>class mp_games</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2>class mp_games</h2>
+<h3>Definition</h3>
+<p class="code">class mp_games<br>
+  {<br>
+  &nbsp;
+  public:<br>
+  &nbsp;
+  int num;<br>
+  &nbsp;
+  char name[FLYMP_MAXGAMES][128];<br>
+  &nbsp;
+  int num_players[FLYMP_MAXGAMES];<br>
+  &nbsp;
+  GUID guid[FLYMP_MAXGAMES];<br>
+  <br>
+  &nbsp;
+  mp_games()<br>
+  &nbsp;
+  { num=0; };<br>
+  };</p>
+<h3>Data Members</h3>
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr> 
+    <th>Member</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr> 
+    <td> num</td>
+	 <td>int</td>
+	 <td>number of games</td>
+  </tr>
+  <tr> 
+    <td> name</td>
+	 <td>char[][]</td>
+	 <td>game names array</td>
+  </tr>
+  <tr> 
+    <td> num_players</td>
+	 <td>int[]</td>
+	 <td>number of players array</td>
+  </tr>
+  <tr>
+	 <td> guid</td>
+	 <td>GUID[]</td>
+	 <td>games GUID array</td>
+  </tr>
+</table>
+<h3>Methods</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This class is used to enumerate games on a specific server.&nbsp;<br>
+Use the enum_games function to get a pointer to this class. The class will be
+filled with information on all games available to join. Pass the <i>guid</i> field of
+the selected game to the <i>join_game</i> function to enter the game.&nbsp;</p>
+<h3>See Also</h3>
+<p><a href="directx.htm">directX</a>, <a href="mp_msg.htm">mp_msg</a></p>
+</body>
+</html>

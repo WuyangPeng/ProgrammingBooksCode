@@ -1,0 +1,40 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.09;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* ipdoopts.c - ipdoopts */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  ipdoopts - do gateway handling of IP options
+ *------------------------------------------------------------------------
+ */
+int ipdoopts(pni, pep)
+struct	netif	*pni;
+struct	ep	*pep;
+{
+	return OK;	/* not implemented yet */
+}
+@

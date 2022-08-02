@@ -1,0 +1,22 @@
+#define INCL_DOSPROCESS
+#include "npipe2.cpp"
+
+
+vector<int> MyNum;
+
+void main(void)
+{
+
+   long int OMode = NP_ACCESS_DUPLEX;
+   long int PMode = NP_UNLIMITED_INSTANCES;
+   npstream<int> Server("\\pipe\\mypipe",PMode,OMode);
+   MyNum.push_back(125);
+   MyNum.push_back(222);
+   MyNum.push_back(444);
+   MyNum.push_back(555);
+   Server << MyNum.size();
+   Server << MyNum;
+   cout << "Server Done";
+
+
+}

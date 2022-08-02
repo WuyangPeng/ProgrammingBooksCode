@@ -1,0 +1,57 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.09;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* rtnew.c - rtnew */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  rtnew  -  create a route structure
+ *------------------------------------------------------------------------
+ */
+struct route *rtnew(net, mask, gw, metric, ifnum, ttl)
+IPaddr	net, mask, gw;
+int	metric, ifnum, ttl;
+{
+	struct	route *prt;
+
+	prt = (struct route *)getbuf(Route.ri_bpool);
+	if (prt == (struct route *)SYSERR) {
+		IpRoutingDiscards++;
+		return (struct route *)SYSERR;
+	}
+
+	prt->rt_net = net;
+	prt->rt_mask = mask;
+	prt->rt_gw = gw;
+	prt->rt_metric = metric;
+	prt->rt_ifnum = ifnum;
+	prt->rt_ttl = ttl;
+	prt->rt_refcnt = 1;	/* our caller */
+	prt->rt_usecnt = 0;
+	prt->rt_next = NULL;
+	return prt;
+}
+@

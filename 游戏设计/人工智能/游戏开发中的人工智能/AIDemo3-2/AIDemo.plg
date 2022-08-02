@@ -1,0 +1,130 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: AIDemo1 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x409 /fo"Debug/Resources.res" /d "_DEBUG" "C:\Program Files\Microsoft Visual Studio\Projects\AIDemo2\Resources.rc"" 
+Creating temporary file "C:\DOCUME~1\DAVIDB~1\LOCALS~1\Temp\RSP40B.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /FR"Debug/" /Fp"Debug/AIDemo.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\Program Files\Microsoft Visual Studio\Projects\AIDemo2\main.cpp"
+"C:\Program Files\Microsoft Visual Studio\Projects\AIDemo2\RigidBody2D.cpp"
+"C:\Program Files\Microsoft Visual Studio\Projects\AIDemo2\winmain.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\DAVIDB~1\LOCALS~1\Temp\RSP40B.tmp" 
+Creating temporary file "C:\DOCUME~1\DAVIDB~1\LOCALS~1\Temp\RSP40C.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/AIDemo.pdb" /debug /machine:I386 /out:"Debug/AIDemo.exe" /pdbtype:sept 
+".\Debug\main.obj"
+".\Debug\RigidBody2D.obj"
+".\Debug\winmain.obj"
+".\Debug\Resources.res"
+"..\..\VC98\Lib\USER32.LIB"
+"..\..\VC98\Lib\COMCTL32.LIB"
+]
+Creating command line "link.exe @C:\DOCUME~1\DAVIDB~1\LOCALS~1\Temp\RSP40C.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+main.cpp
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(35) : warning C4305: '=' : truncation from 'const double' to 'float'
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(40) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(41) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(42) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(42) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(43) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(43) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(68) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(69) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(70) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(70) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(71) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(71) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(247) : warning C4101: 'r' : unreferenced local variable
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(412) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(412) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(413) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(413) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(414) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(414) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(415) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(415) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(416) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(423) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(423) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(423) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(423) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(424) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(424) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(424) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(424) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(425) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(425) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(425) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(425) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(426) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(426) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(426) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(426) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(427) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(427) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(427) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(427) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(435) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(435) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(435) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(435) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(440) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(445) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(445) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(445) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(445) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(448) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(449) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(454) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(454) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(454) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(454) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(457) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(458) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(463) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(463) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(463) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(463) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(466) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(467) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(472) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(472) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(472) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(472) : warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(656) : warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(636) : warning C4101: 'vr' : unreferenced local variable
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(685) : warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(722) : warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(722) : warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\main.cpp(758) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+RigidBody2D.cpp
+c:\program files\microsoft visual studio\projects\aidemo2\rigidbody2d.cpp(70) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\rigidbody2d.cpp(144) : warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\rigidbody2d.cpp(147) : warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\rigidbody2d.cpp(153) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\rigidbody2d.cpp(157) : warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\rigidbody2d.cpp(173) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\rigidbody2d.cpp(175) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\rigidbody2d.cpp(183) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\rigidbody2d.cpp(184) : warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+c:\program files\microsoft visual studio\projects\aidemo2\rigidbody2d.cpp(193) : warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+winmain.cpp
+c:\program files\microsoft visual studio\projects\aidemo2\winmain.cpp(209) : warning C4101: 'key' : unreferenced local variable
+Linking...
+
+
+
+<h3>Results</h3>
+AIDemo.exe - 0 error(s), 87 warning(s)
+</pre>
+</body>
+</html>

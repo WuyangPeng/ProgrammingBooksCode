@@ -1,0 +1,109 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>Learning Rendering: Study 11</title>
+</head>
+<body>
+<a href="file:///F|/learning/STUDY10/STUDY10.HTM">&lt;&lt;</a><a href="file:///F|/learning/STUDY12/STUDY12.HTM">>></a><a href="file:///F|/learning/TOC.HTM">Contents</a>
+<a href="file:///F|/learning/INDEX.HTM" TARGET="_top">Top</a>
+<hr>
+<h1>
+STUDIES 9-13 RAY TRACING</h1>
+
+<h2>
+STUDY 11 WHY RAY TRACING DOES NOT WORK EXCEPT FOR SCENES THAT IT WORKS
+FOR</h2>
+Not quite as tortuous as it sounds basic ray tracing only works well visually
+for perfect mirror like objects. Ray tracing combines a local refection
+model contribution with a global reflection and transmission component.
+The rationale here is that this approach can handle objects that are not
+perfectly reflecting or refracting. A ray traced image can be thus be viewed
+as a combination of a local component and a component from a perfect refractor
+or reflector. This immediately raises the contradiction that a specular
+highlight is a spread reflection of the (necessarily) point light source
+but reflections of other objects in the same surface are perfect (not spread).
+Generally there is much confusion in the way in which local and global
+components are used as the next series of images attempts to demonstrate.
+<p><a href="file:///F|/learning/STUDY11/GLAS_M.TIF"><img SRC="GLAS_M.GIF" ALT="glas_m" height=75 width=100></a>
+<br>This is a montage of the popular options available in 'na&iuml;ve'
+ray tracing. The top left hand image is a pure local reflection model or
+Phong component which is kept constant throughout the array of images.
+As we go along the top row the global refection proportion increases to
+100% and the Phong spread highlight eventually gives way to the actual
+image of the light source. The reason for keeping the Phong component constant
+rather than diminishing it as the global component takes over is that its
+contribution boosts the light level in the reflected image of the light
+source. For example consider the second image in the top row.
+<p>Going down the first column, the transparency is increased towards 100%.
+Keeping the Phong component constant here now results in a contradiction
+in the bottom image which is that we have a refection of the light source
+and nothing else. However, in practice objects can never be perfectly refracting
+and we often see glass objects where we can only perceive the refection
+of the light source. In this image are also apparent geometric deficiencies
+in the refracted image. This is due to the polygonal representation of
+the object and the way in which surface normals are derived. Ray tracing
+demands a surface normal at every hit point. This can never be the correct
+surface normal because the polygon mesh is already an approximation. Also
+apparent are bad aliasing artefacts along the silhouette edge of the object.
+Such defects are not so apparent in the perfect reflection image. In the
+reflection image the refracted objects are much closer to the glass teapot.
+<p>The individual images that make up the above montage.
+<br>&nbsp;
+<table BORDER=0 >
+<tr>
+<td><a href="file:///F|/learning/STUDY11/GLAS11.TIF"><img SRC="GLAS11.GIF" ALT="glas11" height=75 width=100></a></td>
+
+<td><a href="file:///F|/learning/STUDY11/GLAS12.TIF"><img SRC="GLAS12.GIF" ALT="glas12" height=75 width=100></a></td>
+
+<td><a href="file:///F|/learning/STUDY11/GLAS13.TIF"><img SRC="GLAS13.GIF" ALT="glas13" height=75 width=100></a></td>
+
+<td><a href="file:///F|/learning/STUDY11/GLAS14.TIF"><img SRC="GLAS14.GIF" ALT="glas14" height=75 width=100></a></td>
+
+<td><a href="file:///F|/learning/STUDY11/GLAS15.TIF"><img SRC="GLAS15.GIF" ALT="glas15" height=75 width=100></a></td>
+</tr>
+
+<tr>
+<td><a href="file:///F|/learning/STUDY11/GLAS21.TIF"><img SRC="GLAS21.GIF" ALT="glas21" height=75 width=100></a></td>
+
+<td><a href="file:///F|/learning/STUDY11/GLAS22.TIF"><img SRC="GLAS22.GIF" ALT="glas22" height=75 width=100></a></td>
+
+<td><a href="file:///F|/learning/STUDY11/GLAS23.TIF"><img SRC="GLAS23.GIF" ALT="glas23" height=75 width=100></a></td>
+
+<td><a href="file:///F|/learning/STUDY11/GLAS24.TIF"><img SRC="GLAS24.GIF" ALT="glas24" height=75 width=100></a></td>
+</tr>
+
+<tr>
+<td><a href="file:///F|/learning/STUDY11/GLAS31.TIF"><img SRC="GLAS31.GIF" ALT="glas31" height=75 width=100></a></td>
+
+<td><a href="file:///F|/learning/STUDY11/GLAS32.TIF"><img SRC="GLAS32.GIF" ALT="glas32" height=75 width=100></a></td>
+
+<td><a href="file:///F|/learning/STUDY11/GLAS33.TIF"><img SRC="GLAS33.GIF" ALT="glas33" height=75 width=100></a></td>
+</tr>
+
+<tr>
+<td><a href="file:///F|/learning/STUDY11/GLAS41.TIF"><img SRC="GLAS41.GIF" ALT="glas41" height=75 width=100></a></td>
+
+<td><a href="file:///F|/learning/STUDY11/GLAS42.TIF"><img SRC="GLAS42.GIF" ALT="glas42" height=75 width=100></a></td>
+</tr>
+
+<tr>
+<td><a href="file:///F|/learning/STUDY11/GLAS51.TIF"><img SRC="GLAS51.GIF" ALT="glas51" height=75 width=100></a></td>
+</tr>
+</table>
+
+<table BORDER=0 WIDTH="100%" >
+<tr>
+<td><a href="file:///F|/learning/STUDY11/GLS_WRNG.TIF"><img SRC="GLS_WRNG.GIF" ALT="gls_wrng" height=75 width=100></a></td>
+
+<td>This is an incorrect image created by setting both the reflection and
+transmission parameters to 1. The effect of this is for light to be 'created'
+whenever rays are spawned making it look as if the object is fluorescent.</td>
+</tr>
+</table>
+
+<hr><a href="file:///F|/learning/STUDY10/STUDY10.HTM">&lt;&lt;</a><a href="file:///F|/learning/STUDY12/STUDY12.HTM">>></a><a href="file:///F|/learning/TOC.HTM">Contents</a>
+<a href="file:///F|/learning/INDEX.HTM" TARGET="_top">Top</a>
+</body>
+</html>

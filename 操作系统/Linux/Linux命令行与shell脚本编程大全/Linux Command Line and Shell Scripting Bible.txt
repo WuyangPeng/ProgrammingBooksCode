@@ -1,0 +1,6 @@
+Linux命令行与shell脚本编程大全（Linux Command Line and Shell Scripting Bible）
+（第三版）
+
+☆
+作者：Richard Blum、Christine Bresnahan 
+  

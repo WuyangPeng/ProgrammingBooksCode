@@ -1,0 +1,41 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.29.03;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* x_reboot.c - x_reboot */
+
+#include <conf.h>
+#include <kernel.h>
+
+/*------------------------------------------------------------------------
+ *  x_reboot  -  (builtin command reboot) restart the system from scratch
+ *------------------------------------------------------------------------
+ */
+BUILTIN	x_reboot(stdin, stdout, stderr, nargs, args)
+int	stdin, stdout, stderr, nargs;
+char	*args[];
+{
+#ifdef notdef
+	ret_mon();	/* warning! This terminates everything. */
+#endif
+}
+@

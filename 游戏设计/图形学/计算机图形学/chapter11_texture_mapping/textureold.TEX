@@ -1,0 +1,478 @@
+\subsection{Turbulence}
+
+\regfigb{turb.ps}{\thechapter.6}{Turbulence function with one through
+         eight terms in the summation.}
+
+
+Many natural textures contain a variety of feature sizes in the 
+same texture.  Perlin uses a pseudofractal ``turbulence''
+function:\index{solid texture!turbulence}\index{turbulence function}
+\begin{displaymath}
+n_t( \po{x} ) = \sum_i 
+                          \frac{ | n( 2^i \po{x}) | }{ 2^i }
+\end{displaymath}
+This effectively repeatedly adds scaled copies of the noise function on
+top of itself as shown in Figure~\thechapter.6.
+
+The turbulence  can be used to distort the stripe function:
+\emph{\begin{algorithmic}
+\STATE RGB turbstripe( point \po{p}, double w )
+\STATE double $t = (1 + \sin(k_1 z_p + turbulence(k_2 \po{p}))) / w)/2$
+\STATE return $t*s0 + (1-t)*s1$
+\end{algorithmic}}
+\noindent Various values for $k_1$ and $k_2$ were used to generate 
+Figure~\thechapter.7.\index{texture!marble}
+
+\regfig{marble.ps}{\thechapter.7}{Various turbulent stripe textures with different
+         $k_1$, $k_2$.  Top row has only the
+         first term of the turbulence series.}
+
+
+
+
+\section{2D Texture Mapping}
+
+
+Here we use a 2D coordinate, often called \emph{uv}, which
+is used to create a reflectance $R(u,v)$.
+
+The key is to take an image and associate a $(u,v)$ coordinate
+system on it so that it can be associated with points on
+a 3D surface.  For example, if the latitudes and longitudes on
+the world map are associated with polar coordinate systems
+on the sphere we get a globe (Figure~\thechapter.8).
+
+\regfig{worldtex.ps}{\thechapter.8}{A Mercator projection map world map and its
+         placement on the sphere.  The distortions in the
+         texture map (i.e., Greenland being so large) exactly
+         correspond to the shrinking that occurs when the
+         map is applied to the sphere.}
+
+As should be clear from Figure~\thechapter.8, it is crucial that
+the coordinates on the image and the object match in ``just the right way''.
+As a convention, the coordinate system on the image is set to
+be the unit square $(u,v) \in [0,1]^2$.  For $(u,v)$
+outside of this square, only the fractional parts
+of the coordinates are used resulting in a tiling of the
+plane (Figure~\thechapter.2).  Note that the image has a different 
+number of pixels horizontally and vertically, so the image pixels
+have a non-uniform aspect ratio in $(u,v)$ space.
+
+To map this $(u,v) \in [0,1]^2$ image onto a sphere,
+we first compute the polar coordinates.  Recall the spherical
+coordinate system
+described by Equation~\ref{eq:spherical}.  For a sphere of radius $R$ and
+with center $(c_x,c_y,c_z)$ the parametric equation of the sphere is:
+\begin{displaymath}
+\begin{split}
+x &= x_c + R \cos \phi \sin \theta, \\
+y &= y_c + R \sin \phi \sin \theta, \\
+z &= z_c + R \cos \theta.
+\end{split}
+\end{displaymath}
+The $(\theta,\phi)$ can be found using:
+\begin{displaymath}
+\begin{split}
+\theta &= \arccos \left( \frac{z-z_c}{R} \right),    \\
+\phi &= \text{arctan2} (y-y_c, x - x_c). 
+\end{split}
+\end{displaymath}
+where $\text{arctan2}(a,b)$ is the the \emph{atan2} of most math libraries
+which return the arctangent of $a/b$.  Because
+$(\theta,\phi) \in [0,\pi]\times [-\pi,\pi]$, we convert to $(u,v)$
+as follows, after first adding $2\pi$ to $\phi$ if it is negative:
+\begin{displaymath}
+\begin{split}
+u &= \frac{\phi}{2\pi},    \\
+v &= \frac{\pi-\theta}{\pi}.   \\
+\end{split}
+\end{displaymath}
+This mapping is shown in Figure~\thechapter.8.
+There is a similar, although likely more complicated way, to generate
+coordinates for most 3D shapes.
+
+
+
+\section{Tessellated Models}\label{sec:trimesh}
+
+Most real-world models are composed of complexes
+of triangles with shared vertices.  In many fields
+these are known as 
+\emph{triangular meshes}\index{mesh}\index{triangle mesh} or
+\emph{triangular irregular
+ networks} (TINs). \index{TIN}\index{triangular irregular network (TIN)}
+Most graphics programs need to have a way to make
+these models not use too much storage, and to deal 
+with texture-maps.
+
+A simple triangular mesh is shown in Figure~\thechapter.9.
+You could store these three triangles as independent entities,
+and thus store point $\po{p}_1$ three times, and the other vertices
+twice each for
+a total of nine stored points (three vertices for each of
+two triangles), or you could try to somehow share the
+common vertices and store only four.  So instead of
+\emph{\begin{algorithmic}
+\STATE class triangle
+\STATE material m
+\STATE vector3 $\po{p}_0$, $\po{p}_1$, $\po{p}_2$
+\end{algorithmic}}
+\noindent
+You would have two classes:
+\emph{\begin{algorithmic}
+\STATE class mesh
+\STATE material m
+\STATE array of vector3 vertices
+\end{algorithmic}}
+\noindent
+and
+\emph{\begin{algorithmic}
+\STATE class meshtriangle
+\STATE pointer to mesh meshptr
+\STATE int $i_0$, $i_1$, $i_2$
+\end{algorithmic}}
+\noindent where $i_0$, $i_1$, and $i_2$ are indices into the
+{\it vertices} array.  Either the triangle class or the mesh class
+will work.  Is there a space advantage for the mesh class?  Typically,
+a large mesh has each vertex being stored by about six triangles, although
+there can be any number for extreme cases.  This means about two triangles
+for each shared vertex.  If you have $n$ triangles, then there are
+about $n/2$ vertices in the shared case and $3n$ in the un-shared
+case.  But when you share you get an extra $3n$ integers and $n$
+pointers.  Since you don't have to store the material in each mesh
+triangle, that saves $n$ pointers, which cancels out the storage
+for {\it meshptr}.  If we assume that the data for floats, pointers,
+and ints all take the same storage (a dubious assumption), the triangles
+will take $10n$ storage units and the mesh will take $5.5n$ storage units.
+So around a factor of two, which seems to hold for
+most implementations.  Is this factor of two worth the
+complication?  I think the answer is yes as soon as you start adding
+``properties'' to the vertices.
+
+
+\regfig{tin.ps}{\thechapter.9}{A three triangle mesh with four vertices.}
+
+Each vertex can have material parameters, texture coordinates, irradiances,
+and essentially any parameter that a render might use.  In practice
+these parameters are bilinearly interpolated across the triangle.
+So if a triangle is intersected at barycentric coordinates $(\beta,\gamma)$,
+you interpolate the $(u,v)$ coordinates the same way you interpolate points.
+Recall that the point at barycentric coordinate $(\beta,\gamma)$ is:
+\begin{displaymath}
+\po{p}(\beta,\gamma) = \po{a} + \beta(\po{b}-\po{a}) +
+                                       \gamma(\po{c}-\po{a}).
+\end{displaymath}
+A similar equation applies for $(u,v)$:
+\begin{displaymath}
+\begin{split}
+u(\beta,\gamma) & = u_a + \beta(u_b-u_a) + \gamma(u_c-u_a), \\
+v(\beta,\gamma) & =  v_a + \beta(v_b-v_a) + \gamma(v_c-v_a.
+\end{split}
+\end{displaymath}
+Several ways a texture could be applied by changing the $(u,v)$ at 
+triangle vertices are shown in Figure~\thechapter.10.  This sort of
+calibration texture map makes it easier to understand the 
+texture coordinates of your objects during
+debugging (Figure~\thechapter.11).
+
+\regfig{meshcoord.ps}{\thechapter.10}{Various mesh textures 
+obtained by changing $(u,v)$ coordinates stored at vertices.}
+
+
+\marps{caltex.ps}
+\marcap{\thechapter.11}{Top: a calibration texture map.  Bottom: the sphere
+         viewed along the y axis.}
+
+
+
+\section{Texture Mapping for Rasterized Triangles}\label{sec:texras}
+
+We would like to get the same texture images whether we use
+a ray tracing program or if we use a rasterization method
+such as a z-buffer.  There turns out to be some subtleties in
+achieving this with correct-looking perspective, but we can
+address this at the rasterization stage.  The reason things
+are not straightforward is that just interpolating texture
+coordinates in screen space results in incorrect images,
+as shown for the grid texture shown in  Figure~\thechapter.12.
+Because things in perspective get smaller with distance with
+the viewer, the lines that are evenly spaced in 3D should
+compress in 2D image space.  More careful interpolation
+of texture coordinates is needed to accomplish this.
+
+\marps{perspdist.ps}
+\marcap{\thechapter.12}{Left: correct perspective.  Right:
+ interpolation in screen space. }
+
+
+\subsection{Perspective Correct Textures}\label{sec:perspcorrect}
+
+
+We could implement texture mapping on triangles by interpolating the
+$(u,v)$ coordinates by modifying the raterization method of
+Section~\ref{sec:triras} but it this results in the problem
+on the right of Figure~\thechapter.12.  A similar problem occurs
+for triangles if screen-space barycentric coordinates are used as
+in the rasterization code:
+\emph{\begin{algorithmic}
+\FOR{all $x$}
+   \FOR{all $y$}
+       \STATE compute $(\alpha,\beta,\gamma)$ for $(x,y)$
+       \IF{$\alpha \in (0,1)$ and $\beta \in (0,1)$ and $\gamma \in (0,1)$}
+            \STATE{$\po{t} = \alpha \po{t}_0 +  \beta \po{t}_1 + \gamma \po{t}_2$}
+            \STATE{drawpixel $(x,y)$ with color texture(\po{t}) for a 
+                    solid texture or with texture($\beta,\gamma$) for a 
+                    2D texture.}
+       \ENDIF
+    \ENDFOR
+\ENDFOR
+\end{algorithmic}}
+\noindent This code will generate images, but there is a problem.
+To unravel the basic problem, lets consider the progression from
+world-space \po{q} to homogeneous point \po{r} to homogenized
+point \po{s}:
+\begin{displaymath}
+\begin{bmatrix}
+x_q \\ y_q \\ z_q \\ 1
+\end{bmatrix}
+\underrightarrow{\text{transform}}
+\begin{bmatrix}
+x_r \\ y_r \\ z_r \\ h_r
+\end{bmatrix}
+\underrightarrow{\text{homogenize}}
+\begin{bmatrix}
+x_r/h_r \\ y_r/h_r \\ z_r / h_r \\ 1
+\end{bmatrix}
+\equiv
+\begin{bmatrix}
+x_s \\ y_s \\ z_s \\ 1
+\end{bmatrix}
+\end{displaymath}
+The space we are interpolating in if we use screen space
+ is that of \po{s}.  However, we
+would like to be interpolating in space \po{q} or \po{r} where the
+homogeneous division has not yet non-linearly
+distorted the barycentric coordinates of the triangle.
+
+The key observation is that $1/h_r$ is interpolated with no
+distortion.  Likewise, so is $u/h_r$, $v/h_r$.  In fact, so is $k/h_r$ where
+$k$ is any quantity that varies linearly across the triangle.
+Recall from Section~\ref{sec:perspprop} that if we transform all points along the line segment
+between points \po{q} and \po{Q} and homogenize we have:
+\begin{displaymath}
+\po{s} + \frac{h_Rt}{h_r + t(h_R - h_r)}(\po{S} - \po{s})
+\end{displaymath}
+but if we linearly interpolate in the homogenized space we have:
+\begin{displaymath}
+\po{s} + a(\po{S} - \po{s})
+\end{displaymath}
+Although those lines sweep out the same points, typically $a \neq t$
+for the same points on the line segment.  However, if we interpolate
+$1/h$ we \emph{do} get the same answer regardless of which space
+we interpolate in.  To see this is true, confirm that (Exercise 2):
+\begin{equation}\label{eq:hyperbolint}
+\frac{1}{h_r} + \frac{h_Rt}{h_r + t(h_R - h_r)}
+\left(\frac{1}{h_R} - \frac{1}{h_r}\right)
+=\frac{1}{h_r} + t\left(\frac{1}{h_R} - \frac{1}{h_r}\right)
+\end{equation}
+This ability to interpolate $1/h$ linearly with no error in the 
+transformed space allows us to correctly texture triangles.
+Perhaps the least confusing way to deal with this distortion
+is to compute the world space barycentric coordinates of
+the triangle $(\beta_w,\gamma_w)$ in terms of screen space
+coordinates $(\beta,\gamma)$.  We note that $\beta_s/h$ and
+$\gamma_s/h$ can be interpolated linearly in screen space.
+For example, at the screen space position associated with
+screen space barycentric coordinates $(\beta,\gamma)$ we
+can interpolate $\beta_w/h$ without distortion.  Because
+$\beta_w=0$ at vertex 0 and vertex 2, and $\beta_w=1$ at
+vertex 1, we have:
+\begin{equation}\label{eq:betaconv}
+\frac{\beta_s}{h} = \frac{0}{h_0} + 
+                    \beta \left( \frac{1}{h_1} - \frac{0}{h_0}\right) + 
+                    \gamma \left( \frac{0}{h_2} - \frac{0}{h_0}\right).
+\end{equation}
+Because of all the zero terms Equation~\ref{eq:betaconv} is
+fairly simple.  However, to bet $\beta_w$ from it we must know $h$.
+Because we know $1/h$ is linear in screen space, we have:
+\begin{equation}\label{eq:hlin}
+\frac{1}{h} = \frac{1}{h_0} + 
+                    \beta \left( \frac{1}{h_1} - \frac{1}{h_0}\right) + 
+                    \gamma \left( \frac{1}{h_2} - \frac{1}{h_0}\right).
+\end{equation}
+Dividing Equation~\ref{eq:betaconv} by Equation~\ref{eq:hlin} gives:
+\begin{displaymath}
+\beta_w = \frac{\frac{\beta}{h_1}}{\frac{1}{h_0} + 
+                    \beta \left( \frac{1}{h_1} - \frac{1}{h_0}\right) + 
+                    \gamma \left( \frac{1}{h_2} - \frac{1}{h_0}\right)}.
+\end{displaymath}
+Multiplying numerator and denominator by $h_0h_1h_2$ and doing a
+similar set of manipulations for the analogous equations in $\gamma_w$ 
+gives:
+\begin{equation}\label{eq:screenconv}
+\begin{split}
+\beta_w &= \frac{h_0h_2 \beta}{h_1h_2 + h_2\beta(h_0 -h_1) + 
+h_1\gamma(h_0-h_2)} \\
+\gamma_w &= \frac{h_0h_1 \gamma}{h_1h_2 + h_2\beta(h_0 -h_1) + 
+h_1\gamma(h_0-h_2)}
+\end{split}
+\end{equation}
+Note that the two denominators are the same.
+
+For triangles that use the perspective matrix from Chapter~\ref{ch:viewing}
+recall that $w = z/n$ where $z$ is the distance from the viewer 
+perpendicular to the screen.  Thus for that matrix $1/z$ also varies
+linearly.  We can use this to modify our scan-conversion code for three
+points $\po{t}_i = (x_i,y_i,z_i,h_i)$ that have been passed through the viewing matrices but
+have not been homogenized:
+\emph{\begin{algorithmic}
+\STATE{Compute bounds for $x = x_i/h_i)$ and $y=y_i/h_i$}
+\FOR{all $x$}
+   \FOR{all $y$}
+       \STATE compute $(\alpha,\beta,\gamma)$ for $(x,y)$
+       \IF{($\alpha \in [0,1]$ and $\beta \in [0,1]$ and $\gamma \in [0,1]$)}
+            \STATE{$d = h_1h_2 + h_2\beta(h_0 -h_1) + h_1\gamma(h_0-h_2)$}
+            \STATE{$\beta_w = h_0h_2 \beta/d$}
+            \STATE{$\gamma_w = h_0h_1 \gamma/d$}
+            \STATE{$\alpha_w = 1 - \beta_w - \gamma_w$} 
+            \STATE{$u = \alpha_w u_0 + \beta_w u_1 + \gamma_w u_2$}
+            \STATE{$v = \alpha_w v_0 + \beta_w v_1 + \gamma_w v_2$}
+            \STATE{drawpixel $(x,y)$ with color texture($u$,$v$)}
+       \ENDIF
+    \ENDFOR
+\ENDFOR
+\end{algorithmic}}
+\noindent For solid textures just recall that by the definition of
+barycentric coordinates:
+\begin{displaymath}
+\po{p} = (1-\beta_w-\gamma_w)\po{p}_0 + \beta_w \po{p}_1 + \gamma_w 
+\po{p}_2,
+\end{displaymath}
+where $\po{p}_i$ are the world space vertices.  Then just call
+a solid texture routine for point \po{p}.
+
+
+
+\section{Bump Textures}
+
+Although so far we have only discussed changing reflectance
+ using texture, you can also change the
+surface normal to give an illusion of fine-scale geometry on the surface.
+We could do this by applying a \emph{bump map} which perturbs
+the surface normal.  
+One way to do this is:
+\emph{\begin{algorithmic}
+\STATE vector3 $n = $ surfaceNormal($x$)
+\STATE $n += k_1*vectorTurbulence(k_2 * x))) / w)/2$
+\STATE return $t*s0 + (1-t)*s1$
+\end{algorithmic}}
+\noindent This is shown in Figure~\thechapter.13.
+
+To implement \emph{vectorTurbulence} we first need \emph{vectorNoise}
+which produces a simple spatially varying 3D vector:
+\begin{displaymath}
+n_v(x,y,z) =
+           \sum_{i=\lfloor x \rfloor}^{\lfloor x \rfloor + 1}
+           \sum_{j=\lfloor y \rfloor}^{\lfloor y \rfloor + 1}
+           \sum_{k=\lfloor z \rfloor}^{\lfloor z \rfloor + 1}
+           \Gamma_{ijk} \omega(x)  \omega(y) \omega(z)
+\end{displaymath}
+With this, \emph{vectorTurbulence} is a direct analog of \emph{turbulence}:
+sum a series of scaled versions of  \emph{vectorNoise}.
+
+
+\marps{bump.ps}
+\marcap{\thechapter.13}{vector turbulence on sphere of radius 1.6.
+         Lighting directly from above.
+        Top: $k_1=0$.  Middle: $k_1 = 0.08$, $k_2=8$.
+        Bottom:  $k_1 = 0.24$, $k_2=8$.}
+
+\section{Displacement Mapping}
+
+One problem with Figure~\thechapter.13 is that the bumps neither
+cast shadows nor affect the silhouette of the object.  These limitations
+are because we are not really changing any geometry.  If we want more
+realism we can apply a 
+\emph{displacement map}.\index{displacement map}.  
+A displacement map actually changes the geometry using a texture.
+A common simplification is that the displacement will be
+in the direction of the surface normal.  If we take all
+points \po{p} on a surface, with associated surface normal
+vectors \ve{n}, then we can make a new surface using a 
+3D texture $d(\po{p})$:
+\begin{displaymath}
+\po{p}' = \po{p} + f(\po{p})\ve{n}.
+\end{displaymath}
+This concept is shown in Figure~\thechapter.14.
+
+
+\marps{displace2d.ps}
+\marcap{\thechapter.14}{The points \po{p} on the circle
+are each displaced in the direction of \ve{n} by the
+function $f(\po{p})$.  If $f$ is continuous, then the
+resulting points $\po{p}'$ form a continuous surface.}
+
+Displacement mapping is straightforward to implement in
+a z-buffer code by 
+storing the surface to be displaced as a fine mesh of many
+triangles.  Each vertex in the mesh can then be 
+displaced along the normal vector direction.  This results
+in large models, but it is quite robust.
+
+\section*{Frequently-Asked Questions}
+
+\subsection*{How do I implement displacement-mapping in ray tracing?}
+
+There is no ideal way to do it.  Generating all the triangles
+is probably best, and caching the geometry when necessary 
+will prevent memory overload.
+
+\subsection*{Why do my textured images not look more real?}
+
+Humans are good at seeing small imperfections in surfaces.
+Geometric imperfections are typically absent in computer-generated
+images that use texture maps for details, so they look
+``too smooth''.
+
+\subsection*{My textured animations look bad when there are many
+texels visible inside a pixel.  What should I do?}
+
+The problem is that the texture resultion is too high for that
+image.  We would like a smaller down-sampled version of the texture.
+However, if we move closer, such a down-sampled texture would
+look too blurry.  What we really need is to be able to dynamically
+choose the texture resolution based on viewing conditions so that
+about one texel is visible through each pixel.  A common way to do 
+that is to use 
+\emph{MIP-mapping}.\index{MIP-mapping}\index{texture mapping!MIP-mapping}
+That technique establishes a multi-resolution set of textures and
+chooses one of the textures for each polygon or pixel.  Typically
+the resolutions vary by a factor-of-two, e.g., $512^2$, 
+$256^2$, $128^2$, etc.
+
+\section*{Notes}
+
+Solid texture with noise was introduced in
+separate papers by Perlin and Lewis in SIGGRAPH 85.
+The paper \emph{Hypertexture} (Perlin, SIGGRAPH, 1989)
+was used  for the noise algorithm in this chapter.  Perlin won
+a technical Academy Award for his work on solid procedural textures.
+Texture mapping was introduced in \emph{Texture and Reflection in
+Computer Generated Images} (Blinn and Newell, Communications of
+the ACM, October, 1976).  The discussion of perpective-correct
+textures is based on \emph{Fast Shadows and Lighting Effects Using
+Texture Mapping} (Segal, Korobkin and van Widenfelt, SIGGRAPH, 1992)
+and on \emph{3D Game Engine Design} (Eberly, Morgan-Kaufmann, 2000).
+
+
+
+\section*{Exercises}
+
+\begin{enumerate}
+\item Find several ways to implement an infinite 2D checkerboard using
+surface and solid techniques.  Which is best?
+\item Verify that Equation~\ref{eq:hyperbolint} is a valid equality using
+brute-force algebra.
+\item How could you implement solid texturing by using the z-buffer 
+depth and a matrix transform?
+\end{enumerate}

@@ -1,0 +1,25 @@
+Îúíş d…8__PAGEZEROH__TEXT__text__TEXT¨ ¨€__literal4__TEXTÄ 
+Ä__literal8__TEXTĞ Ğ__cstring__TEXTğ ğ__DATA __data__DATA 
+__dyld__DATA ! __common__DATA(!0À__IMPORT0 __pointers__IMPORT0 
+__jump_table__IMPORT@0‡@ 8__LINKEDIT@0,0ƒÄ[ÉÃU‰åƒì(ÇD$ÇD$ 
+ÇD$ÇD$Ç$è²şÿÿÇD$ÇD$ ÇD$ÇD$Ç$è†şÿÿÇD$ÇD$ 
+ÇD$ÇD$Ç$èZşÿÿÇD$ÇD$ ÇD$ÇD$Ç$è.şÿÿÇD$ÇD$ 
+ÇD$ÇD$Ç$èşÿÿÇD$ÇD$ 
+ÇD$ÇD$Ç$èÖıÿÿÉÃU‰åSƒì4è[ó*E(ÈóXÈó*Eó\Èó*E(Ñó^Ğ(Â‹Eóó*Uó*M 
+ƒ‚óóYÁ(ÊóXÈó*E(Ñó^Ğ(Â‹EƒÀó‹Eó‹Eó(ÑóYĞ‹EƒÀó‹EƒÀóóYÁóXÂóZÀòQÀòZÀóEğƒ†ó.EğwƒòòEØëóZMğƒòf(ÑòYĞòUØëòEØò$è 
+İ]àòZEà‹EƒÀó‹Eó‹Eó(ÑóYĞ‹EƒÀó‹EƒÀóóYÁóXĞ‹EƒÀó‹EƒÀóóYÁóXÂóZÀòQÀòZÈƒ†óó^ÁóEô‹EóóYEô‹Eó‹EƒÀóóYEô‹EƒÀó‹EƒÀóóYEô‹EƒÀóƒÄ4[ÉÃU‰åSƒìDè[ƒ‹‹ƒ‹‹Eà‰D$‰L$ 
+‰T$‹E 
+‰D$‹E‰$èõıÿÿƒ‹…À„ÎóMàƒõó(Ñó\Ğ(ÂóEìóMäƒõó@(Ñó\Ğ(ÂóEğóMèƒõó@(Ñó\Ğ(ÂóEôƒÁó.Eìu+z)ƒÁó.EğuzƒÁó.Eôuzé7óEì(ÈóYMìóEğóYEğóXÈóEôóYEôóXÁóZÀòQÀf(ÈƒÍòòYÁòZÀƒóƒõóHóEè(ÑóYĞƒõóHóEäóYÁ(Êó\È(Áƒı‹óƒõóHóEà(ÑóYĞƒõóóEèóYÁ(Êó\È(Áƒı‹ó@ƒõóóEä(ÑóYĞƒõóHóEàóYÁ(Êó\È(Áƒı‹ó@‹Uàƒõ‰‹Uäƒõ‰P‹Uèƒõ‰PèƒÄD[ÉÃU‰åSƒì$è[ƒîÇƒòÇƒÊ‹‹U‰ƒÎ‹‹U 
+‰ƒâ‹‹U‰ƒŞ‹‹U ‰ƒÖ‹‹ƒÚ‹‹ƒÊ‰D$‰L$ ‰T$‹E 
+‰D$‹E‰$è{ûÿÿƒöÇƒÄ$[ÉÃU‰åƒìèYLÇ(‹‹;Eu,‹‹;E 
+tPÇë(‘Hô‹‰PÇTÇÉÃU‰åVSƒìè[Ç$Aèúƒä‹…Àt<ƒÀ‹‹HƒÀ‹‹pƒÀ‹‹ƒØ‹‰L$ 
+‰t$‰T$‰$èÕè„ùÿÿèƒÄ[^ÉÃU‰åSƒì$è[ƒ}u Ç$èxƒ}uJ‹E 
+‰Eôƒ}ôtƒ}ôt&ë6ƒR‹‹+E‰E‹E‰D$‹E‰$è!şÿÿë‹E‰D$‹E‰$è°şÿÿƒÄ$[ÉÃU‰åSƒìè[‹E 
+‰D$ ‹E‰D$ÇD$Ç$è/ƒá‹‹U‰ƒİ‹‹U 
+‰ƒÄ[ÉÃU‰åSƒìè[ƒª‹…Àtè#ƒÄ[ÉÃU‰åSƒì4è[‹E 
+‰D$E‰$èàÇ$èÙÇD$ôÇ$ôèÊƒN‰$è£ƒÿÿÿ‰$èÇƒ™şÿÿ‰$èŒƒĞÿÿÿ‰$èƒƒ 
+ÿÿÿ‰$è“ƒ]ûÿÿ‰$è€Ç$q è$Ç$è'èƒ>òòD$(ƒFòòD$ 
+ƒ>òòD$ƒFòòD$ƒ>òòD$ƒFòò$èÃÇ$è²èéƒÄ4[ÉÃÀ€?-DTû!ù?€V@@Àcolorcube€¿€¿€¿€?€¿€¿€?€?€¿€¿€?€¿€¿€¿€?€?€¿€?€?€?€?€¿€?€?€?€?€?€?€?€?€?€?€?€?€?€?àà 
+  
+H]q±Â€€€€€€€#$%&'()*+,-.@/0123456789:@; 
+dyld_stub_binding_helper__dyld_func_lookupdyld__mach_header_NXArgc_NXArgv___progname__mh_execute_header_angle_axis_colorcube_colors_curx_cury_display_environ_lastPos_main_mouseButton_mouseMotion_myReshape_polygon_redrawContinue_spinCube_startMotion_startX_startY_stopMotion_trackballMove_trackball_ptov_trackingMouse_trans_vertices_winHeight_winWidthstart_cos_exit_glBegin_glClear_glColor3fv_glEnable_glEnd_glLoadIdentity_glMatrixMode_glOrtho_glRotatef_glVertex3fv_glViewport_glutCreateWindow_glutDisplayFunc_glutIdleFunc_glutInit_glutInitDisplayMode_glutInitWindowSize_glutMainLoop_glutMotionFunc_glutMouseFunc_glutPostRedisplay_glutReshapeFunc_glutSwapBuffers

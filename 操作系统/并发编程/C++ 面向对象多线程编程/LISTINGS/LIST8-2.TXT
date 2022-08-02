@@ -1,0 +1,70 @@
+    1   // Listing 8-2
+    2   // This program demonstrates the
+    3   // use of a lockable global variable Number updated by
+    4   // two threads
+    5   
+    6   #include <iostream.h>
+    7   #include <pthread.h>
+    8   #include <mtration.h>
+    9   #include <math.h>
+   10   
+   11   mt_rational *Number;
+   12   
+   13   void *threadA(void *X)
+   14   {
+   15       long int Q;
+   16       try{
+   17            for(Q =2; Q < 500;Q += 4)
+   18            {   
+   19                Number->assign((Q/2),Q);
+   20                cout << pthread_self() << " Thread A: " << *Number << endl;
+   21            }
+   22       }
+   23       catch(general_exception &M)
+   24       {
+   25         cout << pthread_self() << M.message() << endl;
+   26       }                 
+   27   }
+   28   
+   29   void *threadB(void *X)
+   30   {
+   31      long int Y;
+   32      try{
+   33          for(Y = 5;Y < 500;Y += 5){
+   34              Number->assign((Y/5),Y);
+   35              cout << pthread_self() << " Thread B " << *Number << endl;
+   36          }  
+   37      }
+   38      catch(general_exception &M){
+   39            cout << pthread_self() << M.message() << endl;
+   40      }
+   41   }
+   42   
+   43   
+   44   void main(void)
+   45   {
+   46       pthread_t ThreadA;
+   47       pthread_t ThreadB;
+   48       try{
+   49            Number = new mt_rational(1,1);
+   50            pthread_create(&ThreadA,NULL,threadA,NULL);
+   51            pthread_create(&ThreadB,NULL,threadB,NULL);       
+   52            pthread_join(ThreadA,NULL);
+   53            pthread_join(ThreadB,NULL);
+   54            delete Number;
+   55       }
+   56       catch(general_exception &X)
+   57       {
+   58            cout << "From main( ) " << X.message() << endl;
+   59       }
+   60   }     
+   61       
+   62   
+   63   
+   64   
+   65   
+   66   
+   67   
+   68   
+   69   
+   70   

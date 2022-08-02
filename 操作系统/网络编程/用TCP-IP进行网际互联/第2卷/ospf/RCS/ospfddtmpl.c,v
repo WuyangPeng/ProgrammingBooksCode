@@ -1,0 +1,101 @@
+head	1.3;
+access;
+symbols;
+locks
+	dls:1.3; strict;
+comment	@ * @;
+
+
+1.3
+date	97.09.21.19.28.38;	author dls;	state Dist;
+branches;
+next	1.2;
+
+1.2
+date	94.02.26.19.51.54;	author dls;	state Works;
+branches;
+next	1.1;
+
+1.1
+date	94.02.06.18.20.56;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.3
+log
+@pre-3e code
+@
+text
+@/* ospfddtmpl.c - ospfddtmpl */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+#include <ospf.h>
+
+/*------------------------------------------------------------------------
+ * ospfddtmpl - fill in OSPF Data Description packet template
+ *------------------------------------------------------------------------
+ */
+struct ep *ospfddtmpl(pif)
+struct ospf_if	*pif;
+{
+	struct ep	*pep;
+	struct ip	*pip;
+	struct ospf	*po;
+	struct ospf_dd	*pdd;
+
+	pep = (struct ep *)getbuf(Net.netpool);
+	if ((int)pep == SYSERR)
+		return 0;
+	pip = (struct ip *)pep->ep_data;
+	po = (struct ospf *)pip->ip_data;
+	pdd = (struct ospf_dd *)po->ospf_data;
+
+	po->ospf_version = OSPF_VERSION;
+	po->ospf_type = T_DATADESC;
+	po->ospf_len = MINDDLEN;
+	po->ospf_rid = pif->if_rid;
+	po->ospf_aid = pif->if_area->ar_id;
+	po->ospf_authtype = pif->if_area->ar_authtype;
+	blkcopy(po->ospf_auth, pif->if_auth, AUTHLEN);
+	pdd->dd_mbz = 0;
+	pdd->dd_opts = pif->if_opts;
+	pdd->dd_control = 0;
+	return pep;
+}
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d12 1
+a12 2
+int
+ospfddtmpl(pif, pep)
+a13 1
+struct ep	*pep;
+d15 4
+a18 3
+	struct ip	*pip = (struct ip *)pep->ep_data;
+	struct ospf	*po = (struct ospf *)pip->ip_data;
+	struct ospf_dd	*pdd = (struct ospf_dd *)po->ospf_data;
+d20 7
+d37 1
+@

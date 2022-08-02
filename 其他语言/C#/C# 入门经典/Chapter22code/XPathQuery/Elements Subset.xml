@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" ?>
+<elements>
+  <!--First Non-Metal-->
+  <element Type="Non-Metal">
+    <name>Hydrogen</name>
+    <symbol>H</symbol>
+    <number>1</number>
+    <specification>
+      <mass>1.007825</mass>
+      <density>0.0899 g/cm3</density>
+    </specification>
+  </element>
+  <!--First Noble Gas-->
+  <element Type="Noble Gas">
+    <name>Helium</name>
+    <symbol>He</symbol>
+    <number>2</number>
+    <specification>
+      <mass>4.002602</mass>
+      <density>0.1785 g/cm3</density>
+    </specification>
+  </element>
+  <!--First Halogen-->
+  <element Type="Halogen">
+    <name>Fluorine</name>
+    <symbol>F</symbol>
+    <number>9</number>
+    <specification>
+      <mass>18.998404</mass>
+      <density>1.696 g/cm3</density>
+    </specification>
+  </element>
+  <element Type="Noble Gas">
+    <name>Neon</name>
+    <symbol>Ne</symbol>
+    <number>10</number>
+    <specification>
+      <mass>20.1797</mass>
+      <density>0.901 g/cm3</density>
+    </specification>
+  </element>
+</elements>

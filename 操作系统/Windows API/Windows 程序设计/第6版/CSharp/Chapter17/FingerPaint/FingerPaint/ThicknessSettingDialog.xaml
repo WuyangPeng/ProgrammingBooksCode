@@ -1,0 +1,102 @@
+﻿<UserControl
+    x:Class="FingerPaint.ThicknessSettingDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FingerPaint"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid>
+        <Border Background="White"
+                BorderBrush="Black"
+                BorderThickness="3"
+                Padding="32">
+
+            <ListBox SelectedItem="{Binding Thickness, Mode=TwoWay}"
+                     Width="150">
+                <x:Double>2</x:Double>
+                <x:Double>3</x:Double>
+                <x:Double>4</x:Double>
+                <x:Double>5</x:Double>
+                <x:Double>6</x:Double>
+                <x:Double>8</x:Double>
+                <x:Double>10</x:Double>
+                <x:Double>13</x:Double>
+                <x:Double>16</x:Double>
+                <x:Double>20</x:Double>
+                <x:Double>25</x:Double>
+                <x:Double>32</x:Double>
+                <x:Double>40</x:Double>
+
+                <ListBox.Foreground>
+                    <SolidColorBrush Color="{Binding Color}" />
+                </ListBox.Foreground>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="{Binding}"
+                              Width="120">
+                            <Canvas VerticalAlignment="Center"
+                                    HorizontalAlignment="Center">
+                            <Polyline Points="-36 0 36 0"
+                                  Stroke="{Binding RelativeSource={RelativeSource TemplatedParent}, 
+                                                   Path=Foreground}"
+                                  StrokeThickness="{Binding}"
+                                  StrokeStartLineCap="Round"
+                                  StrokeEndLineCap="Round" />
+                            </Canvas>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Grid>
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup x:Name="SelectionStates">
+                                                <VisualState x:Name="Unselected">
+                                                    <Storyboard>
+                                                        <ObjectAnimationUsingKeyFrames 
+                                                            Storyboard.TargetName="border"
+                                                            Storyboard.TargetProperty="BorderBrush">
+                                                            <DiscreteObjectKeyFrame 
+                                                                            KeyTime="0" 
+                                                                            Value="Transparent" />
+                                                        </ObjectAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </VisualState>
+
+                                                <VisualState x:Name="Selected" />
+                                                <VisualState x:Name="SelectedUnfocused" />
+                                                <VisualState x:Name="SelectedDisabled" />
+                                                <VisualState x:Name="SelectedPointerOver" />
+                                                <VisualState x:Name="SelectedPressed" />
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+
+                                        <Border Name="border"
+                                                BorderBrush="Black"
+                                                BorderThickness="1"
+                                                Background="Transparent"
+                                                Padding="12">
+
+                                            <ContentPresenter Content="{TemplateBinding Content}" />
+                                            
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+        </Border>
+    </Grid>
+</UserControl>

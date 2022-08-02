@@ -1,0 +1,3 @@
+
+Error E2247 STREX1.cpp 21: 'string::m_Length' is not accessible in function main()
+Warning W8004 STREX1.cpp 28: 'Length' is assigned a value that is never used in function main()

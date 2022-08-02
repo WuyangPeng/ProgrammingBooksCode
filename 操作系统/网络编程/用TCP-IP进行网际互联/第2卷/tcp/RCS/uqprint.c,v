@@ -1,0 +1,43 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	94.01.14.03.51.20;	author dls;	state v2e1;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* uqprint.c - uqprint */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  uqprint -  print a queue of urgent pointers (for debugging)
+ *------------------------------------------------------------------------
+ */
+int uqprint(q)
+{
+	struct	uqe	*puqe;
+
+	kprintf("\nUQ %d ");
+	while (puqe = (struct uqe *)seeq(q))
+		kprintf("(s %X l %d) ", puqe->uq_seq, puqe->uq_len);
+	kprintf("\n");
+}
+@

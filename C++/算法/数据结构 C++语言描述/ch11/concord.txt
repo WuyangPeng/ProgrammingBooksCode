@@ -1,0 +1,13 @@
+int m, n;
+double a = 3, b = 2, hypotenuse
+
+cin << m;
+if (n <= 5)
+	n = 2*m;
+else
+	n = m * m;
+
+cout << n << endl;
+
+hypotenuse = sqrt(a*a + b*b);
+cout << hypotenuse << endl;

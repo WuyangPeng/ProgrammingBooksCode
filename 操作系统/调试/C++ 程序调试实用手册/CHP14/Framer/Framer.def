@@ -1,0 +1,6 @@
+; Framer.def : Declares the module parameters for the DLL.
+
+LIBRARY      "Framer"
+DESCRIPTION  'Framer Windows Dynamic Link Library'
+
+EXPORTS

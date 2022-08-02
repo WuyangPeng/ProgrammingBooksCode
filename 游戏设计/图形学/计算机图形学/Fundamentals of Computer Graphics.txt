@@ -1,0 +1,7 @@
+计算机图形学  （Fundamentals of Computer Graphics） 
+
+官方网站：
+http://www.cs.utah.edu/~shirley/fcg2
+
+○
+作者： Peter Shirley 

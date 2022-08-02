@@ -1,0 +1,51 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.26.58;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* igmp_settimers.c - igmp_settimers */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+#include <igmp.h>
+
+/*------------------------------------------------------------------------
+ *  igmp_settimers  -  generate timer events to send IGMP reports
+ *------------------------------------------------------------------------
+ */
+int igmp_settimers(ifnum)
+unsigned int	ifnum;
+{
+	int		i;
+
+	wait(HostGroup.hi_mutex);
+	for (i=0; i<HG_TSIZE; ++i) {
+		struct hg	*phg = &hgtable[i];
+		if (phg->hg_state != HGS_IDLE || phg->hg_ifnum != ifnum)
+			continue;
+		phg->hg_state = HGS_DELAYING;
+		tmset(HostGroup.hi_uport, HG_TSIZE, phg, hgrand());
+	}
+	signal(HostGroup.hi_mutex);
+	return OK;
+}
+@

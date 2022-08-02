@@ -1,0 +1,16 @@
+This directory contains the source files demonstrating performing the summation 
+operation using the three different thread libraries: (1) POSIX pthreads, 
+(2) Microsoft Win32, and (3) Java.
+
+Compilation instructions for the Pthreads and Java versions are given in the
+source files. The Win32 program can be compiled using any Win32 development environment.
+
+Files:
+
+Figure 4.6 - thrd-posix.c
+
+Figure 4.7 - thrd-win32.c
+
+Figure 4.8 - Driver.java
+
+

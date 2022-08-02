@@ -1,0 +1,25 @@
+// Listing 7-5
+// Demonstrates how a named pipe stream server
+// is created and how it can read from a client
+// This program is used in conjunction with
+// Listing 7-6
+
+define INCL_DOSPROCESS
+#include "npipe2.cpp"
+
+
+
+
+void main(void)
+{
+
+   long int OMode = NP_ACCESS_DUPLEX;
+   long int PMode = NP_UNLIMITED_INSTANCES;
+   char X[6] = "";
+   npstream<char *> Server("\\pipe\\mypipe",PMode,OMode);
+   Server >> X;
+   X[5] = '\0';
+   cout << "From Client " << X << endl;
+
+
+}

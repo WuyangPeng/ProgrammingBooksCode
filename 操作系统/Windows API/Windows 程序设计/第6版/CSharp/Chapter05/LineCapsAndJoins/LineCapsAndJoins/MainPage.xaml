@@ -1,0 +1,124 @@
+<Page
+    x:Class="LineCapsAndJoins.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LineCapsAndJoins"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Name="startLineCapPanel"
+                    Grid.Row="0" Grid.Column="0"
+                    Margin="24">
+            
+            <RadioButton Content="Flat start"
+                         Checked="OnStartLineCapRadioButtonChecked">
+                <RadioButton.Tag>
+                    <PenLineCap>Flat</PenLineCap>
+                </RadioButton.Tag>                    
+            </RadioButton>
+            
+            <RadioButton Content="Round start"
+                         Checked="OnStartLineCapRadioButtonChecked">
+                <RadioButton.Tag>
+                    <PenLineCap>Round</PenLineCap>
+                </RadioButton.Tag>
+            </RadioButton>
+
+            <RadioButton Content="Square start"
+                         Checked="OnStartLineCapRadioButtonChecked">
+                <RadioButton.Tag>
+                    <PenLineCap>Square</PenLineCap>
+                </RadioButton.Tag>
+            </RadioButton>
+
+            <RadioButton Content="Triangle start"
+                         Checked="OnStartLineCapRadioButtonChecked">
+                <RadioButton.Tag>
+                    <PenLineCap>Triangle</PenLineCap>
+                </RadioButton.Tag>
+            </RadioButton>
+        </StackPanel>
+        
+        <StackPanel Name="endLineCapPanel"
+                    Grid.Row="0" Grid.Column="2"
+                    Margin="24">
+
+            <RadioButton Content="Flat end"
+                         Checked="OnEndLineCapRadioButtonChecked">
+                <RadioButton.Tag>
+                    <PenLineCap>Flat</PenLineCap>
+                </RadioButton.Tag>
+            </RadioButton>
+
+            <RadioButton Content="Round end"
+                         Checked="OnEndLineCapRadioButtonChecked">
+                <RadioButton.Tag>
+                    <PenLineCap>Round</PenLineCap>
+                </RadioButton.Tag>
+            </RadioButton>
+
+            <RadioButton Content="Square end"
+                         Checked="OnEndLineCapRadioButtonChecked">
+                <RadioButton.Tag>
+                    <PenLineCap>Square</PenLineCap>
+                </RadioButton.Tag>
+            </RadioButton>
+
+            <RadioButton Content="Triangle End"
+                         Checked="OnEndLineCapRadioButtonChecked">
+                <RadioButton.Tag>
+                    <PenLineCap>Triangle</PenLineCap>
+                </RadioButton.Tag>
+            </RadioButton>
+        </StackPanel>
+
+        <StackPanel Name="lineJoinPanel"
+                    Grid.Row="1" Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    Margin="24">
+
+            <RadioButton Content="Bevel join"
+                         Checked="OnLineJoinRadioButtonChecked">
+                <RadioButton.Tag>
+                    <PenLineJoin>Bevel</PenLineJoin>
+                </RadioButton.Tag>
+            </RadioButton>
+
+            <RadioButton Content="Miter join"
+                         Checked="OnLineJoinRadioButtonChecked">
+                <RadioButton.Tag>
+                    <PenLineJoin>Miter</PenLineJoin>
+                </RadioButton.Tag>
+            </RadioButton>
+
+            <RadioButton Content="Round join"
+                         Checked="OnLineJoinRadioButtonChecked">
+                <RadioButton.Tag>
+                    <PenLineJoin>Round</PenLineJoin>
+                </RadioButton.Tag>
+            </RadioButton>
+        </StackPanel>
+        
+        <Polyline Name="polyline"
+                  Grid.Row="0"
+                  Grid.Column="1"
+                  Points="0 0, 500 1000, 1000 0"
+                  Stroke="{StaticResource ApplicationForegroundThemeBrush}"
+                  StrokeThickness="100"
+                  Stretch="Fill"
+                  Margin="24" />
+    </Grid>
+</Page>

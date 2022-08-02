@@ -1,0 +1,123 @@
+<html>
+
+<head>
+<title>class anim_mesh</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class anim_mesh : public <a href="mesh.htm">mesh</a></h2>
+
+<h3>Definition</h3>
+
+<p class="code">class anim_mesh : public mesh<br>
+{<br>
+&nbsp; public:<br>
+&nbsp; int nframes,texpic;<br>
+&nbsp; vector *ao_vert;<br>
+&nbsp; vector *ao_bbox;<br>
+&nbsp; int nstripfan,nstripfanvert,*stripfancount,*stripfanvert;<br>
+&nbsp; vertex *vertdata;<br>
+<br>
+&nbsp; anim_mesh()<br>
+&nbsp; {<br>
+&nbsp;&nbsp;&nbsp; ao_vert=0;<br>
+&nbsp;&nbsp;&nbsp; ao_bbox=0;<br>
+&nbsp;&nbsp;&nbsp; nframes=0;<br>
+&nbsp;&nbsp;&nbsp; nstripfan=0;<br>
+&nbsp;&nbsp;&nbsp; nstripfanvert=0;<br>
+&nbsp;&nbsp;&nbsp; stripfancount=0;<br>
+&nbsp;&nbsp;&nbsp; stripfanvert=0;<br>
+&nbsp;&nbsp;&nbsp; vertdata=0;<br>
+&nbsp;&nbsp;&nbsp; texpic=-1;<br>
+&nbsp; }<br>
+<br>
+&nbsp; void reset();<br>
+&nbsp; void compute_bbox();<br>
+&nbsp; int load_fao(char *name);<br>
+&nbsp; void set_key(float key);<br>
+&nbsp; void set_key(int key);<br>
+&nbsp; void draw();<br>
+<br>
+&nbsp; virtual ~anim_mesh()<br>
+&nbsp; { reset(); };<br>
+};</p>
+
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>nframes</td>
+    <td>int</td>
+    <td>number of key frames in animation</td>
+  </tr>
+  <tr>
+    <td>texpic</td>
+    <td>int</td>
+    <td>the texture picture applied to the mesh</td>
+  </tr>
+  <tr>
+    <td>ao_vert</td>
+    <td><a href="vector.htm">vector</a> *</td>
+    <td>keyframe vertices (nv*sizeof(vector)*nframes)</td>
+  </tr>
+  <tr>
+    <td>ao_bbox</td>
+    <td><a href="vector.htm">vector</a> *</td>
+    <td>keyframe bounding boxes (nframes*2*sizeof(vector))</td>
+  </tr>
+  <tr>
+    <td>nstripfan</td>
+    <td>int</td>
+    <td>number of strips/ans</td>
+  </tr>
+  <tr>
+    <td height="25">nstripfanvert</td>
+    <td height="25">int</td>
+    <td height="25">number of vertices in strip/fan vertex array</td>
+  </tr>
+  <tr>
+    <td>stripfancount</td>
+    <td>int *</td>
+    <td>strip/fan vertex count array (nstripfan*sizeof(int))</td>
+  </tr>
+  <tr>
+    <td>stripfanvert</td>
+    <td>int *</td>
+    <td>vertex indices into ao_vert (nstripfanvert*sizeof*(int))</td>
+  </tr>
+  <tr>
+    <td>vertdata</td>
+    <td>vertex *</td>
+    <td>strip/fan vertex array (nstripfanvert*sizeof(vertex))</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p><a href="anim_mesh_reset.htm">reset</a>, <a href="anim_mesh_compute_bbox.htm">compute_bbox</a>,
+<a href="anim_mesh_load_fao.htm">load_fao</a>, <a href="anim_mesh_set_key.htm">set_key</a>,
+<a href="anim_mesh_draw.htm">draw</a></p>
+
+<h3>Remarks</h3>
+
+<p>This class implements an animated mesh. The mesh animation is defined by keyframes 
+  and each keyframe if made of an array of vertex positions. The mesh can be represented 
+  by a group of strip/fans or just the separate triangles. The complete mesh must 
+  have a single texture and to interpolate the animation, use the <i>set_key</i> 
+  function.&nbsp;</p>
+
+<h3>See Also</h3>
+
+<p><a href="vector.htm">vector</a>, <a href="mesh.htm">mesh</a></p>
+
+</body>
+</html>

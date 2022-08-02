@@ -1,0 +1,13 @@
+// Example 6-9 Changing the stack size of a thread using an offset
+
+#include <limits.h>
+//...
+
+pthread_attr_getstacksize(&SchedAttr,&DefaultSize);
+if(DefaultSize < PTHREAD_STACK_MIN){
+   SizeOffset = PTHREAD_STACK_MIN - DefaultSize;
+   NewSize = DefaultSize + SizeOffset;
+   pthread_attr_setstacksize(&Attr1,(size_t)NewSize);
+}
+
+

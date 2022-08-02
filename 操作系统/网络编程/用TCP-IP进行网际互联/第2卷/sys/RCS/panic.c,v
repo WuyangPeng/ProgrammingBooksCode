@@ -1,0 +1,66 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	1.1;
+
+1.1
+date	94.05.06.03.12.23;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@pre-3e code
+@
+text
+@/*------------------------------------------------------------------------
+ *	panic  --  panic and abort XINU
+ *------------------------------------------------------------------------
+ */
+
+#include <conf.h>
+#include <kernel.h>    
+#include <proc.h>
+#include <tty.h>
+
+static unsigned long	esp, ebp;
+
+panic (msg)
+char *msg;
+{
+	STATWORD ps;    
+	disable(ps);
+	kprintf("currpid %d (%s)\n", currpid, proctab[currpid].pname);
+	kprintf("Panic: %s\n", msg);
+	control(CONSOLE, TTC_SYNC, 1);
+	stacktrace(currpid, CONSOLE);
+	_stop("(panic)\n");
+	restore(ps);
+}
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d6 1
+d8 4
+d18 1
+d20 2
+@

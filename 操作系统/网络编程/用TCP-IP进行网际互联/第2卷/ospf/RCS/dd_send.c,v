@@ -1,0 +1,66 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	94.02.06.18.20.09;	author dls;	state Ok;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* dd_send.c - dd_send */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+#include <ospf.h>
+
+/*------------------------------------------------------------------------
+ *  dd_send - generate Data Description packets
+ *------------------------------------------------------------------------
+ */
+int dd_send(pif, pnb)
+struct ospf_if	*pif;
+struct ospf_nb	*pnb;
+{
+	struct	ep	*pep;
+	struct	ip	*pip;
+	struct	ospf	*po;
+	struct	ospf_dd	*pdd;
+
+kprintf("dd_send\n");
+
+	pep = (struct ep *)getbuf(Net.netpool);
+	if ((int)pep == SYSERR)
+		return SYSERR;
+	pip = (struct ip *)pep->ep_data;
+	po = (struct ospf *)pip->ip_data;
+	pdd = (struct ospf_dd *)po->ospf_data;
+
+	ospfddtmpl(pif, pep);
+	if (pnb->nb_state == NBS_EXSTART) {
+		pdd->dd_control = DDC_INIT | DDC_MORE | DDC_MSTR;
+		pdd->dd_seq = pnb->nb_seq;
+		if (enq(pnb->nb_dsl, pep, -pdd->dd_seq) < 0)
+			freebuf(pep);
+	} else
+		lsa_build(pif, pnb, pep);
+	if (pnb->nb_trexmt == 0) {	/* none pending... send one */
+		dd_xmit(pif, pnb);
+		pnb->nb_trexmt = pif->if_rintv;
+	}
+}
+@

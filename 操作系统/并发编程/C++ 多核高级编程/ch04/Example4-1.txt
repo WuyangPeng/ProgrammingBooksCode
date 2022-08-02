@@ -1,0 +1,16 @@
+Example 4-1
+
+//...
+
+  bool Found = false;
+  ifstream Fin(Possibilities)
+  while(!Fin.eof() && !Fin.fail() && !Found)
+  {
+      getline(Fin,Guess); 
+      if(Guess == MagicCode){
+          Found = true;
+      }
+   
+   }
+  
+//...

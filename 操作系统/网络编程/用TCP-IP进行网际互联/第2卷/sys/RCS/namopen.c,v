@@ -1,0 +1,46 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* namopen.c - namopen */
+
+#include <conf.h>
+#include <kernel.h>
+#include <name.h>
+
+/*------------------------------------------------------------------------
+ *  namopen  -  open an object (e.g., remote file) based on the name
+ *------------------------------------------------------------------------
+ */
+namopen(devptr, filenam, mode)
+struct	devsw	*devptr;
+char	*filenam;
+char	*mode;
+{
+	int	dev;
+	char	newname[NAMLEN];
+
+	if ( (dev=nammap(filenam, newname)) == SYSERR)
+		return(SYSERR);
+	return( open(dev, newname, mode) );
+}
+@

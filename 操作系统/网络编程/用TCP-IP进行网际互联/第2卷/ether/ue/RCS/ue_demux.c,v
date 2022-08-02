@@ -1,0 +1,204 @@
+head	1.3;
+access;
+symbols;
+locks; strict;
+comment	@ * @;
+
+
+1.3
+date	94.08.12.03.35.42;	author dls;	state Debug;
+branches;
+next	1.2;
+
+1.2
+date	94.08.12.02.00.20;	author dls;	state Old;
+branches;
+next	1.1;
+
+1.1
+date	94.08.04.20.19.17;	author dls;	state Orig;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.3
+log
+@seems to work; has lots of debugging code in it.
+@
+text
+@/* ue_demux.c - ue_demux */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+#include <ue.h>
+
+/*------------------------------------------------------------------------
+ * ue_demux - demultiplex an input packet from an SMC Ultra
+ *------------------------------------------------------------------------
+ */
+int
+ue_demux(pud)
+struct utdev	*pud;
+{
+	struct ep	*pep;
+	struct urb	*prb;
+	int		ifnum;
+
+	prb = (struct urb *) (pud->ud_iomem + (pud->ud_nextbuf << 8));
+	ifnum = pud->ud_ifnum;
+	if (ifnum < 0 || ifnum >= NIF)
+		goto drop;
+	if (nif[ifnum].ni_state != NIS_UP) {
+		nif[ifnum].ni_idiscard++;
+		goto drop;
+	}
+	while (prb->urb_rstat) {
+		pep = (struct ep *)nbgetbuf(Net.netpool);
+		if (pep == 0) {
+			if (ifnum >= 0 && ifnum < NIF)
+				nif[ifnum].ni_idiscard++;
+			goto drop;
+		}
+/*kprintf("prb %X len %d next %X\n", pud->ud_nextbuf,prb->urb_len,prb->urb_next); */
+		pud->ud_nextbuf = prb->urb_next;
+		pep->ep_len = prb->urb_len - EP_CRC;	/* drop CRC */
+if (prb->urb_len > 1514) {
+ue_dbuf(pud);
+kprintf("ue_demux: len %d too large prb %X\n", prb->urb_len, prb);
+freebuf(pep);
+return;
+}
+		ueget(&pep->ep_eh, prb->urb_data, pep->ep_len,
+			pud->ud_rmin, pud->ud_rmax);
+		pep->ep_type = net2hs(pep->ep_type);
+		pep->ep_order = EPO_NET;
+		ni_in(&nif[ifnum], pep, prb->urb_len);
+kprintf("BOUND %x\n", pud->ud_nextbuf);
+		uewr(pud->ud_pdev->dvcsr, BOUND, pud->ud_nextbuf);
+		/* check for more */
+		prb = (struct urb *) (pud->ud_iomem + (pud->ud_nextbuf << 8));
+	}
+	return OK;
+drop:
+	if (ifnum >= 0 && ifnum < NIF)
+		nif[ifnum].ni_ierrors++;
+	uewr(pud->ud_pdev->dvcsr, BOUND, prb->urb_next);
+	pud->ud_nextbuf = prb->urb_next;
+}
+
+ueget(pdst, psrc, count, pmin, pmax)
+unsigned short	*pdst, *psrc, *pmax, *pmin;
+int		count;
+{
+	int		i, part;
+
+kprintf("ueget(psrc %X pdst %X, count %d pmin %X pmax %X\n", psrc, pdst,
+count, pmin, pmax);
+	count = (count+1)/2;	/* convert byte count to word count */
+	part = pmax - psrc;
+	if (part < count) {
+kprintf("ueget: copy1 %d shorts from %X to %X\n", part, psrc, pdst);
+		wcopy(psrc, pdst, part);
+		/* zero each buffer's  RSTAT & len */
+		(int)psrc &= ~(UE_BUFSIZE-1);
+kprintf("ueget: zeroing: ");
+		for (; psrc < pmax; psrc += UE_BUFSIZE/2)
+{
+kprintf(" %X", psrc);
+			*psrc = 0;
+}
+kprintf("\n");
+		psrc = pmin;
+		pdst += part;
+		count -= part;
+	}
+kprintf("ueget: copy2 %d shorts from %X to %X\n", count, psrc, pdst);
+	wcopy(psrc, pdst, count);
+	/* zero each buffer's  RSTAT & len */
+	pmax = psrc + count;
+	(int)psrc &= ~(UE_BUFSIZE-1);
+kprintf("ueget: zeroing: ");
+	for (; psrc < pmax; psrc += UE_BUFSIZE/2)
+{
+kprintf(" %X", psrc);
+			*psrc = 0;
+}
+kprintf("\n");
+}
+
+uering(pud, bn)
+struct utdev	*pud;
+int		bn;
+{
+	int	i;
+
+kprintf("bn = %d\n", bn);
+	for (i=0; i<UE_NRX*6; ++i) {
+		struct urb *prb = (struct urb *)pud->ud_iomem + (i << 8);
+kprintf("ue_demux (%d) rstat %x next %x len %d\n", i, prb->urb_rstat,
+prb->urb_next, prb->urb_len);
+	}
+}
+
+wcopy(src, dst, count)
+unsigned short	*src;
+unsigned short	*dst;
+int		count;
+{
+	while (--count >= 0)
+		*dst++ = *src++;
+	return OK;
+}
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d37 1
+a37 1
+		prb->urb_len -= EP_CRC;		/* drop CRC */
+d44 1
+a44 1
+		ueget(&pep->ep_eh, prb->urb_data, (prb->urb_len+1)/2,
+a45 1
+		prb->urb_rstat = 0;
+a46 1
+		pep->ep_len = prb->urb_len;
+d49 2
+a50 1
+		uewr(pud->ud_pdev->dvcsr, BOUND, prb->urb_next);
+d66 1
+a66 1
+	int		i;
+d68 19
+a86 7
+	for (i=0; i<count; ++i) {
+		*pdst = *psrc;
+		if (((int)psrc & 0xff) == 0)
+			*psrc = 0;	/* zero RSTAT & len fields */
+		++psrc; ++pdst;
+		if (psrc >= pmax)
+			psrc = pmin;
+d88 12
+d114 10
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d35 1
+d39 4
+a42 1
+kprintf("ue_demux: len %d too large\n", prb->urb_len);
+@

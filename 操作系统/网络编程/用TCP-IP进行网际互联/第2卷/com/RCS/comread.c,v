@@ -1,0 +1,54 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.23.38;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@pre-3e code
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@
+#include <conf.h>
+#include <kernel.h>
+#include <io.h>
+
+/*------------------------------------------------------------------------
+ *  congetc -- read a character from the SUN physical keyboard
+ *------------------------------------------------------------------------
+ */
+int
+congetc(devptr )
+struct	devsw	*devptr;
+{
+	return SYSERR;
+}
+
+
+/*------------------------------------------------------------------------
+ *  conread -- read from the SUN physical keyboard
+ *------------------------------------------------------------------------
+ */
+int
+conread(devptr, buff, count )
+struct	devsw	*devptr;
+char *buff;
+int count;
+{
+	return SYSERR;
+}
+@

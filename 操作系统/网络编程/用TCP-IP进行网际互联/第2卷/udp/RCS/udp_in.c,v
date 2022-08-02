@@ -1,0 +1,79 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.30.32;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* udp_in.c - udp_in */
+
+#include <conf.h>
+#include <kernel.h>
+#include <proc.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  udp_in -  handle an inbound UDP datagram
+ *------------------------------------------------------------------------
+ */
+int udp_in(pni, pep)
+struct	netif	*pni;
+struct	ep	*pep;
+{
+	struct	ip	*pip = (struct ip *)pep->ep_data;
+	struct	udp	*pudp = (struct udp *)pip->ip_data;
+	struct	upq	*pup;
+	unsigned short	dst;
+	int		i;
+
+	if (pudp->u_cksum && udpcksum(pep, net2hs(pudp->u_len))) {
+		freebuf(pep);
+		return SYSERR;			/* checksum error */
+	}
+	udpnet2h(pudp);		/* convert UDP header to host order */
+	dst = pudp->u_dst;
+	wait(udpmutex);
+	for (i=0 ; i<UPPS ; i++) {
+		pup = &upqs[i];
+		if (pup->up_port == dst) {
+			/* drop instead of blocking on psend */ 
+			if (pcount(pup->up_xport) >= UPPLEN) {
+				signal(udpmutex);
+				freebuf(pep);
+				UdpInErrors++;
+				return SYSERR;
+			}
+			psend(pup->up_xport, pep);
+			UdpInDatagrams++;
+			if (!isbadpid(pup->up_pid)) {
+				send(pup->up_pid, OK);
+				pup->up_pid = BADPID;
+			}
+			signal(udpmutex);
+			return OK;
+		}
+	}
+	signal(udpmutex);
+	UdpNoPorts++;
+	icmp(ICT_DESTUR, ICC_PORTUR, pip->ip_src, pep);
+	return OK;
+}
+
+int	udpmutex;
+@

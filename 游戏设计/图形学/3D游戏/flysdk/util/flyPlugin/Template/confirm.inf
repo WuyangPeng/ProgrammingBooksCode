@@ -1,0 +1,11 @@
+Fly3D plugin Wizard is ready to save your project.
+
+Plugin Name:
+$$root$$
+
+Classes Defined:
+$$CLASSES$$
+Exported Functions:
+$$FUNCTIONS$$
+Fly SDK Path:
+$$FLYSDKPATH$$

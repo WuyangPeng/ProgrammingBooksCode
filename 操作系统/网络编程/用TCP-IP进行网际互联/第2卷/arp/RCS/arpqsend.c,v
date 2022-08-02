@@ -1,0 +1,49 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.22.42;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* arpqsend.c - arpqsend */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ * arpqsend - write packets queued waiting for an ARP resolution
+ *------------------------------------------------------------------------
+ */
+void arpqsend(pae)
+struct	arpentry	*pae;
+{
+	struct	ep	*pep;
+	struct	netif	*pni;
+
+	if (pae->ae_queue == EMPTY)
+		return;
+
+	pni = pae->ae_pni;
+	while (pep = (struct ep *)deq(pae->ae_queue))
+		netwrite(pni, pep, pep->ep_len);
+	freeq(pae->ae_queue);
+	pae->ae_queue = EMPTY;
+}
+@

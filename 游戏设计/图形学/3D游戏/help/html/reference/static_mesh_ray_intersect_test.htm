@@ -1,0 +1,54 @@
+<html>
+
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>static_mesh::ray_intersect_test</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2><a href="static_mesh.htm">static_mesh</a>::ray_intersect_test</h2>
+
+<h3>Prototype</h3>
+
+<p class="code">int ray_intersect_test(vector&amp; ro,vector&amp; rd,float rad)</p>
+
+<h3>Parameters</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>ro</td>
+    <td><a href="vector.htm">vector</a>&amp;</td>
+    <td>ray origin</td>
+  </tr>
+  <tr>
+    <td>rd</td>
+    <td><a href="vector.htm">vector</a>&amp;</td>
+    <td>ray direction</td>
+  </tr>
+  <tr>
+    <td>rad</td>
+    <td>float</td>
+    <td>collision radius</td>
+  </tr>
+</table>
+
+<h3>Return Value</h3>
+
+<p>Returns TRUE if an intersection is found, FALSE for no intersection.</p>
+
+<h3>Remarks</h3>
+
+<p>This function implements the ray intersection test virtual <em>bsp_obect</em> function
+for the bsp faces included in a leaf node.<br>
+  It passes the ray_intersect_test call to the same function from its <em>objmesh</em> 
+  member variable.</p>
+</body>
+</html>

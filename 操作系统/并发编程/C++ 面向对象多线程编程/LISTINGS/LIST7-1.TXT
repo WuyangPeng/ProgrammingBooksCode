@@ -1,0 +1,48 @@
+// Listing 7-1 shows some of the
+// commonly used pthread functions, 
+// and how they are called.
+
+    1   #include <iostream.h>
+    2   #include <pthread.h>
+    3   #include <stdlib.h>
+    4   
+    5   pthread_mutex_t MyLock;
+    6   
+    7   void *testThread(void *X)
+    8   {
+    9      int N;
+   10      for(N = 0;N < 10;N++){
+   11         pthread_mutex_lock(&MyLock);
+   12         cout << pthread_self() << " I'm Alive thread 1" << endl;
+   13         pthread_mutex_unlock(&MyLock);
+   14         pthread_yield();
+   15      }
+   16   }
+   17   void *testThread2(void *X)
+   18   {
+   19      int N;
+   20      for(N = 0;N < 10;N++){
+   21          pthread_mutex_lock(&MyLock);
+   22          cout << pthread_self() << " I'm Alive thread 2 " << endl;
+   23          pthread_mutex_unlock(&MyLock);
+   24          pthread_yield();
+   25      }
+   26   }
+   27     
+   28   
+   29   void main(void)
+   30   {
+   31       pthread_init();
+   32       pthread_t ThreadId;
+   33       pthread_t ThreadId2;
+   34       if(pthread_mutex_init(&MyLock,NULL)){
+   35         cerr << "could not initialize mutex " << endl;
+   36         exit(1);
+   37       }
+   38       pthread_create(&ThreadId,NULL,testThread,NULL);
+   39       pthread_create(&ThreadId2,NULL,testThread2,NULL);
+   40       pthread_join(ThreadId,NULL);
+   41       pthread_join(ThreadId2,NULL);
+   42   }    
+   43       
+

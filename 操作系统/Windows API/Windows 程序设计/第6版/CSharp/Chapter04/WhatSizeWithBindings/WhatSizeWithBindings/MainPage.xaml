@@ -1,0 +1,34 @@
+<Page
+    x:Class="WhatSizeWithBindings.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WhatSizeWithBindings"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"    
+    FontSize="36"
+    Name="page">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top">
+            <TextBlock Text="&#x21A4; " />
+            <TextBlock Text="{Binding ElementName=page, Path=ActualWidth}" />
+            <TextBlock Text=" pixels &#x21A6;" />
+        </StackPanel>
+        
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <TextBlock Text="&#x21A5;" TextAlignment="Center" />
+            
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <TextBlock Text="{Binding ElementName=page, Path=ActualHeight}" />
+                <TextBlock Text=" pixels" />
+            </StackPanel>
+            
+            <TextBlock Text="&#x21A7;" TextAlignment="Center" />
+        </StackPanel>
+    </Grid>
+</Page>

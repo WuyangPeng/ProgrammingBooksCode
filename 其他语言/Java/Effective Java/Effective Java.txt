@@ -1,0 +1,10 @@
+Effective Java 
+ （第3版）
+
+官方网站：
+http://joshbloch.com/effectivejava、 
+https://github.com/jbloch/effective-java-3e-source-code。
+
+★★
+作者：Joshua Bloch
+其他书籍：《Java 并发编程实战》、《Java 解惑》。 

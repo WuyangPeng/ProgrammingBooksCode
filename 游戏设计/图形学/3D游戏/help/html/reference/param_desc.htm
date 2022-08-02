@@ -1,0 +1,222 @@
+<html>
+
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>class param_desc</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class param_desc</h2>
+
+<h3>Definition</h3>
+
+<p class="code">class param_desc<br>
+{<br>
+public:<br>
+&nbsp;&nbsp;&nbsp; char name[64];<br>
+&nbsp;&nbsp;&nbsp; int type;<br>
+&nbsp;&nbsp;&nbsp; void *data;<br>
+&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp; char *get_string();<br>
+&nbsp;&nbsp;&nbsp; void set_string(char *str);<br>
+};</p>
+
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>name</td>
+    <td>char []</td>
+    <td>the parameter name</td>
+  </tr>
+  <tr>
+    <td>type</td>
+    <td>int</td>
+    <td>the parameter type</td>
+  </tr>
+  <tr>
+    <td>data</td>
+    <td>void *</td>
+    <td>pointer to the parameter data</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p><a href="param_desc_get_string.htm">get_string</a>, <a href="param_desc_set_string.htm">set_string</a></p>
+
+<h3>Remarks</h3>
+
+<p>This class holds information on Fly3D plug-in object parameters. Each class 
+  defined in a Fly3D plug-in (derived from bsp_object) can have any number of 
+  parameters. Each parameter must have an associated param_desc class describing 
+  its data.</p>
+
+<p>The types of parameters available are:</p>
+
+<p>&gt;255 - parameter is a pointer to a class in the stock obejcts list that
+has this type id<br>
+&lt;255 - parameter is a pointer to a class in the active objects list that has
+this type id</p>
+
+<table BORDER="1" CELLSPACING="1" CELLPADDING="4" WIDTH="598">
+  <tr>
+    <th WIDTH="137">
+      <p><font color="#FFFFFF">Type</font></th>
+    <th WIDTH="154">
+      <p><font color="#FFFFFF">Description</font></th>
+    <th WIDTH="119">
+      <p><font color="#FFFFFF">Data type</font></th>
+    <th WIDTH="136">
+      <p><font color="#FFFFFF">Data size (sizeof)</font></th>
+  </tr>
+  <tr>
+    <td WIDTH="137">
+      <p>‘a’</td>
+    <td WIDTH="154">
+      <p>angle</td>
+    <td WIDTH="119">
+      <p>float</td>
+    <td WIDTH="136">
+      <p>4</td>
+  </tr>
+  <tr>
+    <td WIDTH="137">
+      <p>‘i’</td>
+    <td WIDTH="154">
+      <p>integer</td>
+    <td WIDTH="119">
+      <p>int</td>
+    <td WIDTH="136">
+      <p>4</td>
+  </tr>
+  <tr>
+    <td WIDTH="137">
+      <p>‘f ‘</td>
+    <td WIDTH="154">
+      <p>floating point</td>
+    <td WIDTH="119">
+      <p>float</td>
+    <td WIDTH="136">
+      <p>4</td>
+  </tr>
+  <tr>
+    <td WIDTH="137">
+      <p>‘v’</td>
+    <td WIDTH="154">
+      <p>float vector (x,y,z)</td>
+    <td WIDTH="119">
+      <p>vector</td>
+    <td WIDTH="136">
+      <p>12</td>
+  </tr>
+  <tr>
+    <td WIDTH="137">
+      <p>‘c’</td>
+    <td WIDTH="154">
+      <p>float color (r,g,b)</td>
+    <td WIDTH="119">
+      <p>vector</td>
+    <td WIDTH="136">
+      <p>12</td>
+  </tr>
+  <tr>
+    <td WIDTH="137">
+      <p>‘b’</td>
+    <td WIDTH="154">
+      <p>Bezier curve</td>
+    <td WIDTH="119">
+      <p>bezier_curve *</td>
+    <td WIDTH="136">
+      <p>4</td>
+  </tr>
+  <tr>
+    <td WIDTH="137">
+      <p>'h'</p>
+    </td>
+    <td WIDTH="154">
+      <p>Bezier patch</p>
+    </td>
+    <td WIDTH="119">
+      <p>bezier_patch *</p>
+    </td>
+    <td WIDTH="136">
+      <p>4</p>
+    </td>
+  </tr>
+  <tr>
+    <td WIDTH="137">
+      <p>‘3’</td>
+    <td WIDTH="154">
+      <p>3ds mesh model</td>
+    <td WIDTH="119">
+      <p>mesh *</td>
+    <td WIDTH="136">
+      <p>4</td>
+  </tr>
+  <tr>
+    <td WIDTH="137">
+      <p>‘m’</td>
+    <td WIDTH="154">
+      <p>fao animate mesh</td>
+    <td WIDTH="119">
+      <p>anim_mesh *</td>
+    <td WIDTH="136">
+      <p>4</td>
+  </tr>
+  <tr>
+    <td WIDTH="137">
+      <p>‘w’</td>
+    <td WIDTH="154">
+      <p>wav sound object</td>
+    <td WIDTH="119">
+      <p>sound *</td>
+    <td WIDTH="136">
+      <p>4</td>
+  </tr>
+  <tr>
+    <td WIDTH="137">
+      <p>‘p’</td>
+    <td WIDTH="154">
+      <p>picture file</td>
+    <td WIDTH="119">
+      <p>int</td>
+    <td WIDTH="136">
+      <p>4</td>
+  </tr>
+  <tr>
+    <td WIDTH="137">
+      <p>‘o’</td>
+    <td WIDTH="154">
+      <p>stock object</td>
+    <td WIDTH="119">
+      <p>bsp_object *</td>
+    <td WIDTH="136">
+      <p>4</td>
+  </tr>
+  <tr>
+    <td WIDTH="137">
+      <p>‘d’</td>
+    <td WIDTH="154">
+      <p>active object</td>
+    <td WIDTH="119">
+      <p>bsp_object *</td>
+    <td WIDTH="136">
+      <p>4</td>
+  </tr>
+</table>
+
+<h3>See Also</h3>
+
+<p><a href="class_desc.htm">class_desc</a>, <a href="flydll.htm">flydll</a>, <a href="flydllgroup.htm">flydllgroup</a></p>
+
+</body>
+</html>

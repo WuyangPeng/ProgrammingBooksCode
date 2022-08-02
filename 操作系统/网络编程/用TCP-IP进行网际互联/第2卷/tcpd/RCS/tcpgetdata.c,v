@@ -1,0 +1,108 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	97.09.21.19.30.11;	author dls;	state Dist;
+branches;
+next	1.1;
+
+1.1
+date	94.01.14.04.11.50;	author dls;	state v2e1;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@pre-3e code
+@
+text
+@/* tcpgetdata.c - tcpgetdata */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  tcpgetdata  -  copy data from a TCP receive buffer to a user buffer
+ *------------------------------------------------------------------------
+ */
+int tcpgetdata(ptcb, pch, len)
+struct	tcb	*ptcb;
+char		*pch;
+int		len;
+{
+	tcpseq		seq;
+	int		cc;
+
+	seq = ptcb->tcb_rnext - ptcb->tcb_rbcount; /* start sequence	*/
+	if (ptcb->tcb_flags & TCBF_RUPOK) {
+		int	nbc, ubc;	/* normal & urgent byte counts	*/
+
+		nbc = ptcb->tcb_rnext - ptcb->tcb_rupseq - 1;
+		if (nbc >= 0) {		/* urgent boundary in buffer	*/
+			ubc = ptcb->tcb_rbcount - nbc;
+			if (len >= ubc) {
+				len = ubc;
+				ptcb->tcb_flags &= ~TCBF_RUPOK;
+			}
+		}
+	}
+	for (cc=0; ptcb->tcb_rbcount && cc < len;) {
+		*pch++ = ptcb->tcb_rcvbuf[ptcb->tcb_rbstart];
+		--ptcb->tcb_rbcount;
+		if (++ptcb->tcb_rbstart >= ptcb->tcb_rbsize)
+			ptcb->tcb_rbstart = 0;
+		++cc;
+	}
+	if (ptcb->tcb_rbcount == 0)
+		ptcb->tcb_flags &= ~TCBF_PUSH;
+	/*
+	 * open the receive window, if it's closed and we've made
+	 * enough space to fit a segment.
+	 */
+	if (SEQCMP(ptcb->tcb_cwin, ptcb->tcb_rnext) <= 0 &&
+			tcprwindow(ptcb)) {
+		ptcb->tcb_flags |= TCBF_NEEDOUT;
+		tcpkick(ptcb);
+	}
+	return cc;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@a15 1
+	struct	uqe	*puqe, *tcprhskip();
+a18 4
+	if (ptcb->tcb_ruhq >= 0)
+		puqe = (struct uqe *)deq(ptcb->tcb_ruhq);
+	else
+		puqe = 0;
+d20 12
+a32 7
+		/* see if we're at an urgent data hole */
+		if (puqe && SEQCMP(puqe->uq_seq, seq) <= 0) {
+			puqe = tcprhskip(ptcb, puqe, seq);
+			continue;
+		}
+		/* ...now normal data processing */
+
+a38 3
+	if (puqe)
+		if (enq(ptcb->tcb_ruhq,puqe,RUHK(ptcb,puqe->uq_seq)) < 0)
+			uqfree(puqe);	/* shouldn't happen... */
+@

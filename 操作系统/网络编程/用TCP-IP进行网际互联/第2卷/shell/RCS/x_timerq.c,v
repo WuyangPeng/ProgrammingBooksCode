@@ -1,0 +1,40 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.29.03;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* x_timerq.c - x_timerq */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  x_timerq  -  command to print (TCP) timer queue
+ *------------------------------------------------------------------------
+ */
+COMMAND	x_timerq(stdin, stdout, stderr, nargs, args)
+int	stdin, stdout, stderr, nargs;
+char	*args[];
+{
+	return tqwrite(stdout);
+}
+@

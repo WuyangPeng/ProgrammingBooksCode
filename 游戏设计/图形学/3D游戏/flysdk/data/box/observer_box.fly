@@ -1,0 +1,499 @@
+[classes]
+dll0=observer.dll
+dll1=gamelib.dll
+dll2=lights.dll
+dll3=volfog.dll
+
+[observer0]
+longname=player
+pos=-284.040039 800.437439 131.850037
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=1
+mass=1.000000
+radius=20.000000
+bump=0.500000
+friction=1.000000
+active=1
+latedraw=0
+rotvel=0.100000
+mousevel=0.100000
+moveforce=0.002000
+maxvel=0.500000
+veldamp=0.001000
+
+[fao_mesh0]
+longname=fan
+pos=-712.500000 712.500000 112.500000
+rot=0.000000 0.000000 0.100000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=0
+mass=0.000000
+radius=0.000000
+bump=0.000000
+friction=0.000000
+active=1
+latedraw=0
+animobj=fan.fao
+mode=0
+time=4000
+delay=0
+wait=0
+
+[subdiv_mesh0]
+longname=subdiv1
+pos=0.000000 0.000000 0.000000
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=0
+mass=0.000000
+radius=0.000000
+bump=0.000000
+friction=0.000000
+active=1
+latedraw=0
+basemesh=subdiv1.3ds
+nsubdiv=0
+mode=1
+
+[subdiv_mesh1]
+longname=subdiv2
+pos=0.000000 0.000000 0.000000
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=0
+mass=0.000000
+radius=0.000000
+bump=0.000000
+friction=0.000000
+active=1
+latedraw=0
+basemesh=subdiv2.3ds
+nsubdiv=2
+mode=1
+
+[cartoon_mesh0]
+longname=toon2
+pos=0.000000 -637.500000 37.500000
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=0
+mass=0.000000
+radius=0.000000
+bump=0.000000
+friction=0.000000
+active=1
+latedraw=0
+objmesh=toon2.3ds
+
+[cartoon_mesh1]
+longname=toon1
+pos=-187.500000 -600.000000 0.000000
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=0
+mass=0.000000
+radius=0.000000
+bump=0.000000
+friction=0.000000
+active=1
+latedraw=0
+objmesh=toon1.3ds
+
+[light0]
+longname=fan_light
+pos=-712.500000 712.500000 150.000000
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=1000000
+colflag=0
+mass=0.000000
+radius=0.000000
+bump=0.000000
+friction=0.000000
+active=1
+latedraw=0
+color=1.000000 1.000000 0.800000
+illumradius=400.000000
+shadowmode=1
+shadow_obj=fao_mesh0
+sprite=
+grow=0.000000
+
+[meshlight0]
+longname=light14
+pos=1725.000122 2175.000000 0.000000
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=0
+mass=0.000000
+radius=20.000000
+bump=0.000000
+friction=0.000000
+active=1
+latedraw=0
+illumradius=245.000000
+color=1.000000 1.000000 1.000000
+halopic=whitelen.tga
+halosize=75.000000
+mesh=light14.3ds
+
+[meshlight1]
+longname=light13
+pos=1312.500000 2175.000000 0.000000
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=0
+mass=0.000000
+radius=20.000000
+bump=0.000000
+friction=0.000000
+active=1
+latedraw=0
+illumradius=245.000000
+color=1.000000 1.000000 1.000000
+halopic=whitelen.tga
+halosize=75.000000
+mesh=light13.3ds
+
+[meshlight2]
+longname=light12
+pos=900.000061 2175.000000 0.000000
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=0
+mass=0.000000
+radius=20.000000
+bump=0.000000
+friction=0.000000
+active=1
+latedraw=0
+illumradius=245.000000
+color=1.000000 1.000000 1.000000
+halopic=whitelen.tga
+halosize=75.000000
+mesh=light12.3ds
+
+[meshlight3]
+longname=light11
+pos=-1875.000122 -75.000000 150.000000
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=0
+mass=0.000000
+radius=20.000000
+bump=0.000000
+friction=0.000000
+active=1
+latedraw=0
+illumradius=300.000000
+color=1.000000 1.000000 1.000000
+halopic=whitelen.tga
+halosize=75.000000
+mesh=light11.3ds
+
+[meshlight4]
+longname=light10
+pos=-1500.000000 -525.000000 150.000000
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=0
+mass=0.000000
+radius=20.000000
+bump=0.000000
+friction=0.000000
+active=1
+latedraw=0
+illumradius=300.000000
+color=1.000000 1.000000 1.000000
+halopic=whitelen.tga
+halosize=75.000000
+mesh=light10.3ds
+
+[meshlight5]
+longname=light09
+pos=-1500.000000 -975.000061 150.000000
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=0
+mass=0.000000
+radius=20.000000
+bump=0.000000
+friction=0.000000
+active=1
+latedraw=0
+illumradius=300.000000
+color=1.000000 1.000000 1.000000
+halopic=whitelen.tga
+halosize=75.000000
+mesh=light09.3ds
+
+[meshlight6]
+longname=light08
+pos=1725.000122 1500.000000 150.000000
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=0
+mass=0.000000
+radius=20.000000
+bump=0.000000
+friction=0.000000
+active=1
+latedraw=0
+illumradius=300.000000
+color=1.000000 0.000000 0.000000
+halopic=whitelen.tga
+halosize=75.000000
+mesh=light08.3ds
+
+[meshlight7]
+longname=light07
+pos=1425.000000 1500.000000 150.000000
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=0
+mass=0.000000
+radius=20.000000
+bump=0.000000
+friction=0.000000
+active=1
+latedraw=0
+illumradius=300.000000
+color=0.000000 1.000000 1.000000
+halopic=whitelen.tga
+halosize=75.000000
+mesh=light07.3ds
+
+[meshlight8]
+longname=light06
+pos=-862.500061 -787.500061 135.000000
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=0
+mass=0.000000
+radius=20.000000
+bump=0.000000
+friction=0.000000
+active=1
+latedraw=0
+illumradius=300.000000
+color=1.000000 1.000000 1.000000
+halopic=whitelen.tga
+halosize=75.000000
+mesh=light06.3ds
+
+[meshlight9]
+longname=light05
+pos=-862.500061 -262.500000 135.000000
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=0
+mass=0.000000
+radius=20.000000
+bump=0.000000
+friction=0.000000
+active=1
+latedraw=0
+illumradius=300.000000
+color=1.000000 1.000000 1.000000
+halopic=whitelen.tga
+halosize=75.000000
+mesh=light05.3ds
+
+[meshlight10]
+longname=light04
+pos=1012.500061 862.500061 135.000000
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=0
+mass=0.000000
+radius=20.000000
+bump=0.000000
+friction=0.000000
+active=1
+latedraw=0
+illumradius=300.000000
+color=1.000000 1.000000 1.000000
+halopic=whitelen.tga
+halosize=75.000000
+mesh=light04.3ds
+
+[meshlight11]
+longname=light03
+pos=487.500031 862.500061 135.000000
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=0
+mass=0.000000
+radius=20.000000
+bump=0.000000
+friction=0.000000
+active=1
+latedraw=0
+illumradius=300.000000
+color=1.000000 1.000000 1.000000
+halopic=whitelen.tga
+halosize=75.000000
+mesh=light03.3ds
+
+[meshlight12]
+longname=light02
+pos=375.000000 -375.000000 150.000000
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=0
+mass=0.000000
+radius=20.000000
+bump=0.000000
+friction=0.000000
+active=1
+latedraw=0
+illumradius=600.000000
+color=1.000000 1.000000 1.000000
+halopic=whitelen.tga
+halosize=75.000000
+mesh=light02.3ds
+
+[meshlight13]
+longname=light01
+pos=-712.500000 712.500000 150.000000
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=0
+mass=0.000000
+radius=20.000000
+bump=0.000000
+friction=0.000000
+active=1
+latedraw=0
+illumradius=0.000000
+color=1.000000 1.000000 1.000000
+halopic=whitelen.tga
+halosize=75.000000
+mesh=light01.3ds
+
+[fogsphere0]
+longname=fog2
+pos=-1700.000000 -300.000000 100.000000
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=0
+mass=0.000000
+radius=0.000000
+bump=0.000000
+friction=0.000000
+active=1
+latedraw=0
+fogradius=200.000000
+fogrange=400.000000
+fogdepth=500.000000
+fogcolor=0.501961 0.250980 0.250980
+fogmode=0
+
+[fogbox0]
+longname=fog1
+pos=1312.500000 2062.500000 -82.500000
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=0
+mass=0.000000
+radius=0.000000
+bump=0.000000
+friction=0.000000
+active=1
+latedraw=0
+fogsizex=600.000000
+fogsizey=200.000000
+fogsizez=30.000000
+fogcolor=0.250980 0.501961 0.501961
+fogrange=200.000000
+fogdepth=200.000000
+fogmode=0
+
+[fly]
+background=0.000000 0.000000 0.000000
+bspfile=box
+viewmaxdist=1500.000000
+viewmindist=10.000000
+camangle=60.000000
+camera=observer0
+player=observer0
+amblight=100
+curveerr=5.000000
+geomdetail=100.000000
+lmpxsize=40.000000
+mapmode=13
+mpdelay=40
+shadowcolor=0.000000 0.000000 0.000000
+shadowdepth=0.000000
+consolepic=console.jpg
+fontspic=fonts.tga
+intropic=intro.jpg
+crosshairpic=crosshair.tga
+crosshairsize=8
+cartoonpicbsp=
+cartoonpic=gradient3.tga
+cartooncolor=0.000000 0.000000 0.000000
+cartoonwidth=4.000000
+detailpic=detail1.tga
+detailtile=5.000000
+antialias=0
+clearbk=0
+fog=0
+hwlights=1
+mouse=0
+mipmap=1
+multitexture=1
+mute=0
+nodeonly=0
+pvsoff=0
+shadows=2
+status=1
+stencil=0
+textfilter=1
+wireframe=0

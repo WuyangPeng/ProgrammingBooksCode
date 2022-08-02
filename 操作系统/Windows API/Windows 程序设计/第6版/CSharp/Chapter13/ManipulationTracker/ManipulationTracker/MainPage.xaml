@@ -1,0 +1,104 @@
+<Page
+    x:Class="ManipulationTracker.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ManipulationTracker"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <Page.Resources>
+        <Style TargetType="local:ManipulationModeCheckBox">
+            <Setter Property="Margin" Value="12 6 24 6" />
+        </Style>
+        
+        <Style TargetType="Rectangle">
+            <Setter Property="Width" Value="144" />
+            <Setter Property="Height" Value="144" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="RenderTransformOrigin" Value="0.5 0.5" />
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Name="checkBoxPanel"
+                    Grid.Column="0">
+            <local:ManipulationModeCheckBox Checked="OnManipulationModeCheckBoxChecked"
+                                            Unchecked="OnManipulationModeCheckBoxChecked"
+                                            Content="Translate X (1)" 
+                                            ManipulationModes="TranslateX" />
+            
+            <local:ManipulationModeCheckBox Checked="OnManipulationModeCheckBoxChecked"
+                                            Unchecked="OnManipulationModeCheckBoxChecked"
+                                            Content="Translate Y (2)" 
+                                            ManipulationModes="TranslateY" />
+            
+            <local:ManipulationModeCheckBox Checked="OnManipulationModeCheckBoxChecked"
+                                            Unchecked="OnManipulationModeCheckBoxChecked"
+                                            Content="Translate Rails X (4)" 
+                                            ManipulationModes="TranslateRailsX" />
+            
+            <local:ManipulationModeCheckBox Checked="OnManipulationModeCheckBoxChecked"
+                                            Unchecked="OnManipulationModeCheckBoxChecked"
+                                            Content="Translate Rails Y (8)" 
+                                            ManipulationModes="TranslateRailsY" />
+            
+            <local:ManipulationModeCheckBox Checked="OnManipulationModeCheckBoxChecked"
+                                            Unchecked="OnManipulationModeCheckBoxChecked"
+                                            Content="Rotate (16)" 
+                                            ManipulationModes="Rotate" />
+            
+            <local:ManipulationModeCheckBox Checked="OnManipulationModeCheckBoxChecked"
+                                            Unchecked="OnManipulationModeCheckBoxChecked"
+                                            Content="Scale (32)" 
+                                            ManipulationModes="Scale" />
+            
+            <local:ManipulationModeCheckBox Checked="OnManipulationModeCheckBoxChecked"
+                                            Unchecked="OnManipulationModeCheckBoxChecked"
+                                            Content="Translate Inertia (64)" 
+                                            ManipulationModes="TranslateInertia" />
+            
+            <local:ManipulationModeCheckBox Checked="OnManipulationModeCheckBoxChecked"
+                                            Unchecked="OnManipulationModeCheckBoxChecked"
+                                            Content="Rotate Inertia (128)" 
+                                            ManipulationModes="RotateInertia" />
+            
+            <local:ManipulationModeCheckBox Checked="OnManipulationModeCheckBoxChecked"
+                                            Unchecked="OnManipulationModeCheckBoxChecked"
+                                            Content="Scale Inertia (256)" 
+                                            ManipulationModes="ScaleInertia" />
+            
+            <local:ManipulationModeCheckBox Checked="OnManipulationModeCheckBoxChecked"
+                                            Unchecked="OnManipulationModeCheckBoxChecked"
+                                            Content="All (0xFFFF)" 
+                                            ManipulationModes="All" />
+        </StackPanel>
+
+        <Grid Name="rectanglePanel"
+              Grid.Column="1">
+            <Rectangle Fill="Red">
+                <Rectangle.RenderTransform>
+                    <CompositeTransform />
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            
+            <Rectangle Fill="Green">
+                <Rectangle.RenderTransform>
+                    <CompositeTransform />
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            
+            <Rectangle Fill="Blue">
+                <Rectangle.RenderTransform>
+                    <CompositeTransform />
+                </Rectangle.RenderTransform>
+            </Rectangle>
+        </Grid>
+    </Grid>
+</Page>

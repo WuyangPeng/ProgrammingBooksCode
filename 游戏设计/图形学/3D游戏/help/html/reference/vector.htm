@@ -1,0 +1,106 @@
+<html>
+
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>vector</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class vector</h2>
+
+<h3>Definition</h3>
+
+<p class="code">class vector<br>
+{<br>
+&nbsp;&nbsp;&nbsp;public: <br>
+&nbsp;&nbsp; float x,y,z,w;<br>
+<br>
+&nbsp;&nbsp;&nbsp;inline vector()<br>
+&nbsp;&nbsp; { ; };<br>
+<br>
+&nbsp;&nbsp; inline vector(float x0,float y0,float z0)<br>
+&nbsp; &nbsp;{ x=x0; y=y0; z=z0; };<br>
+<br>
+&nbsp;&nbsp; inline vector(float x0,float y0,float z0,float w0)<br>
+&nbsp; &nbsp;{ x=x0; y=y0; z=z0; w=w0; };<br>
+<br>
+&nbsp; &nbsp;inline vector(vector &amp;v)<br>
+&nbsp;&nbsp; { *this=v; };<br>
+<br>
+&nbsp;&nbsp;&nbsp;inline void null(void)<br>
+&nbsp;&nbsp; { x=y=z=0; };<br>
+<br>
+&nbsp;&nbsp; inline float length(void)<br>
+&nbsp;&nbsp; { return (float)sqrt(x*x+y*y+z*z); };<br>
+<br>
+&nbsp;&nbsp; inline void vec(float x0,float y0,float z0)<br>
+&nbsp;&nbsp; { x=x0; y=y0; z=z0; };<br>
+<br>
+&nbsp;&nbsp;&nbsp;inline void negate(void)<br>
+&nbsp;&nbsp; { x=-x; y=-y; z=-z; };<br>
+<br>
+&nbsp;&nbsp;&nbsp;inline void cross(vector&amp; v1,vector&amp; v2)<br>
+&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp; x=v1.y*v2.z-v1.z*v2.y;<br>
+&nbsp;&nbsp;&nbsp;&nbsp; y=v1.z*v2.x-v1.x*v2.z;<br>
+&nbsp;&nbsp;&nbsp;&nbsp; z=v1.x*v2.y-v1.y*v2.x;<br>
+&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp;&nbsp;inline void normalize(void)<br>
+&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp; float len=(float)sqrt(x*x+y*y+z*z);<br>
+&nbsp;&nbsp;&nbsp;&nbsp; if (len==0.0f) return; x/=len; y/=len; z/=len;<br>
+&nbsp;&nbsp; }<br>
+<br>
+&nbsp;&nbsp; inline float&amp; operator[](int i)<br>
+&nbsp;&nbsp; { return (&amp;x)[i]; };<br>
+};</p>
+
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>x</td>
+    <td>float</td>
+    <td>vector co-ordinate in the X axis</td>
+  </tr>
+  <tr>
+    <td>y</td>
+    <td>float</td>
+    <td>vector co-ordinate in the Y axis</td>
+  </tr>
+  <tr>
+    <td>z</td>
+    <td>float</td>
+    <td>vector co-ordinate in the Z axis</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p><a href="vector_constructors.htm">constructors</a>, <a href="vector_null.htm">null</a>,
+<a href="vector_length.htm">length</a>, <a href="vector_vec.htm">vec</a>, <a
+href="vector_negate.htm">negate</a>, <a href="vector_cross.htm">cross</a>, <a
+href="vector_normalize.htm">normalize</a>, <a href="vector_operators.htm">operator[]</a></p>
+
+<h3>Remarks</h3>
+
+<p>This class implements a 3D vector with four co-ordinates x, y, z and w. It is used for
+specifying points in 3D space, directions, velocity, force and also color (x is red, y is
+green, z is blue and w is alpha). The w co-ordinate is usually set to 1.0 when
+using the vector to represent 3D points and from 0.0 to 1.0 when using it as the
+color alpha value. </p>
+
+<h3>See Also</h3>
+
+<p><a href="mat4x4.htm">mat4x4</a></p>
+</body>
+</html>

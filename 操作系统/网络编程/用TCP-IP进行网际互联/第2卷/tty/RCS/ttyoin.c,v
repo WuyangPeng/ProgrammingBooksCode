@@ -1,0 +1,109 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	97.09.21.19.30.23;	author dls;	state Dist;
+branches;
+next	1.1;
+
+1.1
+date	94.05.08.06.01.42;	author dls;	state Old;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@pre-3e code
+@
+text
+@/* ttyoin.c - ttyoin */
+
+#include <conf.h>
+#include <kernel.h>
+#include <tty.h>
+
+/*------------------------------------------------------------------------
+ * ttyoin - handle transmit interrupt on tty
+ *------------------------------------------------------------------------
+ */
+int
+ttyoin(ptty, ch)
+struct tty	*ptty;
+unsigned char	ch;
+{
+	kprintf("ttyoin\n");
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@a5 5
+#include <io.h>
+#include <slu.h>
+#include <zsreg.h>
+
+extern char *foob1;
+d8 1
+a8 1
+ *  ttyoin  --  lower-half tty device driver for output interrupts
+d11 4
+a14 2
+INTPROC	ttyoin(iptr)
+	register struct	tty   *iptr;
+d16 1
+a16 40
+	STATWORD ps;    
+	register struct	zscc_device	*zptr;
+	int	ct;
+
+	zptr = iptr->ioaddr;
+	
+        disable(ps);	
+
+	if (iptr->ehead	!= iptr->etail)	{
+		zptr->zscc_data = iptr->ebuff[iptr->etail++];
+		if (iptr->etail	>= EBUFLEN)
+			iptr->etail = 0;
+		restore(ps);
+		return;
+	}
+	if (iptr->oheld) {			/* honor flow control	*/
+		ttyostop(iptr);
+		restore(ps);
+		return;
+	}
+	if ((ct=iptr->ocnt) > 0) {
+		/**foob1++ = iptr->obuff[iptr->otail];*/
+		zptr->zscc_data = iptr->obuff[iptr->otail++];
+	        --iptr->ocnt;
+		if (iptr->otail	>= OBUFLEN)
+			iptr->otail = 0;
+#ifdef NOTYET		
+		if (ct > OBMINSP)
+#endif		  
+			signal(iptr->osem);
+#ifdef NOTYET		
+		else if	( ++(iptr->odsend) == OBMINSP) {
+			iptr->odsend = 0;
+			signaln(iptr->osem, OBMINSP);
+		}
+#endif			
+	} else
+	        ttyostop(iptr);
+
+	restore(ps);
+@

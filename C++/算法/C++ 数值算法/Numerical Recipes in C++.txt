@@ -1,0 +1,8 @@
+C++ 数值算法（Numerical Recipes in C++）
+（第2版）
+
+官方网站：
+https://www.cambridge.org/
+
+○
+作者：William H.Press、Saul A.Teukolsky、William T.Vetterling、Brian P.Flannery

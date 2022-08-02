@@ -1,0 +1,62 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.25.42;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* dgcntl.c - dgcntl */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  dgcntl  -  control function for datagram pseudo-devices
+ *------------------------------------------------------------------------
+ */
+dgcntl(devptr, func, arg)
+struct	devsw	*devptr;
+int		func;
+int		arg;
+{
+	STATWORD	ps;    
+	struct	dgblk	*dgptr;
+	int		ret, freebuf();
+
+	disable(ps);
+	dgptr = (struct dgblk *)devptr->dvioblk;
+	ret = OK;
+	switch (func) {
+
+		case DG_SETMODE:	/* set mode bits */
+			dgptr->dg_mode = arg;
+			break;
+
+		case DG_CLEAR:		/* clear queued packets */
+			preset(dgptr->dg_xport, freebuf);
+			break;
+
+		default:
+			ret = SYSERR;
+	}
+	restore(ps);
+	return(ret);
+}
+@

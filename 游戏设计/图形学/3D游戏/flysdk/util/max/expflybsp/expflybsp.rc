@@ -1,0 +1,148 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LONG_DESC           "Fly scene BSP file"
+    IDS_SHORT_DESC          "Fly3d BSP"
+    IDS_AUTHOR              "Fabio Policarpo"
+    IDS_COPYRIGHT           "Paralelo Computação"
+    IDS_CATEGORY            "Scene Export"
+    IDS_APPNAME             "expflybsp"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Portuguese (Brazil) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTB)
+#ifdef _WIN32
+LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_OPTIONS DIALOG DISCARDABLE  0, 0, 202, 196
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "fly3D bsp export"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Options",IDC_STATIC,5,5,135,85,WS_GROUP
+    CONTROL         "Save BSP",IDC_SAVEBSP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,18,49,10
+    CONTROL         "&Save BSP log",IDC_SAVETXT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,31,60,10
+    CONTROL         "Save # objects",IDC_SAVEOBJ,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,44,64,10
+    CONTROL         "Light as cartoon",IDC_CARTOONLIGHT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,57,67,10
+    LTEXT           "&Light Radius (m):",IDC_STATIC,15,73,54,8
+    EDITTEXT        IDC_LIGHTRADIUS,88,71,42,14,ES_AUTOHSCROLL
+    GROUPBOX        "BSP Planes",IDC_STATIC,5,95,135,30,WS_GROUP
+    CONTROL         "Face aligned",IDC_FACEALIGNED,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,15,108,57,10
+    CONTROL         "Axis Aligned",IDC_AXISALIGNED,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,75,108,54,10
+    GROUPBOX        "Axis Aligned Options",IDC_STATIC,5,130,135,59,WS_GROUP
+    CONTROL         "Landscape 2D ( X ,Y )",IDC_LANDSCAPE,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,15,143,86,10
+    CONTROL         "Freespace 3D ( X, Y, Z )",IDC_FREESPACE,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,15,155,93,10
+    LTEXT           "Max tree depth:",IDC_MAXDEPTHSTATIC,15,172,50,8
+    EDITTEXT        IDC_MAXDEPTH,88,170,42,14,ES_AUTOHSCROLL | WS_GROUP
+    DEFPUSHBUTTON   "OK",IDOK,147,10,50,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,147,28,50,14,WS_GROUP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_OPTIONS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 195
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 189
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Portuguese (Brazil) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

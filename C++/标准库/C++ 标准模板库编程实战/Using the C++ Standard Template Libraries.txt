@@ -1,0 +1,10 @@
+C++ 标准模板库编程实战（Using the C++ Standard Template Libraries）
+
+官方网站：
+http://www.nuonsoft.com/ 、
+https://www.apress.com/cn/book/9781484200056、
+https://github.com/Apress/using-cpp-standard-template-libraries.git
+
+★
+作者：Ivor Horton
+其他书籍：《Visual C++ 入门经典》、《C++17 入门经典》

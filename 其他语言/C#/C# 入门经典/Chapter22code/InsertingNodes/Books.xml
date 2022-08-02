@@ -1,0 +1,13 @@
+﻿<?xml version="1.0"?>
+<books>
+  <book>
+    <title>Beginning Visual C# 4.0 </title>
+    <author>Karli Watson</author>
+    <code>7582</code>
+  </book>
+  <book>
+    <title>Professional C# 2nd Edition 4.0 </title>
+    <author>Simon Robinson</author>
+    <code>7043</code>
+  </book>
+</books>

@@ -1,0 +1,11 @@
+string_tokeniser, v1:	263	636	689	6256	1263	1325	6880	1380	7943
+string_tokeniser, v1 (ptr):	280	688	753	6608	604	657	6577	718	7823
+string_tokeniser, v2:	263	652	705	6055	558	609	6524	678	7424
+strtok():		333		2031				427	2829
+strtok_r():		384		2632				984	8434
+std::stringstream:	761	1394	1300	6429					
+stlsoft::find_next_token():	28	105	97	1017					
+boost::tokenizer:		1002		6799				1241	9214
+string_tokeniser, v2 (S, V):	67	107	132	608	251	270	1056	348	2264
+string_tokeniser, v2 (V, S):	229	625	684	6203	520	579	4284	704	7010
+string_tokeniser, v2 (V, V):	21	55	83	560	112	122	988	194	1872

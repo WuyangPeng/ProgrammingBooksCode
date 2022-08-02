@@ -1,0 +1,57 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.59;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* getnet.c - getnet, getinet */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  getnet  -  obtain the network portion of this system's IP address
+ *------------------------------------------------------------------------
+ */
+IPaddr
+getnet()
+{
+	return getiaddr(NI_PRIMARY);
+}
+
+/*------------------------------------------------------------------------
+ *  getinet  -  obtain the network portion of this interface's IP address
+ *------------------------------------------------------------------------
+ */
+IPaddr
+getinet(inum)
+int	inum;
+{
+	struct netif	*pif;
+
+	if (inum < 0 || inum >= Net.nif)
+		return SYSERR;
+	pif = &nif[inum];
+	if (!pif->ni_ivalid && getiaddr(inum) == SYSERR)
+		return SYSERR;
+	return pif->ni_net;
+}
+@

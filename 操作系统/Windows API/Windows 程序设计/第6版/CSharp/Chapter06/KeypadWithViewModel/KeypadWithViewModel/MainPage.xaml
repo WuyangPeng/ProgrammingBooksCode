@@ -1,0 +1,129 @@
+<Page
+    x:Class="KeypadWithViewModel.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:KeypadWithViewModel"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <Page.Resources>
+        <local:KeypadViewModel x:Key="viewModel" />
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
+          DataContext="{StaticResource viewModel}">
+        
+        <Grid HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Width="288">
+
+            <Grid.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="ClickMode" Value="Press" />
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="Height" Value="72" />
+                    <Setter Property="FontSize" Value="36" />
+                </Style>
+            </Grid.Resources>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0"
+                        HorizontalAlignment="Left">
+
+                    <TextBlock Text="{Binding DisplayText}"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Center"
+                               FontSize="24" />
+                </Border>
+
+                <Button Content="&#x21E6;"
+                        Command="{Binding DeleteCharacterCommand}"
+                        Grid.Column="1"
+                        FontFamily="Segoe Symbol"
+                        HorizontalAlignment="Left"
+                        Padding="0"
+                        BorderThickness="0" />
+            </Grid>
+
+            <Button Content="1"
+                    Command="{Binding AddCharacterCommand}"
+                    CommandParameter="1"
+                    Grid.Row="1" Grid.Column="0" />
+
+            <Button Content="2"
+                    Command="{Binding AddCharacterCommand}"
+                    CommandParameter="2"
+                    Grid.Row="1" Grid.Column="1" />
+
+            <Button Content="3"
+                    Command="{Binding AddCharacterCommand}"
+                    CommandParameter="3"
+                    Grid.Row="1" Grid.Column="2" />
+
+            <Button Content="4"
+                    Command="{Binding AddCharacterCommand}"
+                    CommandParameter="4"
+                    Grid.Row="2" Grid.Column="0" />
+
+            <Button Content="5"
+                    Command="{Binding AddCharacterCommand}"
+                    CommandParameter="5"
+                    Grid.Row="2" Grid.Column="1" />
+
+            <Button Content="6"
+                    Command="{Binding AddCharacterCommand}"
+                    CommandParameter="6"
+                    Grid.Row="2" Grid.Column="2" />
+
+            <Button Content="7"
+                    Command="{Binding AddCharacterCommand}"
+                    CommandParameter="7"
+                    Grid.Row="3" Grid.Column="0" />
+
+            <Button Content="8"
+                    Command="{Binding AddCharacterCommand}"
+                    CommandParameter="8"
+                    Grid.Row="3" Grid.Column="1" />
+
+            <Button Content="9"
+                    Command="{Binding AddCharacterCommand}"
+                    CommandParameter="9"
+                    Grid.Row="3" Grid.Column="2" />
+
+            <Button Content="*"
+                    Command="{Binding AddCharacterCommand}"
+                    CommandParameter="*"
+                    Grid.Row="4" Grid.Column="0" />
+
+            <Button Content="0"
+                    Command="{Binding AddCharacterCommand}"
+                    CommandParameter="0"
+                    Grid.Row="4" Grid.Column="1" />
+
+            <Button Content="#"
+                    Command="{Binding AddCharacterCommand}"
+                    CommandParameter="#"
+                    Grid.Row="4" Grid.Column="2" />
+        </Grid>
+    </Grid>
+</Page>

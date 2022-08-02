@@ -1,0 +1,71 @@
+şíúÎ 4…8__PAGEZERO__TEXT __text__TEXTP` 
+P€__picsymbol_stub__TEXT*°°€$__symbol_stub__TEXT*°°€__picsymbolstub1__TEXT*ÀàÀ€ 
+__cstring__TEXT. 8 __literal8__TEXT/Ø Ø__literal4__TEXT/øøŒ__DATA0 
+__data__DATA0 __nl_symbol_ptr__DATA0  __la_symbol_ptr__DATA00| 
+0#__dyld__DATA0¬ ¬__common__DATA0Ğ48__LINKEDIT@ 0¨ /usr/lib/dyld 
+XE2å/System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL 
+TE2å/System/Library/Frameworks/GLUT.framework/Versions/A/GLUT 
+4E2åX/usr/lib/libSystem.B.dylib0=”  PÀÀİ#<ŒB<#°(P|: 
+x8!ÿüT!48”!ÿÀ€z8š;cW{:|¤Ú=`ak}i¦N€!à|¦¿ÿğ”!ÿ 
+BŸè¦||x|#x|¾+xH <_“‚\<_“¢`<_“Âd<_€B|‚/ŒA }‰¦N€!<_€B„‚/ŒA 
+}‰¦N€!HÙ<_‚l€ /€A¾ 
+}‰¦N€!HİHÙ<8c88Hİ€a8/ƒAHµ8<_€B€}/‹@¾€HD/€/@¾|Jx}"Kxˆ 
+9)|u@‚ÿä/ŠA8 <_hH <_‘bh€Æóx/€AÆóx„/€@ÿøƒãx¤ëxÅóx8ÆH =H İˆ 
+|uA¢ÿ¸9+}b[x9@Kÿÿp|¦BŸ}ˆ¦=Œ|¦9Œ ´}‰¦N€ |¦BŸ}ˆ¦=Œ|¦9Œ ğ}‰¦N€ 
+|¦BŸ}ˆ¦=Œ|¦9Œ ´}‰¦N€ |¦BŸ}ˆ¦=Œ|¦9Œ¬}‰¦N€ 
+|¦BŸ}ˆ¦=Œ|¦9Œx}‰¦N€ |¦BŸ}ˆ¦=Œ|¦9ŒX}‰¦N€ |¦BŸ}ˆ¦=Œ|¦9Œ 
+}‰¦N€ |¦BŸ}ˆ¦=Œ|¦9ŒÔ}‰¦N€ |¦“áÿü”!ÿ 
+BŸè¦<8c¤88Hñ8}‰¦N€!8!`€|¦ƒáÿüN€ |¦BŸ}ˆ¦=Œ|¦9ŒÄ}‰¦N€ 
+|bxˆ|uM‚ |Cx/€/A 8BH 8b|bxˆ|u@‚ÿàN€ ˆ| u@¢ x~x|888`-H 
+I|`x@8@ xBŸè¦HÕ<_€B d€8€8/€A€^8 
+T>+€A<_8bı`H9<_8bşHHM€!€|¦»ÁÿøN€ |¦BŸ}ˆ¦=Œ|¦9Œ,}‰¦N€ 
+|¦BŸ}ˆ¦=Œ|¦9Œì}‰¦N€ |¦BŸ}ˆ¦=Œ|¦9Œ,}‰¦N€ |¦¿ÿğ”!ÿp|> 
+xBŸè¦~¨¬<_8B 
+p€B€¬|P¬Hù|`x|t|x|@Fp|”T@.|PT>HÕ|`x|t|x|@Fp|”T@.|PT>H±|`x|t|x|@Fp|”T@.|PT>ƒãx¤ëx|xH 
+8` H¹€¨<@C0=?É© 4l€<^8È8üh(ı <_8B xÀí*€¬<@C0=?É© 4l€D^@È@üh(ı 
+<_8B xÀì *ü `ü@Hİ€¨<@C0=?É© 4l€L^HÈHüh(ı <_8B xÀí(€¬<@C0=?É© 
+4l€T^PÈPüh(ı <_8B xÀì *ü `ü@Ha€¨<@C0=?É© 4l€\^XÈXüh(ı <_8B 
+xÀí(€¬<@C0=?É© 4l€d^`È`üh(ı <_8B xÀì (ü `ü@Hå€¨<@C0=?É© 
+4l€l^hÈhüh(ı <_8B xÀí*€¬<@C0=?É© 4l€t^pÈpüh(ı <_8B xÀì (ü 
+`ü@HiHeH¡€!€|¦»ÿğN€ |¦¿Áÿø”!ÿ|> 
+xBŸè¦~ˆŒ8`HáH½€ˆ<@C0=?É©hl€L^HÈHı€h(€Œ<@C0=?É©hl€T^PÈPüh(<_È"pü@`=?Èipü€<_È¢x=?ÈÉ€H 
+8`HaH=8`8€€¾ˆ€ŞŒH 
+<_À"ˆ=?ÀIˆ<_Àbˆ=?À‰ŒHE8`@H}H™<_8B¨€ˆ<_8B¤€Œ€!€|¦»ÁÿøN€ 
+|¦¿Áÿø”!ÿ|> 
+xBŸè¦<_8B€"<_8B|€8`8€}%Kx|xH]8`H•Hq<_8B€€<@C0=?É©@l€L^HÈHı€h(<_8B|€<@C0=?É©@l€T^PÈPüh(<_È"Hü@`=?ÈiHü€<_È¢P=?ÈÉXH­<_À"`=?ÀI`<_Àb`=?À‰dH 
+8`@HAH]<_8şÀ|xH€!€|¦»ÁÿøN€ |¦¿Áÿø”!ÿ°|> 
+x~hl¾pŞt€h/€@€l/€@ 8`HÕ€!€|¦»ÁÿøN€ ¿Áÿø”!ÿĞ|> x€!»ÁÿøN€ 
+|¦¿Áÿø”!ÿ°|> 
+xBŸè¦~hl8~h€lH8`H<_8bœHåKÿş!<_8ı$|xH±<_8bÿxHe<_8búXH™<_8bÿĞHíHé€!€|¦»ÁÿøN€ 
+|¦BŸ}h¦=k|¦…‹h}‰¦N€ |¦BŸ}h¦=k|¦…‹L}‰¦N€ 
+|¦BŸ}h¦=k|¦…‹0}‰¦N€ |¦BŸ}h¦=k|¦…‹}‰¦N€ 
+|¦BŸ}h¦=k|¦…‹ø}‰¦N€ |¦BŸ}h¦=k|¦…‹Ü}‰¦N€ 
+|¦BŸ}h¦=k|¦…‹À}‰¦N€ |¦BŸ}h¦=k|¦…‹¤}‰¦N€ 
+|¦BŸ}h¦=k|¦…‹ˆ}‰¦N€ |¦BŸ}h¦=k|¦…‹l}‰¦N€ 
+|¦BŸ}h¦=k|¦…‹P}‰¦N€ |¦BŸ}h¦=k|¦…‹4}‰¦N€ 
+|¦BŸ}h¦=k|¦…‹}‰¦N€ |¦BŸ}h¦=k|¦…‹ü}‰¦N€ 
+|¦BŸ}h¦=k|¦…‹à}‰¦N€ |¦BŸ}h¦=k|¦…‹Ä}‰¦N€ 
+|¦BŸ}h¦=k|¦…‹¨}‰¦N€ |¦BŸ}h¦=k|¦…‹Œ}‰¦N€ 
+|¦BŸ}h¦=k|¦…‹p}‰¦N€ |¦BŸ}h¦=k|¦…‹T}‰¦N€ 
+|¦BŸ}h¦=k|¦…‹8}‰¦N€ |¦BŸ}h¦=k|¦…‹}‰¦N€ 
+|¦BŸ}h¦=k|¦…‹}‰¦N€ |¦BŸ}h¦=k|¦…‹ä}‰¦N€ 
+|¦BŸ}h¦=k|¦…‹È}‰¦N€ |¦BŸ}h¦=k|¦…‹¬}‰¦N€ 
+|¦BŸ}h¦=k|¦…‹}‰¦N€ |¦BŸ}h¦=k|¦…‹t}‰¦N€ 
+|¦BŸ}h¦=k|¦…‹X}‰¦N€ |¦BŸ}h¦=k|¦…‹<}‰¦N€ |¦BŸ}h¦=k|¦…‹ 
+}‰¦N€ 
+__dyld_mod_term_funcs__dyld_make_delayed_module_initializer_calls__dyld_image_count__dyld_get_image_name__dyld_get_image_header__dyld_NSLookupSymbolInImage__dyld_NSAddressOfSymbollibobjc__objcInitThe 
+kernel support for the dynamic linker is not present to run this program. 
+squareC0€¿ğ?ğ?€. 
+#°ôô@@!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!àà!’dPš€¼€ÎdÏdèd<0.DµDÀ´DÃ¸DÄÀDÅÈDÇĞDÈäDÉìDÊDÍDÔ 
+DÕ DŞ(Dâ,Dğ0Dñ@DòLDõPD÷`DúpDù€DıDş˜D¨D 
+°DĞDùèDD$D$DDDòDDòdDğdDğ„Dâ„Dâ¤DŞ¤DŞÄDÍÄDÍäDÀäDÀE$µS@²_@³k@´w@· 
+€€š€¨€Ò€á€ğ@¹ù€¼8Àà€€$$tN%.D+D.D0,D18D.LD.l;$+W€,8_À`àla$hNlbl.lD?lDCpDD€DC˜DH¤p$?l„@>@@™€¨€·@AÃÀlÄà¨Å$€O€`€q€‚€“€£€´€Å€Ö€ç€÷€ 
+à À $¼N À &y0 ? - M . [ / j 0 |d À } 0¬ ¢/€ ° 0° !3 ÀEV! 
+É!( ì"0 0u#°0 Õñ 0Ğ 0Ô% 0ØK 0ÜT*^ 0àx 
+0ä“ 0è° 0ìÊ 0ğë 0ô  0ø1 
+0ü]$ŒM0r*i)¬p'X{(€x 
+1ƒ0‰00oP›‰¾š½ãñ?éFRYN‘š£±½ÄÍİëô 
+/9N\l{_Œ…† &(68=Yï09QÂ 
+)+<±Ç÷ìP'-ABKNO\4 
+wéİæåàáãâêäçıñù÷ôìğóõöøúïÿüëûîòíşèßŞéİæåàáãâêäçıñù÷ôìğóõöøúïÿüëûîòí_NXArgc_NXArgv___progname__dyld_func_lookup__dyld_init_check__start_environdyld_stub_binding_helperstart___darwin_gcc3_preregister_frame_info___keymgr_dwarf2_register_sections__cthread_init_routine__mh_execute_header_atexit_catch_exception_raise_catch_exception_raise_state_catch_exception_raise_state_identity_clock_alarm_reply_do_mach_notify_dead_name_do_mach_notify_no_senders_do_mach_notify_port_deleted_do_mach_notify_send_once_do_seqnos_mach_notify_dead_name_do_seqnos_mach_notify_no_senders_do_seqnos_mach_notify_port_deleted_do_seqnos_mach_notify_send_once_errno_exit_mach_init_routine_main_receive_samples___keymgr_global__dyld_register_func_for_add_image__dyld_register_func_for_remove_image__init_keymgr__keymgr_get_and_lock_processwide_ptr__keymgr_set_and_unlock_processwide_ptr_abort_calloc_free_display_drawSquare_mouse_myReshape_myinit_size_wh_ww_glBegin_glClear_glClearColor_glColor3ub_glEnd_glFlush_glLoadIdentity_glMatrixMode_glOrtho_glVertex2f_glViewport_glutCreateWindow_glutDisplayFunc_glutInit_glutInitDisplayMode_glutMainLoop_glutMotionFunc_glutMouseFunc_glutReshapeFunc_randstart.sint:t1=r1;-2147483648;2147483647;char:t2=r2;0;127;/SourceCache/Csu/Csu-58//SourceCache/Csu/Csu-58/crt.cgcc2_compiled._pointer_to__darwin_gcc3_preregister_frame_info_start:F(0,1)argc:P(0,2)argv:P(0,3)envp:P(0,3)p:r(0,4)char:t(0,5)=r(0,5);0;127;:t(0,1)=(0,1)int:t(0,2)=r(0,2);-2147483648;2147483647;:t(0,3)=*(0,4):t(0,4)=*(0,5)q:r(0,3)term:(0,6):t(0,6)=*(0,7):t(0,7)=f(0,1)__call_mod_init_funcs_call_mod_init_funcs:f(0,1)p:(0,6)_crt_basenamecrt_basename:f(0,8)path:P(0,8)s:r(0,8):t(0,8)=*(0,9):t(0,9)=k(0,5)last:r(0,8)_crt_strbeginswithcrt_strbeginswith:f(0,2)s1:P(0,8)s2:P(0,8)i:r(0,2)int:t(0,2)__call_objcInit_call_objcInit:f(0,1)i:r(0,10)unsigned 
+int:t(0,10)=r(0,10);0;037777777777;count:r(0,10)_dyld_image_count_fn:(0,11)_dyld_get_image_name_fn:(0,12)_dyld_get_image_header_fn:(0,13)NSLookupSymbolInImage_fn:(0,14)NSAddressOfSymbol_fn:(0,15)void:t(0,1):t(0,11)=*(0,16):t(0,12)=*(0,17):t(0,13)=*(0,18):t(0,14)=*(0,19):t(0,15)=*(0,20):t(0,16)=f(0,10):t(0,17)=f(0,8):t(0,18)=f(0,21):t(0,19)=f(0,21):t(0,20)=f(0,22):t(0,21)=*(0,23):t(0,22)=*(0,1):t(0,23)=k(0,1)pointer_to__darwin_gcc3_preregister_frame_info:S(0,6)NXArgc:G(0,2)NXArgv:G(0,3)environ:G(0,3)__progname:G(0,4)dyld_lazy_symbol_binding_entry_pointerror_messagedyld_func_lookup_pointer_darwin_unwind_dyld_add_image_hook_darwin_unwind_dyld_remove_image_hook

@@ -1,0 +1,44 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	94.01.14.03.51.20;	author dls;	state v2e1;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* uqfree.c - uqfree */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  uqfree -  free an urgent queue entry
+ *------------------------------------------------------------------------
+ */
+int uqfree(puqe)
+struct	uqe	*puqe;
+{
+	wait(uqmutex);
+	if (puqe->uq_data)
+		freebuf(puqe->uq_data);
+	puqe->uq_state = UQS_FREE;
+	signal(uqmutex);
+	return OK;
+}
+@

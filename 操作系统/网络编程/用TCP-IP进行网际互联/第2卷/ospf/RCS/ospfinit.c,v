@@ -1,0 +1,88 @@
+head	1.3;
+access;
+symbols;
+locks
+	dls:1.3; strict;
+comment	@ * @;
+
+
+1.3
+date	97.09.21.19.28.38;	author dls;	state Dist;
+branches;
+next	1.2;
+
+1.2
+date	94.02.26.19.51.54;	author dls;	state Works;
+branches;
+next	1.1;
+
+1.1
+date	94.02.06.18.21.11;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.3
+log
+@pre-3e code
+@
+text
+@/* ospfinit.c - ospfinit */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+#include <ospf.h>
+
+/*------------------------------------------------------------------------
+ * ospfinit - initialize OSPF data structures
+ *------------------------------------------------------------------------
+ */
+ospfinit()
+{
+	struct ospf_ar	*par;
+	int		ifn, arn;
+
+	ospf_lspool = mkpool(sizeof(struct ospf_db), LSABUFS);
+
+	for (arn=0; arn<NAREA; ++arn) {	/* init per-area data */
+		par = &ospf_ar[arn];
+		db_init(par);
+	}
+	for (ifn=0; ifn<NIF; ++ifn) {	/* init per-interface data */
+		if (ifn == NI_LOCAL)
+			continue;
+		ospfifinit(0, ifn);
+	}
+}
+
+struct ospf_ar	ospf_ar[NAREA];
+int		ospf_lspool;
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d14 2
+a15 1
+	int	ifn;
+d17 6
+d30 2
+a31 1
+struct ospf_ar ospf_ar[NAREA];
+@

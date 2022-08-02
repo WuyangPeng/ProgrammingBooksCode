@@ -1,0 +1,131 @@
+<Page
+    x:Class="PreconfiguredAnimations.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PreconfiguredAnimations"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="0 6" />
+        </Style>
+    
+        <Storyboard x:Key="fadeIn">
+            <FadeInThemeAnimation TargetName="button" />
+        </Storyboard>
+
+        <Storyboard x:Key="fadeOut">
+            <FadeOutThemeAnimation TargetName="button" />
+        </Storyboard>
+
+        <Storyboard x:Key="popIn">
+            <PopInThemeAnimation TargetName="button" />
+        </Storyboard>
+
+        <Storyboard x:Key="popOut">
+            <PopOutThemeAnimation TargetName="button" />
+        </Storyboard>
+
+        <Storyboard x:Key="reposition">
+            <RepositionThemeAnimation TargetName="button" />
+        </Storyboard>
+
+        <Storyboard x:Key="pointerUp">
+            <PointerUpThemeAnimation TargetName="button" />
+        </Storyboard>
+
+        <Storyboard x:Key="pointerDown">
+            <PointerDownThemeAnimation TargetName="button" />
+        </Storyboard>
+
+        <Storyboard x:Key="swipeBack">
+            <SwipeBackThemeAnimation TargetName="button" />
+        </Storyboard>
+
+        <Storyboard x:Key="swipeHint">
+            <SwipeHintThemeAnimation TargetName="button" />
+        </Storyboard>
+
+        <Storyboard x:Key="dragItem">
+            <DragItemThemeAnimation TargetName="button" />
+        </Storyboard>
+
+        <Storyboard x:Key="dropTargetItem">
+            <DropTargetItemThemeAnimation TargetName="button" />
+        </Storyboard>
+
+        <Storyboard x:Key="dragOver">
+            <DragOverThemeAnimation TargetName="button" />
+        </Storyboard>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Name="animationTriggersStackPanel"
+                    Grid.Column="0"
+                    VerticalAlignment="Center">
+            
+            <Button Content="Fade In"
+                    Tag="fadeIn" 
+                    Click="OnButtonClick" />
+            
+            <Button Content="Fade Out"
+                    Tag="fadeOut" 
+                    Click="OnButtonClick" />
+            
+            <Button Content="Pop In"
+                    Tag="popIn" 
+                    Click="OnButtonClick" />
+
+            <Button Content="Pop Out"
+                    Tag="popOut" 
+                    Click="OnButtonClick" />
+
+            <Button Content="Reposition"
+                    Tag="reposition" 
+                    Click="OnButtonClick" />
+
+            <Button Content="Pointer Up"
+                    Tag="pointerUp" 
+                    Click="OnButtonClick" />
+
+            <Button Content="Pointer Down"
+                    Tag="pointerDown" 
+                    Click="OnButtonClick" />
+
+            <Button Content="Swipe Back"
+                    Tag="swipeBack" 
+                    Click="OnButtonClick" />
+
+            <Button Content="Swipe Hint"
+                    Tag="swipeHint" 
+                    Click="OnButtonClick" />
+
+            <Button Content="Drag Item"
+                    Tag="dragItem" 
+                    Click="OnButtonClick" />
+
+            <Button Content="Drop Target Item"
+                    Tag="dropTargetItem" 
+                    Click="OnButtonClick" />
+
+            <Button Content="Drag Over"
+                    Tag="dragOver" 
+                    Click="OnButtonClick" />
+        </StackPanel>
+
+        <!-- Animation target -->
+        <Button Name="button"
+                Grid.Column="1"
+                Content="Big Button"
+                FontSize="48"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" />
+    </Grid>
+</Page>

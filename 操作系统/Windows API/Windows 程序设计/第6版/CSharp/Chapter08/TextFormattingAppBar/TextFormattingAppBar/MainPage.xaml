@@ -1,0 +1,57 @@
+﻿<Page
+    x:Class="TextFormattingAppBar.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TextFormattingAppBar"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="LightGray">
+        <TextBlock Name="textBlock"
+                   FontFamily="Times New Roman"
+                   FontSize="96"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+            <Run>Text Formatting AppBar</Run>
+        </TextBlock>
+    </Grid>
+    
+    <Page.BottomAppBar>
+        <AppBar>
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Style="{StaticResource BoldAppBarButtonStyle}"
+                          Checked="OnBoldAppBarCheckBoxChecked"
+                          Unchecked="OnBoldAppBarCheckBoxChecked" />
+
+                <CheckBox Style="{StaticResource ItalicAppBarButtonStyle}"
+                          Checked="OnItalicAppBarCheckBoxChecked"
+                          Unchecked="OnItalicAppBarCheckBoxChecked" />
+
+                <CheckBox Style="{StaticResource UnderlineAppBarButtonStyle}"
+                          Checked="OnUnderlineAppBarCheckBoxChecked"
+                          Unchecked="OnUnderlineAppBarCheckBoxChecked" />
+                
+                <Polyline Points="0 12, 0 48"
+                          Stroke="{StaticResource ApplicationForegroundThemeBrush}"
+                          VerticalAlignment="Top" />
+                
+                <RadioButton Name="redRadioButton"
+                             Style="{StaticResource FontColorAppBarButtonStyle}"
+                             Foreground="Red"
+                             AutomationProperties.Name="Red"
+                             Checked="OnFontColorAppBarRadioButtonChecked" />
+
+                <RadioButton Style="{StaticResource FontColorAppBarButtonStyle}"
+                             Foreground="Green"
+                             AutomationProperties.Name="Green"
+                             Checked="OnFontColorAppBarRadioButtonChecked" />
+
+                <RadioButton Style="{StaticResource FontColorAppBarButtonStyle}"
+                             Foreground="Blue"
+                             AutomationProperties.Name="Blue"
+                             Checked="OnFontColorAppBarRadioButtonChecked" />
+            </StackPanel>
+        </AppBar>
+    </Page.BottomAppBar>
+</Page>

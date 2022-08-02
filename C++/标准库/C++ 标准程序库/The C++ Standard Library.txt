@@ -1,0 +1,9 @@
+C++ 标准程序库（The C++ Standard Library）
+（第2版）
+
+官方网站：
+http://www.cppstdlib.com
+
+★★★
+作者：Nicolai M. Josuttis
+其他书籍：《C++ Templates》。 

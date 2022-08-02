@@ -1,0 +1,58 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* sdelete.c - sdelete */
+
+#include <conf.h>
+#include <kernel.h>
+#include <proc.h>
+#include <q.h>
+#include <sem.h>
+
+/*------------------------------------------------------------------------
+ * sdelete  --  delete a semaphore by releasing its table entry
+ *------------------------------------------------------------------------
+ */
+SYSCALL sdelete(sem)
+	int	sem;
+{
+	STATWORD ps;    
+	int	pid;
+	struct	sentry	*sptr;
+
+	disable(ps);
+	if (isbadsem(sem) || semaph[sem].sstate==SFREE) {
+		restore(ps);
+		return(SYSERR);
+	}
+	sptr = &semaph[sem];
+	sptr->sstate = SFREE;
+	if (nonempty(sptr->sqhead)) {
+		while( (pid=getfirst(sptr->sqhead)) != EMPTY)
+			ready(pid,RESCHNO);
+		resched();
+	}
+	restore(ps);
+	return(OK);
+}
+@

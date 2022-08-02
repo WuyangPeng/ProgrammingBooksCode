@@ -1,0 +1,7 @@
+C++ 编程调试秘笈 （Safe C++）
+
+官方网站： 
+https://github.com/vladimir-kushnir/SafeCPlusPlus
+ 
+★★★
+作者： Viadimir Kusbnir

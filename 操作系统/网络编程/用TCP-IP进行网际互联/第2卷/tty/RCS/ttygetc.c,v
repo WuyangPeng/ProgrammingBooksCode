@@ -1,0 +1,88 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	97.09.21.19.30.23;	author dls;	state Dist;
+branches;
+next	1.1;
+
+1.1
+date	94.05.08.06.01.42;	author dls;	state Old;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@pre-3e code
+@
+text
+@/* ttygetc.c - ttygetc */
+
+#include <conf.h>
+#include <kernel.h>
+#include <tty.h>
+
+/*------------------------------------------------------------------------
+ * ttygetc - read a single character from a tty
+ *------------------------------------------------------------------------
+ */
+int
+ttygetc(pdev)
+struct devsw	*pdev;
+{
+	unsigned char	ch;
+	int		cc;
+
+	cc = ttyread(pdev, &ch, 1);
+	if (cc < 0)
+		return SYSERR;
+	else if (cc == 0)
+		return EOF;
+	return ch;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@a5 1
+#include <io.h>
+d8 1
+a8 1
+ *  ttygetc - read one character from a tty device
+d11 3
+a13 2
+ttygetc(devptr)
+struct	devsw	*devptr;
+d15 2
+a16 3
+	STATWORD ps;    
+	int	ch;
+	struct	tty   *iptr;
+d18 6
+a23 11
+	disable(ps);
+	iptr = &tty[devptr->dvminor];
+	wait(iptr->isem);		/* wait	for a character	in buff	*/
+	ch = LOWBYTE & iptr->ibuff[iptr->itail++];
+	--iptr->icnt;
+	if (iptr->itail	>= IBUFLEN)
+		iptr->itail = 0;
+	if (iptr->ieof && (iptr->ieofc == ch) )
+		ch = EOF;
+	restore(ps);
+	return(ch);
+@

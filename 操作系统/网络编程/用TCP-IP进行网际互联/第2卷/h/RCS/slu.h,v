@@ -1,0 +1,36 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	94.05.10.20.48.46;	author dls;	state Old;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* slu.h */
+
+/*
+ * Delay units are in microseconds.
+ */
+#define	DELAY(n)	\
+{ \
+        extern int cpudelay; \
+	register int N = (((n)<<4) >> cpudelay); \
+ \
+	while (--N > 0) ; \
+}
+@

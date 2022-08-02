@@ -1,0 +1,21 @@
+This contains the source for chapter 3.
+
+The POSIX C program should easily compile using the gcc compiler.
+
+The Win32 program will compile using any Windows development environment.
+
+The Java programs are compiled using javac.
+
+Files
+
+Figure 3.10 - newproc-posix.c
+
+Figure 3.12 - newproc-win32.c
+
+Figure 3.16 - shm-posix.c
+
+Figure 3.19 - DateServer.java
+
+Figure 3.20 - DateClient.java
+
+The "project" directory contains firgures 3.25 and 3.26 for the UNIX shell project.

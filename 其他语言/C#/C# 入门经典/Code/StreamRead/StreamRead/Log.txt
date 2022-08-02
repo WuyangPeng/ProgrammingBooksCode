@@ -1,0 +1,3 @@
+Hello to you.
+It is now 29 November 2009 and things are looking good.
+More than that, it's True that C# is fun.

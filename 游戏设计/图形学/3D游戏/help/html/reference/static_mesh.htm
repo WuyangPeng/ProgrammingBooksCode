@@ -1,0 +1,66 @@
+<html>
+
+<head>
+<title>class static_mesh</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class static_mesh : public <a href="bsp_object.htm">bsp_object</a></h2>
+
+<h3>Definition</h3>
+
+<p class="code">class static_mesh : public bsp_object<br>
+{<br>
+&nbsp; public:<br>
+&nbsp; mesh *objmesh;<br>
+<br>
+&nbsp; static_mesh()<br>
+&nbsp; { type=TYPE_STATIC_MESH; objmesh=new mesh; };<br>
+<br>
+&nbsp; mesh *ray_intersect(vector&amp; ro,vector&amp; rd,vector&amp; ip,float&amp;
+dist,int &amp;facenum,float rad=0.0f);<br>
+&nbsp; int ray_intersect_test(vector&amp; ro,vector&amp; rd,float rad);<br>
+&nbsp; int message(vector&amp; p,float rad,int msg,int param,void *data);<br>
+<br>
+&nbsp; virtual ~static_mesh()<br>
+&nbsp; { if (objmesh) delete objmesh; };<br>
+};</p>
+
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>mesh</td>
+    <td>objmesh *</td>
+    <td>mesh with some bsp faces</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p><a href="static_mesh_ray_intersect.htm">ray_intersect</a>, <a
+href="static_mesh_ray_intersect_test.htm">ray_intersect_test</a>, <a
+href="static_mesh_message.htm">message</a></p>
+
+<h3>Remarks</h3>
+
+<p>This class implements the bsp faces in a bsp leaf node. All leaf nodes have 
+  a <i>static_object</i> as their first <i>bsp_node</i> element in the <i>elem</i> 
+  linked list. It is just like a Fly3D plug-in object and in the only plug-in 
+  object already included in the engine dll.</p>
+
+<h3>See Also</h3>
+
+<p><a href="mesh.htm">mesh</a>, <a href="bsp_object.htm">bsp_object</a>, <a
+href="bsp_node.htm">bsp_node</a></p>
+</body>
+</html>

@@ -1,0 +1,18 @@
+深入解析Windows操作系统 （Microsoft Windows Internals）
+
+官方网站：
+http://www.sysinternals.com、 
+http://www.microsoft.com/technet/sysinternals/information.windowsinternals.mspx （已失效）、
+http://www.microsoft.com/learning/support （已失效）、
+http://www.microsoft.com/learning/support/search.asp （已失效）、
+http://www.microsoft.com/technet/sysinternals （已失效） 
+ 
+第4版
+☆
+作者：Mark E.Russinovich、David A.Solomon
+联系作者：
+windowsinternals@sysinternals.com
+
+第6版上册
+★
+作者：Mark E.Russinovich、David A.Solomon、Alex Ionescu

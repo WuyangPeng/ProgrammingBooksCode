@@ -1,0 +1,10 @@
+NAME            RAY_DEMO
+EXETYPE         WINDOWS
+
+DESCRIPTION     'The Image Laboratory - RayDemo'
+
+CODE            PRELOAD MOVABLE
+DATA            PRELOAD MOVABLE
+
+HEAPSIZE        2048
+STACKSIZE       8192

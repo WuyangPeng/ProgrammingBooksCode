@@ -1,0 +1,81 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.59;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* setmask.c - setmask */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+extern	int	bsdbrc;		/* use Berkeley (all-0's) broadcast	*/
+/*------------------------------------------------------------------------
+ *  setmask - set the net mask for an interface
+ *------------------------------------------------------------------------
+ */
+int setmask(inum, mask)
+int	inum;
+IPaddr	mask;
+{
+	IPaddr	defmask;
+
+	if (nif[inum].ni_svalid) {
+		/* one set already-- fix things */
+
+		rtdel(nif[inum].ni_subnet, nif[inum].ni_mask);
+		rtdel(nif[inum].ni_brc, ip_maskall);
+		rtdel(nif[inum].ni_subnet, ip_maskall);
+	}
+	nif[inum].ni_mask = mask;
+	nif[inum].ni_svalid = TRUE;
+	defmask = netmask(nif[inum].ni_ip);
+
+	nif[inum].ni_subnet = nif[inum].ni_ip & nif[inum].ni_mask; 
+	if (bsdbrc)
+		nif[inum].ni_brc = nif[inum].ni_subnet;
+	else
+		nif[inum].ni_brc = nif[inum].ni_subnet |
+				~nif[inum].ni_mask;
+	/* set network (not subnet) broadcast */
+	nif[inum].ni_nbrc = nif[inum].ni_ip | ~defmask;
+
+	/* install routes */
+	/* net */
+	rtadd(nif[inum].ni_subnet, nif[inum].ni_mask, nif[inum].ni_ip,
+		0, inum, RT_INF);
+	if (bsdbrc) {
+		IPaddr	aobrc;		/* all 1's broadcast */
+
+		aobrc = nif[inum].ni_subnet | ~nif[inum].ni_mask;
+		rtadd(aobrc, ip_maskall, nif[inum].ni_ip, 0,
+			NI_LOCAL, RT_INF);
+	} else	/* broadcast (all 1's) */
+		rtadd(nif[inum].ni_brc, ip_maskall, nif[inum].ni_ip, 0,
+			NI_LOCAL, RT_INF);
+	/* broadcast (all 0's) */
+	rtadd(nif[inum].ni_subnet, ip_maskall, nif[inum].ni_ip, 0,
+		NI_LOCAL, RT_INF);
+	return OK;
+}
+
+IPaddr	ip_maskall = 0xffffffff;
+@

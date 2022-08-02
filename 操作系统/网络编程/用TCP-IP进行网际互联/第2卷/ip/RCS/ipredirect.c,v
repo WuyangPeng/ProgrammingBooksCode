@@ -1,0 +1,64 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.09;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* ipredirect.c - ipredirect */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+struct	route	*rtget();
+
+/*------------------------------------------------------------------------
+ *  ipredirect  -  send redirects, if needed
+ *------------------------------------------------------------------------
+ */
+void ipredirect(pep, ifnum, prt)
+struct	ep	*pep;		/* the current IP packet		*/
+int		ifnum;		/* the input interface			*/
+struct	route	*prt;		/* where we want to route it		*/
+{
+	struct	ip	*pip = (struct ip *)pep->ep_data;
+	struct	route	*tprt;
+	int		rdtype, isonehop;
+	IPaddr		nmask;	/* network part's mask			*/
+
+	if (ifnum == NI_LOCAL || ifnum != prt->rt_ifnum)
+		return;
+	tprt = rtget(pip->ip_src, RTF_LOCAL);
+	if (!tprt)
+		return;
+	isonehop = tprt->rt_metric == 0;
+	rtfree(tprt);
+	if (!isonehop)
+		return;
+	/* got one... */
+
+	nmask = netmask(prt->rt_net);	/* get the default net mask	*/
+	if (prt->rt_mask == nmask)
+		rdtype = ICC_NETRD;
+	else
+		rdtype = ICC_HOSTRD;
+	icmp(ICT_REDIRECT, rdtype, pip->ip_src, pep, prt->rt_gw);
+}
+@

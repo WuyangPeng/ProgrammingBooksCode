@@ -1,0 +1,223 @@
+head	1.4;
+access;
+symbols;
+locks
+	dls:1.4; strict;
+comment	@ * @;
+
+
+1.4
+date	97.09.21.19.26.19;	author dls;	state Dist;
+branches;
+next	1.3;
+
+1.3
+date	94.05.10.20.48.46;	author dls;	state Old;
+branches;
+next	1.2;
+
+1.2
+date	94.02.20.19.01.49;	author dls;	state Works;
+branches;
+next	1.1;
+
+1.1
+date	94.02.13.19.40.01;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.4
+log
+@pre-3e code
+@
+text
+@/* ospf_ls.h */
+
+/* OSPF Link State Request Packet */
+
+struct	ospf_lsr {
+	unsigned long	lsr_type;	/* Link State Type		*/
+	unsigned long	lsr_lsid;	/* Link State Identifier	*/
+	unsigned long	lsr_rid;	/* Advertising Router		*/
+};
+
+#define	LSRLEN		12
+
+/* OSPF Link State Summary */
+
+struct	ospf_lss {
+	unsigned short	lss_age;	/* Time (secs) Since Originated	*/
+	unsigned char	lss_opts;	/* Options Supported		*/
+	unsigned char	lss_type;	/* LST_* below			*/
+	unsigned long	lss_lsid;	/* Link State Identifier	*/
+	unsigned long	lss_rid;	/* Advertising Router Identifier*/
+	unsigned long	lss_seq;	/* Link State Adv. Sequence #	*/
+	unsigned short	lss_cksum;	/* Fletcher Checksum of LSA	*/
+	unsigned short	lss_len;	/* Length of Advertisement	*/
+};
+
+#define	LSSHDRLEN	20
+
+/* Link State Advertisement Types */
+
+#define	LST_RLINK	1		/* Router Link			*/
+#define	LST_NLINK	2		/* Network Link			*/
+#define	LST_SLINK	3		/* IP Network Summary Link	*/
+#define	LST_BRSLINK	4		/* AS Border Router Summary	*/
+#define	LST_EXTERN	5		/* AS External Link		*/
+
+/* Link State Advertisement (min) Lengths */
+
+#define	LSA_RLEN	(LSSHDRLEN + 4)
+#define	LSA_NLEN	(LSSHDRLEN + 4)
+
+#define	LSA_ISEQ	0x80000001
+
+/* LSS Type of Service Entry */
+struct	tosent {
+	unsigned char	tos_tos;	/* IP Type of Service		*/
+	unsigned char	tos_mbz;	/* Must Be Zero			*/
+	unsigned short	tos_metric;	/* Metric for This TOS		*/
+};
+
+/* OSPF Link State Advertisement */
+
+#define	MAXLSDLEN	64	/* Max LS Data Len (configurable)	*/
+
+struct ospf_lsa {
+	struct ospf_lss	lsa_lss;	/* Link State Adv. Header	*/
+	char		lsa_data[MAXLSDLEN]; /* Link-Type Dependent Data*/
+};
+
+/* Convenient Field Translations */
+
+#define	lsa_age		lsa_lss.lss_age
+#define	lsa_opts	lsa_lss.lss_opts
+#define	lsa_type	lsa_lss.lss_type
+#define	lsa_lsid	lsa_lss.lss_lsid
+#define	lsa_rid		lsa_lss.lss_rid
+#define	lsa_seq		lsa_lss.lss_seq
+#define	lsa_cksum	lsa_lss.lss_cksum
+#define	lsa_len		lsa_lss.lss_len
+
+/* Router Links Advertisement */
+
+struct	ospf_ra {
+	unsigned char	ra_opts;	/* RAO_* Below			*/
+	unsigned char	ra_mbz;		/* Must Be Zero			*/
+	unsigned short	ra_nlinks;	/* # of Links This Advertisement*/
+	unsigned char	ra_data[1];	/* nlinks rlink structs		*/
+};
+
+struct ospf_rl {
+	unsigned long	rl_lid;		/* Link ID			*/
+	unsigned long	rl_data;	/* Link Data			*/
+	unsigned char	rl_type;	/* Link Type (RAT_* Below)	*/
+	unsigned char	rl_ntos;	/* # of Types-of-Service Entries*/
+	unsigned short	rl_metric;	/* TOS 0 Metric			*/
+	unsigned long	rl_tosent[1];	/* TOS Entries ra_ntos Times	*/
+};
+
+#define	MINRLLEN	12
+
+#define	RAO_ABR		0x01		/* Router is Area Border Router	*/
+#define	RAO_EXTERN	0x02		/* Router is AS Boundary Router	*/
+
+#define	RAT_PT2PT	1		/* Point-Point Connection	*/
+#define	RAT_TRANSIT	2		/* Connection to Transit Network*/
+#define	RAT_STUB	3		/* Connection to Stub Network	*/
+#define	RAT_VIRTUAL	4		/* Virtual Link			*/
+
+/* Network Links Advertisement */
+
+struct	ospf_na {
+	IPaddr		na_mask;	/* Network Mask			*/
+	unsigned long	na_rid[1];	/* IDs of All Attached Routers	*/
+};
+
+/* Link State Update Packet Format */
+
+struct	ospf_lsu {
+	unsigned long	lsu_nads;	/* # Advertisments This Packet	*/
+	char		lsu_data[1];	/* 1 or more struct ospf_lsa's	*/
+};
+
+#define	MINLSULEN	(MINHDRLEN + 4)	/* Base LSU Length		*/
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d76 1
+a76 6
+	unsigned long	ra_lid;		/* Link ID			*/
+	unsigned long	ra_ipa;		/* Router Interfaces IP Address	*/
+	unsigned char	ra_type;	/* Link Type (RAT_* Below)	*/
+	unsigned char	ra_ntos;	/* # of Types-of-Service Entries*/
+	unsigned char	ra_metric;	/* TOS 0 Metric			*/
+	unsigned long	ra_tosent[1];	/* TOS Entries ra_ntos Times	*/
+d79 10
+a88 1
+#define	ra_mask		ra_lid		/* For Stub Networks		*/
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d11 2
+d36 7
+d52 1
+a52 1
+#define	MAXLSDLEN	16		/* Max LS Data Len (with 0 TOS)	*/
+d97 1
+a97 1
+	unsigned long	na_mask;	/* Network Mask			*/
+d100 9
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d7 1
+a7 1
+	unsigned long	lsr_id;		/* Link State Identifier	*/
+d11 1
+a11 1
+/* OSPF Link State Advertisement Packets */
+d13 9
+a21 10
+struct	ospf_lsa {
+	unsigned short	lsa_age;	/* Time (secs) Since Originated	*/
+	unsigned char	lsa_opts;	/* Options Supported		*/
+	unsigned char	lsa_type;	/* LST_* below			*/
+	unsigned long	lsa_lsid;	/* Link State Identifier	*/
+	unsigned long	lsa_arid;	/* Advertising Router Identifier*/
+	unsigned long	lsa_seq;	/* Link State Adv. Sequence #	*/
+	unsigned short	lsa_cksum;	/* Fletcher Checksum of LSA	*/
+	unsigned short	lsa_len;	/* Length of Advertisement	*/
+	unsigned char	lsa_data[1];	/* Link Type Specific Fields	*/
+d24 1
+a24 1
+#define	LSAHDRLEN	20
+d34 1
+a34 1
+/* LSA Type of Service Entry */
+d41 20
+d72 1
+a72 1
+	unsigned char	ra_tosent;	/* TOS Entries ra_ntos Times	*/
+@

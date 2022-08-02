@@ -1,0 +1,4 @@
+﻿ProductID,Name,Price
+1,Spiky Pung,1000
+2,Gloop Galloop Soup,25
+4,Hat Sauce,12

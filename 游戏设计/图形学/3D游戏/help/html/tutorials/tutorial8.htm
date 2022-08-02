@@ -1,0 +1,36 @@
+<html>
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>Fly3D Tutorial 8 - How to model a dynamic object </title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<h1>Fly3D SDK</h1>
+<h2><a href="tutorials.htm">Tutorials</a></h2>
+<h3 align="right"><a href="../fly3d.htm">Home</a></h3>
+<h3>Tutorial 8</h3>
+<p>How to model a dynamic object </p>
+<p>The most important factor that distinguishes a dynamic object from a static 
+  object is the texture map. It is important that one texture map be derived for 
+  the complete object for run time efficiency. <br>
+</p>
+<p>The steps in buiding up a dynamic object are: </p>
+<p>1) Build a polygon mesh model. </p>
+<p align="center"><img src="ship_wire.gif" width="288" height="285"></p>
+<p>2) Render orthographic views of the object (front, side, top, back, etc). The 
+  numbers of view that will be required depends on the object complexity. All 
+  parts of the object must be visible and of sufficient projected area in 2D space.</p>
+<p>3) Use a painting package to paint the textures on the views. </p>
+<p align="center"><img src="ship_left.jpg" width="180" height="110" align="absmiddle"><img src="ship_back.jpg" width="180" height="110" align="absmiddle"><img src="ship_top.jpg" width="150" height="180" align="absmiddle"><img src="ship_bottom.jpg" width="150" height="180" align="absmiddle"></p>
+<p>4) Create a single texture and copy/paste the required parts of the orthographic 
+  painted views into it. Notice that symmetric objects that have reflected textures 
+  should have both regions mapped onto the same area of the texture map. It is 
+  important for efficiency not to duplicate textures in the texture map.</p>
+<p align="center"><img src="ship_map.jpg" width="256" height="256"></p>
+<p>5) Use the supplied utility (ProgMesh.exe) to precisely position the tetxure 
+  coordinates for each of the model faces into the desired position in the texture 
+  map. </p>
+<p align="center"><img src="ship.jpg" width="339" height="258"></p>
+</body>
+</html>

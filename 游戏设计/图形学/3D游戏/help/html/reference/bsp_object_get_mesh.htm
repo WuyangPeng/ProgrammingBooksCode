@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>bsp_object::get_mesh</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="bsp_object.htm">bsp_object</a>::get_mesh</h2>
+<h3>Prototype</h3>
+<p class="code">virtual mesh *get_mesh()</p>
+<h3>Parameters</h3>
+<p>None</p>
+	
+<h3>Return Value</h3>
+<p>Returns a mesh representation for the object or NULL if none exists.</p>
+<h3>Remarks</h3>
+<p>This virtual function is used for querying the mesh representation of the
+object and derived classes should implement it when needed. If this function is
+implemented, the default <i>draw</i>, <i>ray_intersect</i> and <i>ray_intersect_test</i>
+will use it and they do not need to be defined in the derived class. </p>
+<p>Its default behavior is to return 0.</p>
+<p>&nbsp; </p>
+</body>
+</html>

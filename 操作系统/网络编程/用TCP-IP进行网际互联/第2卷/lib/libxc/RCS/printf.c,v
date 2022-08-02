@@ -1,0 +1,41 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.40;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* printf.c - printf */
+
+#define	OK	1
+#define	CONSOLE	0
+
+/*------------------------------------------------------------------------
+ *  printf  --  write formatted output on CONSOLE 
+ *------------------------------------------------------------------------
+ */
+printf(fmt, args)
+	char	*fmt;
+{
+	int	putc();
+
+	_doprnt(fmt, &args, putc, CONSOLE);
+	return(OK);
+}
+@

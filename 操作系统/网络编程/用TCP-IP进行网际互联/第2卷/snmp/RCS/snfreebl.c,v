@@ -1,0 +1,53 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.29.17;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* snfreebl.c - snfreebl */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+#ifdef	SNMP
+
+#include <snmp.h>
+
+/*------------------------------------------------------------------------
+ * snfreebl - free memory used for ASN.1 strings and snbentry nodes
+ *------------------------------------------------------------------------
+ */
+snfreebl(bl)
+struct snbentry	*bl;
+{
+	register struct snbentry	*pbl;
+
+	if (bl == 0)
+		return;
+	for (pbl = bl, bl = bl->sb_next; bl; pbl = bl, bl = bl->sb_next) {
+		freemem(pbl->sb_a1str, pbl->sb_a1slen);
+		freemem(pbl, sizeof(struct snbentry));
+	}
+	freemem(pbl->sb_a1str, pbl->sb_a1slen);
+	freemem(pbl, sizeof(struct snbentry));
+}
+#endif	/* SNMP */
+@

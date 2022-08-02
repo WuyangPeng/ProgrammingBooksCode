@@ -1,0 +1,39 @@
+    1   #include <unistd.h>
+    2   #include <stdlib.h>
+    3   #include <stdio.h>
+    4   #include <fstream.h>
+    5   #include <rational.h>
+    6   
+    7   
+    8   void main(void)
+    9   {
+   10      int Fd[2];
+   11      pipe(Fd);
+   12      ifstream In;
+   13      ofstream Out;
+   14      rational X(1,2);
+   15      rational Y(3,7);
+   16      rational Z;
+   17      double U = 3.4;
+   18      double Q;
+   19      int Pid;
+   20      Pid = fork();
+   21      if(Pid == 0){
+   22        close(Fd[1]);
+   23        In.attach(Fd[0]);
+   24        In >> Z >> Q;
+   25        Z = Z + Y;
+   26        In.close();
+   27        cout << Z << " " << Q << endl;
+   28      }
+   29      else{
+   30           close(Fd[0]);
+   31           Out.attach(Fd[1]);
+   32           Out << X << " " << U << endl;
+   33           Out.close();
+   34           
+   35      }  
+   36     
+   37   }     
+   38       
+   39      

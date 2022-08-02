@@ -1,0 +1,44 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.09;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* rtfree.c - rtfree */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  rtfree  -  remove one reference to a route
+ *------------------------------------------------------------------------
+ */
+int rtfree(prt)
+struct	route	*prt;
+{
+	if (!Route.ri_valid)
+		return SYSERR;
+	wait(Route.ri_mutex);
+	RTFREE(prt);
+	signal(Route.ri_mutex);
+	return OK;
+}
+@

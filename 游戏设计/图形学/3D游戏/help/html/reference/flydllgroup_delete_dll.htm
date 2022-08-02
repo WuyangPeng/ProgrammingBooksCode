@@ -1,0 +1,51 @@
+<HTML>
+<HEAD>
+  <META NAME="GENERATOR" CONTENT="Adobe PageMill 3.0 Win">
+  <TITLE>flydllgroup::delete_dll</TITLE>
+  
+<LINK REL="stylesheet" HREF="../paralelo.css">
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+
+<H1><A HREF="index.htm">Objects Reference</A></H1>
+
+<H2><A HREF="flydllgroup.htm">flydllgroup</A>::delete_dll</H2>
+
+<H3>Prototype</H3>
+
+<P class="code">int delete_dll(char *filename)</P>
+
+<H3>Parameters</H3>
+
+<P><TABLE BORDER="1" WIDTH="90%" CELLSPACING="0" CELLPADDING="3">
+  <TR>
+    <TH>
+    Parameter</TH> 
+    <TH>
+    Type</TH> 
+    <TH>
+    Description</TH> 
+  </TR>
+  <TR>
+    <TD>
+    filename</TD> 
+    <TD>
+    char *</TD> 
+    <TD>
+    filename for the Fly3D plug-in dll</TD> 
+  </TR>
+</TABLE></P>
+
+<H3>Return Value</H3>
+
+<P>Returns TRUE if the dll was removed OK, FALSE if not found
+or other error.</P>
+
+<H3>Remarks</H3>
+
+<P>This function removes a Fly3D plug-in dll from memory. It removes
+all classes implemented by the dll from memory and frees resources
+associated with the dll.
+
+</BODY>
+</HTML>

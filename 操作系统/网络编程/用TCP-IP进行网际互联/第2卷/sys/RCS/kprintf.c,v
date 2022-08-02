@@ -1,0 +1,147 @@
+head	1.5;
+access;
+symbols;
+locks
+	dls:1.5; strict;
+comment	@ * @;
+
+
+1.5
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	1.4;
+
+1.4
+date	94.05.07.19.26.36;	author dls;	state Works;
+branches;
+next	1.3;
+
+1.3
+date	94.05.06.03.12.23;	author dls;	state Works;
+branches;
+next	1.2;
+
+1.2
+date	94.04.26.15.15.20;	author dls;	state Works;
+branches;
+next	1.1;
+
+1.1
+date	94.03.28.18.07.53;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.5
+log
+@pre-3e code
+@
+text
+@/* kprintf.c - kprintf */
+
+#include <conf.h>
+#include <kernel.h>
+#include <tty.h>
+
+/*------------------------------------------------------------------------
+ *  kprintf  --  kernel printf: formatted, unbuffered output to CONSOLE
+ *------------------------------------------------------------------------
+ */
+int
+kprintf(fmt, args)
+char	*fmt;
+int	args;
+{
+	STATWORD	ps;
+	unsigned int	saveof;
+        int		kputc();
+
+	disable(ps);
+	saveof = control(CONSOLE, TTC_GOF);
+	control(CONSOLE, TTC_SYNC, 1);
+        _doprnt(fmt, &args, kputc, CONSOLE);
+	if ((saveof & TOF_SYNC) == 0)
+		control(CONSOLE, TTC_SYNC, 0);
+	restore(ps);
+        return OK;
+}
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d1 1
+a1 1
+/* kprintf.c - kprintf, kputc, savestate, rststate */
+a4 1
+#include <io.h>
+a6 2
+#define prputchar(x) (romp->v_putchar)((unsigned char) x)
+
+d11 4
+a14 3
+kprintf(fmt, args)		/* Derived by Bob Brown, Purdue U.	*/
+char *fmt;
+int args;
+d16 3
+a18 2
+	STATWORD ps;    
+        int     kputc();
+d20 3
+a22 1
+        disable(ps);
+d24 2
+d27 1
+a27 1
+        return(OK);
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d21 1
+a21 1
+/*        disable(ps); */
+d23 1
+a23 1
+/*	restore(ps); */
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d21 1
+a21 1
+        disable(ps);
+d23 1
+a23 1
+        restore(ps);
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@a20 1
+#ifdef notdef
+a23 4
+#else
+	kputc('H'); kputc('e'); kputc('l'); kputc('l'); kputc('o');
+	while (1) ;
+#endif
+@

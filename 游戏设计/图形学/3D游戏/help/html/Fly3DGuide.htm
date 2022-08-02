@@ -1,0 +1,799 @@
+<html>
+<head>
+<link rel="stylesheet" href="paralelo.css">
+<title>Fly3D Guide</title>
+<style type="text/css">
+<!--
+-->
+</style>
+</head>
+
+<body>
+<h1>Fly3D SDK</h1>
+<h2>Guide</h2>
+<h3 align="right"><a href="fly3d.htm">Home</a></h3>
+<h3><a href="#01">Introduction to C++</a></h3>
+<p><a href="#01.01">classes</a><br>
+  <a href="#01.02">constructors</a><br>
+  <a href="#01.03">destructors</a><br>
+  <a href="#01.04">inheritance</a><br>
+  <a href="#01.05">virtual functions</a><br>
+  <a href="#01.06">operators</a><br>
+  <a href="#01.07">templates</a><br>
+  <a href="#01.08">public/private/protected</a></p>
+<h3><a href="#02">C++ in games</a></h3>
+<p><a href="#02.01">Engine Design and Architecture</a></p>
+<h3> <a href="#03">Fly3D Software Architecture</a></h3>
+<p><a href="#03.01">Plug-ins</a><br>
+  <a href="#03.02">bsp_object virtual functions</a><br>
+  <a href="#03.03">Fly3D Front-ends</a><br>
+  <a href="#03.04">Collision Detection</a><br>
+  <a href="#03.05">Stock and Active object list</a><br>
+  <a href="#03.06">Sphere of Influence</a><br>
+  <a href="#03.07">Communicating between objects and plug-ins</a><br>
+  <a href="#03.08">Camera and Scene Drawing</a><br>
+  <a href="#03.09">Text Output</a><br>
+  <a href="#03.10">Rendering API</a></p>
+<hr>
+<p> </p>
+<p></p>
+<p></p>
+<h2><a name="01"></a>Introduction to C++</h2>
+<p>This is a brief introduction to C++ intended for those who already possess a good facility with C. Its emphasis is on those aspects of C++ that are useful in games.
+We start with definitions of new features that are included in C++ then move on to games applications<br>
+C has been the programming language used in games for a long time and most games are still written in C because of its speed and portability. With the advent of standard C++ definitions, C++ now possesses all the speed and portability of pure C in addition to those features that can be used to advantage game programming. Thus it is becoming the de facto standard for modern games.<br>
+The conventional wisdom is that C++ is slower than C but this will only occur if sufficient care is not taken in the coding.<br>
+Those C++ definitions that are useful in game are as follows:</p>
+<h3><a name="01.01"></a>classes</h3>
+<p>C++ classes are basically C structures with embedded code as member functions. Using classes to specify program objects, enables all the code that deals with the object to be included within it. This is a more organized approach and makes the object blocks easier to manage and re-use.<br>
+An example of the conversion of C to C++ representation is:</p>
+<p>C</p>
+<p class="code">struct vector<br>
+  {<br>
+  &nbsp;&nbsp;float x,y,z;<br>
+  };<br>
+  void normalize(struct vector &amp;v)<br>
+  {<br>
+  &nbsp;&nbsp;float len=sqrt(v.x*v.x + v.y*v.y + v.z*v.z);<br>
+  &nbsp;&nbsp;if (len>0)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;{ v.x/=len; v.y/=len; v.z/=len; }<br>
+  }</p>
+<p>C++</p>
+<p class="code">class vector<br>
+  {<br>
+  &nbsp;&nbsp;public:<br>
+  &nbsp;&nbsp;float x,y,z;<br>
+  &nbsp;&nbsp;void normalize();<br>
+  };<br>
+  void vector::normalize()<br>
+  {<br>
+  &nbsp;&nbsp;float len=sqrt(x*x + y*y + z*z);<br>
+  &nbsp;&nbsp;if (len>0)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;{ x/=len; y/=len; z/=len; }<br>
+  }</p>
+<h3><a name="01.02"></a>constructors</h3>
+<p>A constructor is a method called when an instance of the class is allocated. Usually, members are initialized in the constructor. The constructor method must have the same name as the class it is from. The class may have more then one constructor if each of them have different parameters.<br>
+Examples of some constructors for the above vector class are:</p>
+<p class="code">class vector<br>
+  {<br>
+  &nbsp;&nbsp;public:<br>
+  &nbsp;&nbsp;float x,y,z;<br>
+  <br>
+  &nbsp;&nbsp;vector()<br>
+  &nbsp;&nbsp;{ ; }; // uninitialised<br>
+  <br>
+  &nbsp;&nbsp;vector(float f1,float f2,float f3)<br>
+  &nbsp;&nbsp;{ x=f1; y=f2; z=f3; }; // initialised by 3 floats<br>
+  <br>
+  &nbsp;&nbsp;vector(float f)<br>
+  &nbsp;&nbsp;{ x=y=z=f; }; // initialised by 1 float<br>
+  <br>
+  &nbsp;&nbsp;vector(vector &amp;v)<br>
+  &nbsp;&nbsp;{ *this=v; }; // initialised by another vector<br>
+  };<br>
+  <br>
+  &nbsp;&nbsp;...<br>
+  <br>
+  {<br>
+  &nbsp;&nbsp;vector v1;<br>
+  &nbsp;&nbsp;vector v2(0.0f);<br>
+  &nbsp;&nbsp;vector v3(0.0f,0.0f,1.0f);<br>
+  &nbsp;&nbsp;vector v4(v2);<br>
+  }</p>
+<h3><a name="01.03"></a>destructors</h3>
+<p>The destructor is a method called when the class is to be released. Usually, you must check for any data that was allocated by the object, and free it. The destructor is called when the class variable is deleted or gets out of scope. The destructor has the same name as the class, but with a '~' char at the
+beginning.</p>
+<p class="code">class A<br>
+  {<br>
+  &nbsp;&nbsp;public:<br>
+  &nbsp;&nbsp;char *data;<br>
+  <br>
+  &nbsp;&nbsp;A() { data=0; }<br>
+  &nbsp;&nbsp;~A() { if (data) delete data; };<br>
+  <br>
+  &nbsp;&nbsp;void allocate_data(int i)<br>
+  &nbsp;&nbsp;{<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;if (data) delete data;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;data=new char[i];<br>
+  &nbsp;&nbsp;};<br>
+  };</p>
+<h3><a name="01.04"></a>inheritance</h3>
+<p>Inheritance is the most important feature of C++ and is the ability t0 create a new class by derivation from one or more already existing classes. All properties and methods of the original classes are maintained and new properties and methods can be included. In this way you can create a base object and use this base code to create new objects that include the base object as a part of it.<br>
+For example, a plane can be defined as deriving from a vector (the plane normal) by adding a single float, the plane distance to the origin. This would
+be:</p>
+<p class="code">class plane : public vector<br>
+  {<br>
+  &nbsp;&nbsp;public:<br>
+  &nbsp;&nbsp;float d;<br>
+  &nbsp;&nbsp;float distance_to(vector &amp;p);<br>
+  };<br>
+  float plane::distance_to(vector &amp;p)<br>
+  {<br>
+  &nbsp;&nbsp;// return the distance from point p to the plane<br>
+  &nbsp;&nbsp;return x*p.x + y*p.y + z*p.z - d;<br>
+  }</p>
+<h3><a name="01.05"></a>virtual functions</h3>
+<p>A virtual function is a member function that you expect to be redefined in derived classes. If you define a function in a class as virtual, any class deriving from it, may have a new implementation for the function. When calling the virtual function from a class pointer (even from a base class pointer) the function that will be executed is the one defined at the allocation time. If your class do not implement the function, the base class version will be
+used.</p>
+<p class="code">class A<br>
+  {<br>
+  &nbsp;&nbsp;A() { printf("A constructor");<br>
+  &nbsp;&nbsp;virtual ~A() { printf("A destructor");<br>
+  <br>
+  &nbsp;&nbsp;virtual void print() { printf("A print"); };<br>
+  };<br>
+  class B : public A<br>
+  {<br>
+  &nbsp;&nbsp;B() { printf("B constructor");<br>
+  &nbsp;&nbsp;virtual ~B() { printf("B destructor");<br>
+  };<br>
+  class C : public A<br>
+  {<br>
+  &nbsp;&nbsp;C() { printf("C constructor");<br>
+  &nbsp;&nbsp;virtual ~C() { printf("C destructor");<br>
+  <br>
+  &nbsp;&nbsp;virtual void print() { printf("C print"); };<br>
+  };<br>
+  <br>
+  &nbsp;&nbsp;...<br>
+  <br>
+  {<br>
+  &nbsp;&nbsp;A *a;<br>
+  &nbsp;&nbsp;B b;<br>
+  &nbsp;&nbsp;C c;<br>
+  &nbsp;&nbsp;a=&amp;b;<br>
+  &nbsp;&nbsp;a->print();<br>
+  &nbsp;&nbsp;a=&amp;c;<br>
+  &nbsp;&nbsp;a->print();<br>
+  }<br>
+  <br>
+  will print out:<br>
+  <br>
+  A constructor<br>
+  B constructor<br>
+  A constructor<br>
+  C constructor<br>
+  A print<br>
+  C print<br>
+  C destructor<br>
+  A destructor<br>
+  B destructor<br>
+  A destructor</p>
+<h3><a name="01.06"></a>operators</h3>
+<p>When a new class is defined operators must also be defined in order to be used. For example, consider the definition of the operator for the vector class defined
+above:</p>
+<p class="code">inline vector operator +(vector &amp;v1,vector2 &amp;v2)<br>
+  {<br>
+  &nbsp;&nbsp;vector v;<br>
+  &nbsp;&nbsp;v.x = v1.x + v2.x;<br>
+  &nbsp;&nbsp;v.y = v1.y + v2.y;<br>
+  &nbsp;&nbsp;v.z = v1.z + v2.z;<br>
+  &nbsp;&nbsp;return v;<br>
+  }<br>
+  <br>
+  inline operator *=(vector &amp;v1,float f)<br>
+  {<br>
+  &nbsp;&nbsp;v1.x *= f;<br>
+  &nbsp;&nbsp;v1.y *= f;<br>
+  &nbsp;&nbsp;v1.z *= f;<br>
+  }<br>
+  <br>
+  This would be used in the following context<br>
+  <br>
+  {<br>
+  &nbsp;&nbsp;vector v1,v2(2,2,2),v3(3,3,3);<br>
+  &nbsp;&nbsp;float f=0.2f;<br>
+  <br>
+  &nbsp;&nbsp;v1=v2+v3;<br>
+  &nbsp;&nbsp;v1*=f;<br>
+  }</p>
+<p>and will set v1 to (1,1,1)<br>
+The operators that can be redefined in this way are:</p>
+<p class="code">+ - ++ -- * / %<br>
+^ &amp; | ~ ! &lt; ><br>
+= += -= *= /= %= ^=<br>
+&amp;= |= &lt;&lt; >> >>= &lt;&lt;= ==<br>
+!= &lt;= >= &amp;&amp; || ->* -><br>
+, () [] new delete new[] delete[]</p>
+<p>Care must be taken when using operators like:</p>
+<p class="code">+, -, *, /, %, |, &amp;, ^, and ~</p>
+<p>as they return values. If the data being operated on is large (a 4x4 matrix, for example), the operators will execute slowly as new copies of temporary data will be created in the process. The following code shows this inefficiency
+problem.</p>
+<p class="code">class A<br>
+  {<br>
+  &nbsp;&nbsp;public:<br>
+  &nbsp;&nbsp;int value;<br>
+  &nbsp;&nbsp;A(int i=0)<br>
+  &nbsp;&nbsp;{<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;value=i;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;printf("constructor %i",i);<br>
+  &nbsp;&nbsp;};<br>
+  };<br>
+  A operator +(A a1,A a2)<br>
+  {<br>
+  &nbsp;&nbsp;return A(a1.value+a2.value);<br>
+  }<br>
+  <br>
+  ...<br>
+  <br>
+  {<br>
+  &nbsp;&nbsp;A a1(3)<br>
+  &nbsp;&nbsp;A a2(4);<br>
+  &nbsp;&nbsp;A a3=a1+a2;<br>
+  }<br>
+  <br>
+  will print out:<br>
+  <br>
+  constructor 3<br>
+  constructor 4<br>
+  constructor 0<br>
+  constructor 7</p>
+<p>The output ‘0’ is the temporary class allocated by the operator that produces 
+  the inefficiency - this will be large for large objects.<br>
+</p>
+<h3><a name="01.07"></a>templates<br>
+</h3>
+<p> Templates are mechanisms for generating functions and classes based on type 
+  parameters (templates are sometimes called “parameterized types”). By using 
+  templates, you can design a single class that operates on data of many types, 
+  instead of having to create a separate class for each type.For example, to create 
+  a type-safe function that returns the minimum of two parameters without using 
+  templates, you would have to write a set of overloaded functions as:</p>
+<p class="code">// minimum for ints<br>
+int min( int a, int b )<br>
+return ( a &lt; b ) ? a : b;<br>
+<br>
+// minimum for longs<br>
+long min( long a, long b )<br>
+return ( a &lt; b ) ? a : b;<br>
+<br>
+// minimum for chars<br>
+char min( char a, char b )<br>
+return ( a &lt; b ) ? a : b;<br>
+<br>
+//etc...</p>
+<p>By using templates, you can reduce this duplication to a single function
+template:</p>
+<p class="code">template &lt;class T> T min( T a, T b )<br>
+return ( a &lt; b ) ? a : b;</p>
+<p>Templates can significantly reduce source code size and increase code flexibility without reducing type
+safety.</p>
+<h3><a name="01.08"></a>public/private/protected</h3>
+<p>This facility must be used wisely. Consider the following code:</p>
+<p class="code">class Point3D<br>
+  {<br>
+  &nbsp;&nbsp;public:<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;float&amp; GetX() { return x; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;const float&amp; GetX() const { return x; }<br>
+  &nbsp;&nbsp; &nbsp;float&amp; GetY() { return y; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;const float&amp; GetY() const { return y; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;float&amp; GetZ() { return z; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;const float&amp; GetZ() const { return z; }<br>
+  <br>
+  &nbsp;&nbsp;private:<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;float x, y, z;<br>
+  };</p>
+<p>Making accessors for a basic structure like this provides no benefit. Making the accessors inline will make their use as fast as direct access. But then the class would have to be used as
+follows:</p>
+<p class="code">Point3D p1, p2;<br>
+  float dist = sqrt(<br>
+  &nbsp;&nbsp;p1.GetX()*p2.GetX() +<br>
+  &nbsp;&nbsp;p1.GetY()*p2.GetY() +<br>
+  &nbsp;&nbsp;p1.GetZ()*p2.GetZ());</p>
+<p>instead of:</p>
+<p class="code">float dist = sqrt(p1.x*p2.x + p1.y*p2.y + p1.z*p2.z);</p>
+<p>The only time protected data should be used is when is when you don’t want the users of the class to either know about the data or modify the data
+directly.</p>
+<h2><a name="02"></a>C++ in games</h2>
+<h3><a name="02.01"></a>Engine Design and Architecture</h3>
+<p> The purpose of these notes is to describe the main design choices that were 
+  made in the implementation and the reasons for them.<br>
+  Engine architecture design factors are motivated by many requirements. The predominant 
+  ones are efficiency of image generation, quality of image generation and the 
+  provision of a development platform.<br>
+  The example engine is based on BSP technology. Although BSP management was originally 
+  developed for first person shooter games it is a general and versatile scene 
+  management methodology and will admit many applications as the examples will 
+  demonstrate. Different applications will use different partitioning methods 
+  to build the BSP object and these options are embedded in the plug-in that converts 
+  the model into the tree.<br>
+  The implemented applications are examples of common games genres and include:<br>
+  1st person shooter game (ship and walking person)<br>
+  car racing and pursuit game<br>
+  three-dimensional strategy game<br>
+  BSP technology is also versatile enough to facilitate combinations of the scene 
+  types that support these games. These are:</p>
+<ul>
+  <li> Closed environments - BSP planes are made coincident with the faces and 
+    every BSP partition is categorized as in or out.</li>
+  <li> Landscapes - partition planes are normal to the ground plane and BSP partitions 
+    contain groups of faces<br>
+    3D strategy games partitions - this is an extension of the previous and includes 
+    a 3rd partition plane orientation which defines BSP partitions to be rectangular 
+    solids which contain games objects for selection etc.</li>
+  <li>combinations - it is possible to implement environments which will contain 
+    combinations of these scene types. A type separating plane dichotomizes the 
+    different scene within a single tree.<br>
+    A common example might be the traversal from a landscape into a closed environment 
+    or vice versa. In this case the two types of environment are merged into a 
+    single BSP tree by having, as the root node, the plane that separates the 
+    environments. The tree is then built by applying the different building utilities 
+    to each side of the tree.</li>
+</ul>
+<p> The applicability of BSP technology depends, of course, on the nature of the 
+  game application. A popular genre - football games - may or may not be beneficially 
+  implemented as a BSP tree depending on the relative complexity of the landscape 
+  v. the players. If the stadium is complex then the landscape approach can be 
+  used. If, however, the complexity of the 22 players - dynamic objects - is much 
+  greater than the landscape then BSP technology will not be optimal.</p>
+<p> In general BSP technology is best in applications with large complex static 
+  meshes and its inherent advantages reduce as the number and complexity of the 
+  dynamic objects increases. It is also supreme in applications which require 
+  collision detection with the static mesh.</p>
+<p> Game development is facilitated by building the environment or level using 
+  a modeling utility or editor then writing plug-ins to define different behaviors, 
+  both visual and dynamic for the game objects. Ideally new plug-ins should be 
+  developed to create a unique game but several sample plug-ins are given which 
+  can be edited (source code) or have their behavior altered by changing the parameter 
+  values.<br>
+  The normal advantages of plug-in pertain. The front-end has no knowledge of 
+  the nature of the plug-ins and is not re-compiled when new plug-ins are added. 
+  It sees the plug-ins as a group of BSP objects which are new classes, defined 
+  by the user, and derived from the BSP base class.<br>
+  Dynamic objects are handled with their reference position defaulting to particle 
+  behavior.</p>
+<h2> <a name="03"></a>Fly3D Software Architecture</h2>
+<p> The design reflects the motivation of ease of game development in two main 
+  ways. First all behaviors are embedded in plug-ins. This means that the engine 
+  and front-ends are separate and distinct from the game application. The engine 
+  becomes a tool used by the game developer who needs to know little about the 
+  detailed engine behavior (precise ways in which scene management or collision 
+  detection, for example, is implemented).</p>
+<p> Second inheritance in C++ is heavily exploited. The engine only knows about 
+  bsp_objects and many new classes can easily be created in a plug-in that inherits 
+  the bsp_object properties and behaviors. Many different objects, that share 
+  a common behavior, can be implemented as a base object which specifies the behavior 
+  once only.<br>
+  The flyEngine is a .lib file that needs to be to be linked with all front-ends, 
+  plug-ins and utilities. It includes a global pointer where all access to the 
+  engine should be directed:</p>
+<p class="code"> flyEngine *flyengine;</p>
+<p> The classes defined in the Fly3D.dll file are:</p>
+<p class="code">class vector; // standard x,y,z 3D vector<br>
+  class mat4x4; // 4x4 matrix to represent rotations, translations and scales<br>
+  class boundbox; // axis aligned bounding box<br>
+  class plane; // 3D plane<br>
+  class vertex; // 3D vertex<br>
+  class face; // 3D face<br>
+  class local_system; // local system defined by 3 axis perpendicular vectors<br>
+  class base_object; // the base class for all objects to derive from<br>
+  class sound; // raw sound data<br>
+  class mesh; // 3D mesh with faces, vertices ...<br>
+  class anim_mesh; // animated 3D mesh with 3D vertex morphing<br>
+  class stripfan_mesh; // mesh specified as strips and fans<br>
+  class bezier_curve; // Bezier curve with any dimension<br>
+  class bezier_patch; // Bezier surface made of several patches<br>
+  class particle; // point particle in 3D space<br>
+  class bsp_node; // node from the bsp tree<br>
+  class bsp_object; // object inside one bsp node (all plug-ins derive from this 
+  class)<br>
+  class static_mesh; // object containing faces in a leaf bsp node (derived from 
+  bsp_object)<br>
+  class light_map; // bitmap for caching light<br>
+  class light_map_pic; // collection of bitmaps for caching light<br>
+  class light_vertex; // dynamic vertex light info<br>
+  class class_desc; // describe fly plug-in classes<br>
+  class flydll; // handles one dll plug-in<br>
+  class flydllgroup; // group of fly plug-ins<br>
+  class directX; // DirectX wrapper<br>
+  class picture; // a 24 or 32 bits/pixel bitmap<br>
+  class console; // console with text input and command interpreter<br>
+  class flyEngine; // the main interface</p>
+<p> The engine class includes all the scene objects, textures, models, sounds 
+  and curves. It is the main interface with several functions which interact with 
+  the simulation data.<br>
+  One fly level or scene(.fly files) is composed of the following items all included 
+  in the flyEngine class:<br>
+  a BSP tree (BSP nodes, faces, vertices) representing the static scene or level</p>
+<p class="code"> // vertex array for static bsp faces<br>
+  int nvert;<br>
+  vector *vert;<br>
+  <br>
+  // faces array for static bsp<br>
+  int nfaces;<br>
+  face *faces;<br>
+  <br>
+  // the bsp tree<br>
+  bsp_node *bsp;<br>
+  <br>
+  an array of pictures to be used as texture maps<br>
+  <br>
+  int npiclib;<br>
+  picture *piclib[MAX_PICTURES];<br>
+  <br>
+  object meshes, sounds and curves stored as linked lists<br>
+  <br>
+  // linked list of model objects<br>
+  mesh *model_obj0;<br>
+  <br>
+  // linked list of sound objects<br>
+  sound *sound_obj0;<br>
+  <br>
+  // linked list of curve objects<br>
+  bezier_curve *bezier_curve0;<br>
+  <br>
+  the group of plug-ins used<br>
+  <br>
+  // group of active plug-ins<br>
+  flydllgroup dll;</p>
+<p> a linked list of stock bsp objects. These are objects that can be cloned and 
+  activated during the execution of the game. Activation means adding the object 
+  to the BSP tree and to the list of active objects.</p>
+<p class="code"> // linked list of stock script objects<br>
+  bsp_object *stock_obj0;<br>
+  <br>
+  a linked list of active bsp objects.<br>
+  <br>
+  // linked list of active objects<br>
+  bsp_object *active_obj0;</p>
+<h3> <a name="03.01"></a>Plug-ins</h3>
+<p> The Fly3D plug-ins are dll files that defines new classes derived from the 
+  engine bsp_object class. In this way we can create a dll that implements a new 
+  bsp_object to be used in the simulation. The new object will be able to give 
+  new behaviour to new virtual functions defined by the bsp_obejct that requires 
+  different behavior. Common re-implemented functions are the draw, step and ray_intersect 
+  virtual functions.</p>
+<p> The bsp_object class is derived from a particle, and so it behaves as a particle. 
+  It includes several properties that are common to all plug-ins like position, 
+  vel, force, mass, bump, friction and radius. If no custom behavior is defined 
+  in new implementations for the object virtual step function, it will move and 
+  collide as a particle, using its current vel and force parameters.</p>
+<p> The following plug-ins are supplied:</p>
+<p> gamelib.dll </p>
+<ul>
+  <li>sound - implements 3D sound</li>
+  <li> particle_system - particle emitter and population</li>
+  <li> sphere - procedural strip fan sphere object</li>
+  <li>shadow - simple texture mapped shadow</li>
+  <li> explode - a group of other objects (particle system, sound, sphere, lights 
+    etc.). when an explosion occurs all the objects are activated at once</li>
+</ul>
+<p> lights.dll</p>
+<ul>
+  <li> light - a dynamic light source</li>
+  <li> spotlight - a dynamic spotlight</li>
+  <li> spritelight - implements haloes and billboard type lighting</li>
+  <li> meshlight - a 3D object that implements a non-point source - a light object 
+    with shape and extent.</li>
+</ul>
+<p> bezobj.dll</p>
+<ul>
+  <li>bezier_extrude - an extruded Bezier curve object</li>
+  <li> bezier_loft - a lofted Bezier curve object</li>
+</ul>
+<p> volfog.dll</p>
+<ul>
+  <li> fogsphere - a spherical fog volume</li>
+  <li> fogbox - a box fog volume</li>
+</ul>
+<p> panorama.dll</p>
+<ul>
+  <li> panorama - implements a texture mapped panorama-box created from 6 images</li>
+</ul>
+<p> viewport.dll</p>
+<ul>
+  <li>viewport - implements a camera position and a viewport</li>
+</ul>
+<p>subdivsurf.dll</p>
+<ul>
+  <li>subdivsurf - a mesh that subdivides creating better looking models</li>
+</ul>
+<p>cartoon.dll</p>
+<ul>
+  <li>cartoon_mesh - a mesh object that render like cartoons</li>
+</ul>
+<p> weapon.dll</p>
+<p>gun can include any of the other objects in the dll. It is a container for 
+  the projectiles and includes parameters for different behaviour</p>
+<ul>
+  <li> hit_mark - paints marks due to an explosion onto objects</li>
+  <li> mine - implements a static object which is triggered by nearby objects</li>
+  <li> laser - billboard based projectile that simulates a laser gun</li>
+  <li> missile - mesh projectile that travels until it collides when it then explodes</li>
+</ul>
+<p> menu.dll</p>
+<ul>
+  <li> menu_group - a group of menu items</li>
+  <li> menu_item - selectable menu item</li>
+  <li> menu_camera - camera that can be set to view the group and select menu 
+    items</li>
+</ul>
+<p> ship.dll</p>
+<ul>
+  <li> ship - a mesh object that behaves as a flying spaceship</li>
+  <li> turret - implements a static gun with azimuth and elevation control</li>
+  <li> robot - ship enemy that attempts to track and destroy</li>
+  <li> power_up - a resource of special abilities collected by the player (visibility, 
+    missiles etc.)</li>
+  <li> container - mesh that enables a power-up after being destroyed</li>
+  <li> door - mesh that is animated on contact</li>
+</ul>
+<p> walk.dll</p>
+<ul>
+  <li> person - person mesh</li>
+  <li> elevator - elevator which activates on contact</li>
+  <li> jump_pad - pad that applies forces to any player moving on top of it</li>
+</ul>
+<p> car.dll</p>
+<ul>
+  <li> camera - implements a camera that can be targeted to any car. The targeted 
+    car<br>
+    is under user control and the camera also gathers user input for this car.</li>
+  <li> car - car</li>
+</ul>
+<p> One Fly3D plug-in can implement any number of bsp_objects derived classes. 
+  Each class can include any number of custom properties. The properties can be 
+  of predefined types like int, float, vector, color, string, picture, mesh, sound, 
+  curve, pointer to another stock or active bsp_object etc.</p>
+<p> Plug-ins may draw, enumerate objects or do both. The set of draw plug-ins 
+  effectively draw into depth-ordered layers which are composited into the frame 
+  buffer. In the above exam0ple the first - panorama.dll - draws the backgrounds 
+  and enumerates no objects. The object, however, is not inserted into the BSP 
+  tree (because it is the background. Gamelib.dll draws nothing but enumerates 
+  several objects (light, sound, etc.). The third plug-in draws the rendered view 
+  from the player and implements the player object. The final one enumerates an 
+  object and draws it as a two-dimensional object directly onto the screen. This 
+  object is not inserted into the BSP tree.</p>
+<p> The advantage of this organization is the ability to easily define (and clone 
+  game) objects by defining their update and draw functions. From the rendering 
+  point of view it effectively combines a BSP rendering strategy with a layered 
+  approach. The plug-ins are associated with the layers which can be blended into 
+  the frame buffer using different blend modes.</p>
+<p> As an example of a game action element consider the plug-in dependency for 
+  the following case. We require a missile that has sound fixed to it, whose exhaust 
+  paints light on nearby objects as it travels and explodes using a particle explosion 
+  also with the appropriate sound. The missile is also to emit smoke. The light 
+  plug-in instance used by the missile causes the light map(s) within the sphere 
+  of influence of the missile light to be recomputed. Sound is fixed to the missile 
+  and travels with it. Smoke is modeled and emitted by the travelling missile 
+  by simulation in a particle system. The missile ‘carries’ the explosion and 
+  when it is destroyed, this explosion is cloned into the missile position in 
+  the BSP tree - effectively replacing it. The activation of the explosion may 
+  itself use sound instances and an animated mesh.</p>
+<h3> <a name="03.02"></a>bsp_object virtual functions</h3>
+<p> The bsp_object class defines several virtual functions that should be re-implemented 
+  in order to define your own behaviors. If these are not implemented then the 
+  object will behave as a particle.</p>
+<p class="code"> virtual void init();</p>
+<p> This function is called for all objects after scene loading is completed. 
+  At this point you should initialize all data that your object requires.</p>
+<p class="code"> virtual int step(int dt);</p>
+<p> dt is the elapsed time from the last frame and your object should be updated 
+  using this time.<br>
+  If the object has moved in this time you must return true. Returning 0 will 
+  not reposition the object in the BSP tree.</p>
+<p class="code"> virtual bsp_object *clone();</p>
+<p> The clone function must return a new instance of the object with the same 
+  parameter settings as the original. It is used to duplicate objects.</p>
+<p class="code"> virtual mesh *get_mesh();</p>
+<p> If the object has a mesh representation then this function should return its 
+  current mesh object. If a mesh is returned by this function then drawing, ray 
+  intersection and collision will be handled internally.</p>
+<p class="code"> virtual void draw();</p>
+<p> You must draw the object mesh representation and this function is called by 
+  the BSP draw for all objects within the view frustum and which have not been 
+  culled by the PVS. If not implemented a get_mesh will be called and if it returns 
+  a mesh that mesh will be drawn, otherwise no drawing will take place for this 
+  object.</p>
+<p class="code"> virtual mesh *ray_intersect(vector&amp; ro,vector&amp; rd,vector&amp; 
+  ip,float&amp; dist,int &amp;facenum,float rad=0.0f);</p>
+<p> For special objects that require special ray intersection routines. If not 
+  implemented a get_mesh will be called and if it returns a mesh the ray intersection 
+  will be done with the mesh. Otherwise no collision detection will occur.</p>
+<p class="code"> virtual int get_custom_param_desc(int i,param_desc *pd);</p>
+<p> Here you should return the description of all external parameters that your 
+  object implements.</p>
+<p class="code"> virtual int message(vector&amp; p,float rad,int msg,int param,void 
+  *data);</p>
+<p> This is a general object message procedure. Here you should process all messages 
+  directed to the object; for example, dynamic illumination or any other custom 
+  game message.</p>
+<h3><a name="03.03"></a>Fly3D Front-ends</h3>
+<p>Front-ends are applications created using the flyengine lib that open a scene 
+  and loop through the simulation. The fly.exe, flyEditor.exe, fly.ocx and fluserv.exe 
+  are all examples of Fly3D front-ends. They are responsible for creating and 
+  initializing a render if needed (the server front-end is an example of a frontend 
+  without a render) and loading the plug-ins</p>
+<p> The main loop in a front-end is as follows:</p>
+<p class="code"> // compute elapsed time since last frame in ms (dt)<br>
+  T1=current time<br>
+  dt=T1-T0<br>
+  if dt &lt; 10 return<br>
+  T0=T1<br>
+  if dt>1000 return<br>
+  // simulate dt ms<br>
+  call flyengine->step(dt)</p>
+<p> dt is the time interval for the next frame and in the step function, the following 
+  order of operations are performed:</p>
+<p class="code"> // get input state (keyboard and mouse)<br>
+  directx->get_input();<br>
+  <br>
+  // restores all light maps changed in last frame<br>
+  for each active object<br>
+  &nbsp;&nbsp;if object life is &lt; 0<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;destroy object removing it from BSP tree and active 
+  object list<br>
+  &nbsp;&nbsp;elsecall object->step(dt)<br>
+  if this returns true reposition object in BSP tree as it may have changed nodes<br>
+  <br>
+  // update all light maps that were changed in this frame (this operation, of 
+  course, is<br>
+  // necessary only for hardware assisted rendering because the maps have been 
+  cached into the<br>
+  // hardware<br>
+  <br>
+  // send a message to all the plug-ins informing them of the sumulation step<br>
+  <br>
+  dll.send_message(FLYM_UPDATESCENE,dt,0);<br>
+  <br>
+  // if in multiplayer mode, process all multiplayer messages<br>
+  <br>
+  // messages like connect/disconnect and server quit are processed by the engine 
+  and<br>
+  <br>
+  // custom multiplayer messages are passed on to the plug-ins<br>
+  <br>
+  check_multiplayer();</p>
+<p>If we are in server mode, no render is defined so no input and light map operations 
+  will be executed.<br>
+  It is apparent in the above that there is no reference to any rendering activity. 
+  BSP rendering occurs when the plug-ins process the update scene message. Some 
+  may effect a render and others may not. For example weapon.dll effects no render. 
+  Ship.dll on the other hand effects a (BSP) render of the entire scene using 
+  the current ship position as the camera position. Another example is viewport.dll 
+  which can implement, for example, a back facing camera or a missile camera. 
+  This selects a small viewpoint, sets the camera to the required position and 
+  effects a BSP render.</p>
+<h3> <a name="03.04"></a>Collision Detection</h3>
+<p> The following functions from the flyEngine should be used for collision detection:</p>
+<p class="code"> int collision_bsp(bsp_node *n,vector&amp; p1,vector&amp; p2,int 
+  elemtype=0,float rad=0.0f);<br>
+  int collision_test(bsp_node *n,vector&amp; p1,vector&amp; p2,int elemtype=0,float 
+  rad=0.0f);</p>
+<p> The collision_test returns 0 if no collision is found between p1 and p2 and 
+  1 if a collision is found (not the closest collision). The collision_bsp returns 
+  the closest collision from p1 to p2.</p>
+<p> If the elem type is specified, only objects with the specified type will be 
+  intersected (-1 for only the BSP faces). If radius is >0, the collision will 
+  be tested for a sphere with the specified radius.</p>
+<p> The distinction of usage between a nearest collision and the detection of 
+  any collision is as follows. A moving object always needs the nearest collision 
+  for correct impact calculation. On the other hand a robot tracking a player 
+  simply needs to know if the player is still visible from his viewpoint in which 
+  case an ‘any’ collision will suffice.Information about the collision is returned 
+  in the flyEngine class members:</p>
+<p class="code"> // ray intersection data<br>
+  bsp_object *hitobj; // bsp_object intersected<br>
+  mesh *hitmesh; // mesh from the bsp_objects intersected<br>
+  int hitface; // face from mesh intersected<br>
+  vector hitip; // intersection point in global co-ordinates</p>
+<h3> <a name="03.05"></a>Stock and Active object list</h3>
+<p> All objects defined in a .fly file are loaded into the stock objects linked 
+  list when a open_fly_file command is executed. When saving a .fly file, all 
+  object properties in the stock objects the liked list are saved to the file.</p>
+<p> Any stock object can be activated (cloned and added to the bsp) using the 
+  following command from the flyEngine class:</p>
+<p class="code"> void activate(bsp_object *stockobj,int flag=1);</p>
+<p> This will make a clone of the stock object (using the clone() bsp_object virtual 
+  function) and add it to the end of the active object linked list. If flag is 
+  true, the object is also added to the bsp.<br>
+  All objects in the active object linked list will have its step() function called 
+  for every frame and may be selected for drawing if in the current view frustum 
+  and not culled by the pvs.</p>
+<h3> <a name="03.06"></a>Sphere of Influence</h3>
+<p> Spheres of influence are used for many operation in the engine. It allows 
+  fast selection of all objects in a sphere positioned anywhere in the bsp. A 
+  callback function is used, and a call is made for each bsp_object included inside 
+  the specified sphere of influence.</p>
+<p class="code"> // recourse bsp calling a custom calback function<br>
+  void apply_bsp(bsp_node *n,vector&amp; p,float rad,void *data,void (*func)(void 
+  *data,bsp_object *e));</p>
+<p> The callback function should be something like this:</p>
+<p class="code"> void apply_bsp_callback(void *data,bsp_object *e)<br>
+  {<br>
+  // ...<br>
+  }</p>
+<h3> <a name="03.07"></a>Communicating between objects and plug-ins</h3>
+<p> Plug-ins are groups of objects and there are 2 types of messages used for 
+  communication between them - object messages and plug-in messages. Object messages 
+  are processed in the message() bsp_object virtual function. Plug-in messages 
+  are processed in the dll exported fly_message() function.<br>
+  The following functions are used for sending messages:</p>
+<p class="code"> void flyEngine::send_bsp_message(bsp_node *n,vector&amp; p,float 
+  rad,int msg,int param,void *data);<br>
+  int flydll::send_message(int msg,int param,void *data);</p>
+<p> The send_message() function sends the message to all plug-in dll in the current 
+  scene calling the fly_message() exported function of all dlls. The send_bsp_message() 
+  send a message to all bsp_object derived classes included in the specified sphere 
+  of influence.</p>
+<h3> <a name="03.08"></a>Camera and Scene Drawing</h3>
+<p> Each plug-in dll will receive a FLYM_UPDATESCENE message every frame. At this 
+  point it might draw over the frame buffer if needed. Usually, one plug-in will 
+  draw the scene from the players perspective, but other plug-ins like the viewport 
+  may also draw the scene from other objects perspectives for implementing missile 
+  cameras, and rear cameras. The code will be:</p>
+<p class="code"> flyengine->set_camera(camobj);<br>
+  flyengine->draw_bsp();</p>
+<h3> <a name="03.09"></a>Text Output</h3>
+<p> The following functions are used for text output. When entering text mode, 
+  a 2D mode is selected for the render. This way we can use 2D calls to draw text 
+  textured faces to represent the letters.</p>
+<p class="code"> // text output functions<br>
+  void start_text_mode(); // sets 2D mode<br>
+  void end_text_mode(); // ends 2D mode<br>
+  void draw_text(int x,int y,char *text); // draw text<br>
+  void draw_text_center(int x,int y,char *text); // draw centered text<br>
+  void set_status_msg(char *fmt, ...); // outputs to console</p>
+<p> Drawing the status of a game, for example, would be as follows:</p>
+<p class="code"> flyengine->start_text_mode();<br>
+  <br>
+  char str[64];<br>
+  sprintf(str,"FPS:%i N:%i", flyengine->frame_rate,flyengine->nodedrawcount);<br>
+  flyengine->draw_text( 0,0, str );<br>
+  <br>
+  flyengine->end_text_mode();</p>
+<h3> <a name="03.10"></a>Rendering API</h3>
+<p>The source code has been written using both OpenGL. All rendering is done inside 
+  the object draw() virtual function as already explained. New objects created 
+  on plug-ins should implement the bsp_object function draw(). In it you must 
+  place the appropriate calls required for drawing your object. A simple example 
+  for drawing a mesh inside a newly created object would be:</p>
+<p class="code"> void my_object::draw()<br>
+  {<br>
+  &nbsp;&nbsp;// Draw with OpenGL<br>
+  <br>
+  &nbsp;&nbsp;glPushMatrix();<br>
+  &nbsp;&nbsp;glTranslatef(pos.x,pos.y,pos.z);<br>
+  <br>
+  &nbsp;&nbsp;glBlendFunc(GL_ONE, GL_ONE);<br>
+  &nbsp;&nbsp;my_mesh->draw();<br>
+  &nbsp;&nbsp;glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);<br>
+  <br>
+  &nbsp;&nbsp;glPopMatrix();<br>
+  }</p>
+<p> A detailed treatment of programming in OpenGL is outside the scope of this 
+  text. A summary of each set of operations in the code above is:</p>
+<p> Setting the current rendering matrix to position the object in global co-ordinates</p>
+<p class="code"> glPushMatrix();<br>
+  glTranslatef(pos.x,pos.y,pos.z);</p>
+<p> Set the blending mode required for this object:</p>
+<p class="code"> glBlendFunc(GL_ONE, GL_ONE);</p>
+<p> Draw the object mesh</p>
+<p class="code"> my_mesh->draw();</p>
+<p> Restore the blending mode</p>
+<p class="code"> glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);</p>
+<p> Restore rendering matrix</p>
+<p class="code"> glPopMatrix();</p>
+</body>
+
+</html>

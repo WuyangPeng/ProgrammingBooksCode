@@ -1,0 +1,16 @@
+Effective STL
+
+官方网站：
+http://aristeia.com/BookErrata/estl1e-errata.html、 
+http://aristeia.com/MailingList。
+
+★★
+作者：Scott Meyers
+其他书籍：《Effective C++》、《More Effective C++》、《Effective Modern C++》。
+
+知识点 
+1.	C++ 基础知识。 
+
+联系作者：
+estl@aristeia.com
+ 

@@ -1,0 +1,42 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.09;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* ipfinit.c - ipfinit */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ * ipfinit  -  initialize IP fragment queue data structures
+ *------------------------------------------------------------------------
+ */
+void ipfinit()
+{
+	int	i;
+
+	ipfmutex = screate(1);
+	for (i=0; i<IP_FQSIZE; ++i)
+		ipfqt[i].ipf_state = IPFF_FREE;
+}
+@

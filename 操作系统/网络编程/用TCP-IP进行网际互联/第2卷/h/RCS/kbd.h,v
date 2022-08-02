@@ -1,0 +1,99 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	97.09.21.19.26.19;	author dls;	state Dist;
+branches;
+next	1.1;
+
+1.1
+date	94.05.10.20.48.46;	author dls;	state Old;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@pre-3e code
+@
+text
+@/* kbd.h */
+
+#define	KB_DAT		0x60		/* keyboard data register	*/
+#define	KB_CSR		0x64		/* control/status register	*/
+
+#define	KBS_HASDAT	0x01		/* valid data in data register	*/
+#define	KBS_NRDY	0x02		/* not ready for more input	*/
+
+#define	HACKER_KB
+
+#define	BREAK	0x80		/* break bit	*/
+
+#define	LSHIFT	0x2a
+#define	RSHIFT	0x36
+#define	LMETA	0x38
+
+/* swap caps-lock and control key placement on brain-dead keyboards */
+#ifdef	HACKER_KB
+#define	LCTL	0x3a
+#define	CAPSL	0x1d
+#else
+#define	LCTL	0x1d
+#define	CAPSL	0x3a
+#endif
+
+extern unsigned char	kbcode[], kbshift[], kbctl[];
+
+/* scan state flags */
+#define	INCTL		0x01	/* control key is down		*/
+#define INSHIFT		0x02	/* shift key is down		*/
+#define	CAPSLOCK	0x04	/* caps lock mode		*/
+#define	INMETA		0x08	/* meta (alt) key is down	*/
+#define	EXTENDED	0x10	/* in extended character mode	*/
+
+#define	EXTESC		0xe0	/* extended character escape	*/
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d3 6
+d26 1
+a26 22
+unsigned char	kbcode[] = { 0,
+	  27,  '1',  '2',  '3',  '4',  '5',  '6',  '7',  '8',  '9',
+	 '0',  '-',  '=', '\b', '\t',  'q',  'w',  'e',  'r',  't',
+	 'y',  'u',  'i',  'o',  'p',  '[',  ']', '\n',    0,  'a',
+	 's',  'd',  'f',  'g',  'h',  'j',  'k',  'l',  ';', '\'',
+	 '`',    0, '\\',  'z',  'x',  'c',  'v',  'b',  'n',  'm',
+	 ',',  '.',  '/',    0,    0,    0,  ' ' };
+
+unsigned char	kbshift[] = { 0,
+	   0,  '!',  '@@',  '#',  '$',  '%',  '^',  '&',  '*',  '(',
+	 ')',  '_',  '+', '\b', '\t',  'Q',  'W',  'E',  'R',  'T',
+	 'Y',  'U',  'I',  'O',  'P',  '{',  '}', '\n',    0,  'A',
+	 'S',  'D',  'F',  'G',  'H',  'J',  'K',  'L',  ':',  '"',
+	 '~',    0,  '|',  'Z',  'X',  'C',  'V',  'B',  'N',  'M',
+	 '<',  '>',  '?',    0,    0,    0,  ' ' };
+
+unsigned char	kbctl[] = { 0,
+ 	   0,    0,    0,    0,    0,    0,    0,    0,    0,    0,    
+	   0,   31,    0, '\b', '\t',   17,   23,    5,   18,   20,
+	  25,   21,    9,   15,   16,   27,   29, '\n',    0,    1,
+	  19,    4,    6,    7,    8,   10,   11,   12,    0,    0,
+	   0,    0,   28,   26,   24,    3,   22,    2,   14,   13 };
+d36 1
+@

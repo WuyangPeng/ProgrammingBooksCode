@@ -1,0 +1,70 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	97.09.21.19.26.19;	author dls;	state Dist;
+branches;
+next	1.1;
+
+1.1
+date	94.05.10.20.48.46;	author dls;	state Old;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@pre-3e code
+@
+text
+@/* shell.h */
+
+#include <mark.h>
+
+/* Declarations for the Xinu shell */
+
+#define	SHEXIT		-5		/* shell exit return		*/
+#define	SHNAMLEN	9		/* length of user name + 1	*/
+#define	SHBUFLEN	80		/* length of general buffer	*/
+#define	SHARGLEN	82		/* length of area for arguments	*/
+#define	SHMAXTOK	16		/* maximum tokens per line	*/
+#define	SHMLEN		64		/* maximum length of mach. name	*/
+#define	SHCMDSTK	8192		/* size of command proc. stack	*/
+#define	SHCMDPRI	20		/* command process priority	*/
+
+struct	shvars	{			/* shell variables		*/
+	long	shlast;			/* time shell last touched	*/
+	long	shlogon;		/* time user logged on		*/
+	int	shncmds;		/* number of commands available	*/
+	MARKER	shmark;			/* marked if shused valid	*/
+	Bool	shused;			/* TRUE => user using shell	*/
+	char	shuser[SHNAMLEN];	/* current user name		*/
+	char	shmach[SHMLEN];		/* name of this machine		*/
+	char	shbuf[SHBUFLEN];	/* general purpose buffer	*/
+	char	*shtok[SHMAXTOK];	/* pointers to input tokens	*/
+	char	shtktyp[SHMAXTOK];	/* type of token in shtok[i]	*/
+	char	shargst[SHARGLEN];	/* actual strings of arguments	*/
+};
+
+extern	struct	shvars	Shl;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d13 1
+a13 1
+#define	SHCMDSTK	32768		/* size of command proc. stack	*/
+@

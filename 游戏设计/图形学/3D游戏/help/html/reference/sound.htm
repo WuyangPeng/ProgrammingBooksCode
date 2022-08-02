@@ -1,0 +1,82 @@
+<html>
+
+<head>
+<title>class sound</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class sound : public <a href="base_object.htm">base_object</a></h2>
+
+<h3>Definition</h3>
+
+<p class="code">class sound : public base_object<br>
+{<br>
+&nbsp; public:<br>
+&nbsp; int total_time;<br>
+&nbsp; LPDIRECTSOUNDBUFFER buf;<br>
+&nbsp; LPDIRECTSOUND3DBUFFER buf3d;<br>
+<br>
+&nbsp; sound()<br>
+&nbsp; { buf=0; buf3d=0; total_time=0; };<br>
+<br>
+&nbsp; virtual ~sound()<br>
+&nbsp; { reset(); };<br>
+<br>
+&nbsp; void reset()<br>
+&nbsp; {<br>
+&nbsp;&nbsp;&nbsp; if (buf3d) buf3d-&gt;Release(); buf3d=0;<br>
+&nbsp;&nbsp;&nbsp; if (buf) buf-&gt;Release(); buf=0;<br>
+&nbsp;&nbsp;&nbsp; total_time=0;<br>
+&nbsp; }<br>
+<br>
+&nbsp; int load_wav(char *filename);<br>
+&nbsp; sound *clone();<br>
+};</p>
+
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>total_time</td>
+    <td>int</td>
+    <td>the sound length in ms</td>
+  </tr>
+  <tr>
+    <td>buf</td>
+    <td>LPDIRECTSOUNDBUFFER</td>
+    <td>the DirectX sound buffer</td>
+  </tr>
+  <tr>
+    <td>buf3d</td>
+    <td>LPDIRECTSOUND3DBUFFER</td>
+    <td>the DirectX sound buffer 3D</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p> <a href="sound_reset.htm">reset</a>, <a
+href="sound_load_wav.htm">load_wav</a>, <a href="sound_clone.htm">clone</a></p>
+
+<h3>Remarks</h3>
+
+<p>This class implements raw sound data. The sound can be loaded from a .wav
+file.<br>
+For playing multiple instances of the same sound, you must clone it and play the
+clones.</p>
+
+<h3>See Also</h3>
+
+<p><a href="base_object.htm">base_object</a>, <a href="directx.htm">directX</a></p>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+C++ 语言导学（A Tour of C++）
+（第1版）
+
+官方网站 
+https://www.stroustrup.com/tour2.html
+
+★★
+作者：Bjarne Stroustrup 
+其他书籍：《C++ 程序设计原理与实践》、《C++ 程序设计语言》、《C++ 语言的设计和演化》、《现代C++白皮书》。 

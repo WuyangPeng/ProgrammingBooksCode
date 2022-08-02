@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>bsp_object::get_custom_param_desc</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="bsp_object.htm">bsp_object</a>::get_custom_param_desc</h2>
+<h3>Prototype</h3>
+<p class="code">virtual int get_custom_param_desc(int i,param_desc *pd)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>i</td>
+	 <td>int</td>
+	 <td>parameter index</td>
+  </tr>
+  <tr>
+	 <td>pd</td>
+	 <td><a href="param_desc.htm">param_desc</a> *</td>
+	 
+    <td>parameter desc to be filled</td>
+  </tr>
+  
+</table>
+<h3>Return Value</h3>
+<p>If <i>pd</i>=0, the number of custom parameters.</p>
+<h3>Remarks</h3>
+<p>This virtual function must be implemented by all sub-classes. It returns the 
+  number of parameters the object has and each parameter description. </p>
+<p>When called with <i>pd</i>=0, it must return the number of parameters. When 
+  <i>pd</i>&lt;&gt;0, it fill the description variable <i>pd</i> with information 
+  on the parameter index <i>i</i>.</p>
+</body>
+</html>

@@ -1,0 +1,112 @@
+head	1.4;
+access;
+symbols;
+locks
+	dls:1.4; strict;
+comment	@# @;
+
+
+1.4
+date	97.09.21.19.26.10;	author dls;	state Dist;
+branches;
+next	1.3;
+
+1.3
+date	94.08.15.15.28.24;	author dls;	state Old;
+branches;
+next	1.2;
+
+1.2
+date	94.08.15.03.23.59;	author dls;	state Old;
+branches;
+next	1.1;
+
+1.1
+date	94.08.04.20.19.17;	author dls;	state Orig;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.4
+log
+@pre-3e code
+@
+text
+@/* ue_int.s - _ue_int */
+
+#include <icu.s>
+
+		.text
+		.globl	_ue_int
+_ue_int:
+		cli
+		pushal
+
+		movb	$EOI,%al	/* re-enable the device */
+		outb	%al,$OCW1_2
+
+		call	_ue_intr
+
+		popal
+		sti
+		iret
+@
+
+
+1.3
+log
+@this calls disable/restore, but stacks up on interrupts after
+the restore, because it does an sti. changing disable/restore to
+not mess with the IE bit.
+@
+text
+@d8 1
+a8 8
+		pushl	%ebp
+		movl	%esp,%ebp
+		subl	$4,%esp
+
+		leal	-4(%ebp),%eax
+		pushl	%eax
+		call	_disable
+
+d11 1
+a11 1
+		movb	$EOI,%al
+d17 1
+a17 6
+
+		call	_restore	/* arg still on stack from disable */
+		addl	$4,%esp
+
+		movl	%ebp,%esp
+		popl	%ebp
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d8 8
+a15 1
+		cli
+d17 1
+d20 1
+d22 1
+d24 6
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d8 1
+@

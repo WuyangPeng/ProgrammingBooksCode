@@ -1,0 +1,21 @@
+// Example 10-1  Throwing an exception object and a logic_error object.
+
+try{
+    exception X;
+    throw(X);
+}
+
+catch(const exception &X)
+{
+    cout << X.what() << endl;
+}
+
+try{
+    logic_error Logic("Logic Mistake");
+    throw(Logic);
+}
+
+catch(const exception &X)
+{
+    cout << X.what() << endl;
+}

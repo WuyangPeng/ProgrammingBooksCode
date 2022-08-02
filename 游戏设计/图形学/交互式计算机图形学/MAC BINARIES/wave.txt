@@ -1,0 +1,45 @@
+Ξϊνώ d…8__PAGEZEROH__TEXT __text__TEXT@"u 
+@€__literal8__TEXTΈ.PΈ__cstring__TEXT/ε__literal4__TEXTπ/ 
+π__DATA0P __data__DATA0 __dyld__DATA0 __common__DATA@0 
+@ΐ__IMPORT€0__pointers__IMPORT€0__jump_table__IMPORT@€π@08__LINKEDIT@|@FDd 
+P -HC4 /usr/lib/dyldP@" 
+X/System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL 
+T/System/Library/Frameworks/GLUT.framework/Versions/A/GLUT 
+4/usr/lib/libgcc_s.1.dylib 
+4o/usr/lib/libSystem.B.dylibj‰εƒδπƒμ‹]‰\$M‰L$ƒΓΑγΛ‰\$‹ƒΓ…ΐuχ‰\$ θK 
+‰D$θΑ]τθXÿ°‹ ‹€“ ÿΰθX‹€ƒ ÿΰU‰εSƒμ4θ[ƒZ ‰D$‹E‰$θ†]‰Eμƒ}μu 
+ΗEδιΗD$ΗD$‹Eμ‰$θ`]‹Eμ‰$θZ]‰EτΗD$ΗD$‹Eμ‰$θ7]‹Eτ@‰$θψ]‰Eπ‹Uτ‹Eμ‰D$ 
+‰T$ΗD$‹Eπ‰$θ]‹EτEπΖ‹Eμ‰$θδ\‹Eπ‰Eδ‹EδƒΔ4[ΙΓU‰εSƒμ4θ[ƒt ‹‰D$ ƒt ‹‰D$ƒt 
+‹‰D$ƒt ‹‰$θΌ\ƒx ‹‰D$ƒx ‹‰D$ƒx ‹‰$θ™\Η$θΞ\θΔ\ƒL ςςD$(ƒT 
+ςςD$ ƒ\ ςςD$ƒd ςςD$ƒ\ ςςD$ƒd 
+ςς$θj\ƒΔ4[ΙΓU‰εVSƒμ0θ[‹E‰$θ5ώÿÿ‰Eθ‹Eθ…ΐuƒª ‰$θ¦\Η$θ―[‹E 
+‰$θώÿÿ‰Eδ‹Eδ…ΐuƒΗ ‰$θr\Η$θ€[Η$1‹θΊ[‰EπΗ$0‹θ«[‰Eτθ[‰Βƒ³ ‰ƒ³ 
+‹‹Eπ‰D$‰$θZ[ƒ³ ‹‹Eτ‰D$‰$θC[EθΗD$ ‰D$ΗD$‹Eπ‰$θ…[EδΗD$ 
+‰D$ΗD$‹Eτ‰$θc[‹Eπ‰$θ [Eμ‰D$ΗD$‹‹Eπ‰$θ[‹Eμ…ΐ…ƒη 
+‰$θ[ƒ£[‹‰D$ΗD$„‹‹Eπ‰$θγZƒ£[‹‹‰$θS[‰Βƒ[‹‰ƒ[‹‹ƒ£[‹‹‰T$ 
+ΗD$‰D$‹Eπ‰$θ‘Zƒ[‹‹‰$θ[Η$θZ‹Eτ‰$θEZEμ‰D$ΗD$‹‹Eτ‰$θSZ‹Eμ…ΐ…ƒ 
+‰$θΖZƒ£[‹‰D$ΗD$„‹‹Eτ‰$θZƒ£[‹‹‰$θ‹Z‰Βƒ[‹‰ƒ[‹‹ƒ£[‹‹‰T$ 
+ΗD$‰D$‹Eτ‰$θΙYƒ[‹‹‰$θHZΗ$θQYƒ³ ‹‰$θªYƒ³ 
+‹Eμ‰D$ΗD$‚‹‰$θwY‹Eμ…ΐ…¦ƒ7 ‰$θτYƒ³ 
+‹ƒ£[‹‰D$ΗD$„‹‰$θ:Yƒ£[‹‹‰$θ΄Y‰Βƒ[‹‰ƒ[‹‹ƒ£[‹‹ƒ³ ‹0‰T$ 
+ƒ£[‹‰D$‰L$‰4$θίXƒ[‹‹‰$θhYΗ$θqXƒ³ ‹‰$θνXƒ³ ‹ƒV 
+‰D$‰$θ«X‰Βƒ«[‹‰ƒΔ0[^ΙΓU‰εSƒμdθ[Η$θXθ„XƒΠςςD$@ƒΨςςD$8ƒΠςςD$0ƒΰςςD$(ƒΠςςD$ 
+ƒΰςςD$ƒθςςD$ƒθςςD$ƒθςς$θXΗEπιrΗEτιWƒΨ‹‰D$ƒΨ‹‰D$ƒΨ‹‰$θtWΗ$ 
+θYWσ*Mτƒΰσ(Ρσ^Π‹Uπ‹MτƒπW‹ΑβΚ‹σ*Mπƒΰσ(Ωσ^Ψ(ΓσT$‰T$σ$θnW‹Eτ@σ*Θƒΰσ(Ρσ^Π‹Uπ‹MτƒπW‹ΑβΚ‹σ*Mπƒΰσ(Ωσ^Ψ(ΓσT$‰T$σ$θW‹Eτ@σ*Θƒΰσ(Ρσ^Π‹Uπ‹MτƒπW‹ΑβΚ‹‹Eπ@σ*Θƒΰσ(Ωσ^Ψ(ΓσT$‰T$σ$θ³Vσ*Mτƒΰσ(Ρσ^Π‹Uπ‹MτƒπW‹ΑβΚ‹‹Eπ@σ*Θƒΰσ(Ωσ^Ψ(ΓσT$‰T$σ$θWVθ 
+Vƒά‹‰D$ƒά‹‰D$ƒά‹‰$θΛUΗ$θ°Uσ*Mτƒΰσ(Ρσ^Π‹Uπ‹MτƒπW‹ΑβΚ‹σ*Mπƒΰσ(Ωσ^Ψ(ΓσT$‰T$σ$θΕU‹Eτ@σ*Θƒΰσ(Ρσ^Π‹Uπ‹MτƒπW‹ΑβΚ‹σ*Mπƒΰσ(Ωσ^Ψ(ΓσT$‰T$σ$θiU‹Eτ@σ*Θƒΰσ(Ρσ^Π‹Uπ‹MτƒπW‹ΑβΚ‹‹Eπ@σ*Θƒΰσ(Ωσ^Ψ(ΓσT$‰T$σ$θ 
+Uσ*Mτƒΰσ(Ρσ^Π‹Uπ‹MτƒπW‹ΑβΚ‹‹Eπ@σ*Θƒΰσ(Ωσ^Ψ(ΓσT$‰T$σ$θ®TθcTEτÿƒ}τ?όÿÿEπÿƒ}π?„όÿÿƒΔd[ΙΓU‰εSƒμθ[Η$Όθ…Tσ*ΐƒ΄S‹‹σD$‰$θFTΗ$AθΫSθzϋÿÿθ…TƒΔ[ΙΓU‰εSƒμ4θ[Η$θύSθσSƒςςD$(ƒ'ςςD$ 
+ƒ/ςςD$ƒ7ςςD$ƒ/ςςD$ƒ7ςς$θ™S‹E ‰D$ 
+‹E‰D$ΗD$Η$θ•SθΜSƒΔ4[ΙΓU‰εƒμ(‹EEτ¶Eτ‰Eπƒ}πQtƒ}πqtƒ}πtλ 
+Η$θΑRΙΓU‰εSƒμθ[Η$ΌθPSσ*ΐƒR‹‹σD$‰$θSθWSƒΔ[ΙΓU‰εSƒμ$θ[ΗEπλ8ΗEτλ$‹Eπ‹Mτ“;R‹Αΰ 
+ƒ'‹‰Eτÿƒ}τ?~ΦEπÿƒ}π?~Β‹E 
+‰D$E‰$θΝRΗ$θΖRΗD$Η$θΌRƒο‰$θ‹Rƒώÿÿ‰$θ‚RƒΠώÿÿ‰$θ¦Rƒÿÿÿ‰$θ‰Rƒ΄ÿÿÿ‰$θbRθήτÿÿƒ‰D$ƒ‰$θªυÿÿθ^RƒΔ$[ΙΓπ?4@@ΐθ?θΏπ?ΰ?@rbFailed 
+to read vertex shaderFailed to read fragment shaderFailed to compile the vertex 
+shader.Failed to compile the fragment shader.Failed to link program 
+object.timeSimple GLSL examplefPassthrough.glslvmesh.glsl€?€Bΰΰ 
+0000@pDp@0Hpττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττ€"”".Ά"@p#FT$RL,X,aL-k0} 
+0…00™­@0³@pΌDpΕ0Ξΐ.Φ-άΑ-β (θΈ.ρ0ϊHp@" 
+ 
+'.5ENWep’Ά©ΎΞβρ&4=MZht€‹®·ΕΟδψ 
++<MU]€€€€ 
+!"#$@%&'()*+,-./0@123456789:;<@=>?@ABCDE 
+dyld_stub_binding_helper__dyld_func_lookup_readShaderSource_init_initShader_draw_reshape_keyboarddyld__mach_header_NXArgc_NXArgv___progname__mh_execute_header_data_ebuffer_elength_environ_farVal_idle_main_mesh_nearVal_program_timeParamstart_exit_fclose_fopen_fread_fseek_ftell_glAttachShader_glBegin_glClear_glClearColor_glColor3f_glCompileShader_glCreateProgram_glCreateShader_glEnd_glGetProgramInfoLog_glGetProgramiv_glGetShaderInfoLog_glGetShaderiv_glGetUniformLocation_glLinkProgram_glLoadIdentity_glMatrixMode_glOrtho_glShaderSource_glUniform1f_glUseProgram_glVertex3f_glViewport_gluLookAt_glutCreateWindow_glutDisplayFunc_glutGet_glutIdleFunc_glutInit_glutInitDisplayMode_glutInitWindowSize_glutKeyboardFunc_glutMainLoop_glutPostRedisplay_glutReshapeFunc_glutSwapBuffers_malloc_printf_puts

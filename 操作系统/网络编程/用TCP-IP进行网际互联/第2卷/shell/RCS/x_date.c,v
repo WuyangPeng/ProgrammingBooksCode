@@ -1,0 +1,50 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.29.03;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* x_date.c - x_date */
+
+#include <conf.h>
+#include <kernel.h>
+#include <sleep.h>
+#include <date.h>
+
+/*------------------------------------------------------------------------
+ *  x_date  -  (command date) print the date and time
+ *------------------------------------------------------------------------
+ */
+COMMAND	x_date(stdin, stdout, stderr, nargs, args)
+int	stdin, stdout, stderr, nargs;
+char	*args[];
+{
+	long	now;
+	char	str[80];
+
+	if (nargs == 2)
+		clktime = 0L;
+	gettime(&now);
+	ascdate(now, str);
+	strcat(str, "\n");
+	write(stdout, str, strlen(str));
+	return(OK);
+}
+@

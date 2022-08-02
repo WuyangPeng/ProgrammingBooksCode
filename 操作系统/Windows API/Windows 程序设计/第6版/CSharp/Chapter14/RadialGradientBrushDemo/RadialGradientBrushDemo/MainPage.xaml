@@ -1,0 +1,54 @@
+<Page
+    x:Class="RadialGradientBrushDemo.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RadialGradientBrushDemo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Canvas SizeChanged="OnCanvasSizeChanged"
+                Margin="0 0 96 96">
+            
+            <Grid Name="ballContainer"
+                  Width="96"
+                  Height="96">
+
+                <Ellipse Name="ellipse">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding ElementName=brushSimulator, 
+                                                          Path=ImageSource}" />
+                    </Ellipse.Fill>
+                </Ellipse>
+
+                <local:RadialGradientBrushSimulator x:Name="brushSimulator"
+                                                    InnerColor="White"
+                                                    OuterColor="Red"
+                                                    GradientOrigin="0.3 0.3" />
+            </Grid>
+        </Canvas>
+    </Grid>
+    
+    <Page.Triggers>
+        <EventTrigger>
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation x:Name="leftAnima"
+                                     Storyboard.TargetName="ballContainer"
+                                     Storyboard.TargetProperty="(Canvas.Left)"
+                                     From="0" Duration="0:0:2.51"
+                                     AutoReverse="True"
+                                     RepeatBehavior="Forever" />
+
+                    <DoubleAnimation x:Name="rightAnima"
+                                     Storyboard.TargetName="ballContainer"
+                                     Storyboard.TargetProperty="(Canvas.Top)"
+                                     From="0" Duration="0:0:1.01"
+                                     AutoReverse="True"
+                                     RepeatBehavior="Forever" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Page.Triggers>
+</Page>

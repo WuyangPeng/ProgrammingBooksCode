@@ -1,0 +1,11 @@
+call compile nofunc 
+call compile func1 
+call compile birthday 
+call compile count1 
+call compile count2 
+call compile count3 
+call compile count4 
+call compile count5 
+call compile count6 
+call compile scopclas 
+call compile calc1 

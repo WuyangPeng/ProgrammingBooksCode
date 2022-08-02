@@ -1,0 +1,10 @@
+数据结构 C++语言描述（Data Structures with C++ Using STL）
+（第2版）
+
+官方网站：
+http://www.fordtopp.com、 
+http://www.uop.edu/fordtopp （已失效）、 
+http://www.prenhall.com （已失效）
+
+☆
+作者：William Ford、William Topp

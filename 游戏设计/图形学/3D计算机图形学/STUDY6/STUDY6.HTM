@@ -1,0 +1,71 @@
+<!doctype html public "-//IETF//DTD.HTM//EN">
+<HTML><HEAD>
+<TITLE>Learning Rendering: Study 6 </TITLE>
+</HEAD>
+<BODY>
+<A HREF="../STUDY5/STUDY5.HTM">&lt;&lt;</A>
+<A HREF="../STUDY7/STUDY7.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>
+<HR>
+<H1>STUDY 6  SIMPLE LIGHT SOURCE OPTIONS</H1>
+
+The following series demonstrates the common variations that can be made with point light sources and a local refection model such as Phong. Spotlights are basically point sources with the addition of a cone of influence. Objects can only interact with the light if they are within the
+cone.
+<table border=0 width="100%">
+<tr><td>
+<A HREF="LIAMB.TIF"><IMG SRC="LIAMB.GIF" WIDTH=100 HEIGHT=75 ALT="liamb"></A>
+</td><td>
+ambient light source
+</td></tr><tr><td>
+<A HREF="LIDST.TIF"><IMG SRC="LIDST.GIF" WIDTH=100 HEIGHT=75 ALT="lidst"></A>		
+</td><td>
+Distant light source (parallel rays) eye light source (always positioned coincidentally with the
+camera)- there never any shadows from this.
+</td></tr><tr><td>
+<A HREF="LIPNT.TIF"><IMG SRC="LIPNT.GIF" WIDTH=100 HEIGHT=75 ALT="lipnt"></A>		
+</td><td>
+Point light source positioned quite close to vase object - direction from point to centre of vase is
+same as "distant" light source direction. Note that the shadows are different to those created
+with distant light source - the incoming light rays are no longer parallel.
+</td></tr><tr><td>
+<A HREF="LIEYE.TIF"><IMG SRC="LIEYE.GIF" WIDTH=100 HEIGHT=75 ALT="lieye"></A>
+</td><td>
+Creates a point light source coincident with the eye; thus no shadows are produced.
+</td></tr><tr><td>
+<A HREF="LISPT1.TIF"><IMG SRC="LISPT1.GIF" WIDTH=100 HEIGHT=75 ALT="lispt1"></A>	
+</td><td>
+Spot light in same position as point light - cone angle is 30 degrees. Note that there are apparently two shadows. The vase shadow is created normally. The spotlight shadow is not explicitly a shadow - just an area outside the cone of influence.
+</td></tr><tr><td>
+<A HREF="LISPT2.TIF"><IMG SRC="LISPT2.GIF" WIDTH=100 HEIGHT=75 ALT="lispt2"></A>
+</td><td>
+Spotlight cones can easily be modulated by defining a drop of zone which softens the edges of the 'shadow'. This image has a 'drop of' zone of 5 degrees
+<tr><td>
+<A HREF="LISPT3.TIF"><IMG SRC="LISPT3.GIF" WIDTH=100 HEIGHT=75 ALT="lispt3"></A>	
+</td><td>
+same as above but a  "beam distribution" parameter has been turned up. This makes the light within the main part of the beam drop off  away from the main axis.
+</td></tr><tr><td>
+<A HREF="FAOFF1.TIF"><IMG SRC="FAOFF1.GIF" WIDTH=100 HEIGHT=75 ALT="faoff1"></A>	
+</td><td>
+the next  three images illustrate attenuated light sources - here the point light source is normal i.e. there is no drop off of the light as we move away from the light source.	
+</td></tr><tr><td>
+<A HREF="FAOFF2.TIF"><IMG SRC="FAOFF2.GIF" WIDTH=100 HEIGHT=75 ALT="faoff2"></A>	
+</td><td>
+here we have 1/d drop off.
+</td></tr><tr><td>
+<A HREF="FAOFF3.TIF"><IMG SRC="FAOFF3.GIF" WIDTH=100 HEIGHT=75 ALT="faoff3"></A>	
+</td><td>
+here we have 1/d2 drop off.
+</td></tr><tr><td>
+<A HREF="FGDC.TIF"><IMG SRC="FGDC.GIF" WIDTH=100 HEIGHT=75 ALT="fgdc"></A>	
+</td><td>
+depth cueing - intensity of "white fog" increases linearly with depth. Starting at the nearest object
+in the scene and ending at the furthest. A much loved 'feature' of dubious worth.
+</td></tr>
+</table>
+
+<HR>
+<A HREF="../STUDY5/STUDY5.HTM">&lt;&lt;</A>
+<A HREF="../STUDY7/STUDY7.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>

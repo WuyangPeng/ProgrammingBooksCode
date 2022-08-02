@@ -1,0 +1,20 @@
+﻿<UserControl
+    x:Class="PrintableTomKitten.TomKitten42"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Grid VerticalAlignment="Center"
+          MaxWidth="640">
+        <StackPanel>
+            <TextBlock Style="{StaticResource paragraphTextStyle}">
+                &#x2003;&#x2003;But he put them on <Italic>himself!</Italic> 
+                They fitted him even worse than Tom Kitten.
+            </TextBlock>
+
+            <TextBlock Style="{StaticResource paragraphTextStyle}">
+                &#x2003;&#x2003;“It's a very fine morning!” said Mr. Drake 
+                Puddle-Duck.
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>

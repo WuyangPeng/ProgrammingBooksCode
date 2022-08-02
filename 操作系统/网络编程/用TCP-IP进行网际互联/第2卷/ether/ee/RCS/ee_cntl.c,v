@@ -1,0 +1,79 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	97.09.21.19.25.55;	author dls;	state Dist;
+branches;
+next	1.1;
+
+1.1
+date	94.09.24.01.00.41;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@pre-3e code
+@
+text
+@/* ee_cntl.c - ee_cntl */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ * ee_cntl - handle Intel EtherExpress16 control() functions
+ *------------------------------------------------------------------------
+ */
+int
+ee_cntl(pdev, func, arg)
+struct devsw	*pdev;
+int		func;
+char		*arg;
+{
+	struct etdev	*ped = &ee[pdev->dvminor];
+	int		rv;
+
+	switch (func) {
+	case EPC_PROMON:
+	case EPC_PROMOFF:
+		rv = SYSERR;	/* not supported yet */
+	case EPC_MADD:
+		rv = ee_mcadd(ped, arg);
+		break;
+	case EPC_MDEL:
+		rv = ee_mcdel(ped, arg);
+		break;
+	default:
+		rv = SYSERR;
+	}
+	return rv;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d3 4
+d8 1
+d12 4
+a15 1
+ee_cntl()
+d17 17
+a33 1
+kprintf("ee_cntl\n");
+@

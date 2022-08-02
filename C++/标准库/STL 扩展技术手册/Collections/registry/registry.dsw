@@ -1,0 +1,105 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "reg_key_sequence_test"=..\..\..\..\..\..\STLSoft\Releases\current\STLSoft\test\winstl\reg_key_sequence_test\vc6\reg_key_sequence_test.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "reg_key_test"=.\reg_key_test\vc6\reg_key_test.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "reg_key_test"=.\reg_key_test\vc6\reg_key_test.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/Books/XSTL/test/Pt2_Collections/registry", HGJBAAAA
+    .
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "reg_unsafety_inserter"=.\reg_unsafety_inserter\vc6\reg_unsafety_inserter.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/Books/XSTL/test/Pt2_Collections/registry", HGJBAAAA
+    .
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "reg_value_sequence_test"=..\..\..\..\..\..\STLSoft\Releases\current\STLSoft\test\winstl\reg_value_sequence_test\vc6\reg_value_sequence_test.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/Books/XSTL/test/Pt2_Collections/registry", HGJBAAAA
+    .
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "reg_value_unsafety_test"=.\reg_value_unsafety_test\vc6\reg_value_unsafety_test.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/Books/XSTL/test/Pt2_Collections/registry", HGJBAAAA
+    .
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

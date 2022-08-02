@@ -1,0 +1,8 @@
+Windows Server 2008 网络基础架构 （Configuring Windows Server 2008 Network Infrastructure）
+
+官方网站：  
+http://www.microsoft.com/learning/mcp （已失效）、
+http://www.microsoft.com/learning/support/book （已失效）
+ 
+○
+作者： Tony Northrup、J.C.Mackin 

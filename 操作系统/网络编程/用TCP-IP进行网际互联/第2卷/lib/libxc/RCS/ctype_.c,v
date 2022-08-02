@@ -1,0 +1,45 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.40;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@#include	<ctype.h>
+
+char _ctype_[] = {
+	0,
+	_C,	_C,	_C,	_C,	_C,	_C,	_C,	_C,
+	_C,	_S,	_S,	_S,	_S,	_S,	_C,	_C,
+	_C,	_C,	_C,	_C,	_C,	_C,	_C,	_C,
+	_C,	_C,	_C,	_C,	_C,	_C,	_C,	_C,
+	_S,	_P,	_P,	_P,	_P,	_P,	_P,	_P,
+	_P,	_P,	_P,	_P,	_P,	_P,	_P,	_P,
+	_N,	_N,	_N,	_N,	_N,	_N,	_N,	_N,
+	_N,	_N,	_P,	_P,	_P,	_P,	_P,	_P,
+	_P,	_U|_X,	_U|_X,	_U|_X,	_U|_X,	_U|_X,	_U|_X,	_U,
+	_U,	_U,	_U,	_U,	_U,	_U,	_U,	_U,
+	_U,	_U,	_U,	_U,	_U,	_U,	_U,	_U,
+	_U,	_U,	_U,	_P,	_P,	_P,	_P,	_P,
+	_P,	_L|_X,	_L|_X,	_L|_X,	_L|_X,	_L|_X,	_L|_X,	_L,
+	_L,	_L,	_L,	_L,	_L,	_L,	_L,	_L,
+	_L,	_L,	_L,	_L,	_L,	_L,	_L,	_L,
+	_L,	_L,	_L,	_P,	_P,	_P,	_P,	_C
+};
+@

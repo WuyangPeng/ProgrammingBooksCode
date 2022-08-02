@@ -1,0 +1,8 @@
+图像处理、分析与机器视觉 （Image Processing,Analysis,And Machine Vision）
+（第4版）
+
+官方网站：
+http://www.cengage.com/engineering
+
+★
+作者：Milan Sonka、Vaclav Hlavac、Roger Boyle 

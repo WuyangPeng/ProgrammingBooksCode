@@ -1,0 +1,50 @@
+<HTML>
+<HEAD>
+  <META NAME="GENERATOR" CONTENT="Adobe PageMill 3.0 Win">
+  <TITLE>fly_pak::open</TITLE>
+  
+<LINK REL="stylesheet" HREF="../paralelo.css">
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+
+<H1><A HREF="index.htm">Objects Reference</A></H1>
+
+<H2><A HREF="fly_pak.htm">fly_pak</A>::open</H2>
+
+<H3>Prototype</H3>
+
+<P class="code">bool open(char *filename)</P>
+
+<H3>Parameters</H3>
+
+<P><TABLE BORDER="1" WIDTH="90%" CELLSPACING="0" CELLPADDING="3">
+  <TR>
+    <TH>
+    Parameter</TH> 
+    <TH>
+    Type</TH> 
+    <TH>
+    Description</TH> 
+  </TR>
+  <TR>
+    <TD>
+    filename</TD> 
+    <TD>
+    char *</TD> 
+    <TD>
+    filename for file to open</TD> 
+  </TR>
+</TABLE><p></P>
+
+<H3>Return Value</H3>
+
+<P>Returns TRUE if open if OK, FALSE on any error.</P>
+
+<H3>Remarks</H3>
+
+<P>This function opens a file (standalone or from a .fpk package). It first tries 
+  to open the file as a standalone file. If it fails to open it, it looks up the 
+  file path for .fpk files that may contain the desired file. All open files needs 
+  to be closed using the <I>close</I> method. 
+</BODY>
+</HTML>

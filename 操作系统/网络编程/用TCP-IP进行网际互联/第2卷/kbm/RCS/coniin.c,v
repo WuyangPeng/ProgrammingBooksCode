@@ -1,0 +1,52 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	94.05.08.05.36.49;	author dls;	state Old;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* coniin.c coniin, erase1, eputc, echoch */
+
+#include <conf.h>
+#include <kernel.h>
+#include <io.h>
+#include <slu.h>
+#include <zsreg.h>
+#include <sunromvec.h>
+
+#define prgetkey() (romp->v_getkey)()
+
+/*------------------------------------------------------------------------
+ *  coniin  --  lower-half con device driver for input interrupts
+ *------------------------------------------------------------------------
+ */
+INTPROC	coniin()
+{
+    
+	register struct	zscc_device *zptr;
+	unsigned char	ch;
+
+	ch = ((struct zscc_device *) 0xfe00004)->zscc_data;
+
+	if (ch != 0x7f)
+	    kprintf("<%x>\n", (unsigned int) ch);
+	
+	return;
+}
+@

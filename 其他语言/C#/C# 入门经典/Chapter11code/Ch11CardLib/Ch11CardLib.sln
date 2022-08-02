@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ch11CardLib", "Ch11CardLib\Ch11CardLib.csproj", "{45B43B61-7671-4B8B-99C1-F935996B46C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ch11CardClient", "Ch11CardClient\Ch11CardClient.csproj", "{F07BAC24-79DE-4296-95AB-250A1EC410DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45B43B61-7671-4B8B-99C1-F935996B46C2}.Debug|x86.ActiveCfg = Debug|x86
+		{45B43B61-7671-4B8B-99C1-F935996B46C2}.Debug|x86.Build.0 = Debug|x86
+		{45B43B61-7671-4B8B-99C1-F935996B46C2}.Release|x86.ActiveCfg = Release|x86
+		{45B43B61-7671-4B8B-99C1-F935996B46C2}.Release|x86.Build.0 = Release|x86
+		{F07BAC24-79DE-4296-95AB-250A1EC410DE}.Debug|x86.ActiveCfg = Debug|x86
+		{F07BAC24-79DE-4296-95AB-250A1EC410DE}.Debug|x86.Build.0 = Debug|x86
+		{F07BAC24-79DE-4296-95AB-250A1EC410DE}.Release|x86.ActiveCfg = Release|x86
+		{F07BAC24-79DE-4296-95AB-250A1EC410DE}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

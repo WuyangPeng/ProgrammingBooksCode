@@ -1,0 +1,51 @@
+<!doctype html public "-//IETF//DTD.HTM//EN">
+<HTML><HEAD>
+<TITLE>Learning Rendering: Study13</TITLE>
+</HEAD>
+<BODY>
+<A HREF="../STUDY12/STUDY12.HTM">&lt;&lt;</A>
+<A HREF="../STUDY14/STUDY14.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>
+<HR>
+<H1>STUDIES 9-13  RAY TRACING</H1>
+
+<H2>STUDY 13	 TWO-PASS RAY TRACING</H2>
+<table><tr><td>
+<A HREF="CAUST1.TIF"><IMG SRC="CAUST1.GIF" WIDTH=100 HEIGHT=75 ALT="caust1"></A>
+</td><td>
+A study scene injected into a standard ray tracer
+</td></tr>
+<tr><td valign="top">
+<A HREF="CAUST5.TIF"><IMG SRC="CAUST5.GIF" WIDTH=100 HEIGHT=75 ALT="caust5"></A>
+</td><td>
+The same scene rendered using two-pass ray tracing. This accounts for LS*DE paths. The eye trace and the light trace 'meet' on a diffuse surface. The light pass  'sprinkles' the diffuse surfaces with light and the normal eye trace picks up these illumination changes on the diffuse surfaces. The LSDE paths involving refraction  or refection from a curved surface are called
+caustics. In this scene there are:
+
+<UL>
+<LI>two caustics from the red sphere - one directly from the light and one from the light reflected from the curved mirror.
+<LI>one (cusp) reflected caustic from the cylindrical mirror
+<LI>secondary illumination from the planar mirror ( a non-caustic LSDE path)
+
+</UL>
+
+<P>This image illustrates some of the defects in ray tracing which are exacerbated  by two pass ray tracing. The combination of a local specular term with a global specular term is often implemented. This is inconsistent because we have a local term that spreads specular refection and a global term that does not. This results in the inconsistency of spread specular highlights of the light source in the spheres, but perfect specular refection of other objects. Another problem with ray tracing is the naïve combination  (or addition) of local and global components at an
+intersection point. No account is taken of correct energy and the refection of the table surface in the planar mirror is brighter than the table surface due to this.</P>
+</td></tr>
+<tr><td>
+<A HREF="CAUST2.TIF"><IMG SRC="CAUST2.GIF" WIDTH=100 HEIGHT=75 ALT="caust2"></A>
+</td><td rowspan=3>
+These images were produced by shooting an increasing number of light rays. As the number of rays in the light pass increases, these can eventually  be merged to form well defined LSDE paths in the image. The number of rays shot in the light pass was 200, 400, 800 and 1000 respectively. To constrain the light rays in the directions of interest some manual intervention was used in this program. Here a cone centred on the light source (equivalent to defining a spotlight, was set up for each object in such a way that all of the object was illuminated.
+</td></tr>
+<tr><td>
+<A HREF="CAUST3.TIF"><IMG SRC="CAUST3.GIF" WIDTH=100 HEIGHT=75 ALT="caust3"></A>
+</td></tr>
+<tr><td>
+<A HREF="CAUST4.TIF"><IMG SRC="CAUST4.GIF" WIDTH=100 HEIGHT=75 ALT="caust4"></A>
+</td></tr>
+</table>
+<HR>
+<A HREF="../STUDY12/STUDY12.HTM">&lt;&lt;</A>
+<A HREF="../STUDY14/STUDY14.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>

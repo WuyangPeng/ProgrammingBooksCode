@@ -1,0 +1,55 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@# @;
+
+
+1.2
+date	97.09.21.19.25.55;	author dls;	state Dist;
+branches;
+next	1.1;
+
+1.1
+date	94.09.24.01.00.41;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@pre-3e code
+@
+text
+@/* ee_int.s - _ee_int */
+
+#include <icu.s>
+
+		.text
+		.globl	_ee_int
+_ee_int:
+		cli
+		pushal
+
+		movb	$EOI,%al	/* re-enable the device */
+		outb	%al,$OCW1_2
+
+		call	_ee_intr
+
+		popal
+		sti
+		iret
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@

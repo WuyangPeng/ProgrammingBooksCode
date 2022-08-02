@@ -1,0 +1,159 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	97.09.21.19.30.23;	author dls;	state Dist;
+branches;
+next	1.1;
+
+1.1
+date	94.05.08.06.01.42;	author dls;	state Old;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@pre-3e code
+@
+text
+@/* ttywrite.c - ttywrite */
+
+#include <conf.h>
+#include <kernel.h>
+#include <tty.h>
+
+/*------------------------------------------------------------------------
+ * ttywrite - write a buffer to a tty
+ *------------------------------------------------------------------------
+ */
+int
+ttywrite(pdev, buf, len)
+struct devsw	*pdev;
+unsigned char	*buf;
+int		len;
+{
+	struct devsw	*phw;
+	struct tty	*ptty = (struct tty *)pdev->dvioblk;
+	int		i;
+
+	if (ptty == 0)
+		return SYSERR;
+	phw = ptty->tty_phw;
+	if (phw == 0)
+		return SYSERR;
+	if (phw->dvputc == 0)
+		return SYSERR;
+	for (i=0; i<len; ++i) {
+		if (ptty->tty_oflags & TOF_RAW) {
+			if (phw->dvputc(phw, buf[i]) != OK)
+				break;
+		}
+		/* else, do cooked output */
+		if ( buf[i] > 127) {
+			(phw->dvputc)(phw, 'M');
+			(phw->dvputc)(phw, '-');
+			(phw->dvputc)(phw, buf[i] & 0x7f);
+			continue;
+		}
+#ifdef notdef
+		if (buf[i] == '\n')
+			(phw->dvputc)(phw, '\r');
+#endif
+		(phw->dvputc)(phw, buf[i]);
+	}
+	return i;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+/* ttywrite.c - ttywrite, writcopy */
+a5 4
+#include <io.h>
+#include <slu.h>
+
+extern char *foob3;
+d8 1
+a8 1
+ *  ttywrite - write one or more characters to a tty device
+d11 5
+a15 4
+ttywrite(devptr, buff, count)
+struct	devsw	*devptr;
+char	*buff;
+int	count;
+d17 28
+a44 17
+	STATWORD ps;    
+	register struct tty *ttyp;
+	int ncopied;
+
+	if (count < 0)
+		return(SYSERR);
+	if (count == 0)
+		return(OK);
+	disable(ps);
+	ttyp = &tty[devptr->dvminor];
+#ifdef UNDEF
+	count -= (ncopied = writcopy(buff, ttyp, count));
+	buff += ncopied;
+#endif	
+	for ( ; count>0 ; count--) {
+		/**foob3++ = *buff;*/
+		ttyputc(devptr, *buff++);
+d46 1
+a46 37
+	restore(ps);
+	return(OK);
+}
+
+/*------------------------------------------------------------------------
+ *  writcopy - high-speed copy from user's buffer into system buffer
+ *------------------------------------------------------------------------
+ */
+LOCAL writcopy(buff, ttyp, count)
+char	*buff;
+struct	tty *ttyp;
+int	count;
+{
+	register int	avail;
+	register char	*cp, *qhead, *qend, *uend;
+
+	avail = OBUFLEN - ttyp->ocnt;
+	qhead = &ttyp->obuff[ttyp->ohead];
+	qend  = &ttyp->obuff[OBUFLEN];
+	cp    = buff;
+	uend  = buff + count;
+	while (avail-- > 1 && cp < uend) {
+		if (*cp == NEWLINE && ttyp->ocrlf) {
+			*qhead++ = RETURN;
+			--avail;
+			if ( qhead >= qend )
+				qhead = ttyp->obuff;
+		}
+		*qhead++ = *cp++;
+		if ( qhead >= qend )
+			qhead = ttyp->obuff;
+	}					/* avail decremented one*/
+	ttyp->ohead = qhead - ttyp->obuff;	/* extra time when loop	*/
+	ttyp->ocnt = OBUFLEN - (avail+1);
+	sreset(ttyp->osem, ++avail);		/* condition fails.	*/
+	ttyostart(ttyp);
+	return(cp - buff);
+@

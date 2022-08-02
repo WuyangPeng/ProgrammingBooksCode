@@ -1,0 +1,20 @@
+算法（Algorithms）
+
+官方网站：
+https://algs4.cs.princeton.edu/home/ 、
+https://github.com/kevin-wayne/algs4/、 
+http://www.awl.com/cseng/titles/0-201-35088-2 （已失效）。
+
+第3版
+算法I-IV（C++实现）（Algorithms in C++ Parts 1-4）
+★
+作者：Robert Sedgewick 
+
+第3版
+算法V（C++实现）
+★
+作者：Robert Sedgewick 
+
+第4版
+★
+作者：Robert Sedgewick、Kevin Wayne

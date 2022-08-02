@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>mesh::set_numfaces</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="mesh.htm">mesh</a>::set_numfaces</h2>
+<h3>Prototype</h3>
+<p class="code"> void set_numfaces(int nfaces,int local=0,int keep=0);</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr> 
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr> 
+    <td>nfaces</td>
+    <td>int</td>
+    <td>new number of faces</td>
+  </tr>
+  <tr> 
+    <td>local</td>
+    <td>int</td>
+    <td>allocate local faces</td>
+  </tr>
+  <tr>
+    <td>keep</td>
+    <td>int</td>
+    <td>keep old faces</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This function is used to resize the faces array of a mesh. <br>
+  <br>
+  If <i>local</i> is not zero, local_faces will also be allocated.</p>
+<p>If <i>keep</i> is not zero, the newly allocated array will contain the data 
+  from previous faces array.<br>
+  If new number of faces is bigger then original face count, all old faces are 
+  maintained.<br>
+  If new number of faces is smaller then original face count, only the first <i>nfaces</i> 
+  faces will be kept.</p>
+<p>&nbsp;</p>
+</body>
+</html>

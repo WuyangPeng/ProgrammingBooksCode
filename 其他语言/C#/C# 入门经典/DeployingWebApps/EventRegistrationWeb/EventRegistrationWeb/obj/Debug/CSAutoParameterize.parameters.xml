@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="ConnectionString BegVCSharpEventsConnectionString" description="web.config connection string BegVCSharpEventsConnectionString" defaultvalue="Data Source='(local)\sqlexpress';Integrated Security=True;Pooling=False;Initial Catalog='BegVCSharpEvents'" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='BegVCSharpEventsConnectionString']/@connectionString" />
+  </parameter>
+</parameters>

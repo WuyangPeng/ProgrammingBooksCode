@@ -1,0 +1,42 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* blkequ.c - blkequ */
+
+#include <kernel.h>
+
+/*------------------------------------------------------------------------
+ *  blkequ  -  return TRUE iff one block of memory is equal to another
+ *------------------------------------------------------------------------
+ */
+blkequ(first, second, nbytes)
+register char	*first;
+register char	*second;
+register int	nbytes;
+{
+	while (--nbytes >= 0)
+		if (*first++ != *second++)
+			return(FALSE);
+	return(TRUE);
+}
+@

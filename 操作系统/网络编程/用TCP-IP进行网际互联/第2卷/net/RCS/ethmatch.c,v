@@ -1,0 +1,50 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.59;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* ethmatch.c - ethmatch */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ * ethmatch - determine if an Ethernet address is one of ours
+ *------------------------------------------------------------------------
+ */
+Bool
+ethmatch(pni, pea)
+struct netif	*pni;
+Eaddr		pea;
+{
+	if (pni->ni_state != NIS_UP)
+		return FALSE;
+	if (blkequ(pni->ni_hwa.ha_addr, pea, EP_ALEN))
+		return TRUE;
+	if (blkequ(pni->ni_hwb.ha_addr, pea, EP_ALEN))
+		return TRUE;
+#ifdef	MULTICAST
+/* check multicast addresses here */
+#endif	/* MULTICAST */
+	return FALSE;
+}
+@

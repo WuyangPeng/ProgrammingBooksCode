@@ -1,0 +1,55 @@
+<!doctype html public "-//IETF//DTD.HTM//EN">
+<HTML><HEAD>
+<TITLE>Learning Rendering: Study 18</TITLE>
+</HEAD>
+<BODY>
+<A HREF="../STUDY17/STUDY17.HTM">&lt;&lt;</A>
+<A HREF="../STUDY19/STUDY19.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>
+<HR>
+<H1>STUDIES 14-18	RADIOSITY STUDIES</H1>
+
+<H2>STUDY 18	   MESHING AND MESHING DEFECTS</H2>
+<table border=0 width="100%">
+<tr><td><A HREF="RDLEAK.TIF"><IMG SRC="RDLEAK.GIF" WIDTH=100 HEIGHT=75 ALT="rdleak"></A></td>  
+<td>This image can be used to visualise shadow and light leakage. Zooming up to the left hand wall light will reveal substantial light leakage and also a small area of shadow leakage. Shadow leakage is apparent around the mirror frame. These problems occur because a basic approach only considers the relationship between patches in the scene completely ignoring the fact that their geometry can 'interact' with other objects. The wall patches that are producing light leakage have an area behind the light and those that produce shadow leakage have areas behind the mirror. In the examples hcr1a etc. the scene was carefully constructed to take into account the 'interpenetrating' geometry. For example, the wall behind the table is subdivided along a line that coincides with a table edge.
+<P>Adaptive  subdivision attempts to cope with this as the solution progresses. (However, as we pointed out above this in itself suffers from the problem that an area may be finely subdivided then this subdivision obviated by subsequent reception of energy from a previously unshot source)</P>
+</td></tr>
+<tr><td><A HREF="RDAM_WF.TIF"><IMG SRC="RDAM_WF.GIF" WIDTH=100 HEIGHT=75 ALT="rdam_wf"></A></td><td> 	
+A  uniform subdivision of the standard scene - all non-triangular polygons are converted into triangular patches.</td></tr>
+<tr><td>
+<A HREF="RDMM1.TIF"><IMG SRC="RDMM1.GIF" WIDTH=100 HEIGHT=75 ALT="rdmm1"></A></td><td rowspan=3 valign="top">
+A uniform subdivision to create 3000 patches and the resulting low quality solution.</td></tr>
+<tr><td><A HREF="RDMM2.TIF"><IMG SRC="RDMM2.GIF" WIDTH=100 HEIGHT=75 ALT="rdmm2"></A></td></tr><tr><td>
+<A HREF="RDMM3.TIF"><IMG SRC="RDMM3.GIF" WIDTH=100 HEIGHT=75 ALT="rdmm3"></A></td></tr>	
+<tr><td>
+<A HREF="RDAM1.TIF"><IMG SRC="RDAM1.GIF" WIDTH=100 HEIGHT=75 ALT="rdam1"></A></td>
+<td rowspan=3 valign="top">Using subdivision during the solution. In this case the subdivision was terminated when it resulted in 3000 patches - the same as before. The difference in quality is obvious between the two series</td></tr><tr>
+<td><A HREF="RDAM2.TIF"><IMG SRC="RDAM2.GIF" WIDTH=100 HEIGHT=75 ALT="rdam2"></A></td></tr><tr>
+<td><A HREF="RDAM3.TIF"><IMG SRC="RDAM3.GIF" WIDTH=100 HEIGHT=75 ALT="rdam3"></A></td></tr>	
+<tr><td valign="top">
+<A HREF="MGEN.AVI"><IMG SRC="MGEN.GIF" WIDTH=100 HEIGHT=75 ALT="mgen"></A></td><td>  
+This is an animation showing the build up of subdivision around one of the wall lights.  The animation proceeds as follows. Originally two large patches situated away from the wall provide general illumination of the object. This immediately causes subdivision around the light/wall boundary because the program detects a high difference between vertices belonging to the same patches. These patches have vertices both under the light and on the wall. However, this subdivision is not fine enough and as we start to shoot energy from the light source itself light leakage begins to occur.  Light source patches continue to shoot energy in the order in which the model was originally created and we spiral up the sphere, shooting energy onto its inside and causing more and more light leakage. Eventually the light emerges onto the wall and brights up the appropriate patches. As the fan of light rotates above the light more and more inappropriate subdivision occurs. This is because the subdivision is based on the current intensity gradients which move on as further patches are shot. Note in the final frame this results in a large degree of subdivision in an area of high light saturation. These redundant patches slow the solution down more and more and we are inadvertently making things worse.
+
+<P>This problem leads to an alternative strategy which is to:</P>
+
+<OL>
+<LI>Limit the initiation of subdivision by only initiating after every n patches instead of after every patch that is shot.
+<LI>Limit the initiation of sub-division by waiting until the illumination is representative of the expected final distribution.
+<LI>Aid the initial mesh generation by taking account of interpenetrating geometry. This means adding edges to objects that coincide with boundaries of other objects. This solution is applied before the radiosity solution begins.
+</OL>
+</td></tr>
+<tr><td><A HREF="RDINTM.TIF"><IMG SRC="RDINTM.GIF" WIDTH=100 HEIGHT=75 ALT="rdintm"></A></td>
+<td rowspan=2>the  result of meshing the area around a wall light after considering the 	interpenetrating geometry. Now the wall patch boundaries coincide with the 	light patch boundaries. The result of this mesh completely eliminates the leakage 	shown in <A HREF="RDLEAK.TIF">rdleak</A>  which is based on the mesh shown in <A HREF="RDLKM.TIF">rdlkm</A> </td></tr>
+<tr><td><A HREF="RDINTP.TIF"><IMG SRC="RDINTP.GIF" WIDTH=100 HEIGHT=75 ALT="rdintp"></A></td></tr>
+<tr><td><A HREF="RDFULL.TIF"><IMG SRC="RDFULL.GIF" WIDTH=100 HEIGHT=75 ALT="rdfull"></A></td><td>	
+this show the scene rendered using a combination of radiosity and raytracing. The initial stage involved computing a high quality radiosity solution (note that shadow and light leakage around the lights has been avoided by considering the interpenetrating geometry). This solution is then combined with a raytraced solution, which accounts for the mirrored surfaces in the scene.
+</td></tr>
+</table>
+
+<HR>
+<A HREF="../STUDY17/STUDY17.HTM">&lt;&lt;</A>
+<A HREF="../STUDY19/STUDY19.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>

@@ -1,0 +1,4 @@
+精通Windows应用开发 （Pro Windows 8.1 Development with XAML and C#）  
+
+○ 
+作者：Jesse Liberty、Philip Japikse、Jon Galloway

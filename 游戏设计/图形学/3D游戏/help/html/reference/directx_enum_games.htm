@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>directX::enum_games</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="directx.htm">directX</a>::enum_games</h2>
+<h3>Prototype</h3>
+<p class="code">mp_games *enum_games(LPGUID app_guid)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>app_guid</td>
+	 <td>LPGUID</td>
+	 <td>application GUID.<br>
+      use FLYGUID for Fly3D games.&nbsp;</td>
+  </tr>
+  
+  
+  
+</table>
+<h3>Return Value</h3>
+<p>Returns pointer to the game's description class.</p>
+<h3>Remarks</h3>
+<p>Returns information on all games running on the selected server.&nbsp;<br>
+  It is used for enumerating available games to join on a specific server.</p>
+</body>
+</html>

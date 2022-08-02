@@ -1,0 +1,35 @@
+#! /bin/sh
+HOST=nic.ddn.mil
+PATH=/bin:/usr/bin:/usr/local/bin:/usr/ucb
+pub=/userb/abv/.rfc
+umask 022
+
+for i
+do
+	if test $i = "index"
+	then
+		i="-index"
+	fi
+	if test ! -r $pub/$i -a ! -r $pub/$i".Z" -o $i = "-index"
+	then
+		trap "rm -f $pub/$i; echo Transfer interrupted - $pub/$i removed; exit 1" 1 2 3 13 15 24 25
+		ftp -n ${HOST}  >/dev/null <<!
+user anonymous guest
+binary
+get rfc/rfc$i.txt $pub/$i
+quit
+!
+		trap 1 2 3 13 15 24 25
+	fi
+
+	if test -r $pub/$i
+	then
+		cat $pub/$i
+	elif test -r $pub/$i".Z"
+	then
+		zcat $pub/$i
+	else
+		echo Could not retrieve RFC $i 
+	fi
+done
+chmod 666 $pub/-index >/dev/null 2>&1

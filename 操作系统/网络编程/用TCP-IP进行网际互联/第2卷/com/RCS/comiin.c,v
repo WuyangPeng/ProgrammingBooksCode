@@ -1,0 +1,53 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.23.38;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@pre-3e code
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* comiin.c comiin */
+
+#include <conf.h>
+#include <kernel.h>
+#include <tty.h>
+#include <com.h>
+
+static	int	state;
+
+/*------------------------------------------------------------------------
+ *  comiin  --  lower-half com device driver for input interrupts
+ *------------------------------------------------------------------------
+ */
+INTPROC	comiin(pcom)
+struct comsoft	*pcom;
+{
+	struct devsw	*pdev = pcom->com_pdev;
+	unsigned int	ch;
+
+	ch = inb(pdev->dvcsr + DATA);
+	if (pdev->dvioblk == 0)
+		return OK;		/* no tty device associated */
+	pdev = (struct devsw *)pdev->dvioblk;	/* get tty dev pointer */
+	if (pdev == 0)
+		return OK;		/* no tty structure associated */
+	(pdev->dviint)(pdev, ch);
+	return OK;
+}
+@

@@ -1,0 +1,115 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	97.09.21.19.30.32;	author dls;	state Dist;
+branches;
+next	1.1;
+
+1.1
+date	94.07.17.19.25.14;	author dls;	state Old;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@pre-3e code
+@
+text
+@/* udpcksum.c - udpcksum */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  udpcksum -  compute a UDP pseudo-header checksum
+ *------------------------------------------------------------------------
+ */
+unsigned short udpcksum(pep, len)
+struct ep	*pep;
+int		len;
+{
+	struct	ip	*pip = (struct ip *)pep->ep_data;
+	struct	udp	*pudp = (struct udp *)pip->ip_data;
+	unsigned	short	*sptr;
+	unsigned	long ucksum;
+	int		i;
+
+	ucksum = 0;
+
+	sptr = (unsigned short *) &pip->ip_src;
+	/* 2*IP_ALEN octets = IP_ALEN shorts... */
+	/* they are in net order.		*/
+	for (i=0; i<IP_ALEN; ++i)
+		ucksum += *sptr++;
+	sptr = (unsigned short *)pudp;
+	ucksum += hs2net(IPT_UDP + len);
+	if (len % 2) {
+		((char *)pudp)[len] = 0;	/* pad */
+		len += 1;	/* for the following division */
+	}
+	len >>= 1;	/* convert to length in shorts */
+
+	for (i=0; i<len; ++i)
+		ucksum += *sptr++;
+	ucksum = (ucksum >> 16) + (ucksum & 0xffff);
+	ucksum += (ucksum >> 16);
+
+	return (short)(~ucksum & 0xffff);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@a6 2
+#define	UDP_ALEN	IP_ALEN		/* length of src+dst, in shorts	*/
+
+d11 3
+a13 2
+unsigned short udpcksum(pip)
+struct	ip	*pip;
+d15 1
+d17 2
+a18 3
+	unsigned	short	*psh;
+	unsigned	long	sum;
+	short		len = net2hs(pudp->u_len);
+d21 1
+a21 5
+	sum = 0;
+
+	psh = (unsigned short *) pip->ip_src;
+	for (i=0; i<UDP_ALEN; ++i)
+		sum += *psh++;
+d23 8
+a30 3
+	psh = (unsigned short *)pudp;
+	sum += hs2net(pip->ip_proto + len);
+	if (len & 0x1) {
+d34 1
+a34 1
+	len /= 2;	/* convert to length in shorts */
+d37 3
+a39 3
+		sum += *psh++;
+	sum = (sum >> 16) + (sum & 0xffff);
+	sum += (sum >> 16);
+d41 1
+a41 1
+	return (short)(~sum & 0xffff);
+@

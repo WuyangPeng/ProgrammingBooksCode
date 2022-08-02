@@ -1,0 +1,61 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	97.09.21.19.26.19;	author dls;	state Dist;
+branches;
+next	1.1;
+
+1.1
+date	94.05.10.20.48.46;	author dls;	state Old;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@pre-3e code
+@
+text
+@/* ipreass.h */
+
+/* Internet Protocol (IP)  reassembly support */
+
+#define IP_FQSIZE	10	/* max number of frag queues		*/
+#define IP_MAXNF	10	/* max number of frags/datagram		*/
+#define	IP_FTTL		60	/* time to live (secs)			*/
+
+/* ipf_state flags */
+
+#define	IPFF_VALID	1	/* contents are valid			*/
+#define	IPFF_BOGUS	2	/* drop frags that match		*/
+#define	IPFF_FREE	3	/* this queue is free to be allocated	*/
+
+struct	ipfq	{
+	char	ipf_state;		/* VALID, FREE or BOGUS		*/
+	IPaddr	ipf_src;		/* IP address of the source	*/
+	short	ipf_id;			/* datagram id			*/
+	int	ipf_ttl;		/* countdown to disposal	*/
+	int	ipf_q;			/* the queue of fragments	*/
+};
+
+extern	int	ipfmutex;		/* mutex for ipfqt[]		*/
+extern	struct	ipfq	ipfqt[];	/* IP frag queue table		*/
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@

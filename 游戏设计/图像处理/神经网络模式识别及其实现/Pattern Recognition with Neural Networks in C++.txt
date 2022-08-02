@@ -1,0 +1,4 @@
+神经网络模式识别及其实现（Pattern Recognition with Neural Networks in C++）
+
+☆
+作者： Abhijit S.Pandya、Robert B.Macy 

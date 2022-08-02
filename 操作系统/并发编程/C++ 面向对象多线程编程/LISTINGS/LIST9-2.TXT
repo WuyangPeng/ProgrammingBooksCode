@@ -1,0 +1,54 @@
+Listing 9.2.
+
+// Listing 9.2
+// The definitions for the lqueue class
+
+#include <deque.h>
+#include "ctmutex.h"
+
+template <class T> class lqueue : virtual private named_mutex,
+				     virtual private event_mutex{
+protected:
+    deque<T> SafeQueue;
+public:
+    lqueue(char *MName,int Own,char *EName,int Initial,
+	  unsigned long Dur);
+    inline void insert(T X);
+    inline T remove(void);
+    inline T front(void);
+    inline T back(void);
+    inline unsigned int empty(void);
+    inline unsigned int size(void);
+    inline void erase(void);
+    void wait(void);
+    void broadCast(void);
+};
+
+
+template <class T> lqueue<T>::lqueue(char *MName,int Own,char *EName,
+			       int Initial,unsigned long Dur) :
+			       named_mutex(MName,Own),
+			       event_mutex(EName,Initial,Dur)
+{
+}
+
+template <class T> void lqueue<T>::insert(T X)
+{
+     lock();
+     SafeQueue.push_back(X);
+     unlock();
+}
+
+
+template <class T> T lqueue<T>::remove(void)
+{
+
+    T Temp;
+    lock();
+    Temp = SafeQueue.front();
+    SafeQueue.pop_front();
+    unlock();
+    return(Temp);
+}
+
+

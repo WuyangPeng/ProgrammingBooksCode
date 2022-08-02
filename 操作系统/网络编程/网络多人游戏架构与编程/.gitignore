@@ -1,0 +1,41 @@
+Chapter 3/build
+Chapter 4/build
+Chapter 6/RoboCatAction/build
+Chapter 6/RoboCatRTS/build
+Chapter 8/RoboCatAction/build
+.DS_Store
+
+*.aps
+*.config
+*.db
+*.db-shm
+*.db-wal
+*.dll
+*.exe
+*.exp
+*.FileListAbsolute.txt
+*.idb
+*.ilk
+*.iobj
+*.ipdb
+*.ipch
+*.lastcodeanalysissucceeded
+*.lib
+*.log
+*.manifest
+*.obj
+*.opendb
+*.pch
+*.pdb
+*.recipe
+*.res
+*.sarif
+*.sbr
+*.suo
+*.tlog
+*.tmp
+*.user
+
+CodeAnalysisResultManifest.txt
+
+ 

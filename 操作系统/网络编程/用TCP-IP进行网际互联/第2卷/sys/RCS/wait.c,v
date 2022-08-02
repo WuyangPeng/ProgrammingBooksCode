@@ -1,0 +1,57 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* wait.c - wait */
+
+#include <conf.h>
+#include <kernel.h>
+#include <proc.h>
+#include <q.h>
+#include <sem.h>
+
+/*------------------------------------------------------------------------
+ * wait  --  make current process wait on a semaphore
+ *------------------------------------------------------------------------
+ */
+SYSCALL	wait(sem)
+	int	sem;
+{
+	STATWORD ps;    
+	struct	sentry	*sptr;
+	struct	pentry	*pptr;
+
+	disable(ps);
+	if (isbadsem(sem) || (sptr= &semaph[sem])->sstate==SFREE) {
+		restore(ps);
+		return(SYSERR);
+	}
+	if (--(sptr->semcnt) < 0) {
+		(pptr = &proctab[currpid])->pstate = PRWAIT;
+		pptr->psem = sem;
+		enqueue(currpid,sptr->sqtail);
+		resched();
+	}
+	restore(ps);
+	return(OK);
+}
+@

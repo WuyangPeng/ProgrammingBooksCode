@@ -1,0 +1,45 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	94.01.14.03.51.20;	author dls;	state v2e1;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* uqinit.c - uqinit */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  uqinit -  initialize TCP urgent queue data
+ *------------------------------------------------------------------------
+ */
+int uqinit()
+{
+	int	i;
+
+	uqidone = TRUE;
+	uqmutex = screate(0);
+	for (i=0; i<UQTSIZE; ++i)
+		uqtab[i].uq_state = UQS_FREE;
+	signal(uqmutex);
+	return OK;
+}
+@

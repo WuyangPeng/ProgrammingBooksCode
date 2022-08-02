@@ -1,0 +1,39 @@
+<!doctype html public "-//IETF//DTD.HTM//EN">
+<HTML><HEAD>
+<TITLE>Learning Rendering:Study10</TITLE>
+</HEAD>
+<BODY>
+<A HREF="../STUDY9/STUDY9.HTM">&lt;&lt;</A>
+<A HREF="../STUDY11/STUDY11.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>
+<HR>
+<H1>STUDIES 9-13  RAY TRACING</H1>
+
+<H2>STUDY 10	 EFFECT OF RECURSIVE DEPTH</H2>
+
+<table border=0>
+<tr>
+<td><A HREF="RTDTH1.TIF"><IMG SRC="RTDTH1.GIF" WIDTH=100 HEIGHT=75 ALT="rtdth1"></A></td>
+<td><A HREF="RTDTH2.TIF"><IMG SRC="RTDTH2.GIF" WIDTH=100 HEIGHT=75 ALT="rtdth2"></A></td>
+<td><A HREF="RTDTH3.TIF"><IMG SRC="RTDTH3.GIF" WIDTH=100 HEIGHT=75 ALT="rtdth3"></A></td>
+<td><A HREF="RTDTH4.TIF"><IMG SRC="RTDTH4.GIF" WIDTH=100 HEIGHT=75 ALT="rtdth4"></A></td></tr>
+<td>rtdth1</td><td>rtdth2</td><td>rtdth3</td><td>rtdth4</td></tr>
+<tr>
+<td><A HREF="RTDTH5.TIF"><IMG SRC="RTDTH5.GIF" WIDTH=100 HEIGHT=75 ALT="rtdth5"></A></td>
+<td><A HREF="RTDTH6.TIF"><IMG SRC="RTDTH6.GIF" WIDTH=100 HEIGHT=75 ALT="rtdth6"></A></td>
+<td><A HREF="RTDTH7.TIF"><IMG SRC="RTDTH7.GIF" WIDTH=100 HEIGHT=75 ALT="rtdth7"></A></td>
+<td><A HREF="RTDTH8.TIF"><IMG SRC="RTDTH8.GIF" WIDTH=100 HEIGHT=75 ALT="rtdth8"></A></td></tr>
+<tr><td>rtdth5</td><td>rtdth6</td><td>rtdth7</td><td>rtdth8</td></tr>
+<tr><td colspan=4>
+Perfect specular objects reflecting in each other persist as a popular ray tracing image to generate (although such scenes rarely occur in reality). This series was generated using the same scene with recursive depth varying for zero to 7. The teapot and the mirror are both perfect mirrors with no local reflection model parameters. For recursive depth of zero, rays terminate on the teapot and mirror surface and find no local component. They are (arbitrarily) rendered as grey. For recursive depth 1, both the teapot and the mirror find reflections but rays from the eye to the mirror to the teapot terminate at the teapot and produce a grey 'shadow' of the teapot in the mirror.  A particular point to note in this series is the way in which aliasing artefacts increase with recursive depth. (Do not read the next sentence with any alcohol in your blood.)  Zooming in on the centre of rtdth5 will confirm that 'the reflection of the light cable in the mirror in the teapot in the mirror' has completely broken up. This is, of course, due to the divergence of the initial bundle of rays as they continually encounter curved surfaces.</td></tr>
+</table>
+<table border=0 width="100%">
+<tr><td><A HREF="RTDAA.TIF"><IMG SRC="RTDAA.GIF" WIDTH=100 HEIGHT=75 ALT="rtdaa"></A></td><td> 	 
+an anti-aliased version of rtdth8. Note that although the image quality is generally better the light cable still breaks up.</td></tr>
+</table>
+<HR>
+<A HREF="../STUDY9/STUDY9.HTM">&lt;&lt;</A>
+<A HREF="../STUDY11/STUDY11.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>

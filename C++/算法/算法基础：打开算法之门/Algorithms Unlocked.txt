@@ -1,0 +1,8 @@
+算法基础：打开算法之门（Algorithms Unlocked）
+
+★★☆
+作者：Thomas H.Cormen
+其他书籍：Thomas H.Cormen《算法导论》。
+
+联系作者：
+algorithms-unlocked@mit.edu。 

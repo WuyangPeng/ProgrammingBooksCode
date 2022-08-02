@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>class plane</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2>class bsp_node : public <a href="plane.htm">plane</a></h2>
+<h3>Definition</h3>
+<p class="code">class bsp_node : public plane<br>
+  {<br>
+  &nbsp;
+  public:<br>
+  &nbsp;
+  bsp_node *child[2];<br>
+  &nbsp;
+  bsp_object 
+			*elem, **last_elem;<br>
+  &nbsp;
+  int leaf;<br>
+  &nbsp;
+  vector color;<br>
+  <br>
+  &nbsp;
+  bsp_node()<br>
+  &nbsp;
+  { child[0]=child[1]=0; elem=0; leaf=-1; last_elem=&elem; };<br>
+  <br>
+  &nbsp;
+  virtual ~bsp_node();<br>
+  };</p>
+<h3>Data Members</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Member</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>child</td>
+	 <td>char[] *</td>
+	 
+    <td>the two children</td>
+  </tr>
+  <tr>
+	 <td>elem</td>
+	 <td><a href="bsp_object.htm">bsp_object</a> *</td>
+	 <td>linked list of elements in node (if this is a leaf node)</td>
+  </tr>
+  <tr>
+	 <td>last_elem</td>
+	 <td><a href="bsp_object.htm">bsp_object</a> **</td>
+	 
+    <td>pointer to last element in <i>elem</i> linked list</td>
+  </tr>
+  <tr>
+	 <td>leaf</td>
+	 <td>int</td>
+	 <td>leaf index (-1 if not a leaf node)</td>
+  </tr>
+  <tr>
+	 <td>color</td>
+	 <td><a href="vector.htm">vector</a></td>
+	 <td>ambient color of node (if this is a leaf node)</td>
+  </tr>
+</table>
+<h3>Methods</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This class implements a bsp tree node. All nodes at the end of the tree are 
+  considered leaves and they include a linked list of elements (Fly3D plug-in objects) 
+  inside the node and node ambient color.&nbsp;</p>
+<h3>See Also</h3>
+<p><a href="vector.htm">vector</a>, <a href="plane.htm">plane</a>, <a href="bsp_node.htm">bsp_node</a>,
+<a href="bsp_object.htm">bsp_object</a></p>
+</body>
+</html>

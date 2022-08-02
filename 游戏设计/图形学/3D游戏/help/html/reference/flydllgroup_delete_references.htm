@@ -1,0 +1,43 @@
+<html>
+
+<head>
+<title>flydllgroup::delete_references</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2><a href="flydllgroup.htm">flydllgroup</a>::delete_references</h2>
+
+<h3>Prototype</h3>
+
+<p class="code">void delete_references(bsp_object *o)</p>
+
+<h3>Parameters</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>o</td>
+    <td><a href="bsp_object.htm">bsp_object</a> *</td>
+    <td>object whose references should be deleted</td>
+  </tr>
+</table>
+
+<h3>Return Value</h3>
+
+<p>None</p>
+
+<h3>Remarks</h3>
+
+<p>This function removes any references to the specified object. It is used before 
+  deleteing the object. All other objects that had pointers to this one will have 
+  their pointers set to NULL.</p>
+</body>
+</html>

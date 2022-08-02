@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>flyEngine::get_random_point</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="flyengine.htm">flyEngine</a>::get_random_point</h2>
+<h3>Prototype</h3>
+<p class="code">bsp_node *get_random_point(vector& v,float mindist)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>v</td>
+	 <td><a href="vector.htm">vector</a>&amp;</td>
+	 <td>point</td>
+  </tr>
+  <tr>
+	 <td>mnidist</td>
+	 <td>float</td>
+	 <td>minimum distance</td>
+  </tr>
+  
+</table>
+<h3>Return Value</h3>
+<p>Returns the bsp leaf the random point <i>v</i> is in.</p>
+<h3>Remarks</h3>
+<p>This function is used to compute a random position inside the level that is
+at least <i>mindist</i> away from any wall. The random position will be stored
+in the <i>v</i> parameter.</p>
+</body>
+</html>

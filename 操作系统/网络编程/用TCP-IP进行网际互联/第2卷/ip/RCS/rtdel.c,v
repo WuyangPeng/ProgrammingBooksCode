@@ -1,0 +1,71 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.09;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* rtdel.c - rtdel */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  rtdel  -  delete the route with the given net, mask
+ *------------------------------------------------------------------------
+ */
+int rtdel(net, mask)
+IPaddr	net, mask;		/* destination network and mask		*/
+{
+	struct	route	*prt, *prev;
+	int		hv, i;
+
+	if (!Route.ri_valid)
+		return SYSERR;
+	wait(Route.ri_mutex);
+	if (Route.ri_default &&
+	    net == Route.ri_default->rt_net) {
+		RTFREE(Route.ri_default);
+		Route.ri_default = 0;
+		signal(Route.ri_mutex);
+		return OK;
+	}
+	hv = rthash(net);
+
+	prev = NULL;
+	for (prt = rttable[hv]; prt; prt = prt->rt_next) {
+		if (net == prt->rt_net &&
+		    mask == prt->rt_mask)
+			break;
+		prev = prt;
+	}
+	if (prt == NULL) {
+		signal(Route.ri_mutex);
+		return SYSERR;
+	}
+	if (prev)
+		prev->rt_next = prt->rt_next;
+	else
+		rttable[hv] = prt->rt_next;
+	RTFREE(prt);
+	signal(Route.ri_mutex);
+	return OK;
+}
+@

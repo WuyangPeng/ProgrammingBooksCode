@@ -1,0 +1,59 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: smart sweepers - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x809 /fo"Release/Script1.res" /d "NDEBUG" "C:\CODE\BOOK CHAPTERS\REVIEW\AI07\source\smart sweepers - v1.1\Script1.rc"" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP275.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Release/smart sweepers.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\CODE\BOOK CHAPTERS\REVIEW\AI07\source\smart sweepers - v1.1\C2DMatrix.cpp"
+"C:\CODE\BOOK CHAPTERS\REVIEW\AI07\source\smart sweepers - v1.1\CController.cpp"
+"C:\CODE\BOOK CHAPTERS\REVIEW\AI07\source\smart sweepers - v1.1\CGenAlg.cpp"
+"C:\CODE\BOOK CHAPTERS\REVIEW\AI07\source\smart sweepers - v1.1\CMinesweeper.cpp"
+"C:\CODE\BOOK CHAPTERS\REVIEW\AI07\source\smart sweepers - v1.1\CNeuralNet.cpp"
+"C:\CODE\BOOK CHAPTERS\REVIEW\AI07\source\smart sweepers - v1.1\CParams.cpp"
+"C:\CODE\BOOK CHAPTERS\REVIEW\AI07\source\smart sweepers - v1.1\CTimer.cpp"
+"C:\CODE\BOOK CHAPTERS\REVIEW\AI07\source\smart sweepers - v1.1\main.cpp"
+"C:\CODE\BOOK CHAPTERS\REVIEW\AI07\source\smart sweepers - v1.1\utils.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP275.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP276.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:no /pdb:"Release/smart sweepersv1.1.pdb" /machine:I386 /out:"Release/smart sweepersv1.1.exe" 
+".\Release\C2DMatrix.obj"
+".\Release\CController.obj"
+".\Release\CGenAlg.obj"
+".\Release\CMinesweeper.obj"
+".\Release\CNeuralNet.obj"
+".\Release\CParams.obj"
+".\Release\CTimer.obj"
+".\Release\main.obj"
+".\Release\utils.obj"
+".\Release\Script1.res"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP276.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+C2DMatrix.cpp
+CController.cpp
+CGenAlg.cpp
+CMinesweeper.cpp
+CNeuralNet.cpp
+CParams.cpp
+CTimer.cpp
+main.cpp
+utils.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+smart sweepersv1.1.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

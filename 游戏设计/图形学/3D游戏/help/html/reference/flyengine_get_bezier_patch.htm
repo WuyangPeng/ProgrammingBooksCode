@@ -1,0 +1,44 @@
+<html>
+
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>flyEngine::get_bezier_patch</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2><a href="flyengine.htm">flyEngine</a>::get_bezier_patch</h2>
+
+<h3>Prototype</h3>
+
+<p class="code">bezier_patch *get_bezier_patch(char *name)</p>
+
+<h3>Parameters</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>name</td>
+    <td>char *</td>
+    <td>patch name</td>
+  </tr>
+</table>
+
+<h3>Return Value</h3>
+
+<p>Returns a pointer to the given patch or NULL if patch not found.</p>
+
+<h3>Remarks</h3>
+
+<p>This function is used to get patches from the stock. It returns the patch pointer 
+  for a given string based patch name. If patch is not in the patch linked list, 
+  it attempts to load the patch from disk.</p>
+
+</body>
+</html>

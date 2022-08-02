@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>class base_object</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2>class base_object</h2>
+<h3>Definition</h3>
+<p class="code">class base_object<br>
+  {<br>
+  &nbsp;
+  public:<br>
+  &nbsp;
+  char name[32];<br>
+  &nbsp;
+  char long_name[32];<br>
+  &nbsp;
+  base_object *next_obj;<br>
+  <br>
+  &nbsp;
+  base_object()<br>
+  &nbsp;
+  { next_obj=0; name[0]=long_name[0]=0; };<br>
+  <br>
+  &nbsp;
+  virtual ~base_object()<br>
+  &nbsp;
+  { ; };<br>
+  };</p>
+<h3>Data Members</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Member</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>name</td>
+	 <td>char[]</td>
+	 <td>object small name</td>
+  </tr>
+  <tr>
+	 <td>long_name</td>
+	 <td>char[]</td>
+	 <td>object long nome</td>
+  </tr>
+  <tr>
+	 <td>next_obj</td>
+	 <td>base_object *</td>
+	 <td>next object in the linked list</td>
+  </tr>
+</table>
+<h3>Methods</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This class is the base class for all objects. Several other classes from the
+engine derive from this class. It holds the object name and pointer to next
+object in the specific object linked list.</p>
+<h3>See Also</h3>
+<p><a href="bsp_object.htm">bsp_object</a></p>
+</body>
+</html>

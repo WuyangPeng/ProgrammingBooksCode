@@ -1,0 +1,86 @@
+<html>
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>Fly3D Tutorial 9 - Creating a new Fly3D plug-in</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#FFFFFF">
+<h1>Fly3D SDK</h1>
+<h2><a href="tutorials.htm">Tutorials</a></h2>
+<h3 align="right"><a href="../fly3d.htm">Home</a></h3>
+<h3>Tutorial 9</h3>
+<p>Creating a new Fly3D plug-in</p>
+<p>&middot; Introduction</p>
+<p></p>
+<p>At the end of this tutorial you will have created a new Fly3D plug-in to be 
+  used in your games. The plug-in will implement a single game object named blink_light. 
+  The object will be a dynamic light source that constantly changes its radius 
+  based on a predefined time interval.</p>
+<p>&middot; Visual C++ operations</p>
+<p>1) Open the Visual C++ Fly3D Plug-ins Workspace</p>
+<p>2) Select the menu option File/New to create a new project</p>
+<p>3) Select the projects tab and the Fly3D Plug-in Wizard</p>
+<p>4) Set the project location to the flysdk\plugin path and name the project 
+  'tutorial'. Make sure to select 'add to curent workspace' to keep all Fly3D 
+  plug-in projects in a single workspace.</p>
+<p>5) On the first wizard step, add a single class named 'blink_light'</p>
+<p>6) On the second wizard step, add three parameters:</p>
+<p class="code"> name: 'color' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type: 
+  color<br>
+  name: 'illumradius' &nbsp;type: float<br>
+  name: 'blinktime' &nbsp;&nbsp;&nbsp;type: int </p>
+<p>7) On the third wizard step, select the Fly3D SDK path and click Finish.</p>
+<p>8) You should now be able to compile the plug-in with no errors.</p>
+<p>9) Now we will add the blink light functionality. Open the tutorial.cpp file 
+  and add the following code to the blink_light::step function:</p>
+<p class="code">int blink_light::step(int dt)<br>
+  {<br>
+  &nbsp;&nbsp;// compute current radius <br>
+  &nbsp;&nbsp;float r=illumradius*<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ((flyengine->cur_time%blinktime)/1000.0f);<br>
+  <br>
+  &nbsp;&nbsp;// illuminate around<br>
+  &nbsp;&nbsp;flyengine->send_bsp_message( <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flyengine->bsp, pos, r, FLYOBJM_ILLUM, 
+  0, &color);<br>
+  <br>
+  &nbsp;&nbsp;// return 0 as we have not moved (changed pos)<br>
+  &nbsp;&nbsp; return 0;<br>
+  } </p>
+<p>10) If the blink_light is to be destroyed after say 30 seconds of illumination, 
+  set its life parameter to 30000 and add the following line anywhare in the blink_light::step 
+  function:</p>
+<p class="code"> // subtract elapsed time from object's life<br>
+  life-=dt; </p>
+<p>When the blink_light's life value truns negative, it will be destroyed by the 
+  engine. </p>
+<p>11) Use the ALT-F7 key to edit the project settings. On the link tab, change 
+  the output file name to '../tutorial.dll'. This will save the compiled dll to 
+  the flysdk\plugin directory with all other Fly3D plug-ins (make sure to change 
+  this option for the release and debug versions).</p>
+<p>12) Compile the tutorial (flysdk\plugin\tutorial.dll should be built) and we 
+  are ready to add the plug-in object to the level from previous tutorials. </p>
+<p>13) Run the plug-in (debug it) using the F5 key and select the flyEditor.exe 
+  to open (or just run a standalone copy of flyEditor if no debug is needed). 
+</p>
+<p>&middot; flyEditor operations</p>
+<p>1) Open the level .fly file cretated in previous tutorials and add the tutorial.dll 
+  to it just like in tutorial 7.</p>
+<p>2) Add a new blink_light object and set its parameters as follows:</p>
+<p class="code"> active &nbsp;&nbsp;&nbsp;= 1 (activate on startup)<br>
+  color&nbsp; &nbsp;&nbsp;&nbsp;= any color you choose for the light, but not 
+  black! <br>
+  radius &nbsp;&nbsp;&nbsp;= 100 (10 meters)<br>
+  life&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 30000 (30 sec)<br>
+  blinktime&nbsp;= 1000 (1 second) </p>
+<p>This active parameters tells the engine to activate a copy of the object on 
+  scene startup. If we set it to 0, the blink_light will be on the stock and can 
+  be used as a parameter in another game object or activated by another game object 
+  (and will not be visible until then).</p>
+<p>3) Run the level (setting the render and starting simmulation). You should 
+  see the blink_light illuminating the faces near its position (0,0,0). You can 
+  change its parameters and see the results in real-time in the render view.</p>
+<p>&nbsp;</p>
+</body>
+</html>

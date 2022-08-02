@@ -1,0 +1,7 @@
+This is line number 1.
+This is line number 2.
+This is the 3rd line.
+This is the 4th line.
+This is line number 1 again; we want to keep it.
+This is more text we want to keep.
+Last line in the file; we want to keep it.

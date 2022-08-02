@@ -1,0 +1,227 @@
+head	1.3;
+access;
+symbols;
+locks
+	dls:1.3; strict;
+comment	@ * @;
+
+
+1.3
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	1.2;
+
+1.2
+date	94.04.26.15.15.20;	author dls;	state Works;
+branches;
+next	1.1;
+
+1.1
+date	94.03.28.18.07.53;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.3
+log
+@pre-3e code
+@
+text
+@/* kputc.c - kputc */
+
+#include <conf.h>
+#include <kernel.h>
+#include <tty.h>
+
+/*------------------------------------------------------------------------
+ * kputc - do a synchronous kernel write to the console tty
+ *------------------------------------------------------------------------
+ */
+int
+kputc(dev, c)
+int		dev;	/* fake dev-- always the console */
+unsigned char	 c;
+{
+	kbmputc(&devtab[KBMON], c);
+	comsputc(&devtab[SERIAL1], c);
+#ifdef notdef
+	if (devtab[CONSOLE].dvioblk)
+		putc(CONSOLE, c);
+	else /* no tty yet; put it on SERIAL0 */
+		comsputc(&devtab[SERIAL0], c);
+#endif
+	return OK;
+}
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d1 9
+a9 37
+/*	BSDI $Id: kputc.c,v 1.1 1994/03/28 18:07:53 dls Works dls $	*/
+/*-
+ * Copyright (c) 1990 The Regents of the University of California.
+ * All rights reserved.
+ *
+ * This code is derived from software contributed to Berkeley by
+ * William Jolitz.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ *    must display the following acknowledgement:
+ *	This product includes software developed by the University of
+ *	California, Berkeley and its contributors.
+ * 4. Neither the name of the University nor the names of its contributors
+ *    may be used to endorse or promote products derived from this software
+ *    without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ *
+ *	@@(#)cga.c	5.3 (Berkeley) 4/28/91
+d11 1
+a11 22
+
+#define	COL		80
+#define	ROW		25
+#define	CHR		2
+#define MONO_BASE	0x3B4
+#define MONO_BUF	0xB0000
+#define CGA_BASE	0x3D4
+#define CGA_BUF		0xB8000
+
+static unsigned char	att = 0x7;
+unsigned char *Crtat = (unsigned char *)CGA_BUF;
+
+static unsigned int addr_6845 = CGA_BASE;
+cursor(pos)
+int pos;
+{
+	outb(addr_6845,14);
+	outb(addr_6845+1,pos >> 8);
+	outb(addr_6845,15);
+	outb(addr_6845+1,pos&0xff);
+}
+
+d16 9
+a24 74
+
+	static unsigned char *crtat = 0;
+	unsigned cursorat; unsigned short was;
+	unsigned char *cp;
+
+	if (crtat == 0) {
+
+		/* XXX probe to find if a color or monochrome display */
+		was = *(unsigned short *)Crtat;
+		*(unsigned short *)Crtat = 0xA55A;
+		if (*(unsigned short *)Crtat != 0xA55A) {
+			Crtat = (unsigned char *) MONO_BUF;
+			addr_6845 = MONO_BASE;
+		}
+		*(unsigned short *)Crtat = was;
+
+		/* Extract cursor location */
+		outb(addr_6845,14);
+		cursorat = inb(addr_6845+1)<<8 ;
+		outb(addr_6845,15);
+		cursorat |= inb(addr_6845+1);
+
+		if (cursorat <= COL * ROW)
+			crtat = Crtat + cursorat * CHR;
+		else
+			crtat = Crtat;
+
+		/* clean display */
+		for (cp = crtat; cp < Crtat+ROW*COL*CHR; cp += 2) {
+			cp[0] = ' ';
+			cp[1] = att;
+		}
+	}
+
+	switch (c) {
+
+	case '\t':
+		do
+			kputc(' ');
+		while ((int)crtat % (8*CHR));
+		break;
+
+	case '\010':
+		crtat -= CHR;
+		break;
+
+	case '\n':
+		crtat += COL*CHR ;
+		/* fall through */
+	case '\r':
+		crtat -= (crtat - Crtat) % (COL*CHR);
+		break;
+
+	default:
+		crtat[0] = c;
+		crtat[1] = att;
+		crtat += CHR;
+		break ;
+	}
+
+	/* implement a scroll */
+	if (crtat >= Crtat+COL*ROW*CHR) {
+		/* move text up */
+		bcopy(Crtat+COL*CHR, Crtat, COL*(ROW-1)*CHR);
+
+		/* clear line */
+		for (cp = Crtat+ COL*(ROW-1)*CHR;
+			cp < Crtat + COL*ROW*CHR ; cp += 2)
+			cp[0] = ' ';
+
+		crtat -= COL*CHR ;
+	}
+
+	cursor((crtat-Crtat)/CHR);
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+/*	BSDI $Id: cga.c,v 1.3 1992/09/29 22:53:36 karels Exp $	*/
+d61 3
+a63 2
+kputc(c)
+unsigned char c;
+d111 3
+a115 4
+		break;
+
+	case '\n':
+		crtat += COL*CHR ;
+@

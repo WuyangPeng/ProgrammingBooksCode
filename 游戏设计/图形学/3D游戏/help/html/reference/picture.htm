@@ -1,0 +1,99 @@
+<html>
+
+<head>
+<title>class picture</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class picture</h2>
+
+<h3>Definition</h3>
+
+<p class="code">class picture<br>
+  {<br>
+  &nbsp;&nbsp;public:<br>
+  &nbsp; char name[256];<br>
+  &nbsp; int sx,sy,bytespixel,size;<br>
+  &nbsp; unsigned char **buf;<br>
+  <br>
+  &nbsp; picture();<br>
+  <br>
+  &nbsp; int LoadTGA(char *file);<br>
+  &nbsp;&nbsp;int SaveTGA(char *file);<br>
+  &nbsp;&nbsp;int LoadPIC(char *file);<br>
+  &nbsp;&nbsp;int LoadJPG(char *file);<br>
+  &nbsp; int CreatePicture32(int xd,int yd);<br>
+  &nbsp;&nbsp;int CreatePicture24(int xd,int yd);<br>
+  &nbsp;&nbsp;void FreePicture(void);<br>
+  &nbsp;&nbsp;void ErasePicture(char c);<br>
+  <br>
+  &nbsp;&nbsp;virtual ~picture();<br>
+  };</p>
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr> 
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr> 
+    <td>name</td>
+    <td>char []</td>
+    <td>picture filename</td>
+  </tr>
+  <tr> 
+    <td>sx</td>
+    <td>int</td>
+    <td>x size in pixels</td>
+  </tr>
+  <tr> 
+    <td>sy</td>
+    <td>int</td>
+    <td>y size in pixels</td>
+  </tr>
+  <tr>
+    <td>bytespixel</td>
+    <td>int</td>
+    <td>number of bytes per pixel (24 or 32)</td>
+  </tr>
+  <tr>
+    <td>size</td>
+    <td>int</td>
+    <td>size in bytes for the image (sx*sy*bytespixel)</td>
+  </tr>
+  <tr>
+    <td>buf</td>
+    <td>unsigned char **</td>
+    <td>image pixels</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p><a href="picture_loadtga.htm">LoadTGA</a>, <a href="picture_savetga.htm">SaveTGA</a>, 
+  <a href="picture_loadpic.htm">LoadPIC</a>, <a href="picture_loadjpg.htm">LoadJPG</a>, 
+  <a href="picture_cratepicture32.htm">CreatePicture32</a>, <a href="picture_createpicture24.htm">CreatePicture24</a>, 
+  <a href="picture_freepicture.htm">FreePicture</a></p>
+
+<h3>Remarks</h3>
+
+<p>This class implements a picture with 24 or 32 bits/pixel. The picture pixels
+are allocated in a single array of bytes (<i>buf[0]</i>) and the other variables
+are just shortcuts to the picture lines (<i>buf[1]</i> to <i>buf[sy-1]</i>).</p>
+
+<h3>See Also</h3>
+
+<p><a href="flyengine.htm">flyEngine</a></p>
+
+<h3>Example</h3>
+
+<p class="code">picture p;<br>
+p.LoadJPG(&quot;mypic.jpg&quot;);<br>
+p.SaveTGA(&quot;mypic.tga&quot;);</p>
+</body>
+</html>

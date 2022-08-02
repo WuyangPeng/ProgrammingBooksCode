@@ -1,0 +1,36 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.40;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@static	long	randx = 1;
+
+srand(x)
+unsigned x;
+{
+	randx = x;
+}
+
+rand()
+{
+	return(((randx = randx*1103515245 + 12345)>>16) & 077777);
+}
+@

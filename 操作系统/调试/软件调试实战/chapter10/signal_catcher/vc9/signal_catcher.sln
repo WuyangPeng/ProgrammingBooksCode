@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "signal_catcher", "signal_catcher.vcproj", "{6A13D21F-B620-4133-B5E1-94DB4A44FA5A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A13D21F-B620-4133-B5E1-94DB4A44FA5A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6A13D21F-B620-4133-B5E1-94DB4A44FA5A}.Debug|Win32.Build.0 = Debug|Win32
+		{6A13D21F-B620-4133-B5E1-94DB4A44FA5A}.Release|Win32.ActiveCfg = Release|Win32
+		{6A13D21F-B620-4133-B5E1-94DB4A44FA5A}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

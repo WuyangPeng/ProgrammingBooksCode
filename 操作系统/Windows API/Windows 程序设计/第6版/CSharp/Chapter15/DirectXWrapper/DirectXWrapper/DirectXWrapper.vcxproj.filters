@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>ad41b1d5-c965-4b03-b507-273b50884b5f</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="SurfaceImageSourceRenderer.cpp" />
+    <ClCompile Include="WriteFactory.cpp" />
+    <ClCompile Include="WriteFont.cpp" />
+    <ClCompile Include="WriteFontCollection.cpp" />
+    <ClCompile Include="WriteFontFamily.cpp" />
+    <ClCompile Include="WriteLocalizedStrings.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="SurfaceImageSourceRenderer.h" />
+    <ClInclude Include="WriteFactory.h" />
+    <ClInclude Include="WriteFont.h" />
+    <ClInclude Include="WriteFontCollection.h" />
+    <ClInclude Include="WriteFontFamily.h" />
+    <ClInclude Include="WriteFontMetrics.h" />
+    <ClInclude Include="WriteLocalizedStrings.h" />
+  </ItemGroup>
+</Project>

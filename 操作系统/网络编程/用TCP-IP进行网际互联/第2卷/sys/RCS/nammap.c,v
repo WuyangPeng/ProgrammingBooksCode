@@ -1,0 +1,51 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* nammap.c - nammap */
+
+#include <conf.h>
+#include <kernel.h>
+#include <name.h>
+
+/*------------------------------------------------------------------------
+ *  nammap  -  using namespace, iteratively map name onto (newname,device) 
+ *------------------------------------------------------------------------
+ */
+SYSCALL	nammap(name, newname)
+char	*name;
+char	*newname;
+{
+	STATWORD ps;    
+	int	dev;
+	char	tmpnam[NAMLEN];
+
+	disable(ps);
+	dev = namrepl(name, newname);
+	while (dev == NAMESPACE) {
+		strcpy(tmpnam, newname);
+		dev = namrepl(tmpnam, newname);
+	}
+	restore(ps);
+	return(dev);
+}
+@

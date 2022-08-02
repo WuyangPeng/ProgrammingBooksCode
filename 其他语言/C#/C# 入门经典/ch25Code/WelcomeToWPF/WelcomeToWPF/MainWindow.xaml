@@ -1,0 +1,25 @@
+﻿<Window x:Class="WelcomeToWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid Height="269" Width="489">
+        <Rectangle Height="143" HorizontalAlignment="Left" Margin="24,15,0,0" Name="rectangle1" Stroke="Black" VerticalAlignment="Top" Width="234" RadiusX="20" RadiusY="20">
+            <Rectangle.Fill>
+                <RadialGradientBrush>
+                    <GradientStop Color="Red" Offset="0.2" />
+                    <GradientStop Color="#FF0075FF" Offset="1" />
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+            <Rectangle.LayoutTransform>
+                <RotateTransform Angle="15" />
+            </Rectangle.LayoutTransform>
+        </Rectangle>
+        <Border Background="#76BEBE31" Height="40" Width="450" Margin="33,95,6,20">
+            <Border.LayoutTransform>
+                <RotateTransform Angle="-15" />
+            </Border.LayoutTransform>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="ForestGreen" Opacity="0.5" FontWeight="Bold" FontSize="24" FontFamily="Rockwell">Some XAML Graphical Capabilities</TextBlock>
+        </Border>
+        <Button Content="A Button" Height="23" HorizontalAlignment="Left" Margin="293,222,0,0" Name="button1" VerticalAlignment="Top" Width="105" />
+    </Grid>
+</Window>

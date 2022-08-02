@@ -1,0 +1,20 @@
+// Listing 7-6
+// Demonstrates how a named pipe stream client
+// is created and how it can send information to a server
+// This program is used in conjunction with
+// Listing 7-5
+
+#include "npipe2.cpp"
+
+
+
+void main(void)
+{
+
+
+   char Message[] = "HELLO";
+   npstream<char *> Client("\\pipe\\mypipe");
+   Message[5] = '\0';
+   Client << Message;
+   cout << "To Server X = " << Message << endl;
+}

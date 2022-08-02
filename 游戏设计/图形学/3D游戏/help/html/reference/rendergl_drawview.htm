@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>renderGL::DrawView</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="rendergl.htm">renderGL</a>::DrawView</h2>
+<h3>Prototype</h3>
+<p class="code">void DrawView()</p>
+<h3>Parameters</h3>
+<p>None</p>
+	
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This is the OpenGL implementation for the <i>render</i> base class virtual
+function.</p>
+<p>It is called to render the scene and does the following order of operations:<br>
+1) Calls <i>InitView</i> to initialize global render setting for the frame<br>
+2) Clears the zbuffer, color buffer is <i>flyengine-&gt;clearbk</i> is TRUE 
+  and stencil buffer if <i>flyengine-&gt;stencil</i> is TRUE<br>
+3) Draws the scene and all objects inside view frustum<br>
+4) Initialize text mode and draw all 2D stuff&nbsp;<br>
+5) Swaps buffers to display rendered image</p>
+</body>
+</html>

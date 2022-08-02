@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>local_system::rotate</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="local_system.htm">local_system</a>::rotate</h2>
+<h3>Prototype</h3>
+<p class="code">void rotate(vector& rot)<br>
+void rotate(float ang,vector& v);<br>
+void rotate(vector &amp;from, vector &amp;to, float maxang=360);</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>rot</td>
+	 <td><a href="vector.htm">vector</a>&amp;</td>
+	 <td>rotation vector in degrees</td>
+  </tr>
+  
+  
+  <tr>
+	 <td>ang</td>
+	 <td>float</td>
+	 <td>angle in degrees to rotate around vector v</td>
+  </tr>
+  
+  
+  <tr>
+	 <td>v</td>
+	 <td><a href="vector.htm">vector</a>&amp;</td>
+	 <td>vector to define rotation of angle degrees</td>
+  </tr>
+  
+  
+  <tr>
+	 <td>from</td>
+	 <td><a href="vector.htm">vector</a>&amp;</td>
+	 <td>vector to rotate from</td>
+  </tr>
+  
+  
+  <tr>
+	 <td>to</td>
+	 <td><a href="vector.htm">vector</a>&amp;</td>
+	 <td>vector to rotate to</td>
+  </tr>
+  
+  
+  <tr>
+	 <td>maxang</td>
+	 <td>float</td>
+	 <td>maximum angle of rotation around cross product of from and to</td>
+  </tr>
+  
+  
+</table>
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This functions rotates the local_system axis and redefines the local_system 
+  matrices.<br>
+  The first one, rotates <i>rox.x</i> around <i>X</i> axis, <i>rot.y</i> around 
+  <i>Y</i> axis and <i>rot.z</i> around <i>Z</i> axis.<br>
+  The second one, rotates <i>ang</i> degrees around a vector <i>v.<br>
+  </i>The third one, rotates from vector <i>from</i> to vector <i>to</i>, a maximum 
+  of <i>maxang</i> degrees. It rotates in the plane that contains the vectors 
+  <i>from</i> and <i>to</i>.</p>
+</body>
+</html>

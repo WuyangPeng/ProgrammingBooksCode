@@ -1,0 +1,58 @@
+<html>
+
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>bezier_curve::adaptative_subdiv</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2><a href="bezier_curve.htm">bezier_curve</a>::adaptative_subdiv</h2>
+
+<h3>Prototype</h3>
+
+<p class="code">void adaptative_subdiv(float maxerror,float *points,int maxpoints)</p>
+
+<h3>Parameters</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>maxerror</td>
+    <td>float</td>
+    <td>the curve maximum error</td>
+  </tr>
+  <tr>
+    <td>points</td>
+    <td>float *</td>
+    <td>pointer to an array of floats to receive the subdivided points</td>
+  </tr>
+  <tr>
+    <td>maxpoints</td>
+    <td>int</td>
+    <td>the total number of floats in the points array</td>
+  </tr>
+</table>
+
+<h3>Return Value</h3>
+
+<p>None</p>
+
+<h3>Remarks</h3>
+
+<p>This function recursively subdivides the Bezier curve adaptatively. It subdivides 
+  segments that the midpoint distance to the actual curve is greater than the 
+  <i>maxerror</i> value.&nbsp;</p>
+
+<p>At the end of the subdivision, the points array will have the curve points 
+  (each point a float from 0.0 to 1.0) where to intepolate the curve to get the 
+  actual adaptively subdivided curve.</p>
+
+</body>
+</html>

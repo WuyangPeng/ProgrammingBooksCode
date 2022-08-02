@@ -1,0 +1,55 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.26.58;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* hginit.c - hginit */
+
+#include <conf.h>
+#include <kernel.h>
+#include <sleep.h>
+#include <network.h>
+#include <igmp.h>
+
+extern	int	hgseed;
+struct	hginfo	HostGroup;
+struct	hg	hgtable[HG_TSIZE];
+
+/*------------------------------------------------------------------------
+ *  hginit  -  initialize the host group table
+ *------------------------------------------------------------------------
+ */
+void hginit()
+{
+	int i;
+
+	HostGroup.hi_mutex = screate(0);
+	HostGroup.hi_valid = TRUE;
+	resume(create(igmp_update, IGUSTK, IGUPRI, IGUNAM, IGUARGC));
+	for (i=0; i<HG_TSIZE; ++i)
+		hgtable[i].hg_state = HGS_FREE;
+	hgseed = nif[NI_PRIMARY].ni_ip;
+	signal(HostGroup.hi_mutex);
+	rtadd(ig_allhosts, ig_allDmask, ig_allhosts, 0, NI_PRIMARY,
+		RT_INF);
+	hgjoin(NI_PRIMARY, ig_allhosts, TRUE);
+}
+@

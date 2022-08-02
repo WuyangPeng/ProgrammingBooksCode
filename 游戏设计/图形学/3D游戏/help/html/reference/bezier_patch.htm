@@ -1,0 +1,187 @@
+<html>
+
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>class bezier_patch</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class bezier_patch : public <a href="base_object.htm">base_object</a></h2>
+
+<h3>Definition</h3>
+
+<p class="code">class bezier_patch : public base_object<br>
+  {<br>
+	public:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int mode; &nbsp;&nbsp;// 2 for quadratic and 3 for cubic<br>
+&nbsp;&nbsp;&nbsp;&nbsp;vector *p; &nbsp;// the surface control points<br>
+&nbsp;&nbsp;&nbsp;&nbsp;vector *t; &nbsp;// the surface texture control points<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int np, &nbsp;&nbsp;&nbsp;&nbsp;// num points<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;npu, &nbsp;&nbsp;&nbsp;// num points in u dir<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;npv,&nbsp;&nbsp;&nbsp; // num points in v dir<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nsu,&nbsp;&nbsp;&nbsp; // num segments in u dir<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>&nbsp;</small>&nbsp;&nbsp;nsv;
+&nbsp;&nbsp;&nbsp;// num segments in u dir<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int levelu,levelv; &nbsp;// subdivision level in u and v<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int nvertu,nvertv; &nbsp;// surface num vertices in u and v<br>
+&nbsp;&nbsp;&nbsp;&nbsp;int texpic,lm; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// texture and lightmap<br>
+&nbsp;&nbsp;&nbsp;&nbsp;vector *surf; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// discretized surface<br>
+&nbsp;&nbsp;&nbsp;&nbsp;vector pivot; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// the pivot position<br>
+<br>
+&nbsp;&nbsp;void reset();<br>
+&nbsp;&nbsp;int load_pch(char *file);<br>
+&nbsp;&nbsp;void build_loft(bezier_curve *shape,bezier_curve *path,int texture,int
+lightmap,float tileu,float tilev);<br>
+&nbsp;&nbsp;void evaluate(int evaltype,float u,float v,vector *dest);<br>
+&nbsp;&nbsp;void build_surface();<br>
+&nbsp;&nbsp;void illuminate(vector&amp; p,float rad,vector&amp; color,int shadows);<br>
+&nbsp;&nbsp;void draw(int nleveldrop=0);<br>
+&nbsp;&nbsp;mesh *build_mesh();<br>
+<br>
+&nbsp;&nbsp;bezier_patch()	{ p=0; t=0; surf=0; reset(); };<br>
+&nbsp;&nbsp;~bezier_patch()	{ reset(); };<br>
+  };</p>
+
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>mode</td>
+    <td>int</td>
+    <td>Bezier patch mode:<br>
+      3 for quadratic<br>
+      4 for cubic</td>
+  </tr>
+  <tr>
+    <td>pivot</td>
+    <td><a href="vector.htm">vector</a></td>
+    <td>pivot position</td>
+  </tr>
+  <tr>
+    <td>p</td>
+    <td><a href="vector.htm">vector</a> *</td>
+    <td>the patch control points array</td>
+  </tr>
+  <tr>
+    <td>t</td>
+    <td>vector *</td>
+    <td>the patch coltrol points tetxure coordinates array<br>
+      (x,y) for texture map co-ordinates<br>
+      (z,w) for lightmap texture co-ordinates</td>
+  </tr>
+  <tr>
+    <td>np</td>
+    <td>int</td>
+    <td>number of points in control points array</td>
+  </tr>
+  <tr>
+    <td>npu</td>
+    <td>int</td>
+    <td>number of points in u dir</td>
+  </tr>
+  <tr>
+    <td>npv</td>
+    <td>int</td>
+    <td>number of points in v dir</td>
+  </tr>
+  <tr>
+    <td>nsu</td>
+    <td>int</td>
+    <td>number of segments in u dir</td>
+  </tr>
+  <tr>
+    <td>nsv</td>
+    <td>int</td>
+    <td>number of segments in v dir</td>
+  </tr>
+  <tr>
+    <td>levelu</td>
+    <td>int</td>
+    <td>subdivision level in u</td>
+  </tr>
+  <tr>
+    <td>levelv</td>
+    <td>int</td>
+    <td>subdivision level in v&nbsp;</td>
+  </tr>
+  <tr>
+    <td>nvertu</td>
+    <td>int</td>
+    <td>number of discretized vertices in u dir&nbsp;<br>
+      nvertu = (1&lt;&lt;levelu)+1</td>
+  </tr>
+  <tr>
+    <td>nvertv</td>
+    <td>int</td>
+    <td>number of discretized vertices in v dir<br>
+      nvertv = (1&lt;&lt;levelv)+1</td>
+  </tr>
+  <tr>
+    <td>texpic</td>
+    <td>int</td>
+    <td>texture applyed to the patch (-1 for none)</td>
+  </tr>
+  <tr>
+    <td>lm</td>
+    <td>int</td>
+    <td>light_map applyed to the patch (-1 for none)&nbsp;</td>
+  </tr>
+  <tr>
+    <td>surf</td>
+    <td>vector *</td>
+    <td>discretized surface points<br>
+      2 vectors per entry (point and tetxure co-ordinates)<br>
+      size = 2*sizeof(vector)*nvertu*nvertv</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p><a href="bezier_patch_reset.htm">reset</a>, <a href="bezier_patch_build_loft.htm">build_loft</a>, 
+  <a href="bezier_patch_evaluate.htm">evaluate</a>, <a href="bezier_patch_build_surface.htm">build_surface</a>,
+<a href="bezier_patch_build_mesh.htm">build_mesh</a>, <a href="bezier_patch_illuminate.htm">illuminate</a>,
+<a href="bezier_patch_draw.htm">draw</a>, <a
+href="bezier_patch_load_pch.htm">load_pch</a></p>
+<h3>Remarks</h3>
+
+<p>This class implements a Bezier patch. The patch can have any number of
+segments in u and v directions. The patch is made of several connected cubic or
+quadratic Bezier patches (<i>nsu</i> is the numbre of patches in the <i>u</i>
+dir and <i>nsv</i> in the <i>v</i> dir).</p>
+
+<p>For quadratic patches:<br>
+nsu = (spu-2)/2<br>
+nsv = (spv-2)/2</p>
+
+<p>For cubic patches:<br>
+nsu = (spu-1)/2<br>
+nsv = (spv-1)/2</p>
+
+<p>The surface is discretized based on the subdivision level. The number of
+vertices in u and v dir are:</p>
+
+<p>nvertu = (1&lt;&lt;levelu)*nsu+1<br>
+nvertv = (1&lt;&lt;levelv)*nsv+1</p>
+
+<p>At run-time, the surface car be draw at any level of detail up to its current
+selected level. The <i>draw</i> function includes a parameter that represents
+the number of levels of detail to drop on draw. The numbrer of vertices&nbsp;
+skipped (col/row draw loop increment) on each direction is:&nbsp;</p>
+
+<p>nvertskip = (1&lt;&lt;nleveldrop)</p>
+
+<h3>See Also</h3>
+
+<p><a href="vector.htm">vector</a>, <a href="bezier_curve.htm">bezier_curve</a></p>
+
+</body>
+</html>

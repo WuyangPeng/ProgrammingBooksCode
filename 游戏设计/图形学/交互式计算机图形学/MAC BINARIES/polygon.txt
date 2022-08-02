@@ -1,0 +1,64 @@
+Ξϊνώ d…8__PAGEZEROH__TEXT 
+__text__TEXT‚€__literal8__TEXT/__literal4__TEXT/ 
+__cstring__TEXT$/Ψ$__DATA0 __data__DATA0  __dyld__DATA 0  
+__common__DATAΐ0 
+ΐ__IMPORT@0__pointers__IMPORT@0__jump_table__IMPORT@@‘@08__LINKEDITP@ 
+@6C  PB /usr/lib/dyldP 
+X/System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL 
+T/System/Library/Frameworks/GLUT.framework/Versions/A/GLUT 
+4/usr/lib/libgcc_s.1.dylib 
+4o/usr/lib/libSystem.B.dylibj‰εƒδπƒμ‹]‰\$M‰L$ƒΓΑγΛ‰\$‹ƒΓ…ΐuχ‰\$ 
+θY‰D$θu!τθXÿ°?‹€ΟÿΰθX‹€ΏÿΰU‰εSƒμ$θ[Η$θ_!θU!ς*E 
+ς*MςD$ƒςςD$ςL$ƒςς$θ/!Η$θ!θ !‹E ‰D$ ‹E‰D$ΗD$Η$θχ 
+“8‹E‰“4‹E ‰ƒΔ$[ΙΓU‰εSƒμ$θ[ƒu‹‰D$ ƒy‹‰D$ƒy‹‰D$ƒy‹‰$θw 
+ΗEτλ‹Uτƒ] ‹kÒtƒΐΗEτÿƒ}τ~ΫƒΔ$[ΙΓU‰εVSƒμ θ[ƒ‹+E‰Eƒ}…ƒ} 
+…ƒ‹…ΐ…υƒ ‹…ΐ…εƒ Ηƒ‹…ΐΙƒ‹ƒη‹kÒtƒΐ ‹ƒψ uƒ ‰$θ& 
+Η$θƒ‹ƒη‹kÒtƒΐ ‹‰Eπƒ‹‹Mπ“η‹kΐ ‹E‰D$ƒ‹‹Mπ“η‹kΐ 
+‹E‰DLƒ‹ƒη‹kΡtƒΐ ‹pƒη‹kΡtƒΐ ‰0ƒ}u|ƒ} uvƒ‹…ΐtjƒ 
+‹…ΐu^ƒΗƒ Η‹E‰D$‹E‰$θ;‰Eτƒ}τx+‹Uτƒη‹kÒtƒΐΗƒΗÿÿÿÿθÿƒΔ 
+[^ΙΓU‰εSƒμ4θ[ΗEτƒ}τΖ‹Uτƒ*‹kÒtƒΐ‹…ΐ„‘‹Uτƒ*‹kÒtƒΐ‹;Ev‹Uτƒ*‹kÒtƒΐ 
+‹;E|[‹Uτƒ*‹kÒtƒΐ‹;E @‹Uτƒ*‹kÒtƒΐ‹;E 
+~%ƒR‹Uτ‰ƒNΗ‹Eτ‰Eδ‹Eδ‰Eΰλƒn ‰$θ'ΗEδÿÿÿÿλαλ‹EΰƒΔ4[ΙΓU‰εWVSƒμ,θ[ƒ] 
+‹…ΐ„Ίƒi ‹+E ‰E ‹E ‰D$‹E‰$θÒώÿÿ‰Eδƒ}δyƒ} 
+‰$θ½ι~σ*M‹Uδƒ9‹kÒtƒΐσ(Ρσ\Π(ΒσEΨσ*M 
+‹Uδƒ9‹kÒtƒΐσ(Ρσ\Π(ΒσEάΗEΰλ{‹uδ‹}ΰ‹Uδ‹Mΰƒ9‹kÒΚ‹D$σ*ΐσXEΨσ,Θƒ9‹kΦϊ‰L$‹uδ‹}ΰ‹Uδ‹Mΰƒ9‹kÒΚ‹DLσ*ΐσXEάσ,Θƒ9‹kΦϊ‰LLEΰÿ‹Uδƒ9‹kÒtƒΐ 
+‹;Eΰfÿÿÿ‹Mδ‹Uδƒ9‹kÒtƒΐσσXEΨƒ9‹kΡtƒΐσ‹Mδ‹Uδƒ9‹kÒtƒΐσσXEάƒ9‹kΡtƒΐσƒY 
+σσEΨ.ΑwO‹uδ‹Uδƒ9‹kÒtƒΐ‹σ*ΐσXEΨσ,Θƒ9‹kΦtƒΐ‰ƒY 
+σσEά.Αw}λ;‹uδ‹Uδƒ9‹kÒtƒΐ ‹σ*ΐσXEΨσ,Θƒ9‹kΦtƒΐ 
+‰λ―‹uδ‹Uδƒ9‹kÒtƒΐ‹σ*ΐσXEάσ,Θƒ9‹kΦtƒΐ‰θmλ;‹uδ‹Uδƒ9‹kÒtƒΐ‹σ*ΐσXEάσ,Θƒ9‹kΦtƒΐ‰λΎƒΔ,[^_ΙΓU‰εSƒμθ[“† 
+‹E‰ƒ‚ ‹…ΐxƒ‚ 
+‹ƒZ‹kΚt‹U‰ƒΔ[ΙΓU‰εWVSƒμ,θ[ƒ}‡‹E…ƒ%‹Ψÿΰ&=ς ƒ9 
+ΗΗEδλ‹Uδƒ‹kÒtƒΐ‹…ΐt Eδÿƒ}δ~Ϋƒ}δuƒm ‰$θVΗ$θΎ‹UδƒA ‹ƒ‹kÒt‰ 
+‹Uδƒ‹kÒtƒΐΗ‹Uδƒ‹kÒtƒΐ Η“= ‹Eδ‰ƒ5 Ηι&ƒ9 Ηƒ= ‹…ΐΓƒ= ‹0ƒ= 
+‹8ƒ= ‹ƒ‹kÒtƒΐ$‹ƒ‹kΧtƒΐ‰ƒ‹kΧtƒΐ‹ƒ‹kΦtƒΐ ‰ƒ= 
+‹0ƒ= ‹8ƒ= 
+‹ƒ‹kÒtƒΐL‹ƒ‹kΧtƒΐ‰ƒ‹kΧtƒΐ‹ƒ‹kΦtƒΐ‰ƒ= ‹ƒ= 
+‹ƒ‹kÒtƒΐ$‹σ*ΐƒ‹kΡtƒΐσƒ= ‹ƒ= 
+‹ƒ‹kÒtƒΐL‹σ*ΐƒ‹kΡtƒΐσΗEδιƒ= ‹‹Mδƒ‹kÒΚ‹L$ƒ= 
+‹ƒ‹kÒtƒΐ‹9Α}9ƒ= ‹0ƒ= ‹‹Mδƒ‹kÒΚ‹L$ƒ‹kΦtƒΐ‰λrƒ= 
+‹‹Mδƒ‹kÒΚ‹L$ƒ= ‹ƒ‹kÒtƒΐ ‹9Α~7ƒ= ‹0ƒ= 
+‹‹Mδƒ‹kÒΚ‹L$ƒ‹kΦtƒΐ ‰ƒ= ‹‹Mδƒ‹kÒΚ‹LLƒ= 
+‹ƒ‹kÒtƒΐ‹9Α}9ƒ= ‹0ƒ= ‹‹Mδƒ‹kÒΚ‹LLƒ‹kΦtƒΐ‰λrƒ= 
+‹‹Mδƒ‹kÒΚ‹LLƒ= ‹ƒ‹kÒtƒΐ‹9Α~7ƒ= ‹0ƒ= 
+‹‹Mδƒ‹kÒΚ‹LLƒ‹kΦtƒΐ‰ƒ= ‹0ƒ= ‹ƒ‹kÒtƒΐσƒ= 
+‹‹Mδƒ‹kÒΚ‹D$σ*ΐσXΑƒ‹kΦtƒΐσƒ= ‹0ƒ= ‹ƒ‹kÒtƒΐσƒ= 
+‹‹Mδƒ‹kÒΚ‹DLσ*ΐσXΑƒ‹kΦtƒΐσEδÿƒ= ‹ƒ‹kÒtƒΐ 
+‹;EδOύÿÿƒ= ‹ƒ= ‹ƒ‹kÒtƒΐσƒ= ‹ƒ‹kÒtƒΐ 
+‹σ*ΐ(Ρσ^Π(Βƒ‹kΡtƒΐσƒ= ‹ƒ= ‹ƒ‹kÒtƒΐσƒ= 
+‹ƒ‹kÒtƒΐ ‹σ*ΐ(Ρσ^Π(Βƒ‹kΡtƒΐσƒ= Ηÿÿÿÿθηλ4ƒ5 Ηƒ9 Ηλƒ9 
+Ηλ Η$θ/ƒΔ,[^_ΙΓU‰εVSƒμ 
+θ[Η$@θΗEπιΖ‹UπƒΪ‹kÒtƒΐ‹…ΐ„£‹UπƒΪ‹kÒt‹‰Β‰ΠΐΠΑΰ‰Βƒ‰$θΘΗ$ 
+θ­ΗEτλ?‹Uπ‹MτƒΪ‹kÒΚ‹tL‹Uπ‹MτƒΪ‹kÒΚ‹D$‰t$‰$θ’Eτÿ‹UπƒΪ‹kÒtƒΐ 
+‹;Eτ¦θYEπÿƒ}π0ÿÿÿθJƒΔ [^ΙΓU‰εSƒμ$θ[‹E 
+‰D$E‰$θeΗ$θ^ΗD$τΗ$τθOƒV‰$θ-ƒςώÿÿ‰$θ$θςÿÿƒsψÿÿ‰$θ‰EτΗD$ƒf‰$θίΗD$ƒl‰$θΙΗD$ƒp‰$θ³ΗD$ƒv‰$θΗD$ƒ{‰$θ‡ΗD$ƒ€‰$θqΗD$ƒ‰$θ[ΗD$ƒ‰$θEƒ¶ψÿÿ‰$θFΗD$ƒ•‰$θ!ΗD$ƒ΅‰$θ 
+ΗD$ƒ­‰$θυΗD$ƒΌ‰$θίΗD$ƒΙ‰$θΙ‹Eτ‰D$ƒΞ‰$θΉΗ$θ²ƒΙρÿÿ‰$θΰƒεςÿÿ‰$θΓƒ’υÿÿ‰$θ°θ¦ƒΔ$[ΙΓ€??exceeds 
+maximum number verticesnot in a polygonexceeeded maximum number of 
+polygonspolygon modelerBlackRedGreenBlueCyanMagentaYellowWhitenew polygonend 
+polygondelete polygonmove 
+polygonquitColorsÿÿÿÿττ€?€?€?€?€?€?€?€?€?€?€?€?ΰΰ 
+0000ΐ0τττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττΜΰ.0@ 
+0H0P0\p%|@0„800(0¤-ªέ%µ$0½,ΘΉ"Ò 
+Ϋπζ—ξΚ!ό 
+0ΐ0,000"40&,2;DR^en~¤°ΒÒβς4HVfu™€ 
+!"#$%&@'()*+,-./012@345 
+dyld_stub_binding_helper__dyld_func_lookupdyld__mach_header_NXArgc_NXArgv___progname__mh_execute_header_color_menu_colors_draw_mode_environ_in_polygon_main_main_menu_moving_myDisplay_myMotion_myMouse_myReshape_myinit_pick_polygon_picking_polygons_present_color_wh_wwstart_exit_glBegin_glClear_glClearColor_glColor3fv_glEnd_glFlush_glLoadIdentity_glMatrixMode_glVertex2i_glViewport_gluOrtho2D_glutAddMenuEntry_glutAddSubMenu_glutAttachMenu_glutCreateMenu_glutCreateWindow_glutDisplayFunc_glutInit_glutInitDisplayMode_glutInitWindowSize_glutMainLoop_glutMotionFunc_glutMouseFunc_glutPostRedisplay_glutReshapeFunc_puts

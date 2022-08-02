@@ -1,0 +1,46 @@
+<!doctype html public "-//IETF//DTD.HTM//EN">
+<HTML><HEAD>
+<TITLE>Learning Rendering: Study 7</TITLE>
+</HEAD>
+<BODY>
+<A HREF="../STUDY6/STUDY6.HTM">&lt;&lt;</A>
+<A HREF="../STUDY8/STUDY8.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>
+<HR>
+<H1>STUDY  7	ANTI-ALIASING</H1>
+
+<table border=0 width="100%">
+<tr><td>
+<A HREF="ANTA1.TIF"><IMG SRC="ANTA1.GIF" WIDTH=100 HEIGHT=75 ALT="anta1"></A>	
+</td><td>
+no anti-aliasing
+</td></tr><tr><td>
+<A HREF="ANTA2.TIF"><IMG SRC="ANTA2.GIF" WIDTH=100 HEIGHT=75 ALT="anta2"></A>		
+</td><td>
+The normal/easy approach to anti-aliasing is to 'super sample' or render an image at a higher
+than screen resolution then filter the result 'down' to normal pixel size. This has been done in
+this image by generating a virtual image at 2x the screen resolution
+</td></tr><tr><td>
+<A HREF="ANTA3.TIF"><IMG SRC="ANTA3.GIF" WIDTH=100 HEIGHT=75 ALT="anta3"></A>		
+</td><td>
+Same as previous but the virtual image is now 3x. Note that the extra work involved in this kind
+of brute force anti-aliasing is equal to the resolution factor squared. In this case going from 2X to
+3X involves more than twice the amount of work but the difference in final image quality is
+negligible
+</td></tr><tr><td>
+<A HREF="ANTA4.TIF"><IMG SRC="ANTA4.GIF" WIDTH=100 HEIGHT=75 ALT="anta4"></A>		
+</td><td>
+Ray tracing allows  context dependent anti-aliasing - instead of considering the whole image, we
+only anti-aliasing those areas of the initially generated image that require further consideration.
+This image uses adaptive anti-aliasing where extra 'sub-pixel' rays are generated as a function of
+the local image gradient.
+
+</td></tr>
+</table>
+
+<HR>
+<A HREF="../STUDY6/STUDY6.HTM">&lt;&lt;</A>
+<A HREF="../STUDY8/STUDY8.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>

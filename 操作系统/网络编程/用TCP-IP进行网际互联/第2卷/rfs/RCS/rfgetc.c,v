@@ -1,0 +1,46 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.28.54;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* rfgetc.c - rfgetc */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  rfgetc  --  get a character from a remote file
+ *------------------------------------------------------------------------
+ */
+rfgetc(devptr)
+struct	devsw	*devptr;
+{
+	char	ch;
+	int	retcode;
+
+	if ( (retcode=read(devptr->dvnum, &ch, 1)) == 1)
+		return(ch);
+	else if (retcode != EOF)
+		retcode = SYSERR;
+	return(retcode);
+}
+@

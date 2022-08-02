@@ -1,0 +1,169 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "c_enum_test"=.\c_enum_test\vc6\c_enum_test.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/Books/XSTL/test/Pt2_Collections/environment_map_test", IPMCAAAA
+    .
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "environment_sequence_test"=..\..\..\..\..\..\STLSoft\Releases\1.8.x\STLSoft\test\winstl\environment_sequence_test\vc6\environment_sequence_test.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/Books/XSTL/test/Pt2_Collections/environment_map_test", IPMCAAAA
+    .
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ev1"=.\ev1\vc6\ev1.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/Books/XSTL/test/Pt2_Collections/environment_map_test", IPMCAAAA
+    .
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ev2"=.\ev2\vc6\ev2.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/Books/XSTL/test/Pt2_Collections/environment_map_test", IPMCAAAA
+    .
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ev3"=.\ev3\vc6\ev3.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "ev4"=.\ev4\vc6\ev4.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "full_version"=.\full_version\vc6\full_version.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/Books/XSTL/test/Pt2_Collections/environment_map_test", IPMCAAAA
+    .
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "v1"=.\v1\vc6\v1.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/Books/XSTL/test/Pt2_Collections/environment_map_test", IPMCAAAA
+    .
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "v2"=.\v2\vc6\v2.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/Books/XSTL/test/Pt2_Collections/environment_map_test", IPMCAAAA
+    .
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "v3"=.\v3\vc6\v3.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+    begin source code control
+    "$/Books/XSTL/test/Pt2_Collections/environment_map_test", IPMCAAAA
+    .
+    end source code control
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

@@ -1,0 +1,44 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.09;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* ipnet2h.c - ipnet2h */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  ipnet2h - convert an IP packet header from net to host byte order
+ *------------------------------------------------------------------------
+ */
+struct ip *ipnet2h(pip)
+struct	ip	*pip;
+{
+	/* NOTE: does not include IP options	*/
+
+	pip->ip_len = net2hs(pip->ip_len);
+	pip->ip_id = net2hs(pip->ip_id);
+	pip->ip_fragoff = net2hs(pip->ip_fragoff);
+	return pip;
+}
+@

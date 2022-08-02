@@ -1,0 +1,44 @@
+<html>
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>Fly3D Tutorial 5 - Creating the level light map .LMP file</title>
+<style type="text/css">
+<!--
+-->
+</style>
+</head>
+
+<body>
+<h1>Fly3D SDK</h1>
+<h2><a href="tutorials.htm">Tutorials</a></h2>
+<h3 align="right"><a href="../fly3d.htm">Home</a></h3>
+<h3>Tutorial 5</h3>
+<p>Creating the level light map .LMP file</p>
+<p>&middot; Introduction</p>
+<p>The operations in this tutorial effect the construction of the light maps that 
+  are used to illuminate the scene. At the end of this tutorial you will have 
+  created the light maps (stored in a .lmp file). This caches the illumination 
+  of all self illuminated faces and light objects in the scene light maps. </p>
+<p> &middot; Fly utilities operations</p>
+<p>1) Execute the flyLight.exe utility. In the flyEditor, use the Tools/Light 
+  menu option.</p>
+<p> 2) Select the .fly file you created in tutorial 3.</p>
+<p> 3) Select the lighting options from:</p>
+<ul>
+  <li> Shadows: shadows are calculated for each light map pixel (increasing the 
+    computation time for complex scenes).</li>
+  <li> Connectivity: when off, this enables co-planar faces which are not connected 
+    to share the same light map. This means that the total number of lightmaps 
+    is kept as low as possible although it also implies that many light map pixels 
+    will be redundant (mapping to space between such faces).</li>
+  <li>Light Radius and Light Value: overwrites original setting from the materials 
+    to facilitate editing at this stage. </li>
+  <li>Pixel Size: the desired light map pixel size. Small values will make the 
+    dynamic light slower.</li>
+  <li>Ambient Light: amount of light to add to all light pixels (0 to 255).</li>
+</ul>
+<p>4) Press compute to start the lighting computations.</p>
+<p>&nbsp;</p>
+</body>
+
+</html>

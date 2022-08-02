@@ -1,0 +1,41 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.30.32;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* udpnet2h.c - udpnet2h */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  udpnet2h -  convert UDP header fields from net to host byte order
+ *------------------------------------------------------------------------
+ */
+udpnet2h(pudp)
+struct	udp	*pudp;
+{
+	pudp->u_src = net2hs(pudp->u_src);
+	pudp->u_dst = net2hs(pudp->u_dst);
+	pudp->u_len = net2hs(pudp->u_len);
+}
+@

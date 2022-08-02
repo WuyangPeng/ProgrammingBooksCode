@@ -1,0 +1,11 @@
+数据结构与算法分析——C++语言描述（Data Structures and Algorithm Analysis in C++）
+（第4版）
+
+官方网站：
+http://www.cis.fiu.edu/~weiss 、
+http://cssupport.pearsoncmg.com/、 
+http://www.turingbook.com、
+http://www.aw.com/cssupport （已失效）
+
+★☆
+作者：Mark Allen Weiss 

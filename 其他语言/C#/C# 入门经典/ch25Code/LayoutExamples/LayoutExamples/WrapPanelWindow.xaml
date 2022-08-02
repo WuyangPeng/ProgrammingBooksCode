@@ -1,0 +1,23 @@
+﻿<Window x:Class="LayoutExamples.WrapPanelWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="WrapPanel" Height="300" Width="300">
+    <WrapPanel Background="AliceBlue">
+        <Rectangle Fill="#FF000000" Height="50" Width="50" Stroke="Black" RadiusX="10" RadiusY="10" />
+        <Rectangle Fill="#FF111111" Height="50" Width="50" Stroke="Black" RadiusX="10" RadiusY="10" />
+        <Rectangle Fill="#FF222222" Height="50" Width="50" Stroke="Black" RadiusX="10" RadiusY="10" />
+        <Rectangle Fill="#FF333333" Height="50" Width="50" Stroke="Black" RadiusX="10" RadiusY="10" />
+        <Rectangle Fill="#FF444444" Height="50" Width="50" Stroke="Black" RadiusX="10" RadiusY="10" />
+        <Rectangle Fill="#FF555555" Height="50" Width="50" Stroke="Black" RadiusX="10" RadiusY="10" />
+        <Rectangle Fill="#FF666666" Height="50" Width="50" Stroke="Black" RadiusX="10" RadiusY="10" />
+        <Rectangle Fill="#FF777777" Height="50" Width="50" Stroke="Black" RadiusX="10" RadiusY="10" />
+        <Rectangle Fill="#FF888888" Height="50" Width="50" Stroke="Black" RadiusX="10" RadiusY="10" />
+        <Rectangle Fill="#FF999999" Height="50" Width="50" Stroke="Black" RadiusX="10" RadiusY="10" />
+        <Rectangle Fill="#FFAAAAAA" Height="50" Width="50" Stroke="Black" RadiusX="10" RadiusY="10" />
+        <Rectangle Fill="#FFBBBBBB" Height="50" Width="50" Stroke="Black" RadiusX="10" RadiusY="10" />
+        <Rectangle Fill="#FFCCCCCC" Height="50" Width="50" Stroke="Black" RadiusX="10" RadiusY="10" />
+        <Rectangle Fill="#FFDDDDDD" Height="50" Width="50" Stroke="Black" RadiusX="10" RadiusY="10" />
+        <Rectangle Fill="#FFEEEEEE" Height="50" Width="50" Stroke="Black" RadiusX="10" RadiusY="10" />
+        <Rectangle Fill="#FFFFFFFF" Height="50" Width="50" Stroke="Black" RadiusX="10" RadiusY="10" />
+    </WrapPanel>
+</Window>

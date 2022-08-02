@@ -1,0 +1,13 @@
+﻿<Window x:Class="LayoutExamples.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Layout Examples" Height="300" Width="300">
+    <StackPanel>
+        <Button Height="23" Margin="10,10,10,0" Name="canvasWindowButton" Click="canvasWindowButton_Click">Canvas</Button>
+        <Button Height="23" Margin="10,10,10,0" Name="dockPanelWindowButton" Click="dockPanelWindowButton_Click">DockPanel</Button>
+        <Button Height="23" Margin="10,10,10,0" Name="gridWindowButton" Click="gridWindowButton_Click">Grid</Button>
+        <Button Height="23" Margin="10,10,10,0" Name="stackPanelWindowButton" Click="stackPanelWindowButton_Click">StackPanel</Button>
+        <Button Height="23" Margin="10,10,10,0" Name="wrapPanelWindowButton" Click="wrapPanelWindowButton_Click">WrapPanel</Button>
+    </StackPanel>
+</Window>
+

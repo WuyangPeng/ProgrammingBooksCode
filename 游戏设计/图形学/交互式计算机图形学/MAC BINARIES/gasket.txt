@@ -1,0 +1,17 @@
+Ξϊνώ ά…8__PAGEZEROH__TEXT__text__TEXTΘςΘ 
+€__literal4__TEXTΌΌ__literal8__TEXTΨΨ__cstring__TEXTθθΐ__DATA 
+__data__DATA __dyld__DATA |__IMPORT0 __jump_table__IMPORT0d 
+8__LINKEDIT@0T0Δ1 P t1 /usr/lib/dyldPΘ 
+X/System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL 
+T/System/Library/Frameworks/GLUT.framework/Versions/A/GLUT 
+4/usr/lib/libgcc_s.1.dylib 
+4o/usr/lib/libSystem.B.dylibj‰εƒδπƒμ‹]‰\$M‰L$ƒΓΑγΛ‰\$‹ƒΓ…ΐuχ‰\$ 
+θ=‰D$θωτθXÿ°‹€ÿΰθX‹€χÿΰU‰εSƒμ$θ[ƒ†‹‰D$ 
+ƒ†‹‰D$ƒ†‹‰D$ƒ†‹‰$θ¤ƒ‹‰D$ƒ‹‰D$ƒ†‹‰$θΗ$θ‰θƒΆςςD$ƒªςςD$ƒΆςςD$ƒªςς$θJΗ$θ4ƒΔ$[ΙΓU‰εVSƒμPθ[ƒΉ‹‰EΨƒΉ‹‰Eάƒ½‹‰EΰƒΑ‹‰EδƒΑ‹‰EθƒΉ‹‰EμƒΕ‹‰EΠƒΙ‹‰EΤΗ$@θΗ$θΗEτι™θΦ‰ΑΗEΔVUUU‹EΔχι‰ΘΑψ‰Φ)Ζ‰π‰Eπ‹Uπ‰ΠΐΠ‰Κ)Β‰Π‰EπσMΠ‹EπσDΕΨσXΘƒΝσ(Ρσ^Π(ΒσEΠσMΤ‹EπσDΕάσXΘƒΝσ(Ρσ^Π(ΒσEΤEΠ‰$θEτÿ}τ‡ZÿÿÿθκθκƒΔP[^ΙΓU‰εSƒμθ[‹E 
+‰D$E‰$θμΗ$θεΗD$τΗ$τθΫΗD$Η$θΒƒ΅‰$θ›ƒ³ώÿÿ‰$θ—θ{ύÿÿθ¦ƒΔ[ΙΓ€?ΘAHBπ@ 
+@@I@Sierpinski Gasketΰΰ   
+ττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττ. 
+@ H P \pϊy 
+‚;*Θ–¥®ΌΗΞΧηυ 
+1;Ph| @ 
+dyld_stub_binding_helper__dyld_func_lookupdyld__mach_header_NXArgc_NXArgv___progname__mh_execute_header_display_environ_main_myinitstart_exit_glBegin_glClear_glClearColor_glColor3f_glEnd_glFlush_glLoadIdentity_glMatrixMode_glVertex2fv_gluOrtho2D_glutCreateWindow_glutDisplayFunc_glutInit_glutInitDisplayMode_glutInitWindowPosition_glutInitWindowSize_glutMainLoop_rand

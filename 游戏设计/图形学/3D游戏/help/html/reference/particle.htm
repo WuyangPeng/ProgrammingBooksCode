@@ -1,0 +1,95 @@
+<html>
+<head>
+<title>class particle</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2>class particle</h2>
+<h3>Definition</h3>
+<p class="code">class particle<br>
+  {<br>
+  &nbsp;
+  public:<br>
+  &nbsp;
+  vector pos, vel, force;<br>
+  &nbsp;
+  float mass, bump, friction, radius;<br>
+  &nbsp;
+  int life;<br>
+  &nbsp;
+  int col_flag;<br>
+  <br>
+  &nbsp;
+  int compute_collision(vector& p,vector& v);<br>
+  &nbsp;
+  int step(int dt);<br>
+  };</p>
+<h3>Data Members</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Member</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>pos</td>
+	 <td><a href="vector.htm">vector</a></td>
+	 <td>position</td>
+  </tr>
+  <tr>
+	 <td>vel</td>
+	 <td><a href="vector.htm">vector</a></td>
+	 <td>velocity</td>
+  </tr>
+  <tr>
+	 <td>force</td>
+	 <td><a href="vector.htm">vector</a></td>
+	 <td>force</td>
+  </tr>
+  <tr>
+	 <td>mass</td>
+	 <td>float</td>
+	 <td>mass</td>
+  </tr>
+  <tr>
+	 <td>bump</td>
+	 <td>float</td>
+	 <td>bump factor (0 to 1):<br>
+      0 - no bump<br>
+      1 - maximum bump</td>
+  </tr>
+  <tr>
+	 <td>friction</td>
+	 <td>float</td>
+	 <td>friction factor (0 to 1):<br>
+      0 - maximum friction<br>
+      1 - no friction</td>
+  </tr>
+  <tr>
+	 <td>radius</td>
+	 <td>float</td>
+	 <td>radius</td>
+  </tr>
+  <tr>
+	 <td>life</td>
+	 <td>int</td>
+	 <td>life in ms</td>
+  </tr>
+  <tr>
+	 <td>col_flag</td>
+	 <td>int</td>
+	 <td>bit flag for collision:<br>
+      bit 1: collision on/off<br>
+      bit 2: collide and die</td>
+  </tr>
+</table>
+<h3>Methods</h3>
+<p><a href="particle_compute_collision.htm">compute_collision</a>, <a href="particle_step.htm">step</a></p>
+<h3>Remarks</h3>
+<p>This class implements a particle.</p>
+<h3>See Also</h3>
+<p><a href="vector.htm">vector</a></p>
+</body>
+</html>

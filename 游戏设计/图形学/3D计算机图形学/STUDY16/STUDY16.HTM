@@ -1,0 +1,143 @@
+<!doctype html public "-//IETF//DTD.HTM//EN">
+<HTML><HEAD>
+<TITLE>Learning Rendering: Study 16</TITLE>
+</HEAD>
+<BODY>
+<A HREF="../STUDY15/STUDY15.HTM">&lt;&lt;</A>
+<A HREF="../STUDY17/STUDY17.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>
+<HR>
+<H1>STUDIES 14-18	RADIOSITY STUDIES</H1>
+
+<H2>STUDY 16  - Classical Radiosity with subdivision </H2>
+
+ A detailed study of the progressive refinement solution that varies the parameters of the algorithm. These are options that trade time to completion against image quality and are in general:
+
+<UL>
+<LI>the percentage of the total  initial energy that is shot before a solution is deemed to exist. The total energy unshot at any stage in the solution decreases because the patch reflectivities are less than unity by definition. 
+<LI>parameters governing the degree of subdivision that takes place
+<LI>parameters governing the accuracy of the form factor calculations (in a hemi-cube method the size of the hemi-cube)
+</UL>
+
+<P>These are grouped together in the following sequence of images under a general heading of 'quality' which has 6 settings.</P>
+
+
+<H3>QUALITY 1</H3>
+<table border=0 width="100%">
+<tr><td></td><td><A HREF="RDQ_WF.TIF"><IMG SRC="RDQ_WF.GIF" WIDTH=100 HEIGHT=75 ALT="rdq_wf"></A></td>  
+<td>initial mesh </td></tr>
+
+<tr><td>A</td>
+<td><A HREF="RDQ1A.TIF"><IMG SRC="RDQ1A.GIF" WIDTH=100 HEIGHT=75 ALT="rdq1a"></A></td>
+<td>solution after shooting the light source patches. A light source patch deposits light source energy on all patches in the scene that it can see.</td></tr>
+<tr><td>B</td>
+<td><A HREF="RDQ1B.TIF"><IMG SRC="RDQ1B.GIF" WIDTH=100 HEIGHT=75 ALT="rdq1b"></A></td> 
+<td>the same solution as the previous image but with an 'ambient lift' added.</td></tr>
+<tr><td>C</td>
+<td> <A HREF="RDQ1C.TIF"><IMG SRC="RDQ1C.GIF" WIDTH=100 HEIGHT=75 ALT="rdq1c"></A></td> 
+<td>the state of the subdivision for this image. Subdivision proceeds continuously as the solution progresses. The radiosity gradient of the current state is examined and patches that exhibit a high gradient are sub-divided. </td></tr>
+<tr><td>D</td>
+<td><A HREF="RDQ1D.TIF"><IMG SRC="RDQ1D.GIF" WIDTH=100 HEIGHT=75 ALT="rdq1d"></A></td>    
+<td>after the light source patches have been shot,  the complete list of patches is ordered according to the amount of energy that has fallen onto the patch and has yet to be shot back into the scene. The one with the highest unshot energy is selected and this is considered as the next shooting patch.  This patch is then put to the bottom of the list (because all its energy has been shot, and the solution continues. This image is the solution after this process has continued until 10 per cent of the total initial  energy has been distributed.</td></tr>
+<tr><td>E</td>
+<td><A HREF="RDQ1E.TIF"><IMG SRC="RDQ1E.GIF" WIDTH=100 HEIGHT=75 ALT="rdq1e"></A></td>  	
+<td>as the previous image but with the ambient term added</td></tr>
+<tr><td>F</td>
+<td><A HREF="RDQ1F.TIF"><IMG SRC="RDQ1F.GIF" WIDTH=100 HEIGHT=75 ALT="rdq1f"></A></td>  		
+<td>state of the sub-division for this image</td></tr>
+<tr><td>G</td>
+<td><A HREF="RDQ1G.TIF"><IMG SRC="RDQ1G.GIF" WIDTH=100 HEIGHT=75 ALT="rdq1g"></A></td> 		<td>texture mapping can be added.</td></tr>
+<tr><td>H</td>
+<td><A HREF="RDQ1H.TIF"><IMG SRC="RDQ1H.GIF" WIDTH=100 HEIGHT=75 ALT="rdq1h"></A></td>
+<td>as previous image with ambient term added</td></tr>
+</table>
+
+<H3>QUALITY 2</H3>
+<table border=0>
+<tr><td>A</td><td>B</td><td>C</td><td>D</td></tr>
+<tr><td><A HREF="RDQ2A.TIF"><IMG SRC="RDQ2A.GIF" WIDTH=100 HEIGHT=75 ALT="rdq2a"></A></td>
+<td><A HREF="RDQ2B.TIF"><IMG SRC="RDQ2B.GIF" WIDTH=100 HEIGHT=75 ALT="rdq2b"></A></td>
+<td><A HREF="RDQ2C.TIF"><IMG SRC="RDQ2C.GIF" WIDTH=100 HEIGHT=75 ALT="rdq2c"></A></td>
+<td><A HREF="RDQ2D.TIF"><IMG SRC="RDQ2D.GIF" WIDTH=100 HEIGHT=75 ALT="rdq2d"></A></td>
+</tr>
+<tr><td>E</td><td>F</td><td>G</td><td>H</td></tr>
+<tr><td><A HREF="RDQ2E.TIF"><IMG SRC="RDQ2E.GIF" WIDTH=100 HEIGHT=75 ALT="rdq2e"></A></td>
+<td><A HREF="RDQ2F.TIF"><IMG SRC="RDQ2F.GIF" WIDTH=100 HEIGHT=75 ALT="rdq2f"></A></td>
+<td><A HREF="RDQ2G.TIF"><IMG SRC="RDQ2G.GIF" WIDTH=100 HEIGHT=75 ALT="rdq2g"></A></td>
+<td><A HREF="RDQ2H.TIF"><IMG SRC="RDQ2H.GIF" WIDTH=100 HEIGHT=75 ALT="rdq2h"></A></td>
+</tr>
+</table>
+
+<H3>QUALITY 3</H3>
+<table border=0>
+<tr><td>A</td><td>B</td><td>C</td><td>D</td></tr>
+<tr><td><A HREF="RDQ3A.TIF"><IMG SRC="RDQ3A.GIF" WIDTH=100 HEIGHT=75 ALT="rdq3a"></A></td>
+<td><A HREF="RDQ3B.TIF"><IMG SRC="RDQ3B.GIF" WIDTH=100 HEIGHT=75 ALT="rdq3b"></A></td>
+<td><A HREF="RDQ3C.TIF"><IMG SRC="RDQ3C.GIF" WIDTH=100 HEIGHT=75 ALT="rdq3c"></A></td>
+<td><A HREF="RDQ3D.TIF"><IMG SRC="RDQ3D.GIF" WIDTH=100 HEIGHT=75 ALT="rdq3d"></A></td>
+</tr>
+<tr><td>E</td><td>F</td><td>G</td><td>H</td></tr>
+<tr><td><A HREF="RDQ3E.TIF"><IMG SRC="RDQ3E.GIF" WIDTH=100 HEIGHT=75 ALT="rdq3e"></A></td>
+<td><A HREF="RDQ3F.TIF"><IMG SRC="RDQ3F.GIF" WIDTH=100 HEIGHT=75 ALT="rdq3f"></A></td>
+<td><A HREF="RDQ3G.TIF"><IMG SRC="RDQ3G.GIF" WIDTH=100 HEIGHT=75 ALT="rdq3g"></A></td>
+<td><A HREF="RDQ3H.TIF"><IMG SRC="RDQ3H.GIF" WIDTH=100 HEIGHT=75 ALT="rdq3h"></A></td>
+</tr>
+</table>
+
+<H3>QUALITY 4</H3>
+<table border=0>
+<tr><td>A</td><td>B</td><td>C</td><td>D</td></tr>
+<tr><td><A HREF="RDQ4A.TIF"><IMG SRC="RDQ4A.GIF" WIDTH=100 HEIGHT=75 ALT="rdq4a"></A></td>
+<td><A HREF="RDQ4B.TIF"><IMG SRC="RDQ4B.GIF" WIDTH=100 HEIGHT=75 ALT="rdq4b"></A></td>
+<td><A HREF="RDQ4C.TIF"><IMG SRC="RDQ4C.GIF" WIDTH=100 HEIGHT=75 ALT="rdq4c"></A></td>
+<td><A HREF="RDQ4D.TIF"><IMG SRC="RDQ4D.GIF" WIDTH=100 HEIGHT=75 ALT="rdq4d"></A></td>
+</tr>
+<tr><td>E</td><td>F</td><td>G</td><td>H</td></tr>
+<tr><td><A HREF="RDQ4E.TIF"><IMG SRC="RDQ4E.GIF" WIDTH=100 HEIGHT=75 ALT="rdq4e"></A></td>
+<td><A HREF="RDQ4F.TIF"><IMG SRC="RDQ4F.GIF" WIDTH=100 HEIGHT=75 ALT="rdq4f"></A></td>
+<td><A HREF="RDQ4G.TIF"><IMG SRC="RDQ4G.GIF" WIDTH=100 HEIGHT=75 ALT="rdq4g"></A></td>
+<td><A HREF="RDQ4H.TIF"><IMG SRC="RDQ4H.GIF" WIDTH=100 HEIGHT=75 ALT="rdq4h"></A></td>
+</tr>
+</table>
+
+<H3>QUALITY 5</H3>
+<table border=0>
+<tr><td>A</td><td>B</td><td>C</td><td>D</td></tr>
+<tr><td><A HREF="RDQ5A.TIF"><IMG SRC="RDQ5A.GIF" WIDTH=100 HEIGHT=75 ALT="rdq5a"></A></td>
+<td><A HREF="RDQ5B.TIF"><IMG SRC="RDQ5B.GIF" WIDTH=100 HEIGHT=75 ALT="rdq5b"></A></td>
+<td><A HREF="RDQ5C.TIF"><IMG SRC="RDQ5C.GIF" WIDTH=100 HEIGHT=75 ALT="rdq5c"></A></td>
+<td><A HREF="RDQ5D.TIF"><IMG SRC="RDQ5D.GIF" WIDTH=100 HEIGHT=75 ALT="rdq5d"></A></td>
+</tr>
+<tr><td>E</td><td>F</td><td>G</td><td>H</td></tr>
+<tr><td><A HREF="RDQ5E.TIF"><IMG SRC="RDQ5E.GIF" WIDTH=100 HEIGHT=75 ALT="rdq5e"></A></td>
+<td><A HREF="RDQ5F.TIF"><IMG SRC="RDQ5F.GIF" WIDTH=100 HEIGHT=75 ALT="rdq5f"></A></td>
+<td><A HREF="RDQ5G.TIF"><IMG SRC="RDQ5G.GIF" WIDTH=100 HEIGHT=75 ALT="rdq5g"></A></td>
+<td><A HREF="RDQ5H.TIF"><IMG SRC="RDQ5H.GIF" WIDTH=100 HEIGHT=75 ALT="rdq5h"></A></td>
+</tr>
+</table>
+
+<H3>QUALITY6</H3>
+<table border=0>
+<tr><td>A</td><td>B</td><td>C</td><td>D</td></tr>
+<tr><td><A HREF="RDQ6A.TIF"><IMG SRC="RDQ6A.GIF" WIDTH=100 HEIGHT=75 ALT="rdq6a"></A></td>
+<td><A HREF="RDQ6B.TIF"><IMG SRC="RDQ6B.GIF" WIDTH=100 HEIGHT=75 ALT="rdq6b"></A></td>
+<td><A HREF="RDQ6C.TIF"><IMG SRC="RDQ6C.GIF" WIDTH=100 HEIGHT=75 ALT="rdq6c"></A></td>
+<td><A HREF="RDQ6D.TIF"><IMG SRC="RDQ6D.GIF" WIDTH=100 HEIGHT=75 ALT="rdq6d"></A></td>
+</tr>
+<tr><td>E</td><td>F</td><td>G</td><td>H</td></tr>
+<tr><td><A HREF="RDQ6E.TIF"><IMG SRC="RDQ6E.GIF" WIDTH=100 HEIGHT=75 ALT="rdq6e"></A></td>
+<td><A HREF="RDQ6F.TIF"><IMG SRC="RDQ6F.GIF" WIDTH=100 HEIGHT=75 ALT="rdq6f"></A></td>
+<td><A HREF="RDQ6G.TIF"><IMG SRC="RDQ6G.GIF" WIDTH=100 HEIGHT=75 ALT="rdq6g"></A></td>
+<td><A HREF="RDQ6H.TIF"><IMG SRC="RDQ6H.GIF" WIDTH=100 HEIGHT=75 ALT="rdq6h"></A></td>
+</tr>
+</table>
+
+<P>Examination of the image and the mesh for the final solution illustrates a problem with the subdivision. This is that the mesh exhibits subdivided areas which appear not to be required. Look at 'streaks' near the door. Bear in mind that subdivisions occur after every patch is shot and areas that are subdivided because of this that may subsequently be illuminated by energy shot from other patches. See also the <A HREF="../STUDY18/MGEN.AVI">animation study mgen</A> which illustrates this problem dynamically. </P>
+
+
+<HR>
+<A HREF="../STUDY15/STUDY15.HTM">&lt;&lt;</A>
+<A HREF="../STUDY17/STUDY17.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>

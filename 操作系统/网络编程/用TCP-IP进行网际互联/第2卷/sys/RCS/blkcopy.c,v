@@ -1,0 +1,71 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	1.1;
+
+1.1
+date	94.08.12.18.54.39;	author dls;	state Old;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@pre-3e code
+@
+text
+@/* blkcopy.c - blkcopy */
+
+#include <kernel.h>
+
+/*------------------------------------------------------------------------
+ *  blkcopy  -  copy a block of memory form one location to another
+ *------------------------------------------------------------------------
+ */
+blkcopy(to, from, nbytes)
+register char	*to;
+register char	*from;
+register int	nbytes;
+{
+#ifdef notdef
+extern int currpid;
+if ((to >= 640*1024 && to <= 1024*1024) && to != 0xd3a00)
+kprintf("pid %d blkcopy(%X,%X,%d)\n", currpid, to, from, nbytes);
+#endif
+	if (from > to) {
+		while (--nbytes >= 0)
+			*to++ = *from++;
+	} else {
+		to += nbytes-1;
+		from += nbytes-1;
+		while (--nbytes >= 0)
+			*to-- = *from--;
+	}
+	return OK;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d14 15
+a28 3
+	while (--nbytes >= 0)
+		*to++ = *from++;
+	return(OK);
+@

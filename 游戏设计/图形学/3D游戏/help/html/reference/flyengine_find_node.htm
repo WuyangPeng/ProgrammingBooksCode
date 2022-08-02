@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>flyEngine::find_node</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="flyengine.htm">flyEngine</a>::find_node</h2>
+<h3>Prototype</h3>
+<p class="code">bsp_node *find_node(bsp_node *n,vector& v,float mindist)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Parameter</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>n</td>
+	 <td><a href="bsp_node.htm">bsp_node</a> *</td>
+	 <td>bsp root node</td>
+  </tr>
+  <tr>
+	 <td>v</td>
+	 <td><a href="vector.htm">vector</a>&amp;</td>
+	 <td>point in world co-ordinates</td>
+  </tr>
+  <tr>
+	 <td>mindist</td>
+	 <td>float</td>
+	 <td>minimum distance</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>Returns the bsp leaf the point <i>v</i> is in.&nbsp;</p>
+<h3>Remarks</h3>
+<p>This function finds the leaf node for a given point. If the point distance 
+  to any plane is less than mindist, then the leaf is rejected. </p>
+</body>
+</html>

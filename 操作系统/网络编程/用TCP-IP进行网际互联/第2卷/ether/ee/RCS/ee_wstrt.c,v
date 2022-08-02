@@ -1,0 +1,145 @@
+head	1.3;
+access;
+symbols;
+locks
+	dls:1.3; strict;
+comment	@ * @;
+
+
+1.3
+date	97.09.21.19.25.55;	author dls;	state Dist;
+branches;
+next	1.2;
+
+1.2
+date	95.02.05.21.42.57;	author dls;	state Broken;
+branches;
+next	1.1;
+
+1.1
+date	94.09.24.01.00.41;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.3
+log
+@pre-3e code
+@
+text
+@/* ee_wstrt.c - ee_wstrt */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+#include <ee.h>
+
+static count = 0;
+
+/*------------------------------------------------------------------------
+ * ee_wstrt - start output on an Intel EtherExpress
+ *------------------------------------------------------------------------
+ */
+int
+ee_wstrt(ped)
+struct etdev	*ped;
+{
+	STATWORD	ps;
+	struct tbd	*ptdb;
+	unsigned int	csr;
+	struct ep	*pep;
+	int		len, isbcast;
+
+	disable(ps);
+	if (ped->ed_xpending) {
+		restore(ps);
+		return OK;
+	}
+	ped->ed_xpending++;
+	pep = (struct ep *)deq(ped->ed_outq);
+	switch ((int)pep) {
+	case 0:
+		ped->ed_xpending--;
+		restore(ps);
+		return OK;
+	case EE_SETMULTI:
+		restore(ps);
+		return ee_cmd(ped, EECMD_MCSET|EECMD_I, ped->ed_mca,
+			ped->ed_mcc);
+	default:
+		break;
+	}
+	isbcast = blkequ(pep->ep_dst, ped->ed_bcast, EP_ALEN);
+	len = pep->ep_len;
+	/* this version supports one packet per interrupt only */
+
+	blkcopy(ped->ed_xmbuf, &pep->ep_eh, pep->ep_len);
+	ptdb = ped->ed_tbd;
+	ptdb->tbd_count = len;
+	ptdb->tbd_eof = 1;
+	freebuf(pep);
+	restore(ps);
+	if (isbcast)
+		nif[ped->ed_ifnum].ni_onucast++;
+	else
+		nif[ped->ed_ifnum].ni_oucast++;
+	nif[ped->ed_ifnum].ni_ooctets += len;
+	return ee_cmd(ped, EECMD_TX|EECMD_I);
+}
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d20 1
+d25 1
+a25 5
+	wait(ped->ed_cmutex);
+	if (ped->ed_mcset) {
+kprintf("calling eecmd\n");
+		ped->ed_mcset = 0;
+		ee_cmd(ped, EECMD_MCSET|EECMD_I, ped->ed_mca, ped->ed_mcc);
+d29 1
+d31 3
+a33 2
+	if (pep == 0) {
+		signal(ped->ed_cmutex);
+d36 6
+a47 1
+	freebuf(pep);
+d51 1
+a51 1
+	ee_cmd(ped, EECMD_TX|EECMD_I);
+d58 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@a19 1
+	unsigned int	csr;
+d24 5
+a28 1
+	if (ped->ed_xpending) {
+a31 1
+	ped->ed_xpending++;
+d34 1
+a34 1
+		ped->ed_xpending--;
+d43 1
+d47 1
+a47 1
+	freebuf(pep);
+a53 1
+	ee_cmd(ped, EECMD_TX|EECMD_I);
+@

@@ -1,0 +1,454 @@
+head	1.7;
+access;
+symbols;
+locks
+	dls:1.7; strict;
+comment	@ * @;
+
+
+1.7
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	1.6;
+
+1.6
+date	94.05.07.19.26.36;	author dls;	state Works;
+branches;
+next	1.5;
+
+1.5
+date	94.05.06.03.12.23;	author dls;	state Works;
+branches;
+next	1.4;
+
+1.4
+date	94.05.01.16.07.01;	author dls;	state Works;
+branches;
+next	1.3;
+
+1.3
+date	94.04.30.04.04.37;	author dls;	state Works;
+branches;
+next	1.2;
+
+1.2
+date	94.04.27.19.46.08;	author dls;	state Works;
+branches;
+next	1.1;
+
+1.1
+date	94.04.26.15.15.20;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.7
+log
+@pre-3e code
+@
+text
+@/* evec.c -- initevec, doevec */
+
+#include <conf.h>
+#include <i386.h>    
+#include <kernel.h>
+#include <proc.h>
+#include <sem.h>
+#include <mem.h>
+#include <tty.h>
+#include <q.h>
+#include <io.h>
+
+/*
+ * The girmask is used as a mask for interrupts that don't have a
+ * handler set. disable() & restore() are OR-ed with it to get the
+ * mask actually used.
+ */
+short	girmask;
+
+extern struct idt idt[NID];
+extern struct segtr idtr;
+
+extern short	defevec[];
+extern int	userret();
+
+initevec()
+{
+	int		i;
+	STATWORD	ps;
+
+	for (i=0; i<NID; ++i)
+		set_evec(i, (int)defevec[i]);
+	/*
+	 * "girmask" masks all (bus) interrupts with the default handler.
+	 * initially, all, then cleared as handlers are set via set_evec()
+	 */
+	girmask = 0xfffb;	/* leave bit 2 enabled for IC cascade */
+
+	lidt();
+	init8259();
+}
+
+/*------------------------------------------------------------------------
+ * set_evec - set exception vector to point to an exception handler
+ *------------------------------------------------------------------------
+ */
+int
+set_evec(xnum, handler)
+unsigned int	xnum;
+unsigned long	handler;	/* int value of function pointer */
+{
+	struct	idt	*pidt;
+
+	pidt = &idt[xnum];
+	pidt->igd_loffset = handler;
+	pidt->igd_segsel = 0x8;		/* kernel code segment */
+	pidt->igd_mbz = 0;
+	pidt->igd_type = IGDT_TRAPG;
+	pidt->igd_dpl = 0;
+	pidt->igd_present = 1;
+	pidt->igd_hoffset = handler >> 16;
+	if (xnum > 31 && xnum < 48) {
+		/* enable the interrupt in the global IR mask */
+		xnum -= 32;
+		girmask &= ~(1<<xnum);
+	}
+}
+
+char *inames[17] = {
+	"divide by zero",
+	"debug exception",
+	"NMI interrupt",
+	"breakpoint",
+	"overflow",
+	"bounds check failed",
+	"invalid opcode",
+	"coprocessor not available",
+	"double fault",
+	"coprocessor segment overrun",
+	"invalid TSS",
+	"segment not present",
+	"stack fault",
+	"general protection violation",
+	"page fault",
+	"coprocessor error",
+};
+
+static long *fp;
+
+trap(inum)
+int	inum;
+{
+	long		*sp, *fp;
+	STATWORD 	PS;
+
+	disable(PS);
+	asm("movl	%ebp,_fp");
+	sp = fp + 15;	/* eflags/CS/eip/ebp/regs/trap#/Xtrap/ebp */
+	kprintf("Xinu trap!\n");
+	if (inum < 16)
+		kprintf("exception %d (%s) currpid %d (%s)\n", inum,
+			inames[inum], currpid, proctab[currpid].pname);
+	else
+		kprintf("exception %d currpid\n", inum);
+	kprintf("eflags %X ", *sp--);
+	sp--;	/* skip OLD CS */
+	kprintf("eip %X ", *sp);
+	sp--;
+	if (inum == 8 || (inum >= 10 && inum <= 14)) {
+		kprintf("error code %08x (%u)\n", *sp, *sp);
+		sp--;
+	}
+	sp--;	/* skip FP for Xint call */
+	kprintf("register dump:\n");
+	kprintf("eax %08X (%u)\n", *sp, *sp);
+	sp--;
+	kprintf("ecx %08X (%u)\n", *sp, *sp);
+	sp--;
+	kprintf("edx %08X (%u)\n", *sp, *sp);
+	sp--;
+	kprintf("ebx %08X (%u)\n", *sp, *sp);
+	sp--;
+	kprintf("esp %08X (%u)\n", *sp, *sp);
+	sp--;
+	kprintf("ebp %08X (%u)\n", *sp, *sp);
+	fp = sp;
+	sp--;
+	kprintf("esi %08X (%u)\n", *sp, *sp);
+	sp--;
+	kprintf("edi %08X (%u)\n", *sp, *sp);
+	sp--;
+	control(CONSOLE, TTC_SYNC, 1);
+	stacktrace(currpid, CONSOLE);
+#ifdef notdef
+	kprintf("stack backtrace:\n");
+	for (i=0; i<8; ++i) {
+		kprintf("%X)  ", esp);
+		for (j=0; j<6; ++j)
+			kprintf("%08X ", *esp++);
+		kprintf("\n");
+	}
+#endif
+	_stop("hit reset to continue\n");
+}
+
+
+doevec(arg)
+     int arg;
+{
+    unsigned short sr;
+    unsigned long pc;
+    unsigned short vector;
+    int evnum;
+    char *parg;
+
+    parg = (char *) &arg;
+
+    sr = *((short *) parg);
+    pc = *((long  *) (parg+2));
+    vector = (*((short *) (parg+6))) & 0x0fff;    /* only low 12 bits */
+    
+    kprintf("\nXinu Trap!  ");
+    kprintf("sr: 0x%x  ", sr);
+    kprintf("exception: 0x%x  ", vector);
+    kprintf("pc: 0x%lx\n",pc);
+    kprintf("Trap definition: ");
+
+    evnum = vector/4;
+    if (evnum<32)
+	switch(evnum) {
+	    case  0: kprintf("RESET0, SHOULDN'T SEE THIS\n"); break;
+	    case  1: kprintf("RESET1, SHOULDN'T SEE THIS\n"); break;
+	    case  2: kprintf("Bus Error\n"); break;
+	    case  3: kprintf("Address Error\n"); break;
+	    case  4: kprintf("Illegal instruction\n"); break;
+	    case  5: kprintf("Divide by 0\n"); break;
+	    case  6: kprintf("CHK,CHK2 software trap\n"); break;
+	    case  7: kprintf("cpTRAPcc, TRAPcc, TRAPV software trap\n"); break;
+	    case  8: kprintf("Privilege Violation\n"); break;
+	    case  9: kprintf("Trace\n"); break;
+	    case 10: kprintf("Line 1010 Emulator, illegal instruction\n"); break;
+	    case 11: kprintf("Line 1111 Emulator, illegal instruction\n"); break;
+
+	    case 13: kprintf("Coprocessor protocol violation\n"); break;
+	    case 14: kprintf("Format Error\n"); break;
+	    case 15: kprintf("Uninitialized Interrupt\n"); break;
+
+	    case 24: kprintf("Spurrious Interrupt\n"); break;
+	    case 25: kprintf("Level 1 Auto Vector\n"); break;
+	    case 26: kprintf("Level 2 Auto Vector\n"); break;
+	    case 27: kprintf("Level 3 Auto Vector\n"); break;
+	    case 28: kprintf("Level 4 Auto Vector\n"); break;
+	    case 29: kprintf("Level 5 Auto Vector (clock)\n"); break;
+	    case 30: kprintf("Level 6 Auto Vector (serial line)\n"); break;
+	    case 31: kprintf("Level 7 Auto Vector (monitor clock)\n"); break;
+	    default: kprintf("Unassigned (reserved)\n"); break;
+	  }
+    else if (evnum<48)
+	kprintf("Trap #%d instruction trap\n",(evnum-32));
+    else if (evnum<54)
+	kprintf("FPCP trap\n");
+    else if (evnum<59)
+	kprintf("PMMU trap\n");
+    else if (evnum<64)
+	kprintf("Unassigned, reserved\n");
+    else
+	kprintf("User defined vector\n");
+
+    kprintf("\n");
+    _stop("bogus doevec call\n");
+}
+@
+
+
+1.6
+log
+@*** empty log message ***
+@
+text
+@d24 1
+d28 2
+a29 1
+	int	i;
+d32 1
+a32 1
+		set_idt(i, (int)defevec[i]);
+d35 1
+a35 1
+	 * initially, all, then cleared as handlers are set via set_idt()
+d37 1
+a37 1
+	girmask = 0xffff;
+d43 6
+a48 1
+set_idt(xnum, handler)
+a52 1
+	STATWORD	PS;
+d88 2
+d93 1
+d96 3
+a99 1
+	kprintf("exception %d\n", inum);
+d101 33
+a133 1
+		kprintf("(%s)\n", inames[inum]);
+d135 8
+a142 1
+disable(PS);
+a143 1
+#endif
+@
+
+
+1.5
+log
+@*** empty log message ***
+@
+text
+@d13 7
+a28 1
+kprintf("initevec\n");
+d31 6
+d56 5
+d91 1
+d94 1
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@d22 1
+d68 2
+d74 1
+@
+
+
+1.3
+log
+@,
+@
+text
+@d4 1
+a11 3
+#include <sunromvec.h>
+#include <cpu.addrs.h>    
+#include <i386.h>    
+d14 1
+a14 4
+extern struct {
+	unsigned int	len : 16;
+	unsigned long	addr : 32;
+} idtr;
+d64 1
+a64 1
+trap(inum, x)
+d68 1
+a68 1
+	kprintf("exception %d x %d\n", inum, x);
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d21 1
+a21 7
+int	Xint0(), Xint1(), Xint2(), Xint3(), Xint4(), Xint5(), Xint6();
+int	Xint7(), Xint8(), Xint9(), Xint10(), Xint11(), Xint12(), Xint13();
+int	Xint14(), Xint15(), Xint16(), Xint17(), Xint18(), Xint19(), Xint20();
+int	Xint21(), Xint22(), Xint23(), Xint24(), Xint25(), Xint26(), Xint27();
+int	Xint28(), Xint29(), Xint30(), Xint31(), Xint32(), Xint33(), Xint34();
+int	Xint35(), Xint36(), Xint37(), Xint38(), Xint39(), Xint40(), Xint41();
+int	Xint42(), Xint43(), Xint44(), Xint45(), Xint46(), Xint47();
+a22 2
+#define	SIDT(i)	set_idt(i, Xint/**/i)
+
+d25 1
+a25 1
+	int	i, off, res;
+d27 2
+a28 18
+kprintf("idt limit %d, idt %X\n", idtr.len, idtr.addr);
+kprintf("real idt %X\n", idt);
+#ifdef notdef
+	SIDT(0);  SIDT(1);  SIDT(2);  SIDT(3);  SIDT(4);  SIDT(5);
+	SIDT(6);  SIDT(7);  SIDT(8);  SIDT(9);  SIDT(10); SIDT(11);
+	SIDT(12); SIDT(13); SIDT(14); SIDT(15); SIDT(16); SIDT(17);
+	SIDT(18); SIDT(19); SIDT(20); SIDT(21); SIDT(22); SIDT(23);
+	SIDT(24); SIDT(25); SIDT(26); SIDT(27); SIDT(28); SIDT(29);
+	SIDT(30); SIDT(31); SIDT(32); SIDT(33); SIDT(34); SIDT(35);
+	SIDT(36); SIDT(37); SIDT(38); SIDT(39); SIDT(40); SIDT(41);
+	SIDT(42); SIDT(43); SIDT(44); SIDT(45); SIDT(46); SIDT(47);
+#endif
+	res = (int)Xint1 - (int)Xint0;
+	off = (int)Xint0;
+kprintf("Xint0 %X, Xint1 %X  Xint2 %X\n", Xint0, Xint1, Xint2);
+kprintf("off %X res %d\n", off, res);
+	for (i=0; i<NID; ++i, off += res)
+		set_idt(i, off);
+d30 1
+d69 1
+a69 1
+trap(inum)
+d73 1
+a73 1
+	kprintf("exception %d\n", inum);
+a143 21
+}
+
+int
+prints()
+{
+	struct idt	*pidt;
+	char		*p;
+	int	i;
+
+	kprintf("idtr %X len %d base %X\n", &idtr, idtr.len, idtr.addr);
+	p = (char *)idt;
+	for (i=0; i<9; ++i) {
+		kprintf("%d) %02x", i, *p++);
+		kprintf(" %02x", *p++);
+		kprintf(" %02x", *p++);
+		kprintf(" %02x", *p++);
+		kprintf(" %02x", *p++);
+		kprintf(" %02x", *p++);
+		kprintf(" %02x", *p++);
+		kprintf(" %02x\n", *p++);
+	}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@a14 1
+/* the 386 exception vector */    
+d21 7
+a27 1
+char *origevec;
+d29 1
+d33 1
+a33 1
+	int	Xtrap(), i;
+d37 16
+a52 2
+	for (i=0; i<NID; ++i)
+		set_idt(i, Xtrap);
+d73 21
+a93 1
+trap()
+d95 5
+a99 1
+kprintf("in trap\n");
+@

@@ -1,0 +1,108 @@
+// Listing 8-3
+//
+
+#include <dirent.h>
+#include <set.h>
+#include <cstring.h>
+#include <fstream.h>
+#include <algo.h>
+#include <string.h>
+#include <stddef.h>
+#include <process.h>
+#define INCL_DOSPROCESS
+#define INCL_DOSSEMAPHORES
+#include <os2.h>
+#include "ctqueue.cpp"
+
+lqueue<string> *TextFiles;
+set<string,less<string> > KeyWords;
+set<string,less<string> > SearchWords;
+void threadA(void *X);
+string InFile;
+string OutFile;
+
+
+void threadA(void *X)
+{
+   string Temp;
+   string FileName;
+   less<string> Comp;
+   ifstream In;
+   ofstream Out;
+   In.open(InFile.c_str());
+   Out.open(OutFile.c_str());
+   while(!In.eof())
+   {
+      In >> Temp;
+      if(!In.eof()){
+	  KeyWords.insert(Temp);
+      }
+   }
+   In.close();
+   TextFiles->wait();
+   while(!TextFiles->empty())
+   {
+       FileName = TextFiles->remove();
+       In.open(FileName.c_str());
+       SearchWords.erase(SearchWords.begin(),SearchWords.end());
+       while(!In.eof() && In.good())
+       {
+	   In >> Temp;
+	   SearchWords.insert(Temp);
+       }
+       In.close();
+       if(includes(SearchWords.begin(),SearchWords.end(),
+	       KeyWords.begin(),KeyWords.end(),Comp)){
+	  cout << "Thread A match found in " << FileName << endl;
+	  Out << FileName << endl;
+       }
+   }
+
+   Out.close();
+}
+
+
+void main(int argc, char *argv[])
+{
+
+  DIR *DirP;
+  unsigned long Result = 0;
+  struct dirent *EntryP;
+  DirP = opendir(argv[1]);
+  InFile = argv[2];
+  OutFile = argv[3];
+  try{
+	TextFiles =  new lqueue<string>("\\SEM32\\mymutex",0,"\\SEM32\\myevent",0,-1);
+	if(argc == 4){
+	   string Temp;
+	   Result =  _beginthread(threadA,8192,NULL);
+	   if(DirP == NULL){
+	      cerr << " Could Not Open " << argv[1] << endl;
+	      exit(1);
+	   }
+	   do{
+		EntryP = readdir(DirP);
+		if(EntryP){
+		   Temp = EntryP->d_name;
+		   if(Temp.contains(".TXT")){
+		      cout << "Found " << EntryP->d_name << " in Main Thread " << endl;
+		      TextFiles->insert(EntryP->d_name);
+		      TextFiles->broadCast();
+		   }
+		}
+	  }while(EntryP);
+	  closedir(DirP);
+	  DosWaitThread(&Result,DCWW_WAIT);
+	  delete TextFiles;
+     }
+  }
+  catch(general_exception &X)
+  {
+      cout << X.message() << endl;
+  }
+
+}
+
+
+
+

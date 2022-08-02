@@ -1,0 +1,3 @@
+gcc -c -I. -g string5x.cc
+string5x.cc: In function `class istream & operator >>(class istream &, class string &)':
+string5x.cc:84: uninitialized const `short int BUFLEN'

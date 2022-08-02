@@ -1,0 +1,50 @@
+<html>
+
+<head>
+<title>vector::cross</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2><a href="vector.htm">vector</a>::cross</h2>
+
+<h3>Prototype</h3>
+
+<p class="code">inline void cross(vector&amp; v1,vector&amp; v2)</p>
+
+<h3>Parameters</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>v1</td>
+    <td>vector&amp;</td>
+    <td>First vector for cross product.</td>
+  </tr>
+  <tr>
+    <td>v2</td>
+    <td>vector&amp;</td>
+    <td>Second vector for cross product.</td>
+  </tr>
+</table>
+
+<h3>Return Value</h3>
+
+<p>None</p>
+
+<h3>Remarks</h3>
+
+<p>Sets the vector to the cross product of two specified vectors.<br>
+  x = v1.y*v2.z - v1.z*v2.y;<br>
+  y = v1.z*v2.x - v1.x*v2.z;<br>
+  z = v1.x*v2.y - v1.y*v2.x; </p>
+
+</body>
+</html>

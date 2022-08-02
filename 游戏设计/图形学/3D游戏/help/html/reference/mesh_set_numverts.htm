@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>mesh::set_numverts</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2><a href="mesh.htm">mesh</a>::set_numverts</h2>
+<h3>Prototype</h3>
+<p class="code"> void set_numverts(int nverts,int keep=0)</p>
+<h3>Parameters</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr> 
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>nverts</td>
+    <td>int</td>
+    <td>new number of vertices</td>
+  </tr>
+  <tr> 
+    <td>keep</td>
+    <td>int</td>
+    <td>keep old vertices array</td>
+  </tr>
+</table>
+<h3>Return Value</h3>
+<p>None</p>
+<h3>Remarks</h3>
+<p>This function is used to resize the vertex array of a mesh. <br>
+  <br>
+  If <i>keep</i> is not zero, the newly allocated array will contain the data 
+  from previous vertex array.<br>
+  If new number of vertices is bigger then original vertex count, all old vertices 
+  are maintained.<br>
+  If new number of vertices is smaller then original vertex count, only the first 
+  <i>nvert</i> vertices will be kept.</p>
+</body>
+</html>

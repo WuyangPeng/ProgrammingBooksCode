@@ -1,0 +1,6 @@
+LIBRARY $$root$$
+
+EXPORTS
+$$FUNCTIONS$$
+SECTIONS
+	.data READ WRITE

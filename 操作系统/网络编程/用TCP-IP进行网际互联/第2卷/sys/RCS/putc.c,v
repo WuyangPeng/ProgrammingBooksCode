@@ -1,0 +1,45 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* putc.c - putc */
+
+#include <conf.h>
+#include <kernel.h>
+#include <io.h>
+
+/*------------------------------------------------------------------------
+ *  putc  -  write a single character to a device
+ *------------------------------------------------------------------------
+ */
+SYSCALL	putc(descrp, ch)
+int descrp;
+char ch;
+{
+	struct	devsw	*devptr;
+	
+	if (isbaddev	(descrp) )
+		return(SYSERR);
+	devptr = &devtab[descrp];
+	return(	(*devptr->dvputc)(devptr,ch) );
+}
+@

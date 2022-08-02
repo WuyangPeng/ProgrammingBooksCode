@@ -1,0 +1,58 @@
+<HTML>
+<HEAD>
+  <META NAME="GENERATOR" CONTENT="Adobe PageMill 3.0 Win">
+  <TITLE>directX::create_game</TITLE>
+  
+<LINK REL="stylesheet" HREF="../paralelo.css">
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+
+<H1><A HREF="index.htm">Objects Reference</A></H1>
+
+<H2><A HREF="directx.htm">directX</A>::create_game</H2>
+
+<H3>Prototype</H3>
+
+<P class="code">int create_game(LPGUID app_guid,char *game_name)</P>
+
+<H3>Parameters</H3>
+
+<P><TABLE BORDER="1" WIDTH="90%" CELLSPACING="0" CELLPADDING="3">
+  <TR>
+    <TH>
+    Parameter</TH> 
+    <TH>
+    Type</TH> 
+    <TH>
+    Description</TH> 
+  </TR>
+  <TR>
+    <TD>
+    app_guid</TD> 
+    <TD>
+    LPGUID</TD> 
+    <TD>
+    IP address of server when starting a client.<BR>
+    NULL for starting a server.</TD> 
+  </TR>
+  <TR>
+    <TD>
+    game_name</TD> 
+    <TD>
+    char *</TD> 
+    <TD>
+    game name</TD> 
+  </TR>
+</TABLE></P>
+
+<H3>Return Value</H3>
+
+<P>Returns TRUE is game creation is OK, FALSE if creation failed.</P>
+
+<H3>Remarks</H3>
+
+<P>This function creates a new multiplayer game. It must be called
+from a server application and other clients will be able to join.
+
+</BODY>
+</HTML>

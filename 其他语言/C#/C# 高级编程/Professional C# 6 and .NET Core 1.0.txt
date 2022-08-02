@@ -1,0 +1,10 @@
+C# 高级编程（Professional C# 6 and .NET Core 1.0）
+ （第10版） 
+
+官方网站： 
+http://www.cninnovation.com、
+http://www.wrox.com/go/professionalcsharp6
+
+○
+作者：Christian Nagel、Bill Evjen、Jay Glynn
+

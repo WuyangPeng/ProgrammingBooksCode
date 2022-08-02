@@ -1,0 +1,213 @@
+<html>
+
+<head>
+<meta NAME="GENERATOR" CONTENT="Microsoft FrontPage 3.0">
+<link REL="stylesheet" HREF="paralelo.css">
+<title>Fly3D Demos Walkthrough</title>
+</head>
+
+<body>
+
+<h1>Fly3D SDK</h1>
+
+<h2>Demos Walkthrough</h2>
+
+<h3 ALIGN="RIGHT"><a HREF="fly3d.htm">Home</a></h3>
+
+<h3>Fly3D Quick Features List:</h3>
+
+<p>- BSP/PVS render<br>
+- Lightmap for static geometry (bsp and static objects)<br>
+- Diffuse and Specular hardware vertex lighting for dynamic objects<br>
+- Volumetric fog with fog maps<br>
+- Detail Textures<br>
+- Multitexture support (up to 4 texture units)<br>
+- Collision detection<br>
+- Dynamic lights<br>
+- Dynamic lightmap shadows<br>
+- Dynamic stencil shadows<br>
+- Physically based simulations (pos,vel,force,gravity,friction,bump,...)<br>
+- Animated meshes<br>
+- Triangle Strips and Fans<br>
+- 3D sound support<br>
+- Bezier surfaces (loft and extrude) and Bezier patches<br>
+- Cartoon like rendering with dynamic lighting<br>
+- Subdivision surfaces<br>
+- Particle systems<br>
+- Support for TGA and JPG textures<br>
+- Complete plug-in directed (make games and game objects by writing plug-ins)&nbsp;</p>
+
+<p>Follow this walkthrough for a full demo of all features included in the Fly3D engine.<br>
+It will move you around all demo levels and give you clues on where to look and what to
+do.</p>
+
+<p>While in the game you can always use the following keys to switch some render states:</p>
+
+<p>F3 - Mute sound<br>
+F4 - Wireframe on/off<br>
+F5 - Fog on/off<br>
+F6 - Node only (draw single bsp node)<br>
+F7 - PVS on/off<br>
+F8 - Texture filtering on/off<br>
+F9 - Multitexture of/off<br>
+F10 - Map mode<br>
+F11 - Mipmapping on/off<br>
+F12 - Clear background on/off</p>
+
+<h3>The MENU level:</h3>
+
+<p>This is a level that implements a menu.<br>
+It will be the main interface for changing levels and starting multiplayer servers.<br>
+Pressing F1 while in any other level will load the menu.<br>
+Use Up and Down keys to select the desired menu item and Enter to activate it.</p>
+
+<p>Things to notice while in this level:</p>
+
+<p>- The arches are ducted solids made with Bezier curves in the loft plug-in.<br>
+- They have light maps and can change geometry detail while maintaining the lighting
+detail.<br>
+- Select options from the main menu group and change the detail settings by selecting the
+LOW,MEDIUM and HIGH options.<br>
+- Note that the surface subdivision is adaptative and areas with higher curvature gets
+more polygons.<br>
+- The menu item plug-in object execute console commads to implement its functionality.<br>
+- Press ESC for opening/closing the console (all menu selections will be printed there).</p>
+
+<h3>The CAR level:&nbsp;</h3>
+
+<p>This is a level implementing a simple car race. Select the S.PLAY menu option and then
+CAR for loading the level.<br>
+Use Up arrow to move the car forward and Left and Right arrows to turn.<br>
+There is another computer controled cars running around the track. Follow him the best you
+can. To add more cars to the race, type the following comand on the console:</p>
+
+<p class="code">activate car1</p>
+
+<p>The scene is render as cartoon (bsp and dynamic objects) and for changing the number of
+color levels used in the bsp and cars, type the following command on the console:</p>
+
+<p class="code">set cartoonpicbsp gradient8.tga<br>
+set cartoonpic gradient3.tga</p>
+
+<p>Turn on antialiasing with the following console command:</p>
+
+<p class="code">set antialias 1<br>
+set cartoonwidth 1.5 </p>
+
+<p>To add turn stencil shadows on (only for cards with stencil buffer support lilke the
+TNT, TNT2 and GeForce256), execute the following console command line:</p>
+
+<p class="code">set stencil 1</p>
+
+<p>Some cards require the desktop windows mode to be at 32 bits/pixel in order to use
+hardware stencil buffers. If it gets too slow when stencil shadows are on, try switching
+to a 32 bit/pixel mode and re-run the level.</p>
+
+<h3>The WALK level:</h3>
+
+<p>This is a level implementing a walking first person shooter.<br>
+Press F1 to return to the menu.<br>
+Select S.PLAY and then WALK.</p>
+
+<p>Things to notice while in this level:</p>
+
+<p>- Use the mouse and the S and X keys to move around.<br>
+- Use the left mouse button to shoot something in the scene.<br>
+- Go to the yellow signs in the floor to jump around.<br>
+- Press F9 to turn multitexture off and see the detail textures (will be slow on some
+machines).<br>
+- Use the right mouse button to zoom in and see the detail textures applied to all scene
+geometry.<br>
+- Press F9 again to turn multitexture on if framerate is not good because of detail
+textures.<br>
+- Press W to turn on/off the head lights (dynamic spot with light maps).<br>
+- Several parts of the scene are Bezier surfaces (the arch, the top platform and some
+corners of the scene).<br>
+- Use the following console command for changing the surface detail:</p>
+
+<p class="code">set curveerr 1 </p>
+
+<p>and see the real round surfaces.</p>
+
+<h3>The SHIP level:</h3>
+
+<p>This is a level implementing a Descent like game (6 DOF ship inside a maze).&nbsp;</p>
+
+<p>Things to notice while in this level:</p>
+
+<p>- Turn the head light by pressing the W key<br>
+- Use the mouse and S,X,Q,E,A,D keys to move around<br>
+- Use the right mouse button to kill the enemies<br>
+- You can change the selected weapon using keys 1 to 6<br>
+- On the first room you will find a turret. Destroy it!<br>
+- Press the C key to turn the back camera on/off<br>
+- Run to the rooms, destroy the enemies and take all the itens</p>
+
+<h3>The BOX level:</h3>
+
+<p>This is another level implementing a walking first person shooter.&nbsp;<br>
+Load it with the following command line:&nbsp;</p>
+
+<p class="code">map box/box.fly</p>
+
+<p>Or use the F1 menu shortcut and select S.PLAY then BOX.<br>
+Move around just like the previous walking demos (S,X,Q,E,arrows,mouse,SPACE)</p>
+
+<p>Things to notice while in this level:</p>
+
+<p>- On the center room, notice the dynamic shadow at the fan light.<br>
+- On the same room, notice the cartoon like objects. Use the headlight (W key) to
+illuminate them and notice that the scene lights dynamiclay illuminate them like cartoons.<br>
+- Use the left mouse button to fire missiles (kill yourself by shooting near to yourself
+and see the gibs and blood implemented with hitmarks).<br>
+- The two other rooms include fog maps.<br>
+- One is a red sphere fog. move inside it and see how fog maps makes a better fog than
+vertex fog with no geometry tessellation.<br>
+- The other fog is a box fog. Enter it and move around to see how the fog changes. Jump
+out of the fog with the boxes.<br>
+- This room also includes a ship/stone statue. They are subdivision surfaces. Change
+detail with the following command line:</p>
+
+<p class="code">set subdiv1.nsubdiv 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; no detail on
+stone (just a pyramid)<br>
+set subdiv1.nsubdiv 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; some detail<br>
+set subdiv1.nsubdiv 4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lot of detail<br>
+set subdiv2.nsubdiv 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; no detail on ship<br>
+set subdiv2.nsubdiv 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; some detail<br>
+set subdiv2.nsubdiv 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lot of detail</p>
+
+<p>- The dynamic objects are illuminated with hardware vertex lights. Notice the
+ship/stone, red on one side and blue on the other.<br>
+- Use the following command line to turn on/off the hardware lights:</p>
+
+<p class="code">set hwlights
+0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; turn on<br>
+set hwlights
+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; turn off</p>
+
+<p>- On a multiplayer game, the player model is also illuminated this way making a nice
+looking effect as the player moves near game lights.<br>
+- Fire a missile and notice the ship/stone also gets illuminated by the dynamic missile
+light.</p>
+
+<h3>The BOX level in multiplayer:</h3>
+
+<p>Create a multiplayer server for the box level using the main menu:<br>
+<br>
+- Press F1 for loading the menu.<br>
+- Select M.PLAY (multi player) and then the BOX level.<br>
+- A server will start up. If all TCP/IP configurations are OK the server will show its
+network address.<br>
+- Join a game using CTRL-J (or select the join menu option)<br>
+- Type the player name and click search.<br>
+- If a game is found, select it and click the join button.<br>
+- In another computer in the network, open the frontend and join the game as above. (if
+you just have one computer you can run the server and two clients on the same machine)<br>
+- Place one player behind the fan.<br>
+- Use the other player to see the diffuse/specular player illumination (notice that the
+fan also casts shadows over the player).<br>
+- You can create other multiplayer games for the other demos just using the menu.</p>
+
+<p>&nbsp; </p>
+</body>
+</html>

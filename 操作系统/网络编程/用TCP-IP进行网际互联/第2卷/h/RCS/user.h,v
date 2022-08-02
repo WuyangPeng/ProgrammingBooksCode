@@ -1,0 +1,34 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.26.19;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* user.h */
+
+struct user {
+	unsigned int	 ue_uid;	/* numeric user identifier	*/
+	char		*ue_login;	/* user's login name		*/
+	char		*ue_name;	/* users real name		*/
+	char		*ue_passwd;	/* users encrypted password	*/
+};
+
+extern struct user utab[];
+@

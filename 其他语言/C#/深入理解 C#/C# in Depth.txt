@@ -1,0 +1,10 @@
+深入理解 C#  （C# in Depth）
+ （第3版） 
+
+官方网站： 
+http://ericlippert.com、 
+http://www.csharpindepth.com
+
+○
+作者：Jon Skeet
+

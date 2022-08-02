@@ -1,0 +1,42 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: smart sweepers - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP2F6.tmp" with contents
+[
+/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Release/smart sweepers.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"C:\CODE\BOOK CHAPTERS\REVIEW\AI08\source\smart sweepers - v2.2\CMinesweeper.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP2F6.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP2F7.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /profile /machine:I386 /out:"Release/smart sweepersv2.2.exe" 
+".\Release\C2DMatrix.obj"
+".\Release\CController.obj"
+".\Release\CGenAlg.obj"
+".\Release\CMapper.obj"
+".\Release\CMinesweeper.obj"
+".\Release\CNeuralNet.obj"
+".\Release\collision.obj"
+".\Release\CParams.obj"
+".\Release\CTimer.obj"
+".\Release\main.obj"
+".\Release\utils.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP2F7.tmp"
+<h3>Output Window</h3>
+Compiling...
+CMinesweeper.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+smart sweepersv2.2.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

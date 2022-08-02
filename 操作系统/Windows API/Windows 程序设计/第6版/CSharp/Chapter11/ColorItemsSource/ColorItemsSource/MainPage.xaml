@@ -1,0 +1,68 @@
+﻿<Page
+    x:Class="ColorItemsSource.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ColorItemsSource"
+    xmlns:ch11="using:Petzold.ProgrammingWindows6.Chapter11"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <Page.Resources>
+        <ch11:ByteToHexStringConverter x:Key="byteToHexString" />
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <ScrollViewer>
+            <ItemsControl Name="itemsControl">
+                
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="{StaticResource ApplicationForegroundThemeBrush}"
+                                BorderThickness="1"
+                                Width="336"
+                                Margin="6">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                    
+                                <Rectangle Grid.Column="0"
+                                           Height="72"
+                                           Width="72"
+                                           Margin="6">
+                                    <Rectangle.Fill>
+                                        <SolidColorBrush Color="{Binding Color}" />
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                
+                                <StackPanel Grid.Column="1"
+                                            VerticalAlignment="Center">
+                                    <TextBlock FontSize="24"
+                                               Text="{Binding Name}" />
+
+                                    <ContentControl FontSize="18">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Color.A,
+                                                                      Converter={StaticResource byteToHexString}}" />
+                                            <TextBlock Text="-" />
+                                            <TextBlock Text="{Binding Color.R,
+                                                                      Converter={StaticResource byteToHexString}}" />
+                                            <TextBlock Text="-" />
+                                            <TextBlock Text="{Binding Color.G,
+                                                                      Converter={StaticResource byteToHexString}}" />
+                                            <TextBlock Text="-" />
+                                            <TextBlock Text="{Binding Color.B,
+                                                                      Converter={StaticResource byteToHexString}}" />
+                                        </StackPanel>
+                                    </ContentControl>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>                    
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</Page>

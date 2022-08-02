@@ -1,0 +1,100 @@
+﻿body
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .80em;
+    background-color: #008080;
+    color: #FFFF00;
+    padding: 0px;
+    margin: 0px;
+}
+
+p
+{
+    margin-bottom: 10px;
+    line-height: 1.6em;
+}
+
+
+
+a:link, a:visited
+{
+    color: #00FFFF;
+}
+
+a:active
+{
+    color: #00FFFF;
+}
+
+a:hover
+{
+    color: #FF0000;
+    text-decoration: underline overline;
+}
+h1
+{
+    text-align: center;
+}
+
+
+
+
+
+.header
+{
+}
+
+.navigation
+{
+
+    margin-left: 5%;
+}
+
+.logininfo
+{
+    right: 50px;
+    margin-right: 50px;
+    margin-left: 100px;
+    vertical-align: top;
+    overflow: visible;
+    display: run-in;
+    text-align:right;
+}
+
+.content
+{
+    margin-left: 10%;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.bottom
+{
+    margin: 5px;
+    height: 40px;
+    text-align: center;
+    vertical-align: text-bottom;
+    font-size: x-small;
+}
+
+
+
+.menu ul li a
+{
+    background-color: #008085;
+    border: 1px #4e667d solid;
+    color: #dde4ec;
+    display: block;
+    line-height: 1.35em;
+    padding: 4px 20px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.menu ul li a:hover
+{
+    background-color: #bfcbd6;
+    color: #465c71;
+    text-decoration: none;
+}
+

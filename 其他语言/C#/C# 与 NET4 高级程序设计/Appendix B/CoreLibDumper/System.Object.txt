@@ -1,0 +1,9 @@
+Type Name: System.Object
+Members:
+	-> Void .ctor()
+	-> Boolean Equals(System.Object)
+	-> Boolean Equals(System.Object, System.Object)
+	-> Int32 GetHashCode()
+	-> System.Type GetType()
+	-> System.String ToString()
+	-> Boolean ReferenceEquals(System.Object, System.Object)

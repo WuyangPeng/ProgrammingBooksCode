@@ -1,0 +1,5 @@
+Exceptional C++
+
+★★★
+作者：Herb Sutter
+其他书籍：《More Exceptional C++》、《C++ 编程剖析》、《C++ 编程规范》 

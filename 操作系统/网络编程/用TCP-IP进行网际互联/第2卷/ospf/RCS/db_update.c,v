@@ -1,0 +1,97 @@
+head	1.3;
+access;
+symbols;
+locks
+	dls:1.3; strict;
+comment	@ * @;
+
+
+1.3
+date	97.09.21.19.28.38;	author dls;	state Dist;
+branches;
+next	1.2;
+
+1.2
+date	94.02.26.19.50.44;	author dls;	state Works;
+branches;
+next	1.1;
+
+1.1
+date	94.02.20.18.59.56;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.3
+log
+@pre-3e code
+@
+text
+@/* db_update.c - db_update */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+#include <ospf.h>
+
+/*------------------------------------------------------------------------
+ *  db_update - update/insert a link state advertisement
+ *------------------------------------------------------------------------
+ */
+int db_update(par, plsa)
+struct ospf_ar	*par;
+struct ospf_lsa	*plsa;
+{
+	struct ospf_db	*pdb, *db_lookup(), *db_new();
+
+	if (pdb = db_lookup(par, plsa->lsa_type, plsa->lsa_lsid)) {
+	} else {
+		int	hv;
+
+		pdb = db_new(par, plsa);
+		pdb->db_lnext = par->ar_dblhead;
+		par->ar_dblhead = pdb;
+		hv = DBHASH(pdb->db_lsa.lsa_lsid);
+		pdb->db_hnext = par->ar_htable[hv];
+		par->ar_htable[hv] = pdb;
+	}
+}
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d16 1
+a16 1
+	struct ospf_db	*pdb;
+d18 1
+a18 1
+	if (pdb = db_lookup(par, plsa)) {
+d20 2
+d24 4
+a27 4
+		pdb->db_lprev = 0;
+		if (pdb->db_lnext)
+			pdb->db_lnext->db_lprev = pdb;
+		par->ar_dbhead = pdb;
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d12 3
+a14 2
+int db_update(pif)
+struct ospf_if	*pif;
+d16 11
+@

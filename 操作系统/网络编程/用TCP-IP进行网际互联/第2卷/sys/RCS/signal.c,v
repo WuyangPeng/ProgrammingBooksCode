@@ -1,0 +1,52 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* signal.c - signal */
+
+#include <conf.h>
+#include <kernel.h>
+#include <proc.h>
+#include <q.h>
+#include <sem.h>
+
+/*------------------------------------------------------------------------
+ * signal  --  signal a semaphore, releasing one waiting process
+ *------------------------------------------------------------------------
+ */
+SYSCALL signal(sem)
+	int	sem;
+{
+	STATWORD ps;    
+	register struct	sentry	*sptr;
+
+	disable(ps);
+	if (isbadsem(sem) || (sptr= &semaph[sem])->sstate==SFREE) {
+		restore(ps);
+		return(SYSERR);
+	}
+	if ((sptr->semcnt++) < 0)
+		ready(getfirst(sptr->sqhead), RESCHYES);
+	restore(ps);
+	return(OK);
+}
+@

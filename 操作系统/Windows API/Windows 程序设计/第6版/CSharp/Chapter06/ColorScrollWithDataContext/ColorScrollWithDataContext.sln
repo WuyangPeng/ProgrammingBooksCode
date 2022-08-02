@@ -1,0 +1,46 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows 8
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorScrollWithDataContext", "ColorScrollWithDataContext\ColorScrollWithDataContext.csproj", "{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Debug|ARM.ActiveCfg = Debug|ARM
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Debug|ARM.Build.0 = Debug|ARM
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Debug|ARM.Deploy.0 = Debug|ARM
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Debug|x64.ActiveCfg = Debug|x64
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Debug|x64.Build.0 = Debug|x64
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Debug|x64.Deploy.0 = Debug|x64
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Debug|x86.ActiveCfg = Debug|x86
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Debug|x86.Build.0 = Debug|x86
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Debug|x86.Deploy.0 = Debug|x86
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Release|ARM.ActiveCfg = Release|ARM
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Release|ARM.Build.0 = Release|ARM
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Release|ARM.Deploy.0 = Release|ARM
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Release|x64.ActiveCfg = Release|x64
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Release|x64.Build.0 = Release|x64
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Release|x64.Deploy.0 = Release|x64
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Release|x86.ActiveCfg = Release|x86
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Release|x86.Build.0 = Release|x86
+		{EC87E15A-138D-47D5-BF75-6FC6422B4ADD}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

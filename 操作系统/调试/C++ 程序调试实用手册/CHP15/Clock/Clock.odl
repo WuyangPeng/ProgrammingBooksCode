@@ -1,0 +1,56 @@
+// Clock.odl : type library source for ActiveX Control project.
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(A4386F83-98DE-11D3-A7E0-0080AE000001), version(1.0),
+  helpfile("Clock.hlp"),
+  helpstring("Clock ActiveX Control module"),
+  control ]
+library CLOCKLib
+{
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+	[ uuid(A4386F84-98DE-11D3-A7E0-0080AE000001),
+	  helpstring("Dispatch interface for Clock Control"), hidden ]
+	dispinterface _DClock
+	{
+		properties:
+			//{{AFX_ODL_PROP(CClockCtrl)
+			[id(1)] boolean ClockShape;
+			[id(2)] OLE_COLOR HitClock;
+			[id(DISPID_BACKCOLOR), bindable, requestedit] OLE_COLOR BackColor;
+			//}}AFX_ODL_PROP
+
+		methods:
+			//{{AFX_ODL_METHOD(CClockCtrl)
+			//}}AFX_ODL_METHOD
+
+			[id(DISPID_ABOUTBOX)] void AboutBox();
+	};
+
+	[ uuid(A4386F85-98DE-11D3-A7E0-0080AE000001),
+	  helpstring("Event interface for Clock Control") ]
+	dispinterface _DClockEvents
+	{
+		properties:
+			//  Event interface has no properties
+
+		methods:
+			//{{AFX_ODL_EVENT(CClockCtrl)
+			//}}AFX_ODL_EVENT
+	};
+
+	[ uuid(A4386F86-98DE-11D3-A7E0-0080AE000001),
+	  helpstring("Clock Control"), control ]
+	coclass Clock
+	{
+		[default] dispinterface _DClock;
+		[default, source] dispinterface _DClockEvents;
+	};
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

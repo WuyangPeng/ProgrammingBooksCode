@@ -1,0 +1,68 @@
+<html>
+
+<head>
+<title>vector constructors</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2><a href="vector.htm">vector</a> constructors</h2>
+
+<h3>Prototype</h3>
+
+<p class="code">inline vector()<br>
+{ ; };<br>
+<br>
+inline vector(float x0,float y0,float z0)<br>
+{ x=x0; y=y0; z=z0; };<br>
+<br>
+inline vector(float x0,float y0,float z0,float w0)<br>
+{ x=x0; y=y0; z=z0; w=w0; };<br>
+<br>
+inline vector(vector &amp;v)<br>
+{ *this=v; }; </p>
+
+<h3>Parameters</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>x0</td>
+    <td>float</td>
+    <td>co-ordinate in X axis</td>
+  </tr>
+  <tr>
+    <td>y0</td>
+    <td>float</td>
+    <td>co-ordinate in Y axis</td>
+  </tr>
+  <tr>
+    <td>z0</td>
+    <td>float</td>
+    <td>co-ordinate in Z axis</td>
+  </tr>
+  <tr>
+    <td>w0</td>
+    <td>float</td>
+    <td>co-ordinate in W axis</td>
+  </tr>
+  <tr>
+    <td>v</td>
+    <td>vector&amp;</td>
+    <td>vector to clone</td>
+  </tr>
+</table>
+
+<h3>Remarks</h3>
+
+<p>Creates a new initialized or uninitialized vector.</p>
+
+</body>
+</html>

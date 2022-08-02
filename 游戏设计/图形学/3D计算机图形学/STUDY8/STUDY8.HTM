@@ -1,0 +1,90 @@
+<!doctype html public "-//IETF//DTD.HTM//EN">
+<HTML><HEAD>
+<TITLE>Learning Rendering: Study 8 </TITLE>
+</HEAD>
+<BODY>
+<A HREF="../STUDY7/STUDY7.HTM">&lt;&lt;</A>
+<A HREF="../STUDY9/STUDY9.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>
+<HR>
+<H1>STUDY 8  GLOBAL ILLUMINATION</H1>
+<table border=0 width="100%">
+<tr><td>
+<A HREF="ROOM_A.TIF"><IMG SRC="ROOM_A.GIF" WIDTH=100 HEIGHT=75 ALT="room_a"></A>
+</td><td>
+demonstration image rendered using a (complete) global illumination renderer (RADIANCE - see <A HREF="HTTP://RADSITE.LBL.GOV/RADIANCE/HOME.HTM">http://radsite.lbl.gov/radiance/HOME.html</A>).
+</td></tr>
+</table>
+<table border=0>
+<tr><td>
+<A HREF="ROOM_B.TIF"><IMG SRC="ROOM_B.GIF" WIDTH=100 HEIGHT=75 ALT="room_b"></A>
+</td><td>
+<A HREF="ROOM_C.TIF"><IMG SRC="ROOM_C.GIF" WIDTH=100 HEIGHT=75 ALT="room_c"></A>
+</td><td>
+<A HREF="ROOM_D.TIF"><IMG SRC="ROOM_D.GIF" WIDTH=100 HEIGHT=75 ALT="room_d"></A>
+</td><td>
+components of room_a
+</td></tr>
+</table>
+<table border=0 width="100%">
+<tr><td>
+<A HREF="GLOB1.TIF"><IMG SRC="GLOB1.GIF" WIDTH=100 HEIGHT=75 ALT="glob1"></A>	
+</td><td>	 
+main diagram showing a selection of global illumination paths
+</td></tr><tr><td>
+<A HREF="GLOB2.TIF"><IMG SRC="GLOB2.GIF" WIDTH=100 HEIGHT=75 ALT="glob2"></A> 	
+</td><td>	
+a path handled by Whitted ray tracing
+</td></tr><tr><td>
+<A HREF="GLOB3.TIF"><IMG SRC="GLOB3.GIF" WIDTH=100 HEIGHT=75 ALT="glob3"></A>	
+</td><td>	 
+a path handled by distributed ray tracing
+</td></tr><tr><td>
+<A HREF="GLOB4.TIF"><IMG SRC="GLOB4.GIF" WIDTH=100 HEIGHT=75 ALT="glob4"></A> 		 
+</td><td>
+a path handled by two-pass ray tracing
+</td></tr>
+</table>
+
+<P>The above images use Heckbert's string notation for listing all the interactions that occur along a path of a light ray as it travels from source (L) to the eye (E). Here a light path from the light source to the first hit is termed L, subsequent paths involving transfer mechanisms at a surface point are categorised as DD, SD, DS or SS. glob1  shows an example of a simple scene and various paths. The path that finally terminates in the eye is called E. The paths in the example are:</P>
+
+<OL>
+<LI>LDDE   For this path the viewer sees the shadow cast by the table. The light reflects diffusely from the right-hand wall on to the floor. Note that any light reflected from a shadow area must have a minimum of two interactions between L and E.
+
+<LI>LDSE + LDDE  Here the user sees the dark side of the sphere which is not receiving any direct light. The light is modelled as a point source, so any area below the 'equator' of the sphere will be in shadow. The diffuse illumination reflected diffusely from the wall is directed towards the eye and because the sphere is shiny the refection to the eye is both specular and diffuse.
+
+<LI>LSSE +LDSE  Light is reflected from the perfect mirror surface to the eye and the viewer sees a reflection of the opaque or coloured ball in the mirror surface.
+
+<LI>LSDE Here the viewer sees a shadow area that is lighter than the main table shadow. This is due to the extra light reflected from the mirror and directed underneath the table.
+
+<LI>LSSDE  this path has three interactions between L and E and the user sees a caustic on the table top which is a diffuse surface. The first specular interaction takes place at the top surface of the sphere and light from the point source is refracted through the sphere. There is a second specular interaction when the light emerges from the sphere and hits the diffuse table surface. The effect of the refection is to concentrate light rays travelling through the sphere into a smaller area on the table top than they would occupy if the transparent sphere was not present. Thus the user sees a bright area on the diffuse surface.
+
+</OL>
+
+<P>A complete global illumination algorithm would have to include any light path which can be written as L(D|S)*E, where | means 'or' and * indicates repetition. The application of a local refection model implies paths of type LD|S (the intensity of each being calculated separately then combined as in the Phong reflection model) and the addition of a hidden surface removal algorithm  implies simulation of types LD|SE. Thus local refection models  only simulate strings of length unity (between L and E) and viewing a point in shadow implies a string which is at least of length 2.</P>
+
+<table border=0 width="100%">
+<tr><td>
+<A HREF="INDNAM.TIF"><IMG SRC="INDNAM.GIF" WIDTH=100 HEIGHT=75 ALT="indnam"></A>
+</td><td>
+This is a ray traced image of the scene with the main light turned off emphasising that ray tracing omits all light paths except LDE and LDS*E. In this scene, which is not untypical of interiors, most of the global interaction is diffuse-diffuse (i.e. indirect lighting from the upward
+facing lights on the wall) and ray tracing is thus wholly inappropriate.
+</td></tr><tr><td>
+<A HREF="INDAMB.TIF"><IMG SRC="INDAMB.GIF" WIDTH=100 HEIGHT=75 ALT="indamb"></A>
+</td><td>
+The previous scene with an ambient lift. The value of the ambient component is the same as that used to render the scene with the main light on (see rtfull), and is supposed to be a substitute for the illumination which would be present if diffuse-diffuse interation had been considered.
+</td></tr><tr><td>
+<A HREF="INDRD.TIF"><IMG SRC="INDRD.GIF" WIDTH=100 HEIGHT=75 ALT="indrd"></A>
+</td><td>
+A radiosity rendered image with the main light turned off. The rest of the room is now visible since Radiosity methods correctly account for diffuse intereflections.
+</td></tr><tr><td>
+<A HREF="RAD_IND.TIF"><IMG SRC="RAD_IND.GIF" WIDTH=100 HEIGHT=75 ALT="rad_ind"></A>
+</td><td>
+Radiance image with the main light turned off.
+</td></tr></table>
+<HR>
+<A HREF="../STUDY7/STUDY7.HTM">&lt;&lt;</A>
+<A HREF="../STUDY9/STUDY9.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>

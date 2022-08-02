@@ -1,0 +1,38 @@
+<html>
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>Fly3D Tutorial 6 - Creating the level .PVS file</title>
+<style type="text/css">
+<!--
+-->
+</style>
+</head>
+
+<body>
+<h1>Fly3D SDK</h1>
+<h2><a href="tutorials.htm">Tutorials</a></h2>
+<h3 align="right"><a href="../fly3d.htm">Home</a></h3>
+<h3>Tutorial 6</h3>
+<p>Creating the level .PVS file</p>
+<p>&middot; Introduction</p>
+<p>The operations in this tutorial calculates the PVS using the non-deterministic 
+  method described in the text. For a scene of high complexity, this program will 
+  run for several hours. After completion you will have computed all node to node 
+  visibility and enhanced the BSP tree with a connectivity matrix. The PVS will 
+  be stored in a flie with extension .pvs.</p>
+<p>&middot; Fly utilities operations</p>
+<p>1) Execute the flyPVS.exe utility. In the flyEditor, use the Tools/View menu 
+  option.</p>
+<p> 2) Select the bsp file you created in tutorial 1 or 2.</p>
+<p> 3) Select the sampling cube resolution. For this tutoriual a 64x64 resolution 
+  is sufficient.</p>
+<p> 4) Save PVSlog: this saves a .txt file with the same name as the BSP file 
+  including information on the PVS construction. This facility records the statistics 
+  of the pvs connectivity matrix, which can be examined for effectiveness.</p>
+<p>5) Visibility Sample Factor: a useful parameter that sets the volume sampling 
+  accuracy of the PVS calculation. The volume of each node is calculated and a 
+  sampling density specified (cubic metres/sample).</p>
+<p>&nbsp;</p>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+Ξϊνώ …8__PAGEZEROH__TEXT__text__TEXT|$| €__literal8__TEXT @ 
+__literal4__TEXTΰΰ__cstring__TEXTτ τ__DATA __data__DATA 
+ό__dyld__DATAό ό__bss__DATA! |__IMPORT0 __jump_table__IMPORT0‘ 
+8__LINKEDIT@0ψ0.2\ P(2 /usr/lib/dyldP| 
+X/System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL 
+T/System/Library/Frameworks/GLUT.framework/Versions/A/GLUT 
+4/usr/lib/libgcc_s.1.dylib 
+4o/usr/lib/libSystem.B.dylibj‰εƒδπƒμ‹]‰\$M‰L$ƒΓΑγΛ‰\$‹ƒΓ…ΐuχ‰\$ 
+θ’‰D$θEτθXÿ°O‹€;ÿΰθX‹€+ÿΰU‰εSƒμTθ[Η$Aθθ,ƒ¶ςςD$@ƒΎςςD$8ƒ¶ςςD$0ƒ¶ςςD$(ƒ¶ςςD$ 
+ƒ¶ςςD$ƒΎςςD$ƒΎςςD$ƒΎςς$θΐƒφ‹‰D$ƒϊ‹‰D$ƒφ‹‰$θ‰ƒ.‹ƒφ‹‰D$ 
+ƒφ‹‰D$ƒώ‹‰D$‰$θKƒ.‹Pƒφ‹‰D$ ƒώ‹‰D$ƒφ‹‰D$‰$θƒ.‹Pƒώ‹‰D$ 
+ƒφ‹‰D$ƒφ‹‰D$‰$θαƒ–‰D$ ΗD$ΗD$Η$θƒφ‰D$ 
+ΗD$ΗD$Η$θwθεƒΔT[ΙΓU‰εSƒμθ[ƒ?‹ƒ?‹ƒ_σ 
+ƒ3σσXΑƒ_σƒ?‹ƒ_σƒ7.wλ:ƒ?‹ƒ?‹ƒ_σ 
+ƒ7σ(Ρσ\Π(Βƒ_σθ5ƒΔ[ΙΓU‰εƒμθYƒ}uƒ} u Ηƒ}uƒ} u 
+Ηƒ}uƒ} u ΗΙΓU‰εSƒμ4θ[‹E ‰D$ ‹E‰D$ΗD$Η$θsΗ$θIθ?‹E;E 
+΅σ*E σZΘƒϋςςYΘσ*EσZΐf(Ρς^Πσ*E σZΘƒςςYΘσ*EσZΐς^Θƒ 
+ςςD$(ƒςςD$ 
+ςT$ςL$ƒςςD$ƒ#ςς$θ΅ισ*EσZΘƒςςYΘσ*E 
+σZΐf(Ρς^Πσ*EσZΘƒ#ςςYΘσ*E σZΐς^Θƒ ςςD$(ƒςςD$ 
+ƒϋςςD$ƒςςD$ςT$ς $θΗ$θοƒΔ4[ΙΓU‰εSƒμθ[‹E 
+‰D$E‰$θΗ$θϊΗD$τΗ$τθλƒ¤‰$θΔƒYώÿÿ‰$θθƒϋÿÿ‰$θ­ƒ]ύÿÿ‰$θ¤ƒώÿÿ‰$θ―Η$q 
+θIΗ$v€θBΗ$t€θ6ƒΠ‰D$ ΗD$ΗD$Η$θ3ƒ0‰D$ ΗD$ΗD$Η$θΫƒ‹‰D$ 
+ƒ‹‰D$ƒ‹‰D$ƒ‹‰$θƒ‹‰D$ƒ‹‰D$ƒ‹‰$θzθΩƒΔ[ΙΓπ?@ΐ$@$ΐ@ΐ@@€?@΄Ccolorcube€Ώ€Ώ€Ώ€?€Ώ€Ώ€?€?€Ώ€Ώ€?€Ώ€Ώ€Ώ€?€?€Ώ€?€?€?€?€Ώ€?€?€?€?€?€?€?€?€?€?€?€?€?€?ΰΰ 
+  
+τττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττττΌΠ. 
+@ψ F!M U ] i}€ …ΰ ’ή› ¤DªS±©Ό­Ζ 
+Π|Φάεσώ(=M[do}¥·ΘΦΰυ 
+&9J@ !"#$%&'()*@+,- 
+dyld_stub_binding_helper__dyld_func_lookupdyld__mach_header_axis_theta_NXArgc_NXArgv___progname__mh_execute_header_colors_cubeIndices_display_environ_main_mouse_myReshape_spinCube_verticesstart_exit_glClear_glClearColor_glColor3f_glColorPointer_glDrawElements_glEnable_glEnableClientState_glLoadIdentity_glMatrixMode_glOrtho_glRotatef_glTranslatef_glVertexPointer_glViewport_gluLookAt_glutCreateWindow_glutDisplayFunc_glutIdleFunc_glutInit_glutInitDisplayMode_glutInitWindowSize_glutMainLoop_glutMouseFunc_glutPostRedisplay_glutReshapeFunc_glutSwapBuffers

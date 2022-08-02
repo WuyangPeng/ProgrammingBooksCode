@@ -1,0 +1,96 @@
+<html>
+
+<head>
+<title>class stripfan_mesh</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class stripfan_mesh</h2>
+
+<h3>Definition</h3>
+
+<p class="code">class stripfan_mesh<br>
+{<br>
+&nbsp; public:<br>
+&nbsp; int nstripfan;<br>
+&nbsp; int *stripfandata;<br>
+&nbsp; int nvert;<br>
+&nbsp; vertex *vertdata;<br>
+<br>
+&nbsp;&nbsp;stripfan_mesh()<br>
+&nbsp; { nstripfan=0; stripfandata=0; vertdata=0; nvert=0; }<br>
+<br>
+&nbsp; void draw();<br>
+&nbsp; mesh *build_mesh();<br>
+&nbsp; vertex *add_stripfan(int nvert,int texpic,int lmpic);<br>
+<br>
+&nbsp; void reset()<br>
+&nbsp; {<br>
+&nbsp;&nbsp;&nbsp; if (stripfandata) delete stripfandata;<br>
+&nbsp;&nbsp;&nbsp; if (vertdata) delete vertdata;<br>
+&nbsp;&nbsp;&nbsp; nstripfan=0; stripfandata=0; vertdata=0; nvert=0;<br>
+&nbsp; }<br>
+<br>
+&nbsp; virtual ~stripfan_mesh()<br>
+&nbsp; { reset(); }<br>
+};</p>
+
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>nstripfan</td>
+    <td>int</td>
+    <td>number of strips and fans</td>
+  </tr>
+  <tr>
+    <td>stripfandata</td>
+    <td>int *</td>
+    <td>data for the strips and fans.<br>
+    3 integers for each strip/fan.&nbsp;</td>
+  </tr>
+  <tr>
+    <td>nvert</td>
+    <td>int</td>
+    <td>number of vertices in vertdata array</td>
+  </tr>
+  <tr>
+    <td>vertdata</td>
+    <td>vertex *</td>
+    <td>vertices array</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p><a href="stripfan_mesh_draw.htm">draw</a>, <a href="stripfan_mesh_build_mesh.htm">build_mesh</a>,
+<a href="stripfan_mesh_add_stripfan.htm">add_stripfan</a>, <a
+href="stripfan_mesh_reset.htm">reset</a></p>
+
+<h3>Remarks</h3>
+
+<p>This class implements a mesh made of strips and fans. Each strip/fan is made 
+  of an array of <i>vertex</i> classes.<br>
+The <i>stripfandata</i> is an array of integers with <i>nstripfan</i>*3 elements. Each 3
+elements defines a strip/fan as follwos:<br>
+  1) The first element is the number of vertices for the strip/fan. If positive, 
+  it means a strip with n vertices. If negative, a fan with -n vertices.<br>
+  2) The second element is the texture applied to strip/fan. If -1, no texture.<br>
+  3) The third element is the light map applied to strip/fan. If -1, no light 
+  map.</p>
+
+<h3>See Also</h3>
+
+<p><a href="mesh.htm">mesh</a></p>
+
+</body>
+</html>

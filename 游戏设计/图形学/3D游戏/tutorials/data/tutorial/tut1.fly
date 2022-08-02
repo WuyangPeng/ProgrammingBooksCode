@@ -1,0 +1,65 @@
+[classes]
+dll0=observer.dll
+
+[observer0]
+longname=player
+pos=-123.869995 96.399986 25.435999
+rot=0.000000 0.000000 0.000000
+vel=0.000000 0.000000 0.000000
+force=0.000000 0.000000 0.000000
+life=0
+colflag=1
+mass=1.000000
+radius=5.000000
+bump=1.000000
+friction=1.000000
+active=1
+latedraw=0
+rotvel=0.100000
+mousevel=0.100000
+moveforce=0.010000
+maxvel=0.100000
+veldamp=0.000200
+
+[fly]
+background=0.000000 0.000000 0.000000
+bspfile=tut1
+viewmindist=1.000000
+viewmaxdist=1000.000000
+camangle=60.000000
+camera=observer0
+player=observer0
+amblight=64
+curveerr=1.000000
+geomdetail=10.000000
+lmpxsize=10.000000
+mapmode=5
+mpdelay=50
+shadowcolor=0.000000 0.000000 0.000000
+shadowdepth=0.000000
+consolepic=
+fontspic=
+intropic=
+crosshairpic=
+crosshairsize=0
+cartoonpicbsp=
+cartoonpic=
+cartooncolor=0.000000 0.000000 0.000000
+cartoonwidth=0.000000
+detailpic=
+detailtile=0.000000
+antialias=0
+clearbk=1
+fog=0
+hwlights=0
+mouse=0
+mipmap=1
+multitexture=1
+mute=0
+nodeonly=0
+pvsoff=0
+shadows=2
+status=1
+stencil=0
+textfilter=1
+wireframe=0

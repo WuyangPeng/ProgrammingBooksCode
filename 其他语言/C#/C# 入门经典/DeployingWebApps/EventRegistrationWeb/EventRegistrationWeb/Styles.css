@@ -1,0 +1,12 @@
+﻿body 
+{
+    margin: 0;
+    left: 0;
+ 
+}
+
+#page-container 
+{
+    width: 760px;
+    background: yellow;
+}

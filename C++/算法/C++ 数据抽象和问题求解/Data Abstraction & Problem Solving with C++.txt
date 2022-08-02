@@ -1,0 +1,11 @@
+C++ 数据抽象和问题求解（Data Abstraction & Problem Solving with C++）
+（第6版）
+
+官方网站：
+http://www.pearsonhighered.com/carrano。
+
+○
+作者：Frank M.Carrano、Timothy Henry
+
+联系作者：
+carrano@acm.org

@@ -1,0 +1,63 @@
+<!doctype html public "-//IETF//DTD.HTM//EN">
+<HTML><HEAD>
+<TITLE>Learning Rendering:Study 5</TITLE>
+</HEAD>
+<BODY>
+<A HREF="../STUDY4/STUDY4B.HTM">&lt;&lt;</A>
+<A HREF="../STUDY6/STUDY6.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>
+<HR>
+<H1>STUDY 5	SHADOW MAPPING OPTIONS</H1>
+<table border=0 width="100%">
+<tr><td>
+<A HREF="SHMAP.TIF"><IMG SRC="SHMAP.GIF" WIDTH=100 HEIGHT=75 ALT="shmap"></A>
+</td><td>	
+Adding shadows to the previous environment mapped scene using shadow mapping or shadow Z-buffer technique. Note that there is 'interaction' between shadow mapping and environment mapping; the order of the operations is important. In this image the environment map was computed before the shadow map and hence the shadow of the teapot does not appear in the
+reflections in the teapot.  Note also the shadow edge definition. The inadequacies here are due to the spatial resolution of the shadow map which is here 256x256 for each component.
+</td></tr><tr><td>
+<A HREF="SHMAP2.TIF"><IMG SRC="SHMAP2.GIF" WIDTH=100 HEIGHT=75 ALT="shmap2"></A>	
+</td><td>
+In this image the whole scene was generated including the teapot, the shadow map was then computed. The teapot was then removed from the scene and the environment map was computed (even though the teapot is removed its shadow still appears) and then the teapot was added and the scene rendered from the proper viewpoint. The  shadow of the teapot can now be seen in the reflections in the teapot - however they appear slightly wrong due to the errors in the environment mapping.
+</td></tr><tr><td>
+<A HREF="SHMAP3.TIF"><IMG SRC="SHMAP3.GIF" WIDTH=100 HEIGHT=75 ALT="shmap3"></A>	
+</td><td>
+shadow map res = 128, softness = 0. Lowering the shadow map resolution increases the blocky look at the shadow edges and also causes shadows to break up - shadow of the leaves, for example (compare this image to shmap2).
+</td></tr><tr><td>
+<A HREF="SHMAP4.TIF"><IMG SRC="SHMAP4.GIF" WIDTH=100 HEIGHT=75 ALT="shmap4"></A>	
+</td><td>
+increasing the shadow map resolution diminishes the blockiness.
+</td></tr><tr><td>
+<A HREF="SHDT1.TIF"><IMG SRC="SHDT1.GIF" WIDTH=100 HEIGHT=75 ALT="shdt1"></A>	
+</td><td>	depth map for scene from proper viewpoint
+</td></tr><tr><td>
+</table>
+
+The next six images are the depth maps for the point light source (used for explaining the shadow map technique).
+<table border=0>
+<tr><td>
+<A HREF="SHDT2A.TIF"><IMG SRC="SHDT2A.GIF" WIDTH=100 HEIGHT=75 ALT="shdt2a"></A>	
+</td><td>
+<A HREF="SHDT2B.TIF"><IMG SRC="SHDT2B.GIF" WIDTH=100 HEIGHT=75 ALT="shdt2b"></A>
+</td><td> 	
+<A HREF="SHDT2C.TIF"><IMG SRC="SHDT2C.GIF" WIDTH=100 HEIGHT=75 ALT="shdt2c"></A>
+</td></tr><tr><td>
+<A HREF="SHDT2D.TIF"><IMG SRC="SHDT2D.GIF" WIDTH=100 HEIGHT=75 ALT="shdt2d"></A>
+</td><td>
+<A HREF="SHDT2E.TIF"><IMG SRC="SHDT2E.GIF" WIDTH=100 HEIGHT=75 ALT="shdt2e"></A>
+</td><td>
+<A HREF="SHDT2F.TIF"><IMG SRC="SHDT2F.GIF" WIDTH=100 HEIGHT=75 ALT="shdt2f"></A>
+</td></tr>
+</table>
+<table border=0 width="100%">
+<tr><td>
+<A HREF="SHDT2M.TIF"><IMG SRC="SHDT2M.GIF" WIDTH=100 HEIGHT=75 ALT="shdt2m"></A>	
+</td><td>montage of the above six images (depth cube).
+</td></tr>
+</table>
+
+<HR>
+<A HREF="../STUDY4/STUDY4B.HTM">&lt;&lt;</A>
+<A HREF="../STUDY6/STUDY6.HTM">&gt;&gt;</A>
+<a HREF="../TOC.HTM">Contents</a> 
+<A HREF="../INDEX.HTM" TARGET="_top">Top</a>

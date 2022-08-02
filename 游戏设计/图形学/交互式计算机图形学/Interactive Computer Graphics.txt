@@ -1,0 +1,15 @@
+交互式计算机图形学  （Interactive Computer Graphics）
+
+官方网站：
+http://www.cs.unm.edu/~angel、
+http://www.pearsonhighered.com/irc、 
+http://www.aw.com/cssupport （已失效） 
+
+第5版
+★
+作者： Edward Angel  
+
+第7版
+★
+作者： Edward Angel、Dave Shreiner
+  

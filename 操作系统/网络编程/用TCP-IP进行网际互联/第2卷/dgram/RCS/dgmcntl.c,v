@@ -1,0 +1,47 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.25.42;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* dgmcntl.c - dgmcntl */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  dgmcntl  -  control the network and datagram pseudo devices
+ *------------------------------------------------------------------------
+ */
+int dgmcntl(pdev, com, addr)
+struct	devsw	*pdev;
+int		com;
+char		*addr;
+{
+	int	status;
+
+	switch (com)	{
+	default:
+		status = SYSERR;
+	}
+	return status;
+}
+@

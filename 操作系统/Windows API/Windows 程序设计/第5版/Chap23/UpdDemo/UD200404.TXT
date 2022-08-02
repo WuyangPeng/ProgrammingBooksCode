@@ -1,0 +1,11 @@
+利用辅助线程从匿名FTP服务器上下载文件
+
+    这是一个Win32程序,它展示了利用辅助线程从匿名FTP服务器上下载文件的方法
+
+    WinInet（「Windows Internet」）API是一个高级函式集合，帮助程序员使用三个常见的Internet协议，这三个协议是：用於World Wide Web全球万维网的超文字传输协议（HTTP：Hypertext Transfer Protocol）、文件传输协议（FTP：File Transfer Protocol）和另一个称为Gopher的文件传输协议。WinInet函式的语法与常用的Windows文件函式的语法类似，这使得使用这些协议就像使用本地磁盘上的文件一样容易。WinInet API的文件位於MSDN的/Platform SDK/Internet, Intranet, Extranet Services/Internet Tools and Technologies/WinInet API目录
+
+    许多有网站的公司都有「匿名FTP」服务器，这样使用者可以在不输入使用者名称和密码的情况下下载文件。例如，如果您在Internet Explorer的位址栏输入 ftp://ftp.microsoft.com ，那么您就可以浏览FTP伺服器上的目录并下载档案。
+
+    虽然现今FTP服务对大多数的Web使用者来说并不是那么方便，但它仍然相当有用。例如，应用程序能利用FTP从匿名FTP伺服器上取得资料，这些取得资料的程序几乎完全在台面下处理，而不需要使用者操心。
+
+实现步骤:

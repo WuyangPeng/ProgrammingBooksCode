@@ -1,0 +1,78 @@
+<html>
+
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>class light_vertex</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Objects Reference</a></h1>
+
+<h2>class light_vertex</h2>
+
+<h3>Definition</h3>
+
+<p class="code">class light_vertex<br>
+  {<br>
+  &nbsp;&nbsp;&nbsp; vector pos[MAX_HWLIGHTS];<br>
+  &nbsp;&nbsp;&nbsp; vector color[MAX_HWLIGHTS];<br>
+  &nbsp;&nbsp;&nbsp; float radius[MAX_HWLIGHTS];<br>
+  public:<br>
+  &nbsp;&nbsp;&nbsp; int nlights;<br>
+  &nbsp;&nbsp;&nbsp; light_vertex() { nlights=0; };<br>
+  &nbsp;&nbsp;&nbsp; void add_light(vector&amp; p,vector&amp; c,float r);<br>
+  &nbsp;&nbsp;&nbsp; void init_draw(bsp_object *obj);<br>
+  &nbsp;&nbsp;&nbsp; void end_draw();<br>
+  };</p>
+
+<h3>Data Members</h3>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+    <th>Member</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>nlights</td>
+    <td>int</td>
+    <td>number of active lights</td>
+  </tr>
+  <tr>
+    <td>pos</td>
+    <td><a href="vector.htm">vector</a>[]</td>
+    <td>position of active lights</td>
+  </tr>
+  <tr>
+    <td>color</td>
+    <td><a href="vector.htm">vector</a>[]</td>
+    <td>color of active lights</td>
+  </tr>
+  <tr>
+    <td>radius</td>
+    <td>float[]</td>
+    <td>radius of active lights</td>
+  </tr>
+</table>
+
+<h3>Methods</h3>
+
+<p> <a
+href="light_vertex_add_light.htm">add_light</a>, <a href="light_vertex_init_draw.htm">init_draw</a>,
+<a href="light_vertex_end_draw.htm">end_draw</a></p>
+
+<h3>Remarks</h3>
+
+<p>This class holds information on dynamic hardware lights. When a dynamic object 
+  receives a FLYOBJM_ILLUM message it adds the light parameters to this class 
+  with the <i>add_light</i> method. When rendering it calls the <i>init_draw</i> 
+  method before drawing the mesh to get the hardware lights in place. After finishing 
+  the render it calls <i>end_draw</i> to reset the hardware lights.</p>
+
+<h3>See Also</h3>
+
+<p><a href="vector.htm">vector</a></p>
+
+</body>
+</html>

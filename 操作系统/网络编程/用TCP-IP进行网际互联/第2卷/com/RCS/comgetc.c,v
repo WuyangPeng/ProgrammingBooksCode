@@ -1,0 +1,54 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.23.38;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@pre-3e code
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@
+#include <conf.h>
+#include <kernel.h>
+#include <io.h>
+
+/*------------------------------------------------------------------------
+ *  comgetc -- read a character from a serial line
+ *------------------------------------------------------------------------
+ */
+int
+comgetc(pdev )
+struct	devsw	*pdev;
+{
+	return SYSERR;
+}
+
+
+/*------------------------------------------------------------------------
+ *  comread -- read from a serial line
+ *------------------------------------------------------------------------
+ */
+int
+comread(pdev, buf, count)
+struct	devsw	*pdev;
+char *buf;
+int count;
+{
+	return SYSERR;
+}
+@

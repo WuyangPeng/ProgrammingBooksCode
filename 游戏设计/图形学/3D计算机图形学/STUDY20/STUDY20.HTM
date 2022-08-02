@@ -1,0 +1,70 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.51 [en] (Win98; I) [Netscape]">
+   <title>Learning Rendering: Study 20</title>
+</head>
+<body>
+<a href="file:///F|/learning/STUDY19/STUDY19.HTM">&lt;&lt;</a><a href="file:///F|/learning/STUDY21/STUDY21.HTM">>></a><a href="file:///F|/learning/TOC.HTM">Contents</a><a href="file:///F|/learning/INDEX.HTM" TARGET="_top">Top</a>
+<hr>
+<h1>
+STUDY 20 OBVIOUS FINAL DIFFERENCES</h1>
+
+<h2>
+COLOUR</h2>
+It is instructive to compare, say, <a href="file:///F|/learning/STUDY20/SCANLN.TIF">scanln</a>
+(scan line rendered based on Phong illumination model), <a href="file:///F|/learning/STUDY20/RAYTR.TIF">raytr</a>
+(Whitted ray traced), <a href="file:///F|/learning/STUDY20/RADIOS.TIF">radios</a>
+(hybrid radiosity-raytraced) and <a href="file:///F|/learning/STUDY19/scenehi2.tif">radnce
+</a>(RADIANCE).
+The scene database used in all cases is identical and the rendering was
+evaluated at three (RGB) spectral points. Note that the colours in the
+Phong and the ray traced image are the same as we would expect; but that
+there are colour shifts in the radiosity and the RADIANCE images. There
+are a number of reasons for this.
+<ol>
+<li>
+In the radiosity image we are simulating diffuse-diffuse interaction which
+'carries' colour from surface to surface - the characteristic colour bleeding
+effect (see <a href="file:///F|/learning/STUDY15/STUDY15.HTM">STUDY 15</a>).
+The extent to which this happens depends upon spatial relationship of the
+patches, their diffuse reflectivity and the original colours of the patches
+which are interacting. It is easy to get 'too much' colour bleeding by
+having high reflectivities (see, for example, <a href="file:///F|/learning/STUDY15/RDCB2.TIF">rdcb2</a>)
+and this is yet another aspect of a radiosity image that requires 'user
+tuning'. In Phong and ray tracing the diffuse reflectivity coefficients
+exclusively determine the colour of diffuse surfaces.</li>
+
+<li>
+In the RADIANCE image extra paths are accounted for (LS*DE) paths which
+will also effect the colour.</li>
+
+<li>
+Different rendering methods have different facilities which can effect
+the final colour. For example, with RADIANCE, the solution produced is
+such that each pixel has three values associated with it which give the
+amount of light energy entering the camera from that particular direction
+at each of the Red, Green and Blue wavelengths. A final process is then
+carried out which converts this "power" image into a standard image based
+on an "exposure" parameter (equivalent to the exposure on a camera). This
+process is ignored in radiosity, phong and raytraced images.</li>
+</ol>
+
+<h2>
+IMAGE DEFINITION</h2>
+Another notable difference is that the RADIANCE image looks fuzzy. This
+is probably a combination of factor 3) above and the fact that Radiance
+is combining information from non-uniform sampling of the scene (due to
+the anti-aliasing method used).
+<h2>
+LIGHT LEVELS</h2>
+The approach to the setting of light levels when creating a scene varies
+based on the method used. This ranges from arbitrary values for the ambient,
+point light, and spot lights generaly used in scanline/raytraced scenes,
+to physical units (relating to light power output) used in RADIANCE. Attempting
+to choose values which will give similar results for each method is usually
+a matter of trial and error.&nbsp;
+<hr><a href="file:///F|/learning/STUDY19/STUDY19.HTM">&lt;&lt;</a><a href="file:///F|/learning/STUDY21/STUDY21.HTM">>></a><a href="file:///F|/learning/TOC.HTM">Contents</a><a href="file:///F|/learning/INDEX.HTM" TARGET="_top">Top</a>
+</body>
+</html>

@@ -1,0 +1,82 @@
+P  {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	color : black;
+	font-size : 10pt;
+	margin-left : .5cm;
+}
+
+H1  {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	color : orange;
+	font-size : 18pt;
+}
+
+H2  {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 14pt;
+	color : #88879F;
+}
+
+H2 A  {
+	text-decoration : none;
+	color : #88879F;
+}
+
+A  {
+	text-decoration : none;
+	color : orange;
+}
+
+UL  {
+	list-style-position : outside;
+	list-style : circle;
+	font-size : 10pt;
+; font-family: Verdana, Arial, Helvetica, sans-serif
+}
+
+H3  {
+	font-weight : bold;
+	color : black;
+	font-size : 10pt;
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+}
+
+.code  {
+	font-family : "Courier New";
+	font-size : 10pt;
+	color : #000000;
+	margin-left : .5cm;
+	background-color : #D2D2D2;
+	margin-right : .5cm;
+; white-space: nowrap
+}
+
+H3 A  {
+	color : #000000;
+}
+
+TABLE  {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 10pt;
+	margin-left : .5cm;
+}
+
+TH  {
+	color : #FFFFFF;
+	background-color : #000000;
+}
+
+P A  {
+	font-weight : bold;
+}
+
+TABLE A  {
+	font-weight : bold;
+	color : #0000FF;
+}
+
+A:hover  {
+	text-decoration : underline;
+}
+
+BODY {  background-color: #FFFFFF}

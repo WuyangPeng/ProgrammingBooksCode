@@ -1,0 +1,377 @@
+<Page
+    x:Class="TheTaleOfTomKitten.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TheTaleOfTomKitten"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <Page.Resources>
+        <Style x:Key="commonTextStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Century Schoolbook" />
+            <Setter Property="FontSize" Value="36" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Margin" Value="0 12" />
+        </Style>
+        
+        <Style x:Key="paragraphTextStyle" TargetType="TextBlock" 
+               BasedOn="{StaticResource commonTextStyle}">
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        
+        <Style x:Key="frontMatterTextStyle" TargetType="TextBlock" 
+               BasedOn="{StaticResource commonTextStyle}">
+            <Setter Property="TextAlignment" Value="Center" />
+        </Style>
+        
+        <Style x:Key="imageStyle" TargetType="Image">
+            <Setter Property="Stretch" Value="None" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="White">
+        <ScrollViewer>
+            <StackPanel MaxWidth="640"
+                        HorizontalAlignment="Center">
+                
+                <!-- pg. 3 -->
+                <TextBlock Style="{StaticResource frontMatterTextStyle}">
+                    THE TALE<LineBreak />OF<LineBreak />
+                    <Run FontSize="48">TOM KITTEN</Run>
+                </TextBlock>
+        
+                <Image Source="Images/tom04.jpg" Style="{StaticResource imageStyle}" />
+
+                <!-- pg. 5 -->
+                <TextBlock Style="{StaticResource frontMatterTextStyle}"
+                           FontSize="48">
+                    THE TALE OF<LineBreak />
+                    <Run FontSize="96">TOM KITTEN</Run><LineBreak />
+                    <Run FontSize="24">BY</Run><LineBreak />
+                    BEATRIX POTTER<LineBreak />
+                    <Italic FontSize="24">
+                    Author of<LineBreak />
+                    "The Tale of Peter Rabbit", &amp;c.</Italic>
+                </TextBlock>
+
+                <Image Source="Images/tom05.jpg" Style="{StaticResource imageStyle}" />
+
+                <TextBlock Style="{StaticResource frontMatterTextStyle}">
+                    FREDERICK WARNE<LineBreak />
+                    First published 1907
+                </TextBlock>
+        
+                <!-- pg. 6 -->
+                <TextBlock Style="{StaticResource frontMatterTextStyle}"
+                           FontStyle="Italic"
+                           FontSize="24">
+                    1907 by Frederick Warne &amp; Co.
+                </TextBlock>
+
+                <TextBlock Style="{StaticResource frontMatterTextStyle}"
+                           FontStyle="Italic"
+                           FontSize="24">
+                    Printed and bound in Great Britain by<LineBreak />
+                    William Clowes Limited, Beccles and London
+                </TextBlock>
+        
+                <!-- pg. 7 -->
+                <TextBlock Style="{StaticResource frontMatterTextStyle}">
+                    DEDICATED<LineBreak />
+                    TO ALL<LineBreak />
+                    <Run FontSize="48">PICKLES,</Run><LineBreak />
+                    — ESPECIALLY TO THOSE THAT<LineBreak />
+                    GET UPON MY GARDEN WALL
+                </TextBlock>
+
+                <Image Source="Images/tom08.jpg" Style="{StaticResource imageStyle}" />
+        
+                <!-- pg. 9 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    ONCE UPON A TIME there were three little kittens, and their 
+                    names were Mittens, Tom Kitten, and Moppet.
+                </TextBlock>
+
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;They had dear little fur coats of their 
+                    own; and they tumbled about the doorstep and played in the 
+                    dust.
+                </TextBlock>
+
+                <!-- pg. 10 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;But one day their mother — Mrs. Tabitha 
+                    Twitchit — expected friends to tea; so she fetched the 
+                    kittens indoors, to wash and dress them, before the fine 
+                    company arrived.
+                </TextBlock>
+
+                <Image Source="Images/tom11.jpg" Style="{StaticResource imageStyle}" />
+                
+                <!-- pg. 13 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;First she scrubbed their faces (this one is 
+                    Moppet).
+                </TextBlock>
+
+                <Image Source="Images/tom12.jpg" Style="{StaticResource imageStyle}" />
+
+                <!-- pg. 14 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;Then she brushed their fur, (this one is 
+                    Mittens).
+                </TextBlock>
+
+                <Image Source="Images/tom15.jpg" Style="{StaticResource imageStyle}" />
+                
+                <!-- pg. 17 --> 
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;Then she combed their tails and whiskers 
+                    (this is Tom Kitten).
+                </TextBlock>
+
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;Tom was very naughty, and he scratched.
+                </TextBlock>
+                
+                <Image Source="Images/tom16.jpg" Style="{StaticResource imageStyle}" />
+
+                <!-- pg. 18 --> 
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;Mrs. Tabitha dressed Moppet and Mittens in 
+                    clean pinafores and tuckers; and then she took all sorts of 
+                    elegant uncomfortable clothes out of a chest of drawers, in 
+                    order to dress up her son Thomas.
+                </TextBlock>
+
+                <Image Source="Images/tom19.jpg" Style="{StaticResource imageStyle}" />
+                
+                <!-- pg. 21 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;Tom Kitten was very fat, and he had grown; 
+                    several buttons burst off. His mother sewed them on again.
+                </TextBlock>
+
+                <Image Source="Images/tom20.jpg" Style="{StaticResource imageStyle}" />
+
+                <!-- pg. 22 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;When the three kittens were ready, Mrs. 
+                    Tabitha unwisely turned them out into the garden, to be 
+                    out of the way while she made hot buttered toast.
+                </TextBlock>
+
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;“Now keep your frocks clean, children! You 
+                    must walk on your hind legs. Keep away from the dirty 
+                    ash-pit, and from Sally Henny Penny, and from the 
+                    pig-stye and the Puddle-Ducks.”
+                </TextBlock>
+
+                <Image Source="Images/tom23.jpg" Style="{StaticResource imageStyle}" />
+                
+                <!-- pg. 25 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;Moppet and Mittens walked down the garden 
+                    path unsteadily. Presently they trod upon their pinafores 
+                    and fell on their noses.
+                </TextBlock>
+
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;When they stood up there were several green 
+                    smears!
+                </TextBlock>
+
+                <Image Source="Images/tom24.jpg" Style="{StaticResource imageStyle}" />
+
+                <!-- pg. 26 -->                
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;“Let us climb up the rockery, and sit on 
+                    the garden wall,” said Moppet.
+                </TextBlock>
+
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;They turned their pinafores back to front, 
+                    and went up with a skip and a jump; Moppet's white tucker 
+                    fell down into the road.
+                </TextBlock>
+
+                <Image Source="Images/tom27.jpg" Style="{StaticResource imageStyle}" />
+                
+                <!-- pg. 29 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;Tom Kitten was quite unable to jump when 
+                    walking upon his hind legs in trousers. He came up the 
+                    rockery by degrees, breaking the ferns, and shedding 
+                    buttons right and left.
+                </TextBlock>
+
+                <Image Source="Images/tom28.jpg" Style="{StaticResource imageStyle}" />
+
+                <!-- pg. 30 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;He was all in pieces when he reached the 
+                    top of the wall.
+                </TextBlock>
+
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;Moppet and Mittens tried to pull him 
+                    together; his hat fell off, and the rest of his buttons 
+                    burst.
+                </TextBlock>
+
+                <Image Source="Images/tom31.jpg" Style="{StaticResource imageStyle}" />
+                
+                <!-- pg. 33 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;While they were in difficulties, there was 
+                    a pit pat paddle pat! and the three Puddle-Ducks came along 
+                    the hard high road, marching one behind the other and doing 
+                    the goose step — pit pat paddle pat! pit pat waddle pat!
+                </TextBlock>
+
+                <Image Source="Images/tom32.jpg" Style="{StaticResource imageStyle}" />
+
+                <!-- pg. 34 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;They stopped and stood in a row, and stared 
+                    up at the kittens. They had very small eyes and looked 
+                    surprised.
+                </TextBlock>
+
+                <Image Source="Images/tom35.jpg" Style="{StaticResource imageStyle}" />
+                
+                <!-- pg. 37 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;Then the two duck-birds, Rebeccah and Jemima 
+                    Puddle-Duck, picked up the hat and tucker and put them on.
+                </TextBlock>
+
+                <Image Source="Images/tom36.jpg" Style="{StaticResource imageStyle}" />
+
+                <!-- pg. 38 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;Mittens laughed so that she fell off the 
+                    wall. Moppet and Tom descended after her; the pinafores 
+                    and all the rest of Tom's clothes came off on the way down.
+                </TextBlock>
+
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;“Come! Mr. Drake Puddle-Duck,” said Moppet 
+                    — “Come and help us to dress him! Come and button up Tom!”
+                </TextBlock>
+
+                <Image Source="Images/tom39.jpg" Style="{StaticResource imageStyle}" />
+                
+                <!-- pg. 41 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;Mr. Drake Puddle-Duck advanced in a slow 
+                    sideways manner, and picked up the various articles.
+                </TextBlock>
+
+                <Image Source="Images/tom40.jpg" Style="{StaticResource imageStyle}" />
+
+                <!-- pg. 42 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;But he put them on <Italic>himself!</Italic> 
+                    They fitted him even worse than Tom Kitten.
+                </TextBlock>
+      
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;“It's a very fine morning!” said Mr. Drake 
+                    Puddle-Duck.
+                </TextBlock>
+
+                <Image Source="Images/tom43.jpg" Style="{StaticResource imageStyle}" />
+                
+                <!-- pg. 45 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;And he and Jemima and Rebeccah Puddle-Duck 
+                    set off up the road, keeping step — pit pat, paddle pat! 
+                    pit pat, waddle pat!
+                </TextBlock>
+
+                <Image Source="Images/tom44.jpg" Style="{StaticResource imageStyle}" />
+
+                <!-- pg. 46 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;Then Tabitha Twitchit came down the garden 
+                    and found her kittens on the wall with no clothes on.
+                </TextBlock>
+
+                <Image Source="Images/tom47.jpg" Style="{StaticResource imageStyle}" />
+                
+                <!-- pg. 49 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;She pulled them off the wall, smacked them, 
+                    and took them back to the house.
+                </TextBlock>
+
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;“My friends will arrive in a minute, and 
+                    you are not fit to be seen; I am affronted,” said Mrs. 
+                    Tabitha Twitchit.
+                </TextBlock>
+
+                <Image Source="Images/tom48.jpg" Style="{StaticResource imageStyle}" />
+
+                <!-- pg. 50 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;She sent them upstairs; and I am sorry to 
+                    say she told her friends that they were in bed with the 
+                    measles; which was not true.
+                </TextBlock>
+
+                <Image Source="Images/tom51.jpg" Style="{StaticResource imageStyle}" />
+                
+                <!-- pg. 53 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;Quite the contrary; they were not in bed: 
+                    <Italic>not</Italic> in the least.
+                </TextBlock>
+
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;Somehow there were very extraordinary 
+                    noises over-head, which disturbed the dignity and repose 
+                    of the tea party.
+                </TextBlock>
+
+                <Image Source="Images/tom52.jpg" Style="{StaticResource imageStyle}" />
+
+                <!-- pg. 54 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;And I think that some day I shall have to 
+                    make another, larger, book, to tell you more about Tom 
+                    Kitten!
+                </TextBlock>
+                
+                <Image Source="Images/tom55.jpg" Style="{StaticResource imageStyle}" />
+
+                <!-- pg. 56 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;As for the Puddle-Ducks—they went into a 
+                    pond.
+                </TextBlock>
+
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;The clothes all came off directly, because 
+                    there were no buttons.
+                </TextBlock>
+
+                <Image Source="Images/tom57.jpg" Style="{StaticResource imageStyle}" />
+
+                <!-- pg. 59 -->
+                <TextBlock Style="{StaticResource paragraphTextStyle}">
+                    &#x2003;&#x2003;And Mr. Drake Puddle-Duck, and Jemima and 
+                    Rebeccah, have been looking for them ever since.
+                </TextBlock>
+
+                <Image Source="Images/tom58.jpg" Style="{StaticResource imageStyle}" />
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>
+    

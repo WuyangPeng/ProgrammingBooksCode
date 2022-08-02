@@ -1,0 +1,4 @@
+/target:library
+/out:CorLibDumper.dll
+/keyfile:myTestKeyPair.snk
+CorLibDumper.cs

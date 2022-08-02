@@ -1,0 +1,184 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	97.09.21.19.30.23;	author dls;	state Dist;
+branches;
+next	1.1;
+
+1.1
+date	94.05.08.06.01.42;	author dls;	state Old;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@pre-3e code
+@
+text
+@/* ttyread.c - ttyread */
+
+#include <conf.h>
+#include <kernel.h>
+#include <tty.h>
+
+/*------------------------------------------------------------------------
+ * ttyread - read characters from a tty
+ *------------------------------------------------------------------------
+ */
+int
+ttyread(pdev, buf, len)
+struct devsw	*pdev;
+char		*buf;
+int		len;
+{
+	STATWORD	ps;
+	struct tty	*ptty = (struct tty *)pdev->dvioblk;
+	int		count;
+
+	if (ptty->tty_state != TTYS_ALLOC)
+		return SYSERR;
+	if ((ptty->tty_iflags & TIF_EOF) && ptty->tty_icount == 0) {
+		ptty->tty_iflags &= ~TIF_EOF;
+		return EOF;
+	}
+	if (ptty->tty_iflags & TIF_NOBLOCK)
+		if (scount(ptty->tty_isema) <= 0)
+			return SYSERR;
+	disable(ps);
+	wait(ptty->tty_isema);
+	count = 0;
+	while (count < len && ptty->tty_icount) {
+		*buf++ = ptty->tty_in[ptty->tty_istart];
+		count++;
+		ptty->tty_icount--;
+		ptty->tty_istart++;
+		if (ptty->tty_istart >= IBLEN)
+			ptty->tty_istart = 0;
+	}
+/* wakeup other readers here */
+	restore(ps);
+	gettime(&ptty->tty_ctime);
+	return count;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d1 1
+a1 1
+/* ttyread.c - ttyread, readcopy */
+a5 1
+#include <io.h>
+d8 1
+a8 1
+ *  ttyread - read one or more characters from a tty device
+d11 5
+a15 4
+ttyread(devptr, buff, count)
+struct	devsw	*devptr;
+int count;
+char *buff;
+d17 3
+a19 5
+	STATWORD ps;    
+	register struct	tty *iptr;
+	int avail, nread;
+	char ch, eofch;
+	int	donow, dolater;
+d21 9
+a29 2
+	if (count < 0)
+		return(SYSERR);
+d31 9
+a39 71
+	avail=(iptr= &tty[devptr->dvminor])->icnt;
+
+	if (count == 0) {	/* read whatever is available */
+		if (avail == 0) {
+			restore(ps);
+			return(0);
+		}
+		count = avail;
+	}
+	if (count < avail) {
+		donow = count;
+		dolater = 0;
+	} else {
+		donow = avail;
+		dolater = count - avail;
+	}
+	nread = 0;
+	if (donow > 0) {
+		ch = iptr->ibuff[iptr->itail++];
+		--iptr->icnt;
+		if (iptr->itail >= IBUFLEN)
+			iptr->itail = 0;
+		if ( ((eofch=iptr->ieofc) == ch) && iptr->ieof) {
+				sreset(iptr->isem, avail-1);
+				restore(ps);
+				return(EOF);
+		}
+		*buff++ = ch;
+		for (nread=1 ; nread < donow ; ) {
+			ch = iptr->ibuff[iptr->itail];
+			if ( (ch==eofch) && iptr->ieof) {
+				sreset(iptr->isem, avail - nread);
+				restore(ps);
+				return(nread);
+			}
+			*buff++ = ch;
+			--iptr->icnt;
+			if (++iptr->itail >= IBUFLEN)
+				iptr->itail = 0;
+			nread++;
+			if (ch == NEWLINE || ch == RETURN) {
+			        iptr->icnt = avail - nread;
+				sreset(iptr->isem, avail - nread);
+				restore(ps);
+				return(nread);
+			}
+		}
+		sreset(iptr->isem, avail - nread);
+	}
+	donow = nread;
+	for (nread=0 ; nread < dolater ; ) {
+		wait(iptr->isem);
+		ch = iptr->ibuff[iptr->itail];
+		if (ch == iptr->ieofc && iptr->ieof) {
+			if (nread == 0 && donow == 0) {
+			        --iptr->icnt;
+				if (++iptr->itail >= IBUFLEN)
+				iptr->itail = 0;
+				restore(ps);
+				return(EOF);
+			}
+			signal(iptr->isem);
+			break;
+		}
+		*buff++ = ch;
+		nread++;
+		--iptr->icnt;
+		if (++iptr->itail >= IBUFLEN)
+			iptr->itail = 0;
+		if (ch == NEWLINE || ch == RETURN)
+			break;
+d41 1
+d43 2
+a44 1
+	return(donow + nread);
+@

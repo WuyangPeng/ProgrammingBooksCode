@@ -1,0 +1,40 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.19;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* kbmcntl.c - kbmcntl */
+
+#include <conf.h>
+#include <kernel.h>
+
+/*------------------------------------------------------------------------
+ *  kbmcntl  -  control a  keyboard/monitor device
+ *------------------------------------------------------------------------
+ */
+kbmcntl(devptr, func, addr)
+struct	devsw	*devptr;
+int func;
+char *addr;
+{
+    return SYSERR;
+}
+@

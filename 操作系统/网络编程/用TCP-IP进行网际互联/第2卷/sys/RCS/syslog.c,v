@@ -1,0 +1,74 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* syslog.c - syslog */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+#include <io.h>
+#include <syslog.h>
+
+#ifdef	LOGHOST
+char	*loghost = LOGHOST;
+#else
+char	*loghost = 0;
+#endif
+
+static int	logdev = BADDEV;
+static char	logbuf[LOG_MAXLEN+10]; /* mesg. + room for <#.> & null	*/
+
+extern int	currpid;
+
+/*------------------------------------------------------------------------
+ * syslog - log messages to a remote UNIX syslogd or the console
+ *------------------------------------------------------------------------
+ */
+int
+syslog(where, pname, fmt, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15)
+int	where;
+char	*pname, *fmt;
+int	a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15;
+{
+	int	len;
+
+	if (loghost == 0)
+		return kprintf(fmt, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,					a12,a13,a14,a15);
+	if (logdev == BADDEV) {
+		logdev = open(UDP, LOGHOST, ANYLPORT);
+		if (logdev == SYSERR)
+			return SYSERR;
+		control(logdev, DG_SETMODE, DG_DMODE);
+	}
+	sprintf(logbuf, "<%d>", where);
+	len = strlen(logbuf);
+	sprintf(&logbuf[len], "%s[%u]: ", pname, currpid);
+	len = strlen(logbuf);
+	sprintf(&logbuf[len], fmt, a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,
+		a12,a13,a14,a15);
+	len = strlen(logbuf);
+	logbuf[len++] = '\n';
+	logbuf[len] = '\0';
+	return write(logdev, logbuf, len);
+}
+@

@@ -1,0 +1,61 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@# @;
+
+
+1.2
+date	97.09.21.19.31.18;	author dls;	state Dist;
+branches;
+next	1.1;
+
+1.1
+date	94.05.08.19.13.55;	author dls;	state Old;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@pre-3e code
+@
+text
+@#
+# Make the Xinu configuration program
+#
+DEFS=
+CFLAGS = -g -traditional ${DEFS}
+all:		config
+
+config:		lex.yy.c y.tab.c
+		cc ${CFLAGS} -o config y.tab.c -ll
+
+lex.yy.c:	config.l
+		lex config.l
+
+y.tab.c:	config.y
+		yacc config.y
+
+install:	config
+		cp config ../sys/config
+
+clean:
+		rm -f lex.yy.c y.tab.c core
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d5 1
+a5 1
+CFLAGS = -g ${DEFS}
+@

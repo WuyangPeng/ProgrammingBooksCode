@@ -1,0 +1,46 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	94.01.14.03.51.20;	author dls;	state v2e1;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* tcpsndurg.c - tcpsndurg */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  tcpsndurg.c - send pending urgent data
+ *------------------------------------------------------------------------
+ */
+int tcpsndurg(tcbnum)
+int	tcbnum;
+{
+	struct tcb	*ptcb = &tcbtab[tcbnum];
+	int		tv;
+
+	ptcb->tcb_code |= TCPF_URG;
+	while (ptcb->tcb_sudq > 0)
+		tcpsend(tcbnum, TSF_NEWDATA);
+	ptcb->tcb_code &= ~TCPF_URG;
+	return OK;
+}
+@

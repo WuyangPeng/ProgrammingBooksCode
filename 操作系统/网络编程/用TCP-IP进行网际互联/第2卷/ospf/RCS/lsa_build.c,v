@@ -1,0 +1,68 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	94.02.13.19.38.53;	author dls;	state Works;
+branches;
+next	1.1;
+
+1.1
+date	94.02.06.18.20.19;	author dls;	state Ok;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@/* lsa_build.c - lsa_build */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+#include <ospf.h>
+
+/*------------------------------------------------------------------------
+ *  lsa_build - build link-state advertisements for DD packets
+ *------------------------------------------------------------------------
+ */
+int lsa_build(pif, pnb, pep)
+struct ospf_if	*pif;
+struct ospf_nb	*pnb;
+struct ep	*pep;
+{
+	struct	ip	*pip = (struct ip *)pep->ep_data;
+	struct	ospf	*po = (struct ospf *)pip->ip_data;
+	struct	ospf_dd	*pdd = (struct ospf_dd *)po->ospf_data;
+
+kprintf("lsa_build\n");
+
+/* code here to build possibly multiple DD packets */
+	pdd->dd_control = 0;
+	if (pnb->nb_master)
+		pdd->dd_control |= DDC_MSTR;
+	if (enq(pnb->nb_dsl, pep, 0) < 0)
+		freebuf(pep);
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d17 4
+d22 7
+@

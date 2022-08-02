@@ -1,0 +1,38 @@
+cc -O -c -I../../h abs.c
+cc -O -c -I../../h atof.c
+cc -O -c -I../../h atoi.c
+cc -O -c -I../../h atol.c
+cc -O -c -I../../h bzero.c
+cc -O -c -I../../h ctype_.c
+cc -O -c -I../../h doprnt.c
+cc -O -c -I../../h doscan.c
+cc -O -c -I../../h ecvt.c
+cc -O -c -I../../h fgets.c
+cc -O -c -I../../h fprintf.c
+cc -O -c -I../../h fputs.c
+cc -O -c -I../../h gets.c
+cc -O -c -I../../h index.c
+cc -O -c -I../../h printf.c
+cc -O -c -I../../h puts.c
+cc -O -c -I../../h qsort.c
+cc -O -c -I../../h rand.c
+cc -O -c -I../../h rindex.c
+cc -O -c -I../../h scanf.c
+scanf.c:9: warning: EOF redefined
+scanf.c:10: warning: EMPTY redefined
+scanf.c: In function ungetch:
+scanf.c:67: warning: `ungetch' was declared `extern' and later `static'
+scanf.c: In function sgetch:
+scanf.c:95: warning: `sgetch' was declared `extern' and later `static'
+cc -O -c -I../../h sprintf.c
+cc -O -c -I../../h strcat.c
+cc -O -c -I../../h strcmp.c
+cc -O -c -I../../h strcpy.c
+cc -O -c -I../../h strlen.c
+cc -O -c -I../../h strncat.c
+cc -O -c -I../../h strncmp.c
+cc -O -c -I../../h strncpy.c
+cc -O -c -I../../h swab.c
+rm -f libxc.a
+ar cr libxc.a abs.o atof.o atoi.o atol.o bzero.o ctype_.o doprnt.o	 doscan.o ecvt.o fgets.o fprintf.o fputs.o gets.o	 index.o printf.o puts.o qsort.o rand.o rindex.o scanf.o	 sprintf.o strcat.o strcmp.o strcpy.o strlen.o strncat.o	 strncmp.o strncpy.o swab.o
+ranlib libxc.a

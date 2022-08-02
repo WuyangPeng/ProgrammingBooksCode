@@ -1,0 +1,49 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.27.09;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* rtinit.c - rtinit */
+
+#include <conf.h>
+#include <kernel.h>
+#include <sleep.h>
+#include <network.h>
+
+struct	rtinfo	Route;
+struct	route	*rttable[RT_TSIZE];
+
+/*------------------------------------------------------------------------
+ *  rtinit  -  initialize the routing table
+ *------------------------------------------------------------------------
+ */
+void rtinit()
+{
+	int i;
+
+	for (i=0; i<RT_TSIZE; ++i)
+		rttable[i] = 0;
+	Route.ri_bpool = mkpool(sizeof(struct route), RT_BPSIZE);
+	Route.ri_valid = TRUE;
+	Route.ri_mutex = screate(1);
+	Route.ri_default = NULL;
+}
+@

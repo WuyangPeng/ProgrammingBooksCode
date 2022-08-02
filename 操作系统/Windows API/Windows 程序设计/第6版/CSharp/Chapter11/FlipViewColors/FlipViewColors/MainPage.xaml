@@ -1,0 +1,100 @@
+﻿<Page
+    x:Class="FlipViewColors.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FlipViewColors"
+    xmlns:ch11="using:Petzold.ProgrammingWindows6.Chapter11"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <Page.Resources>
+        <ch11:NamedColor x:Key="namedColor" />
+        <ch11:ColorToContrastColorConverter x:Key="colorConverter" />
+        
+        <DataTemplate x:Key="colorTemplate">
+            <Border BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent},
+                                          Path=Foreground}"
+                    Width="288"
+                    Height="72"
+                    BorderThickness="3"
+                    Margin="3">
+                <Border.Background>
+                    <SolidColorBrush Color="{Binding Color}" />
+                </Border.Background>
+
+                <TextBlock Text="{Binding Name}"
+                           FontSize="24"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center">
+                    <TextBlock.Foreground>
+                        <SolidColorBrush Color="{Binding Color,
+                                         Converter={StaticResource colorConverter}}" />
+                    </TextBlock.Foreground>
+                </TextBlock>
+            </Border>
+        </DataTemplate>
+        
+        <ItemsPanelTemplate x:Key="panelTemplate">
+            <VirtualizingStackPanel />
+        </ItemsPanelTemplate>
+        
+        <Style TargetType="FlipView">
+            <Setter Property="Width" Value="300" />
+            <Setter Property="Height" Value="100" />
+            <Setter Property="ItemsSource" Value="{Binding Source={StaticResource namedColor}, 
+                                                           Path=All}" />
+            <Setter Property="ItemTemplate" Value="{StaticResource colorTemplate}" />
+            <Setter Property="ItemsPanel" Value="{StaticResource panelTemplate}" />
+            <Setter Property="SelectedValuePath" Value="Color" />
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <Border Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                BorderThickness="12"
+                CornerRadius="48"
+                Margin="48"
+                Padding="48"
+                HorizontalAlignment="Center">
+            <Border.Background>
+                <SolidColorBrush Color="{Binding ElementName=flipView1, 
+                                                 Path=SelectedValue}" />
+            </Border.Background>
+            
+            <Border.BorderBrush>
+                <SolidColorBrush Color="{Binding ElementName=flipView2,
+                                                 Path=SelectedValue}" />
+            </Border.BorderBrush>
+            
+            <TextBlock FontFamily="Times New Roman"
+                       FontSize="96">
+                The <Italic>FlipView</Italic> Control
+                <TextBlock.Foreground>
+                    <SolidColorBrush Color="{Binding ElementName=flipView2,
+                                                     Path=SelectedValue}" />
+                </TextBlock.Foreground>
+            </TextBlock>
+        </Border>
+        
+        <FlipView Name="flipView1" 
+                  Grid.Row="1"
+                  Grid.Column="0" />        
+        
+        <FlipView Name="flipView2"
+                  Grid.Row="1"
+                  Grid.Column="1" />
+    </Grid>
+</Page>

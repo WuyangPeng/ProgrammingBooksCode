@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>class local_system</title>
+<link rel="stylesheet" href="../paralelo.css">
+</head>
+<body bgcolor="#FFFFFF">
+<h1><a href="index.htm">Objects Reference</a></h1>
+<h2>class local_system</h2>
+<h3>Definition</h3>
+<p class="code">class local_system<br>
+  {<br>
+  &nbsp;
+  public:<br>
+  &nbsp;
+  vector X,Y,Z;<br>
+  &nbsp;
+  mat4x4 mat,mat_t;<br>
+  <br>
+  &nbsp;
+  void update_mat();<br>
+  &nbsp;
+  void rotate(vector& rot);<br>
+  &nbsp;
+  void rotate(float ang,vector& v);<br>
+  &nbsp;
+  void rotate(vector &v, vector &u, float maxang=360);<br>
+  &nbsp;
+  void align_z(vector& z);<br>
+  };</p>
+<h3>Data Members</h3>
+	
+<table border="1" width="90%" cellspacing="0" cellpadding="3">
+  <tr>
+	 <th>Member</th>
+	 <th>Type</th>
+	 <th>Description</th>
+  </tr>
+  <tr>
+	 <td>X</td>
+	 <td><a href="vector.htm">vector</a></td>
+	 <td>the X base axis</td>
+  </tr>
+  <tr>
+	 <td>Y</td>
+	 <td><a href="vector.htm">vector</a></td>
+	 <td>the Y base axis</td>
+  </tr>
+  <tr>
+	 <td>Z</td>
+	 <td><a href="vector.htm">vector</a></td>
+	 <td>the Z base axis</td>
+  </tr>
+  <tr>
+	 <td>mat</td>
+	 <td><a href="mat4x4.htm">mat4x4</a></td>
+	 <td>matrix rotating from local to global</td>
+  </tr>
+  <tr>
+	 <td>mat_t</td>
+	 <td><a href="mat4x4.htm">mat4x4</a></td>
+	 <td>matrix for rotating from global to local</td>
+  </tr>
+</table>
+<h3>Methods</h3>
+<p><a href="local_system_update_mat.htm">update_mat</a>, <a href="local_system_rotate.htm">rotate</a>, <a href="local_system_align_z.htm">align_z</a></p>
+<h3>Remarks</h3>
+<p>This class implements a local system. A local system is defined by three
+perpendicular vectors (the base axis).</p>
+<h3>See Also</h3>
+<p><a href="vector.htm">vector</a>, <a href="mat4x4.htm">mat4x4</a></p>
+</body>
+</html>

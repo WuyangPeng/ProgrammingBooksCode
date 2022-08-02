@@ -1,0 +1,65 @@
+#include "ctevent.h"
+
+
+
+
+
+event_mutex::event_mutex(char *MName, unsigned int Initial = 0,long Reset,
+			   LPSECURITY_ATTRIBUTES Secure);
+{
+
+     EventMutex = CreateEvent(Secure,Reset,Initial,Mname); 
+     if(!EventMutex)){
+	EventException.message("Could Not Create Event Semaphore");
+	throw EventException;
+     }
+     if(MName != NULL){
+       strcpy(MutexName,MName);
+     }
+     EventWait = INFINITE;
+     
+    
+}
+
+event_mutex::event_mutex(char *MName,int Inherit, long Access)
+{
+   EventMutex = OpenEvent(Access,Inherit,MName);
+    if(!EventMutex)){
+	EventException.message("Could Not Create Event Semaphore");
+	throw EventException;
+    }  			    
+    if(MName != NULL){
+       strcpy(MutexName,MName);
+    }
+    EventWait = INFINITE;
+}
+
+
+void event_mutex::postEvent(void)
+{
+    SetEvent(EventMutex);
+
+}
+
+void event_mutex::waitEvent(void)
+{
+
+   WaitForSingleObject(EventMutex,EventWait);
+
+}
+
+void event_mutex::resetEvent(void)
+{
+    ResetEvent(EventMutex);
+}
+
+
+event_mutex::~event_mutex(void)
+{
+
+      if(!CloseHandle(EventMutex)){
+	 EventException.message("Could Not Close Mutex");
+	 throw EventException;
+      }
+}
+

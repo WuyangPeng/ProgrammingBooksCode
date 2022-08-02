@@ -1,0 +1,141 @@
+head	1.3;
+access;
+symbols;
+locks
+	dls:1.3; strict;
+comment	@ * @;
+
+
+1.3
+date	94.02.13.19.38.53;	author dls;	state Works;
+branches;
+next	1.2;
+
+1.2
+date	94.02.06.18.21.13;	author dls;	state Ok;
+branches;
+next	1.1;
+
+1.1
+date	94.01.18.20.50.51;	author dls;	state Old;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@/* ospf.c - ospf */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+#include <proc.h>
+#include <ospf.h>
+
+/*------------------------------------------------------------------------
+ *  ospf -  start OSPF processes and become OSPF input process
+ *------------------------------------------------------------------------
+ */
+PROCESS ospf()
+{
+	struct	ep	*pep;
+	struct	ip	*pip;
+	struct	ospf	*po;
+	struct	ospf_if	*pif;
+
+	if (!gateway)
+		return;
+	ospfinit();
+	ospf_iport = pcreate(OSPFQLEN);
+	if (ospf_iport == SYSERR)
+		panic("ospf: cannot open ospf port");
+	resume(create(ospfhello, OSPFHSTK, OSPFHPRI, OSPFHNAM, OSPFHARGC));
+
+	while (TRUE) {
+		pep = (struct ep *)preceive(ospf_iport);
+		if (pep == (struct ep *)SYSERR)
+			continue;
+		pip = (struct ip *)pep->ep_data;
+		po = (struct ospf *)((char *)pip + IP_HLEN(pip));
+		ospfnet2h(po);
+		if (ospfcheck(pep) != OK)
+			continue;
+		switch (po->ospf_type) {
+		case T_HELLO:		ospf_hin(pep);
+					break;
+		case T_DATADESC:	ospf_ddin(pep);
+					break;
+		case T_LSREQ:		lsr_in(pep);
+					break;
+		case T_LSUPDATE:
+		case T_LSACK:
+		default:
+			break;
+		}
+		pif = &ospf_if[pep->ep_ifn];
+		if ((pif->if_state == IFS_WAITING &&
+		    (pif->if_event&IFE_BSEEN)) ||
+	    	    (pif->if_state >= IFS_DROTHER &&
+		    (pif->if_event&IFE_NCHNG))) {
+			if_elect(pep->ep_ifn);
+			pif->if_event &= ~(IFE_BSEEN|IFE_NCHNG);
+		}
+		freebuf(pep);
+	}
+}
+
+Bool	doospf = FALSE;
+int	ospfpid = BADPID;
+int	ospf_iport;
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@a26 4
+#ifdef notdef
+/* create based on area configuration here XXXX */
+	resume(create(ospfout, OSPFSTK, OSPFPRI, OSPFONAM, OSPFOARGC));
+#endif
+a29 1
+kprintf("ospfinp: got pep %X\n", pep);
+a35 2
+{
+kprintf("ospfcheck returns FALSE\n");
+a36 1
+}
+d42 2
+a43 1
+		case T_LSREQ:
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d18 1
+a18 1
+	int		fd, len;
+d22 1
+d40 3
+a42 1
+		if (ospfcheck(po, len) != OK)
+d44 1
+d46 7
+a52 2
+		case T_HELLO:	ospf_hin(pep);
+				break;
+d56 8
+@

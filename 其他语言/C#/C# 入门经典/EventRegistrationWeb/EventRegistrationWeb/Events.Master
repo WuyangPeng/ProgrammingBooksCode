@@ -1,0 +1,42 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Events.master.cs" Inherits="EventRegistrationWeb.Events" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="Styles/Site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class="header">
+        <h1>
+            Event Registration
+        </h1>
+    </div>
+    <div class="navigation">
+        &nbsp;
+        <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" Orientation="Horizontal"
+            StaticDisplayLevels="2" CssClass="menu">
+        </asp:Menu>
+        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+        <span class="logininfo">
+            <asp:LoginView ID="LoginView1" runat="server">
+                <LoggedInTemplate>
+                    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label><br />
+                    <asp:LinkButton ID="LinkButton1" runat="server" OnClick="OnLogout">Logout</asp:LinkButton>
+                </LoggedInTemplate>
+            </asp:LoginView>
+        </span>
+    </div>
+    <div class="content">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolderMain" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    <div class="bottom">
+        Copyright (c) 2010 Wrox Press
+    </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Fourier - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x409 /fo"Debug/Fourier.res" /d "_DEBUG" "C:\Fourier\Fourier.rc"" 
+Creating temporary file "c:\windows\TEMP\RSP3322.TMP" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /FR"Debug/" /Fp"Debug/Fourier.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\Fourier\Fourier.cpp"
+"C:\Fourier\FourierDlg.cpp"
+"C:\Fourier\FourierDoc.cpp"
+"C:\Fourier\FourierView.cpp"
+"C:\Fourier\MainFrm.cpp"
+]
+Creating command line "cl.exe @c:\windows\TEMP\RSP3322.TMP" 
+Creating temporary file "c:\windows\TEMP\RSP3323.TMP" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /FR"Debug/" /Fp"Debug/Fourier.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\Fourier\StdAfx.cpp"
+]
+Creating command line "cl.exe @c:\windows\TEMP\RSP3323.TMP" 
+Creating command line "link.exe /nologo /subsystem:windows /profile /debug /machine:I386 /out:"Debug/Fourier.exe"  .\Debug\Fourier.obj .\Debug\FourierDlg.obj .\Debug\FourierDoc.obj .\Debug\FourierView.obj .\Debug\MainFrm.obj .\Debug\StdAfx.obj .\Debug\Fourier.res "
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+Fourier.cpp
+FourierDlg.cpp
+FourierDoc.cpp
+FourierView.cpp
+MainFrm.cpp
+Generating Code...
+Linking...
+
+
+
+<h3>Results</h3>
+Fourier.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

@@ -1,0 +1,315 @@
+head	1.5;
+access;
+symbols;
+locks
+	dls:1.5; strict;
+comment	@ * @;
+
+
+1.5
+date	97.09.21.19.29.30;	author dls;	state Dist;
+branches;
+next	1.4;
+
+1.4
+date	94.05.07.19.26.36;	author dls;	state Works;
+branches;
+next	1.3;
+
+1.3
+date	94.05.06.03.12.23;	author dls;	state Works;
+branches;
+next	1.2;
+
+1.2
+date	94.05.06.02.31.36;	author dls;	state Old;
+branches;
+next	1.1;
+
+1.1
+date	94.05.01.16.07.01;	author dls;	state Works;
+branches;
+next	;
+
+
+desc
+@
+@
+
+
+1.5
+log
+@pre-3e code
+@
+text
+@/* create.c - create, newpid */
+    
+#include <conf.h>
+#include <i386.h>
+#include <kernel.h>
+#include <proc.h>
+#include <sem.h>
+#include <mem.h>
+#include <io.h>
+
+static unsigned long esp;
+
+/*------------------------------------------------------------------------
+ *  create  -  create a process to start running a procedure
+ *------------------------------------------------------------------------
+ */
+SYSCALL create(procaddr,ssize,priority,name,nargs,args)
+	int	*procaddr;		/* procedure address		*/
+	int	ssize;			/* stack size in words		*/
+	int	priority;		/* process priority > 0		*/
+	char	*name;			/* name (for debugging)		*/
+	int	nargs;			/* number of args that follow	*/
+	long	args;			/* arguments (treated like an	*/
+					/* array in the code)		*/
+{
+	unsigned long	savsp, *pushsp;
+	STATWORD 	ps;    
+	int		pid;		/* stores new process id	*/
+	struct	pentry	*pptr;		/* pointer to proc. table entry */
+	int		i;
+	unsigned long	*a;		/* points to list of args	*/
+	unsigned long	*saddr;		/* stack address		*/
+	unsigned long   *getstk();
+	int		INITRET();
+
+	disable(ps);
+	if (ssize < MINSTK)
+		ssize = MINSTK;
+	ssize = (int) roundew(ssize);
+	if (((saddr = (unsigned long *)getstk(ssize)) ==
+	    (unsigned long *)SYSERR ) ||
+	    (pid=newpid()) == SYSERR || priority < 1 ) {
+		restore(ps);
+		return(SYSERR);
+	}
+
+	numproc++;
+	pptr = &proctab[pid];
+
+	pptr->fildes[0] = 0;	/* stdin set to console */
+	pptr->fildes[1] = 0;	/* stdout set to console */
+	pptr->fildes[2] = 0;	/* stderr set to console */
+
+	for (i=3; i < _NFILE; i++)	/* others set to unused */
+		pptr->fildes[i] = FDFREE;
+
+	pptr->pstate = PRSUSP;
+	for (i=0 ; i<PNMLEN && (int)(pptr->pname[i]=name[i])!=0 ; i++)
+		;
+	pptr->pprio = priority;
+	pptr->pbase = (long) saddr;
+	pptr->pstklen = ssize;
+	pptr->psem = 0;
+	pptr->phasmsg = FALSE;
+	pptr->plimit = pptr->pbase - ssize + sizeof (long);	
+	pptr->pirmask[0] = 0;
+	pptr->pnxtkin = BADPID;
+	pptr->pdevs[0] = pptr->pdevs[1] = BADDEV;
+
+		/* Bottom of stack */
+	*saddr = MAGIC;
+	savsp = (unsigned long)saddr;
+
+	/* push arguments */
+	pptr->pargs = nargs;
+	a = (unsigned long *)(&args) + (nargs-1); /* last argument	*/
+	for ( ; nargs > 0 ; nargs--)	/* machine dependent; copy args	*/
+		*--saddr = *a--;	/* onto created process' stack	*/
+	*--saddr = (long)INITRET;	/* push on return address	*/
+
+	*--saddr = pptr->paddr = (long)procaddr; /* where we "ret" to	*/
+	*--saddr = savsp;		/* fake frame ptr for procaddr	*/
+	savsp = (unsigned long) saddr;
+
+/* this must match what ctxsw expects: flags, regs, old SP */
+/* emulate 386 "pushal" instruction */
+	*--saddr = 0;
+	*--saddr = 0;	/* %eax */
+	*--saddr = 0;	/* %ecx */
+	*--saddr = 0;	/* %edx */
+	*--saddr = 0;	/* %ebx */
+	*--saddr = 0;	/* %esp; fill in below */
+	pushsp = saddr;
+	*--saddr = savsp;	/* %ebp */
+	*--saddr = 0;		/* %esi */
+	*--saddr = 0;		/* %edi */
+	*pushsp = pptr->pesp = (unsigned long)saddr;
+
+	restore(ps);
+	return(pid);
+}
+
+/*------------------------------------------------------------------------
+ * newpid  --  obtain a new (free) process id
+ *------------------------------------------------------------------------
+ */
+LOCAL	newpid()
+{
+	int	pid;			/* process id to return		*/
+	int	i;
+
+	for (i=0 ; i<NPROC ; i++) {	/* check all NPROC slots	*/
+		if ( (pid=nextproc--) <= 0)
+			nextproc = NPROC-1;
+		if (proctab[pid].pstate == PRFREE)
+			return(pid);
+	}
+	return(SYSERR);
+}
+@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@a25 1
+	struct sd	*psd;
+d27 2
+a28 2
+	STATWORD ps;    
+	int	pid;			/* stores new process id	*/
+d30 5
+a34 5
+	int	i, base;
+	unsigned long	*a;			/* points to list of args	*/
+	unsigned long	*saddr;			/* stack address		*/
+	unsigned long    *getstk();
+	int	INITRET();
+d40 3
+a42 2
+	if (((saddr = getstk(ssize)) == (long *)SYSERR ) ||
+		(pid=newpid()) == SYSERR || priority < 1 ) {
+a45 1
+kprintf("in create, newpid %d\n", pid);
+d72 1
+a72 1
+	savsp = saddr;
+d76 1
+a76 1
+	a = (&args) + (nargs-1);	/* point to last argument	*/
+d83 1
+a83 1
+	savsp = saddr;
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d46 1
+a46 1
+kprintf("getstk returns %d (%X) ssize %d\n", saddr, saddr, ssize);
+a69 2
+kprintf("pbase %X plimit %X pstklen %d\n", pptr->pbase, pptr->plimit,
+pptr->pstklen);
+a70 2
+asm("movl	%esp,_esp");
+kprintf("create esp before %X\n", esp);
+a71 1
+kprintf("setting %X to %X (MAGIC)\n", saddr, MAGIC);
+a98 1
+kprintf("base %d (%X) saddr last %d (%X)\n", pptr->pbase, pptr->pbase,saddr, saddr);
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@a85 11
+	*--saddr = savsp;		/* frame pointer for INITRET	*/
+	savsp = saddr;
+	/*
+	 * At this point, the stack looks like a call of the new process
+	 * by INITRET(). Now push frame for call to ctxsw and the saved
+	 * state that ctxsw expects to restore. 
+	 */
+	*--saddr = (unsigned long)&pptr->pirmask; /* arg4 to ctxsw; new mask */
+	*--saddr = (unsigned long)&pptr->pesp;	 /* arg3 to ctxsw; newsp */
+	*--saddr = 0;		/* space for fake oldsp			*/
+	*--saddr = 0;		/* space for fake oldmask		*/
+d88 2
+a89 1
+	*--saddr = savsp;		/* fake frame ptr for ctxsw	*/
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d11 2
+d23 1
+a23 1
+	WORD	args;			/* arguments (treated like an	*/
+d27 1
+d32 3
+a34 3
+	WORD	*a;			/* points to list of args	*/
+	WORD	*saddr;			/* stack address		*/
+	WORD    *getstk();
+d41 1
+a41 1
+	if (((saddr = getstk(ssize)) == (WORD *)SYSERR ) ||
+d46 2
+a47 2
+kprintf("getstk returns %X\n", saddr);
+	
+d62 1
+a62 1
+	pptr->pbase = (WORD) saddr;
+d66 9
+a74 1
+	pptr->plimit = pptr->pbase - ssize + sizeof (WORD);	
+d76 5
+a80 1
+	*saddr-- = MAGIC;
+a81 6
+	for (i=0 ; i<PNREGS ; i++)
+		pptr->pregs[i]=INITREG;
+/*	pptr->pregs[PC] = pptr->paddr = (WORD)procaddr; */
+/*	pptr->pregs[PS] = INITPS; */
+	pptr->pnxtkin = BADPID;
+	pptr->pdevs[0] = pptr->pdevs[1] = BADDEV;
+d83 32
+a114 28
+	for ( ; nargs > 0 ; nargs--) {	/* machine dependent; copy args	*/
+		*saddr-- = *a--;
+	}
+					/* onto created process' stack	*/
+	*saddr = (WORD)INITRET;	/* push on return address	*/
+/*	pptr->pregs[SSP] = (WORD)saddr; */
+
+	pptr->segtr.len = sizeof(pptr->segdesc) - 1;
+	pptr->segtr.addr = pptr->segdesc;
+
+	psd = &pptr->segdesc[ILSTACK];
+
+	/* set up stack segment descriptor */
+	psd->sd_lolimit = ssize;
+	psd->sd_hilimit = ssize >> 16;
+	base = pptr->plimit - sizeof(WORD);
+kprintf("stack base %X limit %d\n", base, ssize);
+	psd->sd_lobase = base;
+	psd->sd_midbase = base >> 16;
+	psd->sd_hibase = base >> 24;
+	psd->sd_perm = 3;	/* R/W */
+	psd->sd_iscode = 0;
+	psd->sd_isapp = 1;
+	psd->sd_dpl = 0;
+	psd->sd_present = 1;
+	psd->sd_avl = 1;
+	psd->sd_mbz = 0;
+	psd->sd_32b = 1;
+@

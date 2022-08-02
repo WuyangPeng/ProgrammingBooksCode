@@ -1,0 +1,50 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	97.09.21.19.26.19;	author dls;	state Dist;
+branches;
+next	1.1;
+
+1.1
+date	94.05.10.20.48.46;	author dls;	state Old;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@pre-3e code
+@
+text
+@/* snhash.h */
+
+struct snhnode {			/* hash table node structure	*/
+	struct mib_info *sh_mip;	/* points to a mib record	*/
+	struct snhnode *sh_next;	/* next node in this hash bucket*/
+};
+
+#define S_HTABSIZ	101		/* hash table size - a prime #	*/
+#define S_HTRADIX	21		/* hash table radix		*/
+
+#define S_NUMTABS	5		/* number of table objects	*/
+
+extern	struct	snhnode *snhtab[];	/* the hash table		*/
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@

@@ -1,0 +1,75 @@
+<Page
+    x:Class="SystemInfoPInvoke.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SystemInfoPInvoke"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontSize="24">
+    
+    <Page.Resources>
+        <Style x:Key="rightJustifiedText" TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Right" />
+            <Setter Property="Margin" Value="12 0 0 0" />
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid HorizontalAlignment="Center"
+              VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Text="Processor Architecture: " Grid.Row="0" Grid.Column="0" />
+            <TextBlock Name="processorArchitecture" Grid.Row="0" Grid.Column="1"
+                       Style="{StaticResource rightJustifiedText}" />
+            
+            <TextBlock Text="Page Size: " Grid.Row="1" Grid.Column="0" />
+            <TextBlock Name="pageSize" Grid.Row="1" Grid.Column="1"
+                       Style="{StaticResource rightJustifiedText}" />
+
+            <TextBlock Text="Minimum Application Addresss: " Grid.Row="2" Grid.Column="0" />
+            <TextBlock Name="minAppAddr" Grid.Row="2" Grid.Column="1"
+                       Style="{StaticResource rightJustifiedText}" />
+
+            <TextBlock Text="Maximum Application Addresss: " Grid.Row="3" Grid.Column="0" />
+            <TextBlock Name="maxAppAddr" Grid.Row="3" Grid.Column="1"
+                       Style="{StaticResource rightJustifiedText}" />
+
+            <TextBlock Text="Active Processor Mask: " Grid.Row="4" Grid.Column="0" />
+            <TextBlock Name="activeProcessorMask" Grid.Row="4" Grid.Column="1"
+                       Style="{StaticResource rightJustifiedText}" />
+
+            <TextBlock Text="Number of Processors: " Grid.Row="5" Grid.Column="0" />
+            <TextBlock Name="numberProcessors" Grid.Row="5" Grid.Column="1"
+                       Style="{StaticResource rightJustifiedText}" />
+
+            <TextBlock Text="Allocation Granularity: " Grid.Row="6" Grid.Column="0" />
+            <TextBlock Name="allocationGranularity" Grid.Row="6" Grid.Column="1"
+                       Style="{StaticResource rightJustifiedText}" />
+
+            <TextBlock Text="Processor Level: " Grid.Row="7" Grid.Column="0" />
+            <TextBlock Name="processorLevel" Grid.Row="7" Grid.Column="1"
+                       Style="{StaticResource rightJustifiedText}" />
+
+            <TextBlock Text="Processor Revision: " Grid.Row="8" Grid.Column="0" />
+            <TextBlock Name="processorRevision" Grid.Row="8" Grid.Column="1"
+                       Style="{StaticResource rightJustifiedText}" />
+        </Grid>
+    </Grid>
+</Page>

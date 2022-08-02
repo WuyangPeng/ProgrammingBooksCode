@@ -1,0 +1,11 @@
+call compile basic00 
+call compile basic01 
+call compile basic02 
+call compile basic03 
+call compile basic04 
+call compile pump1 
+call compile basic05 
+call compile basic06 
+call compile basic07 
+call compile basic08 
+call compile basic09 

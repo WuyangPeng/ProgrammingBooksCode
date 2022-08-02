@@ -1,0 +1,60 @@
+    1   #include <unistd.h>
+    2   #include <stdlib.h>
+    3   #include <stdio.h>
+    4   #include <fstream.h>
+    5   #include <rational.h>
+    6   #include <iterator.h>
+    7   #include <set.h>
+    8   #include <algo.h>
+    9   
+   10   set<double,less<double> > SetA;
+   11   set<double,less<double> >::iterator SItr;
+   12   
+   13   double Half(double &X)
+   14   {
+   15        double Y = 0.5;
+   16        double Z;
+   17        Z = X * Y;
+   18        return(Z);
+   19   }
+   20   void main(void)
+   21   {   
+   22      int Fd[2];
+   23      ifstream In;
+   24      ofstream Out;
+   25      double X = 14.2;
+   26      double Y = 6.2;
+   27      double M = 24.12;
+   28      double Z = 1000;
+   29      SetA.insert(X);
+   30      SetA.insert(Y);
+   31      SetA.insert(M);
+   32      SetA.insert(Z);
+   33      int Pid;
+   34      pipe(Fd);
+   35      Pid = fork();
+   36      if(Pid == 0){
+   37        close(Fd[1]);
+   38        In.attach(Fd[0]);
+   39        
+   40        SItr = SetA.begin();
+   41        while(SItr != SetA.end())
+   42        {
+   43            In >> Z;
+   44            cout << *SItr << " halved is " << Z << endl;
+   45            SItr++;
+   46        }
+   47        In.close();
+   48      }
+   49      else{
+   50           close(Fd[0]);
+   51           Out.attach(Fd[1]);
+   52           ostream_iterator<double> Itr(Out," ");
+   53           transform(SetA.begin(),SetA.end(),Itr,Half);
+   54           Out.close();
+   55           
+   56      }  
+   57     
+   58   }     
+   59       
+   60      

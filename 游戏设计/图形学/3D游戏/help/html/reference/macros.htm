@@ -1,0 +1,46 @@
+<html>
+
+<head>
+<link rel="stylesheet" href="../paralelo.css">
+<title>Fly3D SDK Reference</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<h1><a href="index.htm">Globals Reference</a></h1>
+
+<h2><a name="macros"></a>Defined Macros</h2>
+
+<table border="1" width="90%" cellspacing="0" cellpadding="3" height="232">
+  <tr>
+    <th>Macro</th>
+    <th height="2">Definition</th>
+  </tr>
+  <tr>
+    <td>vec_dot(v1,v2)</td>
+    <td height="2">((v1).x*(v2).x+(v1).y*(v2).y+(v1).z*(v2).z)</td>
+  </tr>
+  <tr>
+    <td>ISZERO(a)</td>
+    <td height="2">((a)&gt;-SMALL &amp;&amp; (a)&lt;SMALL)</td>
+  </tr>
+  <tr>
+    <td height="2">FP_BITS(fp)</td>
+    <td height="2">(*(DWORD *)&amp;(fp))</td>
+  </tr>
+  <tr>
+    <td height="2">FP_ABS_BITS(fp)</td>
+    <td height="2">(FP_BITS(fp)&amp;0x7FFFFFFF)</td>
+  </tr>
+  <tr>
+    <td height="2">FP_SIGN_BIT(fp)</td>
+    <td height="2">(FP_BITS(fp)&amp;0x80000000)</td>
+  </tr>
+  <tr>
+    <td height="2">PVS_TEST(from,to)</td>
+    <td height="2">(*(pvs + (from)*pvsrowsize + ((to)>>3)) &amp; (1 &lt;&lt; ((to) &amp; 7)))</td>
+  </tr>
+</table>
+
+</body>
+</html>

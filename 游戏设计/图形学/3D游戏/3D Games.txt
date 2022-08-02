@@ -1,0 +1,13 @@
+3D游戏  （3D Games）
+
+官方网站：
+http://www.fly3d.com.br （已失效）
+
+卷1：实时渲染与软件技术（Real-time Rendering and Software Technology）
+☆
+作者：Alan Watt、Fabio Policarpo 
+
+卷2：动画与高级实时渲染技术（Animation and Advanced Real-time Rendering）
+☆
+作者：Alan Watt、Fabio Policarpo
+ 

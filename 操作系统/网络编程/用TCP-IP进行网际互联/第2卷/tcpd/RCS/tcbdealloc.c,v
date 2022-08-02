@@ -1,0 +1,75 @@
+head	1.2;
+access;
+symbols;
+locks
+	dls:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	97.09.21.19.30.11;	author dls;	state Dist;
+branches;
+next	1.1;
+
+1.1
+date	94.01.14.04.11.50;	author dls;	state v2e1;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@pre-3e code
+@
+text
+@/* tcbdealloc.c - tcbdealloc */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  tcbdealloc - deallocate a TCB and free its resources
+ *	ASSUMES ptcb->tcb_mutex HELD
+ *------------------------------------------------------------------------
+ */
+int tcbdealloc(ptcb)
+struct 	tcb	*ptcb;
+{
+	if (ptcb->tcb_state == TCPS_FREE)
+		return OK;
+	switch (ptcb->tcb_type) {
+	case TCPT_CONNECTION:
+		tcpkilltimers(ptcb);
+		sdelete(ptcb->tcb_ocsem);
+		sdelete(ptcb->tcb_ssema);
+		sdelete(ptcb->tcb_rsema);
+		freemem(ptcb->tcb_sndbuf, ptcb->tcb_sbsize);
+		freemem(ptcb->tcb_rcvbuf, ptcb->tcb_rbsize);
+		if (ptcb->tcb_rsegq >= 0)
+			freeq(ptcb->tcb_rsegq);
+		break;
+	case TCPT_SERVER:
+		pdelete(ptcb->tcb_listenq, 0);
+		break;
+	default:
+		signal(ptcb->tcb_mutex);
+		return SYSERR;
+	}
+	ptcb->tcb_state = TCPS_FREE;
+	sdelete(ptcb->tcb_mutex);
+	return OK;
+}
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@@

@@ -1,0 +1,57 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	97.09.21.19.26.58;	author dls;	state Dist;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@pre-3e code
+@
+text
+@/* hgleave.c - hgleave */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+#include <igmp.h>
+
+/*------------------------------------------------------------------------
+ *  hgleave  -  handle application request to leave a host group
+ *------------------------------------------------------------------------
+ */
+int hgleave(ifnum, ipa)
+int	ifnum;
+IPaddr	ipa;
+{
+	struct	hg	*phg, *hglookup();
+
+	if (!IP_CLASSD(ipa))
+		return SYSERR;
+	wait(HostGroup.hi_mutex);
+	if (!(phg = hglookup(ifnum, ipa)) || --(phg->hg_refs)) {
+		signal(HostGroup.hi_mutex);
+		return OK;
+	}
+	/* else, it exists & last reference */
+	rtdel(ipa, ip_maskall);
+	hgarpdel(ifnum, ipa);
+	if (phg->hg_state == HGS_DELAYING)
+		tmclear(HostGroup.hi_uport, phg);
+	phg->hg_state = HGS_FREE;
+	signal(HostGroup.hi_mutex);
+	return OK;
+}
+@

@@ -1,0 +1,201 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	94.05.10.20.48.46;	author dls;	state Old;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* conf.h (GENERATED FILE; DO NOT EDIT) */
+
+#define	NULLPTR	(char *)0
+
+/* Device table declarations */
+struct	devsw	{			/* device table entry */
+	int	dvnum;
+	char	*dvname;
+	int	(*dvinit)();
+	int	(*dvopen)();
+	int	(*dvclose)();
+	int	(*dvread)();
+	int	(*dvwrite)();
+	int	(*dvseek)();
+	int	(*dvgetc)();
+	int	(*dvputc)();
+	int	(*dvcntl)();
+	int	dvcsr;
+	int	dvivec;
+	int	dvovec;
+	int	(*dviint)();
+	int	(*dvoint)();
+	char	*dvioblk;
+	int	dvminor;
+	};
+
+extern	struct	devsw devtab[];		/* one entry per device */
+
+
+/* Device name definitions */
+
+#define	PHYSICAL    0			/* type con      */
+#define	ETHER       1			/* type eth      */
+#define	UDP         2			/* type dgm      */
+#define	DGRAM0      3			/* type dg       */
+#define	DGRAM1      4			/* type dg       */
+#define	DGRAM2      5			/* type dg       */
+#define	DGRAM3      6			/* type dg       */
+#define	DGRAM4      7			/* type dg       */
+#define	DGRAM5      8			/* type dg       */
+#define	DGRAM6      9			/* type dg       */
+#define	DGRAM7      10			/* type dg       */
+#define	DGRAM8      11			/* type dg       */
+#define	DGRAM9      12			/* type dg       */
+#define	DGRAMA      13			/* type dg       */
+#define	DGRAMB      14			/* type dg       */
+#define	DGRAMC      15			/* type dg       */
+#define	DGRAMD      16			/* type dg       */
+#define	DGRAME      17			/* type dg       */
+#define	DGRAMF      18			/* type dg       */
+#define	TCP         19			/* type tcpm     */
+#define	TCP0        20			/* type tcp      */
+#define	TCP1        21			/* type tcp      */
+#define	TCP2        22			/* type tcp      */
+#define	TCP3        23			/* type tcp      */
+#define	TCP4        24			/* type tcp      */
+#define	TCP5        25			/* type tcp      */
+#define	TCP6        26			/* type tcp      */
+#define	TCP7        27			/* type tcp      */
+#define	TCP8        28			/* type tcp      */
+#define	TCP9        29			/* type tcp      */
+#define	TCPA        30			/* type tcp      */
+#define	TCPB        31			/* type tcp      */
+#define	TCPC        32			/* type tcp      */
+#define	TCPD        33			/* type tcp      */
+#define	TCPE        34			/* type tcp      */
+#define	TCPF        35			/* type tcp      */
+#define	RFILSYS     36			/* type rfm      */
+#define	RFILE1      37			/* type rf       */
+#define	RFILE2      38			/* type rf       */
+#define	RFILE3      39			/* type rf       */
+#define	RFILE4      40			/* type rf       */
+#define	NAMESPACE   41			/* type nam      */
+
+/* Control block sizes */
+
+#define	Ncon	1
+#define	Neth	1
+#define	Ndgm	1
+#define	Ndg	16
+#define	Ntcpm	1
+#define	Ntcp	16
+#define	Nrfm	1
+#define	Nrf	4
+#define	Nnam	1
+
+#define	NDEVS	42
+
+/* Declarations of I/O routines referenced */
+
+extern	int	coninit();
+extern	int	ionull();
+extern	int	conread();
+extern	int	conwrite();
+extern	int	ioerr();
+extern	int	concntl();
+extern	int	congetc();
+extern	int	conputc();
+extern	int	conint();
+extern	int	ethinit();
+extern	int	ethwrite();
+extern	int	ethcntl();
+extern	int	ethinter();
+extern	int	dgmopen();
+extern	int	dgmcntl();
+extern	int	dginit();
+extern	int	dgclose();
+extern	int	dgread();
+extern	int	dgwrite();
+extern	int	dgcntl();
+extern	int	tcpmopen();
+extern	int	tcpmcntl();
+extern	int	tcpinit();
+extern	int	tcpclose();
+extern	int	tcpread();
+extern	int	tcpwrite();
+extern	int	tcpcntl();
+extern	int	tcpgetc();
+extern	int	tcpputc();
+extern	int	rfopen();
+extern	int	rfcntl();
+extern	int	rfinit();
+extern	int	rfclose();
+extern	int	rfread();
+extern	int	rfwrite();
+extern	int	rfseek();
+extern	int	rfgetc();
+extern	int	rfputc();
+extern	int	naminit();
+extern	int	namopen();
+
+
+/* Configuration and Size Constants */
+
+#define	CONSOLE	PHYSICAL	/* console is PC keyboard & monitor	*/
+
+#define	LITTLE_ENDIAN	0x2143
+#define	BIG_ENDIAN	0x4321
+
+#define	BYTE_ORDER	BIG_ENDIAN
+
+#define	CONTACT     "dls@@purdue.edu"	/* administrative contact	*/
+#define	LOCATION    "Xinu Lab"		/* Host's physical location	*/
+
+#define	NPROC	    50			/* number of user processes	*/
+#define	NSEM	    512			/* number of semaphores		*/
+#define	MEMMARK				/* define if memory marking used*/
+#define	RTCLOCK				/* now have RTC support		*/
+#define	STKCHK				/* resched checks stack overflow*/
+/*#define	NETDAEMON			/* Ethernet network daemon runs	*/
+
+#define	TSERVER	    "128.10.2.3:37"	/* Time server address		*/
+#define	RSERVER	    "128.10.3.20:2001"	/* Remote file server address	*/
+#define	NSERVER	    "128.10.3.20:53"	/* Domain Name server address	*/
+
+#define	BINGID	9			/* Othernet simlated net param. */
+
+#define	SMALLMTU	400		/* for OTHER2; sim. small MTU	*/
+
+#define	BPMAXB	8192			/* max buffer size for mkpool	*/
+#define BPMAXN	512			/* max # buffers in a buf pool	*/
+
+#define	TCPSBS	4096			/* TCP send buffer sizes	*/
+#define	TCPRBS	8192			/* TCP receive buffer sizes	*/
+
+#define	NPORTS	100
+
+#define	TIMERGRAN	1		/* timer granularity, secs/10	*/
+
+#define	NAREA		1		/* max number of OSPF Areas	*/
+
+#ifndef	Noth
+#define	Noth	0
+#endif	!Noth
+#ifndef	Ndg
+#define	Ndg	0
+#endif
+@

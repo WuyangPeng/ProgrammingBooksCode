@@ -1,0 +1,1 @@
+Error E2166 STREX3.cpp 16: Destructor for 'string' is not accessible in function main()

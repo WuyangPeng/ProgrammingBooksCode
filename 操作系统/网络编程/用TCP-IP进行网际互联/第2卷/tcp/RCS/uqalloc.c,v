@@ -1,0 +1,60 @@
+head	1.1;
+access;
+symbols;
+locks
+	dls:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	94.01.14.03.51.20;	author dls;	state v2e1;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/* uqalloc.c - uqalloc */
+
+#include <conf.h>
+#include <kernel.h>
+#include <network.h>
+
+/*------------------------------------------------------------------------
+ *  uqalloc -  allocate a TCP urgent queue entry
+ *------------------------------------------------------------------------
+ */
+struct uqe *uqalloc()
+{
+	static	int	last = 0;
+	struct	uqe	*puqe;
+	int		count;
+
+	if (!uqidone)
+		uqinit();
+	wait(uqmutex);
+	for (count=0; count<UQTSIZE; ++count) {
+		if (++last >= UQTSIZE)
+			last = 0;
+		puqe = &uqtab[last];
+		if (puqe->uq_state == UQS_FREE) {
+			puqe->uq_state = UQS_ALLOC;
+			signal(uqmutex);
+			return puqe;
+		}
+	}
+	signal(uqmutex);
+	return (struct uqe *)SYSERR;
+}
+
+Bool	uqidone = FALSE;
+int	uqmutex;
+struct uqe uqtab[UQTSIZE];
+@
