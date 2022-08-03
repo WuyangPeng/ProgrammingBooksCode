@@ -1,0 +1,110 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="GENERATOR" content="Microsoft FrontPage 12.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>第2章 基本编程元素</title>
+<link rel="stylesheet" type="text/css" href="../../../news.css">
+<meta name="Microsoft Theme" content="nature 011">
+<style type="text/css">
+.style1 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+}
+.style6 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+	color: #0000FF;
+}
+.style8 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+	color: #0000FF;
+	font-size: large;
+}
+.style9 {
+	font-family: FZKai-Z03;
+	text-indent: 32px;
+	text-align: left;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style10 {
+	font-family: FZKai-Z03;
+	text-align: center;
+	font-size: medium;
+}
+.style11 {
+	font-family: FZKai-Z03;
+	text-indent: 0;
+	text-align: center;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style12 {
+	font-family: FZKai-Z03;
+	text-indent: 32px;
+	text-align: left;
+	margin-left: 52px;
+	margin-right: 12px;
+}
+</style>
+</head>
+
+<body background="../../../nabkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#993333" vlink="#333399" alink="#006633">
+
+<p align="center" class="style1"><font size="7" color="#0000FF">代码阅读</font></p>
+<p align="center" class="style8">Code Reading</p>
+<p align="center" class="style6">
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第2章 
+基本编程元素</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style9">多数情况下，代码阅读是一个自底向上的活动。 </p>
+<p class="style11"><strong>2.1 一个完整的程序</strong></p>
+<p class="style9">#define STREQ(a, b) (*(a) == *(b) &amp;&amp; strcmp((a), (b)) == 0)</p>
+<p class="style11"><strong>2.2 函数和全局变量</strong></p>
+<p class="style9">基于这种渐进式的理解方式，在理解较为困难的代码时，可以采用类似组合拼图游戏时的策略：从容易的部分开始。</p>
+<p class="style11"><strong>2.3 while循环、条件和块</strong></p>
+<p class="style9">c = getopt ( argc, argv, &quot;t:&quot;) != -1</p>
+<p class="style9">在求值时，会被当做</p>
+<p class="style9">c = (getopt ( argc, argv, &quot;t:&quot;) != -1)</p>
+<p class="style11"><strong>2.4 switch语句</strong></p>
+<p class="style9">即使switch语句仅处理一系列确定的值，也要包含default标记，这是一个良好的保护性编程实践。</p>
+<p class="style11"><strong>2.5 for循环</strong></p>
+<p class="style11"><strong>2.6 break和continue语句</strong></p>
+<p class="style9">continue有时被用做占位符，以替代空语句（用一个单独分号表示）。</p>
+<p class="style11"><strong>2.7 字符和布尔表达式</strong></p>
+<p class="style9">通过重写比较表达式，将被比较的值放在中间，将另外两个值以升序排列，可以使这条测试语句更容易理解。</p>
+<p class="style9">while ( '0'&nbsp; &lt;= *cp &amp;&amp; *cp &lt;= '9')</p>
+<p class="style9">!(a || b) &lt;=&gt; !a &amp;&amp; !b</p>
+<p class="style9">!(a &amp;&amp; b) &lt;=&gt; !a || !b</p>
+<p class="style9">i &lt;= 0 || i &gt; 256 &lt;=&gt;</p>
+<p class="style9">!(!(i &lt;= 0) &amp;&amp; !(i &gt; 256)) &lt;=&gt;</p>
+<p class="style9">!(i &gt; 0 &amp;&amp; i &lt;= 256) &lt;=&gt;</p>
+<p class="style9">!(0 &lt; i &amp;&amp; i &lt;= 256) &lt;=&gt;</p>
+<p class="style9">┐(0 &lt; i &lt;= 256) </p>
+<p class="style11"><strong>2.8 goto语句</strong></p>
+<p class="style11"><strong>2.9 局部重构</strong></p>
+<p class="style9">if (*cp == 0)</p>
+<p class="style12">break;</p>
+<p class="style9">else if(*cp != ',' &amp;&amp; *cp != ' ')</p>
+<p class="style12">goto bad;</p>
+<p class="style9">else</p>
+<p class="style12">cp++;</p>
+<p class="style9">这个改变突出了这样一个事实，三条语句中永远只有一条会被执行，同时使得代码更加容易阅读和判断。</p>
+<p class="style11">国际混乱C代码竞赛网站</p>
+<p class="style11"><a href="https://www.ioccc.org/">https://www.ioccc.org/</a></p>
+<p class="style11"><strong>2.10 do循环和整数表达式</strong></p>
+<p class="style11"><strong>2.11 再论控制结构</strong></p>
+<p class="style9">结构化编程的优点是，所采用的控制结构允许你抽象和选择性的推理程序的各个部分，而不会被程序的总体复杂性弄得不知所措。</p>
+<p class="style11"><strong>进阶阅读</strong> </p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="代码阅读.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
+
+</body>
+
+</html>

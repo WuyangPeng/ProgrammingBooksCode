@@ -1,0 +1,115 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="GENERATOR" content="Microsoft FrontPage 12.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>algorithm</title>
+<link rel="stylesheet" type="text/css" href="../../../news.css">
+<meta name="Microsoft Theme" content="nature 011">
+<style type="text/css">
+.style1 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+}
+.style6 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+	color: #0000FF;
+}
+.style10 {
+	font-family: FZKai-Z03;
+	text-align: center;
+	font-size: medium;
+}
+.style11 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+	font-size: large;
+	color: #0000FF;
+}
+.style12 {
+	font-family: FZKai-Z03;
+	text-indent: 32px;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style13 {
+	font-family: FZKai-Z03;
+	font-size: small;
+}
+.style14 {
+	text-indent: 32px;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style15 {
+	font-family: FZKai-Z03;
+	font-size: small;
+	text-indent: 32px;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style16 {
+	text-indent: 32px;
+	margin-left: 52px;
+	margin-right: 12px;
+}
+</style>
+</head>
+
+<body background="../../../nabkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#993333" vlink="#333399" alink="#006633">
+
+<p align="center" class="style1"><font size="7" color="#0000FF">GSL</font></p>
+<p align="center" class="style11">Guidelines Support Library</p>
+
+<p align="center" class="style6">
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>algorithm</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<font COLOR="#0000ff">
+<p class="style14"><span class="style13">template</span></font><span class="style13"> 
+&lt;</span><font COLOR="#0000ff"><span class="style13">class</span></font><span class="style13">
+</span><font COLOR="#2b91af"><span class="style13">SrcElementType</span></font><span class="style13">, 
+std::</span><font COLOR="#2b91af"><span class="style13">size_t</span></font><font FACE="NSimSun" SIZE="2">
+<span class="style13">SrcExtent, </span></font><font COLOR="#0000ff">
+<span class="style13">class</span></font><span class="style13"> </span>
+<font COLOR="#2b91af"><span class="style13">DestElementType</span></font><font FACE="NSimSun" SIZE="2"><span class="style13">,</span>
+<span class="style13">std::</span></font><font COLOR="#2b91af"><span class="style13">size_t</span></font><font FACE="NSimSun" SIZE="2">
+<span class="style13">DestExtent&gt;</span></p>
+</font><font COLOR="#0000ff">
+<p class="style14"><span class="style13">void</span></font><span class="style13"> 
+copy(</span><font COLOR="#2b91af"><span class="style13">span</span></font><span class="style13">&lt;</span><font COLOR="#2b91af"><span class="style13">SrcElementType</span></font><font SIZE="2" class="style13">, 
+SrcExtent&gt; </font><font COLOR="#808080"><span class="style13">src</span></font><span class="style13">,
+</span><font COLOR="#2b91af"><span class="style13">span</span></font><span class="style13">&lt;</span><font COLOR="#2b91af"><span class="style13">DestElementType</span></font><font SIZE="2" class="style13">, 
+DestExtent&gt; </font><font COLOR="#808080"><span class="style13">dest</span></font><font FACE="NSimSun" SIZE="2"><span class="style13">)</span></p>
+<p class="style15">{</p>
+<p class="style16"></font><font COLOR="#0000ff"><span class="style13">
+static_assert</span></font><span class="style13">(std::</span><font COLOR="#2b91af"><span class="style13">is_assignable</span></font><span class="style13">&lt;</span><font COLOR="#0000ff"><span class="style13">decltype</span></font><span class="style13">(*</span><font COLOR="#808080"><span class="style13">dest</span></font><span class="style13">.data()),
+</span><font COLOR="#0000ff"><span class="style13">decltype</span></font><span class="style13">(*</span><font COLOR="#808080"><span class="style13">src</span></font><font FACE="NSimSun" SIZE="2"><span class="style13">.data())&gt;::value,</span></font><font COLOR="#a31515"><span class="style13">&quot;源span的元素不能分配给目标span的元素。&quot;</span></font><font FACE="NSimSun" SIZE="2"><span class="style13">);</span></p>
+<p class="style16"></font><font COLOR="#0000ff"><span class="style13">
+static_assert</span></font><font FACE="NSimSun" SIZE="2"><span class="style13">(SrcExtent 
+== dynamic_extent || DestExtent == dynamic_extent || (SrcExtent &lt;= DestExtent),</span>
+</font><font COLOR="#a31515"><span class="style13">&quot;源范围大于目标范围。&quot;</span></font><font FACE="NSimSun" SIZE="2"><span class="style13">);</span></p>
+<p class="style16"></font><font COLOR="#6f008a"><span class="style13">Expects</span></font><font FACE="NSimSun" SIZE="2">(<span class="style13">dest.size() 
+&gt;= src.size());</span></p>
+<p class="style16"></font><font COLOR="#008000"><span class="style13">&nbsp;</span></p>
+</font><font FACE="NSimSun" SIZE="2">
+<p class="style16"></font><font COLOR="#6f008a"><span class="style13">
+GSL_SUPPRESS</span></font><span class="style13">(stl.1) </span></p>
+<font FACE="NSimSun" SIZE="2">
+<p class="style16"></font><font COLOR="#008000"><span class="style13">&nbsp;</span></p>
+</font><font SIZE="2" class="style13">
+<p class="style16">std::copy_n(</font><font COLOR="#808080"><span class="style13">src</span></font><span class="style13">.data(),
+</span><font COLOR="#808080"><span class="style13">src</span></font><span class="style13">.size(),
+</span><font COLOR="#808080"><span class="style13">dest</span></font><font FACE="NSimSun" SIZE="2"><span class="style13">.data());</span></p>
+<p class="style12">}</p>
+</font>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="GSL.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
+
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="GENERATOR" content="Microsoft FrontPage 12.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>第1章 为什么使用NoSQL</title>
+<link rel="stylesheet" type="text/css" href="../../../news.css">
+<meta name="Microsoft Theme" content="nature 011">
+<style type="text/css">
+.style1 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+}
+.style6 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+	color: #0000FF;
+}
+.style8 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+	color: #0000FF;
+	font-size: large;
+}
+.style9 {
+	font-family: FZKai-Z03;
+	text-indent: 36px;
+	text-align: left;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style10 {
+	font-family: FZKai-Z03;
+	text-align: center;
+	font-size: medium;
+}
+.style11 {
+	font-family: FZKai-Z03;
+	text-indent: 0;
+	text-align: center;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style12 {
+	font-family: FZKai-Z03;
+	text-indent: 0;
+	text-align: left;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+</style>
+</head>
+
+<body background="../../../nabkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#993333" vlink="#333399" alink="#006633">
+
+<p align="center" class="style1"><font size="7" color="#0000FF">NoSQL精粹</font></p>
+<p align="center" class="style8">NoSQL Distilled</p>
+
+<p align="center" class="style6">
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第1章 
+为什么使用NoSQL</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style11"><strong>&nbsp; 1.1 关系型数据库的价值</strong></p>
+<p class="style11"><strong>&nbsp;1.1.1 获取持久化数据</strong></p>
+<p class="style9">数据库的最大价值也许就是持久存储大量数据了。</p>
+<p class="style11"><strong>&nbsp;1.1.2 并发</strong></p>
+<p class="style9">关系型数据库通过“事务”来控制对其数据的访问，以便处理此问题。</p>
+<p class="style11"><strong>&nbsp;1.1.3 集成</strong></p>
+<p class="style9">常用的方法是使用共享数据库集成，多个应用程序都将数据保存在同一个数据库中。</p>
+<p class="style11"><strong>&nbsp;1.1.4 近乎标准的模型</strong> </p>
+<p class="style11"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style11"><strong>&nbsp;1.2 阻抗失谐</strong></p>
+<p class="style9">关系模型和内存中的数据结构之间存在差异。</p>
+<p class="style9">它们不能包含“嵌套记录”或“列表”等任何结构。</p>
+<p class="style11">Java语言下的对象关系映射解决方案</p>
+<p class="style11"><a href="https://www.hibernate.org/">
+https://www.hibernate.org/</a></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style11"><strong>&nbsp;1.3 “应用程序数据库”与“集成数据库”</strong></p>
+<p class="style9">SQL充当了应用程序之间的一种集成机制。数据库在这种情况下成了“集成数据库”。</p>
+<p class="style9">另一种方法是，将数据库视为“应用程序数据库”，其内容只能由一个应用程序的代码库直接访问，而这份代码库是由一个团队来维护的。 </p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style11"><strong>&nbsp;1.4 蜂拥而来的集群</strong></p>
+<p class="style9">必须有更多的计算资源，才能应对数据和流量的增加。处理此类增长有两种方案：纵向扩展和横向扩展。</p>
+<p class="style9">关系数据库并不是设计给集群用的。 </p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style11"><strong>&nbsp;1.5 NoSQL登场</strong></p>
+<p class="style9">NoSQL数据库不使用SQL。</p>
+<p class="style9">它们通常都是开源项目。</p>
+<p class="style9">
+选用NoSQL的两个主要原因：一是待处理的数据量很大，或对数据访问的效率要求很高，从而必须将数据放在集群上；二是想采用一种更为方便的数据交互方式来提高应用程序开发效率。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style11"><strong>&nbsp;1.6 要点</strong></p>
+<ul>
+	<li>
+	<p class="style12">关系型数据库二十多年来一直很成功，它能够持久保存数据，控制并发访问，同时也提供了一套集成机制。</p>
+	</li>
+	<li>
+	<p class="style12">由于关系模型与内存中的数据结构不匹配，所以应用程序开发人员一直为这种阻抗失谐问题所困扰。</p>
+	</li>
+	<li>
+	<p class="style12">数据库领域的迁移趋势是：原来，各个应用程序都把同一份数据库当成共用的集成点，而现在，各个应用程序都会封装自己的数据库，并通过服务彼此集成。</p>
+	</li>
+	<li>
+	<p class="style12">促使数据存储方式发生变化的重要原因是：需要在集群上运行大量数据，而关系数据库不能在集群中高效运行。</p>
+	</li>
+	<li>
+	<p class="style12">NoSQL是偶然出现的新名词。它没有规范的定义，我们只能描述此类数据库所共有的特征。</p>
+	</li>
+	<li>
+	<p class="style12">各种NoSQL数据库的共同特性是</p>
+	</li>
+</ul>
+<p class="style9">&nbsp;不使用关系模型</p>
+<p class="style9">在集群中运行良好 </p>
+<p class="style9">开源</p>
+<p class="style9">适用于21世纪的互联网公司</p>
+<p class="style9">无模式</p>
+<ul>
+	<li>
+	<p class="style12">NoSQL崛起所产生的重要影响就是混合持久化。</p>
+	</li>
+</ul>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="NoSQL精粹.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
+
+</body>
+
+</html>
