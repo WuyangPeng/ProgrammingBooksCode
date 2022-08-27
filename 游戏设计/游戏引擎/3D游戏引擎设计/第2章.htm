@@ -29,6 +29,13 @@
 .style11 {
 	font-family: FZKai-Z03;
 }
+.style12 {
+	font-family: FZKai-Z03;
+	text-align: left;
+	text-indent: 32px;
+	margin-left: 12px;
+	margin-right: 12px;
+}
 </style>
 </head>
 
@@ -42,9 +49,59 @@
 图形系统</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
 
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
-<p align="center" class="style11">2.1&nbsp; </p>
+<p align="center" class="style11"><strong>2.1&nbsp; 基础知识</strong></p>
+<p class="style12">较为重要的坐标系包括笛卡儿空间、视见空间、剪裁空间以及窗口空间。</p>
+<p align="center" class="style11"><strong>2.1.1 坐标系</strong></p>
+<p class="style12">坐标系可简单地定义为下列形式：</p>
+<p class="style12">{E; D, U, R}</p>
+<p class="style12">坐标系内的点X可表示为：</p>
+<p class="style12">X = E + dD + uU + rR</p>
+<p align="center" class="style11"><strong>2.1.2 右手规则/左手规则和叉积计算</strong></p>
+<p class="style12">
+<a href="https://docs.microsoft.com/en-us/windows/win32/direct3d12/direct3d-12-graphics">
+Direct3D文档</a></p>
+<p class="style12">
+U0 X U1 = U2（右手坐标系）</p>
+<p class="style12">
+U0 X U1 = -U2（左手坐标系）</p>
+<p align="center" class="style11"><strong>2.1.3 点和向量</strong></p>
+<p class="style12">定理1：两个点之差定义了一个向量，即V = P - Q。</p>
+<p class="style12">定理2：点和向量之和仍为向量，即Q = P + V。</p>
+<p class="style12">定理3：(P - Q) + (Q - R) = (P - R)。该操作行将绘制一个三角形。该式表明 
+，三角形的有向边之和为0向量。&nbsp;</p>
 <p align="center" class="style11"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
-<p align="center" class="style11">2.2&nbsp; </p>
+<p align="center" class="style11"><strong>2.2&nbsp; 转换操作</strong></p>
+<p align="center" class="style11"><strong>2.2.1 线性转换</strong></p>
+<p class="style12">L(cU + V) = cL(U) + L(V)。线性组合的函数值可视为函数值的线性组合。</p>
+<p class="style12">向量的平移并非是线性操作。</p>
+<p class="style12">Y= MX。</p>
+<p class="style12"><strong>练习2.1 </strong></p>
+<p class="style12">证明公式</p>
+<p class="style12">┌ y0 ┐&nbsp;&nbsp;&nbsp; ┌ m00 m01 m02 ┐┌ x0 ┐&nbsp;&nbsp;&nbsp; 
+┌ m00x0 + m01x1 + m02x2 ┐</p>
+<p class="style12">│ y1 │ = │ m10 m11 m12 ││ x1 │ =│ m10x0 + m11x1 + m12x2 │</p>
+<p class="style12">└ y2 ┘&nbsp;&nbsp;&nbsp; └ m20 m21 m22 ┘└ x2 ┘&nbsp;&nbsp;&nbsp; 
+└ m20x0 + m21x1 + m22x2 ┘</p>
+<p class="style12">定义的函数为线性转换操作。</p>
+<p class="style12">令U = (u0,u1,u2)，V= (v0,v1,v2)</p>
+<p class="style12">L(cU +V) </p>
+<p class="style12">= L(c(u0,u1,u2) + (v0,v1,v2) ) </p>
+<p class="style12">= L(cu0+ v0, cu1 + v1,cu2 + v2)</p>
+<p class="style12">= ( m00(cu0+ v0) + m01(cu1+ v1)&nbsp; + m02(cu2+ v2) ,&nbsp; 
+m10(cu0+ v0) + m11(cu1+ v1)&nbsp; + m12(cu2+ v2), m20(cu0+ v0) + m21(cu1+ v1) + 
+m22(cu2+ v2) )</p>
+<p class="style12">=&nbsp; ( cm00u0 + cm01u1 + cm02u2 + m00v0 + m01v1 + m02v2 , 
+cm10u0 + cm11u1 + cm12u2 + m10v0 + m11v1 + m12v2, cm20u0 + cm21u1 + cm22u2+ 
+m20v0 + m21v1 + m22v2)</p>
+<p class="style12">=&nbsp; ( c(m00u0 + m01u1 + m02u2) + m00v0 + m01v1 + m02v2 , 
+c(m10u0 + m11u1 + m12u2) + m10v0 + m11v1 + m12v2, c(m20u0 + m21u1 + m22u2) + 
+m20v0 + m21v1 + m22v2)</p>
+<p class="style12">=&nbsp; (c(m00u0 + m01u1 + m02u2, m10u0 + m11u1 + m12u2,m20u0 
++ m21u1 + m22u2) + (&nbsp; m00v0 + m01v1 + m02v2,m10v0 + m11v1 + m12v2, m20v0 + 
+m21v1 + m22v2) ) </p>
+<p class="style12">=&nbsp; cL(U) + L(V)</p>
+<p class="style12">&nbsp;</p>
+<p align="center" class="style11">&nbsp;</p>
 <p align="center" class="style11"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p align="center" class="style11">2.3&nbsp; </p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
