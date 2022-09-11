@@ -1,3 +1,5 @@
+package com.tcre;
+
 /**
  * This class Generates prime numbers up to a user specified maximum.
  * the algorithm used is the Sieve of Eratosthenes.

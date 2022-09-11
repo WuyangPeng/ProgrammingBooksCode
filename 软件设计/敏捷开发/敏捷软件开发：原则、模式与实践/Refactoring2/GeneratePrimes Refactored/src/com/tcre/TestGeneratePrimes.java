@@ -1,3 +1,5 @@
+package com.tcre;
+
 import junit.framework.*;
 
 public class TestGeneratePrimes extends TestCase
@@ -5,7 +7,7 @@ public class TestGeneratePrimes extends TestCase
   public static void main(String args[])
   {
       junit.swingui.TestRunner.main(
-        new String[] {"TestGeneratePrimes"});
+        new String[] {"com.tcre.TestGeneratePrimes"});
   }
   public TestGeneratePrimes(String name)
   {

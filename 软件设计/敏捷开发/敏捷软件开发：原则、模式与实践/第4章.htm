@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta name="GENERATOR" content="Microsoft FrontPage 12.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
-<title>第2章 极限编程概述</title>
+<title>第4章 测试</title>
 <link rel="stylesheet" type="text/css" href="../../../news.css">
 <meta name="Microsoft Theme" content="nature 011">
 <style type="text/css">
@@ -32,6 +32,27 @@
 	text-align: center;
 	font-size: medium;
 }
+.style12 {
+	font-family: FZKai-Z03;
+	text-indent: 0;
+	text-align: center;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style11 {
+	font-family: FZKai-Z03;
+	text-indent: 32px;
+	text-align: left;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style13 {
+	font-family: FZKai-Z03;
+	text-indent: 32px;
+	text-align: left;
+	margin-left: 52px;
+	margin-right: 12px;
+}
 </style>
 </head>
 
@@ -43,11 +64,98 @@ Software Development</p>
 <p align="center" class="style6">&nbsp;<span class="style7">Principles, Patterns, and 
 Practices</span></p>
 <p align="center" class="style6">
-<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第3章 
-</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第4章 
+测试</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
 
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
-<p align="center">&nbsp;</p>
+<p class="style11">
+烈火验真金，逆境磨意志。</p>
+<p class="style11">
+编写单元测试是一种验证行为，更是一种设计行为。同样，它更是一种编写文档的行为。编写单元测试避免了相当数量的反馈循环。尤其是功能验证方面的反馈循环。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>4.1 测试驱动开发方法</strong></p>
+<p class="style11">
+程序中的每一项功能都有测试来验证它的操作的正确性。</p>
+<p class="style11">
+首先编写测试可以迫使我们使用不同的观察点。我们必须从程序调用者的有利视角去观察我们将要编写的程序。这样，我们就会在关注程序的功能的同时，直接关注它的接口。通过首先编写测试，我们就可以设计出便于调用的软件。</p>
+<p class="style11">
+测试可以作为一种无价的文档形式。如果想知道如何调用一个函数或者创建一个对象，会有一个测试展示给你看。测试就像一套范例，它帮助其他程序员了解如何使用代码。这份文档是可编译、可运行的。它保持最新。它不会撒谎。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>4.1.1 一个测试优先设计的示例</strong></p>
+<p class="style11">
+public void testMove()</p>
+<p class="style11">
+{</p>
+<p class="style13">
+WumpusGame g = new WumpusGame();</p>
+<p class="style13">
+g.connect(4, 5, &quot;E&quot;);</p>
+<p class="style13">
+g.setPlayerRoom(4);</p>
+<p class="style13">
+g.east();</p>
+<p class="style13">
+assertEquals(5, g.getPlayerRoom());</p>
+<p class="style11">
+}</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>4.1.2 测试促使模块之间隔离</strong></p>
+<p class="style11">
+public void testPayroll()</p>
+<p class="style11">
+{</p>
+<p class="style13">
+MockEmployeDatabase db = new MockEmployeDatabase();</p>
+<p class="style13">
+MockCheckWriter w = new MockCheckWriter();</p>
+<p class="style13">
+Payrool p = new Payroll(db, w); </p>
+<p class="style13">
+p.payEmployees();</p>
+<p class="style13">
+assert(w.checksWereWrittenCorrectly());</p>
+<p class="style13">
+assert(db.paymentsWerePostedCorrectly());</p>
+<p class="style11">
+}</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>4.1.3 意外获得的解耦合</strong></p>
+<p class="style11">
+为了测试而对模块进行隔离的需要，迫使我们以对整个程序结构都有益的方式对程序进行解耦合。在编写代码前先编写测试改善了设计。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>4.2 验收测试</strong></p>
+<p class="style11">
+单元测试用来验证系统的小的组成单元应该按照所期望的方式工作，但是它们没有验证系统作为一个整体时工作的正确性。单元测试是用来验证系统中个别机制的白盒测试。验收测试是用来验证系统满足客户需求的黑盒测试。</p>
+<p class="style11">
+白盒测试：了解并依赖于被测模块内部结构的测试。</p>
+<p class="style11">
+黑盒测试：不了解并且不依赖于被测模块内部结构的测试。</p>
+<p class="style11">
+验收测试由不了解系统内部机制的人编写。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>4.2.1 验收测试示例</strong></p>
+<p class="style11">
+程序将必须接受直接来自使用者的输入，并且也要接受来自验收测试框架的输入。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>4.2.2 意外获得的构架</strong></p>
+<p class="style11">
+首先编写测试的一个绝对的事实是很快就导致我们有了使用XML来描述输入和输出的想法。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>4.3 结论</strong></p>
+<p class="style11">
+测试套件运行起来越简单，就会越频繁地运行它们。测试运行得越多，就会越快地发现和那些测试的任何背离。如果能够一天多次地运行所有的测试，那么系统失效的时间就决不会超过几分钟。</p>
+<p class="style11">
+单元测试和验收测试都是一种文档形式，那样的文档是可以编译和执行的；因此，它的准确和可靠的。</p>
+<p class="style11">
+测试最重要的好处就是它对于构架和设计的影响。为了使一个模块或者应用程序具有可测试性，必须要对它进行解耦合。越是具有可测试性，耦合关系就越弱。</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 
 <p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="第Ⅰ部分.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
