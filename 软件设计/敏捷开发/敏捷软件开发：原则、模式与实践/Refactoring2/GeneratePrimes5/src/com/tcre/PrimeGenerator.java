@@ -14,63 +14,72 @@ package com.tcre;
  */
 
 public class PrimeGenerator {
-    private static boolean[] crossedOut;
+    private static boolean[] isCrossed;
     private static int[] result;
 
     public static int[] generatePrimes(int maxValue) {
         if (maxValue < 2)
             return new int[0];
         else {
-            uncrossIntegersUpTo(maxValue);
+            initializeArrayOfIntegers(maxValue);
             crossOutMultiples();
             putUncrossedIntegersIntoResult();
             return result;
         }
     }
 
-    private static void uncrossIntegersUpTo(int maxValue) {
-        crossedOut = new boolean[maxValue + 1];
-        for (int i = 2; i < crossedOut.length; i++)
-            crossedOut[i] = false;
+    private static void initializeArrayOfIntegers(int maxValue) {
+
+        isCrossed = new boolean[maxValue + 1];
+        for (int i = 2; i < isCrossed.length; i++)
+            isCrossed[i] = false;
     }
 
     private static void crossOutMultiples() {
-        int limit = determineIterationLimit();
-        for (int i = 2; i <= limit; i++)
-            if (notCrossed(i))
+        int maxPrimeFactor = calcMaxPrimeFactor();
+        for (int i = 2; i <= maxPrimeFactor; i++) {
+            if (notCrossed(i)) {
                 crossOutMultiplesOf(i);
+            }
+        }
     }
 
-    private static int determineIterationLimit() {
-        // Every multiple in the array has a prime factor that
-        // is less than or equal to the root of the array size,
-        // so we don't have to cross of multiples of numbers
-        // larger than that root.
-        double iterationLimit = Math.sqrt(crossedOut.length);
-        return (int) iterationLimit;
+    private static int calcMaxPrimeFactor() {
+        // We cross out all multiples of p;where p is prime.
+        // Thus,all crossed out multiples have p and q for
+        // factors. If p > sqrt of the size of the array,then
+        // q will never be greater than 1. Thus p is the
+        // largest prime factor in the array,and is also
+        // the iteration limit.
+        // 我们划掉p的所有倍数；其中p是素数。
+        // 因此，所有被划掉的倍数都有 p 和 q 的因子。
+        // 如果数组大小的 p > sqrt，则 q 永远不会大于 1。
+        // 因此 p 是数组中最大的素数因子，也是迭代限制。
+        double maxPrimeFactor = Math.sqrt(isCrossed.length) + 1;
+        return (int) maxPrimeFactor;
     }
 
     private static void crossOutMultiplesOf(int i) {
         for (int multiple = 2 * i;
-             multiple < crossedOut.length;
+             multiple < isCrossed.length;
              multiple += i)
-            crossedOut[multiple] = true;
+            isCrossed[multiple] = true;
     }
 
     private static boolean notCrossed(int i) {
-        return crossedOut[i] == false;
+        return isCrossed[i] == false;
     }
 
     private static void putUncrossedIntegersIntoResult() {
         result = new int[numberOfUncrossedIntegers()];
-        for (int j = 0, i = 2; i < crossedOut.length; i++)
+        for (int j = 0, i = 2; i < isCrossed.length; i++)
             if (notCrossed(i))
                 result[j++] = i;
     }
 
     private static int numberOfUncrossedIntegers() {
         int count = 0;
-        for (int i = 2; i < crossedOut.length; i++)
+        for (int i = 2; i < isCrossed.length; i++)
             if (notCrossed(i))
                 count++;
 
