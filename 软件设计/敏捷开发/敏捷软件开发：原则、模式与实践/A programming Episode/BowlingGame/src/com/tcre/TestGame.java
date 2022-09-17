@@ -1,7 +1,14 @@
+package com.tcre;
+
 import junit.framework.*;
 
 public class TestGame extends TestCase
 {
+	public static void main(String args[]) {
+		junit.swingui.TestRunner.main(
+				new String[]{"com.tcre.TestGame"});
+	}
+
 	public TestGame(String name)
 	{
 		super(name);

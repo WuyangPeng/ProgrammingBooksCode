@@ -1,3 +1,5 @@
+package com.tcre;
+
 public class Scorer
 {
 	public void addThrow(int pins)

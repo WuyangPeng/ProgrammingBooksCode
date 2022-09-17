@@ -1,3 +1,5 @@
+package com.tcre;
+
 public class Game
 {
 	public int score()
