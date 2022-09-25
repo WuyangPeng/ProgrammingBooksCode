@@ -1,12 +1,8 @@
 package com.tcre;
 
-import junit.framework.*;
+import junit.framework.TestCase;
 
 public class TestGame extends TestCase {
-    public static void main(String args[]) {
-        junit.swingui.TestRunner.main(
-                new String[]{"com.tcre.TestGame"});
-    }
 
     public TestGame(String name) {
         super(name);
@@ -14,17 +10,25 @@ public class TestGame extends TestCase {
 
     private Game g;
 
+    @Override
     public void setUp() {
         g = new Game();
     }
 
+    public void testOneThrows() {
+
+        g.add(5);
+    }
+
     public void testTwoThrowsNoMark() {
+
         g.add(5);
         g.add(4);
         assertEquals(9, g.score());
     }
 
     public void testFourThrowsNoMark() {
+
         g.add(5);
         g.add(4);
         g.add(7);
@@ -51,7 +55,7 @@ public class TestGame extends TestCase {
         assertEquals(18, g.score());
     }
 
-    public void testSimpleStrike() {
+    public void test() {
         g.add(10);
         g.add(3);
         g.add(6);
@@ -60,20 +64,22 @@ public class TestGame extends TestCase {
     }
 
     public void testPerfectGame() {
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 12; ++i) {
             g.add(10);
         }
+
         assertEquals(300, g.score());
     }
 
     public void testEndOfArray() {
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 9; ++i) {
             g.add(0);
             g.add(0);
         }
+
         g.add(2);
         g.add(8); // 10th frame spare
-        g.add(10); // Strike in last position of array.
+        g.add(10); // Strike in last position of array
         assertEquals(20, g.score());
     }
 
@@ -101,15 +107,17 @@ public class TestGame extends TestCase {
     }
 
     public void testHeartBreak() {
-        for (int i = 0; i < 11; i++)
+        for (int i = 0; i < 11; ++i) {
             g.add(10);
+        }
         g.add(9);
         assertEquals(299, g.score());
     }
 
-    public void testTenthFrameSpare() {
-        for (int i = 0; i < 9; i++)
+    public void testTenthFrameSpare(){
+        for (int i = 0; i < 9; ++i) {
             g.add(10);
+        }
         g.add(9);
         g.add(1);
         g.add(1);

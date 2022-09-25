@@ -8,12 +8,11 @@ public class Scorer {
     public int scoreForFrame(int theFrame) {
         ball = 0;
         int score = 0;
-        for (int currentFrame = 0;
-             currentFrame < theFrame;
-             currentFrame++) {
+        for (int currentFrame = 0; currentFrame < theFrame; ++currentFrame) {
+
             if (strike()) {
                 score += 10 + nextTwoBallsForStrike();
-                ball++;
+                ++ball;
             } else if (spare()) {
                 score += 10 + nextBallForSpare();
                 ball += 2;
@@ -21,8 +20,8 @@ public class Scorer {
                 score += twoBallsInFrame();
                 ball += 2;
             }
-        }
 
+        }
         return score;
     }
 
