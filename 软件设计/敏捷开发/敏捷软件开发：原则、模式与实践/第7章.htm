@@ -1,0 +1,256 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="GENERATOR" content="Microsoft FrontPage 12.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>第7章 什么是敏捷设计</title>
+<link rel="stylesheet" type="text/css" href="../../../news.css">
+<meta name="Microsoft Theme" content="nature 011">
+<style type="text/css">
+.style1 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+}
+.style6 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+	color: #0000FF;
+}
+.style7 {
+	font-size: large;
+}
+.style8 {
+	font-family: FZKai-Z03;
+	font-weight: bold;
+	color: #0000FF;
+	font-size: large;
+}
+.style10 {
+	font-family: FZKai-Z03;
+	text-align: center;
+	font-size: medium;
+}
+.style11 {
+	font-family: FZKai-Z03;
+	text-indent: 32px;
+	text-align: left;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style12 {
+	font-family: FZKai-Z03;
+	text-indent: 0;
+	text-align: center;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style13 {
+	text-align: center;
+}
+.style14 {
+	font-family: FZKai-Z03;
+	text-indent: 32px;
+	text-align: left;
+	margin-left: 52px;
+	margin-right: 12px;
+}
+.style15 {
+	font-family: FZKai-Z03;
+	text-indent: 32px;
+	text-align: left;
+	margin-left: 92px;
+	margin-right: 12px;
+}
+.style16 {
+	font-family: FZKai-Z03;
+	text-indent: 0;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+</style>
+</head>
+
+<body background="../../../nabkgnd.jpg" bgcolor="#FFFFFF" text="#000000" link="#993333" vlink="#333399" alink="#006633">
+
+<div class="style13">
+
+<p align="center" class="style1"><font size="7" color="#0000FF">敏捷软件开发：原则、模式与实践</font></p>
+<p align="center" class="style8">Agile 
+Software Development</p>
+<p align="center" class="style6">&nbsp;<span class="style7">Principles, Patterns, and 
+Practices</span></p>
+<p align="center" class="style6">
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第7章 
+什么是敏捷设计</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style11">
+在按照我的理解方式审查了软件开发的生命周期后，我得出一个结论：实际上满足工程设计标准的惟一软件文档，就是源代码清单。</p>
+<p class="style11">
+源代码就是设计。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>7.1 软件出了什么错</strong></p>
+<p class="style11">
+重新设计很少会成功。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>7.2 设计的臭味——腐化软件的气味</strong></p>
+<p class="style11">
+僵化性：很难对系统进行改动，因为每个改动都会迫使许多对系统其他部分的其他改动。</p>
+<p class="style11">
+脆弱性：对系统的改动会导致系统中和改动的地方在概念上无关的许多地方出现问题。</p>
+<p class="style11">
+牢固性：很难解开系统的纠结，使之成为一些可在其他系统中重用的组件。</p>
+<p class="style11">
+粘滞性：做正确的事情比做错误的事情要困难。</p>
+<p class="style11">
+不必要的复杂性：设计中包含有不具任何直接好处的基础结构。</p>
+<p class="style11">
+不必要的重复：设计中包含有重复的结构，而该重复的结构本可以使用单一的抽象进行统一。</p>
+<p class="style11">
+晦涩性：很难阅读、理解。没有很好的表现出意图。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style12">
+<strong>7.2.1 什么激发了软件的腐化</strong></p>
+<p class="style11">
+我们对于需求变化有非常好的了解。事实上，我们中的大多数人都认识到需求是项目中最不稳定的要素。如果我们的设计由于持续、大量的需求变化而失败，那就表明我们的设计和实践本身是有缺陷的。我们必须要设法找到一种方法，使得设计对于这种变化具有弹性，并且应用一些实践来防止设计腐化。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>7.2.2 敏捷团队不允许软件腐化</strong></p>
+<p class="style11">
+他们更愿意保持系统设计尽可能的干净、简单，并使用许多单元测试和验收测试作为支援。这保持了设计的灵活性，易于理解性。团队利用这种灵活性，持续地改进设计，以便于每次迭代结束所生成的系统都具有最适合于那次迭代中需求的设计。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style12">
+<strong>7.3 “Copy”程序</strong></p>
+<p class="style11">
+Copy程序：</p>
+<p class="style11">
+void Copy()</p>
+<p class="style11">
+{</p>
+<p class="style14">
+int c;</p>
+<p class="style14">
+while((c = Rdkbd()) != EOF))</p>
+<p class="style15">
+WrtPrt(c);</p>
+<p class="style11">
+}</p>
+<p class="style11">
+Copy程序的第一次修改结果：</p>
+<p class="style11">
+bool ptFlag = false;</p>
+<p class="style11">
+// remember to reset this flag</p>
+<p class="style11">
+void Copy()</p>
+<p class="style11">
+{</p>
+<p class="style14">
+int c;</p>
+<p class="style14">
+while((c = ptFlag&nbsp; ? Rdpt() : Rdkbd()) != EOF))</p>
+<p class="style15">
+WrtPrt(c);</p>
+<p class="style11">
+}</p>
+<p class="style11">
+程序7.3：</p>
+<p class="style11">
+bool ptFlag = false;</p>
+<p class="style11">
+bool punchFlag = false;</p>
+<p class="style11">
+// remember to reset these flag</p>
+<p class="style11">
+void Copy()</p>
+<p class="style11">
+{</p>
+<p class="style14">
+int c;</p>
+<p class="style14">
+while((c = ptFlag&nbsp; ? Rdpt() : Rdkbd()) != EOF))</p>
+<p class="style15">
+punchFlag ? WrtPunch(c) : WrtPrt(c);</p>
+<p class="style11">
+}</p>
+<p class="style11">
+软件开发中最重要的事实之一：需求总是在变化。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style12">
+<strong>7.3.1 Copy程序的敏捷设计</strong></p>
+<p class="style11">
+Copy程序的敏捷版本：</p>
+<p class="style11">
+class Reader</p>
+<p class="style11">
+{</p>
+<p class="style14">
+public:</p>
+<p class="style15">
+virtual int read() = 0;</p>
+<p class="style11">
+};</p>
+<p class="style11">
+class KeyboardReader : public Reader</p>
+<p class="style11">
+{</p>
+<p class="style14">
+public:</p>
+<p class="style15">
+virtual int read() { return Rdkbd(); }</p>
+<p class="style11">
+}</p>
+<p class="style11">
+KeyboardReader GdefaultReader;</p>
+<p class="style11">
+void Copy(Reader&amp; reader = GdefaultReader)</p>
+<p class="style11">
+{</p>
+<p class="style14">
+int c;</p>
+<p class="style14">
+while((c = reader.read()) != EOF)</p>
+<p class="style15">
+WrtPrt(c);</p>
+<p class="style11">
+}&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style12">
+<strong>7.3.2 敏捷开发人员如何知道要做什么</strong></p>
+<p class="style11">
+他们遵循敏捷实践去发现问题。</p>
+<p class="style11">
+他们应用设计原则去诊断问题。</p>
+<p class="style11">
+他们应用适当的设计模式去解决问题。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style12">
+<strong>7.4 保持尽可能好的设计</strong></p>
+<p class="style11">
+敏捷开发人员致力于保持设计尽可能地适当、干净。</p>
+<p class="style11">
+设计必须要保持干净、简单，并且由于源代码是设计最重要的表示，所以它同样要保持干净。职业特性要求我们，作为软件开发人员，不能忍受代码腐化。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>7.5 结论</strong></p>
+<p class="style11">
+敏捷设计是一个过程，不是一个事件。它是一个持续的应用原则、模式以及实践来改进软件的结构和可读性的过程。它致力于保持系统设计在任何时间都尽可能得简单、干净以及富有表现力。</p>
+<p class="style16">
+<span style="color: rgb(0, 0, 0); font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: -webkit-center; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;">
+What is Software Design?</span></p>
+<p class="style12">
+<a href="http://bleading-edge.com/Publications/C++Journal/Cpjour2.htm">
+http://bleading-edge.com/Publications/C++Journal/Cpjour2.htm</a></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+
+<p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="第Ⅱ部分.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
+
+</div>
+
+</body>
+
+</html>
