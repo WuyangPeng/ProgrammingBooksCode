@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta name="GENERATOR" content="Microsoft FrontPage 12.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
-<title>第7章 </title>
+<title>第9章 开放——封闭原则（OCP）</title>
 <link rel="stylesheet" type="text/css" href="../../../news.css">
 <meta name="Microsoft Theme" content="nature 011">
 <style type="text/css">
@@ -49,6 +49,13 @@
 .style13 {
 	text-align: center;
 }
+.style14 {
+	font-family: FZKai-Z03;
+	text-indent: 0;
+	text-align: left;
+	margin-left: 12px;
+	margin-right: 12px;
+}
 </style>
 </head>
 
@@ -62,15 +69,112 @@ Software Development</p>
 <p align="center" class="style6">&nbsp;<span class="style7">Principles, Patterns, and 
 Practices</span></p>
 <p align="center" class="style6">
-<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第7章 
-什么是敏捷设计</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第9章 
+开放——封闭原则（OCP）</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
 
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style11">
-。</p>
+任何系统在其生命周期中都会发生变化。如果我们期望开发出的系统不会在第1版后就被抛弃，就必须牢牢地记住这一点。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style12">
+<strong>9.1 开放——封闭原则（OCP）</strong></p>
+<p class="style11">
+软件实体（类、模块、函数等等）应该是可以扩展的，但是不可修改的。</p>
+<p class="style11">
+如果程序中的一处改动就会产生连锁反应，导致一系列相关模块的改动，那么设计就具有僵化性的臭味。OCP建议我们应该对系统进行重构，这样以后对系统再进行那样的改动时，就不会导致更多的修改。如果正确地应用OCP，那么以后再进行同样的改动时，就只需要添加新的代码，而不必改动已经正常运行的代码。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style12">
+<strong>9.2 描述</strong></p>
+<p class="style11">
+“对于扩展是开放的”：这意味着模块的行为是可以扩展的。当应用的需求改变时，我们可以对模块进行扩展，使其具有满足那些改变的新行为。换句话说，我们可以改变模块的功能。</p>
+<p class="style11">
+“对于更改是封闭的”：对模块行为进行扩展时，不必改动模块的源代码或者二进制代码。模块的二进制可执行版本，无论是可链接的库、DLL或者Java的.jar文件，都无需改动。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style12">
+<strong>9.3 关键是抽象</strong></p>
+<p class="style11">
+可以创建出固定却能够描述一组任意个可能行为的抽象体。这个抽象体就是抽象基类，而这一组任意个可能的行为则表现为可能的派生类。</p>
+<p class="style11">
+模块可以操作一个抽象体。由于模块依赖于一个固定的抽象体，所以它对于更改可以是关闭的。同时，通过从这个抽象体派生，也可以扩展此模块的行为。</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-&nbsp;</p>
+<strong>9.3.1 Shape应用程序</strong></p>
+<p class="style12">
+<img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style12">
+<strong>9.3.2 违反OCP</strong></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/OCP/OCP/Circle.h">Circle.h</a></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/OCP/OCP/Shape.h">Shape.h</a></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/OCP/OCP/Square.h">Square.h</a></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/OCP/OCP/DrawAllShapes.cc">
+DrawAllShapes.cc</a></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style12">
+<strong>9.3.3 遵循OCP</strong></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/OCP/OCP/ooo.cpp">ooo.cpp</a></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>9.3.4 是的，我说谎了</strong></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>9.3.5 预测变化和“贴切的”结构</strong></p>
+<p class="style11">
+无论模块是多么的“封闭”，都会存在一些无法对之封闭的变化。没有对于所有的情况都贴切的模型。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>9.3.6 放置吊钩</strong></p>
+<p class="style11">
+为了防止软件背着不必要的复杂性，我们会允许自己被愚弄一次。这意味着在我们最初编写代码时，假设变化不会发生。当变化发生时，我们就创建抽象来隔离以后发生的同类变化。</p>
+<ul>
+	<li>
+	<p class="style14">我们首先编写测试。</p>
+	</li>
+	<li>
+	<p class="style14">我们使用很短的迭代周期进行开发。</p>
+	</li>
+	<li>
+	<p class="style14">我们在加入基础结构前就开发特性，并且经常性地把那些特性展示给涉众。</p>
+	</li>
+	<li>
+	<p class="style14">我们首先开发最重要的特性。</p>
+	</li>
+	<li>
+	<p class="style14">尽早地、经常性地发布软件。</p>
+	</li>
+</ul>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>9.3.7 使用抽象获得显式封闭</strong></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/OCP2/OCP2/Circle.h">Circle.h</a></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/OCP2/OCP2/Circle.cpp">Circle.cpp</a></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/OCP2/OCP2/Shape.h">Shape.h</a></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/OCP2/OCP2/Square.h">Square.h</a></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/OCP2/OCP2/DrawAllShapes.cpp">
+DrawAllShapes.cpp</a>&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style12">
+<strong>9.3.8 使用“数据驱动”的方法获取封闭性</strong></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/OCP3/OCP3/Shape.h">Shape.h</a></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/OCP3/OCP3/Shape.cpp">Shape.cpp</a></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>9.4 结论</strong></p>
+<p class="style11">
+遵循这个原则可以带来面向对象技术所声称的巨大好处（也就是，灵活性，可重用性以及可维护性）。然而，并不是说只要使用一种面向对象语言就是遵循这个原则。对于应用程序中的每个部分都肆意地进行抽象同样不是一个好主意。</p>
+<p class="style11">
+开发人员应该仅仅对程序中呈现出频繁变化的那些部分做出抽象。拒绝不成熟的抽象和抽象本身一样重要。</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 
 <p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="第Ⅱ部分.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>

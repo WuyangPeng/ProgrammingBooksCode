@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta name="GENERATOR" content="Microsoft FrontPage 12.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
-<title>第7章 </title>
+<title>第8章 单一职责原则（SRP）</title>
 <link rel="stylesheet" type="text/css" href="../../../news.css">
 <meta name="Microsoft Theme" content="nature 011">
 <style type="text/css">
@@ -49,6 +49,13 @@
 .style13 {
 	text-align: center;
 }
+.style14 {
+	font-family: FZKai-Z03;
+	text-indent: 32px;
+	text-align: left;
+	margin-left: 52px;
+	margin-right: 12px;
+}
 </style>
 </head>
 
@@ -62,15 +69,56 @@ Software Development</p>
 <p align="center" class="style6">&nbsp;<span class="style7">Principles, Patterns, and 
 Practices</span></p>
 <p align="center" class="style6">
-<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第7章 
-什么是敏捷设计</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第8章 
+单一职责原则（SRP）</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
 
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style11">
-。</p>
+内聚性：一个模块的组成元素之间的功能相关性。</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-&nbsp;</p>
+<strong>8.1 单一职责原则（SRP）</strong></p>
+<p class="style11">
+就一个类而言，应该仅有一个引起它变化的原因。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style12">
+<strong>8.1.1 什么是职责</strong></p>
+<p class="style11">
+我们把职责定义为“变化的原因”。</p>
+<p class="style11">
+违反SRP：</p>
+<p class="style11">
+interface Modem</p>
+<p class="style11">
+{</p>
+<p class="style14">
+public void dial(String pno);</p>
+<p class="style14">
+public void hangup();</p>
+<p class="style14">
+public void send(char c);</p>
+<p class="style14">
+public void recv();</p>
+<p class="style11">
+}</p>
+<p class="style12">
+<img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style12">
+<strong>8.1.2 分离耦合的职责</strong></p>
+<p class="style11">
+常常会有一些和硬件或者操作系统的细节有关的原因，迫使我们把不愿耦合在一起的东西耦合在了一起。然而，对于应用的其余部分来说，通过分离它们的接口我们已经解耦了概念。</p>
+<p class="style12">
+<img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>8.1.3 持久化</strong></p>
+<p class="style11">
+业务规则往往会频繁的变化，而持久化的方式却不会如此频繁的变化，并且变化的原因也是完全不同的。把业务规则和持久化子系统绑定在一起的做法是自讨苦吃。</p>
+<p class="style12">
+<img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>8.2 结论</strong></p>
+<p class="style11">
+软件设计直正要做的许多内容，就是发现职责并把那些职责相互分离。</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 
 <p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="第Ⅱ部分.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>

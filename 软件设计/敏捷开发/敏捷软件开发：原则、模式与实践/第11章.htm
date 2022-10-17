@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta name="GENERATOR" content="Microsoft FrontPage 12.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
-<title>第7章 </title>
+<title>第11章 依赖倒置原则（DIP）</title>
 <link rel="stylesheet" type="text/css" href="../../../news.css">
 <meta name="Microsoft Theme" content="nature 011">
 <style type="text/css">
@@ -49,6 +49,34 @@
 .style13 {
 	text-align: center;
 }
+.style14 {
+	font-family: FZKai-Z03;
+	text-indent: 0;
+	text-align: left;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.style15 {
+	font-family: FZKai-Z03;
+	text-indent: 32px;
+	text-align: left;
+	margin-left: 52px;
+	margin-right: 12px;
+}
+.style16 {
+	font-family: FZKai-Z03;
+	text-indent: 32px;
+	text-align: left;
+	margin-left: 92px;
+	margin-right: 12px;
+}
+.style17 {
+	font-family: FZKai-Z03;
+	text-indent: 32px;
+	text-align: left;
+	margin-left: 132px;
+	margin-right: 12px;
+}
 </style>
 </head>
 
@@ -62,20 +90,103 @@ Software Development</p>
 <p align="center" class="style6">&nbsp;<span class="style7">Principles, Patterns, and 
 Practices</span></p>
 <p align="center" class="style6">
-<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第7章 
-什么是敏捷设计</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第11章 
+依赖倒置原则（DIP）</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
 
-<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
-<p class="style11">
-。</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-&nbsp;</p>
+<strong>11.1 依赖倒置原则（DIP）</strong></p>
+<p class="style11">
+高层模块不应该依赖于低层模块，二者都应该依赖于抽象。</p>
+<p class="style11">
+抽象不应该依赖于细节。细节应该依赖于抽象。</p>
+<p class="style11">
+本应该是高层的策略设置模块去影响低层的细节实现模块的。包含高层业务规则的模块应该优先并独立于包含实现细节的模块，无论如何高层模块都不应该依赖于低层模块。</p>
+<p class="style11">
+我们更希望能够重用的是高层的策略设置模块。我们已经非常擅长于通过子程序库的形式来重用低层模块。如果高层模块依赖于低层模块，那么在不同的上下文中重用高层模块就会变得非常困难。然而，如果高层模块独立于低层模块，那么高层模块就可以非常容易地被重用。该原则是框架设计的核心原则。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>11.2 层次化</strong></p>
+<p class="style11">
+所有结构良好的面向对象构架都具有清晰的层次定义，每个层次通过一个定义良好的、受控的接口向外提供了一组内聚的服务。</p>
+<p class="style11">
+每个较高层次都为它所需要的服务声明一个抽象接口，较低的层次实现了这些抽象接口，每个高层类都通过该抽象接口使用下一层，这样高层就不依赖于低层。低层反而依赖于高层中声明的抽象服务接口。</p>
+<p class="style11">
+这里的倒置不仅仅是依赖关系的倒置，它也是接口所有权的倒置。我们通常会认为工具库应该拥有它们自己的接口。但是当应用了DIP时，我们发现往往是客户拥有抽象接口，而它们的服务者则从这些抽象接口派生。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>11.2.1 倒置的接口所有权</strong></p>
+<p class="style11">
+不要调用我们，我们会调用你。</p>
+<p class="style11">
+低层模块实现了在高层模块中声明并被高层模块调用的接口。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>11.2.2 依赖于抽象</strong></p>
+<p class="style11">
+依赖于抽象。这是一个简单的陈述，该启发式规则建议不应该依赖于具体类——也就是说，程序中所有的依赖关系都应该终止于抽象类或接口。</p>
+<ul>
+	<li>
+	<p class="style14">任何变量都不应该持有一个指向具体类的指针或者引用。</p>
+	</li>
+	<li>
+	<p class="style14">任何类都不应该从具体类派生。</p>
+	</li>
+	<li>
+	<p class="style14">任何方法都不应该覆写它的任何基类中的已经实现了的方法。</p>
+	</li>
+</ul>
+<p class="style11">
+如果一个不稳定类的接口必须要变化时，这个变化一定会影响到表示该类的抽象接口。这种变化破坏了由抽象接口维系的隔离性。</p>
+<p class="style11">
+由客户类来声明它们需要的服务接口，那么仅当客户需要时才会对接口进行改变。这样改变实现抽象接口的类就不会影响到客户。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>11.3 一个简单的例子</strong></p>
+<p class="style11">
+依赖倒置可以应用于任何存在一个类向另一个类发送消息的地方。</p>
+<p class="style11">
+违反DIP的方案：</p>
+<p class="style11">
+public class Button</p>
+<p class="style11">
+{</p>
+<p class="style15">
+private Lamp itsLamp;</p>
+<p class="style15">
+public void poll()</p>
+<p class="style15">
+{</p>
+<p class="style16">
+if( /* some condition */ )</p>
+<p class="style17">
+itsLamp.turnOn();</p>
+<p class="style15">
+}</p>
+<p class="style11">
+}&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>11.4 熔炉示例</strong></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/DIP/DIP/Regulate.cpp">Regulate.cpp</a>&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>11.5 结论</strong></p>
+<p class="style11">
+面向对象的程序设计倒置了依赖关系结构，使得细节和策略都依赖于抽象，并且常常是客户拥有服务接口。</p>
+<p class="style11">
+如果程序的依赖关系是倒置的，它就是面向对象的设计。如果程序的依赖关系不是倒置的，它就是过程化的设计。</p>
+<p class="style11">
+依赖倒置原则是实现许多面向对象技术所宣称的好处的基本低层机制。它的正确应用对于创建可重用的框架来说是必须的。同时它对于构建在变化面前富有弹性的代码也是非常重要的。由于抽象和细节被彼此隔离，所以代码也非常容易维护。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 
 <p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="第Ⅱ部分.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
 
 </div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
 </body>
 

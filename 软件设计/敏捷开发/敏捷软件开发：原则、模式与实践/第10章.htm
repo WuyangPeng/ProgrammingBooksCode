@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta name="GENERATOR" content="Microsoft FrontPage 12.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
-<title>第7章 </title>
+<title>第10章 Liskov替换原则（LSP）</title>
 <link rel="stylesheet" type="text/css" href="../../../news.css">
 <meta name="Microsoft Theme" content="nature 011">
 <style type="text/css">
@@ -39,6 +39,9 @@
 	margin-left: 12px;
 	margin-right: 12px;
 }
+.style13 {
+	text-align: center;
+}
 .style12 {
 	font-family: FZKai-Z03;
 	text-indent: 0;
@@ -46,8 +49,12 @@
 	margin-left: 12px;
 	margin-right: 12px;
 }
-.style13 {
-	text-align: center;
+.style14 {
+	font-family: FZKai-Z03;
+	text-indent: 32px;
+	text-align: left;
+	margin-left: 52px;
+	margin-right: 12px;
 }
 </style>
 </head>
@@ -62,15 +69,158 @@ Software Development</p>
 <p align="center" class="style6">&nbsp;<span class="style7">Principles, Patterns, and 
 Practices</span></p>
 <p align="center" class="style6">
-<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第7章 
-什么是敏捷设计</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第10章 
+Liskov替换原则（LSP）</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
 
-<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style11">
-。</p>
+OCP背后的主要机制是抽象和多态。</p>
+<p class="style11">
+支持抽象和多态的关键机制之一是继承。</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-&nbsp;</p>
+<strong>10.1 Liskov替换原则（LSP）</strong></p>
+<p class="style11">
+子类型必须能够替换掉它们的基类型。</p>
+<p class="style11">
+这里需要如下替换性质：若对每个类型S的对象o1，都存在一个类型T的对象o2，使得在所有针对T编写的程序P中，用o1替换o2后，程序P行为功能不变，则S是T的子类型。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>10.2 一个违反LSP的简单例子</strong></p>
+<p class="style11">
+对于LSP的违反常常会导致以明显违反OCP的方式使用运行时类型辨别。</p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/LSP1/LSP1/DrawShape.cpp">DrawShape.cpp</a>&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>10.3 正方形和矩形，更微妙的违规</strong></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/LSP2/LSP2/Rectangle.h">Rectangle.h</a></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/LSP2/LSP2/Square.h">Square.h</a></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/LSP2/LSP2/Square.cpp">Square.cpp</a></p>
+<p class="style11">
+自相容的Rectangle类和Square类</p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/LSP3/LSP3/Rectangle.h">Rectangle.h</a></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/LSP3/LSP3/Square.h">Square.h</a></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/LSP3/LSP3/Square.cpp">Square.cpp</a></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>10.3.1 真正的问题</strong></p>
+<p class="style11">
+这样看来设计似乎是自相容的、正确的。可是，这个结论是错误的。</p>
+<p class="style11">
+void g(Rectangle&amp; r)</p>
+<p class="style11">
+{</p>
+<p class="style14">
+r.SetWidth(5);</p>
+<p class="style14">
+r.SetHeight(4);</p>
+<p class="style14">
+assert(r.Area() == 20);</p>
+<p class="style11">
+}&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>10.3.2 有效性并非本质属性</strong></p>
+<p class="style11">
+一个模型，如果孤立地看，并不具有真正意义上的有效性。模型的有效性只能通过它的客户程序来表现。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>10.3.3 IS-A是关于行为的</strong></p>
+<p class="style11">
+对象的行为方式才是软件真正所关注的问题。</p>
+<p class="style11">
+OOD中IS-A关系是就行为方式而言的，行为方式是可以进行合理假设的，是客户程序所依赖的。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>10.3.4 基于契约设计</strong></p>
+<p class="style11">
+使用DBC，类的编写者显式地规定针对该类的契约。客户代码的编写者可以通过该契约获悉可以依赖的行为方式。契约是通过为每个方法声明的前置条件和后置条件来指定的。要使一个方法得以执行，前置条件必须为真。执行完毕后，该方法要保证后置条件为真。</p>
+<p class="style11">
+assert((itsWidth == w) &amp;&amp; (itsHeight == old.itsHeight));</p>
+<p class="style11">
+在重新声明派生类中的例程时，只能使用相等或者更弱的前置条件来替换原始的前置条件，只能使用相等或者更强的后置条件来替换原始的后置条件。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>10.3.5 在单元测试中指定契约</strong></p>
+<p class="style11">
+也可以通过编写单元测试的方式来指定契约。单元测试通过彻底的测试一个类的行为来使该类的行为更加清晰。客户代码的编写者会去查看这些单元测试，这样他们就可以知道对于要使用的类，应该做出什么合理的假设。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>10.4 一个实际的例子</strong></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>10.4.1 动机</strong></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/LSP4/LSP4/Set.h">Set.h</a>&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>10.4.2 问题</strong></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/LSP4/LSP4/PersistentSet.h">
+PersistentSet.h</a>&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>10.4.3 不符合LSP的解决方案</strong></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>10.4.4 符合LSP的解决方案</strong></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>10.5 用提取公共部分的方法代替继承</strong></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/LSP5/LSP5/Line.h">Line.h</a></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/LSP5/LSP5/LineSegment.h">LineSegment.h</a></p>
+<p class="style11">
+在大多数情况下，接受一个多态行为的微妙错误都不会比试着修改设计使之完全符合LSP更为有利。接受缺陷而不是去追求完美这是一个工程上的权衡问题。好的工程师知道何时接受缺陷比追求完美更有利。不过，不应该轻易放弃对于LSP的遵循。总是保证子类可以代替它的基类是一个有效的管理复杂性的方法，一旦放弃了这一点，就必须要单独来考虑每个子类。</p>
+<p class="style11">
+把Line和LineSegment的公共部分提取出来作为基类LinearObject后的结果：</p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/LSP6/LSP6/geometry/LinearObject.h">
+LinearObject.h</a></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/LSP6/LSP6/Line.h">Line.h</a></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/LSP6/LSP6/LineSegment.h">LineSegment.h</a>&nbsp;</p>
+<p class="style11">
+提取公共部分是一个设计工具，最好在代码不是很多时应用。</p>
+<p class="style11">
+如果一组类都支持一个公共的职责，那么它们应该从一个公共的超类继承该职责，如果公共的超类还不存在，那么就创建一个，并把公共的职责放入其中，毕竟，这样一个类的有用性是确定无疑的——你已经展示了一些类会继承这些职责，然而稍后对系统的扩展也许会加入一个新的子类，该子类很可能会以新的方式来支持同样的职责。此时，这个新创建的超类可能会是一个抽象类。</p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/LSP6/LSP6/Ray.h">Ray.h</a></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>10.6 启发式规则和习惯用法</strong></p>
+<p class="style11">
+这些规则都和以某种方式从基类中去除功能的派生类有关。完成的功能少于其基类的派生类通常是不能替换其基类的。因此就违反了LSP。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>10.6.1 派生类中的退化函数</strong></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/LSP/Exceptions/src/com/tcre/Base.java">
+Base.java</a></p>
+<p class="style11">
+<a href="Principles%20of%20Class%20Design/LSP/Exceptions/src/com/tcre/Derived.java">
+Derived.java</a></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>10.6.2 从派生类中抛出异常</strong></p>
+<p class="style11">
+另外一种LSP的违规形式是在派生类的方法中添加了基类不会抛出的异常。如果基类的使用者不期望这些异常，那么把它们添加到派生类的方法中就会导致不可替换性。此时要遵循LSP，要么就必须改变使用者的期望，要么派生类就不应该抛出这些异常。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>10.7 结论</strong></p>
+<p class="style11">
+OCP是OOD中很多说法的核心。如果这个原则应用得有效，应用程序就会具有更多的可维护性、可重用性以及健壮性。LSP是使OCP成为可能的主要原则之一。正是子类型的可替换性才使得使用基类类型的模块在无需修改的情况下就可以扩展。这种可替换性必须是开发人员可以隐式依赖的东西。因此，如果没有显式地强制基类类型的契约，那么代码就必须良好地并且明显地表达出这一点。</p>
+<p class="style11">
+子类型的正确定义是“可替换性”，这里的可替换性可以通过显式或者隐式的契约来定义。</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 
 <p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="第Ⅱ部分.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
