@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta name="GENERATOR" content="Microsoft FrontPage 12.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
-<title>第12章 </title>
+<title>第14章 TEMPLATE METHOD模式和STRATEGY模式：继承与委托</title>
 <link rel="stylesheet" type="text/css" href="../../../news.css">
 <meta name="Microsoft Theme" content="nature 011">
 <style type="text/css">
@@ -49,6 +49,13 @@
 	margin-left: 12px;
 	margin-right: 12px;
 }
+.style14 {
+	font-family: FZKai-Z03;
+	text-indent: 32px;
+	text-align: left;
+	margin-left: 52px;
+	margin-right: 12px;
+}
 </style>
 </head>
 
@@ -62,22 +69,103 @@ Software Development</p>
 <p align="center" class="style6">&nbsp;<span class="style7">Principles, Patterns, and 
 Practices</span></p>
 <p align="center" class="style6">
-<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第12章 </strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第14章 
+TEMPLATE METHOD模式和STRATEGY模式：继承与委托</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
 
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style11">
-。</p>
+优先使用对象组合而不是类继承。</p>
+<p class="style11">
+我们减少了对继承的使用，常常使用组合或者委托来代替它。</p>
+<p class="style11">
+TEMPLATE METHOD模式使用继承来解决问题，而STRATEGY模式使用的则是委托。</p>
+<p class="style11">
+为了遵循依赖倒置原则，我们想确保这个通用的算法不要依赖于具体的实现。我们更想使用这个通用的算法和具体的实现都依赖于抽象。</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
-<strong>12.1 </strong></p>
+<strong>14.1 TEMPLATE METHOD模式</strong></p>
+<p class="style11">
+Initialize();</p>
+<p class="style11">
+while(!done()) // main loop</p>
+<p class="style11">
+{</p>
+<p class="style14">
+Idle(); // do something useful.</p>
 <p class="style11">
 }</p>
+<p class="style11">
+Cleanup();</p>
+<p class="style11">
+<a href="Patterns/Template%20Method/ftoc%20raw/src/com/tcre/ftocraw.java">
+ftocraw.java</a></p>
+<p class="style11">
+TEMPLATE METHOD模式</p>
+<p class="style11">
+<a href="Patterns/Template%20Method/ftoc%20template%20method/src/com/tcre/Application.java">
+Application.java</a></p>
+<p class="style11">
+<a href="Patterns/Template%20Method/ftoc%20template%20method/src/com/tcre/ftocTemplateMethod.java">
+ftocTemplateMethod.java</a></p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
-<strong>12.2 </strong></p>
+<strong>14.1.1 滥用模式</strong></p>
 <p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
+设计模式是很好的东西。它们可以帮助解决很多设计问题。但是它们的存在并不意味着必须要经常使用它们。</p>
+<p class="style11">
+<a href="Patterns/Template%20Method/Bubble%20Sort%20Raw/src/com/tcre/BubbleSorter.java">
+BubbleSorter.java</a>&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style12">
+<strong>14.1.2 冒泡排序</strong></p>
+<p class="style11">
+<a href="Patterns/Template%20Method/Bubble%20Sort%20Template%20Method/src/com/tcre/BubbleSorter.java">
+BubbleSorter.java</a></p>
+<p class="style11">
+<a href="Patterns/Template%20Method/Bubble%20Sort%20Template%20Method/src/com/tcre/IntBubbleSorter.java">
+IntBubbleSorter.java</a></p>
+<p class="style11">
+<a href="Patterns/Template%20Method/Bubble%20Sort%20Template%20Method/src/com/tcre/DoubleBubbleSorter.java">
+DoubleBubbleSorter.java</a></p>
+<p class="style11">
+继承是一种非常强的关系。派生类不可避免地要和它们的基类绑定在一起。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style12">
+<strong>14.2 STRATEGY模式</strong></p>
+<p class="style11">
+STRATEGY模式使用了一种非常不同的方法来倒置通用算法和具体实现之间的依赖关系。</p>
+<p class="style11">
+<a href="Patterns/Template%20Method/ftoc%20Strategy/src/com/tcre/ApplicationRunner.java">
+ApplicationRunner.java</a></p>
+<p class="style11">
+<a href="Patterns/Template%20Method/ftoc%20Strategy/src/com/tcre/Application.java">
+Application.java</a></p>
+<p class="style11">
+<a href="Patterns/Template%20Method/ftoc%20Strategy/src/com/tcre/ftocStrategy.java">
+ftocStratety.java</a></p>
+<p class="style11">
+再次排序</p>
+<p class="style11">
+<a href="Patterns/Template%20Method/Bubble%20Sort%20Strategy/src/com/tcre/BubbleSorter.java">
+BubbleSorter.java</a></p>
+<p class="style11">
+<a href="Patterns/Template%20Method/Bubble%20Sort%20Strategy/src/com/tcre/SortHandle.java">
+SortHandler.java</a></p>
+<p class="style11">
+<a href="Patterns/Template%20Method/Bubble%20Sort%20Strategy/src/com/tcre/IntSortHandle.java">
+IntSortHandler.java</a></p>
+<p class="style11">
+<a href="Patterns/Template%20Method/Bubble%20Sort%20Strategy/src/com/tcre/QuickBubbleSorter.java">
+QuickBubbleSorter.java</a></p>
+<p class="style11">
+因此，STRATEGY模式比TEMPLATE METHOD模式多提供了一个额外的好处。尽管TEMPLATE 
+METHOD模式允许一个通用算法操纵多个可能的具体实现，但是由于STRATEGY模式完全遵循DIP原则，从而允许每个具体实现都可以被多个不同的通用算法操纵。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style12">
+<strong>14.3 结论</strong></p>
+<p class="style11">
+TEMPLATE 
+METHOD模式和STRATEGY模式都可以用来分离高层的算法和低层的具体实现细节。都允许高层的算法独立于它的具体实现细节重用。此外，STRATEGY模式也允许具体实现细节独立于高层的算法重用，不过要以一些额外的复杂性、内存以及运行时间开销作为代价。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="第Ⅲ部分.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
 

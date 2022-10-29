@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta name="GENERATOR" content="Microsoft FrontPage 12.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
-<title>第12章 </title>
+<title>第13章 COMMAND模式和ACTIVE OBJECT模式</title>
 <link rel="stylesheet" type="text/css" href="../../../news.css">
 <meta name="Microsoft Theme" content="nature 011">
 <style type="text/css">
@@ -49,6 +49,13 @@
 	margin-left: 12px;
 	margin-right: 12px;
 }
+.style14 {
+	font-family: FZKai-Z03;
+	text-indent: 32px;
+	text-align: left;
+	margin-left: 52px;
+	margin-right: 12px;
+}
 </style>
 </head>
 
@@ -62,22 +69,73 @@ Software Development</p>
 <p align="center" class="style6">&nbsp;<span class="style7">Principles, Patterns, and 
 Practices</span></p>
 <p align="center" class="style6">
-<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第12章 </strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第13章 
+COMMAND模式和ACTIVE OBJECT模式</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
 
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style11">
-。</p>
-<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
-<p class="style12">
-<strong>12.1 </strong></p>
+COMMAND模式是最简单、最优雅的模式之一。</p>
+<p class="style11">
+public interface Command</p>
+<p class="style11">
+{</p>
+<p class="style14">
+public void do();</p>
 <p class="style11">
 }</p>
+<p class="style11">
+COMMAND模式只是封装了一个没有任何变量的函数。</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
-<strong>12.2 </strong></p>
+<strong>13.1 简单的COMMAND</strong></p>
 <p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
+通过对命令概念的封装，该模式解除了系统的逻辑互连关系和实际连接的设备之间的耦合。这是一个巨大的好处。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style12">
+<strong>13.2 事务操作</strong></p>
+<p class="style11">
+另一个COMMAND模式的常见用法是创建和执行事务操作。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style12">
+<strong>13.2.1 实体上解耦和时间上解耦</strong></p>
+<p class="style11">
+这给我们带来的好处在于很好地解除了从用户获取数据的代码、验证并操作数据的代码以及业务对象本身之间的耦合关系。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>13.2.2 时间上解耦</strong></p>
+<p class="style11">
+我们也以一种不同的方式解耦了验证和执行代码。一旦获取了数据，就没有理由要求验证和执行方法立即被调用。可以把事务操作对象放在一个列表中，以后再进行验证和执行。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>13.3 UNDO</strong></p>
+<p class="style11">
+undo方法就可以取消这些操作，并把系统恢复到原先的状态。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>13.4 ACTIVE OBJECT模式</strong></p>
+<p class="style11">
+该模式有多种使用方式，为许多工业系统提供了一个简单的多任务核心。</p>
+<p class="style11">
+ActiveObjectEngine对象维护一个Command对象的链表。用户可以向该引擎增加新的命令，或者调用run()。run()函数只是遍历链表，执行并去除每个命令。</p>
+<p class="style11">
+<a href="Patterns/Command/ActiveObject/src/com/tcre/ActiveObjectEngine.java">
+ActiveObjectEngine.java</a></p>
+<p class="style11">
+<a href="Patterns/Command/ActiveObject/src/com/tcre/Command.java">Command.java</a></p>
+<p class="style11">
+<a href="Patterns/Command/ActiveObject/src/com/tcre/TestSleepCommand.java">
+TestSleepCommand.java</a></p>
+<p class="style11">
+<a href="Patterns/Command/ActiveObject/src/com/tcre/SleepCommand.java">
+SleepCommand.java</a></p>
+<p class="style11">
+<a href="Patterns/Command/ActiveObject/src/com/tcre/DelayedTyper.java">
+DelayedTyper.java</a>&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>13.5 结论</strong></p>
+<p class="style11">
+COMMAND模式的简单性掩盖了它的多功能性。COMMAND模式可以应用于多种不同的美妙用途，范围涉及数据库事务操作、设备控制、多线程核心以及GUI的do/undo管理。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="第Ⅲ部分.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
 
