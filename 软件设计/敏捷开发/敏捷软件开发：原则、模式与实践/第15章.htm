@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta name="GENERATOR" content="Microsoft FrontPage 12.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
-<title>第12章 </title>
+<title>第15章 FACADE模式和MEDIATOR模式</title>
 <link rel="stylesheet" type="text/css" href="../../../news.css">
 <meta name="Microsoft Theme" content="nature 011">
 <style type="text/css">
@@ -62,22 +62,30 @@ Software Development</p>
 <p align="center" class="style6">&nbsp;<span class="style7">Principles, Patterns, and 
 Practices</span></p>
 <p align="center" class="style6">
-<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第12章 </strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第15章 
+FACADE模式和MEDIATOR模式</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
 
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style11">
-。</p>
+它们都把某种策略施加到另外一组对象上。FACADE模式从上面施加策略，而MEDIATOR模式则从下面施加策略。FACADE模式的使用是明显且受限的，而MEDIATOR模式的使用则是不明显且不受限制的。</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
-<strong>12.1 </strong></p>
+<strong>15.1 FACADE模式</strong></p>
 <p class="style11">
-}</p>
+当想要为一组具有复杂且全面的接口的对象提供一个简单且特定的接口时，可以使用FACADE模式。</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
-<strong>12.2 </strong></p>
+<strong>15.2 MEDIATOR模式</strong></p>
 <p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
+MEDIATOR模式同样也施加策略。不过，FACADE模式是以明显且受限的方式来施加它的策略，而MEDIATOR模式则是以隐藏且不受限的方式来施加它的策略。</p>
+<p class="style11">
+<a href="Patterns/Facade/QuickEntryMediator/src/com/tcre/QuickEntryMediator.java">
+QuickEntryMediator.java</a>&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>结论</strong></p>
+<p class="style11">
+如果策略涉及及范围广泛并且可见，那么可以使用FACACE模式从上面施加该策略。另一方面，如果策略隐蔽并且有针对性，那么MEDIATOR模式是更好的选择。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="第Ⅲ部分.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
 
