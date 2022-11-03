@@ -1,3 +1,5 @@
+package com.tcre;
+
 import junit.framework.*;
 import java.lang.reflect.Constructor;
 
@@ -17,7 +19,7 @@ public class TestSimpleSingleton extends TestCase
 	
 	public void testNoPublicConstructors() throws Exception
 	{
-		Class singleton = Class.forName("Singleton");
+		Class singleton = Class.forName("com.tcre.Singleton");
 		Constructor[] constructors = singleton.getConstructors();
 		assertEquals("Singleton has public constructors.", 0, constructors.length);
 	}

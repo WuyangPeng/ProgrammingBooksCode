@@ -1,3 +1,5 @@
+package com.tcre;
+
 public class User
 {
 	private String userName;

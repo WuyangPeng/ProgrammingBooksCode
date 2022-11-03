@@ -1,3 +1,5 @@
+package com.tcre;
+
 import junit.framework.*;
 
 public class TestTurnstyle extends TestCase
@@ -49,7 +51,7 @@ public class TestTurnstyle extends TestCase
 		t.coin();
 
 		Turnstyle t1 = new Turnstyle();
-		assert("unlocked", !t1.locked());
+		assertTrue("unlocked", !t1.locked());
 		assertEquals("coins",1, t1.coins());
 		assertEquals("refunds", 1, t1.refunds());
 		assert(!t1.alarm());
@@ -60,8 +62,8 @@ public class TestTurnstyle extends TestCase
 		Turnstyle t = new Turnstyle();
 		t.pass();
 		Turnstyle t1 = new Turnstyle();
-		assert("alarm", t1.alarm());
-		assert("locked", t1.locked());
+		assertTrue("alarm", t1.alarm());
+		assertTrue("locked", t1.locked());
 	}
 
 	public void testCancelAlarm()
@@ -70,8 +72,8 @@ public class TestTurnstyle extends TestCase
 		t.pass();
 		t.coin();
 		Turnstyle t1 = new Turnstyle();
-		assert("alarm", !t1.alarm());
-		assert("locked", !t1.locked());
+		assertTrue("alarm", !t1.alarm());
+		assertTrue("locked", !t1.locked());
 		assertEquals("coin", 1, t1.coins());
 		assertEquals("refund", 0, t1.refunds());
 	}
@@ -82,9 +84,9 @@ public class TestTurnstyle extends TestCase
 		t.coin();
 		t.pass();
 		t.coin();
-		assert("unlocked", !t.locked());
+		assertTrue("unlocked", !t.locked());
 		assertEquals("coins", 2, t.coins());
 		t.pass();
-		assert("locked", t.locked());
+		assertTrue("locked", t.locked());
 	}
 }

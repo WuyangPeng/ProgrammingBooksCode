@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta name="GENERATOR" content="Microsoft FrontPage 12.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
-<title>第12章 </title>
+<title>第16章 SINGLETON模式和MONOSTATE模式</title>
 <link rel="stylesheet" type="text/css" href="../../../news.css">
 <meta name="Microsoft Theme" content="nature 011">
 <style type="text/css">
@@ -62,22 +62,109 @@ Software Development</p>
 <p align="center" class="style6">&nbsp;<span class="style7">Principles, Patterns, and 
 Practices</span></p>
 <p align="center" class="style6">
-<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第12章 </strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第16章 
+SINGLETON模式和MONOSTATE模式</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
 
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style11">
-。</p>
+有一些类，它们应该只有一个实例。这个实例似乎应当在程序启动时被创建出来，并且只在程序结束时才被删除。</p>
+<p class="style11">
+如果强制对象单一性的机制是轻量级的，那么传达意图带来的收益就会胜过实施这些机制的代价。</p>
+<p class="style11">
+这两个模式有着非常不同的“代价/收益”权衡。在大多数情况下，它们的实施代价远低于它们的表达力带来的收益。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>16.1 SINGLETION模式</strong></p>
+<p class="style11">
+<a href="Patterns/Singleton%20and%20Monostate/SimpleSingleton/src/com/tcre/Singleton.java">
+Singleton.java</a></p>
+<p class="style11">
+<a href="Patterns/Singleton%20and%20Monostate/SimpleSingleton/src/com/tcre/TestSimpleSingleton.java">
+TestSimpleSingleton.java</a></p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
-<strong>12.1 </strong></p>
+<strong>16.1.1 SINGLETION模式的好处</strong></p>
 <p class="style11">
-}</p>
+跨平台：使用合适的中间件，可以把SINGLETION模式扩展为跨多个JVM和多个计算机工作。</p>
+<p class="style11">
+适用于任何类：只需把一个类的构造函数变成私有的，并且在其中增加相应的静态函数和变量，就可以把这个类变成SINGLETON。</p>
+<p class="style11">
+可以透过派生创建：给定一个类，可以创建它的一个SINGLETION子类。</p>
+<p class="style11">
+延迟求值：如果SINGLETON从未使用过，那么就决不会创建它。</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
-<strong>12.2 </strong></p>
+<strong>16.1.2 SINGLETION模式的代价</strong></p>
 <p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
+摧毁方法未定义：没有好的方法去摧毁一个SINGLETION，或者解除其职责。即使添加一个decommission方法把theInstance置为null，系统的其他模块仍然持有对该SINGLETON实例的引用。这样，随后对Instance方法的调用会创建另外一个实例，致使同时存在两个实例。</p>
+<p class="style11">
+不能继承：从SINGLETON类派生出来的类并不是SINGLETON。如果要使其成为SINGLETON，必须要增加所需的静态函数和变量。</p>
+<p class="style11">
+效率问题：每次调用instance方法都会执行if语句。</p>
+<p class="style11">
+不透明性：SINGLETON的使用者知道它们正在使用一个SINGLETON，因为它们必须要调用Instance方法。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>16.1.3 运用SINGLETION模式</strong></p>
+<p class="style11">
+<a href="Patterns/Singleton%20and%20Monostate/UserDatabase/src/com/tcre/UserDatabase.java">
+UserDatabase.java</a></p>
+<p class="style11">
+<a href="Patterns/Singleton%20and%20Monostate/UserDatabase/src/com/tcre/UserDatabaseSource.java">
+UserDatabaseSource.java&nbsp;</a></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>16.2 MONOSTATE模式</strong></p>
+<p class="style11">
+MONOSTATE模式是另外一种获取对象单一性的方法。</p>
+<p class="style11">
+<a href="Patterns/Singleton%20and%20Monostate/SimpleMonostate/src/com/tcre/TestMonostate.java">
+TestMonostate.java</a></p>
+<p class="style11">
+这一点很容易办到，只要把所有的变量都变成静态变量即可。</p>
+<p class="style11">
+<a href="Patterns/Singleton%20and%20Monostate/SimpleMonostate/src/com/tcre/Monostate.java">
+Monostate.java</a></p>
+<p class="style11">
+这两个模式之间的区别，在于一个关注行为，而另一个关注结构。SINGLETON模式强制结构上的单一性。它防止创建多个对象实例。相反，MONOSTATE模式则强制行为上的单一性，而没有强加结构方面的限制。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style12">
+<strong>16.2.1 MONOSTATE模式的好处</strong></p>
+<p class="style11">
+透明性：使用Monostate对象和使用常规对象没有什么区别。使用者不需要知道对象是MONOSTATE。</p>
+<p class="style11">
+可派生性：MONOSTATE的派生类都是MONOSTATE。事实上，MONOSTATE的所有派生类都是同一个MONOSTATE的一部分。它们共享相同的静态变量。</p>
+<p class="style11">
+多态性：由于MONOSTATE的方法不是静态的，所以可以在派生类中覆写它们。因此，不同的派生类可以基于同样的静态变量表现出不同的行为。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style12">
+<strong>16.2.2 MONOSTATE模式的代价</strong></p>
+<p class="style11">
+不可转换性：不能透过派生把常规类转换成MONOSTATE类。</p>
+<p class="style11">
+效率问题：因为MONOSTATE是真正的对象，所以会导致许多的创建和摧毁开销。</p>
+<p class="style11">
+内存占用：即使从未使用MONOSTATE，它的变量也要占据内存空间。</p>
+<p class="style11">
+平台局限性：MONOSTATE不能跨多个JVM或者多个平台工作。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>16.2.3 运用MONOSTATE模式</strong></p>
+<p class="style11">
+<a href="Patterns/Singleton%20and%20Monostate/Monostate%20Turnstyle/src/com/tcre/TestTurnstyle.java">
+TestTurnstile.java</a></p>
+<p class="style11">
+<a href="Patterns/Singleton%20and%20Monostate/Monostate%20Turnstyle/src/com/tcre/Turnstyle.java">
+Turnstile.java</a>&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style12">
+<strong>16.3 结论</strong></p>
+<p class="style11">
+常常会有必要强制要求某个特定对象只能单一实例。</p>
+<p class="style11">
+SINGLETON模式使用私有构造函数，一个静态变量，以及一个静态方法对实例化进行控制和限制。MONOSTATE模式只是简单地把对象的所有变量变成静态的。</p>
+<p class="style11">
+如果希望透过派生去约束一个现存类，并且不介意它的所有调用都必须要调用instance()方法来获得访问权，那么SINGLETON是最合适的。如果希望类的单一性本质对使用者透明，或者希望使用单一对象的多态派生对象，那么MONOSTATE是最合适的。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="第Ⅲ部分.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
 

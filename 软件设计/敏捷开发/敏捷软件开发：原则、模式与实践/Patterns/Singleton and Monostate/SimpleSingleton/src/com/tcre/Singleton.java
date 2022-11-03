@@ -1,3 +1,5 @@
+package com.tcre;
+
 public class Singleton
 {
 	private static Singleton theInstance = null;

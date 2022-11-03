@@ -1,3 +1,5 @@
+package com.tcre;
+
 import junit.framework.*;
 
 public class TestUserDatabase extends TestCase

@@ -1,3 +1,5 @@
+package com.tcre;
+
 public class UserDatabaseSource implements UserDatabase
 {
 	private static UserDatabase theInstance = new UserDatabaseSource();
