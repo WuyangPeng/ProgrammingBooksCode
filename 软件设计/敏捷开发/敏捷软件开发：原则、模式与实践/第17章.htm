@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta name="GENERATOR" content="Microsoft FrontPage 12.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
-<title>第12章 </title>
+<title>第17章 NULL OBJECT模式</title>
 <link rel="stylesheet" type="text/css" href="../../../news.css">
 <meta name="Microsoft Theme" content="nature 011">
 <style type="text/css">
@@ -49,6 +49,13 @@
 	margin-left: 12px;
 	margin-right: 12px;
 }
+.style14 {
+	font-family: FZKai-Z03;
+	text-indent: 32px;
+	text-align: left;
+	margin-left: 52px;
+	margin-right: 12px;
+}
 </style>
 </head>
 
@@ -62,22 +69,42 @@ Software Development</p>
 <p align="center" class="style6">&nbsp;<span class="style7">Principles, Patterns, and 
 Practices</span></p>
 <p align="center" class="style6">
-<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第12章 </strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第17章 
+NULL OBJECT模式</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
 
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style11">
-。</p>
+Employee e = DB.getEmployee(&quot;Bob&quot;);</p>
+<p class="style11">
+if(e != null &amp;&amp; e.isTimeToPay(today))</p>
+<p class="style14">
+e.pay();</p>
+<p class="style11">
+可以使用NULL OBJECT模式来解决这些问题。通常，该模式会消除对null进行检查的需要，并且有助于简化代码。</p>
+<p class="style11">
+Employee e = DB.getEmployee(&quot;Bob&quot;);</p>
+<p class="style11">
+if(e.isTimeToPay(today))</p>
+<p class="style14">
+e.pay();</p>
+<p class="style11">
+这种做法既不易于出错又不丑陋，并且具有很好的一致性。</p>
+<p class="style11">
+<a href="Patterns/Null%20Object/Employee/src/com/tcre/TestEmployee.java">
+TestEmployee.java</a></p>
+<p class="style11">
+<a href="Patterns/Null%20Object/Employee/src/com/tcre/DB.java">DB.java</a></p>
+<p class="style11">
+<a href="Patterns/Null%20Object/Employee/src/com/tcre/Employee.java">
+Employee.java</a></p>
+<p class="style11">
+if(e == Employee.NULL) 如果可以创建无效雇员类的多个实例，那么这种表达方式就是不可靠的。</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
-<strong>12.1 </strong></p>
+<strong>17.1 结论</strong></p>
 <p class="style11">
-}</p>
-<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
-<p class="style12">
-<strong>12.2 </strong></p>
-<p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
+那些长期使用C-based语言的人已经习惯于函数对某种失败返回null或者0。我们认为对这样的函数的返回值是需要检查。NULL 
+OBJECT模式改变了这一点。使用该模式，我们可以确保函数总是返回有效的对象，即使在它们失败时也是如此。这些代表失败的对象“什么也不做”。</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="第Ⅲ部分.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
 

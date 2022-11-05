@@ -1,3 +1,4 @@
+package com.tcre;
 
 import junit.framework.TestCase;
 import junit.swingui.TestRunner;
@@ -8,7 +9,7 @@ public class TestEmployee extends TestCase
 {
   public static void main(String[] args)
   {
-    TestRunner.main(new String[]{"TestEmployee"});
+    TestRunner.main(new String[]{"com.tcre.TestEmployee"});
   }
 
   public TestEmployee(String name)
