@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta name="GENERATOR" content="Microsoft FrontPage 12.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
-<title>第12章 </title>
+<title>第18章 薪水支付案例研究 第一次迭代开始</title>
 <link rel="stylesheet" type="text/css" href="../../../news.css">
 <meta name="Microsoft Theme" content="nature 011">
 <style type="text/css">
@@ -62,22 +62,69 @@ Software Development</p>
 <p align="center" class="style6">&nbsp;<span class="style7">Principles, Patterns, and 
 Practices</span></p>
 <p align="center" class="style6">
-<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第12章 </strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第18章 
+薪水支付案例研究 第一次迭代开始</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
 
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
-<p class="style11">
-。</p>
+<p class="style12">
+<strong>18.1 介绍</strong></p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
-<strong>12.1 </strong></p>
+<strong>18.1.1 规格说明 </strong></p>
 <p class="style11">
-}</p>
-<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+数据库是实现细节！应该尽可能地推迟考虑数据库。</p>
+<p class="style11">
+抽象的定义：本质部分的放大，无关紧要部分去除。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>12.2 </strong></p>
+<strong>18.2 基于用例分析 </strong></p>
 <p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
+在进行用例分析时，我们关注用户素材和验收测试，以找出系统的用户会执行的操作种类。接着我们会努力弄清楚系统怎样去响应这些操作。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>18.2.1 增加雇员 </strong></p>
+<p class="style11">
+通过把每项工作划分进自己的类中，这个结构很好地遵循了单一职责原则。另一种方法是把所有这些工作放入一个模块中。虽然这样做可以减少系统中类的数目，并且因此使系统更简单，但是这同样使所有的操作处理代码都集中在一个地方，造成了一个宠大并且很可能出错的模块。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>18.2.2 删除雇员</strong>&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>18.2.3 登记时间卡</strong>&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>18.2.4 登记销售凭条</strong>&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>18.2.5 登记协会服务费</strong></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>18.2.6 更改雇员明细</strong></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>18.2.7 发薪日</strong>&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>18.3 反思：我们学到了什么 </strong></p>
+<p class="style11">
+简单的用例分析可以提供丰富的信息以及系统设计的洞察力。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>18.4 找出潜在的抽象</strong>&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>18.4.1 支付薪水时间表抽象</strong></p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>18.4.2 支付方式</strong>&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>18.4.3 从属关系</strong>&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>18.5 结论 </strong></p>
+<p class="style11">
+会话的目的是发起思考活动，并为开发人员提供一个公共的、可以依据其展开工作的智力模型，而不是为了确定设计。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="第Ⅲ部分.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
 
