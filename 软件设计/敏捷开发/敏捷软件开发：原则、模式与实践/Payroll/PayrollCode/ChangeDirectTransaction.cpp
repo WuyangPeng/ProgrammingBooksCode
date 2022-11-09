@@ -5,14 +5,12 @@ ChangeDirectTransaction::~ChangeDirectTransaction()
 {
 }
 
-ChangeDirectTransaction::ChangeDirectTransaction(int empid, string bank, string account)
-  : ChangeMethodTransaction(empid)
-    , itsBank(bank)
-    , itsAccount(account)
+ChangeDirectTransaction::ChangeDirectTransaction(int empid, std::string bank, std::string account)
+    : ChangeMethodTransaction(empid), itsBank(bank), itsAccount(account)
 {
 }
 
 PaymentMethod* ChangeDirectTransaction::GetMethod() const
 {
-  return new DirectMethod(itsBank, itsAccount);
+    return new DirectMethod(itsBank, itsAccount);
 }

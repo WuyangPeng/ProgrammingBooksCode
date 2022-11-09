@@ -5,10 +5,10 @@
 
 class NoAffiliation : public Affiliation
 {
- public:
-  virtual ~NoAffiliation();
-  NoAffiliation();
-  virtual double CalculateDeductions(Paycheck&) const;
+public:
+    virtual ~NoAffiliation();
+    NoAffiliation();
+    virtual double CalculateDeductions(Paycheck&) const;
 };
 
 #endif

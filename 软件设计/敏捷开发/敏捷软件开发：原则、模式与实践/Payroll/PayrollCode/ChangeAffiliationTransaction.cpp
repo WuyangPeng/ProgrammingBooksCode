@@ -5,12 +5,12 @@ ChangeAffiliationTransaction::~ChangeAffiliationTransaction()
 }
 
 ChangeAffiliationTransaction::ChangeAffiliationTransaction(int empid)
-: ChangeEmployeeTransaction(empid)
+    : ChangeEmployeeTransaction(empid)
 {
 }
 
 void ChangeAffiliationTransaction::Change(Employee& e)
 {
-  RecordMembership(&e);
-  e.SetAffiliation(GetAffiliation());
+    RecordMembership(&e);
+    e.SetAffiliation(GetAffiliation());
 }

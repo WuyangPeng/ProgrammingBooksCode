@@ -6,16 +6,22 @@
 
 class DirectMethod : public PaymentMethod
 {
- public:
-  virtual ~DirectMethod();
-  DirectMethod(string bank, string account);
-  string GetBank() {return itsBank;}
-  string GetAccount() {return itsAccount;}
+public:
+    virtual ~DirectMethod();
+    DirectMethod(std::string bank, std::string account);
+    std::string GetBank()
+    {
+        return itsBank;
+    }
+    std::string GetAccount()
+    {
+        return itsAccount;
+    }
 
-  virtual void Pay(Paycheck&);
+    virtual void Pay(Paycheck&);
 
- private:
-  string itsBank;
-  string itsAccount;
+private:
+    std::string itsBank;
+    std::string itsAccount;
 };
 #endif

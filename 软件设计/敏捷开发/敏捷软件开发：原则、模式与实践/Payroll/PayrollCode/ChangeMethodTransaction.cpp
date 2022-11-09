@@ -5,11 +5,11 @@ ChangeMethodTransaction::~ChangeMethodTransaction()
 }
 
 ChangeMethodTransaction::ChangeMethodTransaction(int empid)
-: ChangeEmployeeTransaction(empid)
+    : ChangeEmployeeTransaction(empid)
 {
 }
 
 void ChangeMethodTransaction::Change(Employee& e)
 {
-  e.SetMethod(GetMethod());
+    e.SetMethod(GetMethod());
 }

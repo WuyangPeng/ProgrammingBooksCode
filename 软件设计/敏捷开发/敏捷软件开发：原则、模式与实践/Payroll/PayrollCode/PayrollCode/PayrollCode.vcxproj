@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{fa3ce3ad-2df8-45c9-90b1-d123d2156287}</ProjectGuid>
+    <RootNamespace>PayrollCode</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>..\cppunit1.5\CppUnit\test\textui\;..\cppunit1.5\CppUnit\test\framework\</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>..\cppunit1.5\CppUnit\test\textui\;..\cppunit1.5\CppUnit\test\framework\</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>..\cppunit1.5\CppUnit\test\textui\;..\cppunit1.5\CppUnit\test\framework\</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>..\cppunit1.5\CppUnit\test\textui\;..\cppunit1.5\CppUnit\test\framework\</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\AddCommissionedEmployee.cpp" />
+    <ClCompile Include="..\AddEmployeeTransaction.cpp" />
+    <ClCompile Include="..\AddHourlyEmployee.cpp" />
+    <ClCompile Include="..\AddSalariedEmployee.cpp" />
+    <ClCompile Include="..\Affiliation.cpp" />
+    <ClCompile Include="..\BiweeklySchedule.cpp" />
+    <ClCompile Include="..\ChangeAddressTransaction.cpp" />
+    <ClCompile Include="..\ChangeAffiliationTransaction.cpp" />
+    <ClCompile Include="..\ChangeClassificationTransaction.cpp" />
+    <ClCompile Include="..\ChangeCommissionedTransaction.cpp" />
+    <ClCompile Include="..\ChangeDirectTransaction.cpp" />
+    <ClCompile Include="..\ChangeEmployeeTransaction.cpp" />
+    <ClCompile Include="..\ChangeHoldTransaction.cpp" />
+    <ClCompile Include="..\ChangeHourlyTransaction.cpp" />
+    <ClCompile Include="..\ChangeMailTransaction.cpp" />
+    <ClCompile Include="..\ChangeMemberTransaction.cpp" />
+    <ClCompile Include="..\ChangeMethodTransaction.cpp" />
+    <ClCompile Include="..\ChangeNameTransaction.cpp" />
+    <ClCompile Include="..\ChangeSalariedTransaction.cpp" />
+    <ClCompile Include="..\ChangeUnaffiliatedTransaction.cpp" />
+    <ClCompile Include="..\CommissionedClassification.cpp" />
+    <ClCompile Include="..\cppunit1.5\CppUnit\test\framework\TestCase.cpp" />
+    <ClCompile Include="..\cppunit1.5\CppUnit\test\framework\TestFailure.cpp" />
+    <ClCompile Include="..\cppunit1.5\CppUnit\test\framework\TestResult.cpp" />
+    <ClCompile Include="..\cppunit1.5\CppUnit\test\framework\TestSuite.cpp" />
+    <ClCompile Include="..\cppunit1.5\CppUnit\test\textui\TextTestResult.cpp" />
+    <ClCompile Include="..\Date.cpp" />
+    <ClCompile Include="..\DeleteEmployeeTransaction.cpp" />
+    <ClCompile Include="..\DirectMethod.cpp" />
+    <ClCompile Include="..\Employee.cpp" />
+    <ClCompile Include="..\HoldMethod.cpp" />
+    <ClCompile Include="..\HourlyClassification.cpp" />
+    <ClCompile Include="..\MailMethod.cpp" />
+    <ClCompile Include="..\MonthlySchedule.cpp" />
+    <ClCompile Include="..\NoAffiliation.cpp" />
+    <ClCompile Include="..\Paycheck.cpp" />
+    <ClCompile Include="..\PaydayTransaction.cpp" />
+    <ClCompile Include="..\PaymentClassification.cpp" />
+    <ClCompile Include="..\PaymentMethod.cpp" />
+    <ClCompile Include="..\PaymentSchedule.cpp" />
+    <ClCompile Include="..\PayrollDatabase.cpp" />
+    <ClCompile Include="..\PayrollTest.cpp" />
+    <ClCompile Include="..\SalariedClassification.cpp" />
+    <ClCompile Include="..\SalesReceipt.cpp" />
+    <ClCompile Include="..\SalesReceiptTransaction.cpp" />
+    <ClCompile Include="..\ServiceCharge.cpp" />
+    <ClCompile Include="..\ServiceChargeTransaction.cpp" />
+    <ClCompile Include="..\TestRunner.cpp" />
+    <ClCompile Include="..\TimeCard.cpp" />
+    <ClCompile Include="..\TimeCardTransaction.cpp" />
+    <ClCompile Include="..\Transaction.cpp" />
+    <ClCompile Include="..\UnionAffiliation.cpp" />
+    <ClCompile Include="..\WeeklySchedule.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\AddCommissionedEmployee.h" />
+    <ClInclude Include="..\AddEmployeeTransaction.h" />
+    <ClInclude Include="..\AddHourlyEmployee.h" />
+    <ClInclude Include="..\AddSalariedEmployee.h" />
+    <ClInclude Include="..\Affiliation.h" />
+    <ClInclude Include="..\BiweeklySchedule.h" />
+    <ClInclude Include="..\ChangeAddressTransaction.h" />
+    <ClInclude Include="..\ChangeAffiliationTransaction.h" />
+    <ClInclude Include="..\ChangeClassificationTransaction.h" />
+    <ClInclude Include="..\ChangeCommissionedTransaction.h" />
+    <ClInclude Include="..\ChangeDirectTransaction.h" />
+    <ClInclude Include="..\ChangeEmployeeTransaction.h" />
+    <ClInclude Include="..\ChangeHoldTransaction.h" />
+    <ClInclude Include="..\ChangeHourlyTransaction.h" />
+    <ClInclude Include="..\ChangeMailTransaction.h" />
+    <ClInclude Include="..\ChangeMemberTransaction.h" />
+    <ClInclude Include="..\ChangeMethodTransaction.h" />
+    <ClInclude Include="..\ChangeNameTransaction.h" />
+    <ClInclude Include="..\ChangeSalariedTransaction.h" />
+    <ClInclude Include="..\ChangeUnaffiliatedTransaction.h" />
+    <ClInclude Include="..\CommissionedClassification.h" />
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\CppUnitException.h" />
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\estring.h" />
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\extensions\Orthodox.h" />
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\extensions\RepeatedTest.h" />
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\extensions\TestDecorator.h" />
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\extensions\TestSetup.h" />
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\Guards.h" />
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\Test.h" />
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\TestCaller.h" />
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\TestCase.h" />
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\TestFailure.h" />
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\TestResult.h" />
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\TestSuite.h" />
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\textui\TextTestResult.h" />
+    <ClInclude Include="..\Date.h" />
+    <ClInclude Include="..\DeleteEmployeeTransaction.h" />
+    <ClInclude Include="..\DirectMethod.h" />
+    <ClInclude Include="..\Employee.h" />
+    <ClInclude Include="..\HoldMethod.h" />
+    <ClInclude Include="..\HourlyClassification.h" />
+    <ClInclude Include="..\MailMethod.h" />
+    <ClInclude Include="..\MonthlySchedule.h" />
+    <ClInclude Include="..\NoAffiliation.h" />
+    <ClInclude Include="..\PayCheck.h" />
+    <ClInclude Include="..\PaydayTransaction.h" />
+    <ClInclude Include="..\PaymentClassification.h" />
+    <ClInclude Include="..\PaymentMethod.h" />
+    <ClInclude Include="..\PaymentSchedule.h" />
+    <ClInclude Include="..\PayrollDatabase.h" />
+    <ClInclude Include="..\PayrollTest.h" />
+    <ClInclude Include="..\SalariedClassification.h" />
+    <ClInclude Include="..\SalesReceipt.h" />
+    <ClInclude Include="..\SalesReceiptTransaction.h" />
+    <ClInclude Include="..\ServiceCharge.h" />
+    <ClInclude Include="..\ServiceChargeTransaction.h" />
+    <ClInclude Include="..\TimeCard.h" />
+    <ClInclude Include="..\TimeCardTransaction.h" />
+    <ClInclude Include="..\Transaction.h" />
+    <ClInclude Include="..\UnionAffiliation.h" />
+    <ClInclude Include="..\WeeklySchedule.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

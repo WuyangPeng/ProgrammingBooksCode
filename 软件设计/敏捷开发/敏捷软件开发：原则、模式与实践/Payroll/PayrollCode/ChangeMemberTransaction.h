@@ -5,13 +5,14 @@
 
 class ChangeMemberTransaction : public ChangeAffiliationTransaction
 {
- public:
-  virtual ~ChangeMemberTransaction();
-  ChangeMemberTransaction(int empid, int memberid, double dues);
-  virtual Affiliation* GetAffiliation() const;
-  virtual void RecordMembership(Employee*);
- private:
-  int itsMemberId;
-  double itsDues;
+public:
+    virtual ~ChangeMemberTransaction();
+    ChangeMemberTransaction(int empid, int memberid, double dues);
+    virtual Affiliation* GetAffiliation() const;
+    virtual void RecordMembership(Employee*);
+
+private:
+    int itsMemberId;
+    double itsDues;
 };
 #endif

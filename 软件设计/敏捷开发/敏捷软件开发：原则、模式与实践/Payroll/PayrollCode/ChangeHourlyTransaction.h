@@ -5,14 +5,14 @@
 
 class ChangeHourlyTransaction : public ChangeClassificationTransaction
 {
- public:
-  virtual ~ChangeHourlyTransaction();
-  ChangeHourlyTransaction(int empid, double hourlyRate);
-  virtual PaymentSchedule* GetSchedule() const;
-  virtual PaymentClassification* GetClassification() const;
+public:
+    virtual ~ChangeHourlyTransaction();
+    ChangeHourlyTransaction(int empid, double hourlyRate);
+    virtual PaymentSchedule* GetSchedule() const;
+    virtual PaymentClassification* GetClassification() const;
 
- private:
-  double itsHourlyRate;
+private:
+    double itsHourlyRate;
 };
 
 #endif

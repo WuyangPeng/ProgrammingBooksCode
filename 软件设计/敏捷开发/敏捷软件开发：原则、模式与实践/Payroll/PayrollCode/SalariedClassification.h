@@ -5,14 +5,14 @@
 
 class SalariedClassification : public PaymentClassification
 {
- public:
-  virtual ~SalariedClassification();
-  SalariedClassification(double salary);
-  double GetSalary() const;
+public:
+    virtual ~SalariedClassification();
+    SalariedClassification(double salary);
+    double GetSalary() const;
 
-  virtual double CalculatePay(Paycheck&) const;
+    virtual double CalculatePay(Paycheck&) const;
 
- private:
-  double itsSalary;
+private:
+    double itsSalary;
 };
 #endif

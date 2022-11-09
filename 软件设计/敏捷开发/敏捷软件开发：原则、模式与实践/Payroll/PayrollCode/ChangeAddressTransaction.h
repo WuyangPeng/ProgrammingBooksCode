@@ -6,13 +6,13 @@
 
 class ChangeAddressTransaction : public ChangeEmployeeTransaction
 {
- public:
-  virtual ~ChangeAddressTransaction();
-  ChangeAddressTransaction(int empid, string address);
-  virtual void Change(Employee& e);
+public:
+    virtual ~ChangeAddressTransaction();
+    ChangeAddressTransaction(int empid, std::string address);
+    virtual void Change(Employee& e);
 
- private:
-  string itsAddress;
+private:
+    std::string itsAddress;
 };
 
 #endif

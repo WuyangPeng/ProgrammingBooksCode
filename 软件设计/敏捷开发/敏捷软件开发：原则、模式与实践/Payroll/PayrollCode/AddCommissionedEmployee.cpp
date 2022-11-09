@@ -1,24 +1,22 @@
 #include "AddCommissionedEmployee.h"
-#include "CommissionedClassification.h"
 #include "BiweeklySchedule.h"
+#include "CommissionedClassification.h"
 
 AddCommissionedEmployee::~AddCommissionedEmployee()
 {
 }
 
-AddCommissionedEmployee::AddCommissionedEmployee(int empid, string name, string address, double salary, double commissionRate)
-  : AddEmployeeTransaction(empid, name, address)
-    , itsSalary(salary)
-    , itsCommissionRate(commissionRate)
+AddCommissionedEmployee::AddCommissionedEmployee(int empid, std::string name, std::string address, double salary, double commissionRate)
+    : AddEmployeeTransaction(empid, name, address), itsSalary(salary), itsCommissionRate(commissionRate)
 {
 }
 
 PaymentClassification* AddCommissionedEmployee::GetClassification() const
 {
-  return new CommissionedClassification(itsSalary, itsCommissionRate);
+    return new CommissionedClassification(itsSalary, itsCommissionRate);
 }
 
 PaymentSchedule* AddCommissionedEmployee::GetSchedule() const
 {
-  return new BiweeklySchedule();
+    return new BiweeklySchedule();
 }

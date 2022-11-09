@@ -5,102 +5,12 @@ DirectMethod::~DirectMethod()
 {
 }
 
-DirectMethod::DirectMethod(string bank, string account)
-: itsBank(bank)
-, itsAccount(account)
+DirectMethod::DirectMethod(std::string bank, std::string account)
+    : itsBank(bank), itsAccount(account)
 {
 }
 
 void DirectMethod::Pay(Paycheck& pc)
 {
-  pc.SetField("Disposition", "Direct");
+    pc.SetField("Disposition", "Direct");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

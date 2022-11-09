@@ -8,5 +8,5 @@ HoldMethod::~HoldMethod()
 
 void HoldMethod::Pay(Paycheck& pc)
 {
-  pc.SetField("Disposition", "Hold");
+    pc.SetField("Disposition", "Hold");
 }

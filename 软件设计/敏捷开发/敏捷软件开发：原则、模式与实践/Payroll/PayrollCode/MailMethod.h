@@ -6,15 +6,18 @@
 
 class MailMethod : public PaymentMethod
 {
- public:
-  virtual ~MailMethod();
-  MailMethod(string address);
-  string GetAddress() const {return itsAddress;}
+public:
+    virtual ~MailMethod();
+    MailMethod(std::string address);
+    std::string GetAddress() const
+    {
+        return itsAddress;
+    }
 
-  virtual void Pay(Paycheck&);
+    virtual void Pay(Paycheck&);
 
- private:
-  string itsAddress;
+private:
+    std::string itsAddress;
 };
 
 #endif

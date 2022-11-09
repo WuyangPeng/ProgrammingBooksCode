@@ -5,10 +5,10 @@
 
 class MonthlySchedule : public PaymentSchedule
 {
- public:
-  virtual ~MonthlySchedule();
+public:
+    virtual ~MonthlySchedule();
 
-  virtual bool IsPayDate(const Date&) const;
-  virtual Date GetPayPeriodStartDate(const Date& payPeriodEndDate) const;
+    virtual bool IsPayDate(const Date&) const;
+    virtual Date GetPayPeriodStartDate(const Date& payPeriodEndDate) const;
 };
 #endif

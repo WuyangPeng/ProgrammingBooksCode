@@ -7,11 +7,11 @@ DeleteEmployeeTransaction::~DeleteEmployeeTransaction()
 }
 
 DeleteEmployeeTransaction::DeleteEmployeeTransaction(int empid)
-  : itsEmpid(empid)
+    : itsEmpid(empid)
 {
 }
 
 void DeleteEmployeeTransaction::Execute()
 {
-  GpayrollDatabase.DeleteEmployee(itsEmpid);
+    GpayrollDatabase.DeleteEmployee(itsEmpid);
 }

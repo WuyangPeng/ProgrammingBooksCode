@@ -3,9 +3,9 @@
 
 class Transaction
 {
- public:
-  virtual ~Transaction();
-  virtual void Execute() = 0;
+public:
+    virtual ~Transaction();
+    virtual void Execute() = 0;
 };
 
 #endif

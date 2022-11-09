@@ -6,12 +6,13 @@
 
 class ChangeDirectTransaction : public ChangeMethodTransaction
 {
- public:
-  virtual ~ChangeDirectTransaction();
-  ChangeDirectTransaction(int empid, string bank, string account);
-  virtual PaymentMethod* GetMethod() const;
- private:
-  string itsBank;
-  string itsAccount;
+public:
+    virtual ~ChangeDirectTransaction();
+    ChangeDirectTransaction(int empid, std::string bank, std::string account);
+    virtual PaymentMethod* GetMethod() const;
+
+private:
+    std::string itsBank;
+    std::string itsAccount;
 };
 #endif

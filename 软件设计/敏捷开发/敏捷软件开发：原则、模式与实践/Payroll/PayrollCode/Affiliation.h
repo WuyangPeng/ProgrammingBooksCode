@@ -5,11 +5,11 @@ class Paycheck;
 
 class Affiliation
 {
- public:
-  virtual ~Affiliation();
-  Affiliation();
+public:
+    virtual ~Affiliation();
+    Affiliation();
 
-  virtual double CalculateDeductions(Paycheck&) const = 0;
+    virtual double CalculateDeductions(Paycheck&) const = 0;
 };
 
 #endif

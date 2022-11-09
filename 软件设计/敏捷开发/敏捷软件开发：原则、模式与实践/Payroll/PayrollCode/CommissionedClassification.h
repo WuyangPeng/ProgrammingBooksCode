@@ -3,26 +3,26 @@
 
 #include <map>
 
-#include "PaymentClassification.h"
 #include "Date.h"
+#include "PaymentClassification.h"
 class SalesReceipt;
 
 class CommissionedClassification : public PaymentClassification
 {
- public:
-  virtual ~CommissionedClassification();
-  CommissionedClassification(double salary, double commissionRate);
-  double GetSalary() const;
-  double GetRate() const;
+public:
+    virtual ~CommissionedClassification();
+    CommissionedClassification(double salary, double commissionRate);
+    double GetSalary() const;
+    double GetRate() const;
 
-  SalesReceipt* GetReceipt(const Date& saleDate);
-  void AddReceipt(SalesReceipt*);
+    SalesReceipt* GetReceipt(const Date& saleDate);
+    void AddReceipt(SalesReceipt*);
 
-  virtual double CalculatePay(Paycheck&) const;
+    virtual double CalculatePay(Paycheck&) const;
 
- private:
-  double itsSalary;
-  double itsCommissionRate;
-  map<Date, SalesReceipt*> itsReceipts;
+private:
+    double itsSalary;
+    double itsCommissionRate;
+    std::map<Date, SalesReceipt*> itsReceipts;
 };
 #endif

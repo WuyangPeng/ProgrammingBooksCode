@@ -10,5 +10,5 @@ NoAffiliation::NoAffiliation()
 
 double NoAffiliation::CalculateDeductions(Paycheck&) const
 {
-  return 0;
+    return 0;
 }

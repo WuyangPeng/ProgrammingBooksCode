@@ -6,12 +6,12 @@ MailMethod::~MailMethod()
 {
 }
 
-MailMethod::MailMethod(string address)
-: itsAddress(address)
+MailMethod::MailMethod(std::string address)
+    : itsAddress(address)
 {
 }
 
 void MailMethod::Pay(Paycheck& pc)
 {
-  pc.SetField("Disposition", "Mail");
+    pc.SetField("Disposition", "Mail");
 }

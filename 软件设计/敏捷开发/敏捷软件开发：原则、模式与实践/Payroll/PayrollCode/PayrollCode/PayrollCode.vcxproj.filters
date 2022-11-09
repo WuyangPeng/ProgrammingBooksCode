@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="framework">
+      <UniqueIdentifier>{0d3d4323-eb0f-4688-add7-c86f3b699b3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\extensions">
+      <UniqueIdentifier>{31845a20-fc04-479f-aa46-a3eaf47c8b3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="textui">
+      <UniqueIdentifier>{39e1ac90-476e-44d2-9574-a3b5eeb2cc78}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\WeeklySchedule.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\UnionAffiliation.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Transaction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TimeCardTransaction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TimeCard.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ServiceChargeTransaction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ServiceCharge.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SalesReceiptTransaction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SalesReceipt.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SalariedClassification.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PayrollTest.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PayrollDatabase.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PaymentSchedule.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PaymentMethod.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PaymentClassification.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PaydayTransaction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Paycheck.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\NoAffiliation.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MonthlySchedule.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MailMethod.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HourlyClassification.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\HoldMethod.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Employee.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\DirectMethod.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\DeleteEmployeeTransaction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Date.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CommissionedClassification.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChangeUnaffiliatedTransaction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChangeSalariedTransaction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChangeNameTransaction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChangeMethodTransaction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChangeMemberTransaction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChangeMailTransaction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChangeHourlyTransaction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChangeHoldTransaction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChangeEmployeeTransaction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChangeDirectTransaction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChangeCommissionedTransaction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChangeClassificationTransaction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChangeAffiliationTransaction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ChangeAddressTransaction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\AddSalariedEmployee.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\AddHourlyEmployee.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\AddEmployeeTransaction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\AddCommissionedEmployee.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Affiliation.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BiweeklySchedule.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\TestRunner.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cppunit1.5\CppUnit\test\framework\TestCase.cpp">
+      <Filter>framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cppunit1.5\CppUnit\test\framework\TestFailure.cpp">
+      <Filter>framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cppunit1.5\CppUnit\test\framework\TestResult.cpp">
+      <Filter>framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cppunit1.5\CppUnit\test\framework\TestSuite.cpp">
+      <Filter>framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cppunit1.5\CppUnit\test\textui\TextTestResult.cpp">
+      <Filter>textui</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\AddCommissionedEmployee.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AddEmployeeTransaction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AddHourlyEmployee.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\AddSalariedEmployee.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Affiliation.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BiweeklySchedule.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChangeAddressTransaction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChangeAffiliationTransaction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChangeClassificationTransaction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChangeCommissionedTransaction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChangeDirectTransaction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChangeEmployeeTransaction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChangeHoldTransaction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChangeHourlyTransaction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChangeMailTransaction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChangeMemberTransaction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChangeMethodTransaction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChangeNameTransaction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChangeSalariedTransaction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ChangeUnaffiliatedTransaction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CommissionedClassification.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Date.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\DeleteEmployeeTransaction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\DirectMethod.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Employee.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HoldMethod.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\HourlyClassification.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MailMethod.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MonthlySchedule.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\NoAffiliation.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PayCheck.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PaydayTransaction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PaymentClassification.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PaymentMethod.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PaymentSchedule.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PayrollDatabase.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PayrollTest.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SalariedClassification.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SalesReceipt.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SalesReceiptTransaction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ServiceCharge.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ServiceChargeTransaction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\TimeCard.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\TimeCardTransaction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Transaction.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\UnionAffiliation.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\WeeklySchedule.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\CppUnitException.h">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\estring.h">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\Guards.h">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\Test.h">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\TestCaller.h">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\TestCase.h">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\TestFailure.h">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\TestResult.h">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\TestSuite.h">
+      <Filter>framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\extensions\Orthodox.h">
+      <Filter>framework\extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\extensions\RepeatedTest.h">
+      <Filter>framework\extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\extensions\TestDecorator.h">
+      <Filter>framework\extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\framework\extensions\TestSetup.h">
+      <Filter>framework\extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cppunit1.5\CppUnit\test\textui\TextTestResult.h">
+      <Filter>textui</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

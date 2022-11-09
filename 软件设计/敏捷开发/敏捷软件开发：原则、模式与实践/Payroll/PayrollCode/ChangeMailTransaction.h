@@ -6,12 +6,13 @@
 
 class ChangeMailTransaction : public ChangeMethodTransaction
 {
- public:
-  virtual ~ChangeMailTransaction();
-  ChangeMailTransaction(int empid, string address);
-  virtual PaymentMethod* GetMethod() const;
- private:
-  string itsAddress;
+public:
+    virtual ~ChangeMailTransaction();
+    ChangeMailTransaction(int empid, std::string address);
+    virtual PaymentMethod* GetMethod() const;
+
+private:
+    std::string itsAddress;
 };
 
 #endif

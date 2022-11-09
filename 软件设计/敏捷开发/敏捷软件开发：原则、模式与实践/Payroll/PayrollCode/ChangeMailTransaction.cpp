@@ -5,13 +5,12 @@ ChangeMailTransaction::~ChangeMailTransaction()
 {
 }
 
-ChangeMailTransaction::ChangeMailTransaction(int empid, string address)
-: ChangeMethodTransaction(empid)
-, itsAddress(address)
+ChangeMailTransaction::ChangeMailTransaction(int empid, std::string address)
+    : ChangeMethodTransaction(empid), itsAddress(address)
 {
 }
 
 PaymentMethod* ChangeMailTransaction::GetMethod() const
 {
-  return new MailMethod(itsAddress);
+    return new MailMethod(itsAddress);
 }

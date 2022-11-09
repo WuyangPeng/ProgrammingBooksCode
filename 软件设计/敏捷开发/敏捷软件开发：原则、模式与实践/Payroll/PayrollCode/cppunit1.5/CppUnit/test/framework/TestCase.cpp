@@ -65,7 +65,7 @@ void TestCase::run (TestResult *result)
         result->addFailure (this, copy);
 
     }
-    catch (exception e) {
+    catch (std::exception e) {
         result->addError (this, new CppUnitException (e.what ()));
 
     }

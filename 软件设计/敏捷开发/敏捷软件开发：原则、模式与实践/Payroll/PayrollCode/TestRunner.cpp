@@ -16,127 +16,122 @@
 #include <iostream>
 #include <vector>
 
-#include "TextTestResult.h"
 #include "PayrollTest.h"
+#include "TextTestResult.h"
 
 using namespace std;
 
-typedef pair<string, Test *>           mapping;
-typedef vector<pair<string, Test *> >   mappings;
+typedef pair<string, Test*> mapping;
+typedef vector<pair<string, Test*>> mappings;
 
 class TestRunner
 {
 protected:
-  bool                                m_wait;
-  vector<pair<string,Test *> >        m_mappings;
+    bool m_wait;
+    vector<pair<string, Test*>> m_mappings;
 
 public:
-  TestRunner    () : m_wait (false) {}
-  ~TestRunner   ();
+    TestRunner()
+        : m_wait(false)
+    {
+    }
+    ~TestRunner();
 
-  void        run           (int ac, char **av);
-  void        addTest       (string name, Test *test)
-  { m_mappings.push_back (mapping (name, test)); }
+    void run(int ac, char** av);
+    void addTest(string name, Test* test)
+    {
+        m_mappings.push_back(mapping(name, test));
+    }
 
 protected:
-  void        run (Test *test);
-  void        printBanner ();
-
+    void run(Test* test);
+    void printBanner();
 };
 
-
-
-void TestRunner::printBanner ()
+void TestRunner::printBanner()
 {
-  cout << "Usage: driver [ -wait ] testName, where name is the name of a test case class" << endl;
+    cout << "Usage: driver [ -wait ] testName, where name is the name of a test case class" << endl;
 }
 
-
-void TestRunner::run (int ac, char **av)
+void TestRunner::run(int ac, char** av)
 {
-  string  testCase;
- int     numberOfTests = 0;
+    string testCase;
+    int numberOfTests = 0;
 
-    for (int i = 1; i < ac; i++) {
-
-        if (string (av [i]) == "-wait") {
+    for (int i = 1; i < ac; i++)
+    {
+        if (string(av[i]) == "-wait")
+        {
             m_wait = true;
             continue;
         }
 
-        testCase = av [i];
+        testCase = av[i];
 
-        if (testCase == "") {
-            printBanner ();
+        if (testCase == "")
+        {
+            printBanner();
             return;
         }
 
-        Test *testToRun = NULL;
+        Test* testToRun = NULL;
 
-        for (mappings::iterator it = m_mappings.begin ();
-                it != m_mappings.end ();
-                ++it) {
-            if ((*it).first == testCase) {
+        for (mappings::iterator it = m_mappings.begin();
+             it != m_mappings.end();
+             ++it)
+        {
+            if ((*it).first == testCase)
+            {
                 testToRun = (*it).second;
-                run (testToRun);
-
+                run(testToRun);
             }
         }
 
         numberOfTests++;
 
-        if (!testToRun) {
+        if (!testToRun)
+        {
             cout << "Test " << testCase << " not found." << endl;
             return;
-
-        } 
-
-
+        }
     }
 
-    if (numberOfTests == 0) {
-        printBanner ();
-        return;        
+    if (numberOfTests == 0)
+    {
+        printBanner();
+        return;
     }
 
-    if (m_wait) {
+    if (m_wait)
+    {
         cout << "<RETURN> to continue" << endl;
-        cin.get ();
-
+        cin.get();
     }
-
-
 }
 
-
-TestRunner::~TestRunner ()
+TestRunner::~TestRunner()
 {
-    for (mappings::iterator it = m_mappings.begin ();
-             it != m_mappings.end ();
-             ++it)
+    for (mappings::iterator it = m_mappings.begin();
+         it != m_mappings.end();
+         ++it)
         delete it->second;
-
 }
 
-
-void TestRunner::run (Test *test)
+void TestRunner::run(Test* test)
 {
-    TextTestResult  result;
+    TextTestResult result;
 
-    test->run (&result);
+    test->run(&result);
 
     cout << result << endl;
 }
 
-
-int main (int ac, char **av)
+int main(int ac, char** av)
 {
     TestRunner runner;
 
-    runner.addTest ("PayrollTest", PayrollTest::suite ());
-    runner.run (ac, av);
+    runner.addTest("PayrollTest", PayrollTest::suite());
+    runner.run(ac, av);
 
     return 0;
 }
-
-

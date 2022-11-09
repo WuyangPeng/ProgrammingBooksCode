@@ -5,9 +5,9 @@ class Paycheck;
 
 class PaymentMethod
 {
- public:
-  virtual ~PaymentMethod();
+public:
+    virtual ~PaymentMethod();
 
-  virtual void Pay(Paycheck&) = 0;
+    virtual void Pay(Paycheck&) = 0;
 };
 #endif

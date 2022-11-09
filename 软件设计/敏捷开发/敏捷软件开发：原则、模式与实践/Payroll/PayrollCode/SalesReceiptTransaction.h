@@ -1,20 +1,20 @@
 #ifndef SALESRECEIPTTRANSACTION_H
 #define SALESRECEIPTTRANSACTION_H
 
-#include "Transaction.h"
 #include "Date.h"
+#include "Transaction.h"
 
 class SalesReceiptTransaction : public Transaction
 {
- public:
-  virtual ~SalesReceiptTransaction();
-  SalesReceiptTransaction(const Date& saleDate, double amount, int empid);
+public:
+    virtual ~SalesReceiptTransaction();
+    SalesReceiptTransaction(const Date& saleDate, double amount, int empid);
 
-  virtual void Execute();
+    virtual void Execute();
 
- private:
-  int itsEmpid;
-  Date itsSaleDate;
-  double itsAmount;
+private:
+    int itsEmpid;
+    Date itsSaleDate;
+    double itsAmount;
 };
 #endif

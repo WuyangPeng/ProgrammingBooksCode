@@ -9,15 +9,13 @@ ChangeEmployeeTransaction::~ChangeEmployeeTransaction()
 }
 
 ChangeEmployeeTransaction::ChangeEmployeeTransaction(int empid)
-  : itsEmpId(empid)
+    : itsEmpId(empid)
 {
 }
 
 void ChangeEmployeeTransaction::Execute()
 {
-  Employee* e = GpayrollDatabase.GetEmployee(itsEmpId);
-  if (e != 0)
-    Change(*e);
+    Employee* e = GpayrollDatabase.GetEmployee(itsEmpId);
+    if (e != 0)
+        Change(*e);
 }
-
-

@@ -5,9 +5,9 @@
 
 class HoldMethod : public PaymentMethod
 {
- public:
-  virtual ~HoldMethod();
+public:
+    virtual ~HoldMethod();
 
-  virtual void Pay(Paycheck&);
+    virtual void Pay(Paycheck&);
 };
 #endif

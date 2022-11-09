@@ -6,12 +6,12 @@ class PaymentMethod;
 
 class ChangeMethodTransaction : public ChangeEmployeeTransaction
 {
- public:
-  virtual ~ChangeMethodTransaction();
-  ChangeMethodTransaction(int empid);
+public:
+    virtual ~ChangeMethodTransaction();
+    ChangeMethodTransaction(int empid);
 
-  virtual PaymentMethod* GetMethod() const = 0;
-  virtual void Change(Employee&);
+    virtual PaymentMethod* GetMethod() const = 0;
+    virtual void Change(Employee&);
 };
 
 #endif

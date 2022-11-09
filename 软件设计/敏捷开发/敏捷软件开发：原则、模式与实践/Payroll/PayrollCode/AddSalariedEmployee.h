@@ -5,13 +5,13 @@
 
 class AddSalariedEmployee : public AddEmployeeTransaction
 {
- public:
-  virtual ~AddSalariedEmployee();
-  AddSalariedEmployee(int empid, string name, string address, double salary);
-  PaymentClassification* GetClassification() const;
-  PaymentSchedule* GetSchedule() const;
+public:
+    virtual ~AddSalariedEmployee();
+    AddSalariedEmployee(int empid, std::string name, std::string address, double salary);
+    PaymentClassification* GetClassification() const;
+    PaymentSchedule* GetSchedule() const;
 
- private:
-  double itsSalary;
+private:
+    double itsSalary;
 };
 #endif

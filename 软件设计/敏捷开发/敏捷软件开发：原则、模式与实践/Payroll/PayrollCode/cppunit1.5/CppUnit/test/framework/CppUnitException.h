@@ -16,7 +16,7 @@
 #define CPPUNIT_UNKNOWNLINENUMBER      (-1)
 
 
-class CppUnitException : public exception
+class CppUnitException : public std::exception
 {
 public:
                         CppUnitException (std::string  message    = "", 

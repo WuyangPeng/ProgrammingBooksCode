@@ -6,11 +6,11 @@ class Paycheck;
 
 class PaymentClassification
 {
- public:
-  virtual ~PaymentClassification();
+public:
+    virtual ~PaymentClassification();
 
-  virtual double CalculatePay(Paycheck&) const = 0;
- protected:
+    virtual double CalculatePay(Paycheck&) const = 0;
 
+protected:
 };
 #endif
