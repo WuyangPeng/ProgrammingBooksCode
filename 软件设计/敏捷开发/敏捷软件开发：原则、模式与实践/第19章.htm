@@ -67,126 +67,185 @@ Practices</span></p>
 
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style11">
-。</p>
+<a href="Payroll/PayrollCode/Transaction.h">Transaction.h</a></p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
 <strong>19.1 增加雇员 </strong></p>
 <p class="style11">
-}</p>
+<a href="Payroll/PayrollCode/PayrollTest.cpp">PayrollTest.cpp</a></p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
 <strong>19.1.1 薪水支付系统数据库 </strong></p>
 <p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
+<a href="Payroll/PayrollCode/PayrollDatabase.h">PayrollDatabase.h</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/PayrollDatabase.cpp">PayrollDatabase.cpp</a></p>
+<p class="style11">
+推迟有关数据库的细节是一项不常见，但却很值得的实践。我们常常会一直等到对软件及需要有了更多的知识时，才进行有关数据库的决策。通过等待，我们避免了把过多的基础结构放入数据库中的问题。我们更愿意仅仅实现刚好满足应用程序需要的数据库功能。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>19.1.2 使用TEMPLATE METHOD模式来增加雇员</strong></p>
 <p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
+<a href="Payroll/PayrollCode/AddEmployeeTransaction.h">AddEmployeeTransaction.h</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/AddEmployeeTransaction.cpp">
+AddEmployeeTransaction.cpp</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/AddSalariedEmployee.h">AddSalariedEmployee.h</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/AddSalariedEmployee.cpp">AddSalariedEmployee.cpp</a>&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
 <strong>19.2 删除雇员</strong></p>
 <p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
+<a href="Payroll/PayrollCode/PayrollTest.cpp">PayrollTest.cpp</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/DeleteEmployeeTransaction.h">
+DeleteEmployeeTransaction.h</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/DeleteEmployeeTransaction.cpp">
+DeleteEmployeeTransaction.cpp</a>&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>19.2.1 全局变量</strong></p>
-<p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
 <strong>19.3 时间卡、销售凭条以及服务费用</strong></p>
 <p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
+<a href="Payroll/PayrollCode/PayrollTest.cpp">PayrollTest.cpp</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/TimeCard.h">TimeCard.h</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/TimeCardTransaction.h">TimeCardTransaction.h</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/TimeCardTransaction.cpp">TimeCardTransaction.cpp</a>&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>19.3.1 代码与UML</strong></p>
 <p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
+<a href="Payroll/PayrollCode/ServiceChargeTransaction.h">
+ServiceChargeTransaction.h</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/ServiceChargeTransaction.cpp">
+ServiceChargeTransaction.cpp&nbsp;</a></p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>19.4 更改雇员属性</strong></p>
 <p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
+<a href="Payroll/PayrollCode/PayrollTest.cpp">PayrollTest.cpp</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/ChangeEmployeeTransaction.h">
+ChangeEmployeeTransaction.h</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/ChangeEmployeeTransaction.cpp">
+ChangeEmployeeTransaction.cpp</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/ChangeNameTransaction.h">ChangeNameTransaction.h</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/ChangeNameTransaction.cpp">
+ChangeNameTransaction.cpp&nbsp;</a></p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>19.4.1 更改雇员类别</strong></p>
 <p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
+<a href="Payroll/PayrollCode/PayrollTest.cpp">PayrollTest.cpp</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/ChangeClassificationTransaction.h">
+ChangeClassificationTransaction.h</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/ChangeClassificationTransaction.cpp">
+ChangeClassificationTransaction.cpp</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/ChangeHourlyTransaction.h">
+ChangeHourlyTransaction.h</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/ChangeHourlyTransaction.cpp">
+ChangeHourlyTransaction.cpp</a>&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>19.4.2 我当时抽什么烟了</strong></p>
 <p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
+<a href="Payroll/PayrollCode/PayrollTest.cpp">PayrollTest.cpp</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/ChangeAffiliationTransaction.h">
+ChangeAffiliactionTransaction.h</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/ChangeAffiliationTransaction.cpp">
+ChangeAffiliactionTransaction.cpp</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/ChangeMemberTransaction.h">
+ChangeMemberTransaction.h</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/ChangeMemberTransaction.cpp">
+ChangeMemberTransaction.cpp</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/ChangeUnaffiliatedTransaction.h">
+ChangeUnffiliatedTransaction.h</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/ChangeUnaffiliatedTransaction.cpp">
+ChangeUnffiliatedTransaction.cpp</a>&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>19.5 支付雇员薪水</strong></p>
-<p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
+<strong>19.5 支付雇员薪水</strong>&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>19.5.1 我们希望开发人员做商务决策吗</strong></p>
-<p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>19.5.2 支付带薪雇员薪水</strong></p>
 <p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
+<a href="Payroll/PayrollCode/PayrollTest.cpp">PayrollTest.cpp</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/PaydayTransaction.cpp">PaydayTransaction.cpp</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/MonthlySchedule.cpp">MonthlySchedule.cpp</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/Employee.cpp">Employee.cpp&nbsp;</a></p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
 <strong>19.5.3 支付钟点雇员薪水</strong></p>
 <p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
+<a href="Payroll/PayrollCode/PayrollTest.cpp">PayrollTest.cpp</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/HourlyClassification.cpp">HourlyClassification.cpp</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/WeeklySchedule.cpp">WeeklySchedule.cpp&nbsp;</a></p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>19.5.4 支付期：一个设计问题</strong></p>
 <p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
+<a href="Payroll/PayrollCode/PayrollTest.cpp">PayrollTest.cpp</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/PaydayTransaction.cpp">PaydayTransaction.cpp</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/PaymentClassification.cpp">
+PaymentClassification.cpp&nbsp;</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/Date.cpp">Date.cpp</a></p>
+<p class="style11">
+<a href="Payroll/PayrollCode/Employee.h">Employee.h</a></p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>19.6 主程序</strong></p>
-<p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>19.7 数据库</strong></p>
 <p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
+就应用程序而言，数据库只是管理存储的机制而已。通常都不应该把它们当做设计和实现的主要因素。</p>
+<p class="style11">
+设计者仍然应该解除应用设计和数据库设计之间的耦合。应用设计不应该依赖于任何特定类型的数据库。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>19.8 薪水支付系统设计总结</strong></p>
-<p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
+<strong>19.8 薪水支付系统设计总结</strong>&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>19.8.1 历史</strong></p>
-<p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
 <strong>19.8 资源</strong></p>
-<p class="style11">
-}</p>
-<p align="center">&nbsp;</p>
+<p class="style12">
+<a href="https://www.booked.net/objectmentor">
+https://www.booked.net/objectmentor</a>&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="第Ⅲ部分.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
 
