@@ -49,6 +49,13 @@
 	margin-left: 12px;
 	margin-right: 12px;
 }
+.style14 {
+	font-family: FZKai-Z03;
+	text-indent: 0;
+	text-align: left;
+	margin-left: 12px;
+	margin-right: 12px;
+}
 </style>
 </head>
 
@@ -69,43 +76,184 @@ Practices</span></p>
 <p class="style12">
 <strong>20.1 如何进行包的设计 </strong></p>
 <p class="style11">
-&nbsp;</p>
-<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+包可以用作包容一组类的容器。通过把类组织成包，我们可以在更高层次的抽象上来理解设计。我们也可以通过包来管理软件的开发和发布。目的就是根据一些原则对应用程序的来进行划分，然后把那些划分后的类分配到包中。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>20.2 粒度：包的内聚性原则 </strong></p>
+<strong>20.2 粒度：包的内聚性原则</strong>&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>20.2.1 重用发布等价原则 </strong></p>
 <p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+重用的粒度就是发布的粒度。</p>
+<p class="style11">
+你当然想得到好的文档，可以工作的代码，规格清晰的接口。</p>
+<p class="style11">
+你希望代码的作者能保证为你维护这些代码，只有这样才值得你在重用这些代码上花费时间。</p>
+<p class="style11">
+你希望代码的作者在计划对代码的接口和功能进行任何改变时，提前通知你一下。代码的作者必须尊重你拒绝使用任何新版本的权力。</p>
+<p class="style11">
+无论在哪种情况下，如果你决定不接纳新版本。作者必须保证对你所使用的旧版本继续提供一段时间的支持。</p>
+<p class="style11">
+为了给重用者提供所需的保证，代码的作者必须把他们的软件组织到一个可重用的包中，并且通过版本号对那些包进行跟踪。</p>
+<p class="style11">
+一个包的重用粒度可以和发布粒度一样大。我们所重用的任何东西都必须同时被发布和跟踪。</p>
+<p class="style11">
+由于重用性必须是基于包的，所以可重用的包必须包含可重用的类。</p>
+<p class="style11">
+如果一个包中的软件是用来重用的，那么它就不能再包含不是为了重用目的而设计的软件。一个包中的软件要么都是可重用的，要么都不是可重用的。</p>
+<p class="style11">
+可重用性不是惟一的标准，我们也要考虑重用这些软件的人。</p>
+<p class="style11">
+我们希望一个包中的所有类对于同一类用户来说都是可重用的。我们不希望一个用户发现包中所包含的类中，一些是他所需要的，另一些对他却完成不适合。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>20.2.2 共同重用原则 </strong></p>
+<p class="style11">
+一个包中的所有类应该是共同重用的。如果重用了包中的一个类，那么就要重用包中的所有类。</p>
+<p class="style11">
+相互之间没有紧密联系的类不应该在同一个包中。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>20.2.3 共同封闭原则 </strong></p>
+<p class="style11">
+包中的所有类对于同一类性质的变化应该是共同封闭的。一个变化若对一个包产生影响，则将对该包中的所有类产生影响 ，而对于其他的包不造成任何影响。</p>
+<p class="style11">
+一个类不应该包含多个引起变化的原因那样，这条原则规定了一个包不应该包含多个引起变化的原因。</p>
+<p class="style11">
+鼓励我们把可能由于同样的原因而更改的所有类共同聚集在同一个地方。如果两个类之间有非常紧密的绑定关系，不管是物理上的还是概念上的，那么它们总是会一同进行变化，因而它们应该属于同一个包中。这样做会减少软件的发布、重新验证、重新发行的工作量。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>20.2.4 包内聚性总结 </strong></p>
+<p class="style11">
+在选择要共同组织到包中的类时，必须要考虑可重用性与可开发性之间的相反作用力。在这些作用力和应用的需要之间进行平衡不是一件简单的工作。些外，这个平衡几乎总是动态的。也就是说，今天看起来合适的划分到了明年也许就不再合适了。因此，当项目的重心从可开发性向可重用性转变时，包的组成很可能会变动并随时间而演化。</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>20.3 稳定性：包的耦合性原则 </strong></p>
 <p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+来自技术和行政方面的作用力都会影响到包的组织结构，并且这种作用力还是易变的。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>20.3.1 无环依赖原则 </strong></p>
+<p class="style11">
+在包的依赖关系图中不允许存在环。</p>
+<p class="style11">
+逐步形成了两个针对该问题的解决方案。第一个是“每周构建”，第二个是ADP。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>20.3.2 每周构建 </strong></p>
+<p class="style11">
+为了保持效率，就必须要不断地延长构建周期。但是，延长构建周期会增加项目的风险。集成和测试变得越来越难进行，团队也丧失了快速反馈带来的好处。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>20.3.3 消除依赖环 </strong></p>
+<p class="style11">
+通过把开发环境划分成可发布的包，可以解决上述问题。</p>
+<p class="style11">
+当制作了一个包的新版本时，其他开发团队可以决定是否马上采用这个新的版本，如果决定不采用，则他们完全可以继续使用老的版本。一旦觉得自己准备就绪，就可以开始使用新的版本。</p>
+<p class="style11">
+不过，要使其能够工作，就必须要对包的依赖关系结构进行管理。包的依赖关系结构中不能有环。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>20.3.4 包依赖关系图中环造成的影响 </strong></p>
+<p class="style11">
+如果依赖关系图中存在环，就很难确定包构建的顺序。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>20.3.5 解除依赖环 </strong></p>
+<ol>
+	<li>
+	<p class="style14">使用依赖倒置原则。</p>
+	</li>
+	<li>
+	<p class="style14">新创建一个都依赖的包。把依赖的类移到这个新包中。&nbsp;</p>
+	</li>
+</ol>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>20.3.6 抖动 </strong></p>
+<p class="style11">
+在需求改变面前包的结构是不稳定的。事实上，随着应用程序的增长，包的依赖关系结构会抖动和增长。因此，必须要始终对依赖关系结构中环的情况进行监控。如果出现了环，就必须要使用某种方法把其解除。有时这意味着要创建新的包，致使依赖关系结构增长。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>20.4 自顶向下设计 </strong></p>
 <p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+不能自顶向下设计包的结构。这意味着包结构不是设计系统时首先考虑的事情之一。事实上，包结构应该是随着系统的增长、变化而逐步演化的。</p>
+<p class="style11">
+包的依赖关系图和描绘应用程序的功能之间几乎没有关系。相反，它们是应用程序可构建性的映射图。</p>
+<p class="style11">
+随着应用程序的不断增长，我们开始关注创建可重用的元素。于是，就开始使用CRP来指导包的组合。最后，当环出现时，就会使用ADP，从而包的依赖关系图会出现抖动以及增长。</p>
+<p class="style11">
+包的依赖关系结构是和系统的逻辑设计一起增长和演化的。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>20.5 稳定依赖原则 </strong></p>
 <p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+朝着稳定的方向进行依赖。</p>
+<p class="style11">
+设计不能是完全固定的。要使设计可维护，某种程序的易变性是必要的。我们通过遵循共同封闭原则来达到这个目标。使用这个原则，可以创建对某些变化类型敏感的包。这些包被设计成可变的。我们期望它们变化。</p>
+<p class="style11">
+对于任何包而言，如果期望它是可变的，就不应该让一个难以更改的包依赖于它！否则，可变的包同样也会难以更改。</p>
+<p class="style11">
+你设计了一个易于更改的包，其他人只要创建一个对它的依赖就可以使它变得难以更改，这就是软件的反常特性。没有改变你的模块中的任何一行代码，可是它突然之间就变得难以更改了。通过遵循SDP，我们可以确保那些打算易于更改的模块不会被那些比它们难以更改的模块所依赖。</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>20.5.1 稳定性 </strong></p>
+<p class="style11">
+稳定性和变化的频率没有直接关系。</p>
+<p class="style11">
+稳定性和更改所需要的工作量有关。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>20.5.2 稳定性度量</strong></p>
+<p class="style11">
+如何度量一个包的稳定性？一种方法是计算进、出该包的依赖关系的数目。</p>
+<p class="style11">
+输入耦合度：指处于该包的外部并依赖于该包内的类的类的数目。</p>
+<p class="style11">
+输出耦合度：指处于该包的内部并依赖于该包外的类的类的数目。</p>
+<p class="style11">
+&nbsp;当一个包的I度量值为1时，就意味着没有任何其他的包依赖于该包；而该包却依赖于其他的包。这是一个包最不稳定的状态；它是不承担责任且具有依赖性的。因为没有包依赖于它，所以它就没有不改变理由，而它所依赖的包会给它提供丰富的更改理由。</p>
+<p class="style11">
+当一个包的I度量值为0时，就意味着其他包会依赖于该包，但是该包却不依赖于任何其他的包。它是负有责任且无依赖性的。这种包达到了最大程度的稳定性。它的依赖者使其难以更改，而且没有任何依赖关系会迫使它去改变。</p>
+<p class="style11">
+SDP规定一个包的I度量值应该大于它所依赖的包的I度量值。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>20.5.3 并非所有的包都应该是稳定的</strong></p>
+<p class="style11">
+可改变的包位于顶部并依赖于底部稳定的包。把不稳定的包放在图的顶部是一个有用的约定。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>20.5.4 在哪里放置高层设计？</strong></p>
+<p class="style11">
+系统中的某些软件不应该经常改变。该软件代表着系统的高层构架和设计决策。我们希望这些构架决策是稳定的。因此，应该把封装系统高层设计的软件放进稳定的包中，不稳定的包中应该只包含那些很可能会改变的软件。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>20.6 稳定抽象原则 </strong></p>
 <p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+包的抽象程序应该和其稳定程度一致。</p>
+<p class="style11">
+该原则把包的稳定性和抽象性联系起来。它规定，一个稳定的包应该也是抽象的。这样它的稳定性就不会使其无法扩展。另一方面，它规定，一个不稳定的包应该是具体的，因为它的不稳定性使得其内部的具体代码易于更改。</p>
+<p class="style11">
+因此，如果一个包是稳定的，那么它应该也要包含一些抽象类，这样就可以对它进行扩展。可扩展的稳定包是灵活的，并且不会过分限制设计。</p>
+<p class="style11">
+依赖应该朝着抽象的方向进行。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>20.6.1 抽象性度量</strong>&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>20.6.2 主序列 </strong></p>
+<p class="style11">
+位于主序列上的包既不是太抽象，因为它具有稳定性，也不是太不稳定，因为它具有抽象性。它既不是无用的，又不是特别令人痛苦的。就其抽象性而言，它被其他的包依赖，就其具体性而言，它又依赖于其他的包。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>20.6.3 到主序列的距离</strong>&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>20.7 结论 </strong></p>
 <p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+依赖关系是有好坏之分的。该模式反映了这种经验。然而，度量不是万能的，它只是一个取代随意标准的测量方法。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="第Ⅳ部分.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
 
