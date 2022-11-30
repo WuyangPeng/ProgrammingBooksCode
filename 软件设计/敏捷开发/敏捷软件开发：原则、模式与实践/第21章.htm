@@ -88,31 +88,33 @@ ShapeFactoryImplementation.java</a></p>
 <p class="style12">
 <strong>21.1 依赖关系环 </strong></p>
 <p class="style11">
-&nbsp;</p>
+<a href="Patterns/Factory/DynamicShapeFactory/src/com/tcre/ShapeFactory.java">ShapeFactory.java</a></p>
+<p class="style11">
+<a href="Patterns/Factory/DynamicShapeFactory/src/com/tcre/ShapeFactoryImplementation.java">ShapeFactoryImplementation.java</a>&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
 <strong>21.2 可替换的工厂 </strong></p>
 <p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+使用工厂的一个主要好处就是可以把工厂的一种实现替换为另一种实现。这样，就可以在应用程序中替换一系列相关的对象。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
 <strong>21.3 对测试支架使用对象工厂 </strong></p>
 <p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+在编写单元测试时，通常希望把一个模块和它所使用的模块隔离起来，单独去测试该模块的行为。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>21.4 使用对象工厂有多么重要 </strong></p>
 <p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+严格按照DIP来讲，必须要对系统中所有的易变类使用工厂。</p>
+<p class="style11">
+我不是一开始就使用工厂。只是在非常需要它们的情况下，我才把它们放入系统中。</p>
+<p class="style11">
+使用工厂会带来复杂性，这种复杂性通常是可以避免的，尤其是在一个正在演化的设计的初期。如果缺省地使用它们，就会极大地增加扩展设计的难度。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>21.5 结论 </strong></p>
 <p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+工厂是有效的工具。在遵循DIP方面工厂有着重大的作用。它们使得高层策略模块在创建类的实例中无需依赖于这些类的具体实现。它们同样也使得在一组类的完全不同系列的实现间进行交换成为可能。然而，使用工厂会带来复杂性，这种复杂性通常是可以避免的。缺省地使用它们通常不是最好的做法。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="第Ⅳ部分.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
 

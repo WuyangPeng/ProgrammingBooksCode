@@ -1,3 +1,5 @@
+package com.tcre;
+
 import junit.framework.*;
 import junit.swingui.TestRunner;
 
@@ -5,7 +7,7 @@ public class TestDynamicShapeFactory extends TestCase
 {
   public static void main(String[] args)
   {
-    TestRunner.main(new String[]{"TestDynamicShapeFactory"});
+    TestRunner.main(new String[]{"com.tcre.TestDynamicShapeFactory"});
   }
 
   public TestDynamicShapeFactory(String name)
