@@ -1,3 +1,5 @@
+package com.tcre;
+
 public interface ShapeFactory
 {
   public Shape makeCircle();

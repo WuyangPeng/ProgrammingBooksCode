@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta name="GENERATOR" content="Microsoft FrontPage 12.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
-<title>第20章 </title>
+<title>第21章 FACTORY模式</title>
 <link rel="stylesheet" type="text/css" href="../../../news.css">
 <meta name="Microsoft Theme" content="nature 011">
 <style type="text/css">
@@ -62,19 +62,54 @@ Software Development</p>
 <p align="center" class="style6">&nbsp;<span class="style7">Principles, Patterns, and 
 Practices</span></p>
 <p align="center" class="style6">
-<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第20章</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第21章 
+FACTORY模式</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
 
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style11">
-&nbsp;</p>
+依赖倒置原则告诉我们应该优先依赖于抽象类，而避免依赖于具体类。当这些具体类不稳定时，更应该如此。</p>
+<p class="style11">
+Circle c = new Circle(origin , 1);</p>
+<p class="style11">
+事实上，任何一行使用了new关键字的代码都违反了DIP。</p>
+<p class="style11">
+有时，违反了DIP也是无害的。一个具体类越有可能会改变，依赖于它就越有可能引发问题。但是如果这个具体类是稳定的，那么依赖于它就不会出现麻烦。</p>
+<p class="style11">
+在一个正在进行的应用程序开发中，有很多具体类都是非常易变的。依赖于它们会带来问题。我们应当依赖于抽象接口，以使我们免受大多数变化的影响。</p>
+<p class="style11">
+FACTORY模式允许我们只依赖于抽象接口就能创建出具体对象的实例。所以，在正在进行的开发期间，如果具体类是高度易变的，那么该模式是非常有用的。</p>
+<p class="style11">
+<a href="Patterns/Factory/StandardShapeFactory/src/com/tcre/ShapeFactory.java">
+ShapeFactory.java</a></p>
+<p class="style11">
+<a href="Patterns/Factory/StandardShapeFactory/src/com/tcre/ShapeFactoryImplementation.java">
+ShapeFactoryImplementation.java</a></p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
-<strong>19.1 增加雇员 </strong></p>
+<strong>21.1 依赖关系环 </strong></p>
 <p class="style11">
 &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
-<strong>19.1.1 薪水支付系统数据库 </strong></p>
+<strong>21.2 可替换的工厂 </strong></p>
+<p class="style11">
+。&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style12">
+<strong>21.3 对测试支架使用对象工厂 </strong></p>
+<p class="style11">
+。&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>21.4 使用对象工厂有多么重要 </strong></p>
+<p class="style11">
+。&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>21.5 结论 </strong></p>
 <p class="style11">
 。&nbsp;</p>
 <p align="center">&nbsp;</p>

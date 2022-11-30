@@ -1,3 +1,4 @@
+package com.tcre;
 
 public class Square implements Shape
 {

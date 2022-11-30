@@ -1,3 +1,5 @@
+package com.tcre;
+
 import junit.framework.TestCase;
 import junit.swingui.TestRunner;
 
@@ -5,7 +7,7 @@ public class TestShapeFactory extends TestCase
 {
   public static void main(String[] args)
   {
-    TestRunner.main(new String[]{"TestShapeFactory"});
+    TestRunner.main(new String[]{"com.tcre.TestShapeFactory"});
   }
 
   public TestShapeFactory(String name)
