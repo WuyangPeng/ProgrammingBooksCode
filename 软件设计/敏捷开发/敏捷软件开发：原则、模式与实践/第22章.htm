@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta name="GENERATOR" content="Microsoft FrontPage 12.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
-<title>第20章 </title>
+<title>第22章 薪水支付案例研究（第2部分）</title>
 <link rel="stylesheet" type="text/css" href="../../../news.css">
 <meta name="Microsoft Theme" content="nature 011">
 <style type="text/css">
@@ -62,19 +62,126 @@ Software Development</p>
 <p align="center" class="style6">&nbsp;<span class="style7">Principles, Patterns, and 
 Practices</span></p>
 <p align="center" class="style6">
-<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第20章</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第22章 
+薪水支付案例研究（第2部分）</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
 
-<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>22.1 包结构和表示法 </strong></p>
 <p class="style11">
-&nbsp;</p>
+当一个包位于包依赖关系层次结构更高层次时，它的发布率一定会增加。幸运地是，这是不正确的，并且面向对象设计的主要目标之一就是要避免这种症状。</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
-<strong>19.1 增加雇员 </strong></p>
+<strong>22.2 应用公共封闭原则（CCP） </strong></p>
 <p class="style11">
-&nbsp;</p>
-<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
+大部分的可执行代码都在那些具有很少依赖者或者没有依赖者的包中。因为几乎没有包依赖于它们，所以称它们为不承担责任的。这些包的代码是非常灵活的；对它们的更改对项目中大部分其他的包不会造成影响。</p>
+<p class="style11">
+系统中最具通用性的包所包含的可执行代码的数量是最少的。这些包被很多包所依赖，却不依赖于任何其他的包。因为有很多包依赖于它们，所以称它们为承担责任的，并且因为它们不依赖于任何其他包，所以也称它们为无依赖性的。</p>
+<p class="style11">
+承担责任的代码的数量是非常少的。此外，这些少量的承担责任的代码同样也是无依赖性的，这意味着任何其他的模块都不会引起它的变化。在这个倒置的结构中，底部是高度无依赖性和承担责任的包含通用部分的包，顶部是高度有依赖性和不承担责任的包含细节的包，这种结构是面向对象设计的标志。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>19.1.1 薪水支付系统数据库 </strong></p>
+<strong>22.3 应用重用发布等价原则（REP） </strong></p>
+<p class="style11">
+很少会出现只重用包中单一类的情况。一个包中的类应该是内聚的。这意味着它们之间互相依赖，很难轻易、合理地把它们分开。</p>
+<p class="style11">
+我们在试图把类分组成包时，就有了另外一个可以使用的内聚标准：一个包中的类不仅要一同封闭，它们也应该一同重用。</p>
+<p class="style11">
+从简单的包开始在必要时再去增加包结构是最好的做法。在必要时，总是可以把包结构变得更精细。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>22.4 耦合和封装 </strong></p>
+<p class="style11">
+如果一个包中的类被另一个包使用，那么该类必须要被引出。</p>
+<p class="style11">
+缺省情况下类都是被引出的，但是我们可以对包进行修饰以指示其中某些类是不应该被引出的。&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>22.5 度量 </strong></p>
+<p class="style11">
+。&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>22.5.1 关系内聚性（H） </strong></p>
+<p class="style11">
+。&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>22.5.2 输入耦合度（Cu） </strong></p>
+<p class="style11">
+。&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>22.5.3 输出耦合度（Ce） </strong></p>
+<p class="style11">
+。&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>22.5.4 抽象性或者通用性（A） </strong></p>
+<p class="style11">
+。&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>22.5.5 不稳定性（I） </strong></p>
+<p class="style11">
+。&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>22.5.6 到主序列的距离（D） </strong></p>
+<p class="style11">
+。&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>22.5.7 到主序列的规范化距离（D'） </strong></p>
+<p class="style11">
+。&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>22.6 度量薪水支付应用程序 </strong></p>
+<p class="style11">
+。&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>22.7 对象工厂 </strong></p>
+<p class="style11">
+。&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>22.7.1 TransactionImplementation包的对象工厂 </strong></p>
+<p class="style11">
+。&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>22.7.2 初始化对象工厂 </strong></p>
+<p class="style11">
+。&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>22.7.3 重新思考内聚的边界 </strong></p>
+<p class="style11">
+。&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>22.8 最终的包结构 </strong></p>
+<p class="style11">
+。&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>22.9 结论 </strong></p>
 <p class="style11">
 。&nbsp;</p>
 <p align="center">&nbsp;</p>
