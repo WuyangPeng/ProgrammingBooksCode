@@ -99,92 +99,73 @@ Practices</span></p>
 <p class="style12">
 <strong>22.5 度量 </strong></p>
 <p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+无法控制的东西就无法管理，无法测量的东西就无法控制。要想成为高效的软件工程师或者软件管理者，必须要能够控制软件开发的实践。如果没有测量它，无论如何都无法控制它。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>22.5.1 关系内聚性（H） </strong></p>
 <p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+可以用包中每个类平均的内部关系数目作为包内聚性的一种表示方式。</p>
+<p class="style11">
+H&nbsp; = (R + 1) / N&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>22.5.2 输入耦合度（Cu） </strong></p>
 <p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+一个包的输入耦合度可以用对该包的类有依赖的其他包中类的数目来表示。这些依赖关系是类关系，例如：继承和关联。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>22.5.3 输出耦合度（Ce） </strong></p>
 <p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+一个包的输出耦合度可以用被该包的类所依赖的其他包中类的数目来表示。像上面一样，这些依赖关系也是类关系。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>22.5.4 抽象性或者通用性（A） </strong></p>
 <p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+一个包的抽象性或者通用性可以用该包中抽象类的数目和该包中类的总数的比值来表示。该度量的取值范围是0到1。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>22.5.5 不稳定性（I） </strong></p>
 <p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+一个包的不稳定性可用输出耦合度和总耦合度的比值来表示。该度量的取值范围也是从0到1。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>22.5.6 到主序列的距离（D） </strong></p>
 <p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+理想的主序列是由A + I = 1所表示的线。D的计算公式可以计算任何特定的包到主序列的距离。它的范围是从0~0.7，越接近0越好。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>22.5.7 到主序列的规范化距离（D'） </strong></p>
 <p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+该度量把度量D的取值范围规范化为[0,1]。这样计算和解释起来也许会方便一些。值0表示包和主序列是重合的，值1表示包到主序列的距离最大。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>22.6 度量薪水支付应用程序 </strong></p>
-<p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+<strong>22.6 度量薪水支付应用程序</strong>&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>22.7 对象工厂 </strong></p>
 <p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+使用FACTORY模式可以显著地缓和这个问题。每个包都提供一个对象工厂，该工厂负责创建该包中所有的公有对象。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>22.7.1 TransactionImplementation包的对象工厂 </strong></p>
-<p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+<strong>22.7.1 TransactionImplementation包的对象工厂</strong>&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>22.7.2 初始化对象工厂 </strong></p>
 <p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+为了使用对象工厂去创建对象，抽象对象工厂的静态成员必须要被初始化为指向适当的具体对象工厂。这项工作必须要在任何使用者试图去使用对象工厂前完成。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>22.7.3 重新思考内聚的边界 </strong></p>
 <p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+基于操作的划分要比基于功能的划分重要。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>22.8 最终的包结构 </strong></p>
-<p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+<strong>22.8 最终的包结构</strong>&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>22.9 结论 </strong></p>
 <p class="style11">
-。&nbsp;</p>
-<p align="center">&nbsp;</p>
+是否需要对包结构进行管理，取决于程序的规模以及开发团队的规模。即使小的团队，也需要对源代码进行划分，以便于开发人员间可以互不干扰。如果没有某种形式的划分结构，大程序就会变成晦涩难懂的源文件堆积。&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="第Ⅳ部分.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
 
