@@ -1,3 +1,5 @@
+package com.tcre;
+
 import java.util.Vector;
 
 public class CompositeShape implements Shape

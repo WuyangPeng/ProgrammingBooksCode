@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c0f4bd6e-11b3-4994-bd46-3f6fca1f6506" name="默认更改列表" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../../.." />
+  </component>
+  <component name="ProjectId" id="2IlWkmkYQxgmy27flBFp1PUpRJm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.tcre.Main" />
+      <module name="Time6" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c0f4bd6e-11b3-4994-bd46-3f6fca1f6506" name="默认更改列表" comment="" />
+      <created>1670756795598</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1670756795598</updated>
+      <workItem from="1670756798186" duration="1303000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="0" y="309" key="#com.intellij.ide.util.MemberChooser" timestamp="1670757115662">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="0" y="309" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1032@0.0.1920.1032" timestamp="1670757115662" />
+    <state x="1268" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1670756898390">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="1268" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1670756898390" />
+    <state width="1864" height="240" key="GridCell.Tab.0.bottom" timestamp="1670758756540">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="1864" height="240" key="GridCell.Tab.0.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1670758756540" />
+    <state width="1864" height="240" key="GridCell.Tab.0.center" timestamp="1670758756540">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="1864" height="240" key="GridCell.Tab.0.center/0.0.1920.1032@0.0.1920.1032" timestamp="1670758756540" />
+    <state width="1864" height="240" key="GridCell.Tab.0.left" timestamp="1670758756540">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="1864" height="240" key="GridCell.Tab.0.left/0.0.1920.1032@0.0.1920.1032" timestamp="1670758756540" />
+    <state width="1864" height="240" key="GridCell.Tab.0.right" timestamp="1670758756540">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="1864" height="240" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1670758756540" />
+    <state x="512" y="652" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1670756816818">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="512" y="652" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1032@0.0.1920.1032" timestamp="1670756816818" />
+  </component>
+</project>

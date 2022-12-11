@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta name="GENERATOR" content="Microsoft FrontPage 12.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
-<title>第22章 薪水支付案例研究（第2部分）</title>
+<title>第24章 OBSERVER模式——回归为模式</title>
 <link rel="stylesheet" type="text/css" href="../../../news.css">
 <meta name="Microsoft Theme" content="nature 011">
 <style type="text/css">
@@ -49,6 +49,27 @@
 	margin-left: 12px;
 	margin-right: 12px;
 }
+.style14 {
+	font-family: FZKai-Z03;
+	text-indent: 32px;
+	text-align: left;
+	margin-left: 52px;
+	margin-right: 12px;
+}
+.style15 {
+	font-family: FZKai-Z03;
+	text-indent: 32px;
+	text-align: left;
+	margin-left: 92px;
+	margin-right: 12px;
+}
+.style16 {
+	font-family: FZKai-Z03;
+	text-indent: 32px;
+	text-align: left;
+	margin-left: 132px;
+	margin-right: 12px;
+}
 </style>
 </head>
 
@@ -62,19 +83,167 @@ Software Development</p>
 <p align="center" class="style6">&nbsp;<span class="style7">Principles, Patterns, and 
 Practices</span></p>
 <p align="center" class="style6">
-<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第23章</strong> </span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第24章 
+OBSERVER模式——回归为模式</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
 
-<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
-<p class="style12">
-<strong>22.1 </strong>&nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style11">
-&nbsp;。</p>
+当我去重构代码以解决耦合性、简单性以及表达性的问题时，可能会发现代码已经接近于一个特定的模式了。此时，我把类和变量的名字改成使用模式的名字，并且把代码的结构更改为以更正规的形式使用模式。这样，代码就回归为模式。</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
-<strong>22.2 </strong>&nbsp;</p>
+<strong>24.1 数字时钟 </strong>&nbsp;</p>
 <p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+public void DisplayTime</p>
+<p class="style11">
+{</p>
+<p class="style14">
+while(1)</p>
+<p class="style14">
+{</p>
+<p class="style15">
+int sec = clock.getSeconds();</p>
+<p class="style15">
+int min = clock.getMinutes();</p>
+<p class="style15">
+int hour = clock.getHours();</p>
+<p class="style15">
+showTime(hour, min, sec);</p>
+<p class="style14">
+}</p>
+<p class="style11">
+}</p>
+<p class="style11">
+<a href="Patterns/Observer/Time1/src/com/tcre/ClockDriverTest.java">
+ClockDriverTest.java</a></p>
+<p class="style11">
+<a href="Patterns/Observer/Time1/src/com/tcre/TimeSource.java">TimeSource.java</a></p>
+<p class="style11">
+<a href="Patterns/Observer/Time1/src/com/tcre/TimeSink.java">TimeSink.java</a></p>
+<p class="style11">
+<a href="Patterns/Observer/Time1/src/com/tcre/ClockDriver.java">ClockDriver.java</a></p>
+<p class="style11">
+<a href="Patterns/Observer/Time1/src/com/tcre/MockTimeSource.java">
+MockTimeSource.java</a></p>
+<p class="style11">
+<a href="Patterns/Observer/Time1/src/com/tcre/MockTimeSink.java">
+MockTimeSink.java</a></p>
+<p class="style11">
+我希望TimeSource接口可以被任何对象使用，而不仅仅是ClockDriver对象。</p>
+<p class="style11">
+<a href="Patterns/Observer/Time2/src/com/tcre/ClockObserver.java">
+ClockObserver.java</a></p>
+<p class="style11">
+<a href="Patterns/Observer/Time2/src/com/tcre/ClockDriver.java">ClockDriver.java</a></p>
+<p class="style11">
+<a href="Patterns/Observer/Time2/src/com/tcre/TimeSource.java">TimeSource.java</a></p>
+<p class="style11">
+<a href="Patterns/Observer/Time2/src/com/tcre/MockTimeSource.java">
+MockTimeSource.java</a></p>
+<p class="style11">
+<a href="Patterns/Observer/Time2/src/com/tcre/ClockDriverTest.java">
+ClockDriverTest.java</a></p>
+<p class="style11">
+<a href="Patterns/Observer/Time2/src/com/tcre/MockTimeSink.java">
+MockTimeSink.java</a></p>
+<p class="style11">
+对测试程序做少许重构以使它更小、更易读一些。</p>
+<p class="style11">
+<a href="Patterns/Observer/Time3/src/com/tcre/ClockDriverTest.java">
+ClockDriverTest.java</a></p>
+<p class="style11">
+<a href="Patterns/Observer/Time3/src/com/tcre/TimeSource.java">TimeSource.java</a></p>
+<p class="style11">
+<a href="Patterns/Observer/Time3/src/com/tcre/MockTimeSource.java">
+MockTimeSource.java</a>&nbsp;</p>
+<p class="style11">
+将TimeSource从接口变成类。</p>
+<p class="style11">
+<a href="Patterns/Observer/Time4/src/com/tcre/TimeSource.java">TimeSource.java</a></p>
+<p class="style11">
+<a href="Patterns/Observer/Time4/src/com/tcre/MockTimeSource.java">
+MockTimeSource.java</a>&nbsp;</p>
+<p class="style11">
+class ObservableClock : public Clock, public TimeSource</p>
+<p class="style11">
+{</p>
+<p class="style14">
+public:</p>
+<p class="style15">
+virtual void tic()</p>
+<p class="style15">
+{</p>
+<p class="style16">
+Clock::tic()</p>
+<p class="style16">
+TimeSource::notify(getHours(), getMinutes(), getSeconds());</p>
+<p class="style15">
+}</p>
+<p class="style15">
+virtual void setTime(int hours, int minutes, int seconds)</p>
+<p class="style15">
+{</p>
+<p class="style16">
+Clock::setTime(hours, minutes, second);</p>
+<p class="style16">
+TimeSource::notify(hours, minutes, second);&nbsp;</p>
+<p class="style15">
+}</p>
+<p class="style11">
+};</p>
+<p class="style11">
+在java中，我们使用委托方法。</p>
+<p class="style11">
+<a href="Patterns/Observer/Time5/src/com/tcre/TimeSource.java">TimeSource.java</a></p>
+<p class="style11">
+<a href="Patterns/Observer/Time5/src/com/tcre/TimeSourceImplmentation.java">
+TimeSourceImplmentation.java</a></p>
+<p class="style11">
+<a href="Patterns/Observer/Time5/src/com/tcre/MockTimeSource.java">
+MockTimeSource.java</a>&nbsp;</p>
+<p class="style11">
+最终的代码：</p>
+<p class="style11">
+<a href="Patterns/Observer/Time6/src/com/tcre/ObserverTest.java">
+ObserverTest.java</a></p>
+<p class="style11">
+<a href="Patterns/Observer/Time6/src/com/tcre/Observer.java">Observer.java</a></p>
+<p class="style11">
+<a href="Patterns/Observer/Time6/src/com/tcre/Subject.java">Subject.java</a></p>
+<p class="style11">
+<a href="Patterns/Observer/Time6/src/com/tcre/TimeSource.java">TimeSource.java</a></p>
+<p class="style11">
+<a href="Patterns/Observer/Time6/src/com/tcre/MockTimeSource.java">
+MockTimeSource.java</a>&nbsp;</p>
+<p class="style11">
+<a href="Patterns/Observer/Time6/src/com/tcre/MockTimeSink.java">
+MockTimeSink.java</a>&nbsp; &nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>24.2 结论 </strong>&nbsp;</p>
+<p class="style11">
+我们从一个设计问题开始，经过合理的演化，最后得到了一个规范的OBSERVER模式。&nbsp; &nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>24.2.1 本章中图的使用 </strong>&nbsp;</p>
+<p class="style11">
+这些图通常都是暂时性的，最好丢弃。对于这种层次的细节来说，通常代码就足以充当自己的文档。&nbsp; &nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>24.3 OBSERVER模式 </strong>&nbsp;</p>
+<p class="style11">
+你可以向各种对象注册观察者，而不用让这些对象显式地调用你。虽然这种间接关系是一种有用的管理依赖关系的方法，但是它很容易会被过分使用。过度使用OBSERVER模式往往会导致系统难以理解和跟踪。&nbsp; &nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>24.3.1 推我拉你 </strong>&nbsp;</p>
+<p class="style11">
+拉模型的优点是它实现起来比较简单。</p>
+<p class="style11">
+要选择哪种OBSERVER模型完全取决于被观察对象的复杂性。如果被观察对象比较复杂，并且观察者需要一个提示，那么推模型是合适的。如果被观察者的对象比较简单，那么拉模型就很合适。&nbsp; &nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>24.3.2 OBSERVER模式如何运用面向对象设计的原则 </strong>&nbsp;</p>
+<p class="style11">
+OBSERVER模式的最大推动力来自开放封闭原则。使用这个模式的动机就是为了增加新的观察对象时可以无需更改被观察的对象。这样，被观察对象就可以保持封闭。&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="第Ⅴ部分.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
 

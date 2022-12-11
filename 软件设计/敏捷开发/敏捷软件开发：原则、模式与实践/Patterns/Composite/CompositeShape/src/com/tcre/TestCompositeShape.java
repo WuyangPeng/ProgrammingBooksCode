@@ -1,3 +1,5 @@
+package com.tcre;
+
 import junit.framework.TestCase;
 import junit.swingui.TestRunner;
 
@@ -5,7 +7,7 @@ public class TestCompositeShape extends TestCase
 {
   public static void main(String[] args)
   {
-    TestRunner.main(new String[]{"TestCompositeShape"});
+    TestRunner.main(new String[]{"com.tcre.TestCompositeShape"});
   }
 
   public TestCompositeShape(String name)
