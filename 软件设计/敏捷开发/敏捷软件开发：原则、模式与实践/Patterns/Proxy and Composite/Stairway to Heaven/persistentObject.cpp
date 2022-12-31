@@ -4,10 +4,10 @@ PersistentObject::~PersistentObject()
 {
 }
 
-void PersistentObject::write(ostream& s) const
+void PersistentObject::write(std::ostream& s) const
 {
-  writeHeader(s);
-  writeFields(s);
-  writeFooter(s);
-  s << ends;
+    writeHeader(s);
+    writeFields(s);
+    writeFooter(s);
+    s << std::ends;
 }

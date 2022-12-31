@@ -1,7 +1,7 @@
 #include "product.h"
 
-Product::Product(const string& name)
-  : itsName(name)
+Product::Product(const std::string& name)
+    : itsName(name)
 {
 }
 

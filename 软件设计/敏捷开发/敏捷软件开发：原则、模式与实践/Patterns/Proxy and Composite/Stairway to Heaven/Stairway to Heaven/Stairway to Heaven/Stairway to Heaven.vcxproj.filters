@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="cppunit1.5">
+      <UniqueIdentifier>{b9e70a82-d858-4bfc-b38d-b0ece617025a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cppunit1.5\extensions">
+      <UniqueIdentifier>{34b0cc21-cf7f-4900-999d-7f7e3634f837}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="textui">
+      <UniqueIdentifier>{d16a11ef-f7b2-47b7-b0f0-6a45334e3542}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\assembly.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\persistentAssembly.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\persistentObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\persistentProduct.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ProductPersistenceTestCase.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\product.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Payroll\PayrollCode\cppunit1.5\CppUnit\test\framework\TestResult.h">
+      <Filter>cppunit1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Payroll\PayrollCode\cppunit1.5\CppUnit\test\framework\TestSuite.h">
+      <Filter>cppunit1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Payroll\PayrollCode\cppunit1.5\CppUnit\test\framework\CppUnitException.h">
+      <Filter>cppunit1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Payroll\PayrollCode\cppunit1.5\CppUnit\test\framework\estring.h">
+      <Filter>cppunit1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Payroll\PayrollCode\cppunit1.5\CppUnit\test\framework\Guards.h">
+      <Filter>cppunit1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Payroll\PayrollCode\cppunit1.5\CppUnit\test\framework\Test.h">
+      <Filter>cppunit1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Payroll\PayrollCode\cppunit1.5\CppUnit\test\framework\TestCaller.h">
+      <Filter>cppunit1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Payroll\PayrollCode\cppunit1.5\CppUnit\test\framework\TestCase.h">
+      <Filter>cppunit1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Payroll\PayrollCode\cppunit1.5\CppUnit\test\framework\TestFailure.h">
+      <Filter>cppunit1.5</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Payroll\PayrollCode\cppunit1.5\CppUnit\test\framework\extensions\Orthodox.h">
+      <Filter>cppunit1.5\extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Payroll\PayrollCode\cppunit1.5\CppUnit\test\framework\extensions\RepeatedTest.h">
+      <Filter>cppunit1.5\extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Payroll\PayrollCode\cppunit1.5\CppUnit\test\framework\extensions\TestDecorator.h">
+      <Filter>cppunit1.5\extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Payroll\PayrollCode\cppunit1.5\CppUnit\test\framework\extensions\TestSetup.h">
+      <Filter>cppunit1.5\extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Payroll\PayrollCode\cppunit1.5\CppUnit\test\textui\TextTestResult.h">
+      <Filter>textui</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\persistentAssembly.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\persistentObject.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\persistentProduct.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\product.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\ProductPersistenceTestCase.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\TestRunner.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\assembly.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Payroll\PayrollCode\cppunit1.5\CppUnit\test\framework\TestResult.cpp">
+      <Filter>cppunit1.5</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Payroll\PayrollCode\cppunit1.5\CppUnit\test\framework\TestSuite.cpp">
+      <Filter>cppunit1.5</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Payroll\PayrollCode\cppunit1.5\CppUnit\test\framework\TestCase.cpp">
+      <Filter>cppunit1.5</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Payroll\PayrollCode\cppunit1.5\CppUnit\test\framework\TestFailure.cpp">
+      <Filter>cppunit1.5</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Payroll\PayrollCode\cppunit1.5\CppUnit\test\textui\TextTestResult.cpp">
+      <Filter>textui</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

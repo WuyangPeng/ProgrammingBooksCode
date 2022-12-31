@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="77dab6c1-37c7-42c2-9270-d7012a6454e1" name="默认更改列表" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../../.." />
+  </component>
+  <component name="ProjectId" id="2Ix0ot1JP86gM6fGrWmFoEVb8By" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="H:\ProgrammingBooksCode\软件设计\敏捷开发\敏捷软件开发：原则、模式与实践\Patterns\Proxy and Composite\Shopping Cart\src\com\tcre" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.tcre.AllTests" />
+      <module name="Shopping Cart" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="77dab6c1-37c7-42c2-9270-d7012a6454e1" name="默认更改列表" comment="" />
+      <created>1671108104590</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1671108104590</updated>
+      <workItem from="1671108109239" duration="935000" />
+      <workItem from="1671196247830" duration="1347000" />
+      <workItem from="1671243986984" duration="703000" />
+      <workItem from="1671244751018" duration="2288000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="409" y="163" width="1165" height="705" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1671245413271">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="409" y="163" width="1165" height="705" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1671245413271" />
+    <state x="623" y="257" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1671108416502">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="623" y="257" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1671108416502" />
+    <state width="395" height="568" key="DebuggerActiveHint" timestamp="1671244481192">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="395" height="568" key="DebuggerActiveHint/0.0.1920.1032@0.0.1920.1032" timestamp="1671244481192" />
+    <state width="1864" height="259" key="GridCell.Tab.0.bottom" timestamp="1671247044139">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="1864" height="259" key="GridCell.Tab.0.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1671247044139" />
+    <state width="1864" height="259" key="GridCell.Tab.0.center" timestamp="1671247044139">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="1864" height="259" key="GridCell.Tab.0.center/0.0.1920.1032@0.0.1920.1032" timestamp="1671247044139" />
+    <state width="1864" height="259" key="GridCell.Tab.0.left" timestamp="1671247044139">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="1864" height="259" key="GridCell.Tab.0.left/0.0.1920.1032@0.0.1920.1032" timestamp="1671247044139" />
+    <state width="1864" height="259" key="GridCell.Tab.0.right" timestamp="1671247044139">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="1864" height="259" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1671247044139" />
+    <state width="1864" height="321" key="GridCell.Tab.1.bottom" timestamp="1671247044132">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="1864" height="321" key="GridCell.Tab.1.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1671247044132" />
+    <state width="1864" height="321" key="GridCell.Tab.1.center" timestamp="1671247044132">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="1864" height="321" key="GridCell.Tab.1.center/0.0.1920.1032@0.0.1920.1032" timestamp="1671247044132" />
+    <state width="1864" height="321" key="GridCell.Tab.1.left" timestamp="1671247044132">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="1864" height="321" key="GridCell.Tab.1.left/0.0.1920.1032@0.0.1920.1032" timestamp="1671247044132" />
+    <state width="1864" height="321" key="GridCell.Tab.1.right" timestamp="1671247044132">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state width="1864" height="321" key="GridCell.Tab.1.right/0.0.1920.1032@0.0.1920.1032" timestamp="1671247044132" />
+    <state x="598" y="301" key="com.intellij.ide.util.TipDialog" timestamp="1671244750703">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="598" y="301" key="com.intellij.ide.util.TipDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1671244750703" />
+    <state x="578" y="398" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1671108188842">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="578" y="398" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1032@0.0.1920.1032" timestamp="1671108188842" />
+    <state x="0" y="105" key="new project wizard" timestamp="1671244887457">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="0" y="105" key="new project wizard/0.0.1920.1032@0.0.1920.1032" timestamp="1671244887457" />
+  </component>
+</project>

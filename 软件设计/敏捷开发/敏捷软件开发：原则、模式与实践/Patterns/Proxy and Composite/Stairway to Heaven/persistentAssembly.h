@@ -6,16 +6,16 @@
 
 class PersistentAssembly : public Assembly, public PersistentProduct
 {
- public:
-  PersistentAssembly(const string& name, const string& assyCode);
-  virtual ~PersistentAssembly();
+public:
+    PersistentAssembly(const std::string& name, const std::string& assyCode);
+    virtual ~PersistentAssembly();
 
- protected:
-  virtual void writeFields(ostream& s) const;
+protected:
+    virtual void writeFields(std::ostream& s) const;
 
- private:
-  virtual void writeHeader(ostream& s) const;
-  virtual void writeFooter(ostream& s) const;
+private:
+    virtual void writeHeader(std::ostream& s) const;
+    virtual void writeFooter(std::ostream& s) const;
 };
 
 #endif

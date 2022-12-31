@@ -53,6 +53,7 @@
       <option name="presentableId" value="Default" />
       <updated>1670756795598</updated>
       <workItem from="1670756798186" duration="1303000" />
+      <workItem from="1671107993135" duration="38000" />
     </task>
     <servers />
   </component>
@@ -84,9 +85,17 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state width="1864" height="240" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1670758756540" />
+    <state x="598" y="300" key="com.intellij.ide.util.TipDialog" timestamp="1671108069215">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="598" y="300" key="com.intellij.ide.util.TipDialog/0.0.1920.1032@0.0.1920.1032" timestamp="1671108069215" />
     <state x="512" y="652" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1670756816818">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="512" y="652" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1032@0.0.1920.1032" timestamp="1670756816818" />
+    <state x="151" y="52" key="new project wizard" timestamp="1671108104213">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="151" y="52" key="new project wizard/0.0.1920.1032@0.0.1920.1032" timestamp="1671108104213" />
   </component>
 </project>

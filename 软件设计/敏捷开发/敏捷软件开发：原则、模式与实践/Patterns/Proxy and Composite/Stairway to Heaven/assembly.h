@@ -1,18 +1,22 @@
 #ifndef STAIRWAYTOHEAVENASSEMBLY_H
 #define STAIRWAYTOHEAVENASSEMBLY_H
 
-#include <string>
 #include "product.h"
+#include <string>
 
 class Assembly : public virtual Product
 {
- public:
-  Assembly(const string& name, const string& assyCode);
-  virtual ~Assembly();
-  
-  const string& getAssyCode() const {return itsAssyCode;}
- private:
-  string itsAssyCode;
+public:
+    Assembly(const std::string& name, const std::string& assyCode);
+    virtual ~Assembly();
+
+    const std::string& getAssyCode() const
+    {
+        return itsAssyCode;
+    }
+
+private:
+    std::string itsAssyCode;
 };
 
 #endif

@@ -5,12 +5,16 @@
 
 class Product
 {
- public:
-  Product(const string& name);
-  virtual ~Product();
-  const string& getName() const {return itsName;} 
- private:
-  string itsName;
+public:
+    Product(const std::string& name);
+    virtual ~Product();
+    const std::string& getName() const
+    {
+        return itsName;
+    }
+
+private:
+    std::string itsName;
 };
 
 #endif

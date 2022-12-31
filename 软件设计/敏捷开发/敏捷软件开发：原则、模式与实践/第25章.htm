@@ -66,74 +66,68 @@ Practices</span></p>
 ABSTARCT SERVER模式、ADAPTER模式和BRIDGE模式</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
 
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
-<p class="style11">
-&nbsp;。</p>
-<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
 <strong>25.1 ABSTACT SERVER模式 </strong>&nbsp;</p>
 <p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+ABSTRACT SERVER模式。我们在Switch和Light之间引入一个接口，这样就使得Switch能够控制任何实现了这个接口的东西。&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>25.1.1 谁拥有这个接口</strong>&nbsp;</p>
 <p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+接口属于它的客户，而不是它的派生类。客户和接口之间的逻辑绑定关系要强于接口和它的派生类之间的逻辑绑定关系。</p>
+<p class="style11">
+逻辑关系的强度和实体关系的强度是不一致的。继承是一个比关联强得多的实体关系。</p>
+<p class="style11">
+把客户和它们控制的接口打包在一起。&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>25.2 ADAPTER模式</strong>&nbsp;</p>
 <p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+我们所需要做的只是创建一个合适的适配器。&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>25.2.1 没有免费的午餐</strong>&nbsp;</p>
 <p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+使用适配器是有代价的。你需要编写新的类，需要实例化适配器并把要适配的对象和它绑定起来。</p>
+<p class="style11">
+每当你调用适配器时，必须要付出委托所需的时间和空间代价。所以，你显然不想始终都使用适配器。</p>
+<p class="style11">
+在大多数情况来说，ABSTRACT SERVER解决方案就非常合适了。&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>25.2.2 类形式的ADAPTER模式</strong>&nbsp;</p>
 <p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+适配器对象同时继承了Switchable接口和Light类。这种形式比对象方式稍微高效一点，也易于使用一些，但是却付出了使用高耦合度的继承关系的代价。&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>25.2.3 调制解调器问题、适配器以及LSP</strong>&nbsp;</p>
-<p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<strong>25.2.3 调制解调器问题、适配器以及LSP</strong> &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>25.2.4 使用杂凑的方法来修正这个问题</strong>&nbsp;</p>
-<p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<strong>25.2.4 使用杂凑的方法来修正这个问题</strong>&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>25.2.5 混乱的依赖关系网</strong>&nbsp;</p>
 <p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+&nbsp;这就是许多项目都会具有的那种有害的混乱依赖关系。系统某一部分中的一个杂凑体创建了一个有害的依赖关系，最终导致系统中完全无关的部分出现问题。&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>25.2.6 用ADAPTER模式来解决问题</strong>&nbsp;</p>
-<p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<strong>25.2.6 用ADAPTER模式来解决问题</strong></p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>25.3 BRIDGE模式</strong>&nbsp;</p>
 <p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+在类型层次结构具有多个自由度的情况中，BRIDGE模式通常是有用的。我们可以把这些层次结构分开并通过桥把它们结合到一起，而不是把它们合并起来。&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>25.4 结论</strong>&nbsp;</p>
 <p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+无论花多少时间试图去找出完美的软件结构，客户总是会引入一个变化破坏这个结构。</p>
+<p class="style11">
+这种情况是无法避免的。不存在完美的结构。只存在那些试图去平衡当前的代价和收益的结构。随着时间的过去，这些结构肯定会随着系统需求的改变而改变。管理这种变化的决窍是尽可能地保持系统简单、灵活。</p>
+<p class="style11">
+使用ADAPTER模式的解决方案是简单和直接的。它让所有的依赖关系都指向正确的方向，并且实现起来非常简单。BRIDGE模式稍稍有些复杂。我建议在开始时不要使用BRIDGE模式，直到你明显可以看出需要完全分离连接策略和通信策略并且需要增加新的连接策略时，才使用这种方法。</p>
+<p class="style11">
+模式是既能带来发处又具有代价的东西，你应该使用那些最适合手边问题的模式。&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="第Ⅴ部分.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
 
