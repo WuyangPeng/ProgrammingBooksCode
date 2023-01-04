@@ -49,6 +49,13 @@
 	margin-left: 12px;
 	margin-right: 12px;
 }
+.style14 {
+	font-family: FZKai-Z03;
+	text-indent: 32px;
+	text-align: left;
+	margin-left: 52px;
+	margin-right: 12px;
+}
 </style>
 </head>
 
@@ -70,130 +77,99 @@ Practices</span></p>
 <strong>27.1 Cloud公司</strong></p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
-<strong>27.1.1 WMS-LC的软件 </strong>&nbsp;</p>
-<p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<strong>27.1.1 WMS-LC的软件</strong></p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>27.2 Nimbus-LC软件设计 </strong>&nbsp;</p>
 <p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+联邦气象手册：<a href="https://www.weather.gov/">https://www.weather.gov/</a></p>
+<p class="style11">
+用户界面是容易变化的。客户、市场人员以及几乎所有接触产品的人的突然的想法都可能会导致用户界面的改变。如果说系统中有些部分很可能会遭受需要的严重影响的话，那就是用户界面。因此，我们应该首先解除和它之间的耦合。</p>
+<p class="style11">
+public interface TemperatureSensor</p>
+<p class="style11">
+{</p>
+<p class="style14">
+public double read();</p>
+<p class="style11">
+}</p>
+<p class="style11">
+<a href="Weather%20Station/src/com/tcre/weather/system/WeatherStation.java">
+WeatherStation.java</a></p>
+<p class="style11">
+<a href="Weather%20Station/src/com/tcre/weather/system/TemperatureSensor.java">
+TemperatureSensor.java</a></p>
+<p class="style11">
+<a href="Weather%20Station/src/com/tcre/weather/Main.java">Main.java</a>&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>27.2.1 24小时历史数据和持久化</strong>&nbsp;</p>
 <p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<a href="Weather%20Station/src/com/tcre/weather/test/PersistentImp.java">
+PersistentImp.java</a> &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>27.2.2 实现HiLo算法</strong>&nbsp;</p>
 <p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<a href="Weather%20Station/src/com/tcre/weather/wmsdataimp/HiLoDataImp.java">
+HiLoDataImp.java</a></p>
+<p class="style11">
+<a href="Weather%20Station/src/com/tcre/weather/persistence/HiLoProxy.java">
+HiLoDataProxy.java</a></p>
+<p class="style11">
+<a href="Weather%20Station/src/com/tcre/weather/persistence/Scope.java">
+Scope.java</a>&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>27.3 结论</strong>&nbsp;</p>
-<p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<strong>27.3 结论</strong>&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>27.4 Nimbus-LC需求概念</strong>&nbsp;</p>
-<p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<strong>27.4 Nimbus-LC需求概念</strong>&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>27.4.1 使用需求</strong>&nbsp;</p>
-<p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<strong>27.4.1 使用需求</strong>&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>27.4.2 24小时历史数据</strong>&nbsp;</p>
-<p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<strong>27.4.2 24小时历史数据</strong> &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>27.4.3 用户设置</strong></p>
-<p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<strong>27.4.3 用户设置</strong> &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>27.4.4 管理需求</strong></p>
-<p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<strong>27.4.4 管理需求</strong> &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>27.5 Nimbus-LC用例</strong></p>
-<p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<strong>27.5 Nimbus-LC用例</strong>&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>27.5.1 参与者</strong></p>
-<p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<strong>27.5.1 参与者</strong> &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
-<strong>27.5.2 用例</strong></p>
-<p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<strong>27.5.2 用例</strong> &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>27.5.3 测量的历史数据</strong></p>
-<p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<strong>27.5.3 测量的历史数据</strong> &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
-<strong>27.5.4 设置</strong></p>
-<p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<strong>27.5.4 设置</strong>&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>27.5.5 管理</strong></p>
-<p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<strong>27.5.5 管理</strong>&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>27.6 Nimbus-LC发布计划</strong></p>
-<p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<strong>27.6 Nimbus-LC发布计划</strong>&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>27.6.1 介绍</strong></p>
-<p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<strong>27.6.1 介绍</strong>&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>27.6.2 发布Ⅰ</strong></p>
-<p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<strong>27.6.2 发布Ⅰ</strong>&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
-<strong>27.6.3 发布Ⅱ</strong></p>
-<p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<strong>27.6.3 发布Ⅱ</strong> &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style12">
-<strong>27.6.4 发布Ⅲ</strong></p>
-<p class="style11">
-&nbsp;。&nbsp;</p>
-<p align="center">&nbsp; &nbsp;</p>
+<strong>27.6.4 发布Ⅲ</strong>&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="第Ⅴ部分.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
 

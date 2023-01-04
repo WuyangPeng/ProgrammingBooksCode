@@ -60,6 +60,7 @@
       <option name="presentableId" value="Default" />
       <updated>1671244887886</updated>
       <workItem from="1671244891140" duration="2739000" />
+      <workItem from="1672840484096" duration="37000" />
     </task>
     <servers />
   </component>
@@ -95,5 +96,9 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="1131" y="423" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1032@0.0.1920.1032" timestamp="1671245438482" />
+    <state x="151" y="52" key="new project wizard" timestamp="1672840558435">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="151" y="52" key="new project wizard/0.0.1920.1032@0.0.1920.1032" timestamp="1672840558435" />
   </component>
 </project>
