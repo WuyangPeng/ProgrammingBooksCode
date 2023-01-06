@@ -49,6 +49,13 @@
 	margin-left: 12px;
 	margin-right: 12px;
 }
+.style14 {
+	font-family: FZKai-Z03;
+	text-indent: 0;
+	text-align: left;
+	margin-left: 12px;
+	margin-right: 12px;
+}
 </style>
 </head>
 
@@ -67,30 +74,53 @@ VISITOR模式</strong></span><img src="../../../anabull1.gif" border="0" width="15
 
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style11">
-联 </p>
-<p class="style12">
-&nbsp; &nbsp;</p>
+问题：需要向类层次结构中增加新的方法，但是增加起来会很费劲或者会破坏设计。&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>28.1 VISITOR设计模式系列 </strong>&nbsp;</p>
 <p class="style11">
-联 </p>
-<p class="style12">
-&nbsp; &nbsp;</p>
+VISITOR模式系列允许在不更改现在类层次结构的情况下向其中增加新的方法。</p>
+<p class="style11">
+该系列的模式如下：</p>
+<ul>
+	<li>
+	<p class="style14">VISITOR模式</p>
+	</li>
+	<li>
+	<p class="style14">ACYCLIC VISITOR模式</p>
+	</li>
+	<li>
+	<p class="style14">DECORATOR模式</p>
+	</li>
+	<li>
+	<p class="style14">EXTENSION OBJECT模式&nbsp; &nbsp;</p>
+	</li>
+</ul>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>28.2 VISITOR模式 </strong>&nbsp;</p>
 <p class="style11">
-联 </p>
-<p class="style12">
-&nbsp; &nbsp;</p>
+<a href="Patterns/Visitor/Visitor/src/com/tcre/Modem.java">Modem.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/Visitor/src/com/tcre/ModemVisitor.java">
+ModemVisitor.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/Visitor/src/com/tcre/HayesModem.java">HayesModem.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/Visitor/src/com/tcre/ZoomModem.java">ZoomModem.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/Visitor/src/com/tcre/ErnieModem.java">ErineModem.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/Visitor/src/com/tcre/UnixModemConfigurator.java">
+UnixModemConfigurator.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/Visitor/src/com/tcre/TestModemVisitor.java">
+TestModemVisitor.java&nbsp; &nbsp;</a></p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>28.2.1 VISITOR模式如同一个矩阵 </strong>&nbsp;</p>
 <p class="style11">
-联 </p>
-<p class="style12">
-&nbsp; &nbsp;</p>
+VISITOR模式中的两次分发形成了一个功能矩阵。&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>28.3 ACYCLIC VISITOR模式 </strong>&nbsp;</p>
