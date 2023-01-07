@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta name="GENERATOR" content="Microsoft FrontPage 12.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
-<title>第27章 案例研究：气象站</title>
+<title>第28章 VISITOR模式</title>
 <link rel="stylesheet" type="text/css" href="../../../news.css">
 <meta name="Microsoft Theme" content="nature 011">
 <style type="text/css">
@@ -55,6 +55,9 @@
 	text-align: left;
 	margin-left: 12px;
 	margin-right: 12px;
+}
+.style15 {
+	font-family: FZKai-Z03;
 }
 </style>
 </head>
@@ -125,16 +128,43 @@ VISITOR模式中的两次分发形成了一个功能矩阵。&nbsp; &nbsp;</p>
 <p class="style12">
 <strong>28.3 ACYCLIC VISITOR模式 </strong>&nbsp;</p>
 <p class="style11">
-联 </p>
-<p class="style12">
-&nbsp; &nbsp;</p>
-<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+被访问层次结构的基类依赖于访问者层次结构的基类。</p>
+<p class="style11">
+访问者层次结构的基类中对于被访问层次结构中的每个派生类都有一个对应函数。因此，就有一个依赖环把所有被访问的派生类绑定在一起。</p>
+<p class="style11">
+可以使用一个称为ACYCLIC 
+VISITOR模式的变体解决这个问题。该变体把Visitor基类变成退化的，从而解除了依赖环。这个类中没有任何方法意味着它没有依赖于被访问层次结构的派生类。</p>
+<p class="style11">
+这种做法解除了依赖环，并且更易于增加被访问的派生类以及进行增量编译。糟糕的是，它同样也使得解决方案更加复杂了。更糟糕的是，转型花费的时间依赖于被访问层次结构的宽度和深度，所以很难进行测定。</p>
+<p class="style11">
+由于转型需要花费大量的执行时间，并且这些时间是不可预测的，所以ACYCLLIC 
+VISITOR模式不适用于严格的实时系统。该模式的复杂性可能同样会使它不适用于其他的系统。但是，对于那些被访问的层次结构不稳定，并且增量编译比较重要的系统来说，该模式是一个不错的选择。</p>
+<p class="style11">
+<a href="Patterns/Visitor/AcyclicVisitor/src/com/tcre/Modem.java">Modem.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/AcyclicVisitor/src/com/tcre/ModemVisitor.java">ModemVisitor.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/AcyclicVisitor/src/com/tcre/ErnieModemVisitor.java">ErineModemVisitor.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/AcyclicVisitor/src/com/tcre/ZoomModemVisitor.java">ZoomModemVisitor.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/AcyclicVisitor/src/com/tcre/HayesModemVisitor.java">HayesModemVisitor.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/AcyclicVisitor/src/com/tcre/ErnieModem.java">ErineModem.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/AcyclicVisitor/src/com/tcre/HayesModem.java">HayesModem.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/AcyclicVisitor/src/com/tcre/ZoomModem.java">ZoomModem.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/AcyclicVisitor/src/com/tcre/TestModemVisitor.java">
+TestModemVisitor.java</a></p>
+<span class="style15">&nbsp;</span><p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>28.3.1 ACYCLIC VISITOR模式如同一个稀疏矩阵 </strong>&nbsp;</p>
 <p class="style11">
-联 </p>
-<p class="style12">
-&nbsp; &nbsp;</p>
+正像VISITOR模式创建了一个功能矩阵，ACYCLIC VISITOR模式创建了一个稀疏矩阵。访问者类不需要针对每一个被访问的派生类都实现visit函数。</p>
+<p class="style11">
+ACYCLIC VISITOR模式允许我们忽略某些派生类和功能的组合。&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>28.3.2 在报表生成器中使用VISITOR模式 </strong>&nbsp;</p>
