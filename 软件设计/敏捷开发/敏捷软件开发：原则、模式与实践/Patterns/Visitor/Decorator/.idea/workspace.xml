@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e0ad0bc-ecc0-4ff8-a6ea-e28dd312e53f" name="默认更改列表" comment="" />
+    <list default="true" id="a2791026-3297-4165-ae66-57ae1c3cf87b" name="默认更改列表" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,7 +17,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../../.." />
   </component>
-  <component name="ProjectId" id="2Jyu4WGW5JmZkskoVnW53qH6Q36" />
+  <component name="ProjectId" id="2JzJ78mQSXl3wbF8MNdi0YJtgpm" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -35,7 +35,7 @@
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.tcre.Main" />
-      <module name="AcyclicVisitor" />
+      <module name="Decorator" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
@@ -54,13 +54,12 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8e0ad0bc-ecc0-4ff8-a6ea-e28dd312e53f" name="默认更改列表" comment="" />
-      <created>1673062452237</created>
+      <changelist id="a2791026-3297-4165-ae66-57ae1c3cf87b" name="默认更改列表" comment="" />
+      <created>1673074807146</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1673062452237</updated>
-      <workItem from="1673062456721" duration="1063000" />
-      <workItem from="1673071340722" duration="65000" />
+      <updated>1673074807146</updated>
+      <workItem from="1673074810798" duration="1610000" />
     </task>
     <servers />
   </component>
@@ -68,29 +67,33 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1864" height="259" key="GridCell.Tab.0.bottom" timestamp="1673063558423">
+    <state x="0" y="309" key="#com.intellij.ide.util.MemberChooser" timestamp="1673075950416">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1864" height="259" key="GridCell.Tab.0.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1673063558423" />
-    <state width="1864" height="259" key="GridCell.Tab.0.center" timestamp="1673063558423">
+    <state x="0" y="309" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1032@0.0.1920.1032" timestamp="1673075950416" />
+    <state width="1476" height="170" key="GridCell.Tab.0.bottom" timestamp="1673076475795">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1864" height="259" key="GridCell.Tab.0.center/0.0.1920.1032@0.0.1920.1032" timestamp="1673063558423" />
-    <state width="1864" height="259" key="GridCell.Tab.0.left" timestamp="1673063558423">
+    <state width="1476" height="170" key="GridCell.Tab.0.bottom/0.0.1920.1032@0.0.1920.1032" timestamp="1673076475795" />
+    <state width="1476" height="170" key="GridCell.Tab.0.center" timestamp="1673076475795">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1864" height="259" key="GridCell.Tab.0.left/0.0.1920.1032@0.0.1920.1032" timestamp="1673063558423" />
-    <state width="1864" height="259" key="GridCell.Tab.0.right" timestamp="1673063558423">
+    <state width="1476" height="170" key="GridCell.Tab.0.center/0.0.1920.1032@0.0.1920.1032" timestamp="1673076475795" />
+    <state width="1476" height="170" key="GridCell.Tab.0.left" timestamp="1673076475795">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state width="1864" height="259" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1673063558423" />
-    <state x="578" y="398" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1673062515399">
+    <state width="1476" height="170" key="GridCell.Tab.0.left/0.0.1920.1032@0.0.1920.1032" timestamp="1673076475795" />
+    <state width="1476" height="170" key="GridCell.Tab.0.right" timestamp="1673076475795">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state x="578" y="398" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1032@0.0.1920.1032" timestamp="1673062515399" />
-    <state x="151" y="52" key="new project wizard" timestamp="1673071412527">
+    <state width="1476" height="170" key="GridCell.Tab.0.right/0.0.1920.1032@0.0.1920.1032" timestamp="1673076475795" />
+    <state x="570" y="706" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1673076009480">
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
-    <state x="151" y="52" key="new project wizard/0.0.1920.1032@0.0.1920.1032" timestamp="1673071412527" />
+    <state x="570" y="706" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1032@0.0.1920.1032" timestamp="1673076009480" />
+    <state x="303" y="105" key="new project wizard" timestamp="1673076426237">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="303" y="105" key="new project wizard/0.0.1920.1032@0.0.1920.1032" timestamp="1673076426237" />
   </component>
 </project>

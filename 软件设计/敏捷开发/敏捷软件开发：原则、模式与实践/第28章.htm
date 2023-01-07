@@ -169,51 +169,100 @@ ACYCLIC VISITOR模式允许我们忽略某些派生类和功能的组合。&nbsp; &nbsp;</p>
 <p class="style12">
 <strong>28.3.2 在报表生成器中使用VISITOR模式 </strong>&nbsp;</p>
 <p class="style11">
-联 </p>
-<p class="style12">
-&nbsp; &nbsp;</p>
+VISITOR模式的一个非常常见的应用是，遍历大量的数据结构并产生报表。这使得数据结构对象中不含有任何产生报表的代码。如果想增加新报表，只需增加新的访问者，而不需要更改数据结构中的代码。</p>
+<p class="style11">
+<a href="Patterns/Visitor/Report/src/com/tcre/Part.java">Part.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/Report/src/com/tcre/Assembly.java">Assembly.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/Report/src/com/tcre/PiecePart.java">PiecePart.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/Report/src/com/tcre/PartVisitor.java">PartVisitor.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/Report/src/com/tcre/ExplodedCostVisitor.java">
+ExplodedCostVisitor.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/Report/src/com/tcre/PartCountVisitor.java">
+PartCountVisitor.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/Report/src/com/tcre/TestBOMReport.java">
+TestBOMReport.java&nbsp; </a>&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>28.3.3 VISITOR模式的其他用途 </strong>&nbsp;</p>
 <p class="style11">
-联 </p>
-<p class="style12">
-&nbsp; &nbsp;</p>
+如果一个应用程序中存在有需要以多种不同方式进行解释的数据结构，就可以使用Visitor模式。编译器通常创建一些中间数据结构来表示那些语法上正确的源代码。然后，这些数据结构被用来生成经过编译的代码。</p>
+<p class="style11">
+很多应用程序都使用配置数据结构。有人会设想让不同的应用程序子系统通过使用它们自己特定的访问者遍历配置数据来对自己进行初始化。</p>
+<p class="style11">
+在每个使用访问者的情况中，所使用的数据结构都独立于它的用途，可以创建新的访问者，可以更改现有的访问者，并且可以把所有的访问者重新部署到安装地点而不会引起现有数据结构的重新编译和重新部署。&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>28.4 DECORATOR模式 </strong>&nbsp;</p>
 <p class="style11">
-联 </p>
-<p class="style12">
-&nbsp; &nbsp;</p>
+<a href="Patterns/Visitor/Decorator/src/com/tcre/Modem.java">Modem.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/Decorator/src/com/tcre/HayesModem.java">
+HayesModem.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/Decorator/src/com/tcre/LoudDialModem.java">
+LoudDialModem.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/Decorator/src/com/tcre/ModemDecoratorTest.java">
+ModemDecoratorTest.java</a>&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>28.4.1 多个Decorator </strong>&nbsp;</p>
-<p class="style11">
-联 </p>
-<p class="style12">
-&nbsp; &nbsp;</p>
+<strong>28.4.1 多个Decorator</strong> &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>28.5 EXTENSION OBJECT模式 </strong>&nbsp;</p>
 <p class="style11">
-联 </p>
-<p class="style12">
-&nbsp; &nbsp;</p>
+这个模式虽然比其他的模式复杂一些，但是它也更强大，更灵活一些。</p>
+<p class="style11">
+层次结构中的每个对象都持有一个特定扩展对象的列表。同时，每个对象也提供一个通过名字查找扩展对象的方法。扩展对象提供了操作原始结构对象的方法。</p>
+<p class="style11">
+<a href="Patterns/Visitor/ExtensionObject/src/com/tcre/TestBomXML.java">
+TestBomXML.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/ExtensionObject/src/com/tcre/Part.java">Part.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/ExtensionObject/src/com/tcre/PartExtension.java">
+PartExtension.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/ExtensionObject/src/com/tcre/PiecePart.java">
+PiecePart.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/ExtensionObject/src/com/tcre/Assembly.java">
+Assembly.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/ExtensionObject/src/com/tcre/XMLPartExtension.java">
+XMLPartExtension.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/ExtensionObject/src/com/tcre/CSVPiecePartExtension.java">
+XMLPiecePartExtension.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/ExtensionObject/src/com/tcre/XMLAssemblyExtension.java">
+XMLAssemblyExtension.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/ExtensionObject/src/com/tcre/CSVPartExtension.java">
+CSVPartExtension.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/ExtensionObject/src/com/tcre/CSVPiecePartExtension.java">
+CSVPiecePartExtension.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/ExtensionObject/src/com/tcre/CSVAssemblyExtension.java">
+CSVAssemblyExtension.java</a></p>
+<p class="style11">
+<a href="Patterns/Visitor/ExtensionObject/src/com/tcre/BadPartExtension.java">
+BadPartExtension.java&nbsp; </a>&nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
 <strong>28.6 结论</strong></p>
 <p class="style11">
-联 </p>
-<p class="style12">
-&nbsp; &nbsp;</p>
+VISITOR模式系列给我们提供了许多无需更改一个层次结构中的类即可修改其行为的方法。&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>28.6.1 提示</strong></p>
-<p class="style11">
-联 </p>
-<p class="style12">
-&nbsp; &nbsp;</p>
+<strong>28.6.1 提示</strong>&nbsp; &nbsp;</p>
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="第Ⅵ部分.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../anabull1.gif" width="15" height="15"></font></b></p>
 
