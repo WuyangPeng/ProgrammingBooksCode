@@ -61,6 +61,7 @@
       <option name="presentableId" value="Default" />
       <updated>1673076426366</updated>
       <workItem from="1673076429573" duration="4397000" />
+      <workItem from="1673438548288" duration="83000" />
     </task>
     <servers />
   </component>
@@ -96,6 +97,10 @@
       <screen x="0" y="0" width="1920" height="1032" />
     </state>
     <state x="1157" y="719" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1032@0.0.1920.1032" timestamp="1673076461228" />
+    <state x="104" y="102" key="new project wizard" timestamp="1673438721058">
+      <screen x="0" y="0" width="1920" height="1032" />
+    </state>
+    <state x="104" y="102" key="new project wizard/0.0.1920.1032@0.0.1920.1032" timestamp="1673438721058" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

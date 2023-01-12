@@ -1,4 +1,4 @@
-package com.objectmentor.PPP.Patterns.State.turnstyle;
+package com.tcre;
 
 import junit.framework.*;
 import junit.swingui.TestRunner;
@@ -7,7 +7,7 @@ public class TestTurnstyle extends TestCase
 {
   public static void main(String[] args)
   {
-    TestRunner.main(new String[]{"TestTurnstyle"});
+    TestRunner.main(new String[]{"com.tcre.TestTurnstyle"});
   }
 
   public TestTurnstyle(String name)

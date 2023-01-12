@@ -1,3 +1,5 @@
+package com.tcre;
+
 interface TurnstyleState
 {
   void coin(Turnstyle t);

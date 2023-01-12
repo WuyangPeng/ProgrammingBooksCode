@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta name="GENERATOR" content="Microsoft FrontPage 12.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
-<title>第27章 案例研究：气象站</title>
+<title>第29章 STATE模式</title>
 <link rel="stylesheet" type="text/css" href="../../../news.css">
 <meta name="Microsoft Theme" content="nature 011">
 <style type="text/css">
@@ -62,11 +62,113 @@ Software Development</p>
 <p align="center" class="style6">&nbsp;<span class="style7">Principles, Patterns, and 
 Practices</span></p>
 <p align="center" class="style6">
-<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第28章</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
+<img src="../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第29章 
+STATE模式</strong></span><img src="../../../anabull1.gif" border="0" width="15" height="15"></p>
 
 <p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style11">
+它们提供了一个简单、优雅的方法去揭示和定义复杂系统的行为。它们同样也提供了一个易于理解、易于修改的有效实现策略。 &nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
 <p class="style12">
-<strong>27.2 Nimbus-LC软件设计 </strong>&nbsp;</p>
+<strong>29.1 有限状态自动机概述</strong>&nbsp; &nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>29.2 实现技术</strong>&nbsp; &nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>29.2.1 嵌套switch/case语句 </strong>&nbsp;</p>
+<p class="style11">
+有许多不同的实现FSM的策略。第一个，也是最直接的一个策略是使用嵌套switch/case语句。</p>
+<p class="style11">
+<a href="Patterns/State/NestedSwitchCaseStatements/src/com/tcre/Turnstyle.java">
+Turnstile.java</a></p>
+<p class="style11">
+<a href="Patterns/State/NestedSwitchCaseStatements/src/com/tcre/TurnstyleController.java">
+TurnstileController.java</a></p>
+<p class="style11">
+<a href="Patterns/State/NestedSwitchCaseStatements/src/com/tcre/TestTurnstyle.java">
+TestTurnstile.java</a>&nbsp; &nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>29.2.2 解释迁移表 </strong>&nbsp;</p>
+<p class="style11">
+一个很常见的实现FSM的技术就是创建一个描绘迁移的数据表。该表被一个处理事件的引擎解释。引擎查找与事件匹配的迁移，调用相应的动作，并更改状态。</p>
+<p class="style11">
+该方法的另一个好处是迁移表可以容易地在运行时改变。这样就允许动态地改变状态机逻辑。我曾经使用过类似这样的机制来为复杂的有限状态机打热补丁。</p>
+<p class="style11">
+另外一个好处是可以创建多个迁移表，每个都代表一个不同的状态机逻辑。这些表可以根据启动条件在运行时进行选择。</p>
+<p class="style11">
+该方法的代价主要是速度。对迁移表的遍历要花费时间。&nbsp; &nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>29.3 STATE模式 </strong>&nbsp;</p>
+<p class="style11">
+另外一项实现有限状态机的方法：STATE模式。该模式既具有嵌套switch/case语句的效率又具有解释迁移表的灵活性。</p>
+<p class="style11">
+<a href="Patterns/State/TurnstyleStatePattern/src/com/tcre/TurnstyleState.java">
+TurnstileState.java</a></p>
+<p class="style11">
+<a href="Patterns/State/TurnstyleStatePattern/src/com/tcre/Turnstyle.java">
+Turnstile.java</a>&nbsp; &nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>29.3.1 SMC——状态机编译器 </strong>&nbsp;</p>
+<p class="style11">
+<a href="Patterns/State/SMCTurnstyle/src/com/tcre/TurnstyleFSM.sm">Turnstile.sm</a></p>
+<p class="style11">
+<a href="Patterns/State/SMCTurnstyle/src/com/tcre/TurnstyleActions.java">
+TurnstileActions.java</a></p>
+<p class="style11">
+<a href="Patterns/State/SMCTurnstyle/src/com/tcre/TurnstyleFSM.java">
+TurnstileFSM.java</a> &nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>29.4 应该在哪些地方使用状态机</strong>&nbsp; &nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>29.5 作为GUI中的高层应用策略 </strong>&nbsp;</p>
+<p class="style11">
+联 </p>
+<p class="style12">
+&nbsp; &nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>29.5.1 GUI交互控制器 </strong>&nbsp;</p>
+<p class="style11">
+联 </p>
+<p class="style12">
+&nbsp; &nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>29.5.2 分布式处理 </strong>&nbsp;</p>
+<p class="style11">
+联 </p>
+<p class="style12">
+&nbsp; &nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>29.6 结论 </strong>&nbsp;</p>
+<p class="style11">
+联 </p>
+<p class="style12">
+&nbsp; &nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>29.7 程序 </strong>&nbsp;</p>
+<p class="style11">
+联 </p>
+<p class="style12">
+&nbsp; &nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>29.7.1 使用解释表的Turnstile.java </strong>&nbsp;</p>
+<p class="style11">
+联 </p>
+<p class="style12">
+&nbsp; &nbsp;</p>
+<p align="center"><img border="0" src="../../../anarule.gif" width="600" height="10"></p>
+<p class="style12">
+<strong>29.7.2 由SMC生成的Turnstile.java以及其他支持文件 </strong>&nbsp;</p>
 <p class="style11">
 联 </p>
 <p class="style12">

@@ -1,3 +1,5 @@
+package com.tcre;
+
 public interface TurnstyleController
 {
   public void lock();
