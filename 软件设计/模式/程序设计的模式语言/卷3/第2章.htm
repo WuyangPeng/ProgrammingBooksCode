@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta name="GENERATOR" content="Microsoft FrontPage 12.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
-<title>第1章 空对象</title>
+<title>第2章 管理者</title>
 <link rel="stylesheet" type="text/css" href="../../../../news.css">
 <meta name="Microsoft Theme" content="nature 011">
 <style type="text/css">
@@ -36,6 +36,16 @@
 	margin-left: 12px;
 	margin-right: 12px;
 }
+.style13 {
+	color: #000000;
+}
+.style14 {
+	font-family: FZKai-Z03;
+	text-align: left;
+	text-indent: 36px;
+	margin-left: 52px;
+	margin-right: 12px;
+}
 </style>
 </head>
 
@@ -45,14 +55,115 @@
 <p align="center" class="style8">Pattern Languages of Program Design&nbsp;</p>
 
 <p align="center" class="style6">
-<img src="../../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第1章 
-空对象</strong></span><img src="../../../../anabull1.gif" border="0" width="15" height="15"></p>
+<img src="../../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第2章 
+管理者</strong></span><img src="../../../../anabull1.gif" border="0" width="15" height="15"></p>
+<p align="center" class="style6">
+<font face="华文中宋" size="4"><b>&nbsp;<span class="style13">Peter Sommerlad</span></b></font></p>
 
 <p align="center"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
-<p class="style10"><strong>设计模式，1997年的观点</strong> </p>
 <p class="style12">
-。</p>
-<p class="style10">&nbsp; </p>
+管理者设计模式将类实例的管理封到了单独的管理对象中，其中考虑了独立于类的管理功能的变体和不同对象类的管理者重用。&nbsp; </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
+<p class="style10"><strong>范例</strong> </p>
+<p class="style12">
+class Book {</p>
+<p class="style14">
+// ...many things left out</p>
+<p class="style14">
+static Map&lt;String, Book*&gt; allBooks;</p>
+<p class="style12">
+public:</p>
+<p class="style14">
+Book(String ISBN,String Authors,String Title);</p>
+<p class="style14">
+String getAuthors() const;</p>
+<p class="style14">
+String getISBN() const;</p>
+<p class="style14">
+String getTitle() const;</p>
+<p class="style14">
+String getPublisher() const;</p>
+<p class="style14">
+const JpegImage* getCover() const;</p>
+<p class="style12">
+// static members for retrieving books</p>
+<p class="style14">
+static Book* search(String isbn);</p>
+<p class="style14">
+static List&lt;Book*&gt; findBooksOfAuthor(String author);</p>
+<p class="style12">
+};&nbsp; </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style10"><strong>场景</strong> </p>
+<p class="style12">
+对象处理 </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style10"><strong>问题</strong> </p>
+<p class="style12">
+设计商业或主要的对象类时，经常需要以同样的方式处理该类的所有实例。</p>
+<p class="style12">
+按照需要创建以后在客户组件之间共享的对象。</p>
+<p class="style12">
+必须处理存于数据库中的永久对象时也会出现。</p>
+<p class="style12">
+用户经常想以同样的方式控制类的所有对象的生存时间。</p>
+<p class="style12">
+总的来说，类的所有对象都必须是可以访问的。</p>
+<p class="style12">
+对象实现的变体不应该影响它们的管理方式。</p>
+<p class="style12">
+其他与处理主要对象相关的服务应该容易添加。</p>
+<p class="style12">
+几个类需要的对对象的控制几乎是相同的。&nbsp; </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style10"><strong>解决方案</strong> </p>
+<p class="style12">
+引入一个分离的组件管理者，它将管理对象集合看作一个整体。管理者组件处理与访问、创建或删除管理对象相关的问题。</p>
+<p class="style12">
+要求特定的管理对象的用户从管理者处取出一个对象引用，然后在客户组件之间与主要的对象完成所有的交互。不再需要主对象时，客户组件将主对象返回给管理者。管理对象按客户要求执行任务，在这种模式中将它们称为主体。&nbsp; </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style10"><strong>结构</strong> </p>
+<p class="style12">
+客户组件按照主体接口进行编码，但是若要获得该类的对象，客户需要复用管理者对象。</p>
+<p class="style12">
+管理者是创建和销毁主体的惟一对象，它跟踪主体引用集合中的管理主体，典型的管理功能包括根据特定关键字搜索主体。由于管理者对象并不是直接嵌入主体类中，所以修改或创建一个子类并独立扩展管理者都是有可能的。&nbsp; </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style10"><strong>动态性</strong>&nbsp;</p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style10"><strong>实现</strong> </p>
+<p class="style12">
+标识主体需要的管理服务。</p>
+<p class="style12">
+定义管理者组件的接口。</p>
+<p class="style12">
+设计管理者组件的访问机制。</p>
+<p class="style12">
+设计并实现主体类。</p>
+<p class="style12">
+实现管理者组件。</p>
+<p class="style12">
+使用管理者和主体设计并实现客户组件。&nbsp; </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style10"><strong>变体</strong>&nbsp; </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style10"><strong>类方法</strong>&nbsp; </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style10"><strong>已知的用法</strong> </p>
+<p class="style12">
+Flyweight、Command Processor和View Handler都是比较知名的模式。&nbsp; </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style10"><strong>结果</strong>&nbsp; </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style10"><strong>参见</strong> </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10">&nbsp;</p>
+<p class="style10"><strong>致谢</strong>&nbsp; </p>
 <p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
 
 <p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="第1部分.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../../anabull1.gif" width="15" height="15"></font></b></p>

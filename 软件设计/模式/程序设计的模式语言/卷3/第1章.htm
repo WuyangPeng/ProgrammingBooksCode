@@ -36,6 +36,9 @@
 	margin-left: 12px;
 	margin-right: 12px;
 }
+.style13 {
+	color: #000000;
+}
 </style>
 </head>
 
@@ -47,89 +50,144 @@
 <p align="center" class="style6">
 <img src="../../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第1章 
 空对象</strong></span><img src="../../../../anabull1.gif" border="0" width="15" height="15"></p>
+<p align="center" class="style6">
+<font face="华文中宋" size="4"><b>&nbsp;<span class="style13">Bobby Woolf</span></b></font></p>
 
 <p align="center"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
 <p class="style10"><strong>意图</strong></p>
 <p class="style12">
-。</p>
-<p class="style10">&nbsp; </p>
+空对象给另一个共享相同接口但不做任何工作的对象提供一个代理。这样，Null Object封装了如何不做任何事并隐藏其合作者细节的执行决定。&nbsp; </p>
 <p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10">&nbsp;</p>
 <p class="style10"><strong>别名</strong></p>
 <p class="style12">
-。</p>
-<p class="style10">&nbsp; </p>
+Active Nothing </p>
 <p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
 
 <p class="style10"><strong>动机</strong></p>
 <p class="style12">
-。</p>
-<p class="style10">&nbsp; </p>
+需要合作者的对象有时不需要合作者去做任何事。但是， 这个对象希望将不做任何事的合作者与实际提供行为的合作者同样对待。</p>
+<p class="style12">
+Null Object模式的关键是抽象类，它为这种类型的所有对象都定义了接口。Null 
+Object实现为该抽象类的子类。因为它符合抽象类的接口，所以它可以在任何需要这种类型对象的地方使用。&nbsp; </p>
 <p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
 
 <p class="style10"><strong>关键</strong></p>
 <p class="style12">
-。</p>
-<p class="style10">&nbsp; </p>
+一个类型，它的类提供指定的行为。</p>
+<p class="style12">
+一个相同类型的对象，该类型通过不做任何工作实现接口。</p>
+<p class="style12">
+一个与这种类型合作并且能使用它的任何实例的客户类。</p>
+<p class="style12">
+一个实现空对象的单独类。</p>
+<p class="style12">
+一个为正规类和空类定义接口的抽象超类。</p>
+<p class="style12">
+典型的空类没有状态，并且可能只有一个实例。&nbsp; </p>
 <p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
 
 <p class="style10"><strong>适用性</strong></p>
 <p class="style12">
-。</p>
-<p class="style10">&nbsp; </p>
+使用Null Object模式：</p>
+<p class="style12">
+对象需要合作者时，这种合作在应用Null Object模式以前已经存在。</p>
+<p class="style12">
+一些合作者实例不做任何事情时。</p>
+<p class="style12">
+需要客户能够忽略提供真正行为的合作者和不做任何工作的合作者之间的差异时。这样客户不需明确检测nil或其他特定值。</p>
+<p class="style12">
+想重用do-nothing行为时。这样，需要该行为的不同客户可以按相同的方式一致工作。</p>
+<p class="style12">
+所有可能是do-nothing行为的行为被封装在合作者类中时。如果类中的一些行为是do-nothing行为，则类的大部分或者所有行为都是do-nothing。&nbsp; </p>
 <p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
 
 <p class="style10"><strong>结构</strong></p>
-<p class="style12">
-。</p>
-<p class="style10">&nbsp; </p>
 <p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
 
 <p class="style10"><strong>参与者</strong></p>
 <p class="style12">
-。</p>
-<p class="style10">&nbsp; </p>
+Client</p>
+<p class="style12">
+AbstractObject</p>
+<p class="style12">
+RealObject</p>
+<p class="style12">
+NullObject&nbsp; </p>
 <p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
 
 <p class="style10"><strong>合作</strong></p>
 <p class="style12">
-。</p>
-<p class="style10">&nbsp; </p>
+空对象通过不做任何工作实现该消息。&nbsp; </p>
 <p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
 
 <p class="style10"><strong>结果</strong></p>
 <p class="style12">
-。</p>
-<p class="style10">&nbsp; </p>
+优点：</p>
+<p class="style12">
+使用多态类。</p>
+<p class="style12">
+简化客户代码。</p>
+<p class="style12">
+封装do-nothing行为。</p>
+<p class="style12">
+使do-nothing行为可重用。</p>
+<p class="style12">
+缺点：</p>
+<p class="style12">
+强制封装。</p>
+<p class="style12">
+可能导致类膨胀。</p>
+<p class="style12">
+强制一致性。</p>
+<p class="style12">
+不可变。&nbsp; </p>
 <p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
 
 <p class="style10"><strong>实现</strong></p>
 <p class="style12">
-。</p>
-<p class="style10">&nbsp; </p>
+第一个问题就是RealObject的特殊空实例。</p>
+<p class="style12">
+第二个问题是客户就空行为不能达到一致。</p>
+<p class="style12">
+第三个问题是变换到RealObject。</p>
+<p class="style12">
+最后一个问题是NullObject类不是一个混合物。&nbsp; </p>
 <p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
 
-<p class="style10"><strong>样例代码</strong></p>
-<p class="style12">
-。</p>
-<p class="style10">&nbsp; </p>
+<p class="style10"><strong>样例代码</strong> </p>
 <p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
 
 <p class="style10"><strong>已知的用法</strong></p>
 <p class="style12">
-。</p>
-<p class="style10">&nbsp; </p>
+Null Strategg</p>
+<p class="style12">
+Null DragMode</p>
+<p class="style12">
+Null Adapter</p>
+<p class="style12">
+Null State</p>
+<p class="style12">
+Null Lock</p>
+<p class="style12">
+Null Proxy</p>
+<p class="style12">
+Null Iterator</p>
+<p class="style12">
+Null Instance</p>
+<p class="style12">
+Reusable Null</p>
+<p class="style12">
+Procedural Null</p>
+<p class="style12">
+Null Object反例。&nbsp; </p>
 <p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
 
 <p class="style10"><strong>相关模式</strong></p>
 <p class="style12">
-。</p>
-<p class="style10">&nbsp; </p>
+当空对象不需要内部状态时，NullObject类可以实现为Singleton。&nbsp; </p>
 <p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
 
-<p class="style10"><strong>致谢</strong></p>
-<p class="style12">
-。</p>
-<p class="style10">&nbsp; </p>
+<p class="style10"><strong>致谢</strong>&nbsp; </p>
 <p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"> </p>
 
 <p align="center"><b><font size="6" face="隶书"><img border="0" src="../../../../anabull1.gif" width="15" height="15"></font></b><font color="#800080" face="华文彩云" size="5"><b><a href="第1部分.htm"><font color="#ff00ff">返回</font></a></b></font><b><font size="6" face="隶书"><img border="0" src="../../../../anabull1.gif" width="15" height="15"></font></b></p>
