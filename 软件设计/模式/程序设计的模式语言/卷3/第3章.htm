@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <meta name="GENERATOR" content="Microsoft FrontPage 12.0">
 <meta name="ProgId" content="FrontPage.Editor.Document">
-<title>第1章 空对象</title>
+<title>第3章 产品交易商</title>
 <link rel="stylesheet" type="text/css" href="../../../../news.css">
 <meta name="Microsoft Theme" content="nature 011">
 <style type="text/css">
@@ -36,6 +36,9 @@
 	margin-left: 12px;
 	margin-right: 12px;
 }
+.style13 {
+	color: #000000;
+}
 </style>
 </head>
 
@@ -45,11 +48,93 @@
 <p align="center" class="style8">Pattern Languages of Program Design&nbsp;</p>
 
 <p align="center" class="style6">
-<img src="../../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第1章 
-空对象</strong></span><img src="../../../../anabull1.gif" border="0" width="15" height="15"></p>
+<img src="../../../../anabull1.gif" border="0" width="15" height="15"><span class="style10"><strong>第3章 
+产品交易商</strong></span><img src="../../../../anabull1.gif" border="0" width="15" height="15"></p>
+<p align="center" class="style6">
+<font face="华文中宋" size="4"><b>&nbsp;<span class="style13">Dirk Baumer、Dirk 
+Riehle</span></b></font></p>
 
 <p align="center"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
-<p class="style10"><strong>设计模式，1997年的观点</strong> </p>
+<p class="style10"><strong>意图</strong> </p>
+<p class="style12">
+产品交易商设计模式允许客户通过给接口命名并提供规范来创建对象。Product 
+Trader将客户从产品中分离出来，由此简化类层次演变、框架、应用程序、配置和改进。&nbsp; </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style10"><strong>别名</strong> </p>
+<p class="style12">
+Virtual Constructor，Late Creation&nbsp; </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style10"><strong>动机</strong> </p>
+<p class="style12">
+要进行实例化的实际类只能在运行期决定，而且它只能用抽象类访问。这样一来，具体的子类对客户来说是隐藏的。而且词典可以在运行期被改变和重新配置。这就使用用户可以简单地配置和改进类层次结构、框架和应用程序。</p>
+<p class="style10">&nbsp; </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style10"><strong>适用性</strong></p>
+<p class="style12">
+如果想使客户完全独立于抽象类Product的具体实现，或</p>
+<p class="style12">
+根据只有在运行期可用的选择标准动态选择Product类，或</p>
+<p class="style12">
+根据给定选择标准，在运行期或静态配置实例化Product类的种类；或</p>
+<p class="style12">
+在不影响客户的情况下，改变并改进Product类层次结构。&nbsp; </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style10"><strong>结构</strong> </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style10"><strong>参与者</strong></p>
+<p class="style12">
+。</p>
+<p class="style10">&nbsp; </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style10"><strong>合作</strong> </p>
+<p class="style12">
+。</p>
+<p class="style10">&nbsp; </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style10"><strong>结果</strong> </p>
+<p class="style12">
+。</p>
+<p class="style10">&nbsp; </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style10"><strong>实现</strong> </p>
+<p class="style12">
+。</p>
+<p class="style10">&nbsp; </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style10"><strong>样例代码</strong> </p>
+<p class="style12">
+。</p>
+<p class="style10">&nbsp; </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style10"><strong>已知的用法</strong> </p>
+<p class="style12">
+。</p>
+<p class="style10">&nbsp; </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style10"><strong>相关模式</strong> </p>
+<p class="style12">
+。</p>
+<p class="style10">&nbsp; </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style10"><strong>致谢</strong> </p>
+<p class="style12">
+。</p>
+<p class="style10">&nbsp; </p>
+<p class="style10"><img border="0" src="../../../../anarule.gif" width="600" height="10"></p>
+
+<p class="style10"><strong>参考文献</strong> </p>
 <p class="style12">
 。</p>
 <p class="style10">&nbsp; </p>
